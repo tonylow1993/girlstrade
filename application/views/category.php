@@ -5,7 +5,9 @@
   <!-- /.header -->
   <!-- <div class="search-row-wrapper">-->
   <br/>
+    <div class="search-row-wrapper">
     <div class="container ">
+      
       <form  id="myForm"  onSubmit="return setup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">
             <div class="col-lg-3 col-sm-3 search-col relative"> <i class="icon-docs icon-append"></i>
                 <input type="text" name="ads"  id="ads" class="form-control has-icon" placeholder="Keywords" value="<?php if($keywords<>'0') echo trim($keywords);?>">
@@ -86,6 +88,7 @@
             <!--/.tab-box-->
        
       </form>
+      </div>
     </div>
   <!--  </div> -->
   <!-- /.search-row -->
@@ -94,7 +97,7 @@
       <div class="row">
         <div class="col-sm-3 page-sidebar">
           <aside>
-            <div class="inner-box">
+            <div class="inner-box panel-bevel">
               
               <!--/.categories-list-->
               
@@ -121,18 +124,22 @@
               
               <!--/.locations-list-->
               
-              <div class="locations-list  list-filter">
+              <div class="locations-list  list-filter margin-top-30">
                 <h5 class="list-title"><strong><a href="#"><?php echo $lblPriceRange;?></a></strong></h5>
                 <form role="form"  id="priceForm" class="form-inline "  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
-                  <div class="form-group col-sm-4 no-padding">
-                    <input type="number" placeholder="100"   value=<?php echo $minPrice;?>  id="minPrice"   name="minPrice"  min="0"  max="90000" class="form-control">
+                  <div class="margin-top-30">
+                    <div class="form-group col-sm-4 no-padding">
+                      <input type="number" placeholder="100"   value=<?php echo $minPrice;?>  id="minPrice"   name="minPrice"  min="0"  max="90000" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-4 no-padding text-center margin-top-10">—</div>
+                    <div class="form-group col-sm-4 no-padding">
+                      <input type="number" placeholder="1000 " id="maxPrice"  value=<?php echo $maxPrice;?>  name="maxPrice" min="0" max="90000"   class="form-control">
+                    </div>
                   </div>
-                  <div class="form-group col-sm-1 no-padding text-center margin-top-10">To</div>
-                  <div class="form-group col-sm-4 no-padding">
-                    <input type="number" placeholder="1000 " id="maxPrice"  value=<?php echo $maxPrice;?>  name="maxPrice" min="0" max="90000"   class="form-control">
-                  </div>
-                  <div class="form-group col-sm-3 no-padding">
-                    <button class="btn btn-default pull-right" type="submit">GO</button>
+                  <div>
+                    <div class="form-group no-padding">
+                      <button class="btn btn-default btn-pink btn-80 margin-top-30 " type="submit">Filter</button>
+                    </div>
                   </div>
                 </form>
                 <div style="clear:both"></div>
@@ -156,7 +163,7 @@
         </div>
         <!--/.page-side-bar-->
         <div class="col-sm-9 page-content col-thin-left">
-          <div class="category-list">
+          <div class="category-list panel-bevel">
            <div class="listing-filter">
               <div class="pull-left col-xs-6">
                </div>
@@ -208,7 +215,7 @@
 					echo "</div>";
 					}			
 					
-					echo  "<div class=\"col-sm-2 no-padding photobox\">";
+					echo  "<div class=\"col-sm-3 no-padding photobox\">";
 						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
 		              			
               		$ctrlName="AjaxLoad".$rowCount;
@@ -218,9 +225,9 @@
               		$clickLink="clickLink".$rowCount;
               		$title=$this->lang->line("lblTitle");
 				echo "</div>";
-			    echo "<div class=\"col-sm-7 add-desc-box\">";
+			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
-                   echo "<h5><div class=\"add-title-girlstrade\"> $title $postTitle</div>$postDescription</h5>";
+                   echo "<h5><div class=\"add-title-girlstrade\"> $postTitle</div>$postDescription</h5>";
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";

@@ -152,7 +152,7 @@ body {
   padding: 0;
   color: #34495E;
   color: #333;
-  font-family: 'Roboto', sans-serif;
+  font-family: MyCustomFont, serif;
   font-size: 13px;
   line-height: 21px;
   position: relative;
@@ -167,8 +167,8 @@ body, html, #wrapper {
 /* =============================================================== */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Roboto Condensed, Helvetica Neue,  Helvetica, sans-serif ;
-  font-weight: normal;
+  font-family: MyCustomFont, serif;
+  font-weight: lighter;
   margin: 0;
   padding-bottom: 15px;
 }
@@ -965,8 +965,6 @@ button.btn-search {
 }
 
 .cat-title a {
-  font-family: MyCustomFont, serif;
-  font-weight: 500;
   display: inline-block;
   padding-left: 48px;
   padding-top: 0;
@@ -1062,7 +1060,7 @@ button.btn-search {
 
 .item-carousel .item-carousel-thumb {
   width: 100%;
-  height:350px;
+  height:250px;
   display: block;
   overflow: hidden;
   border: solid 1px #ddd;
@@ -1070,9 +1068,14 @@ button.btn-search {
 }
 
 .item-carousel .item-carousel-thumb img {
-  max-width: 100%;
-  padding: 1px;
-  min-height: 100%;
+    padding: 1px;
+    min-height: 100%;
+    margin: auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 350px;
+    display: block;
 }
 
 .item-carousel .item {
@@ -1121,7 +1124,7 @@ button.btn-search {
 
 .item1-carousel .item-carousel-thumb {
   width: 100%;
-  height:350px;
+  height:250px;
   display: block;
   overflow: hidden;
   border: solid 1px #ddd;
@@ -1129,9 +1132,14 @@ button.btn-search {
 }
 
 .item1-carousel .item-carousel-thumb img {
-  max-width: 100%;
-  padding: 1px;
-  min-height: 100%;
+    padding: 1px;
+    min-height: 100%;
+    margin: auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 225px;
+    display: block;
 }
 
 .item1-carousel .item {
@@ -1225,12 +1233,14 @@ button.btn-search {
 /* CATEGORY INTRO
 /* =============================================================== */
 .search-row-wrapper {
-  background: url(../../images/bg.jpg);
+  background: url(../../images/banner.jpg);
+  background-position: 40% 75%; 
   height: auto;
   padding: 50px 0;
   transition: all 400ms cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
   -webkit-transition: all 400ms cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
   width: 100%;
+  margin-top: -20px;
 }
 /* =============================================================== */
 /* CATEGORY LIST
@@ -1278,7 +1288,11 @@ button.btn-search {
 }
 
 .add-image {
+  border: 1px solid #ddd;
   position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 150px;
 }
 
 .photo-count {
@@ -1298,7 +1312,13 @@ button.btn-search {
 }
 
 .add-image a img {
-  width: 100%;
+    height: auto;
+    width: auto;
+    max-height: 150px;
+    min-height: 150px;
+    max-width: 100%;
+    margin: auto !important;
+    display: block;
 }
 
 .add-title {
@@ -1307,8 +1327,11 @@ button.btn-search {
 
 .add-title-girlstrade {
 	padding: 0px, 0px, 0px, 0px;
- font-color: blue;
-  font-weight: bold;
+  font-weight: normal;
+  font-size: 20px;
+  margin-bottom: 18px;
+  margin-top: 10px;
+  color: black;
 }
 
 
@@ -1808,12 +1831,12 @@ button.btn-search {
 }
 
 .list-title a, .list-title {
-  color: #222;
-  font-size: 18px;
+  color: #500000;
+  font-size: 20px;
 }
 
 .list-title {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #E2348C;
   display: block;
   margin-bottom: 15px;
   padding: 10px 0;
@@ -1822,7 +1845,7 @@ button.btn-search {
 }
 
 .list-title:before {
-  border-color: #ddd transparent transparent;
+  border-color: #E2348C transparent transparent;
   border-style: solid;
   border-width: 7px;
   bottom: -14px;
@@ -1898,11 +1921,12 @@ hr.thin {
 /* =============================================================== */
 
 .sidebar-panel .panel-heading {
-  background: #f8f8f8;
+  background: #E2348C;
   position: relative;
-  border-bottom: 1px solid #ddd;
   font-size: 16px;
   line-height: 22px;
+  border: 1px solid #E2348C;
+  color: white;
 }
 
 .panel-contact-seller .panel-body {
@@ -2044,25 +2068,26 @@ hr.thin {
 }
 
 .pricetag {
-  background: none repeat scroll 0 0 #0094af;
-  border-radius: 3px 0 0 3px;
-  color: #fff;
-  font-size: 20px;
-  min-width: 100px;
-  padding: 5px 15px;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  top: 130px;
-  z-index: 100;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 3px;
+    color: #E2348C;
+    font-size: 25px;
+    min-width: 150px;
+    padding: 5px 15px;
+    position: absolute;
+    right: 30;
+    text-align: center;
+    top: 13px;
+    z-index: 100;
+    line-height: 40px;
+    border: 1px solid #E2348C;
 }
 
 @media(max-width:480px) {
   .pricetag {
-    font-size: 18px;
-    line-height: 28px;
     min-width: 90px;
-    top: 140px;
+    top: 13px;
+    right: 30;
   }
 }
 
@@ -2076,14 +2101,6 @@ h1.pricetag span, h1.trtri span {
   height: 0;
   width: 0;
 }
-
-.pricetag:before {
-  top: 100%;
-  right: 0px;
-  border-top: 10px solid #007286;
-  border-right: 10px solid transparent;
-}
-
 
 .list-dot, .list-circle {
   margin-left: 30px;
@@ -3287,6 +3304,10 @@ td.ads-details-td {
     margin-top: 10px;
 }
 
+.margin-top-30 {
+    margin-top: 30px;
+}
+
 .inner-box .title-2{
   font-family: MyCustomFont, serif;
   font-weight: 300;
@@ -3331,12 +3352,12 @@ td.ads-details-td {
 }
 
 .item-left {
-	width: 55%;
+	width: 45%;
     float: left;
 }
 
 .item-right {
-	width: 45%;
+	width: 55%;
 	float: right;
     padding-left: 30px;
 	text-align: left;
@@ -3359,7 +3380,7 @@ td.ads-details-td {
     font-size: 20px;
 	text-overflow: ellipsis;
     display: -webkit-box;
-	-webkit-line-clamp: 9;
+	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	overflow: hidden !important;
 }
@@ -3368,12 +3389,15 @@ td.ads-details-td {
   position: absolute;
   bottom: 15px;
   font-family: MyCustomFont, serif;
-  font-weight: 500;
+  font-weight: 300;
   text-align: left;
   font-size: 35px;
   color: #E2348C; 
   display: block;
   right: 15px;
+  border: 1px solid #E2348C;
+  padding: 14px;
+  border-radius: 3px;
 }
 
 .item1-carousel .item-name {
@@ -3409,6 +3433,19 @@ td.ads-details-td {
     border-color: #EA75B1;
 }
 
+.btn-pink:hover {
+  background-color: #CA1566;
+    border-color: #CA1566;
+}
+
+.btn-80{
+  width: 80px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 .panel-bevel{
   box-shadow: 0 0 15px #e1e1e1,0 0 15px #e1e1e1;
 }
@@ -3422,3 +3459,25 @@ span b{
 	font-family: Open Sans Condensed;
 }
 
+.title-font{
+    font-family: MyCustomFont, serif;
+    font-weight: 500;
+}
+
+.thumbnail{
+    background-color: transparent;
+    border: 0px;
+}
+
+.adds-wrapper h2{
+    padding-top: 10px;
+}
+
+.pink-border{
+    border: 1px solid #E2348C;
+}
+
+.ads-details-wrapper h2{
+  font-size: 30px;
+  line-height: 50px;
+}

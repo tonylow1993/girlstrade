@@ -47,7 +47,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-9 page-content col-thin-right">
-          <div class="inner inner-box ads-details-wrapper">
+          <div class="inner inner-box ads-details-wrapper panel-bevel">
             <h2> <?php echo $itemName;?> </h2>
             <span class="info-row"> <span class="date"><i class=" icon-clock"> </i> <?php echo $createDate;?> </span> - <span class="category"><?php echo $ParentCatName;?> </span>- <span class="item-location"><i class="fa fa-map-marker"></i> <?php echo $LocationName;?> </span> </span>
             <div class="ads-image">
@@ -100,7 +100,7 @@
             <!--ads-image-->
             
             <div class="Ads-Details">
-              <h5 class="list-title"><strong>Ads Detsils</strong></h5>
+              <h5 class="list-title"><strong>Ads Deteils</strong></h5>
               <div class="row">
               <div class="col-sm-7 add-desc-box">
                 <div class="ads-details">
@@ -155,8 +155,8 @@
         
         <div class="col-sm-3  page-sidebar-right">
           <aside>
-            <div class="panel sidebar-panel panel-contact-seller">
-              <div class="panel-heading">Contact Seller</div>
+            <div class="panel sidebar-panel panel-contact-seller panel-bevel pink-border">
+              <div class="panel-heading"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;Contact Seller</div>
               <div class="panel-content user-info">
                 <div class="panel-body text-center">
                   <div class="seller-info">
@@ -183,8 +183,8 @@
                 </div>
               </div>
             </div>
-            <div class="panel sidebar-panel">
-              <div class="panel-heading">Safety Tips for Buyers</div>
+            <div class="panel sidebar-panel panel-bevel pink-border">
+              <div class="panel-heading"><i class="fa fa-shield"></i>&nbsp;&nbsp;&nbsp;Safety Tips for Buyers</div>
               <div class="panel-content">
                 <div class="panel-body text-left">
                   <ul class="list-check">
