@@ -4,8 +4,8 @@
   <div class="main-container">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 page-content login-box">
-          <div class="inner-box category-content panel-bevel text-center">
+        <div class="col-md-8 page-content">
+          <div class="inner-box category-content panel-bevel text-center login-box">
             <h2 class="logo-title reg-title"> <span style="color: #E2348C">Register </span></h2>
             <div class="row">
               <div class="col-sm-12">
@@ -119,6 +119,26 @@
           </div>
         </div>
         <!-- /.page-content -->
+        
+        
+        <div class="col-md-4 reg-sidebar">
+          <div class="reg-sidebar-inner text-center">
+            <div class="promo-text-box"> <i class=" icon-picture fa fa-4x icon-color-1"></i>
+              <h3><strong>Post a Free Classified</strong></h3>
+              <p> Post your free online classified ads with us. Now our website allow you to post <?php echo NUMOFTIMESPOST;?> Ads within <?php  echo NUMOFDAYSFORPOST;?> days. </p>
+            </div>
+            <div class="promo-text-box"> <i class=" icon-pencil-circled fa fa-4x icon-color-2"></i>
+              <h3><strong>Create and Manage Items</strong></h3>
+              <p> Nam sit amet dui vel orci venenatis ullamcorper eget in lacus.
+                Praesent tristique elit pharetra magna efficitur laoreet.</p>
+            </div>
+            <div class="promo-text-box"> <i class="  icon-heart-2 fa fa-4x icon-color-3"></i>
+              <h3><strong>Create your Favorite  ads list.</strong></h3>
+              <p> PostNullam quis orci ut ipsum mollis malesuada varius eget metus.
+                Nulla aliquet dui sed quam iaculis, ut finibus massa tincidunt.</p>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- /.row --> 
     </div>

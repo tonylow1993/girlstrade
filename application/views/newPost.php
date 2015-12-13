@@ -46,9 +46,14 @@ input[type=checkbox]
     content:"\f0fe";
 }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link href="<?php echo base_url(); ?>assets/css/bootstrap-tagsinput.css" media="all" rel="stylesheet" type="text/css" />
 <script src="<?php echo base_url(); ?>assets/js/bootstrap-tagsinput.js"></script>
+
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.fileupload.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.fileupload-ui.css">
+
 
 <!-- /.header -->
   <div id="wrapper">
@@ -149,31 +154,22 @@ input[type=checkbox]
                           </label>
                            <div class="col-md-8">
                               <div class="mb10">
-                                  <input id="image1" name="image1" class="file" type="file" accept="image/*">
-                                    <div id="uploadImgError1">
-                                    </div>
+                                <span class="btn btn-success fileinput-button">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>Add files...</span>
+                                    <!-- The file input field used as target for the file upload widget -->
+                                    <input id="fileupload" type="file" name="files[]" multiple>
+                                </span>
+                                <br>
+                                <br>
+                                <!-- The global progress bar -->
+                                <div id="progress" class="progress">
+                                    <div class="progress-bar progress-bar-success"></div>
+                                </div>
+                                <!-- The container for the uploaded files -->
+                                <div id="files" class="files"></div>
                               </div>
-                              <div class="mb10">
-                                  <input id="image2" name="image2" class="file" type="file" accept="image/*">
-                              		<div id="uploadImgError2">
-                                    </div>
-                              </div>
-                              <div class="mb10">
-                                  <input id="image3" name="image3" class="file" type="file" accept="image/*">
-                              		<div id="uploadImgError3">
-                                    </div>
-                              </div>
-                              <div class="mb10">
-                                  <input id="image4" name="image4" class="file" type="file" accept="image/*">
-                              		<div id="uploadImgError4">
-                                    </div>
-                              </div>
-                              <div class="mb10">
-                                  <input id="image5" name="image5" class="file" type="file" accept="image/*">
-                              		<div id="uploadImgError5">
-                                    </div>
-                              </div>
-                                  <p class="help-block">Add up to 5 photos. Use a better image of your product, not catalogs.</p>   
+                              <p class="help-block">Add up to 5 photos. Use a better image of your product, not catalogs.</p>   
                           
                           </div>
                       </div>
@@ -389,18 +385,155 @@ input[type=checkbox]
 
 <!-- Le javascript
 ================================================== --> 
+<!--<script src="<?php echo base_url();?>assets/js/fileupload/jquery.min.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="<?php echo base_url();?>assets/js/fileupload/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="<?php echo base_url();?>assets/js/fileupload/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="<?php echo base_url();?>assets/js/fileupload/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<!--<script src="<?php echo base_url();?>assets/js/fileupload/bootstrap.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="<?php echo base_url();?>assets/js/fileupload/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="<?php echo base_url();?>assets/js/fileupload/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="<?php echo base_url();?>assets/js/fileupload/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="<?php echo base_url();?>assets/js/fileupload/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<!--<script src="<?php echo base_url();?>assets/js/fileupload/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<!--<script src="<?php echo base_url();?>assets/js/fileupload/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="<?php echo base_url();?>assets/js/fileupload/jquery.fileupload-validate.js"></script>
+<script>
+/*jslint unparam: true, regexp: true */
+/*global window, $ */
+$(function () {
+    'use strict';
+    var maxFiles = 5;
+    var counter = 0;
+    var processCtr = 0;
+    // Change this to the location of your server-side upload handler:
+    var url = window.location.hostname === 'blueimp.github.io' ?
+                '//jquery-file-upload.appspot.com/' : 'server/php/',
+        uploadButton = $('<button/>')
+            .addClass('btn btn-primary')
+            .prop('disabled', true)
+            .text('Processing...')
+            .on('click', function () {
+                var $this = $(this),
+                    data = $this.data();
+                $this
+                    .off('click')
+                    .text('Abort')
+                    .on('click', function () {
+                        $this.remove();
+                        data.abort();
+                    });
+                data.submit().always(function () {
+                    $this.remove();
+                });
+            });
+    $('#fileupload').fileupload({
+        url: url,
+        dataType: 'json',
+        autoUpload: false,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        maxFileSize: 4000000,
+        // Enable image resizing, except for Android and Opera,
+        // which actually support image resizing, but fail to
+        // send Blob objects via XHR requests:
+        disableImageResize: /Android(?!.*Chrome)|Opera/
+            .test(window.navigator.userAgent),
+        previewMaxWidth: 100,
+        previewMaxHeight: 100,
+        previewCrop: true
+    }).on('fileuploadadd', function (e, data) {
+        if(counter < maxFiles){
+            counter++;
+            data.context = $('<div/>').appendTo('#files');
+            $.each(data.files, function (index, file) {
+                var node = $('<p/>')
+                        .append($('<span/>').text(file.name));
+                if (!index) {
+                    node
+                        .append('<br>')
+                        .append(uploadButton.clone(true).data(data));
+                }
+                node.appendTo(data.context);
+            });
+        }else {
+            alert("The max number of files is "+maxFiles);
+            return false;
+        }
+    }).on('fileuploadprocessalways', function (e, data) {
+        if(processCtr < maxFiles){
+          var index = data.index,
+              file = data.files[index],
+              node = $(data.context.children()[index]);
+          if (file.preview) {
+              node
+                  .prepend('<br>')
+                  .prepend(file.preview);
+          }
+          if (file.error) {
+              node
+                  .append('<br>')
+                  .append($('<span class="text-danger"/>').text(file.error));
+          }
+          if (index + 1 === data.files.length) {
+              data.context.find('button')
+                  .text('Upload')
+                  .prop('disabled', !!data.files.error);
+          }
+          processCtr++;
+        }
+    }).on('fileuploadprogressall', function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress .progress-bar').css(
+            'width',
+            progress + '%'
+        );
+    }).on('fileuploaddone', function (e, data) {
+        $.each(data.result.files, function (index, file) {
+            if (file.url) {
+                var link = $('<a>')
+                    .attr('target', '_blank')
+                    .prop('href', file.url);
+                $(data.context.children()[index])
+                    .wrap(link);
+            } else if (file.error) {
+                var error = $('<span class="text-danger"/>').text(file.error);
+                $(data.context.children()[index])
+                    .append('<br>')
+                    .append(error);
+            }
+        });
+    }).on('fileuploadfail', function (e, data) {
+        $.each(data.files, function (index) {
+            var error = $('<span class="text-danger"/>').text('File upload failed.');
+            $(data.context.children()[index])
+                .append('<br>')
+                .append(error);
+        });
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+</script>
+
+<?php include "footer-no-jquery.php"; ?>
 
 
-<?php include "footer1.php"; ?>
-
-
-<script src="<?php echo base_url();?>assets/js/script.js"></script>
+<!--<script src="<?php echo base_url();?>assets/js/script.js"></script>
 <link href="<?php echo base_url();?>assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
 <script src="<?php echo base_url();?>assets/js/fileinput.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/js/fileinput_locale_ch.js" type="text/javascript"></script>
 <!--<script  type="text/javascript" data-my_var_1="<?php echo base_url(); echo MY_PATH;?>newPost/uploadImg" data-my_var_2="<?php echo base_url();?>assets/img/loading.gif" src="<?php echo base_url();?>assets/js/newTopic.js"></script>-->
 
-<script>
+<!--<script>
 var img1 = null;
 var img2 = null;
 var img3 = null;
@@ -584,7 +717,7 @@ function isEmptyUploadFile(callback)
 
    
    
-</script>
+</script>--> 
 
 <?php include "footer2.php"; ?>
   <!--/.footer--> 
