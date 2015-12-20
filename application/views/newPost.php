@@ -66,7 +66,7 @@ input[type=checkbox]
                       
                       <!-- Text input-->
                       <div class="form-group">
-                          <label class="col-md-3 control-label" for="Adtitle"><i class="icon-pencil"></i> <?php echo $TopicTitle;?> <font color="red">*</font></label>
+                          <label class="col-md-3 control-label text-center" for="Adtitle"><i class="icon-pencil"></i> <?php echo $TopicTitle;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <input id="Adtitle" name="Adtitle" class="form-control input-md" type="text" required="true"  maxlength="100"/>
 <!--                        <span class="help-block">A great title needs at least 5 words </span> -->
@@ -76,7 +76,7 @@ input[type=checkbox]
                       
                       <!-- Select Basic -->
                       <div id="generalCat" class="form-group">
-                          <label class="col-md-3 control-label" > <?php echo $Category;?> <font color="red">*</font></label>
+                          <label class="col-md-3 control-label text-center" > <?php echo $Category;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <select name="category-group" id="category-group" class="form-control" required="true">
                                   <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select One Category - </option>
@@ -101,7 +101,7 @@ input[type=checkbox]
                       
                       <!-- Select Basic -->
                       <div id="itemQuality" class="form-group">
-                          <label class="col-md-3 control-label" > <?php echo $ItemQuality;?> <font color="red">*</font></label>
+                          <label class="col-md-3 control-label text-center" > <?php echo $ItemQuality;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <select name="itemQualityGroup" id="itemQualityGroup" class="form-control" required="true">
 <                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select - </option>
@@ -116,7 +116,7 @@ input[type=checkbox]
                       
                       <!-- Textarea -->
                       <div class="form-group">
-                          <label class="col-md-3 control-label" for="textarea"> <?php echo $Description;?> <font color="red">*</font></label>
+                          <label class="col-md-3 control-label text-center" for="textarea"> <?php echo $Description;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="450"></textarea>
                           </div>
@@ -124,7 +124,7 @@ input[type=checkbox]
                     
                       <!-- Prepended text-->
                       <div class="form-group">
-                          <label class="col-md-3 control-label" for="Price"><i class="icon-money"></i> <?php  echo $HKDPrice;?> <font color="red">*</font></label>
+                          <label class="col-md-3 control-label text-center" for="Price"><i class="icon-money"></i> <?php  echo $HKDPrice;?> <font color="red">*</font></label>
                           <div class="col-md-4">
                               <div class="input-group"> <span class="input-group-addon">$</span>
                                   <input id="price" name="price" class="form-control" required="true" type="number" step="0.1" min=0>
@@ -143,17 +143,17 @@ input[type=checkbox]
 
                       <!-- photo -->
                       <div class="form-group">
-                      	<label class="col-md-3 control-label" for="textarea"> 
+                      	<label class="col-md-3 control-label text-center" for="textarea"> 
                               <i class="icon-camera-1"></i><?php echo $Picture;?> 
                               <br /> ( Minimum 1 picture required. Max picture file size is 4MB per each. First Picture is the default that will show to customer first) 
                           </label>
                            <div class="col-md-8">
                               <div class="mb10">
-                                  <input id="image1" name="image1" class="file" type="file" accept="image/*">
-                                    <div id="uploadImgError1">
+                                  <input id="image" name="images[]" class="file" type="file" accept="image/*" multiple>
+                                    <div id="uploadImgError">
                                     </div>
                               </div>
-                              <div class="mb10">
+                              <!--<div class="mb10">
                                   <input id="image2" name="image2" class="file" type="file" accept="image/*">
                               		<div id="uploadImgError2">
                                     </div>
@@ -172,7 +172,7 @@ input[type=checkbox]
                                   <input id="image5" name="image5" class="file" type="file" accept="image/*">
                               		<div id="uploadImgError5">
                                     </div>
-                              </div>
+                              </div>-->
                                   <p class="help-block">Add up to 5 photos. Use a better image of your product, not catalogs.</p>   
                           
                           </div>
@@ -187,7 +187,7 @@ input[type=checkbox]
 					  
 					  
 					  <div class="form-group">
-					  <label class="col-md-3 control-label" for="textarea"><?php $Extra;?> </label>
+					  <label class="col-md-3 control-label text-center" for="textarea"><?php $Extra;?> </label>
 					  <div class="col-md-8">
 					  <div class="panel-group" id="accordion">
 						  <div class="panel panel-info">
@@ -206,7 +206,7 @@ input[type=checkbox]
 								
 								 <!-- Textarea -->
                       <div class="form-group">
-                          <label class="col-md-3 control-label" for="textarea"><?php echo $SearchTags;?></label>
+                          <label class="col-md-3 control-label text-center" for="textarea"><?php echo $SearchTags;?></label>
                           <div class="col-md-8">
                               <input class="form-control" data-role="tagsinput" id="tagsInput" name="tagsInput" />
                               <em>(Maximum: Five Tags Allowed)</em>
@@ -253,7 +253,7 @@ input[type=checkbox]
 								
 								
 						<div id="generalLocation" class="form-group">
-                          <label class="col-md-3 control-label" ><?php echo $lblLocation;?></label>
+                          <label class="col-md-3 control-label text-center" ><?php echo $lblLocation;?></label>
                          
                       <div class="col-md-8">
 				          <select class="form-control" name="locID2" id="locID2" >
@@ -316,7 +316,7 @@ input[type=checkbox]
 					  
                                           <!-- Button  -->
                       <div class="form-group">
-                          <label class="col-md-3 control-label"></label>
+                          <label class="col-md-3 control-label text-center"></label>
                           <div class="col-md-8"> 
                        	       <button type="submit" class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
                               <button id="validate" hidden="true" type="submit"></button>
@@ -401,55 +401,17 @@ input[type=checkbox]
 <!--<script  type="text/javascript" data-my_var_1="<?php echo base_url(); echo MY_PATH;?>newPost/uploadImg" data-my_var_2="<?php echo base_url();?>assets/img/loading.gif" src="<?php echo base_url();?>assets/js/newTopic.js"></script>-->
 
 <script>
-var img1 = null;
-var img2 = null;
-var img3 = null;
-var img4 = null;
-var img5 = null;
+var img = null;
 
-
-$("#image1").fileinput({
+$("#image").fileinput({
     'showPreview' : true,
     'allowedFileExtensions' : ['jpg', 'png','gif','jpeg','bmp'],
     //'elErrorContainer': '#errorBlock',
     'showUpload' : false,
-    'maxFileCount':1,
+    'maxFileCount':5,
     'maxFileSize': 10000000
     //'dropZoneEnabled' : false,
     //'uploadUrl': 'test.php'
-});
-
-$("#image2").fileinput({
-    'showPreview' : true,
-    'allowedFileExtensions' : ['jpg', 'png','gif','jpeg', 'bmp'],
-    'showUpload' : false,
-    'maxFileCount':1,
-    'maxFileSize': 10000000
-});
-
-$("#image3").fileinput({
-    'showPreview' : true,
-    'allowedFileExtensions' : ['jpg', 'png','gif', 'jpeg','bmp'],
-    'showUpload' : false,
-    'maxFileCount':1,
-    'maxFileSize': 10000000
-});
-
-
-$("#image4").fileinput({
-    'showPreview' : true,
-    'allowedFileExtensions' : ['jpg', 'png','gif', 'jpeg','bmp'],
-    'showUpload' : false,
-    'maxFileCount':1,
-    'maxFileSize': 10000000
-});
-
-$("#image5").fileinput({
-    'showPreview' : true,
-    'allowedFileExtensions' : ['jpg', 'png','gif','jpeg', 'bmp'],
-    'showUpload' : false,
-    'maxFileCount':1,
-    'maxFileSize': 10000000
 });
 
 function setup()
@@ -464,17 +426,17 @@ function setup()
     		{
 	            //get the file size and file type from file input field
 	            try {
-	            	$("#uploadImgError"+i).html('');
-	            var fsize = $('#image'+i)[0].files[0].size;
-	            var ftype = $('#image'+i)[0].files[0].type;
-	            var fname = $('#image'+i)[0].files[0].name;
-// 	            var fwidth=$('#image'+i)[0].files[0].clientwidth;
-// 	            var fheigth=$('#image'+i)[0].files[0].clientheight;
-	            var img=document.getElementById('image'+i);
-	            var fwidth=img.clientWidth;
-	            var fheight=img.clientHeight;
-// 	            alert(fwidth);
-// 	            alert(fheight);
+	            	$("#uploadImgError").html('');
+					var fsize = $('#image').item(i).size;
+					var ftype = $('#image').item(i).type;
+					var fname = $('#image').item(i).name;
+	// 	            var fwidth=$('#image'+i)[0].files[0].clientwidth;
+	// 	            var fheigth=$('#image'+i)[0].files[0].clientheight;
+					var img=document.getElementById('image').item(i);
+					var fwidth=img.clientWidth;
+					var fheight=img.clientHeight;
+	// 	            alert(fwidth);
+	// 	            alert(fheight);
 	            } catch(err)
 	            {
 // 	            	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Error!</span></em>');
@@ -489,14 +451,14 @@ function setup()
 // 	                 return false; 
 // 	            }
 				if(fsize<500000){
-					 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Image is too small and need greater than 500KB.</span></em>');
-	                 location.href = "#uploadImgError"+i;                 //Go to the target element.
+					 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Image is too small and need greater than 500KB.</span></em>');
+	                 location.href = "#uploadImgError";                 //Go to the target element.
 	                 return false; 
 				}
 	            if(fsize>8048576) //do something if file size more than 1 mb (1048576)
 	            {
-	            	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Exceed File Size Limit!</span></em>');
-	                 location.href = "#uploadImgError"+i;                 //Go to the target element.
+	            	 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Exceed File Size Limit!</span></em>');
+	                 location.href = "#uploadImgError";                 //Go to the target element.
 	                 return false; 
 	            }
                    switch(ftype)
@@ -508,15 +470,15 @@ function setup()
                         case 'image/jpg':
                             break;
                         default:
-                        	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Unsupported File Type Images!</span></em>');
-                       		location.href = "#uploadImgError"+i;                 //Go to the target element.
+                        	 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Unsupported File Type Images!</span></em>');
+                       		location.href = "#uploadImgError";                 //Go to the target element.
                         	return false; 
                     }
     		}
 
         }else{
 
-        	 $("#uploadImgError1").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please upgrade your browser, because your current browser lacks some new features we need!</span></em>');
+        	 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please upgrade your browser, because your current browser lacks some new features we need!</span></em>');
              location.href = "#uploadImgError";                 //Go to the target element.
              return false; 
         }
@@ -529,21 +491,13 @@ function setup()
 	}
     isEmptyUploadFile(function(r)
     {
-        var up1 = document.getElementById('image1').value;
-        var up2 = document.getElementById('image2').value;
-        var up3 = document.getElementById('image3').value;
-        var up4 = document.getElementById('image4').value;
-        var up5 = document.getElementById('image5').value;
-        img1=up1;
-        img2=up2;
-        img3=up3;
-        img4=up4;
-        img5=up5;
+        var up = document.getElementById('image').value;
+        img=up;
         
-        if((up1 == "" && up2 == "" && up3 == "" && up4 == "" && up5 == "") )
+        if(up == "")
         {
-           $("#uploadImgError1").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
-           location.href = "#uploadImgError1";                 //Go to the target element.
+           $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
+           location.href = "#uploadImgError";                 //Go to the target element.
            return false; 
         }
         else //if(r == false)
@@ -571,7 +525,7 @@ function setForm(callback)
 
 function isEmptyUploadFile(callback)
 {
-    if(img1 == null && img2 == null && img3 == null && img4 == null && img5 == null)
+    if(img == null)
         callback(true);
     else
         callback(false);

@@ -3486,3 +3486,7 @@ span b{
   font-size: 30px;
   line-height: 50px;
 }
+
+.text-center{
+    text-align: center !important;
+}
