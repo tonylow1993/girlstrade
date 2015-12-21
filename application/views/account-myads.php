@@ -29,8 +29,8 @@
 <!--               </div> -->
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
-                  <tr>
-                    <th data-type="numeric" data-sort-initial="true"> </th>
+                  <tr style="height:50px;">
+                    <th height="50px" data-type="numeric" data-sort-initial="true"> </th>
                     <th> <?php echo $this->lang->line("Photo");?> </th>
                     <th data-sort-ignore="true"> <?php echo $this->lang->line("Ads_Detail");?> </th>
                     <th data-type="numeric" > <?php echo $this->lang->line("Price");?> </th>
@@ -44,7 +44,6 @@
             		$rowCount=0;
                   	foreach($result as $id=>$row)
                   	{
-                  		$enableMarkSoldBtn= $row["enableMarkSoldBtn"];
                   		$from=$row['from'];
                   		$reply=$row['reply'];
                   		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
@@ -55,12 +54,14 @@
                   		$createDate=$row['createDate'];
                   		$itemStatus=$row['itemStatus'];
                   		$messageID=$id;
+                  		$status=$row["status"];
                   		$userID=$row['userID'];
                   		$NoOfDaysPending=$row['NoOfDaysPending'];
 						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
 						$price=$row['price'];
 						$NoOfSoldUsers=0;
-						$soldUsers=$row["soldUsers"];
+						$enableMarkSoldBtn= $row["enableMarkSoldBtn"];
+                  		$soldUsers=$row["soldUsers"];
 						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
 						if($soldUsers!=null){
 							$NoOfSoldUsers=count($soldUsers);
@@ -78,16 +79,32 @@
                         echo "  <input type=\"checkbox\">";
                         echo "</label>";
                       	echo "</div></td>";
-                      	echo "<td style=\"width:20%\" class=\"add-image\">";
-                      	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                      	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px;\"  class=\"add-image\">";
+//                       	echo  "<div class=\"col-sm-2 no-padding photobox\">";
+// 						echo "<div style=\"position:relative; height:75px; width: 100%; overlfow:hidden;\">";
+                      	$sizeimage=getimagesize($imagePath);
+                      	echo "<p style=\"font-size:8px;padding:0px; margin: 0px;\">image size: ".$sizeimage[0]."x".$sizeimage[1]."</p>";
+                      	if($sizeimage[1]>130)
+                      	{
+                      		$ratio= 100*130/ $sizeimage[1];
+                      		if($sizeimage[0]>90* 130/ $sizeimage[1])
+                      			echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:100%; width:".$ratio."%; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                      		else 
+                      		echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:100%; width:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                      	}else 
+								echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+						
+//                       	echo "</div>";
+                      	
+//                       	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                     	echo "</td>";
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
-                         echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
-                          echo "<br/>Posted On: ". $createDate;
+                         echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc."<br/>".$preview;
+                          echo "<br/>Posted On: ". $createDate."<br/>Status: ".$status;
                    	  echo "<br/>Interest persons count:  $NoOfSoldUsers</h5>";
                         
-                        echo "</div></td>";
+                        echo "</h5></div></td>";
                       	echo "<td style=\"width:10%\" class=\"price-td\">$price</td>";
 						echo "<td style=\"width:10%\" class=\"action-td\"><div>";
 						$editPath=base_url().MY_PATH."newPost/showEditPost/".$messageID."?prevURL=".urlencode(current_url());
@@ -109,7 +126,9 @@
                     	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
                     	echo "<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
                     	
-                        echo "<a class=\"btn btn-danger btn-xs\"  href=\"javascript:deleteAds('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></p>";
+                    	echo "<div class=\"user-ads-action\"><a class=\"btn btn-danger btn-xs\"  href=\"#deleteAdsPopup\" data-toggle=\"modal\" id='$clickLink' data-id=\"$messageID\" data-userID=\"$userID\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></div></p>";
+                    	
+                        //echo "<a class=\"btn btn-danger btn-xs\"  href=\"javascript:deleteAds('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1)'\" id='$clickLink'> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></p>";
                         $str=' ';
                         if($enableMarkSoldBtn)
                         	$str="";
@@ -226,15 +245,24 @@
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
          		 <select required="true" class="form-control selecter" name="rating" id="rating">
-        				<option value='1'  style='background-color:#E9E9E9;font-weight:bold;' > Good</option>
+        				<option value='3'  style='background-color:#E9E9E9;font-weight:bold;' > Good</option>
         				<option value='2'  style='background-color:#E9E9E9;font-weight:bold;' > Bad </option>
-        				<option value='3'  style='background-color:#E9E9E9;font-weight:bold;' > Average </option>
+        				<option value='1'  style='background-color:#E9E9E9;font-weight:bold;' > Average </option>
         		</select>
         		<div id="ratingError" name="ratingError" ></div>
         	</div>
+        	<div class="form-group">
+             	<label  for="soldqty" class="control-label">Quantity<font color="red">*</font></label>
+         		<select required="true" class="form-control selecter" name="soldqty" id="soldqty">
+        				  <option value="1"> 1 </option>
+                                   <option value="2"> 2 </option>
+        		</select>
+        		<div id="soldqtyError" name="soldqtyError" ></div>
+        	</div>
+        	
         	 <div class="form-group">
-            <label for="message-text" class="control-label">Message <span class="text-count">(1000) </span>:</label>
-            <textarea class="form-control"  id="message-text" name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <label for="message-text" class="control-label">Message <span class="text-count">(300) </span>:</label>
+            <textarea class="form-control"  id="message-text"  maxlength="300"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
          	
         </form>
@@ -250,19 +278,51 @@
 </div>
 
 
+<div class="modal fade" id="deleteAdsPopup" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><?php echo $this->lang->line("popupTitleDeleteAds");?></h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds">
+           <div class="form-group">
+           		<input type="hidden" id="messageID" name="messageID" >   	
+           		<input type="hidden" id="userID" name="userID" >   
+           			
+           	</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success pull-right"   onclick="setupDeleteAds(); return false;">Submit</button>
+        	<button id="validate" hidden="true" type="submit"></button>
+  
+     	 </div>
+    </div>
+  </div>
+</div>
+
  <?php include "footer1.php"; ?>
   <!--/.footer--> 
 </div>
 <!-- /.wrapper --> 
 <script>
-
-$(document).ready(function() {
+function passToModal() {
     $('#markSoldAds').on('show.bs.modal', function(event) {
         $("#postID").val($(event.relatedTarget).data('id'));
          $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
     });
-});
 
+    $('#deleteAdsPopup').on('show.bs.modal', function(event) {
+        $("#messageID").val($(event.relatedTarget).data('id'));
+        $("#userID").val($(event.relatedTarget).data('userID'));
+    });
+}
+$(document).ready(passToModal());
+    
         function jsbase64_decode(data) {
         	  //  discuss at: http://phpjs.org/functions/base64_decode/
         	  // original by: Tyler Akins (http://rumkin.com)
@@ -331,6 +391,12 @@ var encodeHtmlEntity = function(str) {
   }
   return buf.join('');
 };
+function setupDeleteAds()
+{
+     var myform = document.getElementById("itemDelete");
+	  	document.getElementById("itemDelete").submit();
+       	return true;
+}
 
 function setup()
 {

@@ -745,7 +745,9 @@ public function getChildCategory($parentID)
         $des = $this->input->post('descriptionTextarea',true); 
         $price = $this->input->post('price',true); 
         $recaptcha = $this->input->post('g-recaptcha-response',true); 
-//        $negotiable = $this->input->post('negotiable'); 
+        $negotiable = $this->input->post('negotiable'); 
+        $soldqty=$this->input->post("soldqty");
+        
         if (isset($_POST['negotiable'])) {
             $negotiable = true;
         }else
@@ -782,6 +784,7 @@ public function getChildCategory($parentID)
         'status'  => 'U',
         'infoDisplayStatus'  => $negotiable,
         'newUsed'=>$quality,
+        'remainQty'=>$soldqty,
         'createDate'  => date("Y-m-d H:i:s"),
    		'postDate'  => date("Y-m-d H:i:s"),
         'expriyDate' => $tempExpriyDate

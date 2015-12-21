@@ -110,7 +110,18 @@ input[type=checkbox]
                               </select>
                           </div>
                       </div>
-					  
+                      <div id="itemQty" class="form-group">
+                          <label class="col-md-3 control-label text-center" > Quantity <font color="red">*</font></label>
+                          <div class="col-md-8">
+                           
+                              <select required="true" class="form-control" name="soldqty" id="soldqty">
+		        				  <option value="1"> 1 </option>
+		                                   <option value="2"> 2 </option>
+		        					</select>
+                          </div>
+                      </div>
+                      
+                   
                       
                       
                       
