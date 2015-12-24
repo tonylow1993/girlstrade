@@ -22,6 +22,8 @@ class messages extends CI_Controller {
             $this->load->model("savedAds_model");
             $this->load->model("abusemessages_model");
             $this->load->model("useremail_model");
+            $this->load->model('tradecomments_model');
+            $this->load->model('admin_model');
             date_default_timezone_set("Asia/Hong_Kong");
             if($this->nativesession->get("language")!=null)
             {
@@ -195,16 +197,17 @@ function addDayswithdate($date,$days){
 			$postInfo=$this->post->getPostByPostID($postID);
 			$userID=$postInfo[0]->userID;	
 			//var_dump($postInfo);
-			
+			$content=$this->input->post('message-text');
 			$messageArray=array(
 			'postID'=>intval($postID),
 			'userID'=>intval($userID),
 			'fUserID'=>intval($fUserID),
+			'parentID'=> 0,
 			'status' => "Op",
             'createDate' => date("Y-m-d H:i:s"),
 			//'fUserID'=>intval($this->input->post('fuserID')),
 			//'title'=>$this->input->post('title'),
-			'content'=>$this->input->post('message-text'),
+			'content'=>$content,
 			'recipientName'=>$this->input->post('recipient-name'),
 			'senderEmail'=>$this->input->post('sender-email'),
 			'recipientPhoneNumber'=>$this->input->post('recipient-Phone-Number'));
@@ -403,7 +406,7 @@ function addDayswithdate($date,$days){
 // 			$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
 // 			echo json_encode($data);
 // 		}
-		public function replyMessage($postID, $messageID)
+		public function replyMessage($postID, $messageID, $fromwhere="inbox")
 		{
 			$userInfo=$this->nativesession->get("user");
 			$fUserID=0;
@@ -414,6 +417,45 @@ function addDayswithdate($date,$days){
 			$postInfo=$this->post->getPostByPostID($postID);
 				
 			$userID=$postInfo[0]->userID;
+			
+			if($userID==$userInfo["userID"]){
+				$times=$this->messages_model->getMaxTimesSellerSend($userInfo["userID"]);
+				if($times>MAXTIMESDAILY_REPLYFROMSELLER && MAXTIMESDAILY_REPLYFROMSELLER>0){
+					$errorMsg=$this->lang->line("ExceedMaxTimesDailySellerReply");
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(strcmp($fromwhere,"inbox")==0)
+						$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/1";
+					else 
+						$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/10";
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
+					return;
+					
+				}
+			}else{
+				$times=$this->messages_model->getMaxTimesBuyerSend($userInfo["userID"]);
+				if($times>MAXTIMESDAILY_SENDFROMBUYER && MAXTIMESDAILY_SENDFROMBUYER>0){
+					$errorMsg=$this->lang->line("ExceedMaxTimesDailyBuyerReply");
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(strcmp($fromwhere,"inbox")==0)
+						$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/1";
+					else 
+						$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/10";
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
+					return;
+				}
+			}
+			
+			
+			
+			
 			$fuserinfo=$this->messages_model->getMessageByMessageID($messageID);
 			if(!empty($fuserinfo)){
 				if(strcmp($fuserinfo[0]->status,"Op")==0){
@@ -424,16 +466,18 @@ function addDayswithdate($date,$days){
 				$fUserID=$fuserinfo[0]->userID;
 				}
 			}
-			
+			$content=nl2br(htmlentities($this->input->post('message-text'), ENT_QUOTES, 'UTF-8'));
+			$parentID=$this->messages_model->getOriginalMessageID($messageID);
 			$messageArray=array(
 					'postID'=>intval($postID),
 					'userID'=>intval($userID),
 					'fUserID'=>intval($fUserID),
 					'status' => "R",
 					'createDate' => date("Y-m-d H:i:s"),
+					'parentID'=> $parentID,
 					//'fUserID'=>intval($this->input->post('fuserID')),
 					//'title'=>$this->input->post('title'),
-					'content'=>$this->input->post('message-text'),
+					'content'=>$content,
 					'recipientName'=>$this->input->post('recipient-name'),
 					'senderEmail'=>$this->input->post('sender-email'),
 					'recipientPhoneNumber'=>$this->input->post('recipient-Phone-Number'));
@@ -448,7 +492,7 @@ function addDayswithdate($date,$days){
 // 			else {
 			//$messageID = $this->input->post('messageID');
 				
-				$messageResult=$this->messages_model->reply($messageArray, $messageID, $fuserinfo[0]->status);
+				$messageResult=$this->messages_model->reply($messageArray, $messageID, $fuserinfo[0]->status, $parentID);
 				if($messageResult)
 				{
 						$usernameArr=$this->users_model->get_user_by_id($fUserID);
@@ -457,7 +501,9 @@ function addDayswithdate($date,$days){
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=sprintf($this->lang->line("SendEmailReplyMsgForSelleOrBuyerr"), $username, $path );
 						$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailTitleForReplyMsgForSellerOrBuyer"));
-							
+						
+						$this->admin_model->getMessageStatByUserID($userID);
+						
 					redirect(base_url().MY_PATH."home/getAccountPage/1");
 				}
 				else
@@ -479,6 +525,29 @@ function addDayswithdate($date,$days){
 		{
 			try{
 			$userInfo=$this->nativesession->get("user");
+			$times=$this->messages_model->getMaxTimesDeleteAds($userInfo["userID"]);
+			if($times> MAXTIMESDAILY_DELETEADS && MAXTIMESDAILY_DELETEADS>0)
+			{
+// 				$data['status'] = 'F';
+// 				$data['class'] = "has-error";
+// 				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong>'.$this->lang->line("ExceedMaxTimesDailyDeleteAds").'</div>';
+// 				$data['icon'] = '<em><span style="color:red"></span></em>';
+// 				echo json_encode($data);
+// 				return;
+				$errorMsg=$this->lang->line("ExceedMaxTimesDailyDeleteAds");
+				$data["error"]=$errorMsg;
+				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+			}
+			
+			
+			
+			
 			$fUserID=0;
 			if(!empty($userInfo))
 				$fUserID=$userInfo["userID"];
@@ -493,32 +562,61 @@ function addDayswithdate($date,$days){
 				
 			$postID = $this->input->post('messageID');
 			$userID=$this->input->post('userID');
-			
+		
 			$where=array('postID'=>$postID);
-			$messageArray=array('status' => "D");
+			$messageArray=array('status' => "D", "deleteDate"=> date("Y-m-d H:i:s"));
 			$messageResult=$this->post->delete($messageArray, $where);
 			if($messageResult){
-				$data['status'] = 'A';
-				$data['class'] = "has-success";
-				$data['message'] = '';
-				$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
-				echo json_encode($data);
+// 				$data['status'] = 'A';
+// 				$data['class'] = "has-success";
+// 				$data['message'] = '';
+// 				$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
+// 				echo json_encode($data);
+				$errorMsg="success in delete ads";
+				$data["error"]=$errorMsg;
+				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('successPage', $data);
+				return;
 			}
 			else {
-				$data['status'] = 'F';
-				$data['class'] = "has-error";
-				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong>Error</div>';
-				$data['icon'] = '<em><span style="color:red"></span></em>';
-				echo json_encode($data);
+				$errorMsg="error in saving";
+				$data["error"]=$errorMsg;
+				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+				
+				
+// 				$data['status'] = 'F';
+// 				$data['class'] = "has-error";
+// 				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong>Error</div>';
+// 				$data['icon'] = '<em><span style="color:red"></span></em>';
+// 				echo json_encode($data);
 					
 			}
 			}catch(Exception $ex){
 				$exMessage=$ex->getMessage();
-				$data['status'] = 'F';
-				$data['class'] = "has-error";
-				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong>'.$exMessage.'</div>';
-				$data['icon'] = '<em><span style="color:red"></span></em>';
-				echo json_encode($data);
+				$errorMsg=$exMessage;
+				$data["error"]=$errorMsg;
+				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+// 				$data['status'] = 'F';
+// 				$data['class'] = "has-error";
+// 				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong>'.$exMessage.'</div>';
+// 				$data['icon'] = '<em><span style="color:red"></span></em>';
+// 				echo json_encode($data);
 			}
 		}
 		public function cancelPendingApproval()
@@ -623,50 +721,68 @@ function addDayswithdate($date,$days){
 		
 		public function markSoldAds(){
 			try{
+				
+				$user=$this->nativesession->get("user");
+				$times=$this->tradecomments_model->getMaxTimesMarkSold($user["userID"]);
+				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST>0)
+				{
+					$errorMsg=$this->lang->line("ExceedMaxTimesDailyMarkSoldPerPost");
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
+					return;
+				}
+				
+			$messageID=$_POST['messageID'];
 			$postID=$_POST['postID'];;
 			$soldUserID=$_POST['soldUser'];
 			$rating=$_POST['rating'];
 			$buyerComment=$_POST['message-text'];
+			$soldQty=$_POST['soldqty'];
 			//$postID=207;
 			//$soldUserID=48;
 			//$rating=1;
 			//$buyerComment="ABC";
-			$where=array('postID'=>intval($postID));
-			$messageArray=array('status' => "So", 'soldDate' =>date("Y-m-d H:i:s"),
+			//$where=array('postID'=>intval($postID));
+			$messageArray=array('postID'=>intval($postID), 'status' => "U", 'soldDate' =>date("Y-m-d H:i:s"), 'createDate' =>date("Y-m-d H:i:s"), 'soldQty' => $soldQty,
 					'soldToUserID'=> $soldUserID, 'sellerRating'=> $rating, 'sellerComment'=> $buyerComment);
-			$messageResult=$this->post->updatePost($messageArray,$where);
+			$messageResult=$this->tradecomments_model->insertTradeComment($messageArray, $messageID);
 			if($messageResult)
 				{
-					redirect(base_url().MY_PATH."home/getAccountPage/3");
+					redirect(base_url().MY_PATH."home/getAccountPage/1");
 				}
 				else
 				{
 					$errorMsg=$this->lang->line("MessagesDirectSendErrorLoginFirst");
-					redirect(base_url().MY_PATH."home/getAccountPage/3/1/".$errorMsg);
+					redirect(base_url().MY_PATH."home/getAccountPage/1/1/".$errorMsg);
 				}
 			}catch(Exception $ex){
 				$errorMsg=$ex->getMessage();
-				redirect(base_url().MY_PATH."home/getAccountPage/3/1/".$errorMsg);
+				redirect(base_url().MY_PATH."home/getAccountPage/1/1/".$errorMsg);
 					
 			}
 		}
 		
 		public function markBuyerComment(){
 			try{
-				$postID=$_POST['postID'];;
+				$ID=$_POST['commentID'];;
 				$rating=$_POST['rating'];
 				$buyerComment=$_POST['message-text'];
 				//$postID=207;
 				//$soldUserID=48;
 				//$rating=1;
 				//$buyerComment="ABC";
-				$where=array('postID'=>intval($postID));
-				$messageArray=array('status' => "Bc", 'buyerDate' =>date("Y-m-d H:i:s"),
+				$where=array('ID'=>intval($ID));
+				$messageArray=array('status' => "C", 'buyerDate' =>date("Y-m-d H:i:s"),
 						 'buyerRating'=> $rating, 'buyerComment'=> $buyerComment);
-				$messageResult=$this->post->updatePost($messageArray,$where);
-				if($messageResult)
+				$messageResult=$this->tradecomments_model->updateTradeComment($messageArray, $ID);
+				if($messageResult >0)
 				{
-					redirect(base_url().MY_PATH."home/getAccountPage/10");
+					redirect(base_url().MY_PATH."home/getAccountPage/10/1/success");
 				}
 				else
 				{
@@ -675,6 +791,7 @@ function addDayswithdate($date,$days){
 				}
 			}catch(Exception $ex){
 				$errorMsg=$ex->getMessage();
+				log_message('error', $errorMsg);
 				redirect(base_url().MY_PATH."home/getAccountPage/10/1/".$errorMsg);
 					
 			}
@@ -714,6 +831,46 @@ function addDayswithdate($date,$days){
 			//echo 'Sending Email';
 		}
 	
+		public function getViewMessageHistory($userID, $postID, $fuserID){
+			$userInfo=$this->nativesession->get("user");
+			if(!empty($userInfo)) {
+				if(strcmp($userID ,$userInfo["userID"])!=0){
+					$data['status'] = 'F';
+					$data['class'] = "has-error";
+					$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong>Please login in correct user</div>';
+					$data['icon'] = '<em><span style="color:red"></span></em>';
+					echo json_encode($data);
+					return;
+				}
+			}
+			else {
+				$data['status'] = 'F';
+				$data['class'] = "has-error";
+				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Please login</div>';
+				$data['icon'] = '<em><span style="color:red"></span></em>';
+				echo json_encode($data);
+				return;
+			}
+			
+			$prevUrl="";
+			if(isset($_GET["prevURL"])) {
+				$prevUrl=$_GET["prevURL"];
+				$_SESSION["previousUrl"]=$prevUrl;
+			}
+			else if(isset($_SESSION["previousUrl"]))
+				$prevUrl=$_SESSION["previousUrl"];
+			$data=$this->messages_model->getViewMessageHistory($userID, $postID, $fuserID);
+			$result["previousCurrent_url"]=urldecode($prevUrl);
+			$result["result"]=$data;
+			$postInfo=$this->post->getPostByPostID($postID);
+			$buyerNameArr=$this->users_model->get_user_by_id($userID);
+			$sellerNameArr=$this->users_model->get_user_by_id($fuserID);
+			$result["titlepost"]=$postInfo[0]->itemName;
+			$result["description"]=$postInfo[0]->description;
+			$result["buyerName"]=$buyerNameArr[0]->username;
+			$result["sellerName"]=$sellerNameArr[0]->username;
+			$this->load->view("account-viewMessageHistory", $result);
+		}
 		
 }
 ?>

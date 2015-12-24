@@ -38,7 +38,11 @@
                   		$imagePath=$row['imagePath'];
                   		$previewTitle=$row['previewTitle'];
                   		$previewDesc=$row["previewDesc"];
+                  		$preview=trim($row["preview"]);
                   		
+                  		$preview=trimLongText($preview);
+                  		
+                  		//$userID=$row["replyUserID"];
                   		$createDate=$row['createDate'];
                   		$itemStatus=$row['itemStatus'];
                   		$messageID=$id;
@@ -46,6 +50,7 @@
 						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
 						$price=$row['price'];
 						$postID=$row['postID'];
+						$commentID=$row["commentID"];
                 		echo "<tr>";
                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
                         echo "<label>";
@@ -56,11 +61,24 @@
                     	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                        echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
-                          echo "<br/>Posted On: ". $createDate."</h5>";
+                          echo "<br/>".$preview."<br/>Posted On: ". $createDate."</h5>";
                     		echo "</div></td>";
                       	echo "<td style=\"width:10%\" class=\"action-td\"><div>";
-                      	if($row["visibleBuyerComment"] && $row["soldToUserID"]==$row["fuserID"])
-                      	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$postID\"   > <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
+                      	$usr = $this->nativesession->get('user');
+                      	$fuserID=$row["fuserID"];
+                      	$userID=$row["userID"];
+                      	if(!empty($usr)){
+                      		if($usr["userID"]!=$fuserID ){
+                      			$fuserID=$row["userID"];
+                      			$userID=$row["fuserID"];
+                      		}
+                      	}
+                      		 
+                      	$historyPath=base_url().MY_PATH."messages/getViewMessageHistory/$fuserID/$postID/$userID?prevURL=".urlencode(current_url());
+                      	echo "<a class=\"btn btn-info btn-xs\" href=\"$historyPath\" > <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('History')." </a>";
+                      	
+                      	if($row["enableMarkSoldBtn"] && $row["soldToUserID"]==$fuserID)
+                      	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"   > <i class=\"fa fa-edit\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
                       	echo "</div></td>";
                   		echo "</tr>";
                   	}
@@ -122,7 +140,7 @@
       <div class="modal-body">
         <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/markBuyerComment">
            <div class="form-group">
-           		<input type="hidden" id="postID" name="postID" >   	
+           		<input type="hidden" id="commentID" name="commentID" >   	
            	</div>
           
              <div class="form-group">
@@ -153,12 +171,14 @@
   <?php include "footer1.php"; ?>
   </div>
   <script>
-
-  $(document).ready(function() {
+  function passToModal() {
 	    $('#markSoldAds').on('show.bs.modal', function(event) {
-	        $("#postID").val($(event.relatedTarget).data('id'));
+	        $("#commentID").val($(event.relatedTarget).data('id'));
 	    });
-	});
+  }
+
+  $(document).ready(passToModal());
+  
   function setup()
 {
 	

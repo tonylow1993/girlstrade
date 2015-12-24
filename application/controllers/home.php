@@ -14,6 +14,7 @@ class Home extends CI_Controller {
 // 		ini_set('upload_max_filesize',52428800); // 50 MB
 		$this->load->library("nativesession");
 		$this->load->helper('url');
+		$this->load->helpers('site');
 		$this->load->helper('language');
 		$this->load->database();
 		$this->load->library('upload');
@@ -59,6 +60,8 @@ class Home extends CI_Controller {
         	$this->load->model('postviewhistory_model');
         	$this->load->model('indexstat_model');
         	    $this->load->model("userloginhistory_model"); 
+        	    $this->load->model('tradecomments_model');
+        	    $this->load->model('itemcomments_model');
 	}
 	public function index($errorMsg='', $successMsg='')
 	{
@@ -387,24 +390,11 @@ class Home extends CI_Controller {
                 curl_setopt($ch,CURLOPT_TIMEOUT, 20);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
                 $response = curl_exec($ch);
-//                 print "curl response is:" . $response;
-//                 echo "Curl Error :--" . curl_error($ch);
                 curl_close ($ch);
 
 
                 $result = json_decode($response,true);
                 
-                //debug
-                //$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=YOUR SECRET KEY&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
-            //$response=json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6Le4uAYTAAAAAJiVej5-dLhS_PRCRF0pzgWvQekf&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
-               // echo "?secret=6Lec9AYTAAAAALrIwia-e_3Lc2pb3Vj0ZTbI9gEN";
-                //echo "&response=".$captcha;
-                //echo "&remoteip=".$_SERVER['REMOTE_ADDR'];
-                //echo "RESULT!!!!!!!!!!!!!!!!!".$result;
-                //print_r($result);
-                //echo "a!!!!!!!!!!!!!!!!!".$response;
-                //echo "CH!!!!!!!!!!!!!!!!!".$ch;
-
             if($result['success'] == false)
             {
             	$errorMsg=$this->lang->line("HomeSignUpCheckCaptchaForm");
@@ -726,11 +716,12 @@ class Home extends CI_Controller {
 			$data["PrevURL"]=$prevURL;
 			$data["error"]=$errorMsg;
 			$this->nativesession->set("lastPageVisited","login");
-			$data['redirectToWhatPage']="Previous Page";
+			$data['redirectToWhatPage']="Home Page";
 			if($_SESSION["prevURL"]=="")
 				$data['redirectToPHP']=base_url();
 			else
-				$data['redirectToPHP']=$_SESSION["prevURL"];
+				$data['redirectToPHP']=base_url();
+// 				$data['redirectToPHP']=$_SESSION["prevURL"];
 			$data["successTile"]=$this->lang->line("successTile");
 			$data["failedTitle"]=$this->lang->line("failedTitle");
 			$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -1215,7 +1206,7 @@ public function getTerms()
 	}
 	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='')
 	{
-		
+		$data["previousCurrent_url"]=urlencode(current_url());
 		$data["MyAds"]=$this->lang->line("MyAds");
 		$data["PersonalHome"]=$this->lang->line("PersonalHome");
 		$data["FavoriteAds"]=$this->lang->line("FavoriteAds");
@@ -1336,6 +1327,7 @@ public function getTerms()
         $data["outgoingMsgCount"]=0;
         $data["buyAdsCount"]=0;
         $data["directsendhistCount"]=0;
+        $data["directsendhistCount1"]=0;
         if(isset($userStat) && !empty($userStat)){
         	$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
         	$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
@@ -1349,6 +1341,7 @@ public function getTerms()
         	$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
         	$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
         	$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+        	$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
         }
         
 		if($activeNav==1)
@@ -1403,14 +1396,22 @@ public function getTerms()
 			$this->load->view("account-archived-ads", $data);
 		}
 		else if($activeNav==11){
-			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInBuyAdsHistory($userID);
-			$myList=$this->post_model->getBuyAdsHistory($userID, $pageNum);
-			$data["result"]=$this->mapPostToView($myList);
+			$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInBuyAdsHistory($userID);
+			$myList=$this->tradecomments_model->getBuyAdsHistory($userID, $pageNum);
+			$data["result"]=$this->mapTradeCommentToView($myList);
 			$this->load->view("account-my-buy-history", $data);
 		}else if($activeNav==12){
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInDirectSendHistory($userID);
 			$myList=$this->requestpost_model->getDirectSendHistory($userID, $pageNum);
-			$data["result"]=$this->mapReqeustPostToView($myList);
+			$data["result"]=$this->mapReqeustPostToView($myList, "buyer");
+			$data["DirectSendType"]="Buyer";
+			$this->load->view("account-directsend-history", $data);
+		}else if($activeNav==13){
+			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInDirectSendHistoryAsSeller($userID);
+			$myList=$this->requestpost_model->getDirectSendHistoryAsSeller($userID, $pageNum);
+			//var_dump($myList);
+			$data["result"]=$this->mapReqeustPostToViewOfArray($myList, "seller");
+			$data["DirectSendType"]="Seller";
 			$this->load->view("account-directsend-history", $data);
 		}
 		else if($activeNav==8)
@@ -1420,10 +1421,11 @@ public function getTerms()
 		
 	}
 	
-	public function mapReqeustPostToView($inbox)
+	public function mapReqeustPostToView($inbox, $type="buyer")
 	{
 		$result=null;
 		$lang_label=$this->nativesession->get("language");
+		if($inbox!=null){
 		foreach($inbox as $row)
 		{
 			$postID=$row->postID;
@@ -1468,7 +1470,11 @@ public function getTerms()
 				$reply=$userarray[0]->username;
 				$from=$reply;
 			}
-			$email=$this->userEmail->getUserEmailByUserID($userID);
+			$email="";
+			if(strcmp($type,"buyer")==0)
+				$email=$this->userEmail->getUserEmailByUserID($userID);
+			else 
+				$email=$this->userEmail->getUserEmailByUserID($fuserID);
 			if($email<>null){
 				$sellerEmail=$email["email"];
 			}
@@ -1512,16 +1518,219 @@ public function getTerms()
 					"NoOfDaysPending"=>$NoOfDaysPending,
 					"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
 					"sellerEmail" => $sellerEmail,
+					"replyUserID"=>$userID,
 					"picCount"=>$picCount));
 			if($result==null)
 				$result=$arrayMessage;
 			else
 				$result=$result + $arrayMessage;
 		}
-			
+		}
 		return $result;
 	}
 	
+	public function mapReqeustPostToViewOfArray($inbox, $type="buyer")
+	{
+		$result=null;
+		$lang_label=$this->nativesession->get("language");
+		if($inbox!=null){
+			foreach($inbox as $row)
+			{
+				$postID=$row["postID"];
+				$messageID=$row["postID"]."-".$row["userID"];
+				//$userID=$row->userID;
+				$fuserID=$row["userID"];
+				$createDate=$row["createDate"];
+				$expiryDate=$row["expriyDate"];
+				$statusRP=$row["status"];
+				$status="";
+				$name="";
+				$previewTitle="";
+				$previewDesc="";
+				$price=0;
+				$userID=0;
+				$enableMarkSoldBtn=false;
+				$visibleBuyerComment=false;
+				$soldToUserID=0;
+				$postInfo=$this->post_model->getPostByPostID($postID);
+				if($postInfo<>null)
+				{
+					if ($lang_label<>"english")
+						$name=$postInfo[0]->itemNameCH;
+					else
+						$name=$postInfo[0]->itemName;
+					$soldToUserID=$postInfo[0]->soldToUserID;
+					$enableMarkSoldBtn=$postInfo[0]->sellerRating==null;
+					$visibleBuyerComment=$postInfo[0]->sellerRating<>null &&
+					$postInfo[0]->buyerRating==null;
+					$previewTitle=$name;
+					$previewDesc=$postInfo[0]->description;
+					$price=$postInfo[0]->currency." ".$postInfo[0]->itemPrice;
+					$userID=$postInfo[0]->userID;
+					$status=$postInfo[0]->status;
+				}
+				$userarray=$this->users_model->get_user_by_id($userID);
+				$reply="";
+				$from="";
+				$sellerEmail="";
+				if($userarray<>null)
+				{
+					$reply=$userarray[0]->username;
+					$from=$reply;
+				}
+				$email="";
+				if(strcmp($type,"buyer")==0)
+					$email=$this->userEmail->getUserEmailByUserID($userID);
+				else
+					$email=$this->userEmail->getUserEmailByUserID($fuserID);
+				if($email<>null){
+					$sellerEmail=$email["email"];
+				}
+				$fUserarray=$this->users_model->get_user_by_id($fuserID);
+				if($fUserarray<>null)
+				{
+					$from=$fUserarray[0]->username;
+				}
+					
+				$pic=$this->picture_model->get_picture_by_postID($postID);
+				$imagePath="";
+				$picCount=count($pic);
+				if($pic<>null)
+				{
+					$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
+				}
+				$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
+	
+				$itemStatus=$status;
+				$dStart=date_create('2015-09-20');
+				$dDiff = $dStart->diff(date_create($expiryDate));
+				$NoOfDaysPending=$dDiff->days;
+				$NoOfDaysb4ExpiryContact=$dDiff->days;
+				$arrayMessage=array($messageID => array("postID"=>$postID,
+						"messageID"=>$messageID,
+						"userID"=>$userID,
+						"fuserID"=>$fuserID,
+						"createDate"=>$createDate,
+						"reply"=>$from,
+						"previewTitle"=>$previewTitle,
+						"previewDesc"=>$previewDesc,
+						"price"=>$price,
+						"enableMarkSoldBtn"=>$enableMarkSoldBtn,
+						"visibleBuyerComment"=>$visibleBuyerComment,
+						"soldToUserID"=>$soldToUserID,
+						"imagePath"=>$imagePath,
+						"viewItemPath"=>$viewItemPath,
+						"itemStatus"=>$itemStatus,
+						"statusRP" =>$statusRP,
+						"from"=>$reply,
+						"NoOfDaysPending"=>$NoOfDaysPending,
+						"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
+						"sellerEmail" => $sellerEmail,
+						"replyUserID"=>$userID,
+						"picCount"=>$picCount));
+				if($result==null)
+					$result=$arrayMessage;
+				else
+					$result=$result + $arrayMessage;
+			}
+		}
+		return $result;
+	}
+	
+	public function mapTradeCommentToView($inbox){
+		$result=null;
+		$lang_label=$this->nativesession->get("language");
+		foreach($inbox as $row)
+		{
+			$postID=$row->postID;
+			$commentID=$row->ID;
+			$buyerID=$row->soldToUserID;
+			$createDate=$row->createDate;
+			
+			$postInfo=$this->post_model->getPostByPostID($postID);
+			$userarray=$this->users_model->get_user_by_id($buyerID);
+				
+			$reply="";
+			$from="";
+			if($userarray<>null)
+			{
+				$reply=$userarray[0]->username;
+				$from=$reply;
+			}
+			$name="";
+			$preview="";
+			$price=0;
+			if ($lang_label<>"english")
+				$name=$postInfo[0]->itemNameCH;
+			else
+				$name=$postInfo[0]->itemName;
+		
+			$previewTitle=$name;
+			$previewDesc=$postInfo[0]->description;
+			$price=$postInfo[0]->currency." ".$postInfo[0]->itemPrice;
+			$preview="";
+			$sellerUserName="";
+			
+			$sellerInfo=$this->users_model->get_user_by_id($postInfo[0]->userID);
+			if($sellerInfo!=null && count($sellerInfo)>0)
+				$sellerUserName=$sellerInfo[0]->username;
+			if(strcmp($preview, "")==0)
+				$preview=$preview."Seller: ".$sellerUserName;
+			else
+				$preview=$preview."<br/><br/>Seller: ".$sellerUserName;
+			if($row->sellerRating!=0 && (strcmp($row->status,"A")==0 || strcmp($row->status,"C")==0)){
+				$preview=$preview."<br/>  Seller Comment:  (". $this->getRating($row->sellerRating).")";
+				$preview=$preview." ".$row->sellerComment;
+			}
+			if($row->buyerRating!=0 && strcmp($row->status,"A")==0){
+				$preview=$preview."<br/>  Buyer Comment: (".$this-> getRating($row->buyerRating).")";
+				$preview=$preview." ".$row->buyerComment;
+			}
+				$pic=$this->picture_model->get_picture_by_postID($postID);
+			$imagePath="";
+			$picCount=count($pic);
+			if($pic<>null)
+			{
+				$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
+			}
+			$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
+		
+			$itemStatus='OPEN';
+			$NoOfDaysPending=10;
+			$NoOfDaysb4ExpiryContact=10;
+			//var_dump($soldUserList);
+			$arrayMessage=array($commentID => array("postID"=>$postID,
+					"commentID"=>$commentID,
+					"buyerID"=>$buyerID,
+					"sellerID"=>$postInfo[0]->userID,
+					"createDate"=>$createDate,
+					"reply"=>$reply,
+					"preview"=>$preview,
+					"previewTitle"=>$previewTitle,
+					"previewDesc"=>$previewDesc,
+					"price"=>$price,
+					"imagePath"=>$imagePath,
+					"viewItemPath"=>$viewItemPath,
+					"itemStatus"=>$itemStatus,
+					"from"=>$from,
+						"picCount"=>$picCount));
+				
+			if($result==null)
+				$result=$arrayMessage;
+			else
+				$result=$result + $arrayMessage;
+			}
+			return $result;
+	}
+	public function getPostStatus($status){
+		if(strcmp($status,"U")==0)
+			return "Unverified";
+		else if(strcmp($status, "A")==0)
+			return "Open";
+		else if(strcmp($status,"R")==0)
+			return "Rrejected";
+		return "";	
+	}
 	public function mapPostToView($inbox)
 	{
 		$result=null;
@@ -1534,7 +1743,7 @@ public function getTerms()
 			$fuserID=$row->userID;
 			$createDate=$row->createDate;
 			$userarray=$this->users_model->get_user_by_id($userID);
-			
+			$status=$this->getPostStatus($row->status);
 			$reply="";
 			$from="";
 			if($userarray<>null)
@@ -1557,29 +1766,48 @@ public function getTerms()
 			$enableMarkSoldBtn=false;
 			$visibleBuyerComment=false;
 			$soldToUserID=0;
-			$postInfo=$this->post_model->getPostByPostID($postID);
 			$soldToUserName="";
-			if($postInfo<>null)
+			$soldUserList=$this->messages_model->getSoldUserList($postID);
+			$postInfo=$this->post_model->getPostByPostID($postID);
+			$commentInfo=$this->tradecomments_model->getTradeCommentsbyPostID($postID);	
+			$preview="";
+			if($commentInfo<>null && count($commentInfo)>0)
 			{
-				$soldToUserID=$postInfo[0]->soldToUserID;
-				$soldToUser=$this->users_model->get_user_by_id($soldToUserID);
-				if($soldToUser!=null && count($soldToUser)>0)
-				$soldToUserName=$soldToUser[0]->username;
-				$enableMarkSoldBtn=$postInfo[0]->sellerRating==null ||
-				$postInfo[0]->sellerRating==0;
-				$visibleBuyerComment=$postInfo[0]->sellerRating<>null &&
-				$postInfo[0]->buyerRating==null;
+				foreach($commentInfo as $comment){
 				
-				//$preview=$postInfo[0]->description;
-				if($postInfo[0]->sellerRating<>null){
-					$preview=$preview."<br/>Seller Comment:  (". $this->getRating($postInfo[0]->sellerRating).")";
-					$preview=$preview." ".$postInfo[0]->sellerComment;
+					$soldToUserID=$comment->soldToUserID;
+					$soldToUser=$this->users_model->get_user_by_id($soldToUserID);
+					$seller=$this->users_model->get_user_by_id($postInfo[0]->userID);
+					if($soldToUser!=null && count($soldToUser)>0)
+					$soldToUserName=$soldToUser[0]->username;
+					if(strcmp($preview, "")==0)
+						$preview=$preview."Sold to: ".$soldToUserName;
+					else
+							$preview=$preview."<br/><br/>Sold to: ".$soldToUserName;
+					//$preview=$preview."<br/>Seller: ".$seller[0]->username;
+						if($comment->sellerRating!=0 && (strcmp($comment->status,"A")==0 || strcmp($comment->status,"C")==0)){
+						$preview=$preview."<br/>  Seller Comment:  (". $this->getRating($comment->sellerRating).")";
+						$preview=$preview." ".$comment->sellerComment;
+						}
+						if($comment->buyerRating!=0 && (strcmp($comment->status,"A")==0 || strcmp($comment->status,"C")==0)){
+							$preview=$preview."<br/>  Buyer Comment: (".$this-> getRating($comment->buyerRating).")";
+							$preview=$preview." ".$comment->buyerComment;
+						}
+						//$enableMarkSoldBtn=$comment->sellerRating==0;
+						$visibleBuyerComment=$comment->sellerRating!=0 &&
+						($comment->buyerRating==null ||$comment->buyerRating==0) ;
 				}
-				if($postInfo[0]->buyerRating<>null){
-					$preview=$preview."<br/> Buyer Comment: (".$this-> getRating($postInfo[0]->buyerRating).")";
-					$preview=$preview." ".$postInfo[0]->buyerComment;
-				}
+			}else{
+				// set enable mark sold if it has records in messages from buyer
+				
 			}
+			
+			if($soldUserList<>null && count($soldUserList)>0  && $postInfo[0]->remainQty>0)
+				$enableMarkSoldBtn=true;
+			else 
+				$enableMarkSoldBtn=false;
+			
+			
 			$pic=$this->picture_model->get_picture_by_postID($postID);
 			$imagePath="";
 			$picCount=count($pic);
@@ -1592,10 +1820,8 @@ public function getTerms()
 			$itemStatus='OPEN';
 			$NoOfDaysPending=10;
 			$NoOfDaysb4ExpiryContact=10;
-			$soldUserList=$this->messages_model->getSoldUserList($postID);
 			//var_dump($soldUserList);
 			$arrayMessage=array($messageID => array("postID"=>$postID,
-					"soldUsers"=>$soldUserList,
 					"messageID"=>$messageID,
 					"userID"=>$userID,
 					"fuserID"=>$fuserID,
@@ -1609,6 +1835,8 @@ public function getTerms()
 					"viewItemPath"=>$viewItemPath,
 					"itemStatus"=>$itemStatus,
 					"from"=>$from,
+					"status"=>$status,
+					"soldUsers"=>$soldUserList,
 					"enableMarkSoldBtn"=>$enableMarkSoldBtn,
 					"visibleBuyerComment"=>$visibleBuyerComment,
 					"soldToUserID"=>$soldToUserID,
@@ -1640,9 +1868,11 @@ public function getTerms()
 		{
 			$postID=$row->postID;
 			$messageID=$row->messageID;
+			$commentID=$row->commentID;
 			$userID=$row->userID;
 			$fuserID=$row->fUserID;
 			$createDate=$row->createDate;
+			//$messageIOType=$row->messageIOType;
 			$userarray=$this->users_model->get_user_by_id($userID);
 			$reply="";
 			$from="";
@@ -1698,30 +1928,44 @@ public function getTerms()
 			$previewTitle="";
 			$previewDesc="";
 			$price=0;
-			$enableMarkSoldBtn=false;
+				$enableMarkSoldBtn=false;
 			$visibleBuyerComment=false;
 			$soldToUserID=0;
+			$soldToUserName="";
+			$soldUserList=$this->messages_model->getSoldUserList($postID);
+		
 			$postInfo=$this->post_model->getPostByPostID($postID);
+			$postUserID=$postInfo[0]->userID;
 			if($postInfo<>null)
 			{
 				if ($lang_label<>"english")
 					$name=$postInfo[0]->itemNameCH;
 				else
 					$name=$postInfo[0]->itemName;
-				$soldToUserID=$postInfo[0]->soldToUserID;
-				$enableMarkSoldBtn=$postInfo[0]->sellerRating==null;
-				$visibleBuyerComment=$postInfo[0]->sellerRating<>null &&
-				$postInfo[0]->buyerRating==null;
-					
-				$preview=$name."<br/> ".$postInfo[0]->description;
 				$previewTitle=$name;
 				$previewDesc=$postInfo[0]->description;
 				$price=$postInfo[0]->currency." ".$postInfo[0]->itemPrice;
 			}
-			$messageInfo=$this->messages_model->getMessageByMessageID($messageID);
-			if($messageInfo<>null){
-				$preview=$messageInfo[0]->content;
+			if($commentID!=0){
+				$tradecomment=$this->tradecomments_model->getTradeComments($commentID);
+				$soldToUserID=$tradecomment[0]->soldToUserID;
+				if(strcmp($type, "Inbox")!=0)
+					$enableMarkSoldBtn=$tradecomment[0]->sellerRating!=0 &&
+					($tradecomment[0]->buyerRating==null || $tradecomment[0]->buyerRating==0);
+				else 
+					$enableMarkSoldBtn=$tradecomment[0]->sellerRating==0;
+				$visibleBuyerComment=$tradecomment[0]->sellerRating!=0 &&
+				($tradecomment[0]->buyerRating==null ||$tradecomment[0]->buyerRating==0) ;
+			}else{
+				$isLastMessage=$this->messages_model->isLastMessage($row, $type);
+				if($isLastMessage)
+					$enableMarkSoldBtn=true;			
 			}
+// 			$messageInfo=$this->messages_model->getMessageByMessageID($messageID);
+// 			if($messageInfo<>null){
+// 				$preview=$messageInfo[0]->content;
+// 			}
+			$preview=$row->content;
 			
 			$pic=$this->picture_model->get_picture_by_postID($postID);
 			$imagePath="";
@@ -1737,9 +1981,16 @@ public function getTerms()
 			$NoOfDaysb4ExpiryContact=10;
 			$arrayMessage=array($messageID => array("postID"=>$postID,
 					"messageID"=>$messageID,
+					"commentID" => $commentID,
 					"userID"=>$userID,
 					"fuserID"=>$fuserID,
 					"createDate"=>$createDate,
+					"from"=>$from,
+					"soldUsers"=>$soldUserList,
+					"enableMarkSoldBtn"=>$enableMarkSoldBtn,
+					"visibleBuyerComment"=>$visibleBuyerComment,
+					"soldToUserID"=>$soldToUserID,
+					"soldToUserName"=>$soldToUserName,
 					"reply"=>$reply,
 					"preview"=>$preview,
 					"previewTitle"=>$previewTitle,
@@ -1749,11 +2000,8 @@ public function getTerms()
 					"viewItemPath"=>$viewItemPath,
 					"itemStatus"=>$itemStatus,
 					"status"=> $row->status,
-					"from"=>$from,
-					"enableMarkSoldBtn"=>$enableMarkSoldBtn,
-					"visibleBuyerComment"=>$visibleBuyerComment,
-					"soldToUserID"=>$soldToUserID,
 					
+					"postUserID" =>$postUserID,
 					"NoOfDaysPending"=>$NoOfDaysPending,
 					"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
 					"picCount"=>$picCount));
@@ -1847,6 +2095,7 @@ public function getTerms()
 		}
 	
 	public function profilePage(){
+		$data["previousCurrent_url"]=urlencode(current_url());
 		
 		$data["MyAds"]=$this->lang->line("MyAds");
 		$data["PersonalHome"]=$this->lang->line("PersonalHome");
@@ -1965,6 +2214,7 @@ public function getTerms()
 			$data["outgoingMsgCount"]=0;
 			$data["buyAdsCount"]=0;
 			$data["directsendhistCount"]=0;
+			$data["directsendhistCount1"]=0;
 			if(isset($userStat) && !empty($userStat)){
 				$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
 				$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
@@ -1978,6 +2228,7 @@ public function getTerms()
 				$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
 				$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
 				$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+				$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
 			}
 		$this->load->view("account-approve-request-ads", $data);
 			//log_message('debug', 'nothing happen.');
@@ -2128,7 +2379,7 @@ public function getTerms()
 		$this->userEmail->update($userEmail);
 		
 		log_message('debug', 'what happen?');
-		$this->profilePage();
+		$this->getAccountPage(4);
 	}
 	
 	public function updatePassword(){
@@ -2476,6 +2727,8 @@ public function getTerms()
 				}
 			}
 		}
+		$user = $this->user->getUserByUserID($userID);
+		$this->nativesession->set("user",$user);
 		$this->getAccountPage(4);
 	}
 }
