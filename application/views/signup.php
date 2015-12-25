@@ -46,15 +46,18 @@
                     </div>
 					
                     <!-- Text input-->
-                    <div class="form-group required">
+                    <div id="telDov"  class="form-group required">
                       <label class="col-md-4 control-label" > <?php echo $PhoneNumber;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input id="telno" name="telno" placeholder="Phone Number" class="form-control input-md" type="text" required="true"  maxlength="15">
-                        <div class="checkbox">
-                          <label>
-                            <input id="hidetelno" name='hidetelno' type="checkbox" value="Yes">
-                            <small> <?php echo $HidePhoneNumber;?> </small> </label>
-                        </div>
+                        <input id="telno" name="telno" placeholder="Phone Number"   type="tel"   class="form-control input-md"   type="text" required="true"  maxlength="15">
+<!--                         <div class="checkbox"> -->
+<!--                           <label> -->
+<!--                             <input id="hidetelno" name='hidetelno' type="checkbox" value="Yes"> 
+                            <small> <?php echo $HidePhoneNumber;?> </small> </label> -->
+<!--                         </div> -->
+								<div id="telAjaxLoad" class="center"></div>
+                        <div id="telError" hidden="true"></div>
+				
                       </div>
                     </div>
                     
@@ -154,6 +157,22 @@ $( "#inputEmail3" ).blur(function() {
 	    	$("#emailDiv").removeClass('has-success has-error').addClass(result.class);
 	    	$("#emailAjaxLoad").html(result.icon);
 	    	$("#emailError").html(result.err);
+	    	}
+	});
+});
+
+$( "#telno" ).blur(function() {
+	$("#telAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>home/validateTel",
+		data: { telno: $( "#telno" ).val() },
+		success: function(response){
+			var result = JSON.parse(response);
+	    	$("#error").html(result.message);
+	    	$("#telDiv").removeClass('has-success has-error').addClass(result.class);
+	    	$("#telAjaxLoad").html(result.icon);
+	    	$("#telError").html(result.err);
 	    	}
 	});
 });

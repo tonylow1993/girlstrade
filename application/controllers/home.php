@@ -1054,6 +1054,39 @@ public function getTerms()
 		echo json_encode($data);
 	}
 	
+	public function validateTel(){
+		sleep(1);
+		$data['telno'] = $this->input->post('telno');
+		if(empty($data['telno'])){
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Phone Number  cannot empty!</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Empty Phone</span></em>';
+			$data['telError']='Error';
+			echo json_encode($data);
+			return;
+		}
+// 		$validate = !
+		$validate=!is_numeric(trim($data["telno"]));;
+		$data['validate'] = $validate==false;
+		if($validate){
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> phone number is digits only.</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid phone number</span></em>';
+			$data['telError']='Error';
+		}else{
+			$data['status'] = 'A';
+			$data['class'] = "has-success";
+			$data['message'] = '';
+			//$data['icon'] = '<i class="girl-icon  icon-ok-circled ln-shadow shape-2"></i>';
+			$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i> Valid phone number</span></em>';
+			$data['telError']='';
+		}
+		echo json_encode($data);
+		
+	}
+	
 	public function validateUsername(){
 		sleep(1);
 		$data['username'] = $this->input->post('username');
