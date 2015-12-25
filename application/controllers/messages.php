@@ -767,11 +767,64 @@ function addDayswithdate($date,$days){
 			}
 		}
 		
-		public function markBuyerComment(){
+		public function markSoldAdsInbox(){
 			try{
-				$ID=$_POST['commentID'];;
+		
+				$user=$this->nativesession->get("user");
+				$times=$this->tradecomments_model->getMaxTimesMarkSold($user["userID"]);
+				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST>0)
+				{
+					$errorMsg=$this->lang->line("ExceedMaxTimesDailyMarkSoldPerPost");
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
+					return;
+				}
+		
+				$messageID=$_POST['messageID'];
+				$postID=$_POST['postID'];;
+				$soldUserID=$_POST['soldUserID'];
+				
 				$rating=$_POST['rating'];
 				$buyerComment=$_POST['message-text'];
+				$soldQty=$_POST['soldqty'];
+				//$postID=207;
+				//$soldUserID=48;
+				//$rating=1;
+				//$buyerComment="ABC";
+				//$where=array('postID'=>intval($postID));
+				$messageArray=array('postID'=>intval($postID), 'status' => "U", 'soldDate' =>date("Y-m-d H:i:s"), 'createDate' =>date("Y-m-d H:i:s"), 'soldQty' => $soldQty,
+						'soldToUserID'=> $soldUserID, 'sellerRating'=> $rating, 'sellerComment'=> $buyerComment);
+				$messageResult=$this->tradecomments_model->insertTradeComment($messageArray, $messageID);
+				if($messageResult)
+				{
+					redirect(base_url().MY_PATH."home/getAccountPage/1");
+				}
+				else
+				{
+					$errorMsg=$this->lang->line("MessagesDirectSendErrorLoginFirst");
+					redirect(base_url().MY_PATH."home/getAccountPage/1/1/".$errorMsg);
+				}
+			}catch(Exception $ex){
+				$errorMsg=$ex->getMessage();
+				redirect(base_url().MY_PATH."home/getAccountPage/1/1/".$errorMsg);
+					
+			}
+		}
+		
+		public function markBuyerComment(){
+			try{
+				
+				
+				$ID=$_POST['commentID'];
+				$rating=$_POST['rating'];
+				$buyerComment=$_POST['message-text'];
+				
+				//log_message('error', "markBuyerComment:".$ID.", ".$rating.", ".$buyerComment);
 				//$postID=207;
 				//$soldUserID=48;
 				//$rating=1;

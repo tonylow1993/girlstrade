@@ -273,7 +273,7 @@
 	    	$strQuery=$strQuery." union all ";
 	    	$strQuery=$strQuery."select *, 'inBox' as messageIOType  from message where ( (status in ('Op', 'OC') and userID=$userID and fuserID=$fuserID) or (status in ('R', 'C') and fUserID=$userID and userID=$fuserID) ) and postID=$postID ";
 	    	$strQuery=$strQuery." ) a order by a.createDate desc ";
-	    	log_message('error', $strQuery.": param:fuserID: ".$fuserID." userID: ".$userID);;
+	    	//log_message('error', $strQuery.": param:fuserID: ".$fuserID." userID: ".$userID);;
 	    	$query2 = $this->db->query($strQuery);
 	   		return $query2->result();
 	    }

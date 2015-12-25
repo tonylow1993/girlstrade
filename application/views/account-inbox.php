@@ -77,6 +77,8 @@
 						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
 						$price=$row['price'];
 						$postID=$row['postID'];
+						$soldToUserID=$row["soldToUserID"];
+						$soldToUserName=$row["soldToUserName"];
                 		echo "<tr>";
                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
                         echo "<label>";
@@ -149,7 +151,7 @@
 //                     			( (strcmp($status,"OC")==0 ||strcmp($status,"Op")==0 ) && $checkUserID==$fuserID))
                     		if($postUserID==$checkUserID)
                     		if($enableMarkSoldBtn) //  &&  ($checkUserID!=$userID || (strcmp($status, 'Op'))) )
-                    			echo "<div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"  data-target=\"#markSoldAds\"  href=\"#markSoldAds\"  data-id=".$postID."  data-msgid=".$messageID."  data-soldusers=".$soldUsersstr."> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold').$status.$userID." </a></div>";
+                    			echo "<div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"  data-target=\"#markSoldAds\"  href=\"#markSoldAds\"  data-id=".$postID."  data-msgid=".$messageID."  data-solduserid=".$soldToUserID."  data-soldusername=".$soldToUserName."  data-soldusers=".$soldUsersstr."> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold').$soldToUserID.$soldToUserName." </a></div>";
 //                     	echo "<div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"  data-target=\"#markSoldAds\"  href=\"#markSoldAds\"  data-id=\"$postID\"  data-soldusername=\"$from\"  data-solduserID=\"$fuserID\"   data-soldusers=\"$soldUsersstr\"  $str> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div>";
                     	 
                     	
@@ -255,20 +257,27 @@
         <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="myitem" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/markSoldAds">
+        <form role="form" id="myitem" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/markSoldAdsInbox">
            <div class="form-group">
            		<input type="hidden"  id="postID"  name="postID" >   	
            		         	</div>
            	<div class="form-group">
            		<input type="hidden"  id="messageID"  name="messageID" >   	
            	</div>
-          <div class="form-group">
-         	<label for="soldUser" class="control-label">Sold To<font color="red">*</font></label>
-         	<div   id="divSoldUser" name="divSoldUser"  class="center">
+			<div class="form-group">
+           		<input type="hidden"  id="soldUserID"  name="soldUserID" >   	
+           	</div>
+<!--           <div class="form-group"> -->
+<!--          	<label for="soldUser" class="control-label">Sold To<font color="red">*</font></label> -->
+<!--          	<div   id="divSoldUser" name="divSoldUser"  class="center"> -->
          		
+<!--          	</div> -->
+<!--          	<div id="soldUserError" name="soldUserError"></div> -->
+<!--            </div> -->
+            <div class="form-group">
+         	<label class="control-label">Sold To</label>
+         			<input type="text"  id="soldUserName" name="soldUserName"   class="form-control"></input>
          	</div>
-         	<div id="soldUserError" name="soldUserError"></div>
-           </div>
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
          		 <select required="true" class="form-control selecter" name="rating" id="rating">
@@ -312,11 +321,10 @@ function passToModal() {
    $("#markSoldAds").on("show.bs.modal", function(event) {
         $("#postID").val($(event.relatedTarget).data("id"));
         $("#messageID").val($(event.relatedTarget).data("msgid"));
-//         $("#messageID").val("101");
-//         $("#soldusername").val($(event.relatedTarget).data('soldusername'));
-//         $("#solduserID").val($(event.relatedTarget).data('solduserID'));
-		//alert(jsbase64_decode($(event.relatedTarget).data('soldusers')));
-         $("#divSoldUser").html( jsbase64_decode($(event.relatedTarget).data("soldusers")));
+        $("#soldUserID").val($(event.relatedTarget).data("solduserid"));
+        $("#soldUserName").val($(event.relatedTarget).data("soldusername"));
+        
+  //       $("#divSoldUser").html( jsbase64_decode($(event.relatedTarget).data("soldusers")));
     });
 }
 $(document).ready(passToModal());
@@ -392,11 +400,11 @@ var encodeHtmlEntity = function(str) {
 
 function setupSold()
 {
-	 if(document.getElementById("soldUser").value=="") {
-		 $("soldUserError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Please select sold to person!</span></em>');
-		 location.href ="#markSoldAds";
-		 return false;
-	 }
+// 	 if(document.getElementById("soldUser").value=="") {
+// 		 $("soldUserError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Please select sold to person!</span></em>');
+// 		 location.href ="#markSoldAds";
+// 		 return false;
+// 	 }
 	if( document.getElementById("rating").value=="") {
 		$("ratingError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Please select rating!</span></em>');
 		 location.href ="#markSoldAds";

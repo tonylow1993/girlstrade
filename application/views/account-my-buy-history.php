@@ -31,14 +31,14 @@
                     <th data-type="numeric" data-sort-initial="true"> </th>
                     <th> <?php echo $this->lang->line("Reply"); ?> </th><th> <?php echo $this->lang->line("Photo"); ?> </th>
                     <th data-sort-ignore="true"> <?php echo $this->lang->line("Ads_Detail"); ?> </th>
-  <!--                   <th> <?php  echo $this->lang->line("Option");?> </th> -->
+        	            <th> <?php  echo $this->lang->line("Option");?> </th>  
                   </tr>
                 </thead>
                 <tbody>
                   <?php 
                   if($result<>null)
             	{
-                  	foreach($result as $id=>$row)
+            		foreach($result as $id=>$row)
                   	{
                 		$from=$row['from'];
                   		$reply=$row['reply'];
@@ -49,9 +49,10 @@
                   		$previewDesc=$row["previewDesc"];
                   		$createDate=$row['createDate'];
                   		$itemStatus=$row['itemStatus'];
-                  		$messageID=$id;
-                  		$NoOfDaysPending=$row['NoOfDaysPending'];
-						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
+                  		$commentID=$row["commentID"];
+                  		$enableMarkSoldBtn=$row["enableMarkSoldBtn"];
+//                   		$NoOfDaysPending=$row['NoOfDaysPending'];
+// 						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
 						$price=$row['price'];
                 		echo "<tr>";
                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
@@ -66,12 +67,17 @@
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                        echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
-                          echo "<br/>Posted On: ". $createDate."</h5>";
+                          echo "<br/>Posted On: ". $createDate;
+                          echo "<br/>".$preview."</h5>";
                     		echo "</div></td>";
-                     	$cancelPath=base_url().MY_PATH."messages/cancelArchivedAds/$messageID";
+//                      	$cancelPath=base_url().MY_PATH."messages/cancelArchivedAds/$messageID";
 						//echo "<td style=\"width:10%\" class=\"action-td\"><div>";
-						//echo "<p> <a class=\"btn btn-primary btn-xs\" href=$cancelPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Cancel')." </a></p>";
-                      	//echo "</div></td>";
+// 						echo "<p> <a class=\"btn btn-primary btn-xs\" href=$cancelPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Cancel')." </a></p>";
+					//	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"  > <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
+                    		echo "<td style=\"width:10%\" class=\"action-td\">";
+                    		if($enableMarkSoldBtn)
+                    			echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"  data-seller=\"$from\"> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
+                   		echo "</td>";
                   		echo "</tr>";
                   	}
             	}
@@ -112,11 +118,72 @@
     </div>
     <!--/.container--> 
   </div>
+  
+  <div class="modal fade" id="markSoldAds" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/markBuyerComment">
+           <div class="form-group">
+           		<input type="hidden" id="commentID" name="commentID" >   	
+           	</div>
+        
+             <div class="form-group">
+             	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
+         		 <select required="true" class="form-control selecter" name="rating" id="rating">
+        				<option value='3'  style='background-color:#E9E9E9;font-weight:bold;' > Good</option>
+        				<option value='2'  style='background-color:#E9E9E9;font-weight:bold;' > Bad </option>
+        				<option value='1'  style='background-color:#E9E9E9;font-weight:bold;' > Average </option>
+        		</select>
+        		<div id="ratingError" name="ratingError" ></div>
+        	</div>
+        	 <div class="form-group">
+            <label for="message-text" class="control-label">Message <span class="text-count">(300) </span>:</label>
+            <textarea class="form-control"  id="message-text"  maxlength="300"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+          </div>
+         	
+        </form>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success pull-right"   onclick="setup(); return false;">Submit</button>
+        	<button id="validate" hidden="true" type="submit"></button>
+  
+     	 </div>
+    </div>
+  </div>
+</div>
   <!-- /.main-container -->
  <?php include "footer1.php"; ?>
  </div>
 
 <script type="text/javascript">
+function passToModal() {
+	  $('#markSoldAds').on('show.bs.modal', function(event) {
+	        $("#commentID").val($(event.relatedTarget).data('id'));
+	    });
+}
+$(document).ready(passToModal());
+
+function setup()
+{
+	
+	if( document.getElementById("rating").value=="") {
+		$("ratingError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Please select rating!</span></em>');
+		 location.href ="#markSoldAds";
+		 return false;
+	}
+     var myform = document.getElementById("item");
+	  	document.getElementById("item").submit();
+       	return true;
+}
+
+
   $(function () {
     $('#addManageTable').footable().bind('footable_filtering', function (e) {
       var selected = $('.filter-status').find(':selected').text();

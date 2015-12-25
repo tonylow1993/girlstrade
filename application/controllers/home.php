@@ -1670,7 +1670,7 @@ public function getTerms()
 			$price=$postInfo[0]->currency." ".$postInfo[0]->itemPrice;
 			$preview="";
 			$sellerUserName="";
-			
+			$enableMarkSoldBtn=false;
 			$sellerInfo=$this->users_model->get_user_by_id($postInfo[0]->userID);
 			if($sellerInfo!=null && count($sellerInfo)>0)
 				$sellerUserName=$sellerInfo[0]->username;
@@ -1678,6 +1678,10 @@ public function getTerms()
 				$preview=$preview."Seller: ".$sellerUserName;
 			else
 				$preview=$preview."<br/><br/>Seller: ".$sellerUserName;
+			if($row->sellerRating!=0 && ($row->buyerRating==0 || $row->buyerRating==null)
+					&& strcmp($row->status,"A")==0){
+				$enableMarkSoldBtn=true;
+			}
 			if($row->sellerRating!=0 && (strcmp($row->status,"A")==0 || strcmp($row->status,"C")==0)){
 				$preview=$preview."<br/>  Seller Comment:  (". $this->getRating($row->sellerRating).")";
 				$preview=$preview." ".$row->sellerComment;
@@ -1713,6 +1717,7 @@ public function getTerms()
 					"viewItemPath"=>$viewItemPath,
 					"itemStatus"=>$itemStatus,
 					"from"=>$from,
+					"enableMarkSoldBtn"=> $enableMarkSoldBtn,
 						"picCount"=>$picCount));
 				
 			if($result==null)
@@ -1930,8 +1935,8 @@ public function getTerms()
 			$price=0;
 				$enableMarkSoldBtn=false;
 			$visibleBuyerComment=false;
-			$soldToUserID=0;
-			$soldToUserName="";
+			$soldToUserID=$fromID;
+			$soldToUserName=$from;
 			$soldUserList=$this->messages_model->getSoldUserList($postID);
 		
 			$postInfo=$this->post_model->getPostByPostID($postID);
