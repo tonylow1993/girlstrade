@@ -13,7 +13,7 @@
         	<?php include("profile_header.php");?>
           <div class="inner-box">
           	  <?php include("profile_visit.php");?>
-            <h2 class="title-2"><i class="icon-hourglass"></i><?php  echo $this->lang->line("directsend_history");?></h2>
+            <h2 class="title-2"><i class="icon-hourglass"></i><?php  if(strcmp($DirectSendType,"Seller")==0)  echo $this->lang->line("directsend_history_seller"); else echo $this->lang->line("directsend_history"); ?></h2>
             <div class="table-responsive">
               
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
@@ -35,6 +35,7 @@
                   	{
                   		$from=$row['from'];
                   		$reply=$row['reply'];
+                  		$replyUserID=$row["replyUserID"];
                   		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
                   		$imagePath=$row['imagePath'];
                   		$previewTitle=$row['previewTitle'];
@@ -54,19 +55,21 @@
                 			$status="Rejected";
                 			$sellerEmail="";
                 		}
+                		
+                		$userPath=base_url().MY_PATH."viewProfile/viewByUserID/".$replyUserID."/1?prevURL=".urlencode(current_url());
                 		echo "<tr>";
                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
                         echo "<label>";
                         echo "  <input type=\"checkbox\">";
                         echo "</label>";
                       	echo "</div></td>";
-                      	echo "<td style=\"width:10%\">$reply</td>";
+                      	echo "<td style=\"width:10%\"><a href=$userPath>$reply</a></td>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">";
                       	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                     	echo "</td>";
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
-                    echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
+                    echo "<h5><div class=\"add-title-girlstrade\"><a href=$viewItemPath>".$this->lang->line("lblTitle").$previewTitle."</a></div><a href=$viewItemPath>".$previewDesc."</a>";
                           echo "<br/>Posted On: ". $createDate."</h5>";
                      	  if(strcmp($statusRP, 'A')==0)
                                    echo "Seller email: $sellerEmail";

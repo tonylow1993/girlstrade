@@ -92,14 +92,14 @@ input[type=checkbox]
                        <div class="form-group">
 	                        <label  class="col-sm-3 control-label"><?php echo $this->lang->line("Country");?></label>
 	                        <div class="col-sm-9">
-	                          <input name="country" type="text" class="form-control" id="country" placeholder="<?php echo $country;?>">
+	                          <input name="country" type="text" class="form-control" id="country" placeholder="HKG"  disabled="true">
 	                        </div>
 	                      </div>
 	                    	                     
                       <div class="form-group">
                         <label for="Phone" class="col-sm-3 control-label"><?php echo $this->lang->line("Phone");?></label>
                         <div class="col-sm-9">
-                          <input name="telNo" type="text" class="form-control" id="Phone" placeholder="<?php echo $telNo;?>">
+                          <input name="telNo" type="text" pattern="\d*" maxlength="8"  class="form-control" id="Phone" placeholder="<?php echo $telNo;?>">
                         	<div class="checkbox">
                           <label>
                             <input id="hidetelno" name='hidetelno' type="checkbox"  <?php  if($hidetelno==1) echo " checked "?> >
@@ -366,7 +366,24 @@ function isEmptyUploadFile(callback)
 	})
 function setup1()
 {
-	
+		if($("#newPassword").val().length < 8) {
+	        $("#passAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Password must contain at least 8 characters</span></em>');
+			//$("#inputPassword3").focus();
+	        return false;
+	    }else
+		{
+			$("#passAjaxLoad").html('');
+		}
+
+		if($('#newPassword').val() != $('#newReTypePassword').val())
+		{
+			$("#retypeAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Password does not match</span></em>');
+			return false;
+		}else
+		{
+			$("#retypeAjaxLoad").html('');
+		}
+		
 		if($('#passAjaxLoad').text()=='' &&
 			$("#retypeAjaxLoad").text()=='')			
 		{			

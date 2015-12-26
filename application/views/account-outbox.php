@@ -142,6 +142,7 @@
            <div class="form-group">
            		<input type="hidden" id="commentID" name="commentID" >   	
            	</div>
+          	<input type="hidden" id="redirectPage" name="redirectPage"  value="account-outbox.php"">   	
           
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>

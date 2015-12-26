@@ -1,7 +1,7 @@
 <div class="inner-box">
           <div class="row">
             <div class="col-md-5 col-xs-4 col-xxs-12">
-                <h3 class="no-padding text-center-480 useradmin"><a href=""><img class="userImg" src="<?php echo $userPhotoPath;?>" alt="user"> <?php echo $userName; ?> </a> </h3>
+                <h3 class="no-padding text-center-480 useradmin"><img class="userImg" src="<?php echo $userPhotoPath;?>" alt="user"> <?php echo $userName; ?> </h3>
             	<form id="newPost" class="form-horizontal" method="post" enctype="multipart/form-data"
                       action="<?php echo base_url(); echo MY_PATH;?>home/uploadPhoto/<?php echo $userID.'/'.$userName; ?>">
              

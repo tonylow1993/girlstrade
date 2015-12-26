@@ -132,7 +132,9 @@
            <div class="form-group">
            		<input type="hidden" id="commentID" name="commentID" >   	
            	</div>
-        
+        <div class="form-group">
+           		<input type="hidden" id="redirectPage" name="redirectPage"  value="account-my-buy-history.php"">   	
+           	</div>
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
          		 <select required="true" class="form-control selecter" name="rating" id="rating">

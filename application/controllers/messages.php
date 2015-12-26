@@ -753,16 +753,16 @@ function addDayswithdate($date,$days){
 			$messageResult=$this->tradecomments_model->insertTradeComment($messageArray, $messageID);
 			if($messageResult)
 				{
-					redirect(base_url().MY_PATH."home/getAccountPage/1");
+					redirect(base_url().MY_PATH."home/getAccountPage/3");
 				}
 				else
 				{
 					$errorMsg=$this->lang->line("MessagesDirectSendErrorLoginFirst");
-					redirect(base_url().MY_PATH."home/getAccountPage/1/1/".$errorMsg);
+					redirect(base_url().MY_PATH."home/getAccountPage/3/1/".$errorMsg);
 				}
 			}catch(Exception $ex){
 				$errorMsg=$ex->getMessage();
-				redirect(base_url().MY_PATH."home/getAccountPage/1/1/".$errorMsg);
+				redirect(base_url().MY_PATH."home/getAccountPage/3/1/".$errorMsg);
 					
 			}
 		}
@@ -824,6 +824,12 @@ function addDayswithdate($date,$days){
 				$rating=$_POST['rating'];
 				$buyerComment=$_POST['message-text'];
 				
+				$redirectPage=$_POST['redirectPage'];
+				$redirectNum=10;
+				if(strcmp($redirectPage, "account-outbox.php")==0)
+					$redirectNum=10;
+				else if(strcmp($redirectPage, "account-my-buy-history.php")==0)
+					$redirectNum=11;
 				//log_message('error', "markBuyerComment:".$ID.", ".$rating.", ".$buyerComment);
 				//$postID=207;
 				//$soldUserID=48;
@@ -835,17 +841,17 @@ function addDayswithdate($date,$days){
 				$messageResult=$this->tradecomments_model->updateTradeComment($messageArray, $ID);
 				if($messageResult >0)
 				{
-					redirect(base_url().MY_PATH."home/getAccountPage/10/1/success");
+					redirect(base_url().MY_PATH."home/getAccountPage/".$redirectNum."/1/success");
 				}
 				else
 				{
 					$errorMsg=$this->lang->line("MessagesDirectSendErrorLoginFirst");
-					redirect(base_url().MY_PATH."home/getAccountPage/10/1/".$errorMsg);
+					redirect(base_url().MY_PATH."home/getAccountPage/".$redirectNum."/1/".$errorMsg);
 				}
 			}catch(Exception $ex){
 				$errorMsg=$ex->getMessage();
 				log_message('error', $errorMsg);
-				redirect(base_url().MY_PATH."home/getAccountPage/10/1/".$errorMsg);
+				redirect(base_url().MY_PATH."home/getAccountPage/".$redirectNum."/1/".$errorMsg);
 					
 			}
 		}

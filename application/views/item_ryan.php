@@ -64,12 +64,12 @@
 	                  		{
 	                  		$imagePath='';
 	                  		$imagePath=base_url().$picObj->picturePath.'/'.$picObj->pictureName;
-	                  	echo "<li><img src=$imagePath alt=\"img\"  /></li>";
+
+		              		echo "<li><img src=$imagePath alt=\"img\"  /></li>";
 	                  		}
                   		}
                   	}
                   }
-                  
                 
                 ?>
               </ul>
@@ -100,13 +100,12 @@
             <!--ads-image-->
             
             <div class="Ads-Details">
-              <h5 class="list-title"><strong>Ads Detsils</strong></h5>
+              <h5 class="list-title"><strong>Ads Deteils</strong></h5>
               <div class="row">
               <div class="col-sm-7 add-desc-box">
                 <div class="ads-details">
                   <h5  class="add-title"><div class=\"add-title-girlstrade\"><?php echo $this->lang->line("lblTitle");?><?php  echo $itemTitle;?></div>
-                  <?php echo $itemDesc; ?> 
-                  <br/> <?php echo $this->lang->line("lbltag").": ".$tagDesc;?></h5>
+                  <?php echo $itemDesc; ?> </h5>
  <!--                  <h4><?php echo $ChildCatName;?></h4>-->
 <!--                   <ul class="list-circle"> -->
 <!--                     <li></li> -->
@@ -128,11 +127,6 @@
                
                     </ul>
                   </aside>
-                  
-                  
-                  
-                  
-                  
                   <div class="ads-action">
                     <ul class="list-border">
                     <?php 
@@ -143,12 +137,8 @@
               		$clickLink="clickLink1";
               		$shareLink=base_url()."home/index/".$postID;
                      echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                	if($getDisableSavedAds)
-                     echo "<li><a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save ad </a> </li>";
-                   else 
-                   	echo "<li><a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save ad </a> </li>";
-                   	
-                	echo "<li><a href=\"#shareAds\" data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-share-alt\"></i> Share ad </a></li>";
+                	echo "<li><a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save ad </a> </li>";
+                     echo "<li><a href=\"#shareAds\" data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-share-alt\"></i> Share ad </a></li>";
                       ?>
                       <li><a href="#reportAdvertiser" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> Report abuse </a> </li>
                     </ul>
@@ -157,138 +147,6 @@
               </div>
               <div class="content-footer text-left">  </div>
             </div>
-            
-            <div class="blog-post-footer">
-
-
-
-                            <div style="clear: both"></div>
-
-
-                            <div class="inner ">
-<!-- 								<div class="clearfix"> -->
-                                <div class="col-md-12  blog-post-bottom">
-
-                                    <ul class="share-this-post">
-                                        <li>Share This: </li>
-
-                                        <li>								<a class="google-plus"><i class="fa fa-google-plus"></i>Google-plus</a>
-                                        </li>
-                                        <li>								<a class="facebook"><i class="fa fa-facebook"></i>Facebook</a>
-                                        </li>
-                                        <li>								<a><i class="fa fa-twitter"></i>Twitter</a>
-                                        </li>
-                                        <li>								<a class="pinterest"><i class="fa fa-pinterest"></i>Pinterest</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-<!--                             </div> -->
-
-
-
-
-
-
-                            <div class="blogs-comments-area">
-                               <h3 class="list-title"> <a href="" class="post-comments"><?php count($commentList);?> Comments</a></h3>
-
-                                <div class="blogs-comment-respond" id="respond">
-                                    <ul class="blogs-comment-list">
-										<?php 
-										if($commentList!=null && count($commentList)>0){
-										
-										foreach ($commentList as $id=>$value)
-										{
-											//var_dump($value);
-											$userPhotoPath=$value['userPhotoPath'];
-											$username=$value['username'];
-											$strElapsedTime=$value['strElapsedTime'];
-											$comments=$value['comments'];
-											$id=$value["commentID"];
-											echo "<li>";
-											echo "<div class=\"blogs-comment-wrapper\">";
-											echo "<div class=\"blogs-comment-avatar\">";
-											echo "<figure>";
-											echo "<img alt=\"avatar\" src=$userPhotoPath>";
-											echo "</figure>";
-											echo "</div>";
-											echo "<div class=\"blogs-comment-details\">";
-											echo "<div class=\"blogs-comment-name\">";
-											echo "<a href=\"#\">$username </a> ";
-											echo  "<span class=\"blogs-comment-date\">$strElapsedTime</span>";
-											echo "</div>";
-											echo "<div class=\"blogs-comment-description\">";
-											echo "<p>$comments</p>";
-											echo "</div>";
-											echo "<div class=\"blogs-comment-reply\"><a data-toggle=\"modal\" href=\"#replyComment\"  data-id=\"$id\">Reply</a></div>";
-											
-											
-											if($value["childCommentList"]!=null && count($value["childCommentList"])){
-												echo "<ul>";
-												foreach ($value["childCommentList"] as $id1=>$value1)
-												{
-													//var_dump($value);
-													$userPhotoPath1=$value1['userPhotoPath'];
-													$username1=$value1['username'];
-													$strElapsedTime1=$value1['strElapsedTime'];
-													$comments1=$value1['comments'];
-													//$id1=$value1["commentID"];
-													echo "<li>";
-													echo "<div class=\"blogs-comment-wrapper\">";
-													echo "<div class=\"blogs-comment-avatar\">";
-													echo "<figure>";
-													echo "<img alt=\"avatar\" src=$userPhotoPath1>";
-													echo "</figure>";
-													echo "</div>";
-													echo "<div class=\"blogs-comment-details\">";
-													echo "<div class=\"blogs-comment-name\">";
-													echo "<a href=\"#\">$username1 </a> ";
-													echo  "<span class=\"blogs-comment-date\">$strElapsedTime1</span>";
-													echo "</div>";
-													echo "<div class=\"blogs-comment-description\">";
-													echo "<p>$comments1</p>";
-													echo "</div>";
-// 													echo "<div class=\"blogs-comment-reply\"><a data-toggle=\"modal\" href=\"#replyComment\"  data-id=\"$id1\">Reply</a></div>";
-														
-													echo "</div></div>";
-													echo "</li>";
-											}
-											echo "</ul>";
-											
-											}
-											echo "</div></div>";
-											echo "</li>";
-										}
-										}
-										?>
-                                       
-                                    </ul>     <!--Comment list End-->
-
-
-                                    <h3 class="blogs-comment-reply-title list-title">LEAVE A COMMENT</h3>
-
-                                    <form class="blogs-comment-form" id="blogs-commentform" method="post" action="<?php echo base_url().MY_PATH; ?>itemComments/insertItemComment?prevURL=<?php echo current_url();?>">         
-                                        <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div>
-                                        <div class="row form-group" ><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your email" aria-required="true" value="" name="email"></div><div class="col-md-6 text-left"><span>E-mail*</span></div></div>
-										<input type="hidden" name="postID"  value="<?php echo $postID;?>" >
-<!--                                     <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
-
-                                        <div class="form-group">
-                                            <textarea class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="Message" name="blogscomment"></textarea> </div>
-
-                                        <button type="submit" class="btn-success btn btn-lg"> Submit </button>
-
-										</form>
-                                </div><!-- #respond -->
-
-
-                            </div>
-</div>
-
-                        </div>
-            
-            
           </div>
           <!--/.ads-details-wrapper--> 
           
@@ -297,9 +155,8 @@
         
         <div class="col-sm-3  page-sidebar-right">
           <aside>
-              <div class="panel sidebar-panel panel-contact-seller panel-bevel pink-border">
+            <div class="panel sidebar-panel panel-contact-seller panel-bevel pink-border">
               <div class="panel-heading"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;Contact Seller</div>
-         
               <div class="panel-content user-info">
                 <div class="panel-body text-center">
                   <div class="seller-info">
@@ -328,7 +185,7 @@
             </div>
             <div class="panel sidebar-panel panel-bevel pink-border">
               <div class="panel-heading"><i class="fa fa-shield"></i>&nbsp;&nbsp;&nbsp;Safety Tips for Buyers</div>
-             <div class="panel-content">
+              <div class="panel-content">
                 <div class="panel-body text-left">
                   <ul class="list-check">
                     <li> Meet seller at a public place </li>
@@ -417,10 +274,10 @@
       </div>
       <div class="modal-body">
         <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode($previousCurrent_url);?>">
-     <!--       <div class="form-group">
+          <div class="form-group">
             <label for="recipient-name" class="control-label">Name: <font color="red">*</font></label>
-            <input .class="form-control required"  maxlength="50" value="<?php echo $firstName; echo ' '.$lastName;?>" id="recipient-name" name="recipient-name"  required="true" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
-          </div> -->
+            <input class="form-control required"  maxlength="50" value="<?php echo $firstName; echo ' '.$lastName;?>" id="recipient-name" name="recipient-name"  required="true" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
+          </div>
 <!--           <div class="form-group"> -->
 <!--             <label for="sender-email" class="control-label">E-mail: <font color="red">*</font></label> -->
  <!--             <input id="sender-email"  maxlength="50" name="sender-email"   value="<?php echo $email;?>" type="text" data-content="Must be a valid e-mail address (user@gmail.com)" data-trigger="manual" data-placement="top" placeholder="email@you.com" required="true" class="form-control email">  -->
@@ -431,7 +288,7 @@
 <!--           </div> -->
           <div class="form-group">
             <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(300) </span>:</label>
-            <textarea class="form-control"  maxlength="300"  rows="5" columns="30" required="true" id="message-text" name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <textarea class="form-control"  maxlength="300" required="true" id="message-text" name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
           <div class="form-group">
             <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
@@ -441,38 +298,6 @@
       <div class="modal-footer">
       	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <button type="submit" class="btn btn-success pull-right" onclick="setup(); return false;">Send message!</button>
-      	<button id="validate" hidden="true" type="submit"></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="replyComment" tabindex="-1" role="dialog">
-
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title"><i class=" icon-mail-2"></i> Reply Comment </h4>
-      </div>
-      <div class="modal-body">
-      <h3 class="blogs-comment-reply-title list-title">LEAVE A COMMENT</h3>
-
-                    <form class="blogs-comment-form" id="blogs-commentformPopup" method="post" action="<?php echo base_url().MY_PATH; ?>itemComments/insertItemComment?prevURL=<?php echo current_url();?>">         
-                                        <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div>
-                                        <div class="row form-group" ><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your email" aria-required="true" value="" name="email"></div><div class="col-md-6 text-left"><span>E-mail*</span></div></div>
-										<input type="hidden" name="postID"  value="<?php echo $postID;?>" ><!--                                     <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
-										<input type="hidden" name="parentID"  id="parentID" >
-                                        <div class="form-group">
-                                            <textarea class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="Message" name="blogscomment"></textarea> </div>
-
-<!--                                         <button type="submit" class="btn-success btn btn-lg"> Submit </button> -->
-
-					</form>
-      </div>
-      <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-success pull-right" onclick="setupCommentPopup(); return false;">Send message!</button>
       	<button id="validate" hidden="true" type="submit"></button>
       </div>
     </div>
@@ -506,15 +331,6 @@
 ================================================== --> 
 
 <script>
-
-function passToModal() {
-    $('#replyComment').on('show.bs.modal', function(event) {
-        $("#parentID").val($(event.relatedTarget).data('id'));
-    });
-}
-
-$(document).ready(passToModal());
-
 function ClipBoard() 
 {
 holdtext.innerText = copytext.innerText;
@@ -528,16 +344,7 @@ function setup()
 	  	document.getElementById("item").submit();
        	return true;
 }
-function setupComment(){
-	var myform = document.getElementById("blogs-commentform");
-  	document.getElementById("blogs-commentform").submit();
-   	return true;
-}
-function setupCommentPopup(){
-	var myform = document.getElementById("blogs-commentformPopup");
-  	document.getElementById("blogs-commentformPopup").submit();
-   	return true;
-}
+
 function setupAbuse()
 {
         var myform = document.getElementById("itemAbuse");

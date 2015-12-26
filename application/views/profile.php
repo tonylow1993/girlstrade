@@ -59,11 +59,12 @@ function sendIt() {
         <div class="col-sm-9 page-content col-thin-left">
           <div class="category-list">
 <!--               <div class="tab-box ">  -->
-              
+          
               <form action=" 
    <?php $basePath=base_url();
-    			$encodeCurrentURL=urlencode(current_url());
-    			$path=$basePath.MY_PATH.'viewProfile/index/'.$postID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$encodeCurrentURL;
+//     			$encodeCurrentURL=urlencode(current_url());
+//     			$encodeCurrentURL=$prevURL;
+    			$path=$basePath.MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$previousCurrent_url;
     			echo $path;
                ?>" 
           method="POST"> 
@@ -89,8 +90,9 @@ function sendIt() {
         	</div>
 </form>
             <!--/.tab-box-->
-           
-            
+               <div class="pull-right backtolist"><a href=<?php echo $previousCurrent_url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
+ 
+               
             <div class="adds-wrapper">
               <div class="tab-content">
                 <?php
@@ -115,6 +117,7 @@ function sendIt() {
 					$categoryName='';
 					$post=NULL;
 					$soldToUserName="";
+					$getDisableSavedAds=false;
 					foreach($item as $key=>$child)
 					{
 						if($key=='post')
@@ -126,6 +129,8 @@ function sendIt() {
 						else if($key=='soldToUser'){
 							if($child<> null && count($child)>0)
 								$soldToUserName=$child[0]->username;
+							else if($key=='savedAds')
+								$getDisableSavedAds=$child;
 						}
 					}
 					echo  "<div class=\"item-list\"> ";
@@ -173,13 +178,18 @@ function sendIt() {
 			    echo "<div class=\"col-sm-7 add-desc-box\">";
                  // echo "<div class=\"add-details\">";
                 echo "<div class=\"add-details\">";   
-			    echo "<h5 class=\"add-title\"> <div class=\"add-title-girlstrade\">$title $previewTitle</div>$preview </h5>";
+			    echo "<h5 class=\"add-title\"> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
                   echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] [<a href=\"$viewBasePath\">View Details</a>]</div>";
+               
+                  if($getDisableSavedAds)
+                  	echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+                  else
+                  echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+                  	echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
                echo "</div>";
 				}
                
@@ -194,7 +204,7 @@ function sendIt() {
             <ul class="pagination">
             <?php 
             	$encodeCurrentURL=urlencode(current_url());
-            	$url_path=base_url().MY_PATH."viewProfile/index/".$postID."?prevURL=".$encodeCurrentURL;;
+            	$url_path=base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'?prevURL='.$previousCurrent_url;
             	$pageNumPrev=$pageNum-1;
             	$pageNum2=$pageNum+1;
             	$pageNum3=$pageNum+2;
@@ -244,10 +254,10 @@ function sendIt() {
       </div>
       <div class="modal-body">
         <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode($prevURL);?>">
-          <div class="form-group">
+         <!--   <div class="form-group">
             <label for="recipient-name" class="control-label">Name: <font color="red">*</font></label>
             <input class="form-control required" name="recipient-name" id="recipient-name" placeholder="Your name" data-placement="top" required="true" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
-          </div>
+          </div>-->
 <!--           <div class="form-group"> -->
 <!--             <label for="sender-email" class="control-label">E-mail: <font color="red">*</font></label> -->
 <!--             <input id="sender-email" name="sender-email" type="text" data-content="Must be a valid e-mail address (user@gmail.com)" required="true" data-trigger="manual" data-placement="top" placeholder="email@you.com" class="form-control email"> -->
@@ -258,7 +268,7 @@ function sendIt() {
 <!--           </div> -->
           <div class="form-group">
             <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(300) </span>:</label>
-            <textarea class="form-control" required="true" id="message-text" name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <textarea class="form-control" required="true" id="message-text" name="message-text" rows="5" columns="30"   placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
           <div class="form-group">
             <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>

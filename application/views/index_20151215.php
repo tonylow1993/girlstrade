@@ -480,7 +480,7 @@ window.onload = function(){
                         <div class="no-margin item-carousel owl-carousel owl-theme">
 
                             <?php 
-                  if($HotProduct<>null && count($HotProduct)>0)
+                  if($HotProduct<>null)
                   {
                   	foreach($HotProduct as $id=>$item)
                   	{
@@ -503,7 +503,7 @@ window.onload = function(){
 	              		}
 			            foreach($item as $pic=>$picObj)
 	              		{	
-	              			if($pic=='pic' && $picObj!=null && count($picObj)>0)
+	              			if($pic=='pic')
 	              			{$imagePath1=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
 	              			}
 	              		}
