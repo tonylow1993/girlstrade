@@ -43,18 +43,28 @@ define('ITEMS_PER_PAGE', 20);
 define("ZeroUpdateRecordError", "No record updated");
 define("THUMBNAILSIZEWIDTH", 150);
 define("THUMBNAILSIZEHEIGHT", 150);
-define("MAINPICSIZEWIDTH", 800);
-define("MAINPICSIZEHEIGHT", 800);
+define("MAINPICSIZEWIDTH", 600);
+define("MAINPICSIZEHEIGHT", 600);
 
 define("NUMOFTIMESPOST", 5);
 define("NUMOFDAYSFORPOST", 30);
 define("PREMIUMPOSTEXPIRYDAYS", 30);
 define("GOLDPOSTEXPIRYDAYS", 15);
 define("SILVERPOSTEXPIRYDAYS", 1);
+define("TOPADS", "topAds");
+define("FEATUREDADS", "featuredAds");
+define("URGENTADS", "urgentAds");
+
+define("MAXLENGTHMSG_SHOWN_IN_TABLE", 30);
 
 define("TITLECOLOR", "RED");
 define("PASSWORDEXPIRYDAYS", 30);
 define("DIRECTSENDEXPIRYDAYS", 30);
+
+define("MAXTIMESDAILY_MARKSOLDPERPOST", 10 );
+define("MAXTIMESDAILY_SENDFROMBUYER", 10);
+define("MAXTIMESDAILY_REPLYFROMSELLER", 10);
+define("MAXTIMESDAILY_DELETEADS",10);
 
 define("SMTP_PROTOCOL" , "smtp");
 define("SMTP_HOST", "ssl://a2plcpnl0127.prod.iad2.secureserver.net" );
