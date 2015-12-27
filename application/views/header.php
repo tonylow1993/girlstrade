@@ -59,25 +59,25 @@
 
     <!-- CSS Global Compulsory -->
 <!--     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="assets/css/shop.style.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/shop.style.css">
 
     <!-- CSS Header and Footer -->
 <!--     <link rel="stylesheet" href="assets/css/headers/header-v5.css"> -->
 <!--     <link rel="stylesheet" href="assets/css/footers/footer-v4.css"> -->
 
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="assets/plugins/animate.css">    
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/animate.css">    
 <!--     <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css"> -->
 <!--     <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" href="assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="assets/plugins/revolution-slider/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/revolution-slider/rs-plugin/css/settings.css">
 
     <!-- CSS Theme -->
-    <link rel="stylesheet" href="assets/css/theme-colors/default.css" id="style_color">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/theme-colors/default.css" id="style_color">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/custom.css">
 <script>
     paceOptions = {
       elements: true

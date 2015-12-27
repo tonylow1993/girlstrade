@@ -5,8 +5,14 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 page-content login-box">
-          <div class="inner-box category-content panel-bevel text-center">
-            <h2 class="logo-title reg-title"> <span style="color: #E2348C">Register </span></h2>
+          <div class="inner-box category-content panel-bevel">
+          <div class="text-center">
+            <h2 class="inner-logo-title"> 
+                <!-- Original Logo will be placed here  --> 
+                <img width="50px" height="50px" src="<?php echo base_url();?>images/site/girlstrade_logo.png">
+                Registration
+			</h2>
+			</div>
             <div class="row">
               <div class="col-sm-12">
                 <form class="form-horizontal" onSubmit="return setup()" name="myForm" action="<?php echo base_url(); echo MY_PATH;?>home/signup" method="post" id="myForm">
@@ -28,9 +34,10 @@
                     
 					 <div class="form-group required">
                       <label for="inputPassword3" class="col-md-4 control-label"> <?php echo $Password;?> <font color="red">*</font></label>
+                      
                       <div class="col-md-6">
-                        <input name="password" type="password" class="form-control" id="inputPassword3" required="true" placeholder="Password">
-                        <p class="help-block">At least 6 characters <!--Example block-level help text here.--></p>
+                        <input name="password" type="password" class="form-control" id="inputPassword3" required="true" placeholder="At least 8 characters">
+                        <!--<em class="help-block">At least 6 characters</em>-->
 						<div id="pwd1V"></div>
                       	<div id="password3AjaxLoad" class="center"></div>
                        </div>
@@ -47,17 +54,19 @@
 					
                     <!-- Text input-->
                     <div id="telDov"  class="form-group required">
-                      <label class="col-md-4 control-label" > <?php echo $PhoneNumber;?> <font color="red">*</font></label>
+                      <label class="col-md-4 control-label" > 
+                      <?php echo $PhoneNumber;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input id="telno" name="telno" placeholder="Phone Number"   type="tel"   class="form-control input-md"   type="text" required="true"  maxlength="15">
+                        <input id="telno" name="telno" placeholder="HK Phone Number Only"
+         type="tel"   class="form-control input-md"   
+         type="text" required="true"  maxlength="8" pattern="(?!99999999)\d{8}">
 <!--                         <div class="checkbox"> -->
 <!--                           <label> -->
 <!--                             <input id="hidetelno" name='hidetelno' type="checkbox" value="Yes"> 
                             <small> <?php echo $HidePhoneNumber;?> </small> </label> -->
 <!--                         </div> -->
-								<div id="telAjaxLoad" class="center"></div>
-                        <div id="telError" hidden="true"></div>
-				
+								<div id="telStatusVal" class="center"></div>
+								<div id="telError" hidden="true"></div>
                       </div>
                     </div>
                     
@@ -104,7 +113,7 @@
 
                     <div class="form-group">
                       <label  class="col-md-4 control-label"></label>
-                      <div class="col-md-12">
+                      <div class="col-md-8">
                         <div class="termbox mb10">
                           <label class="checkbox-inline" for="checkboxes-1">
                             <input name="checkboxes" id="checkboxes-1" value="1" type="checkbox">
@@ -162,7 +171,10 @@ $( "#inputEmail3" ).blur(function() {
 });
 
 $( "#telno" ).blur(function() {
-	$("#telAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	//console.log("BLUR");
+
+	/*
+	$("#telStatusVal").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
 	$.ajax({
 		method: "POST",
 		url: "<?php echo base_url(); echo MY_PATH;?>home/validateTel",
@@ -171,10 +183,24 @@ $( "#telno" ).blur(function() {
 			var result = JSON.parse(response);
 	    	$("#error").html(result.message);
 	    	$("#telDiv").removeClass('has-success has-error').addClass(result.class);
-	    	$("#telAjaxLoad").html(result.icon);
+	    	$("#telStatusVal").html(result.icon);
 	    	$("#telError").html(result.err);
 	    	}
 	});
+	*/
+	var str = document.getElementById("telno").value;
+
+	var patt = /^[0-9]{8}$/;
+	var res = patt.test(str);
+	var temp = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i> Valid Phone Number</span></em>';
+	 if(res!=true){
+	    temp = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid HK Phone Number</span></em>';
+	 	$("#telError").html('Error');
+	 }else
+	 {
+	 	$("#telError").html('');
+	 }
+	$("#telStatusVal").html(temp);
 });
 
 $( "#username" ).blur(function() {
@@ -330,6 +356,7 @@ function setup()
 		$("#retypeAjaxLoad").text()=='' &&
 		$("#pwd1V").text()=='' &&
 		$("#usernameError").text()=='' &&
+		$("#telError").text()=='' &&
 		$("#emailError").text()=='' &&
 		$("#error").text()=='')
 	{			
