@@ -704,9 +704,14 @@ body {
   font-size: 28px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #16A085;
+  color: #E2348C;
 }
-
+.logo, .inner-logo-title {
+  font-family: Open Sans Condensed, Helvetica Neue, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #E2348C;
+}
 .logo span, .logo-title span {
 	font-family: Open Sans Condensed;
   font-weight: lighter;
