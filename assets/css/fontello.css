@@ -109,8 +109,8 @@
 .icon-bell:before { content: '\e838'; } /* '' */
 .icon-chat:before { content: '\e839'; } /* '' */
 .icon-down-open-big:before { content: '\e83a'; } /* '' */
-.icon-left-open-big:before { content: '\e83b'; color:#E2348C;} /* '' */
-.icon-right-open-big:before { content: '\e83c'; color:#E2348C;} /* '' */
+.icon-left-open-big:before { content: '\e83b'; } /* '' */
+.icon-right-open-big:before { content: '\e83c'; } /* '' */
 .icon-up-open-big:before { content: '\e83d'; } /* '' */
 .icon-basket:before { content: '\e83e'; } /* '' */
 .icon-bag:before { content: '\e83f'; } /* '' */

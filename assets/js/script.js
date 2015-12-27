@@ -11,7 +11,9 @@
 
 	
 $(document).ready(function() {
-    
+
+
+
     /*==================================
 	 Carousel 
 	====================================*/
@@ -40,51 +42,34 @@ $(document).ready(function() {
         owlitem.trigger('owl.prev');
     })
 
-    var owlitem1 = $(".item1-carousel");
 
-    owlitem1.owlCarousel({
+
+
+    // Featured Listings  carousel || HOME PAGE
+    var featuredListSlider = $(".featured-list-slider");
+
+    featuredListSlider.owlCarousel({
         //navigation : true, // Show next and prev buttons
         navigation: false,
-        pagination: true,
+        pagination: false,
         items: 5,
-		itemsDesktopSmall: 	[979,3],
-		itemsTablet: [768, 3],
+        itemsDesktopSmall: 	[979,3],
+        itemsTablet: [768, 3],
         itemsTabletSmall: [660, 2],
-		itemsMobile: [400,1]
+        itemsMobile: [400,1]
 
 
     });
 
     // Custom Navigation Events
-    $("#nextItem1").click(function() {
-        owlitem1.trigger('owl.next');
+    $(".featured-list-row .next").click(function() {
+        featuredListSlider.trigger('owl.next');
     })
-    $("#prevItem1").click(function() {
-        owlitem1.trigger('owl.prev');
+    $(".featured-list-row .prev").click(function() {
+        featuredListSlider.trigger('owl.prev');
     })
-    
-    var owlitem2 = $(".item2-carousel");
-
-    owlitem2.owlCarousel({
-        //navigation : true, // Show next and prev buttons
-        navigation: false,
-        pagination: true,
-        items: 5,
-		itemsDesktopSmall: 	[979,3],
-		itemsTablet: [768, 3],
-        itemsTabletSmall: [660, 2],
-		itemsMobile: [400,1]
 
 
-    });
-
-    // Custom Navigation Events
-    $("#nextItem2").click(function() {
-        owlitem2.trigger('owl.next');
-    })
-    $("#prevItem2").click(function() {
-        owlitem2.trigger('owl.prev');
-    })
     /*==================================
 	 Ajax Tab || CATEGORY PAGE
 	====================================*/
@@ -101,7 +86,7 @@ $(document).ready(function() {
         $(href).load(url, function(result) {
             pane.tab('show');
             // ajax pre-request callback function 
-            $('.tooltipHere').tooltip();
+            $('.tooltipHere').tooltip('hide');
             $('.grid-view').click(function(e) {
                 $(function() {
                     $('.item-list').matchHeight();
@@ -116,7 +101,7 @@ $(document).ready(function() {
     $('#allAds').load($('.active a').attr("data-url"), function(result) {
         $('.active a').tab('show');
         // ajax pre-request callback function 
-        $('.tooltipHere').tooltip();
+        $('.tooltipHere').tooltip('hide');
 
         $('.grid-view').click(function(e) {
             $(function() {
@@ -164,6 +149,15 @@ $(document).ready(function() {
 
     });
 
+    $(function() {
+        $('.row-featured .f-category').matchHeight();
+        $.fn.matchHeight._apply('.row-featured .f-category');
+    });
+
+    $(function() {
+        $('.has-equal-div > div').matchHeight();
+        $.fn.matchHeight._apply('.row-featured .f-category');
+    });
 
 
     $('.compact-view').click(function(e) { //use a class, since your ID gets mangled
@@ -188,13 +182,15 @@ $(document).ready(function() {
 	====================================*/
 
     $('.long-list').hideMaxListItems({
-        'max': 15,
+        'max': 8,
         'speed': 500,
         'moreText': 'View More ([COUNT])'
     });
 
 
-    $('.tooltipHere').tooltip(); // bootstrap tooltip
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 
     $(".scrollbar").scroller(); // custom scroll bar plugin
 
@@ -239,6 +235,12 @@ $(document).ready(function() {
         }
 		
     });
+
+    // DEMO PREVIEW
+
+    $(".tbtn").click(function() {
+        $('.themeControll').toggleClass('active')
+    })
 
 	
 
