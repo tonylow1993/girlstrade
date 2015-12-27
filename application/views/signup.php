@@ -4,7 +4,7 @@
   <div class="main-container">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 page-content login-box">
+        <div class="col-md-8 page-content">
           <div class="inner-box category-content panel-bevel">
           <div class="text-center">
             <h2 class="inner-logo-title"> 
@@ -131,6 +131,16 @@
           </div>
         </div>
         <!-- /.page-content -->
+        <div class="col-md-4 reg-sidebar">
+          <div class="reg-sidebar-inner text-center">
+            <div class="promo-text-box"> <i class=" icon-pencil-circled fa fa-4x icon-color-4"></i>
+              <h3><strong>Manage Items</strong></h3>
+              <p> Easily post, edit or delete items. Promote ads and view order status. Provide a way for buyer and seller connect.</p>
+            </div>
+            <div class="promo-text-box"> <i class=" icon-lock-circled fa fa-4x icon-color-1"></i>
+              <h3><strong>Personal Information</strong></h3>
+              <p> Personal information will be protected using technical and administrative security. GirlsTrade will never disclose your personal information with any third parties without your express permission.</p>
+            </div>
       </div>
       <!-- /.row --> 
     </div>
