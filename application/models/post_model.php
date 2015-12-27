@@ -41,6 +41,8 @@
             var $buyerDate='';
             var $rejectReason='';
             var $rejectSpecifiedReason='';
+            var $blockDate;
+            var $remainQty=0;
 	    function __construct()
 	    {
 	        parent::__construct();
@@ -253,6 +255,9 @@
 	    }
 	    function getHotProduct()
 	    {
+// 	    	$query = $this->db->from('post')->where('status', 'A')->get();
+// 	    	$var=$query->result();
+// 	    	$recCount=count($var);
 	    	$query = $this->db->from('post')->where('status', 'A')->order_by('viewCount', 'desc')->limit(6)->get();
 	    	$var=$query->result();
 	    	$result=null;
@@ -276,6 +281,18 @@
 	    {
 	    	$query = $this->db->from('post')->where('postID', $postID)->get();
 	    	return $query->result();
+	    }
+	    
+	    function getPostByUserID($userID){
+	    	$query = $this->db->from('post')->where('userID', $userID)->get();
+	    	$postList=array();
+	    	 if($query->result()){
+     			 foreach ( $query->result() as $state) {  
+			
+			         $postList[$state -> postID] = $state -> description;
+ 			     }
+	    	 }
+ 			 return   $postList;
 	    }
 	    
 	    function getFilterMoreString($keywords){
@@ -343,7 +360,8 @@
 	    	$strQuery="select count(distinct postID) as NoOfCount from post where status not in ('R', 'U', 'D') and (userID=$userID or $userID=0) ";
 	    	$strQuery=$strQuery." and (catID in (select categoryID from category where parentID=".$catID." ) or catID=".$catID.") ";
 	    	$strQuery=$strQuery." and (locID=".$locID." or ".$locID."=0) ";
-	    	$strQuery=$strQuery." and expriyDate >=  curdate() ";
+		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
+		//$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
 	    	if(strcmp($filterMore,"")!=0)
 	    		$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore." ) ";
 	    	else
@@ -354,7 +372,8 @@
 	    	$strQuery="select count(distinct postID) as NoOfCount from post where status not in ('R', 'U', 'D')  and (userID=$userID or $userID=0) ";
 	    	$strQuery=$strQuery." and (catID=".$catID." or ".$catID."=0) ";
 	    	$strQuery=$strQuery." and (locID=".$locID." or ".$locID."=0) ";
-	    	$strQuery=$strQuery." and expriyDate >= curdate() ";
+		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
+//		$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
 	    	if(strcmp($filterMore,"")!=0)
 	    		$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore." ) ";
 	    	else
@@ -425,8 +444,9 @@
 	    		$strQuery="select * from post where status not in ('R', 'U', 'D') and (userID=$userID or $userID=0) ";
 	    		$strQuery=$strQuery." and (catID in (select categoryID from category where parentID=".$catID." ) or catID=".$catID.") ";
 	    		$strQuery=$strQuery." and (locID=".$locID." or ".$locID."=0) ";
-	    		$strQuery=$strQuery." and expriyDate >= curdate() ";
-			if(strcmp($filterMore,"")!=0)
+				$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
+		//		$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
+	    		if(strcmp($filterMore,"")!=0)
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore." ) ";
 	    		else 
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ) ";
@@ -436,8 +456,9 @@
 	    	$strQuery="select * from post where status not in ('R', 'U' ,'D') and (userID=$userID or $userID=0) ";
 	    	$strQuery=$strQuery." and (catID=".$catID." or ".$catID."=0) ";
 	    	$strQuery=$strQuery." and (locID=".$locID." or ".$locID."=0) ";
-	    	$strQuery=$strQuery." and expriyDate >= curdate() ";
-		if(strcmp($filterMore,"")!=0)
+		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
+	//	$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
+	    	if(strcmp($filterMore,"")!=0)
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore." ) ";
 	    		else 
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ) ";
@@ -456,7 +477,7 @@
 	    		$location=$this->get_location_by_locationID($post->locID);
 	    		$soldToUser=$this->get_user_by_id($post->soldToUserID);
 	    		$temp=array('post'=> $post, 'pic'=> $pic, 'category'=> $category, 'location'=> $location,
-	    				'soldToUser'=> $soldToUser);
+	    				'soldToUser'=> $soldToUser, 'savedAds'=>$this->searchresult_model->getDisableSavedAds($post->postID, $userID));
 	    	
 	    		if(is_null($result))
 	    		{
@@ -524,8 +545,15 @@
             	return $query->result();
             }
 	
+            function getAdminPost($userId ){
+            	
+            	$whereArray = array('userID' => $userId);
+            	$in_where=array("A", "U");
+            	$query = $this->db->from('post')->where($whereArray)->where_in("status", $in_where)->get();
+            	return $query->result();
+            }
             public function getNoOfItemCountInArchiveAds($userId){
-            	$strQuery="select count(distinct postID) as NoOfCount from post where (status='So' or status='Bc')  and (userID=$userId) ";
+            	$strQuery="select count(distinct postID) as NoOfCount from post where (status='C')  and (userID=$userId) ";
             	$NoOfItemCount=0;
             	$query2 = $this->db->query($strQuery);
             	$var2=$query2->result_array();
@@ -540,32 +568,33 @@
             	if ($pageNum>1)
             		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
             	$whereArray = array('userID' => $userId);
-            	$orWhereArray= array('userID' => $userId, 'status'=>'Bc');
-            	$statusIn=array('So', 'Bc');
+//             	$orWhereArray= array('userID' => $userId, 'status'=>'Bc');
+//             	$statusIn=array('So', 'Bc');
+            	$statusIn=array('C');
             	$query = $this->db->from('post')->where($whereArray)->where_in('status', $statusIn) ->limit($ulimit, $olimit)->get();
             	return $query->result();
             }
-            public function getNoOfItemCountInBuyAdsHistory($userId){
-            	$strQuery="select count(distinct postID) as NoOfCount from post where (status='So' or status='Bc')  and (soldToUserID=$userId) ";
-            	$NoOfItemCount=0;
-            	$query2 = $this->db->query($strQuery);
-            	$var2=$query2->result_array();
-            	var_dump($var2);
-            	$NoOfItemCount=$var2[0]["NoOfCount"];
+//             public function getNoOfItemCountInBuyAdsHistory($userId){
+//             	$strQuery="select count(distinct postID) as NoOfCount from post where (status='So' or status='Bc')  and (soldToUserID=$userId) ";
+//             	$NoOfItemCount=0;
+//             	$query2 = $this->db->query($strQuery);
+//             	$var2=$query2->result_array();
+//             	var_dump($var2);
+//             	$NoOfItemCount=$var2[0]["NoOfCount"];
             
-            	return $NoOfItemCount;
-            }
-            function getBuyAdsHistory($userId, $pageNum){
-            	$ulimit=ITEMS_PER_PAGE;
-            	$olimit=0;
-            	if ($pageNum>1)
-            		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
-            	$whereArray = array('soldToUserID' => $userId);
-            	//$orWhereArray= array('userID' => $userId, 'status'=>'Bc');
-            	$statusIn=array('So', 'Bc');
-            	$query = $this->db->from('post')->where($whereArray)->where_in('status', $statusIn) ->limit($ulimit, $olimit)->get();
-            	return $query->result();
-            }
+//             	return $NoOfItemCount;
+//             }
+//             function getBuyAdsHistory($userId, $pageNum){
+//             	$ulimit=ITEMS_PER_PAGE;
+//             	$olimit=0;
+//             	if ($pageNum>1)
+//             		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+//             	$whereArray = array('soldToUserID' => $userId);
+//             	//$orWhereArray= array('userID' => $userId, 'status'=>'Bc');
+//             	$statusIn=array('So', 'Bc');
+//             	$query = $this->db->from('post')->where($whereArray)->where_in('status', $statusIn) ->limit($ulimit, $olimit)->get();
+//             	return $query->result();
+//             }
 		function delete($data, $whereSQL)
 		{
 			try {

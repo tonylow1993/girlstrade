@@ -24,6 +24,26 @@ class requestpost_model extends CI_Model {
 	    
 	    	return $query->result();
 	    }
+	    function getDirectSendHistoryAsSeller($userId, $pageNum){
+	    	$ulimit=ITEMS_PER_PAGE;
+	    	$olimit=0;
+	    	if ($pageNum>1)
+	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+	    	$strQuery="select a.*  from requestpost a inner join post b on a.postID=b.postID where a.status in ('A', 'R') and (b.userID=?)  limit $olimit, $ulimit";
+	    	$query2 = $this->db->query($strQuery,array($userId));
+	    	$var2=$query2->result_array();
+	    	return $var2;
+	    }
+	    function getNoOfItemCountInDirectSendHistoryAsSeller($userId){
+	    	$strQuery="select count( *) as NoOfCount from requestpost a inner join post b on a.postID=b.postID where a.status in ('A', 'R') and (b.userID=?) ";
+	    	$NoOfItemCount=0;
+	    	$query2 = $this->db->query($strQuery,array($userId));
+	    	$var2=$query2->result_array();
+	    	var_dump($var2);
+	    	$NoOfItemCount=$var2[0]["NoOfCount"];
+	    	 
+	    	return $NoOfItemCount;
+	    }
 	    function getDirectSendHistory($userId, $pageNum){
 	    	$ulimit=ITEMS_PER_PAGE;
 	    	$olimit=0;

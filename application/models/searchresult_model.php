@@ -58,9 +58,10 @@ class searchresult_model extends CI_Model {
 	$strQuery="";
 	if(strcmp($catID, "0")!=0 && $this->isParentCatID($catID)){
 		$strQuery="select count(distinct postID) as NoOfCount from post where status='A' and (userID=$userID or $userID=0) ";
-		$strQuery=$strQuery." and (catID in (select categoryID from category where parentID=".$catID." ) or catID=".$catID."  or ".$catID."=0) ";
+		$strQuery=$strQuery." and remainQty>0  and (catID in (select categoryID from category where parentID=".$catID." ) or catID=".$catID."  or ".$catID."=0) ";
 		$strQuery=$strQuery.$strLocQuery;
-		$strQuery=$strQuery." and expriyDate >=  curdate() ";
+		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
+		$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
 		if(strcmp($filterMore,"")!=0)
 			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore.$tagMore." ) ";
 		else
@@ -69,10 +70,11 @@ class searchresult_model extends CI_Model {
 		 
 	}else{
 		$strQuery="select count(distinct postID) as NoOfCount from post where status='A' and (userID=$userID or $userID=0) ";
-		$strQuery=$strQuery." and (catID=".$catID." or ".$catID."=0) ";
+		$strQuery=$strQuery." and remainQty>0 and (catID=".$catID." or ".$catID."=0) ";
 		$strQuery=$strQuery.$strLocQuery;
-		$strQuery=$strQuery." and expriyDate >= curdate() ";
-		if(strcmp($filterMore,"")!=0)
+		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
+		$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
+	if(strcmp($filterMore,"")!=0)
 			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore.$tagMore." ) ";
 		else
 			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$tagMore.") ";
@@ -153,9 +155,11 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	$strQuery="";
 	if(strcmp($catID, "0")!=0 && $this->isParentCatID($catID)){
 		$strQuery="select * from post where status='A' and (userID=$userID or $userID=0) ";
-		$strQuery=$strQuery." and (catID in (select categoryID from category where parentID=".$catID." ) or catID=".$catID." or ".$catID."=0) ";
+		$strQuery=$strQuery." and remainQty>0  and (catID in (select categoryID from category where parentID=".$catID." ) or catID=".$catID." or ".$catID."=0) ";
 		$strQuery=$strQuery.$strLocQuery;
 		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
+		$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
+		
 		if(strcmp($filterMore,"")!=0)
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore.$tagMore." ) ";
 	    		else 
@@ -164,10 +168,11 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 		 
 	}else{
 		$strQuery="select * from post where status='A' and (userID=$userID or $userID=0) ";
-		$strQuery=$strQuery." and (catID=".$catID." or ".$catID."=0) ";
+		$strQuery=$strQuery." and remainQty>0  and (catID=".$catID." or ".$catID."=0) ";
 		$strQuery=$strQuery.$strLocQuery;
 		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
-		if(strcmp($filterMore,"")!=0)
+		$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
+	if(strcmp($filterMore,"")!=0)
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore.$tagMore." ) ";
 	    		else 
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$tagMore." ) ";
@@ -197,6 +202,18 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 				else 
 					$locName=$location[0]->nameCN;
 			}
+			$thumbPath="";
+			$thumbName="";
+			if($pic!=null && count($pic)>0){
+				try{
+				$thumbPath=$pic[0]-> thumbnailPath;
+				$thumbName=$pic[0]->thumbnailName;
+				}catch(Exception $ex){}
+			}
+			$userInfo=$this->nativesession->get("user");
+			$loginuserID=0;
+			if(!empty($userInfo))
+				$loginuserID=$userInfo["userID"];
 			$temp=array('locationName'=> $locName,
 					'categoryName'=> $catName,
 					'postCurrency'=>$post->currency,
@@ -206,8 +223,10 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 					'postCreateDate'=>$post->createDate,
 					'picCount'=>count($pic),
 					'postTypeAds'=>$post->typeAds,
-					'thumbnailPath'=>$pic[0]-> thumbnailPath,
-					'thumbnailName'=>$pic[0]->thumbnailName);			
+					'thumbnailPath'=>$thumbPath,
+					'thumbnailName'=>	$thumbName,
+					'getDisableSavedAds'=>$this->getDisableSavedAds($post->postID, $loginuserID)
+			);	
 			
 			
 			
@@ -228,6 +247,16 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 		echo 'Caught exception: ',  $e->getMessage(), "\n";
 	}
 	return null;
+}
+
+function getDisableSavedAds($postID, $userID){
+	$arr=array("postID"=> $postID, "userID"=> $userID);
+	$query = $this->db->from('savedAds')->where($arr)->get();
+	$var= $query->result();
+	if($var!=null && sizeof($var)>0)
+		return true;
+	else
+		return false;
 }
 
 function getFilterByTags($keywords){

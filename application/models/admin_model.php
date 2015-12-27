@@ -226,5 +226,30 @@ if (is_array($array) || is_object($array))
 				return;
 			}
 		}
+		
+		function getMessageStatByUserID($userID){
+			try{
+				$str="update userstat ,   ";
+				$str=$str." ( select  SUM(inboxMsgCount) as inboxMsgCount , sum(outGoingMsgCount) as outboxMsgCount  from ( ";
+				$str=$str." SELECT  COUNT(*) AS inboxMsgCount, 0 as outGoingMsgCount ";
+				$str=$str." FROM message ";
+				$str=$str." WHERE (STATUS='Op' or status='OC' ) and userID=$userID ";
+				$str=$str." Union all ";
+				$str=$str." select  count(*), 0 ";
+				$str=$str." from message where (status='R' or status='C' ) and fuserID=$userID ";
+				$str=$str." Union all";
+				$str=$str." select 0,count(*) ";
+				$str=$str." from message where (status='R' or status='C') and userID=$userID ";
+				$str=$str." union all ";
+				$str=$str." select  0,count(*) ";
+				$str=$str." from message where status='OC' and fuserID=$userID ) b  ) a set userstat.inboxMsgCount =a.inboxMsgCount , userstat.outgoingMsgCount= a.outboxMsgCount where userstat.userID=$userID ";
+				
+				$this->db->query($str);
+			}catch(Exception $ex)
+			{
+				echo $ex->getMessage();
+				return;
+			}
+		}
 }
 ?>

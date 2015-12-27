@@ -12,6 +12,8 @@ class savedads_model extends CI_Model {
 		parent::__construct();
 	}
 	 
+	
+	
 	function getSavedAds($userId, $pageNum)
 	{
 		$ulimit=ITEMS_PER_PAGE;

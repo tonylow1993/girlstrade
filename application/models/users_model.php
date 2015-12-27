@@ -16,6 +16,7 @@
 		var $thumbnailName='';
 		var $rejectReason='';
 		var $rejectSpecifiedReason='';
+		var $blockDate;
 		
 	    function __construct()
 	    {

@@ -21,6 +21,14 @@
             			"[Line]: ".$ex->getLine()."[Error]: ".$ex->getMessage());
             }
         }
+       
+        function getTagByPostID($postID){
+        	
+        		$query = $this->db->from('tag')->where('postID', $postID)->get();
+        		return $query->result();
+        	
+        }
+        
     }
 ?>
 

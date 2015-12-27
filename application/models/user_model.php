@@ -16,7 +16,7 @@
 		 var $thumbnailName='';
 		var $rejectReason='';
 		var $rejectSpecifiedReason='';
-		
+		var $blockDate;
 	    function __construct()
 	    {
 	        parent::__construct();
@@ -60,16 +60,17 @@
 	    function insert($data)
 	    {
 	    	try{
-	        $this->username = $data['username'];
-	        $this->ip = $data['ip'];
-	        $this->point = $data['point'];
-	        $this->accountStatus = $data['accountStatus'];
-	        $this->createDate = date("Y-m-d H:i:s");
-	        $this->usertype="PREMIUMPOSTEXPIRYDAYS";
+	    		$user=array();
+	        $user["username"] = $data['username'];
+	        $user["ip"]  = $data['ip'];
+	        $user["point"]  = $data['point'];
+	        $user["accountStatus"]  = $data['accountStatus'];
+	        $user["createDate"]  = date("Y-m-d H:i:s");
+	        $user["usertype"] ="PREMIUMPOSTEXPIRYDAYS";
 	        $date=new DateTime();
-	        $this->lastLoginTime= $date->format('Y-m-d H:i:s');
+	        $user["lastLoginTime"] = $date->format('Y-m-d H:i:s');
 	        
-			$this->db->insert('user', $this);
+			$this->db->insert('user', $user);
 	        $this->db->select_max('userID');
      		$result= $this->db->get('user')->result_array();
      		   		
@@ -174,6 +175,22 @@
 	    				"[Line]: ".$ex->getLine()."[Error]: ".$ex->getMessage());
 	    	}
 	    	return 0;
+	    }
+	    
+	    function getUserList(){
+	    	$query = $this->db->from('user')->order_by("username", "asc")->get();
+	    	return $query->result();
+	    }
+	    
+	    function getUserArrayList(){
+	    	$query = $this->db->from('user')->order_by("username", "asc")->get();
+	    	$itemList=array();
+	   		 if ($query -> result()) {
+                    foreach ($query->result() as $country) {
+                            $itemList[$country -> userID] = $country -> username;
+                    }
+	   		 }
+	    	return $itemList;
 	    }
 	}
 ?>
