@@ -64,16 +64,14 @@ class CI_DB_mysql_driver extends CI_DB {
 	 * @access	private called by the base class
 	 * @return	resource
 	 */
-	 
-	private $dbuser = "kit";
-    private $dbpassword = "kit1234";
-    private $dbhost = "localhost";    
-    private $dbname = "fyp";
-    private $db;
-	 
 	function db_connect()
 	{
-		return @mysql_connect($this->dbhost, $this->dbuser, $this->dbpassword, TRUE);
+		if ($this->port != '')
+		{
+			$this->hostname .= ':'.$this->port;
+		}
+
+		return @mysql_connect($this->hostname, $this->username, $this->password, TRUE);
 	}
 
 	// --------------------------------------------------------------------
@@ -84,7 +82,6 @@ class CI_DB_mysql_driver extends CI_DB {
 	 * @access	private called by the base class
 	 * @return	resource
 	 */
-	 
 	function db_pconnect()
 	{
 		if ($this->port != '')
@@ -92,7 +89,7 @@ class CI_DB_mysql_driver extends CI_DB {
 			$this->hostname .= ':'.$this->port;
 		}
 
-		return @mysql_pconnect($this->dbhost, $this->dbuser, $this->dbpassword);
+		return @mysql_pconnect($this->hostname, $this->username, $this->password);
 	}
 
 	// --------------------------------------------------------------------

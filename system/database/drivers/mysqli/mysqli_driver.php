@@ -66,22 +66,15 @@ class CI_DB_mysqli_driver extends CI_DB {
 	 * @access	private called by the base class
 	 * @return	resource
 	 */
-	 
-	private $dbuser = "root";
-    private $dbpassword = null;
-    private $dbhost = "localhost";    
-    private $dbname = "raydb";
-    private $db;
-	 
 	function db_connect()
 	{
 		if ($this->port != '')
 		{
-			return @mysqli_connect($this->dbhost, $this->dbuser, $this->dbpassword, $this->dbname, $this->port);
+			return @mysqli_connect($this->hostname, $this->username, $this->password, $this->database, $this->port);
 		}
 		else
 		{
-			return @mysqli_connect($this->dbhost, $this->dbuser, $this->dbpassword, $this->dbname);
+			return @mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
 		}
 
 	}

@@ -16,7 +16,7 @@
 | environments.
 |
 */
-$config['base_url'] = 'http://127.0.0.1/';
+$config['base_url'] = 'http://girlstrade.zapto.org:81/';
 
 /*
 |--------------------------------------------------------------------------
