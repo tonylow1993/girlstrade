@@ -445,10 +445,10 @@ class Home extends CI_Controller {
                 $data['gender'] = "";
 		$data['email'] = $this->input->post('email');
 		$data['password'] = $this->input->post('password');
-		$data['retype'] = $this->input->post('retype');
-		if($data['password'] != $data['retype']){
-			return;
-		}
+		//$data['retype'] = $this->input->post('retype');
+		//if($data['password'] != $data['retype']){
+		//	return;
+		//}
 		$data['checkboxes'] = $this->input->post('checkboxes');
 		
 		$user['username'] = $data['username'];

@@ -24,7 +24,7 @@
                     <div id="usernameDiv" class="form-group required">
                       <label class="col-md-4 control-label" > <?php echo $Username;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input id="username" name="username" placeholder="Username" class="form-control input-md" required="true" type="text"/>
+                        <input id="username" name="username" placeholder="At least 5 characters" class="form-control input-md" required="true" type="text"/>
                         <div id="usernameAjaxLoad" class="center">
                         <div id="usernameError" hidden="true"></div>
                         </div>
@@ -43,14 +43,14 @@
                        </div>
                     </div>
                     
-                    <div id="retypeDiv" class="form-group required">
+                    <!--<div id="retypeDiv" class="form-group required">
                       <label for="inputPassword4" class="col-md-4 control-label"> <?php echo $ReTypePassword;?> <font color="red">*</font></label>
                       <div class="col-md-6">
                         <input name="retype" type="password" class="form-control" id="inputPassword4" required="true" placeholder="Password">
                         <div id="retypeAjaxLoad" class="center">
                       </div>
                       </div>  
-                    </div>
+                    </div>-->
 					
                     <!-- Text input-->
                     <div id="telDov"  class="form-group required">
@@ -312,17 +312,18 @@ function setup()
     {
     	$('#pwd1V').html('');
     }
-    
-    if($('#inputPassword3').val() != $('#inputPassword4').val())
-	{
-		$("#retypeAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Password does not match</span></em>');
+    // PASSWORD WITH RETYPE PASSWORD CHECKING
+    //if($('#inputPassword3').val() != $('#inputPassword4').val())
+	//{
+	//	$("#retypeAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Password does not match</span></em>');
 		//$("#inputPassword4").focus();
-		isValid= false;
-	}
-    else
-    {
-    	$('#retypeAjaxLoad').html('');
-    }
+	//	isValid= false;
+	//}
+    //else
+    //{
+    	//$('#retypeAjaxLoad').html('');
+    //}
+    
     $("#emailAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
 	$.ajax({
 		method: "POST",
@@ -353,7 +354,7 @@ function setup()
     if(!isValid)
         return false;
 	if($('#captchaError').text()=='' &&
-		$("#retypeAjaxLoad").text()=='' &&
+		//$("#retypeAjaxLoad").text()=='' &&
 		$("#pwd1V").text()=='' &&
 		$("#usernameError").text()=='' &&
 		$("#telError").text()=='' &&
