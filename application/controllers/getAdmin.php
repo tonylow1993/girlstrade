@@ -98,6 +98,9 @@ class getAdmin extends CI_Controller {
 						$data['itemList']=$this->mapToAbuseMessages($this->abusemessages_model->getUAbuseMessagesList($pageNum));
 						$this->load->view('adminAbuseMessages.php', $data);
 					}
+					else if($activeNav==9){
+						$this->load->view('adminFireEmail.php', $data);
+					}
 			}
 	}
 	}
@@ -410,6 +413,15 @@ class getAdmin extends CI_Controller {
 				}
 			}
 		}
+	}
+	
+	public function sendEmail(){
+		$data["email"]=$this->input->post("ToEmail");
+		$title=$this->input->post("subject");
+		$content=$this->input->post("content");
+		
+		$this->sendAuthenticationEmail($data, $title, $content);
+		$this->getAccountPage(9);
 	}
 	
 	public function updateTradeComments(){

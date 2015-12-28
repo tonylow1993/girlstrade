@@ -284,3 +284,4 @@ $lang["ExceedMaxTimesDailySellerReply"]="Exceed Max Times of Seller Reply Daily"
 $lang["ExceedMaxTimesDailyDeleteAds"]="Exceed Max Times of Your Ads Delete";
 $lang["To"]="To";
 $lang["Action"]="Action";
+$lang["sendEmail"]="send Email";
