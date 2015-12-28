@@ -13,6 +13,7 @@
               	 $itemCommentPath=base_url().MY_PATH."getAdmin/getAccountPage/6";
               	 $postCommentPath=base_url().MY_PATH."getAdmin/getAccountPage/7";
               	 $abuseMessagePath=base_url().MY_PATH."getAdmin/getAccountPage/8";
+              	 $sendEmailPath=base_url().MY_PATH."getAdmin/getAccountPage/9";
               	 
               		echo "<h5 class=\"collapse-title\"> ".$this->lang->line('lblMenu')." <a class=\"pull-right\" data-toggle=\"collapse\"  href=\"#Home\"><i class=\"fa fa-angle-down\"></i></a></h5>";
                  	 echo "<div id=\"Home\" class=\"panel-collapse collapse in\">";
@@ -52,6 +53,11 @@
               	  	else
               	   	echo "<li><a href=$deleteUserPath>".$this->lang->line('deleteUser') ." <span class=\"badge\"></span></a></li>";
               	  
+              	  	if($activeNav==9)
+              	  		echo "<li><a  class=\"active\" href=$sendEmailPath>".$this->lang->line('sendEmail') ." <span class=\"badge\"></span></a></li>";
+              	  	else
+              	  		echo "<li><a href=$sendEmailPath>".$this->lang->line('sendEmail') ." <span class=\"badge\"></span></a></li>";
+              	  	 
           		 	echo "</ul>";
                   	echo "</div>";
                 echo "</div>";
