@@ -241,8 +241,28 @@ $(document).ready(function() {
     $(".tbtn").click(function() {
         $('.themeControll').toggleClass('active')
     })
-
-	
+    //$('.collapse-box').collapse("hide");
+    $(window).bind('resize load', function() {
+        if ($(this).width() < 767) {
+            $('#ProfileMenuAds').removeClass('in');
+            $('#ProfileMenuAds').addClass('out');
+            
+            $('#ProfileMenuEvaluate').removeClass('in');
+            $('#ProfileMenuEvaluate').addClass('out');
+            
+            $('#ProfileMenuAccount').removeClass('in');
+            $('#ProfileMenuAccount').addClass('out');
+        } else {
+            $('#ProfileMenuAds').removeClass('out');
+            $('#ProfileMenuAds').addClass('in');
+            
+            $('#ProfileMenuEvaluate').removeClass('in');
+            $('#ProfileMenuEvaluate').addClass('out');
+            
+            $('#ProfileMenuAccount').removeClass('in');
+            $('#ProfileMenuAccount').addClass('out');
+        }
+    });
 
 }); // end Ready
 

@@ -40,8 +40,8 @@
 		        $pendingrequest1=base_url().MY_PATH."home/getAccountPage/6";
               	
               	 
-              		echo "<h5 class=\"collapse-title\">".$this->lang->line('menuAds')."<a class=\"pull-right\" data-toggle=\"collapse\"  href=\"#Home\"><i class=\"fa fa-angle-down\"></i></a></h5>";
-                 	 echo "<div id=\"Home\" class=\"panel-collapse collapse in\">";
+              		echo "<h5 class=\"collapse-title\">".$this->lang->line('menuAds')."<a class=\"pull-right\" data-toggle=\"collapse\"  href=\"#ProfileMenuAds\"><i class=\"fa fa-angle-down\"></i></a></h5>";
+                 	 echo "<div id=\"ProfileMenuAds\" class=\"panel-collapse collapse in\">";
                  	 echo  "<ul class=\"acc-list\">";
                 	if($activeNav==2)
               			echo "<li><a  class=\"active\" href=$approverequest1> $ApproveRequest <span class=\"badge\">$approveMsgCount</span></a></li>";
@@ -70,8 +70,8 @@
                 ?>
                 
                 <div class="collapse-box">
-                  <h5 class="collapse-title"> <?php echo $this->lang->line("menuEvaluation");?> <a class="pull-right" data-toggle="collapse"  href="#EvalTabName"><i class="fa fa-angle-down"></i></a></h5>
-                  <div id="EvalTabName" class="panel-collapse collapse in">
+                  <h5 class="collapse-title"> <?php echo $this->lang->line("menuEvaluation");?> <a class="pull-right" data-toggle="collapse"  href="#ProfileMenuEvaluate"><i class="fa fa-angle-down"></i></a></h5>
+                  <div id="ProfileMenuEvaluate" class="panel-collapse collapse in">
                     <ul class="acc-list">
                     	<?php
                  	   $approvedrequest1=base_url().MY_PATH."home/getAccountPage/7";
@@ -106,8 +106,8 @@
                 </div>
                 
                 <div class="collapse-box">
-                  <h5 class="collapse-title"> <?php echo $AccountTabName;?> <a class="pull-right" data-toggle="collapse"  href="#AccountTabName"><i class="fa fa-angle-down"></i></a></h5>
-                  <div id="AccountTabName" class="panel-collapse collapse in">
+                  <h5 class="collapse-title"> <?php echo $AccountTabName;?> <a class="pull-right" data-toggle="collapse"  href="#ProfileMenuAccount"><i class="fa fa-angle-down"></i></a></h5>
+                  <div id="ProfileMenuAccount" class="panel-collapse collapse in">
                     <ul class="acc-list">
                     	<?php
                  	    $editprofile1=base_url().MY_PATH."home/getAccountPage/4";

@@ -322,7 +322,7 @@ function setup()
     {
     	$('#pwd1V').html('');
     }
-    // PASSWORD WITH RETYPE PASSWORD CHECKING
+    // PASSWORD WITH RETYPE PASSWORD CHECKING 
     //if($('#inputPassword3').val() != $('#inputPassword4').val())
 	//{
 	//	$("#retypeAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Password does not match</span></em>');

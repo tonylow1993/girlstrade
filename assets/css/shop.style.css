@@ -29,8 +29,9 @@ p {
 }
 
 a {
-   color: #18ba9b;
-   text-decoration: none;  
+   color: #E83675;
+   text-decoration: none;
+   font-weight: bold;  
 }
 
 a:hover {

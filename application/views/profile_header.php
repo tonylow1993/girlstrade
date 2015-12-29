@@ -17,7 +17,7 @@
                 <div class="hdata">
                   <div class="mcol-left"> 
                     <!-- Icon with red background --> 
-                    <i class="fa fa-eye ln-shadow"></i> </div>
+                    <i class="fa fa-eye ln-shadow shape-8"></i> </div>
                   <div class="mcol-right"> 
                     <!-- Number of visitors -->
                     <p><a href="#"><?php echo $visitCount; ?></a> <em>visits</em></p>
@@ -29,7 +29,7 @@
                 <div class="hdata">
                   <div class="mcol-left"> 
                     <!-- Icon with green background --> 
-                    <i class="icon-th-thumb ln-shadow"></i> </div>
+                    <i class="fa fa-pencil ln-shadow shape-4"></i> </div>
                   <div class="mcol-right"> 
                     <!-- Number of visitors -->
                     <p><a href="#"><?php echo $totalMyAdsCount;?></a><em>Ads</em></p>
@@ -41,7 +41,7 @@
                 <div class="hdata">
                   <div class="mcol-left"> 
                     <!-- Icon with blue background --> 
-                    <i class="fa fa-user ln-shadow"></i> </div>
+                    <i class="fa fa-heart ln-shadow shape-5"></i> </div>
                   <div class="mcol-right"> 
                     <!-- Number of visitors -->
                     <p><a href="#"><?php echo $favoriteAdsCount;?></a> <em>Favorites </em></p>
