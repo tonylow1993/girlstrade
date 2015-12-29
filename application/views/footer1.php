@@ -45,7 +45,7 @@
 <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script> 
 
 <!-- include carousel slider plugin  --> 
-<script src="<?php echo base_url();?>assets/js/owl.carousel.js"></script> 
+<script src="<?php echo base_url();?>assets/js/owl.carousel.min.js"></script> 
 
 <!-- include equal height plugin  --> 
 <script src="<?php echo base_url();?>assets/js/jquery.matchHeight-min.js"></script> 
