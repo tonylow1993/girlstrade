@@ -24,6 +24,7 @@ class messages extends CI_Controller {
             $this->load->model("useremail_model");
             $this->load->model('tradecomments_model');
             $this->load->model('admin_model');
+            $this->load->model('mailtemplate_model');
             date_default_timezone_set("Asia/Hong_Kong");
             if($this->nativesession->get("language")!=null)
             {
@@ -109,8 +110,8 @@ function addDayswithdate($date,$days){
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."/home/loginPage";
-					$msg=sprintf($this->lang->line("SendEmailMsgForDirectSendToSeller"), $username, $path);
-					$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailTitleForDirectSendToSeller"));
+					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendToSeller( $username, $path);
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendToSeller());
 					$errorMsg=$this->lang->line("MessagesDirectSendSuccess");
 					redirect(base_url().MY_PATH."viewItem/index/".$postID."/EMPTY/".($errorMsg)."?prevURL=".$prevURL);
 							
@@ -161,8 +162,8 @@ function addDayswithdate($date,$days){
 					{
 						$email=$this->useremail_model->getUserEmailByUserID($fUserID);
 						$email["email"]=HOST_EMAIL;
-						$msg=$this->lang->line("SendEmailMsgForHostOfAbuseMsg");
-						$this->sendAuthenticationEmail($email, $msg,$this->lang->line("SendEmailMsgForHostOfAbuseMsg") );
+						$msg=$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg();
+						$this->sendAuthenticationEmail($email, $msg,$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg() );
 						$errorMsg=$this->lang->line("MessagesSendError");
 						redirect(base_url().MY_PATH."viewItem/index/".$postID."/EMPTY/".$errorMsg."?prevURL=".$prevURL);
 					}
@@ -227,8 +228,8 @@ function addDayswithdate($date,$days){
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
-					$msg=sprintf($this->lang->line("SendEmailMsgForSeller"), $username, $path );
-					$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailTitleForSeller"));
+					$msg=$this->mailtemplate_model->SendEmailMsgForSeller( $username, $path );
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller());
 					
 					$errorMsg=$this->lang->line("MessagesSendError");
 					redirect(base_url().MY_PATH."viewItem/index/".$postID."/EMPTY/".$errorMsg."?prevURL=".$prevURL);
@@ -278,8 +279,8 @@ function addDayswithdate($date,$days){
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
-					$msg=sprintf($this->lang->line("SendEmailMsgForDirectSendApproveOrRejectToSeller"), $username, $path );
-					$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailTitleForDirectSendApproveOrRejectToSeller"));
+					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendApproveOrRejectToSeller($username, $path );
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendApproveOrRejectToSeller());
 					
 				
 				$data['status'] = 'A';
@@ -314,8 +315,8 @@ function addDayswithdate($date,$days){
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
-					$msg=sprintf($this->lang->line("SendEmailMsgForSeller"), $username, $path );
-					$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailTitleForSeller"));
+					$msg=$this->mailtemplate_model->SendEmailMsgForSeller( $username, $path );
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller());
 						
 		}
 		public function rejectSavedAds()
@@ -499,8 +500,8 @@ function addDayswithdate($date,$days){
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($fUserID);
 						$path=base_url().MY_PATH."home/loginPage";
-						$msg=sprintf($this->lang->line("SendEmailReplyMsgForSelleOrBuyerr"), $username, $path );
-						$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailTitleForReplyMsgForSellerOrBuyer"));
+						$msg=$this->mailtemplate_model->SendEmailReplyMsgForSelleOrBuyerr( $username, $path );
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForReplyMsgForSellerOrBuyer());
 						
 						$this->admin_model->getMessageStatByUserID($userID);
 						

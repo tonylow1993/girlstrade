@@ -49,6 +49,7 @@ class getAdmin extends CI_Controller {
         $this->load->model('tradecomments_model');
         $this->load->model('itemcomments_model');
         $this->load->model('abusemessages_model');
+        $this->load->model('mailtemplate_model');
 	}
 	
 	public function index($Photo=0)
@@ -476,8 +477,8 @@ class getAdmin extends CI_Controller {
 								$usernameArr=$this->users_model->get_user_by_id($postInfo[0]->userID);
 								$username=$usernameArr[0]->username;
 								$path=base_url().MY_PATH."home/loginPage";
-								$msg=sprintf($this->lang->line("SendEmailRejectPost"), $username, $rejectReason ,$rejectSpecifiedReason );
-								$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailRejectPostTitle"));
+								$msg=$this->mailtemplate_mdoel->SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason );
+								$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle());
 									
 					}
 	
@@ -535,8 +536,8 @@ class getAdmin extends CI_Controller {
 						$usernameArr=$this->users_model->get_user_by_id($postInfo[0]->userID);
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
-						$msg=sprintf($this->lang->line("SendEmailApprovePost"), $username);
-						$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailApprovePostTitle"));
+						$msg=$this->mailtemplate_model->SendEmailApprovePost( $username);
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_mode->SendEmailApprovePostTitle());
 							
 					}
 					else if($status=='R')
@@ -755,8 +756,8 @@ class getAdmin extends CI_Controller {
 							$usernameArr=$this->users_model->get_user_by_id($userID);
 							$username=$usernameArr[0]->username;
 							$path=base_url().MY_PATH."home/loginPage";
-							$msg=sprintf($this->lang->line("SendEmailApprovePhoto"), $username);
-							$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailApprovePhotoTitle"));
+							$msg=$this->mailtemplate_model->SendEmailApprovePhoto( $username);
+							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePhotoTitle());
 							
 					}
 					else if($status=='R')
@@ -768,8 +769,8 @@ class getAdmin extends CI_Controller {
 						$usernameArr=$this->users_model->get_user_by_id($userID);
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
-						$msg=sprintf($this->lang->line("SendEmailRejectPhoto"), $username, $rejectReason ,$rejectSpecifiedReason );
-						$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailRejectPhotoTitle"));
+						$msg=$this->mailtemplate_model->SendEmailRejectPhoto( $username, $rejectReason ,$rejectSpecifiedReason );
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPhotoTitle());
 							
 					}
 						

@@ -269,9 +269,9 @@
 	    
 	    public function getViewMessageHistory($userID, $postID, $fuserID){
 			$strQuery="select a.* from ( ";
-	    	$strQuery=$strQuery."select *, 'outBox' as messageIOType from message where ((status in ('R', 'C') and userID=$userID and fuserID=$fuserID) or (status in ('OC', 'Op') and fUserID=$userID and userID=$fuserID) ) and postID=$postID ";
+	    	$strQuery=$strQuery." select *, 'outBox' as messageIOType from message where ((status in ('R', 'C') and userID=$userID and fuserID=$fuserID) or (status in ('OC', 'Op') and fUserID=$userID and userID=$fuserID) ) and postID=$postID ";
 	    	$strQuery=$strQuery." union all ";
-	    	$strQuery=$strQuery."select *, 'inBox' as messageIOType  from message where ( (status in ('Op', 'OC') and userID=$userID and fuserID=$fuserID) or (status in ('R', 'C') and fUserID=$userID and userID=$fuserID) ) and postID=$postID ";
+	    	$strQuery=$strQuery." select *, 'inBox' as messageIOType  from message where ( (status in ('Op', 'OC') and userID=$userID and fuserID=$fuserID) or (status in ('R', 'C') and fUserID=$userID and userID=$fuserID) ) and postID=$postID ";
 	    	$strQuery=$strQuery." ) a order by a.createDate desc ";
 	    	//log_message('error', $strQuery.": param:fuserID: ".$fuserID." userID: ".$userID);;
 	    	$query2 = $this->db->query($strQuery);
