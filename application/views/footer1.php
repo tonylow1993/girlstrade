@@ -3,11 +3,11 @@
       <div id="langError"></div>
       <ul class=" pull-left navbar-link footer-nav">
         <li><a href="<?php echo base_url().MY_PATH;?>"> <?php if (!isset($Home)) $Home = 'Home'; echo $Home;?> </a> 
-            <a href="<?php echo base_url().MY_PATH.'home/getAboutUS';?>"> <?php if (!isset($About_us)) $About_us = 'About us'; echo $About_us;?></a> 
-            <a href="<?php echo base_url().MY_PATH.'home/getTerms';?>"> <?php if (!isset($Terms_and_Conditions)) $Terms_and_Conditions = 'Terms and Conditions'; echo $Terms_and_Conditions; ?> </a> 
-            <a href="<?php echo base_url().MY_PATH.'home/getPrivacy';?>"> <?php if (!isset($Privacy_Policy)) $Privacy_Policy = 'Privacy Policy'; echo $Privacy_Policy;?> </a> 
-            <a href="<?php echo base_url().MY_PATH.'home/getContactUS';?>"> <?php if (!isset($Contact_us)) $Contact_us = 'Contact us'; echo $Contact_us;?> </a> 
-            <a href="<?php echo base_url().MY_PATH.'home/getFQA';?>"> <?php if (!isset($FAQ)) $FAQ = 'FAQ'; echo $FAQ;?></a>
+            <a href="<?php echo base_url().MY_PATH.'footer/getAboutUS';?>"> <?php if (!isset($About_us)) $About_us = 'About us'; echo $About_us;?></a> 
+            <a href="<?php echo base_url().MY_PATH.'footer/getTerms';?>"> <?php if (!isset($Terms_and_Conditions)) $Terms_and_Conditions = 'Terms and Conditions'; echo $Terms_and_Conditions; ?> </a> 
+            <a href="<?php echo base_url().MY_PATH.'footer/getPrivacy';?>"> <?php if (!isset($Privacy_Policy)) $Privacy_Policy = 'Privacy Policy'; echo $Privacy_Policy;?> </a> 
+            <a href="<?php echo base_url().MY_PATH.'footer/getContactUS';?>"> <?php if (!isset($Contact_us)) $Contact_us = 'Contact us'; echo $Contact_us;?> </a> 
+            <a href="<?php echo base_url().MY_PATH.'footer/getFQA';?>"> <?php if (!isset($FAQ)) $FAQ = 'FAQ'; echo $FAQ;?></a>
             <a id="lang" href=<?php 
             	   $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 				
@@ -45,7 +45,7 @@
 <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script> 
 
 <!-- include carousel slider plugin  --> 
-<script src="<?php echo base_url();?>assets/js/owl.carousel.min.js"></script> 
+<script src="<?php echo base_url();?>assets/js/owl.carousel.js"></script> 
 
 <!-- include equal height plugin  --> 
 <script src="<?php echo base_url();?>assets/js/jquery.matchHeight-min.js"></script> 

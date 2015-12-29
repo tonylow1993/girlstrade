@@ -62,6 +62,7 @@ class Home extends CI_Controller {
         	    $this->load->model("userloginhistory_model"); 
         	    $this->load->model('tradecomments_model');
         	    $this->load->model('itemcomments_model');
+        	    $this->load->model('mailtemplate_model');
 	}
 	public function index($errorMsg='', $successMsg='')
 	{
@@ -445,10 +446,10 @@ class Home extends CI_Controller {
                 $data['gender'] = "";
 		$data['email'] = $this->input->post('email');
 		$data['password'] = $this->input->post('password');
-		//$data['retype'] = $this->input->post('retype');
-		//if($data['password'] != $data['retype']){
-		//	return;
-		//}
+		$data['retype'] = $this->input->post('retype');
+		if($data['password'] != $data['retype']){
+			return;
+		}
 		$data['checkboxes'] = $this->input->post('checkboxes');
 		
 		$user['username'] = $data['username'];
@@ -496,8 +497,8 @@ class Home extends CI_Controller {
 // 		$message .= "<p>Please <a href=$path>click here</a> to activate your account.</p>";
 // 		$message .= '<p>Thank you!</p>';
 		$path=base_url().MY_PATH."home/activate/".$userAfter["userID"]."/".md5($userAfter["createDate"]);
-		$title=$this->lang->line("SendEmailTitleForSignupActivate");
-		$message=sprintf($this->lang->line("SendEmailMsgForSignupActivate"), $data['username'],  $path, $data['email']);
+		$title=$this->mailtemplate_model->SendEmailTitleForSignupActivate();
+		$message=$this->mailtemplate_model->SendEmailMsgForSignupActivate( $data['username'],  $path, $data['email']);
 		
 		$this->sendAuthenticationEmail($userEmail, $message, $title);
 		log_message('debug', 'retrieve userid  '.$data['userID']);
@@ -771,9 +772,9 @@ function generateRandomString($length = 8) {
 			$userAfter = $this->user->getUserByUserID($userEmail['userID']);
 				
 			$path=base_url().MY_PATH."home/resetPassword/".$userAfter["userID"]."/".md5($userAfter["createDate"]);
-			$message=sprintf($this->lang->line("SendEmailMsgForResetPassword"),
+			$message=$this->mailtemplate_model->SendEmailMsgForResetPassword(
 					$path);
-				$title=$this->lang->line("SendEmailTitleForResetPassword");
+				$title=$this->mailtemplate_model->SendEmailTitleForResetPassword();
 			$this->sendAuthenticationEmail($userEmail, $message, $title);
 			
 		$data["lang_label_text"] = $this->lang->line("lang_label_text");
@@ -833,10 +834,10 @@ function generateRandomString($length = 8) {
 				
 			$this->userPassword->update($userPasswordContent);
 			$path=base_url().MY_PATH."home/activate/".$userAfter["userID"]."/".md5($userAfter["createDate"]);
-			$message=sprintf($this->lang->line("SendEmailMsgForUpdatePassword"),
+			$message=$this->mailtemplate_model->SendEmailMsgForUpdatePassword(
 					$userAfter['username'], $password, $userAfter['username'],
 					$path);
-			$title=$this->lang->line("SendEmailTitleForForgotPassword");
+			$title=$this->mailtemplate_model->SendEmailTitleForForgotPassword();
 			$this->sendAuthenticationEmail($userEmail, $message, $title);
 				
 			$data["lang_label_text"] = $this->lang->line("lang_label_text");
@@ -898,124 +899,7 @@ function generateRandomString($length = 8) {
 			$this->load->view("forgot-password", $data);
 			
 	}
-	public function getAboutUS()
-	{
-		$data["lang_label_text"] = $this->lang->line("lang_label_text");
-		$data["Home"] = $this->lang->line("Home");
-            $data["About_us"] = $this->lang->line("About_us");
-            $data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
-            $data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
-            $data["Contact_us"] = $this->lang->line("Contact_us");
-            //log_message('debug', 'Contact Us words is: '.$data["Contact_us"]);
-            $data["FAQ"] = $this->lang->line("FAQ");
-            $data["Index_Footer1"] = $this->lang->line("Index_Footer1");
-            $data["Call_Now"] = $this->lang->line("Call_Now");
-            $data["Tel"] = $this->lang->line("Tel");
-          
-			$data["Login"]=$this->lang->line("Login");;
-			$data["Signup"]=$this->lang->line("Signup");
-			$data["Profile"]=$this->lang->line("Profile");
-			$data["Logout"]=$this->lang->line("Logout");
-			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
-		 $data["lang_label"]=$this->nativesession->get("language");
-          $this->load->view("about-us", $data);	
-	}
 	
-	public function getContactUS()
-	{
-		$data["lang_label_text"] = $this->lang->line("lang_label_text");
-		$data["Home"] = $this->lang->line("Home");
-            $data["About_us"] = $this->lang->line("About_us");
-            $data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
-            $data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
-            $data["Contact_us"] = $this->lang->line("Contact_us");
-            //log_message('debug', 'Contact Us words is: '.$data["Contact_us"]);
-            $data["FAQ"] = $this->lang->line("FAQ");
-            $data["Index_Footer1"] = $this->lang->line("Index_Footer1");
-            $data["Call_Now"] = $this->lang->line("Call_Now");
-            $data["Tel"] = $this->lang->line("Tel");
-          
-			$data["Login"]=$this->lang->line("Login");;
-			$data["Signup"]=$this->lang->line("Signup");
-			$data["Profile"]=$this->lang->line("Profile");
-			$data["Logout"]=$this->lang->line("Logout");
-			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
-		 $data["lang_label"]=$this->nativesession->get("language");
-          $this->load->view("contact", $data);	
-	
-	}
-	
-	public function getFQA()
-	{
-		$data["lang_label_text"] = $this->lang->line("lang_label_text");
-		$data["Home"] = $this->lang->line("Home");
-            $data["About_us"] = $this->lang->line("About_us");
-            $data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
-            $data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
-            $data["Contact_us"] = $this->lang->line("Contact_us");
-            //log_message('debug', 'Contact Us words is: '.$data["Contact_us"]);
-            $data["FAQ"] = $this->lang->line("FAQ");
-            $data["Index_Footer1"] = $this->lang->line("Index_Footer1");
-            $data["Call_Now"] = $this->lang->line("Call_Now");
-            $data["Tel"] = $this->lang->line("Tel");
-          
-			$data["Login"]=$this->lang->line("Login");;
-			$data["Signup"]=$this->lang->line("Signup");
-			$data["Profile"]=$this->lang->line("Profile");
-			$data["Logout"]=$this->lang->line("Logout");
-			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
-		 $data["lang_label"]=$this->nativesession->get("language");
-          $this->load->view("faq", $data);	
-		
-	}
-	
-public function getPrivacy()
-	{
-		$data["lang_label_text"] = $this->lang->line("lang_label_text");
-		$data["Home"] = $this->lang->line("Home");
-            $data["About_us"] = $this->lang->line("About_us");
-            $data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
-            $data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
-            $data["Contact_us"] = $this->lang->line("Contact_us");
-            //log_message('debug', 'Contact Us words is: '.$data["Contact_us"]);
-            $data["FAQ"] = $this->lang->line("FAQ");
-            $data["Index_Footer1"] = $this->lang->line("Index_Footer1");
-            $data["Call_Now"] = $this->lang->line("Call_Now");
-            $data["Tel"] = $this->lang->line("Tel");
-          
-			$data["Login"]=$this->lang->line("Login");;
-			$data["Signup"]=$this->lang->line("Signup");
-			$data["Profile"]=$this->lang->line("Profile");
-			$data["Logout"]=$this->lang->line("Logout");
-			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
-		 $data["lang_label"]=$this->nativesession->get("language");
-          $this->load->view("privacy", $data);	
-		
-	}
-	
-public function getTerms()
-	{
-		$data["Home"] = $this->lang->line("Home");
-       $data["lang_label_text"] = $this->lang->line("lang_label_text");
-		     $data["About_us"] = $this->lang->line("About_us");
-            $data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
-            $data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
-            $data["Contact_us"] = $this->lang->line("Contact_us");
-            //log_message('debug', 'Contact Us words is: '.$data["Contact_us"]);
-            $data["FAQ"] = $this->lang->line("FAQ");
-            $data["Index_Footer1"] = $this->lang->line("Index_Footer1");
-            $data["Call_Now"] = $this->lang->line("Call_Now");
-            $data["Tel"] = $this->lang->line("Tel");
-          
-			$data["Login"]=$this->lang->line("Login");;
-			$data["Signup"]=$this->lang->line("Signup");
-			$data["Profile"]=$this->lang->line("Profile");
-			$data["Logout"]=$this->lang->line("Logout");
-			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
-		 $data["lang_label"]=$this->nativesession->get("language");
-          $this->load->view("terms", $data);	
-		
-	}
 	public function logout(){
 		
 		$this->nativesession->delete('user');
@@ -1185,8 +1069,8 @@ public function getTerms()
 		
 		$this->userPassword->changePassword($input);
 		$email=$this->userEmail->getUserEmailByUserID($userID);
-		$msg=$this->lang->line("SendEmailMsgForChangePassword");
-		$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailTitleForChangePassword"));
+		$msg=$this->mailtemplate_model->SendEmailMsgForChangePassword();
+		$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForChangePassword());
 		
 		
 		
@@ -2432,8 +2316,8 @@ public function getTerms()
 			$this->userPassword->update($userPassword);
 			
 			$email=$this->userEmail->getUserEmailByUserID($user["userID"]);
-			$msg=$this->lang->line("SendEmailMsgForChangePassword");
-			$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailTitleForChangePassword"));
+			$msg=$this->mailtemplate_model->SendEmailMsgForChangePassword();
+			$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForChangePassword());
 			
 			
 			$errorMsg="Password Changed Successfully";
