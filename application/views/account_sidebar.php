@@ -29,7 +29,35 @@
 <!--                     </ul> -->
 <!--                   </div> -->
 <!--                 </div> -->
-
+				<div class="collapse-box">
+                  <h5 class="collapse-title"> <?php echo $AccountTabName;?> <a class="pull-right" data-toggle="collapse"  href="#ProfileMenuAccount"><i class="fa fa-angle-down"></i></a></h5>
+                  <div id="ProfileMenuAccount" class="panel-collapse collapse in">
+                    <ul class="acc-list">
+                    	<?php
+                 	    $editprofile1=base_url().MY_PATH."home/getAccountPage/4";
+		             	 $accountinbox=base_url().MY_PATH."home/getAccountPage/1";
+		             	 $outgoingMsg=base_url().MY_PATH."home/getAccountPage/10";
+              			 if($activeNav==4)
+              					echo "<li><a  class=\"active\" href=$editprofile1> $EditProfile <span class=\"badge\"></span></a></li>";
+         	     		 else 
+         	     		 	echo "<li><a href=$editprofile1> $EditProfile <span class=\"badge\"></span></a></li>";
+         	     		 	 
+         	     		 if($activeNav==1)
+              					echo "<li><a  class=\"active\" href=$accountinbox> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
+         	     		 else 
+         	     		 	echo "<li><a href=$accountinbox> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
+         	     		 	 
+         	     		 if($activeNav==10)
+              					echo "<li><a  class=\"active\" href=$outgoingMsg> $OutgoingMsgTitle <span class=\"badge\">$outgoingMsgCount</span> </a></li>";
+         	     			else 
+         	     				echo "<li><a href=$outgoingMsg> $OutgoingMsgTitle <span class=\"badge\">$outgoingMsgCount</span> </a></li>";
+         	     				
+         	     		 ?>
+                      </ul>
+                  </div>
+                </div>
+                
+                
                                 
                 <?php
                 
@@ -105,33 +133,7 @@
                   </div>
                 </div>
                 
-                <div class="collapse-box">
-                  <h5 class="collapse-title"> <?php echo $AccountTabName;?> <a class="pull-right" data-toggle="collapse"  href="#ProfileMenuAccount"><i class="fa fa-angle-down"></i></a></h5>
-                  <div id="ProfileMenuAccount" class="panel-collapse collapse in">
-                    <ul class="acc-list">
-                    	<?php
-                 	    $editprofile1=base_url().MY_PATH."home/getAccountPage/4";
-		             	 $accountinbox=base_url().MY_PATH."home/getAccountPage/1";
-		             	 $outgoingMsg=base_url().MY_PATH."home/getAccountPage/10";
-              			 if($activeNav==4)
-              					echo "<li><a  class=\"active\" href=$editprofile1> $EditProfile <span class=\"badge\"></span></a></li>";
-         	     		 else 
-         	     		 	echo "<li><a href=$editprofile1> $EditProfile <span class=\"badge\"></span></a></li>";
-         	     		 	 
-         	     		 if($activeNav==1)
-              					echo "<li><a  class=\"active\" href=$accountinbox> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
-         	     		 else 
-         	     		 	echo "<li><a href=$accountinbox> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
-         	     		 	 
-         	     		 if($activeNav==10)
-              					echo "<li><a  class=\"active\" href=$outgoingMsg> $OutgoingMsgTitle <span class=\"badge\">$outgoingMsgCount</span> </a></li>";
-         	     			else 
-         	     				echo "<li><a href=$outgoingMsg> $OutgoingMsgTitle <span class=\"badge\">$outgoingMsgCount</span> </a></li>";
-         	     				
-         	     		 ?>
-                      </ul>
-                  </div>
-                </div>
+                
               </div>
             </div>
             
