@@ -253,14 +253,14 @@ $(document).ready(function() {
             $('#ProfileMenuAccount').removeClass('in');
             $('#ProfileMenuAccount').addClass('out');
         } else {
-            $('#ProfileMenuAds').removeClass('out');
-            $('#ProfileMenuAds').addClass('in');
+            //$('#ProfileMenuAds').removeClass('out');
+            //$('#ProfileMenuAds').addClass('in');
             
-            $('#ProfileMenuEvaluate').removeClass('in');
-            $('#ProfileMenuEvaluate').addClass('out');
+            //$('#ProfileMenuEvaluate').removeClass('in');
+            //$('#ProfileMenuEvaluate').addClass('out');
             
-            $('#ProfileMenuAccount').removeClass('in');
-            $('#ProfileMenuAccount').addClass('out');
+           // $('#ProfileMenuAccount').removeClass('in');
+           // $('#ProfileMenuAccount').addClass('out');
         }
     });
 

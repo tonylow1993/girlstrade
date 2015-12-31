@@ -15,8 +15,8 @@
 @import url(plugins/style-switcher.css);
 
 * {
-    font-family: MyCustomFont, serif;
-	font-weight: 300;
+    //font-family: MyCustomFont, serif;
+	//font-weight: 300;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -27,15 +27,30 @@ p {
 	color: #888;
 	font-size: 14px;
 }
-
+a #menuTitle
+{
+	color: #2D1C3A;
+	text-decoration: none;
+    font-weight: bold;  
+}
+a:hover #menuTitle
+{
+	color: #2831C7;
+	text-decoration: none;
+    font-weight: bold;  
+}
+#menuTitle a:hover
+{
+	color: #18ba9b;
+}
 a {
-   color: #E83675;
+   color: #f405ae;
    text-decoration: none;
    font-weight: bold;  
 }
 
 a:hover {
-   color: #18ba9b;
+   color: #f405ae;
    text-decoration: underline;
 }
 

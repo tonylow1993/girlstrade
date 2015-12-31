@@ -170,7 +170,7 @@ if ((!isset($_GET['jsEnabled']) || $_GET['jsEnabled'] == 'true') && !isset($_SER
           </ul>
          <?php }else{?>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?php echo base_url(); echo MY_PATH;?>home/profilePage"><i class="icon-user"></i><?php if (!isset($Profile)) $Profile = 'Profile'; echo $Profile;?></a></li>
+            <li><a href="<?php echo base_url(); echo MY_PATH;?>home/profilePage"><i class="icon-user-woman"></i><?php if (!isset($Profile)) $Profile = 'Profile'; echo $Profile;?></a></li>
             <li><a href="<?php echo base_url(); echo MY_PATH;?>home/logout"><i class="icon-logout"></i><?php if (!isset($Logout)) $Logout = 'Logout'; echo $Logout;?></a></li>
             <li class="postadd"><a class="btn btn-border btn-danger" href="<?php echo base_url(); echo MY_PATH;?>newPost/index?prevURL=<?php echo urlencode((current_url()));?>"><?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?><i class="icon-pencil-2"></i></a></li>
           </ul>
