@@ -2,6 +2,7 @@
 
 class getAdmin extends CI_Controller {
 	var $data;
+
 	public function __construct()
 	{
 		parent::__construct();
