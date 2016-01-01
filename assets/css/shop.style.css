@@ -27,6 +27,15 @@ p {
 	color: #888;
 	font-size: 14px;
 }
+#indexFooterNumber
+{
+	color: #EFA5C6;
+}
+#indexFooterTitle
+{
+	color: #FF00FF;
+	font-weight: bold;  
+}
 a #menuTitle
 {
 	color: #2D1C3A;

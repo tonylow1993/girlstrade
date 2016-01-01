@@ -685,8 +685,12 @@ window.onload = function(){
                             <i class="icon  icon-group"></i>
                             </div>
                             <div class="iconbox-wrap-content">
-                              <h5><span><?php echo $indexstat["trustedseller"];?></span> </h5>
-                              <div  class="iconbox-wrap-text"><?php echo  $Trusted_Seller;?></div>
+                              <h5><span id="indexFooterNumber"><?php echo $indexstat["trustedseller"];?></span> </h5>
+                              <div  class="iconbox-wrap-text">
+                              <span id="indexFooterTitle">
+                  				<?php echo  $Trusted_Seller;?>
+                  				</span>
+                  				</div>
                             </div>
                           </div>
   							<!-- /..iconbox -->
@@ -700,8 +704,12 @@ window.onload = function(){
                             <i class="icon  icon-th-large-1"></i>
                             </div>
                             <div class="iconbox-wrap-content">
-                              <h5><span><?php echo $indexstat["category"];?></span> </h5>
-                              <div  class="iconbox-wrap-text"><?php echo $Categories;?></div>
+                              <h5><span id="indexFooterNumber"><?php echo $indexstat["category"];?></span> </h5>
+                              <div  class="iconbox-wrap-text">
+                              <span id="indexFooterTitle">
+                  				<?php echo $Categories;?>
+                  				</span>
+                  				</div>
                             </div>
                           </div>
   							<!-- /..iconbox -->
@@ -715,8 +723,11 @@ window.onload = function(){
                             <i class="icon  icon-map"></i>
                             </div>
                             <div class="iconbox-wrap-content">
-                              <h5><span><?php echo $indexstat["location"];?></span> </h5>
-                              <div  class="iconbox-wrap-text"><?php  echo $Location;?></div>
+                              <h5><span id="indexFooterNumber"><?php echo $indexstat["location"];?></span> </h5>
+                              <div  class="iconbox-wrap-text">
+                  				<span id="indexFooterTitle">            
+                  				<?php  echo $Location;?></span>
+                            	</div>
                             </div>
                           </div>
   							<!-- /..iconbox -->
@@ -730,8 +741,13 @@ window.onload = function(){
                             <i class="icon icon-facebook"></i>
                             </div>
                             <div class="iconbox-wrap-content">
-                              <h5><span><?php echo $indexstat["facebookfans"];?></span> </h5>
-                              <div  class="iconbox-wrap-text"> <?php echo $Facebook_Fans;?></div>
+                              <h5><span id="indexFooterNumber">
+                              <?php echo $indexstat["facebookfans"];?></span> </h5>
+                              <div  class="iconbox-wrap-text"> 
+                              <span id="indexFooterTitle">
+                  				<?php echo $Facebook_Fans;?>
+                  				</span>
+                  				</div>
                             </div>
                           </div>
   							<!-- /..iconbox -->
