@@ -63,7 +63,7 @@ define("DIRECTSENDEXPIRYDAYS", 30);
 
 define("PageContactUs",  "ContactUs");
 define("PageSignup", "Signup");
-defin("PageSignin", "Signin");
+define("PageSignin", "Signin");
 define("PageSearch", "Search");
 define("PageViewItem", "ViewItem" );
 define("PageViewProfile", "ViewProfile" );
