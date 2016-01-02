@@ -50,6 +50,7 @@ class footer  extends CI_Controller {
         $this->load->model('tradecomments_model');
         $this->load->model('itemcomments_model');
         $this->load->model('abusemessages_model');
+        $this->load->model('contactType_model');
 	}
 	public function getAboutUS()
 	{
@@ -76,6 +77,15 @@ class footer  extends CI_Controller {
 	
 	public function getContactUS()
 	{
+		if($this->nativesession->get('language') && $this->nativesession->get('language') == "chinese")
+        {
+            $data["captchaJS"] = "<script src='https://www.google.com/recaptcha/api.js?hl=zh-TW'></script>";
+        }else
+        {
+            $data["captchaJS"] = "<script src='https://www.google.com/recaptcha/api.js?hl=en'></script>";
+        }
+        $this->nativesession->set("lastPageVisited","contactUS");
+            
 		$data["lang_label_text"] = $this->lang->line("lang_label_text");
 		$data["Home"] = $this->lang->line("Home");
 		$data["About_us"] = $this->lang->line("About_us");
@@ -94,6 +104,31 @@ class footer  extends CI_Controller {
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data["lang_label"]=$this->nativesession->get("language");
+		/*
+		$data['contactOpt']=null;
+		$data['queryContactOpt']=$this->contactType_model->getParentLocation();
+		if (!is_null($data['queryLoc'])) {
+			foreach($data['queryLoc'] as $row)
+			{
+				$resLoc1=array($row->locationID => array($row));
+				$resLoc2=$this->getChildLocation($row->locationID);
+				if(!is_null($resLoc2))
+					if(is_null($data['resLoc']))
+						$data['resLoc']=$resLoc1+$resLoc2;
+					else
+						$data['resLoc']=$data['resLoc']+$resLoc1+$resLoc2;
+					else
+					{
+						if(is_null($data['resLoc']))
+							$data['resLoc']=$resLoc1;
+						else
+							$data['resLoc']=$data['resLoc']+$resLoc1;
+					}
+			}
+	
+		}*/
+		
+		
 		$this->load->view("contact", $data);
 	
 	}

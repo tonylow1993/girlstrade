@@ -437,8 +437,8 @@ class Home extends CI_Controller {
              
             
             //------------------------------------------------------------------------------
-      $data["lang_label_text"] = $this->lang->line("lang_label_text");
-		 $data["Home"] = $this->lang->line("Home");
+      		$data["lang_label_text"] = $this->lang->line("lang_label_text");
+		 	$data["Home"] = $this->lang->line("Home");
             $data["About_us"] = $this->lang->line("About_us");
             $data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
             $data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");

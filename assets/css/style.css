@@ -242,6 +242,7 @@ h6 {
 
 .width100, .w100 {
   width: 100%;
+  pointer-events: none;
 }
 
 .hw100 {
@@ -550,7 +551,9 @@ btn-post:hover, .btn-post:focus, .btn-post:active, .btn-post.active, .open .drop
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   width: 100%;
 }
-
+.contactSelect{
+	height: 40px;
+}
 .btn-border {
   box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset, 1px 1px 0 rgba(0, 0, 0, 0.1) inset;
   color: #ffffff;
@@ -2868,6 +2871,12 @@ td.ads-details-td {
 	width:100%;
 	clear:both;
 	height:350px;
+	overflow:hidden;
+}
+.intro-inner-banner {
+	width:100%;
+	clear:both;
+	height:288px;
 	overflow:hidden;
 }
 .social-list {

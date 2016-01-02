@@ -756,6 +756,7 @@ li:first-child {
 	line-height: 40px;
 	margin: 12px 0 15px;
 	text-transform: uppercase;
+	text-align: left;
 }
 
 .collection-banner p {

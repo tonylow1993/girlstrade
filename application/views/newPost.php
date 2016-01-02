@@ -129,7 +129,7 @@ input[type=checkbox]
                       <div class="form-group">
                           <label class="col-md-3 control-label text-center" for="textarea"> <?php echo $Description;?> <font color="red">*</font></label>
                           <div class="col-md-8">
-                              <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="450"></textarea>
+                              <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="5"  required="true"  maxlength="650"></textarea>
                           </div>
                       </div>
                     

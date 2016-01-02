@@ -263,7 +263,29 @@ $(document).ready(function() {
            // $('#ProfileMenuAccount').addClass('out');
         }
     });
-
+    
+    
+    $('.map').click(function () {
+        $('.map iframe').css("pointer-events", "auto");
+    });
+    var contactMsglines = 10;
+    $('#contactUsMessage').keydown(function(e) {
+        
+        newLines = $(this).val().split("\n").length;
+        if(e.keyCode == 13 && newLines >= contactMsglines) {
+            return false;
+        }
+    });
+    
+    $('#descriptionTextarea').keydown(function(e) {
+        
+        newLines = $(this).val().split("\n").length;
+        if(e.keyCode == 13 && newLines >= contactMsglines) {
+            return false;
+        }
+    });
+    
+    
 }); // end Ready
 
 

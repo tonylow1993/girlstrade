@@ -535,7 +535,7 @@ h3.heading-xs {
 /*Forms
 ------------------------------------*/
 .form-control {
-  box-shadow: none;
+  //box-shadow: none;
 }
 
 .form-control:focus {

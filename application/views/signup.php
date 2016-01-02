@@ -57,7 +57,7 @@
                       <label class="col-md-4 control-label" > 
                       <?php echo $PhoneNumber;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input id="telno" name="telno" placeholder="HK Phone Number Only"
+                        <input id="telno" name="telno" placeholder="HK Phone Number"
          type="tel"   class="form-control input-md"   
          type="text" required="true"  maxlength="8" pattern="(?!99999999)\d{8}">
 <!--                         <div class="checkbox"> -->
@@ -120,9 +120,9 @@
                             I have read and agree to the <a href="terms-conditions.html">Terms & Conditions</a> </label>
                         </div>
                         <div style="clear:both"></div>
-                        <input type="submit" id="register" class="btn btn-primary btn-pink" value="Register" disabled="true"/></div>
-<!--                    		    <button id="validate" hidden="true" type="submit"></button> -->
-                          
+                        <!-- <input type="submit" id="register" class="btn btn-primary btn-pink" value="Register" disabled="true"/></div> -->
+              		    <button id="register" class="btn btn-primary btn-pink" type="submit" onclick="setup(); return false;" disabled="true">Submit</button>
+                         <input type="submit" style="display:none" name="submitButton"> 
                     </div>
                   </fieldset>
                 </form>
@@ -165,6 +165,12 @@ $("#inputEmail3").blur(function() {
 });
 */
 $( "#inputEmail3" ).blur(function() {
+
+	if(!validateEmail($("#inputEmail3").val())) {
+   		$("#emailAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Email cannot be empty</span></em>');
+		return;
+    }
+    
 	$("#emailAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
 	$.ajax({
 		method: "POST",
@@ -183,21 +189,21 @@ $( "#inputEmail3" ).blur(function() {
 $( "#telno" ).blur(function() {
 	//console.log("BLUR");
 
-	/*
-	$("#telStatusVal").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
-	$.ajax({
-		method: "POST",
-		url: "<?php echo base_url(); echo MY_PATH;?>home/validateTel",
-		data: { telno: $( "#telno" ).val() },
-		success: function(response){
-			var result = JSON.parse(response);
-	    	$("#error").html(result.message);
-	    	$("#telDiv").removeClass('has-success has-error').addClass(result.class);
-	    	$("#telStatusVal").html(result.icon);
-	    	$("#telError").html(result.err);
-	    	}
-	});
-	*/
+	
+	//$("#telStatusVal").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	//$.ajax({
+	//	method: "POST",
+	//	url: "<?php echo base_url(); echo MY_PATH;?>home/validateTel",
+	//	data: { telno: $( "#telno" ).val() },
+	//	success: function(response){
+	//		var result = JSON.parse(response);
+	 //   	$("#error").html(result.message);
+	 //   	$("#telDiv").removeClass('has-success has-error').addClass(result.class);
+	  //  	$("#telStatusVal").html(result.icon);
+	  //  	$("#telError").html(result.err);
+	  //  	}
+	//});
+	
 	var str = document.getElementById("telno").value;
 
 	var patt = /^[0-9]{8}$/;
@@ -291,8 +297,19 @@ $( "#inputPassword4" ).blur(function() {
 //         return setup();
 //     }
 // });
+function validateEmail(email) {
+	//console.log(email);
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
 function setup()
 {
+	var $myForm = $('#myForm');
+	if (!$myForm[0].checkValidity()) {
+		  //$contactForm.find(':submit').click();
+		  document.myForm.submitButton.click();
+		  return;
+	  }
 	var recaptcha = $("#g-recaptcha-response").val();
  	var isValid=true;
     if(recaptcha == ""){
@@ -305,23 +322,24 @@ function setup()
     }
 
     if($("#username").val().length < 5) {
-    	$("#usernameAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Username must contain at least 5 characters</span></em>');
+   		$("#usernameAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Username must contain at least 5 characters</span></em>');
     	isValid= false;
     }
-    else
-    {
-    	$('#usernameAjaxLoad').html('');
-    }
+
 	
     if($("#inputPassword3").val().length < 8) {
-        $("#pwd1V").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Password must contain at least 8 characters</span></em>');
-		//$("#inputPassword3").focus();
+       $("#pwd1V").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Password must contain at least 8 characters</span></em>');
+								//$("#inputPassword3").focus();
+       isValid= false;
+     }
+
+
+    if($("#telno").val().length < 1) {
+        $("#telStatusVal").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Phone number cannot be empty</span></em>');
         isValid= false;
-    }
-    else
-    {
-    	$('#pwd1V').html('');
-    }
+      }
+
+    
     // PASSWORD WITH RETYPE PASSWORD CHECKING 
     //if($('#inputPassword3').val() != $('#inputPassword4').val())
 	//{
@@ -334,33 +352,40 @@ function setup()
     	//$('#retypeAjaxLoad').html('');
     //}
     
-    $("#emailAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
-	$.ajax({
-		method: "POST",
-		url: "<?php echo base_url(); echo MY_PATH;?>home/validateEmail",
-		data: { inputEmail3: $( "#inputEmail3" ).val() },
-		success: function(response){
-			var result = JSON.parse(response);
-	    	$("#error").html(result.message);
-	    	$("#emailDiv").removeClass('has-success has-error').addClass(result.class);
-	    	$("#emailAjaxLoad").html(result.icon);
-	    	$("#emailError").html(result.err);
-	    	}
-	});
-
-	$("#usernameAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
-	$.ajax({
-		method: "POST",
-		url: "<?php echo base_url(); echo MY_PATH;?>home/validateUsername",
-		data: { username: $( "#username" ).val() },
-		success: function(response){
-			var result = JSON.parse(response);
-        	$("#error").html(result.message);
-        	$("#usernameDiv").removeClass('has-success has-error').addClass(result.class);
-        	$("#usernameAjaxLoad").html(result.icon);
-        	$("#usernameError").html(result.err);
-        	}
-    });
+   // $("#emailAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+    //$.ajax({
+	//		method: "POST",
+	//		url: "<?php echo base_url(); echo MY_PATH;?>home/validateEmail",
+	//		data: { inputEmail3: $( "#inputEmail3" ).val() },
+	//		success: function(response){
+	//				var result = JSON.parse(response);
+	//		  	$("#error").html(result.message);
+	 //   	  	$("#emailDiv").removeClass('has-success has-error').addClass(result.class);
+	  //  	   	$("#emailAjaxLoad").html(result.icon);
+	   // 	   	$("#emailError").html(result.err);
+	   // 	   	}
+	//	});
+	if($("#inputEmail3").val().length < 3) {
+   		$("#emailAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Email cannot be empty</span></em>');
+    	isValid= false;
+    }
+    //else
+    //{
+    //	$('#emailAjaxLoad').html('');
+    //}
+	//$("#usernameAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	//$.ajax({
+	//	method: "POST",
+	//	url: "<?php echo base_url(); echo MY_PATH;?>home/validateUsername",
+	//	data: { username: $( "#username" ).val() },
+	//	success: function(response){
+	//		var result = JSON.parse(response);
+	//	   	$("#error").html(result.message);
+     //   	$("#usernameDiv").removeClass('has-success has-error').addClass(result.class);
+      //  	$("#usernameAjaxLoad").html(result.icon);
+       // 	$("#usernameError").html(result.err);
+       // 	}
+    //});
     if(!isValid)
         return false;
 	if($('#captchaError').text()=='' &&
@@ -371,7 +396,12 @@ function setup()
 		$("#emailError").text()=='' &&
 		$("#error").text()=='')
 	{			
-		document.getElementById("myForm").submit();
+		if($("#usernameAjaxLoad").text()!='<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">' 
+			&& $("#emailAjaxLoad").text()!='<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">')
+		{	
+			document.getElementById("myForm").submit();
+		}else
+			return false;
 	}
 	else
 		return false;
