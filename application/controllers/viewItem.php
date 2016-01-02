@@ -164,6 +164,18 @@
                 date_default_timezone_set('Asia/Hong_Kong');
       		   $thread["viewTime"]=$date;
                 $thread['session_id']=$this->nativesession->userdata('session_id');
+                $ip='';
+                if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                	$ip = $_SERVER['HTTP_CLIENT_IP'];
+                } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                	$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+                } else {
+                	$ip = $_SERVER['REMOTE_ADDR'];
+                }
+                
+                $thread['ip']=$ip;
+                $thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+                
                 $this->postviewhistory_model->insert($thread);
                 
             } 

@@ -1,0 +1,21 @@
+ALTER TABLE `raydb`.`postviewhistory` 
+ADD COLUMN `cookies_id` VARCHAR(45) NULL AFTER `session_id`;
+
+ALTER TABLE `raydb`.`searchhistory` 
+ADD COLUMN `cookies_id` VARCHAR(1000) NULL AFTER `maxPrice`;
+
+ALTER TABLE `raydb`.`searchhistory` 
+CHANGE COLUMN `ip` `ip` VARCHAR(50) NULL DEFAULT NULL ;
+
+ALTER TABLE `raydb`.`postviewhistory` 
+CHANGE COLUMN `ip` `ip` VARCHAR(50) NULL DEFAULT NULL ;
+
+
+CREATE TABLE `raydb`.`pagevisited` (
+  `userID` BIGINT NULL,
+  `ip` VARCHAR(45) NULL,
+  `session_id` VARCHAR(1000) NULL,
+  `cookies_id` VARCHAR(1000) NULL,
+  `visit_time` DATETIME NULL,
+  `page_visit` VARCHAR(100) NULL);
+

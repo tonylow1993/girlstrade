@@ -6,7 +6,7 @@ class postviewhistory_model extends CI_Model {
 		var $ip =''; 
 		var $session_id='';
 		var	$viewTime='';
-							
+		var $cookies_id='';					
 	    function __construct()
 	    {
 	        parent::__construct();

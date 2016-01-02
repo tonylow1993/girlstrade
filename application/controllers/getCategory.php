@@ -104,6 +104,18 @@ class getCategory extends CI_Controller {
 		$userInfo=$this->nativesession->get("user");
 		if(!empty($userInfo))
 			$searchhistory["userID"]=$userInfo["userID"];
+		$ip='';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip = $_SERVER['REMOTE_ADDR'];
+		}
+		
+		$searchhistory['ip']=$ip;
+		$searchhistory['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+		
 		$this->searchhistory_model->insert($searchhistory);
 		
 		

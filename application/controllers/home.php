@@ -42,7 +42,7 @@ class Home extends CI_Controller {
               	}else {
               		$this->nativesession->_sess_run();
               	}
-                
+              		
                 $this->load->model('users_model');
         $this->load->model('user_model', 'user');
 		$this->load->model('userinfo_model', 'userInfo');
@@ -147,6 +147,9 @@ class Home extends CI_Controller {
 			$data["Categories"]=$this->lang->line("Categories");
 			$data["Location"]=$this->lang->line("Location");
 			$data["Facebook_Fans"]=$this->lang->line("Facebook_Fans");
+			
+			setcookie('gt_cookie_id', $this->nativesession->userdata('session_id') ,time() + (86400 * 7));
+			
 			$this->load->view('index', $data);
 		}catch(Exception $ex)
 		{
@@ -253,6 +256,18 @@ class Home extends CI_Controller {
 				$date = date('Y-m-d h:i:s a', time());
 				$thread["viewTime"]=$date;
 				$thread['session_id']=$this->nativesession->userdata('session_id');
+				$ip='';
+				if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+					$ip = $_SERVER['HTTP_CLIENT_IP'];
+				} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+					$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+				} else {
+					$ip = $_SERVER['REMOTE_ADDR'];
+				}
+				
+				$thread['ip']=$ip;
+				$thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+				
 				$this->postviewhistory_model->insert($thread);
 	
 			}

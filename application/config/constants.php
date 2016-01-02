@@ -61,6 +61,13 @@ define("TITLECOLOR", "RED");
 define("PASSWORDEXPIRYDAYS", 30);
 define("DIRECTSENDEXPIRYDAYS", 30);
 
+define("PageContactUs",  "ContactUs");
+define("PageSignup", "Signup");
+defin("PageSignin", "Signin");
+define("PageSearch", "Search");
+define("PageViewItem", "ViewItem" );
+define("PageViewProfile", "ViewProfile" );
+
 define("MAXTIMESDAILY_MARKSOLDPERPOST", 10 );
 define("MAXTIMESDAILY_SENDFROMBUYER", 10);
 define("MAXTIMESDAILY_REPLYFROMSELLER", 10);

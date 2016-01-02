@@ -9,6 +9,7 @@ var $session_id='';
 var $viewtime='';
 var $minPrice=0;
 var $maxPrice=0;
+var $cookies_id='';
 function __construct()
 {
 	parent::__construct();
