@@ -32,6 +32,7 @@
 20.  USER PANEL || ACCOUNT
 20.  CONTACT || ABOUT
 21.  Index V2
+22.  ADDED BY TONY
 
 /* =============================================================== */
 /* IMPORT
@@ -153,7 +154,7 @@ body {
   padding: 0;
   color: #34495E;
   color: #333;
-  font-family: 'Roboto', sans-serif;
+  font-family: MyCustomFont, serif;
   font-size: 13px;
   line-height: 21px;
   position: relative;
@@ -168,8 +169,8 @@ body, html, #wrapper {
 /* =============================================================== */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Roboto Condensed, Helvetica Neue,  Helvetica, sans-serif ;
-  font-weight: normal;
+  font-family: MyCustomFont, serif;
+  font-weight: lighter;
   margin: 0;
   padding-bottom: 15px;
 }
@@ -242,7 +243,6 @@ h6 {
 
 .width100, .w100 {
   width: 100%;
-  pointer-events: none;
 }
 
 .hw100 {
@@ -551,9 +551,7 @@ btn-post:hover, .btn-post:focus, .btn-post:active, .btn-post.active, .open .drop
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   width: 100%;
 }
-.contactSelect{
-	height: 40px;
-}
+
 .btn-border {
   box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset, 1px 1px 0 rgba(0, 0, 0, 0.1) inset;
   color: #ffffff;
@@ -712,15 +710,11 @@ body {
   font-size: 28px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #E2348C;
+  color: #16A085;
 }
-.logo, .inner-logo-title {
-  font-family: Open Sans Condensed, Helvetica Neue, sans-serif;
-  font-size: 28px;
-  font-weight: bold;
-  color: #E2348C;
-}
+
 .logo span, .logo-title span {
+  font-family: Open Sans Condensed;
   font-weight: lighter;
 }
 
@@ -918,9 +912,9 @@ button.btn-search {
   border-radius: 3px 3px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 1px rgba(180, 180, 180, 0.5);
   margin-bottom: 30px;
   padding: 20px 15px;
+  box-shadow: 0 0 15px #e1e1e1,0 0 15px #e1e1e1 !important;
 }
 
 .inner-box.add {
@@ -1081,7 +1075,7 @@ button.btn-search {
 
 .item-carousel .item-carousel-thumb {
   width: 100%;
-  height:350px;
+  height:250px;
   display: block;
   overflow: hidden;
   border: solid 1px #ddd;
@@ -1089,6 +1083,14 @@ button.btn-search {
 }
 
 .item-carousel .item-carousel-thumb img {
+padding: 1px;
+min-height: 100%;
+margin: auto;
+width: auto;
+max-width: 100%;
+height: auto;
+max-height: 350px;
+display: block;
   max-width: 100%;
   padding: 1px;
   min-height: 100%;
@@ -1141,7 +1143,7 @@ button.btn-search {
 
 .item1-carousel .item-carousel-thumb {
   width: 100%;
-  height:350px;
+  height:250px;
   display: block;
   overflow: hidden;
   border: solid 1px #ddd;
@@ -1149,6 +1151,14 @@ button.btn-search {
 }
 
 .item1-carousel .item-carousel-thumb img {
+padding: 1px;
+min-height: 100%;
+margin: auto;
+width: auto;
+max-width: 100%;
+height: auto;
+max-height: 225px;
+display: block;
   max-width: 100%;
   padding: 1px;
   min-height: 100%;
@@ -1245,12 +1255,13 @@ button.btn-search {
 /* CATEGORY INTRO
 /* =============================================================== */
 .search-row-wrapper {
-  background: url(../../images/bg.jpg);
+  background: url(../../images/banner.jpg);
   height: auto;
   padding: 50px 0;
   transition: all 400ms cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
   -webkit-transition: all 400ms cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
   width: 100%;
+  margin-top: -20px;
 }
 /* =============================================================== */
 /* CATEGORY LIST
@@ -1305,6 +1316,10 @@ button.btn-search {
 
 .add-image {
   position: relative;
+  border: 1px solid #ddd;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .photo-count {
@@ -1324,7 +1339,12 @@ button.btn-search {
 }
 
 .add-image a img {
-  width: 100%;
+height: auto;
+width: auto;
+max-height: 150px;
+max-width: 100%;
+margin: auto !important;
+display: block;
 }
 
 .add-title {
@@ -1332,9 +1352,14 @@ button.btn-search {
 }
 
 .add-title-girlstrade {
-	padding: 0px, 0px, 0px, 0px;
- font-color: blue;
+  padding: 0px, 0px, 0px, 0px;
+  color: blue;
   font-weight: bold;
+  font-weight: normal;
+  font-size: 20px;
+  margin-bottom: 18px;
+  margin-top: 10px;
+  color: black;
 }
 
 .add-details a {
@@ -1833,12 +1858,12 @@ button.btn-search {
 }
 
 .list-title a, .list-title {
-  color: #222;
-  font-size: 18px;
+  color: #500000;
+  font-size: 20px;
 }
 
 .list-title {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #E2348C;
   display: block;
   margin-bottom: 15px;
   padding: 10px 0;
@@ -1847,7 +1872,7 @@ button.btn-search {
 }
 
 .list-title:before {
-  border-color: #ddd transparent transparent;
+  border-color: #E2348C transparent transparent;
   border-style: solid;
   border-width: 7px;
   bottom: -14px;
@@ -1923,11 +1948,13 @@ hr.thin {
 /* =============================================================== */
 
 .sidebar-panel .panel-heading {
-  background: #f8f8f8;
+  background: #E2348C;
   position: relative;
   border-bottom: 1px solid #ddd;
   font-size: 16px;
   line-height: 22px;
+  border: 1px solid #E2348C;
+  color: white;
 }
 
 .panel-contact-seller .panel-body {
@@ -2018,6 +2045,12 @@ hr.thin {
   border-radius: 0px;
   opacity: 0.7;
   transition: opacity 0.15s ease-in-out 0s;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 @media (max-width:640px) {
@@ -2069,17 +2102,19 @@ hr.thin {
 }
 
 .pricetag {
-  background: none repeat scroll 0 0 #0094af;
-  border-radius: 3px 0 0 3px;
-  color: #fff;
-  font-size: 20px;
-  min-width: 100px;
-  padding: 5px 15px;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  top: 130px;
-  z-index: 100;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 3px;
+    color: #E2348C;
+    font-size: 25px;
+    min-width: 150px;
+    padding: 5px 15px;
+    position: absolute;
+    right: 30;
+    text-align: center;
+    top: 13px;
+    z-index: 100;
+    line-height: 40px;
+    border: 1px solid #E2348C;
 }
 
 @media(max-width:480px) {
@@ -2087,7 +2122,8 @@ hr.thin {
     font-size: 18px;
     line-height: 28px;
     min-width: 90px;
-    top: 140px;
+    top: 13px;
+    right: 30;
   }
 }
 
@@ -2379,12 +2415,6 @@ div.login-box .panel-footer label {
 .icon-color-3 {
   color: #74C29B;
 }
-.icon-color-4 {
-  color: #FF8C69;
-}
-.icon-color-5 {
-  color: #E2348C;
-}
 /* =============================================================== */
 /* POST ADS
 /* =============================================================== */
@@ -2468,7 +2498,7 @@ div.login-box .panel-footer label {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
-  border-right: 3px solid rgba(251, 250, 251, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .iconbox-wrap-icon .icon {
@@ -2478,7 +2508,7 @@ div.login-box .panel-footer label {
   margin-right: auto;
   vertical-align: middle !important;
   width: 60px !important;
-  color: FFFFFF;
+  color: #4169E1;
 }
 
 .iconbox-wrap-content {
@@ -2570,7 +2600,7 @@ div.login-box .panel-footer label {
   color: #4e575d;
   font-size: 12px;
   padding: 0 10px;
-  //text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .footer-nav li a:first-child {
@@ -2675,7 +2705,7 @@ div.login-box .panel-footer label {
 	/*border-bottom: 1px solid #e1e1e1;*/
   display: block;
   font-family: 'Roboto Condensed', Open Sans, Arial;
-  color: #2F6194;
+  color: #2a3744;
   font-size: 12px;
   height: auto;
   letter-spacing: 0.5px;
@@ -2684,7 +2714,7 @@ div.login-box .panel-footer label {
   margin-bottom: 1px;
   text-align: left;
   text-decoration: none;
-  //text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .user-panel-sidebar ul li a:hover, .user-panel-sidebar ul li a:active, .user-panel-sidebar ul li.active a {
@@ -2750,15 +2780,15 @@ li.divider {
 
 .collapse-title {
   border-top: 1px solid #e6e6e6;
-  color: #A22E98;
+  color: #2a3744;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: normal;
   letter-spacing: 1px;
   margin-bottom: 0;
   margin-top: 0;
   padding-bottom: 10px;
   padding-top: 15px;
-  //text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .no-border {
@@ -2769,7 +2799,6 @@ li.divider {
   background-color: #e3e3e3;
   color: #666;
   font-weight: normal;
-  border-radius: 10px;
 }
 /* statusbar */
 .statusbar {
@@ -2783,6 +2812,7 @@ li.divider {
 
 .add-manage-table {
   font-weight: normal;
+  border: none;
 }
 
 .table-action {
@@ -2871,12 +2901,6 @@ td.ads-details-td {
 	width:100%;
 	clear:both;
 	height:350px;
-	overflow:hidden;
-}
-.intro-inner-banner {
-	width:100%;
-	clear:both;
-	height:288px;
 	overflow:hidden;
 }
 .social-list {
@@ -3079,7 +3103,7 @@ td.ads-details-td {
 	  padding:0 5px;
   }
     .inner-box {
-	 padding: 10px 10px;
+	 padding: 20px 10px;
   }
   .user-panel-sidebar ul li a {
 	     padding: 5px 4px;
@@ -3326,6 +3350,10 @@ td.ads-details-td {
     margin-top: 10px;
 }
 
+.margin-top-30 {
+    margin-top: 30px;
+}
+
 .inner-box .title-2{
   font-family: MyCustomFont, serif;
   font-weight: 300;
@@ -3370,12 +3398,12 @@ td.ads-details-td {
 }
 
 .item-left {
-	width: 55%;
+	width: 45%;
     float: left;
 }
 
 .item-right {
-	width: 45%;
+	width: 55%;
 	float: right;
     padding-left: 30px;
 	text-align: left;
@@ -3398,7 +3426,7 @@ td.ads-details-td {
     font-size: 20px;
 	text-overflow: ellipsis;
     display: -webkit-box;
-	-webkit-line-clamp: 9;
+	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	overflow: hidden !important;
 }
@@ -3407,12 +3435,15 @@ td.ads-details-td {
   position: absolute;
   bottom: 15px;
   font-family: MyCustomFont, serif;
-  font-weight: 500;
+  font-weight: 300;
   text-align: left;
   font-size: 35px;
   color: #E2348C; 
   display: block;
   right: 15px;
+  border: 1px solid #E2348C;
+  padding: 14px;
+  border-radius: 3px;
 }
 
 .item1-carousel .item-name {
@@ -3443,6 +3474,19 @@ td.ads-details-td {
     border-color: #E2348C;
 }
 
+.btn-pink:hover {
+  background-color: #CA1566;
+    border-color: #CA1566;
+}
+
+.btn-80{
+  width: 80px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 .btn-pink:disabled {
 	background-color: #EA75B1;
     border-color: #EA75B1;
@@ -3461,6 +3505,32 @@ span b{
 	font-family: Open Sans Condensed;
 }
 
+.title-font{
+    font-family: MyCustomFont, serif;
+    font-weight: 500;
+}
+
+.thumbnail{
+    background-color: transparent;
+    border: 0px;
+}
+
+.adds-wrapper h2{
+    padding-top: 10px;
+}
+
+.pink-border{
+    border: 1px solid #E2348C;
+}
+
+.ads-details-wrapper h2{
+  font-size: 30px;
+  line-height: 50px;
+ }
+ 
+ .text-center{
+    text-align: center !important;
+}
 
 /* =============================================================== */
 /* BLOGS & BLOG DETAILS

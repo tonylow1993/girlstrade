@@ -93,6 +93,7 @@
     float: left;
     text-align: center;
     vertical-align: middle;
+	width: 90%;
 }
 
 .file-preview-frame:hover {
@@ -100,9 +101,21 @@
     box-shadow: 2px 2px 5px 0px #333;
 }
 
-.file-preview-image {
-    height: 160px;
-    vertical-align: text-center;
+@media screen and (max-width: 480px) {
+	.file-preview-image {
+		width: auto;
+		height: 100px;
+		vertical-align: text-center;
+	}
+}
+
+
+@media screen and (min-width: 480px) {
+	.file-preview-image {
+		width: auto;
+		height: 160px;
+		vertical-align: text-center;
+	}
 }
 
 .file-preview-text {
