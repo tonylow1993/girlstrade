@@ -129,7 +129,7 @@ input[type=checkbox]
                       <div class="form-group">
                           <label class="col-md-3 control-label text-center" for="textarea"> <?php echo $Description;?> <font color="red">*</font></label>
                           <div class="col-md-8">
-                              <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="5"  required="true"  maxlength="650"></textarea>
+                              <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="450"></textarea>
                           </div>
                       </div>
                     
@@ -407,7 +407,7 @@ input[type=checkbox]
 
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 <link href="<?php echo base_url();?>assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-<script src="<?php echo base_url();?>assets/js/fileinput.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>assets/js/fileinput.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/js/fileinput_locale_ch.js" type="text/javascript"></script>
 <!--<script  type="text/javascript" data-my_var_1="<?php echo base_url(); echo MY_PATH;?>newPost/uploadImg" data-my_var_2="<?php echo base_url();?>assets/img/loading.gif" src="<?php echo base_url();?>assets/js/newTopic.js"></script>-->
 
@@ -415,14 +415,14 @@ input[type=checkbox]
 var img = null;
 
 $("#image").fileinput({
-    'showPreview' : true,
-    'allowedFileExtensions' : ['jpg', 'png','gif','jpeg','bmp'],
-    //'elErrorContainer': '#errorBlock',
-    'showUpload' : false,
-    'maxFileCount':5,
-    'maxFileSize': 10000000
-    //'dropZoneEnabled' : false,
-    //'uploadUrl': 'test.php'
+    allowedFileExtensions : ['jpg', 'png','gif','jpeg','bmp'],
+    maxFileCount:5,
+    maxFileSize: 10000000,
+	
+	showUpload: false,
+	
+	uploadAsync: false,
+    uploadUrl: "<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>"
 });
 
 function setup()
