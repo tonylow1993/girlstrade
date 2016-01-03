@@ -94,8 +94,10 @@
 // echo '<script  type="text/javascript">alert(\''.urldecode($errorMsg).'\');</script>';
 
 $bob = session_id();
+
 echo "Session ID on load is ".$bob;
 echo "<br>";
+
 if($bob==""){
 	session_start();
 	$bob = session_id();
@@ -139,6 +141,11 @@ if ((!isset($_GET['jsEnabled']) || $_GET['jsEnabled'] == 'true') && !isset($_SER
       }
    }
 }
+
+$usr = $this->nativesession->get('user');
+if(empty($usr)){$usr='Not';}
+echo json_encode($usr);;
+
 ?>
   <div class="header">
     <nav class="navbar   navbar-site navbar-default" role="navigation">
@@ -160,7 +167,6 @@ if ((!isset($_GET['jsEnabled']) || $_GET['jsEnabled'] == 'true') && !isset($_SER
           
           <?php $usr = $this->nativesession->get('user');
 				//or !isset($this->session->userdata["userID"])
-         
           if(empty($usr)){ 
             ?>  
           <ul class="nav navbar-nav navbar-right">
