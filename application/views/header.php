@@ -141,11 +141,11 @@ if ((!isset($_GET['jsEnabled']) || $_GET['jsEnabled'] == 'true') && !isset($_SER
       }
    }
 }
-
+/*
 $usr = $this->nativesession->get('user');
 if(empty($usr)){$usr='Not';}
-echo json_encode($usr);;
-
+echo json_encode($usr);
+*/
 ?>
   <div class="header">
     <nav class="navbar   navbar-site navbar-default" role="navigation">

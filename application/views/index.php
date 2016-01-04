@@ -758,6 +758,7 @@ window.onload = function(){
     
     </div>
   </div>
+  </div>
   <!-- /.page-info -->
   <!-- ending body -->
     <?php include "footer1.php"; ?>

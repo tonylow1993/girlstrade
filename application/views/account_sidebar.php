@@ -77,7 +77,7 @@
                  	 echo "<div id=\"ProfileMenuAds\" class=\"panel-collapse collapse in\">";
                  	 echo  "<ul class=\"acc-list\">";
                 	if($activeNav==2)
-              			echo "<li><a  class=\"active\" href=$approverequest1><i class=\"icon-ok-1\"></i> $ApproveRequest <span class=\"badge\">$approveMsgCount</span></a></li>";
+              			echo "<li><a  class=\"active\" href=$approverequest1><i class=\"icon-thumbs-up-1\"></i> $ApproveRequest <span class=\"badge\">$approveMsgCount</span></a></li>";
               	 	else 
               	 	echo "<li><a href=$approverequest1><i class=\"icon-ok-1\"></i> $ApproveRequest <span class=\"badge\">$approveMsgCount</span></a></li>";
               	 	

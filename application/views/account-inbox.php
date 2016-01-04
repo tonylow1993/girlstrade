@@ -244,7 +244,6 @@
         <button type="submit" class="btn btn-success pull-right" onclick="setup(); return false;">Send message!</button>
       	<button id="validate" hidden="true" type="submit"></button>
       </div>
-    </div>
   </div>
 </div>
 

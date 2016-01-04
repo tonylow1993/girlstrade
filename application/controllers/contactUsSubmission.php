@@ -55,13 +55,15 @@ class contactUsSubmission  extends CI_Controller {
 	public function index()
 	{
 		$data['name'] = $this->input->post('name'); 
-		$data['number'] = $this->input->post('number'); 
+		$data['phone'] = $this->input->post('phone'); 
 		$data['email'] = $this->input->post('email'); 
 		$data['message'] = $this->input->post('message'); 
-		echo $data['name'];
-		echo $data['number'];
-		echo $data['email'];
-		echo $data['message'];
+		$data["contactTypeID"]=$this->input->post('contactTypeID'); 
+		$data['createDate']=date("Y-m-d H:i:s");
+		$row=$this->contact_model->addContactModel($data);
+		redirect(base_url());
 	}
+	
+	
 	
 }
