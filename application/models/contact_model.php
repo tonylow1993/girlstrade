@@ -14,24 +14,10 @@ class contact_model extends CI_Model {
 	        parent::__construct();
 	    }
 	    
-	    function addContactModel($data)
+	    function addContactModel()
 	    {	
-	    	try{
-			$this->db->trans_start();
-			$result= $this->db->insert('contactHistory', $data);
-			$this->db->trans_complete();
-			if($result<=0)
-				throw new Exception(ZeroUpdateRecordError);
-			else
-				return $result;
-		}catch(Exception $ex)
-		{
-			echo $ex->getMessage();
-			log_message('error', "[Class]: ".$this->router->fetch_class()."[Method:] ".
-					$this->router->fetch_method().
-					"[Line]: ".$ex->getLine()."[Error]: ".$ex->getMessage());
-		}
-		return 0;
+	    	$query = $this->db->from('category')->where('parentID', NULL)->get();
+	        return $query->result();
 	    }
 		
 }
