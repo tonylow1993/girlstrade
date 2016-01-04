@@ -50,7 +50,7 @@ class footer  extends CI_Controller {
         $this->load->model('tradecomments_model');
         $this->load->model('itemcomments_model');
         $this->load->model('abusemessages_model');
-        $this->load->model('contactType_model');
+        $this->load->model('contacttype_model');
 	}
 	public function getAboutUS()
 	{
@@ -104,30 +104,8 @@ class footer  extends CI_Controller {
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data["lang_label"]=$this->nativesession->get("language");
-		/*
-		$data['contactOpt']=null;
-		$data['queryContactOpt']=$this->contactType_model->getParentLocation();
-		if (!is_null($data['queryLoc'])) {
-			foreach($data['queryLoc'] as $row)
-			{
-				$resLoc1=array($row->locationID => array($row));
-				$resLoc2=$this->getChildLocation($row->locationID);
-				if(!is_null($resLoc2))
-					if(is_null($data['resLoc']))
-						$data['resLoc']=$resLoc1+$resLoc2;
-					else
-						$data['resLoc']=$data['resLoc']+$resLoc1+$resLoc2;
-					else
-					{
-						if(is_null($data['resLoc']))
-							$data['resLoc']=$resLoc1;
-						else
-							$data['resLoc']=$data['resLoc']+$resLoc1;
-					}
-			}
-	
-		}*/
 		
+		$data["result"]=$this->contacttype_model->getContactType();
 		
 		$this->load->view("contact", $data);
 	
