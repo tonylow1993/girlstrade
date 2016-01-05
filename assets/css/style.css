@@ -1948,7 +1948,7 @@ hr.thin {
 /* =============================================================== */
 
 .sidebar-panel .panel-heading {
-  background: #E2348C;
+  background: #f8f8f8;
   position: relative;
   border-bottom: 1px solid #ddd;
   font-size: 16px;
@@ -2415,6 +2415,12 @@ div.login-box .panel-footer label {
 .icon-color-3 {
   color: #74C29B;
 }
+.icon-color-4 {
+  color: #FF8C69;
+}
+.icon-color-5 {
+  color: #E2348C;
+}
 /* =============================================================== */
 /* POST ADS
 /* =============================================================== */
@@ -2498,7 +2504,7 @@ div.login-box .panel-footer label {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 3px solid rgba(251, 250, 251, 0.4);
 }
 
 .iconbox-wrap-icon .icon {
@@ -2600,7 +2606,7 @@ div.login-box .panel-footer label {
   color: #4e575d;
   font-size: 12px;
   padding: 0 10px;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 }
 
 .footer-nav li a:first-child {
@@ -2705,7 +2711,7 @@ div.login-box .panel-footer label {
 	/*border-bottom: 1px solid #e1e1e1;*/
   display: block;
   font-family: 'Roboto Condensed', Open Sans, Arial;
-  color: #2a3744;
+  color: #2F6194;
   font-size: 12px;
   height: auto;
   letter-spacing: 0.5px;
@@ -2714,7 +2720,7 @@ div.login-box .panel-footer label {
   margin-bottom: 1px;
   text-align: left;
   text-decoration: none;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 }
 
 .user-panel-sidebar ul li a:hover, .user-panel-sidebar ul li a:active, .user-panel-sidebar ul li.active a {
@@ -2780,15 +2786,15 @@ li.divider {
 
 .collapse-title {
   border-top: 1px solid #e6e6e6;
-  color: #2a3744;
+  color: #A22E98;
   font-size: 14px;
-  font-weight: normal;
+  font-weight: bold;
   letter-spacing: 1px;
   margin-bottom: 0;
   margin-top: 0;
   padding-bottom: 10px;
   padding-top: 15px;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 }
 
 .no-border {
@@ -2875,7 +2881,12 @@ td.ads-details-td {
   font-weight: bold;
   border-bottom: solid 1px #ddd;
 }
-
+.intro-inner-banner {
+	width:100%;
+	clear:both;
+	height:288px;
+	overflow:hidden;
+}
 .list-group-unstyle .list-group-item.active a {
   color: #000;
 }
@@ -3103,6 +3114,7 @@ td.ads-details-td {
 	  padding:0 5px;
   }
     .inner-box {
+     //padding: 10px 10px;
 	 padding: 20px 10px;
   }
   .user-panel-sidebar ul li a {
@@ -3426,7 +3438,8 @@ td.ads-details-td {
     font-size: 20px;
 	text-overflow: ellipsis;
     display: -webkit-box;
-	-webkit-line-clamp: 4;
+    -webkit-line-clamp: 9;
+	//-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	overflow: hidden !important;
 }

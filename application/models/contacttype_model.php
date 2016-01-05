@@ -13,7 +13,7 @@ class contacttype_model extends CI_Model {
 	    
 	    function getContactType()
 	    {	
-	    	$query = $this->db->from('category')->where('parentID', NULL)->get();
+	    	$query = $this->db->from('contactType')->get();
 	        return $query->result();
 	    }
 		

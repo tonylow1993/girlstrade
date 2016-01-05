@@ -146,6 +146,7 @@
     </div>
     <!-- /.container --> 
   </div>
+  </div>
   <!-- /.main-container -->
   <?php include "footer1.php"; ?>
 
@@ -413,5 +414,5 @@ $("#checkboxes-1").click(function() {
 
 </script>
   <?php include "footer2.php"; ?>
-  </div>
+
 

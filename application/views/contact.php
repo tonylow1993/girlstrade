@@ -50,7 +50,7 @@
 
              
                      <form name="contactForm" id="contactForm" class="form-horizontal" method="post" onSubmit="return contactAction()"
-                     action="<?php echo base_url(); echo MY_PATH;?>contactUsSubmission">
+                     action="<?php echo base_url(); echo MY_PATH;?>footer/addcontact”>
                     <fieldset>
 						<div class="row">
                             <div class="col-sm-6">
@@ -65,7 +65,7 @@
                              <div class="col-sm-6">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input id="number" name="number" type="text" placeholder="HK Phone Number"
+                                    <input id="phone" name="phone" type="text" placeholder="HK Phone Number"
                                     type="tel"   class="form-control "   
          							type="text" required="true"  maxlength="8" pattern="(?!99999999)\d{8}">
                                 </div>
@@ -83,21 +83,21 @@
                              <div class="col-sm-6">
                             <div class="form-group">
                             <div class="col-md-12">
-                                <select name="category-group" id="category-group" class="form-control contactSelect" required="true">
-                                  <option value="general" style="background-color:#E9E9E9;font-weight:bold;"> - General - </option>
-                                  <?php /*
+                                <select name="contactTypeID" id="contactTypeID" class="form-control contactSelect" required="true">
+                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please select - </option>
+                                  <?php 
+                                  if($result<>null){
 						            foreach ($result as $id=>$value)
 						            {
 						            	if(!isset($lang_label))
 							            		$lang_label="";
-						            	$name=$value[0]->name;
+						            	$name=$value->name;
 						            	if($lang_label<>"english")
-						            		$name=$value[0]->nameCH;
-						            	if($value[0]->level==1)
-						            		echo "<option value=\"$id\" style=\"background-color:#E9E9E9;font-weight:bold;\" > - $name - </option>";
-						            	else 
-						            		echo "<option value=\"$id\"> $name </option>";
-						            	}*/
+						            		$name=$value->nameCH;
+						            	$typeID=$value->contactTypeID;
+						            		echo "<option value='$typeID'> $name </option>";
+						            	}
+                                  }
 						            ?>
                               </select>
                             </div>
@@ -114,6 +114,8 @@
 								<div id="contactUsMessageError" class="center"> </div>                            
                             </div> 
                         </div>
+                        </div>
+                          <div class="col-lg-12">
                         <div class="form-group">
                         <div class="col-md-12">
                         <div class="g-recaptcha" 
@@ -143,18 +145,16 @@
                             
                         
                         
-                        
+                        </div>
                         </div>
                         </div> 
-                            
+                              <div class="col-lg-12">
                             <div class="form-group">
                             <div class="col-md-12 ">
                                 <button type="submit" onclick="contactAction(); return false;" class="btn btn-primary btn-pink">Submit</button>
                             	<input type="submit" style="display:none" name="submitButton">
                             </div>
                         	</div>
-                        
-                        
                         </div>
                         
                         </div>
