@@ -50,7 +50,7 @@
 
              
                      <form name="contactForm" id="contactForm" class="form-horizontal" method="post" onSubmit="return contactAction()"
-                     action="<?php echo base_url(); echo MY_PATH;?>contactUsSubmission">
+                     action="<?php echo base_url(); echo MY_PATH;?>footer/addcontact”>
                     <fieldset>
 						<div class="row">
                             <div class="col-sm-6">

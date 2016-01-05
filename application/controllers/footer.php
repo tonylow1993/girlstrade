@@ -51,6 +51,7 @@ class footer  extends CI_Controller {
         $this->load->model('itemcomments_model');
         $this->load->model('abusemessages_model');
         $this->load->model('contacttype_model');
+        $this->load->model('contact_model');
 	}
 	public function getAboutUS()
 	{
@@ -183,4 +184,14 @@ class footer  extends CI_Controller {
 	
 	}
 	
+	public function addcontact(){
+		$data['name'] = $this->input->post('name');
+		$data['phone'] = $this->input->post('phone');
+		$data['email'] = $this->input->post('email');
+		$data['message'] = $this->input->post('message');
+		$data["contactTypeID"]=$this->input->post('contactTypeID');
+		$data['createDate']=date("Y-m-d H:i:s");
+		$row=$this->contact_model->addContactModel($data);
+		$this->getContactUS();
+	}
 }
