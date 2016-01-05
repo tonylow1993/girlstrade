@@ -143,7 +143,7 @@ if ((!isset($_GET['jsEnabled']) || $_GET['jsEnabled'] == 'true') && !isset($_SER
 }
 
 $usr = $this->nativesession->get('user');
-if(empty($usr)){$usr='Not';}
+if(empty($usr)){$usr='Not Yet Login';}
 echo json_encode($usr);;
 
 ?>
