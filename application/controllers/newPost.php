@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+include 'ChromePhp.php';
 
 class newPost extends CI_Controller {
 	
@@ -814,9 +815,10 @@ public function getChildCategory($parentID)
 			return;
         }
         $this->post->updateStat();
-       $this->load->library('image_lib');
-	   $number_of_files = sizeof($_FILES['images']['tmp_name']);
-	   $files = $_FILES['images'];
+        $this->load->library('image_lib');
+	    $number_of_files = sizeof($_FILES['images']['tmp_name']);
+	    $files = $_FILES['images'];
+		ChromePhp::log($number_of_files);
         for ($i=0;$i<$number_of_files;$i++)
         {
 			$_FILES['image']['name'] = $files['name'][$i];
