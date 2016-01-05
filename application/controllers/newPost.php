@@ -175,6 +175,14 @@ class newPost extends CI_Controller {
             $data["lblAllLocations"]=$this->lang->line("lblAllLocations");
             $data["PleaseNotCloseBrowse"]=$this->lang->line("PleaseNotCloseBrowse");
             $data["YouHaveRemainPost"]=sprintf($this->lang->line("YouHaveRemainPost"), NUMOFTIMESPOST-$NumOfPostTimes);
+            
+			//-----------------Set user information -----------------
+			$user1=$this->nativesession->get("user");
+			if(isset($user1)){
+				$data["userName"]=$user1["username"];
+			
+			}
+			
             $this->load->view('newPost', $data);
 		}
 	}

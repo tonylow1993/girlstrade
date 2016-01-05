@@ -69,7 +69,7 @@ window.onload = function(){
                 <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Slide 1">
                     <!-- MAIN IMAGE -->
 					
-                    <img src="assets/img/1.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                    <img src="<?php echo base_url();?>assets/img/1.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
 
                     <div class="tp-caption revolution-ch1 sft start"
                         data-x="center"
@@ -106,7 +106,7 @@ window.onload = function(){
                 <!-- SLIDE -->
                 <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Slide 2">
                     <!-- MAIN IMAGE -->
-                    <img src="assets/img/5.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                    <img src="<?php echo base_url();?>assets/img/5.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
 
                     <div class="tp-caption revolution-ch3 sft start"
                         data-x="right"
@@ -155,7 +155,7 @@ window.onload = function(){
                 <!-- SLIDE -->
                 <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Slide 3">
                     <!-- MAIN IMAGE -->
-                    <img src="assets/img/3.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="right top" data-bgrepeat="no-repeat">
+                    <img src="<?php echo base_url();?>assets/img/3.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="right top" data-bgrepeat="no-repeat">
 
                     <div class="tp-caption revolution-ch3 sft start"
                         data-x="right"
@@ -205,7 +205,7 @@ window.onload = function(){
                 <!-- SLIDE -->
                 <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Slide 4">
                     <!-- MAIN IMAGE -->
-                    <img src="assets/img/2.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                    <img src="<?php echo base_url();?>assets/img/2.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
 
                     <!--<div class="tp-caption revolution-ch1 sft start"
                         data-x="center"
@@ -281,7 +281,7 @@ window.onload = function(){
                 <!-- SLIDE -->
                 <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Slide 5">
                     <!-- MAIN IMAGE -->
-                    <img src="assets/img/4.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="right top" data-bgrepeat="no-repeat">
+                    <img src="<?php echo base_url();?>assets/img/4.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="right top" data-bgrepeat="no-repeat">
 
                     <div class="tp-caption revolution-ch5 sft start"
                         data-x="right"
@@ -639,7 +639,7 @@ window.onload = function(){
         <div class="col-sm-3 page-sidebar col-thin-left">
           <aside>
             <div class="inner-box no-padding panel-bevel">
-              <div class="inner-box-content"> <a href="#"><img class="img-responsive" src="images/site/app.jpg" alt="tv"></a> </div>
+              <div class="inner-box-content"> <a href="#"><img class="img-responsive" src="<?php echo base_url();?>images/site/app.jpg" alt="tv"></a> </div>
             </div>
             <div class="inner-box panel-bevel">
               <h2 class="title-2 no-bottom"><span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">Popular</span> Categories </h2>
@@ -665,7 +665,7 @@ window.onload = function(){
               </div>
             </div>
             
-            <div class="inner-box no-padding panel-bevel"> <img class="img-responsive" src="images/site/add2.jpg" alt=""> </div>
+            <div class="inner-box no-padding panel-bevel"> <img class="img-responsive" src="<?php echo base_url();?>images/site/add2.jpg" alt=""> </div>
           </aside>
         </div>
         
@@ -675,7 +675,7 @@ window.onload = function(){
     
     <!-- /.main-container -->
 
-	  <div class="page-info" style="background: url(images/bg.jpg); background-size:cover">
+	  <div class="page-info" style="background: url(<?php echo base_url();?>images/bg.jpg); background-size:cover">
     <div class="container text-center section-promo"> 
     	<div class="row">
         	<div class="col-sm-3 col-xs-6 col-xxs-12">
@@ -767,19 +767,19 @@ window.onload = function(){
 <!-- <script src="assets/plugins/jquery/jquery-migrate.min.js"></script> -->
 <!-- <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- JS Implementing Plugins -->
-<script src="assets/plugins/back-to-top.js"></script>
-<script src="assets/plugins/smoothScroll.js"></script>
-<script src="assets/plugins/jquery.parallax.js"></script>
-<script src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
-<script src="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-<script src="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/back-to-top.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/smoothScroll.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/jquery.parallax.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <!-- JS Customization -->
-<script src="assets/js/custom.js"></script>
+<script src="<?php echo base_url();?>assets/js/custom.js"></script>
 <!-- JS Page Level -->
-<script src="assets/js/shop.app.js"></script>
-<script src="assets/js/plugins/owl-carousel.js"></script>
-<script src="assets/js/plugins/revolution-slider.js"></script>
+<script src="<?php echo base_url();?>assets/js/shop.app.js"></script>
+<script src="<?php echo base_url();?>assets/js/plugins/owl-carousel.js"></script>
+<script src="<?php echo base_url();?>assets/js/plugins/revolution-slider.js"></script>
 <!--Drop Down list-->
 
 <script>

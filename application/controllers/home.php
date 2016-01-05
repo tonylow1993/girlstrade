@@ -149,6 +149,13 @@ class Home extends CI_Controller {
 			$data["Facebook_Fans"]=$this->lang->line("Facebook_Fans");
 			
 			setcookie('gt_cookie_id', $this->nativesession->userdata('session_id') ,time() + (86400 * 7));
+			//-----------------Set user information -----------------
+			$user1=$this->nativesession->get("user");
+			if(isset($user1)){
+				$data["userName"]=$user1["username"];
+			
+			}
+			
 			
 			$this->load->view('index', $data);
 		}catch(Exception $ex)
