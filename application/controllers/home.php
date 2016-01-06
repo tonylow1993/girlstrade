@@ -63,6 +63,7 @@ class Home extends CI_Controller {
         	    $this->load->model('tradecomments_model');
         	    $this->load->model('itemcomments_model');
         	    $this->load->model('mailtemplate_model');
+        	    $this->load->model('pagevisited_model');
 	}
 	public function index($errorMsg='', $successMsg='')
 	{
@@ -531,6 +532,25 @@ class Home extends CI_Controller {
 		
 		$this->sendAuthenticationEmail($userEmail, $message, $title);
 		log_message('debug', 'retrieve userid  '.$data['userID']);
+		$thread["userID"]=$data['userID'];
+		$thread["visit_time"]=date("Y-m-d H:i:s");;
+		$thread['session_id']=$this->nativesession->userdata('session_id');
+		$ip='';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip = $_SERVER['REMOTE_ADDR'];
+		}
+		
+		$thread['ip']=$ip;
+		$thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+		$thread["page_visit"]=PageSignup;
+		$this->pagevisited_model->insert($thread);
+		
+		
+		
 		$errorMsg=$this->lang->line("HomeSignUpSuccess");
                 	$data["lang_label"]=$this->nativesession->get("language");
                 	$data["PrevURL"]=base_url();
@@ -614,6 +634,29 @@ class Home extends CI_Controller {
 			if(!empty($_POST))
 				$password=$_POST["password"];
 		}
+		
+		$loginUser=$this->nativesession->get("user");
+		if(isset($loginUser))
+			$thread["userID"]=$loginUser['userID'];
+			
+		$thread["visit_time"]=date("Y-m-d H:i:s");;
+		$thread['session_id']=$this->nativesession->userdata('session_id');
+		$ip='';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip = $_SERVER['REMOTE_ADDR'];
+		}
+		
+		$thread['ip']=$ip;
+		$thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+		$thread["page_visit"]=PageSignin;
+		$this->pagevisited_model->insert($thread);
+		
+		
+		
 		$data["PrevURL"]=$prevURL;
 		$back2LoginPage=base_url().MY_PATH."home/loginPage?prevURL=".$prevURL;
 		if(!is_array($user) or !isset($user) or $username=='' or 

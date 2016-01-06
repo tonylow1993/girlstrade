@@ -13,6 +13,7 @@ class viewProfile extends getCategory {
             $this->lang->load("message",$this->nativesession->get('language'));
             
             $this->load->helper('language');
+            $this->load->model('pagevisited_model');
             date_default_timezone_set("Asia/Hong_Kong");
             if($this->nativesession->get("language")!=null)
             {
@@ -29,6 +30,28 @@ class viewProfile extends getCategory {
 	}
          public function index($postID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByID="0" )
 	{
+		
+		$loginUser=$this->nativesession->get("user");
+		if(isset($loginUser))
+			$thread["userID"]=$loginUser['userID'];
+		$thread["visit_time"]=date("Y-m-d H:i:s");;
+		$thread['session_id']=$this->nativesession->userdata('session_id');
+		$ip='';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip = $_SERVER['REMOTE_ADDR'];
+		}
+		
+		$thread['ip']=$ip;
+		$thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+		$thread["page_visit"]=PageViewProfile;
+		$this->pagevisited_model->insert($thread);
+		
+		
+		
 		$previousUrl="";
 		if(isset($_GET["prevURL"]))
 			$previousUrl=$_GET["prevURL"];

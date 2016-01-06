@@ -2,7 +2,7 @@
     <div class="container">
       <div id="langError"></div>
       <ul class=" pull-left navbar-link footer-nav">
-        <li><a href="<?php echo base_url().MY_PATH;?>"> <?php if (!isset($Home)) $Home = 'Home'; echo $Home;?> </a> 
+        <li><a href="<?php echo base_url()?>"> <?php if (!isset($Home)) $Home = 'Home'; echo $Home;?> </a> 
             <a href="<?php echo base_url().MY_PATH.'footer/getAboutUS';?>"> <?php if (!isset($About_us)) $About_us = 'About us'; echo $About_us;?></a> 
             <a href="<?php echo base_url().MY_PATH.'footer/getTerms';?>"> <?php if (!isset($Terms_and_Conditions)) $Terms_and_Conditions = 'Terms and Conditions'; echo $Terms_and_Conditions; ?> </a> 
             <a href="<?php echo base_url().MY_PATH.'footer/getPrivacy';?>"> <?php if (!isset($Privacy_Policy)) $Privacy_Policy = 'Privacy Policy'; echo $Privacy_Policy;?> </a> 

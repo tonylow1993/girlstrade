@@ -33,6 +33,7 @@ class getCategory extends CI_Controller {
 		$this->load->model('searchhistory_model');
 		$this->load->model('savedAds_model');
 		$this->load->model('searchresult_model');
+		$this->load->model('pagevisited_model');
 	}
 	
 	public function savedAds()
@@ -68,6 +69,29 @@ class getCategory extends CI_Controller {
 	public function getAll($pageNum, $catID="0", $locID="0", $keywords='0', $sortByID="0", $minPrice="0", $maxPrice="0")
 	{
 		try{
+			
+			$loginUser=$this->nativesession->get("user");
+			if(isset($loginUser))
+				$thread["userID"]=$loginUser['userID'];
+				
+			$thread["visit_time"]=date("Y-m-d H:i:s");;
+			$thread['session_id']=$this->nativesession->userdata('session_id');
+			$ip='';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip = $_SERVER['REMOTE_ADDR'];
+			}
+			
+			$thread['ip']=$ip;
+			$thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+			$thread["page_visit"]=PageSearch;
+			$this->pagevisited_model->insert($thread);
+			
+			
+			
 		if($this->input->post("ads")<> null && trim($this->input->post("ads"))<>"")
 			$keywords=($this->input->post("ads"));
 		if($this->input->post("category")<>'' && $this->input->post("category")<>0)
