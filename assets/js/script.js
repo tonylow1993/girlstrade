@@ -266,11 +266,11 @@ $(document).ready(function() {
     
     
     $('.map').click(function () {
-        $('.map iframe').css("pointer-events", "auto");
+    	//console.log('test');
+        //$('.map iframe').css("pointer-events", "auto");
     });
     var contactMsglines = 10;
     $('#contactUsMessage').keydown(function(e) {
-        
         newLines = $(this).val().split("\n").length;
         if(e.keyCode == 13 && newLines >= contactMsglines) {
             return false;
@@ -278,7 +278,6 @@ $(document).ready(function() {
     });
     
     $('#descriptionTextarea').keydown(function(e) {
-        
         newLines = $(this).val().split("\n").length;
         if(e.keyCode == 13 && newLines >= contactMsglines) {
             return false;

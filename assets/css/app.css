@@ -11,6 +11,9 @@
 * {
    //border-radius: 0 !important;
 }
+.map iframe{
+    pointer-events: none;
+}
 
 a,
 a:focus, 
