@@ -47,7 +47,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 			return "You have got the direct send msg from buyer";
 		}
 		public function SendEmailMsgForDirectSendToSeller($username, $path){
-			return  $header.'
+			return  $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -61,7 +61,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   </td>
               </tr>
             </table></td>
-        </tr> '.$footer;
+        </tr> '.$this->footer;
 		}
 		
 		public function SendEmailTitleForDirectSendApproveOrRejectToSeller(){
@@ -69,7 +69,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		}
 		
 		public function SendEmailMsgForDirectSendApproveOrRejectToSeller($username, $path){
-			return $header.'
+			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -84,13 +84,13 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   </td>
               </tr>
             </table></td>
-        </tr> '.$footer;
+        </tr> '.$this->footer;
 			
 
 		}
 		
 		public function SendEmailReplyMsgForSelleOrBuyerr( $username, $path){
-			return $header.'
+			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -111,7 +111,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   </td>
               </tr>
             </table></td>
-        </tr> '.$footer;
+        </tr> '.$this->footer;
        
 		}
 		
@@ -124,7 +124,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		}
 		
 		public function SendEmailMsgForSeller($username, $path){
-			return $header.'
+			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -145,7 +145,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   </td>
               </tr>
             </table></td>
-        </tr>'.$footer;
+        </tr>'.$this->footer;
         
 		}
 		
@@ -155,7 +155,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		
 
 		public function SendEmailMsgForChangePassword($username){
-			return  $header.'
+			return  $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -172,7 +172,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   </td>
               </tr>
             </table></td>
-        </tr>'.$footer;
+        </tr>'.$this->footer;
 		}
 		
 		public function SendEmailTitleForChangePassword(){
@@ -185,7 +185,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		
 		public function SendEmailMsgForUpdatePassword($username, $password, $username1,
 					$path){
-			return  $header.'
+			return  $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -199,7 +199,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   </td>
               </tr>
             </table></td>
-        </tr>'.$footer;
+        </tr>'.$this->footer;
 			
 		}
 		
@@ -207,7 +207,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 			return "Verify your GirlsTrade email address";
 		}
 		public function SendEmailMsgForSignupActivate($username,  $path, $email){
-			return $header.'
+			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -224,11 +224,11 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   </td>
               </tr>
             </table></td>
-        </tr>'.$footer;
+        </tr>'.$this->footer;
 		}
 		
 		public function SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason){
-			return $header.'
+			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -239,7 +239,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 <br/>Thank you!";  </td>
               </tr>
             </table></td>
-        </tr>'.$footer;
+        </tr>'.$this->footer;
 
 		}
 		
@@ -248,7 +248,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		}
 		
 		public function SendEmailApprovePost($username){
-			return $header.'
+			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -259,7 +259,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 <br/>Thank you!";</td>
               </tr>
             </table></td>
-        </tr>'.$footer;
+        </tr>'.$this->footer;
 
 		}
 		
@@ -268,7 +268,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		}
 		
 		public function SendEmailRejectPhoto($username, $rejectReason ,$rejectSpecifiedReason){
-			return $header.'
+			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -279,7 +279,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   		</td>
               </tr>
             </table></td>
-        </tr>'.$footer;
+        </tr>'.$this->footer;
 			
 	
 		}
@@ -289,7 +289,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		}
 		
 		public function SendEmailApprovePhoto($username){
-			return $header.'
+			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -300,7 +300,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   		</td>
               </tr>
             </table></td>
-        </tr>'.$footer;
+        </tr>'.$this->footer;
 
 		}
 		
@@ -308,7 +308,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 			return "Approve your photo";
 		}
 		public function SendEmailMsgForResetPassword($path){
-			return $header.'
+			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -318,7 +318,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   		</td>
               </tr>
             </table></td>
-        </tr>'.$footer;
+        </tr>'.$this->footer;
 			
 			
 			

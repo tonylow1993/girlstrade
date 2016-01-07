@@ -104,8 +104,8 @@
                         </div>
                             </div>
                             
-                            
-                            
+                            </div>
+                            <div class="row">
                        <div class="col-lg-12">
                             <div class="form-group">
                             <div class="col-md-12">
@@ -115,6 +115,8 @@
                             </div> 
                         </div>
                         </div>
+                        </div>
+                         <div class="row">
                           <div class="col-lg-12">
                         <div class="form-group">
                         <div class="col-md-12">
@@ -148,6 +150,8 @@
                         </div>
                         </div>
                         </div> 
+                        </div>
+                        <div class="row">
                               <div class="col-lg-12">
                             <div class="form-group">
                             <div class="col-md-12 ">
@@ -166,8 +170,9 @@
           </div>
       </div>
     </div>
-  </div>
+
   <!-- /.main-container -->
+
   <div class="intro-inner-banner">
    <!--=== Collection Banner ===-->
     <div class="collection-banner">
@@ -180,9 +185,11 @@
         </div>
     </div>
     <!--=== End Collection Banner ===-->
-  </div>
-  
+    </div>
+
+
   <?php include "footer1.php"; ?>
+  </div>
   <script type="text/javascript">
   function contactAction()
   {

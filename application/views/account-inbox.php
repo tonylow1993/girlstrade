@@ -203,10 +203,10 @@
       <!--/.row--> 
     </div>
     <!--/.container--> 
-  </div>
+  
   <!-- /.main-container -->
   <!-- Modal contactAdvertiser -->
-
+</div>
 <div class="modal fade" id="contactAdvertiser" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">
@@ -245,6 +245,7 @@
       	<button id="validate" hidden="true" type="submit"></button>
       </div>
   </div>
+</div>
 </div>
 
 <div class="modal fade" id="markSoldAds" tabindex="-1" role="dialog">
