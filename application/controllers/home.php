@@ -2166,7 +2166,11 @@ function generateRandomString($length = 8) {
 		$data["checkBox2"]=$userInfo["checkBox2"];
 		
 		}
-		$data["email"]=$email["email"];
+		if(isset($email) && !empty($email) && $email<> null)
+		{
+			$data["email"]=$email["email"];
+		}
+		
 		if($address<>null)
 		{
 		$data["country"]=$address["country"];
