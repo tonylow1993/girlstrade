@@ -203,3 +203,4 @@ $lang["ExceedMaxTimesDailyDeleteAds"]="Exceed Max Times of Your Ads Delete";
 $lang["To"]="To";
 $lang["Action"]="Action";
 $lang["sendEmail"]="send Email";
+$lang["adminContactUs"]="maintain contact us";

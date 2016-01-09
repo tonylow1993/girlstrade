@@ -51,6 +51,8 @@ class getAdmin extends CI_Controller {
         $this->load->model('itemcomments_model');
         $this->load->model('abusemessages_model');
         $this->load->model('mailtemplate_model');
+        $this->load->model('contact_model');
+        $this->load->model('contacttype_model');
 	}
 	
 	public function index($Photo=0)
@@ -103,11 +105,60 @@ class getAdmin extends CI_Controller {
 					else if($activeNav==9){
 						$this->load->view('adminFireEmail.php', $data);
 					}
+					else if($activeNav==10){
+						$data["NoOfItemCount"]=$this->contact_model->getNoOfItemCountInContactUs();
+						$data['itemList']=$this->mapToContactUs($this->contact_model->getContactUnverifiedList($pageNum));
+						$this->load->view('adminContactUs.php', $data);
+					}
 			}
 	}
 	}
 	
-	
+	public function mapToContactUs($input){
+		$result=null;
+		if($input!=null && count($input)>0){
+			$lang_label=$this->nativesession->get("language");
+			foreach($input as $row)
+			{
+				$contactID=$row->contactID;
+				$name=$row->name;
+				$phone=$row->phone;
+				$email=$row->email;
+				$status=$row->status;
+				$contactTypeID=$row->contactTypeID;
+				$contactTypeArray=$this->contacttype_model->getContactTypeByID($contactTypeID);
+				$contactType="";
+				if(isset($contactTypeArray)){
+				foreach($contactTypeArray as $id=>$contacarr){
+					$contactType=$contacarr->name;
+					if ($lang_label<>"english")
+						$contactType=$contacarr->nameCH;
+					}
+				}
+				$message=$row->message;
+				$createDate=$row->createDate;
+				$updateDate=$row->updateDate;	
+			
+				$arrayMessage=array($contactID => array("contactID"=>$contactID,
+						"name"=>$name,
+						"phone"=>$phone,
+						"email"=>$email,
+						"contactType"=>$contactType,
+						"message"=>$message,
+						"status"=>$status,
+						"createDate"=>$createDate,
+						"updateDate"=>$updateDate));
+					
+					
+				if($result==null)
+					$result=$arrayMessage;
+				else
+					$result=$result + $arrayMessage;
+			}
+		}
+		
+		return $result;
+	}
 	public function mapToAbuseMessages($input){
 		$result=null;
 		if($input!=null && count($input)>0){
@@ -1021,6 +1072,68 @@ class getAdmin extends CI_Controller {
 		else if($rating==3)return "Average";
 		else
 			return "";
+	}
+	
+	public function updateContactUs(){
+		try {
+			$Num1=0;
+			$Temp1=$this->input->post("NumRec");
+			if(isset($Temp1))
+				$Num1=$this->input->post("NumRec");
+			echo $Num1;
+			$approvelist=array();
+			$rejectlist=array();
+			if($Num1>0)
+			{
+				$r=0;
+				for($i=1;$i<=$Num1;$i++)
+				{
+					$commentID=$this->input->post("contactID".$i);
+					$userEmailAddress=$this->input->post("email".$i);
+					$status=$this->input->post("actionType".$i);
+// 					$rejectReason = $this->input->post("rejectReason".$i);
+// 					$rejectSpecifiedReason = $this->input->post("rejectSpecifiedReason".$i);
+// 					echo $postID.": ".$status.",".$rejectReason.",".$rejectSpecifiedReason."<br/>";
+		
+					if($status=='A')
+					{
+						array_push($approvelist ,strval($commentID));
+// 						$usernameArr=$this->users_model->get_user_by_id($postInfo[0]->userID);
+// 						$username=$usernameArr[0]->username;
+// 						$path=base_url().MY_PATH."home/loginPage";
+// 						$msg=$this->mailtemplate_model->SendEmailApprovePost( $username);
+// 						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle());
+							
+					}
+					else if($status=='R')
+					{
+						$temp=array('contactID'=>$commentID);
+						array_push($rejectlist ,$temp);
+		
+// 						$usernameArr=$this->users_model->get_user_by_id($postInfo[0]->userID);
+// 						$username=$usernameArr[0]->username;
+// 						$path=base_url().MY_PATH."home/loginPage";
+// 						$msg=$this->mailtemplate_mdoel->SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason );
+// 						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle());
+							
+					}
+		
+					//array_push($rejectlist, strval($postID));
+				}
+				var_dump($approvelist);
+				var_dump($rejectlist);
+				if(!is_null($approvelist))
+					$this->contact_model->updateUnverifiedContact($approvelist);
+// 				if(!is_null($rejectlist<>null))
+// 					$this->tradecomments_model->updateRejectPost($rejectlist);
+				echo $Num1."success";
+			}
+		}catch(Exception $ex)
+		{
+			echo $ex->getMessage();
+			return;
+		}
+		$this->getAccountPage(10);
 	}
 }
 ?>

@@ -16,6 +16,12 @@ class contacttype_model extends CI_Model {
 	    	$query = $this->db->from('contactType')->get();
 	        return $query->result();
 	    }
+	    
+	    function getContactTypeByID($ID)
+	    {
+	    	$query = $this->db->from('contactType')->where('contactTypeID' , $ID)->get();
+	    	return $query->result();
+	    }
 		
 }
 ?>

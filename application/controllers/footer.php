@@ -192,6 +192,7 @@ class footer  extends CI_Controller {
 		$data['message'] = $this->input->post('message');
 		$data["contactTypeID"]=$this->input->post('contactTypeID');
 		$data['createDate']=date("Y-m-d H:i:s");
+		$data['status'] = "U";
 		$row=$this->contact_model->addContactModel($data);
 		
 		$loginUser=$this->nativesession->get("user");
@@ -216,4 +217,6 @@ class footer  extends CI_Controller {
 		
 		$this->getContactUS();
 	}
+	
+
 }
