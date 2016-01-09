@@ -56,6 +56,8 @@
                   		$messageID=$id;
                   		$status=$row["status"];
                   		$userID=$row['userID'];
+                  		$rejectReason=$row['rejectReason'];
+                  		$rejectSpecifiedReason=$row['rejectSpecifiedReason'];
                   		$NoOfDaysPending=$row['NoOfDaysPending'];
 						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
 						$price=$row['price'];
@@ -102,9 +104,11 @@
                     	echo "<div class=\"ads-details\">";
                          echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc."<br/>".$preview;
                           echo "<br/>Posted On: ". $createDate."<br/>Status: ".$status;
-                   	  echo "<br/>Interest persons count:  $NoOfSoldUsers</h5>";
-                        
-                        echo "</h5></div></td>";
+                   	  echo "<br/>Interest persons count:  $NoOfSoldUsers";
+                        if(strcmp($status, "Rejected")==0){
+                        	echo "<br/>Reject Reason: ".$rejectReason." with ".$rejectSpecifiedReason;
+                        }
+                        echo "</div></h5></td>";
                       	echo "<td style=\"width:10%; border: none;\" class=\"price-td\">$price</td>";
 						echo "<td style=\"width:10%; border: none;\" class=\"action-td\"><div>";
 						$editPath=base_url().MY_PATH."newPost/showEditPost/".$messageID."?prevURL=".urlencode(current_url());

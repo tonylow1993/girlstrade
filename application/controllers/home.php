@@ -1722,7 +1722,7 @@ function generateRandomString($length = 8) {
 		else if(strcmp($status, "A")==0)
 			return "Open";
 		else if(strcmp($status,"R")==0)
-			return "Rrejected";
+			return "Rejected";
 		return "";	
 	}
 	public function mapPostToView($inbox)
@@ -1752,7 +1752,8 @@ function generateRandomString($length = 8) {
 				$name=$row->itemNameCH;
 			else
 				$name=$row->itemName;
-				
+			$rejectReason=$row->rejectReason;
+			$rejectSpecifiedReason=$row->rejectSpecifiedReason;
 			$preview="";
 			$previewTitle=$name;
 			$previewDesc=$row->description;
@@ -1835,6 +1836,8 @@ function generateRandomString($length = 8) {
 					"visibleBuyerComment"=>$visibleBuyerComment,
 					"soldToUserID"=>$soldToUserID,
 					"soldToUserName"=>$soldToUserName, 
+					"rejectReason" => $rejectReason,
+					"rejectSpecifiedReason" => $rejectSpecifiedReason,
 					"NoOfDaysPending"=>$NoOfDaysPending,
 					"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
 					"picCount"=>$picCount));

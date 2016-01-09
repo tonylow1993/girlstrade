@@ -38,7 +38,7 @@
               				$picCount=count($picObj);
               				if($picCount>0)
               				{
-	              				for($x=0;$x<1;$x++)
+	              				for($x=0;$x< $picCount ;$x++)
 	              				{
 	              				$thumbnail=$basePath.$picObj[$x]->thumbnailPath.'/'.$picObj[$x]->thumbnailName;
 		              			echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a target='_blank' href=\"$viewBasePath\" onclick=\"window.open(this.href, 'popupwindow', width=400,height=300,scrollbars,resizable');return false;\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";
