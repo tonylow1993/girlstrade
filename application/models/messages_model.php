@@ -258,10 +258,21 @@
 	    }
 	    
 	    public function getSoldUserList($postID){
-	    	$str="select b.userID as soldUserID, b.username as soldUsername ";
+	    	$str="select solduserList.userID as soldUserID, solduserList.username as soldUsername
+	    			from  (select b.userID, b.username ";
+	    	$str=$str."  from message a inner join user b on a.userID=b.userID ";
+	    	$str=$str." inner join post c on a.postID=c.postID ";
+	    	$str=$str."	where a.status in ('C', 'R') and c.userID != a.userID and  a.postID=".$postID;
+	    	$str=$str." union all ";
+	    	$str=$str." select b.userID, b.username ";
 	    	$str=$str."  from message a inner join user b on a.fUserID=b.userID ";
-	    	$str=$str."	where a.status in ('OC', 'Op') and  a.postID=".$postID;
-	    	$str=$str."	group by b.userID, b.username";
+	    	$str=$str." inner join post c on a.postID=c.postID ";
+	    	$str=$str."	where a.status in ('OC', 'Op') and  c.userID != a.fUserID and a.postID=".$postID;
+	    	$str=$str." union all ";
+	    	$str=$str." SELECT a.userID, b.username FROM requestpost a inner join user b
+								on a.userID=b.userID  inner join post c on a.postID=c.postID 
+								where a.postID=".$postID. "  and c.userID != a.userID  ) solduserList ";
+	     	$str=$str."	group by solduserList.userID, solduserList.username";
 	    	$query=$this->db->query($str);
 	    	$var=$query->result();
 	    	return $var;
