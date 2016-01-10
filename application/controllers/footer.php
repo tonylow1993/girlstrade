@@ -79,6 +79,7 @@ class footer  extends CI_Controller {
 	
 	public function getContactUS()
 	{
+		log_message('error', 'GET CONTACT PAGE.');
 		if($this->nativesession->get('language') && $this->nativesession->get('language') == "chinese")
         {
             $data["captchaJS"] = "<script src='https://www.google.com/recaptcha/api.js?hl=zh-TW'></script>";
@@ -184,9 +185,111 @@ class footer  extends CI_Controller {
 		$this->load->view("terms", $data);
 	
 	}
-	
+	public function testSuccess(){
+            	
+   		$data["lang_label"]=$this->nativesession->get("language");
+    	$data["PrevURL"]=base_url();
+		$this->nativesession->set("lastPageVisited","contactUs");
+		$data['redirectToPHP']=base_url().MY_PATH."home/signupPage";
+		$data["goToHomePage"]=$this->lang->line("goToHomePage");
+            	 
+		$data["lang_label_text"] = $this->lang->line("lang_label_text");
+		$data["Home"] = $this->lang->line("Home");
+		$data["About_us"] = $this->lang->line("About_us");
+		$data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
+		$data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
+		$data["Contact_us"] = $this->lang->line("Contact_us");
+		log_message('debug', 'Contact Us successful');
+		$data["FAQ"] = $this->lang->line("FAQ");
+		$data["Index_Footer1"] = $this->lang->line("Index_Footer1");
+		$data["Call_Now"] = $this->lang->line("Call_Now");
+		$data["Tel"] = $this->lang->line("Tel");
+		
+		$data["Login"]=$this->lang->line("Login");;
+		$data["Signup"]=$this->lang->line("Signup");
+		$data["Profile"]=$this->lang->line("Profile");
+		$data["Logout"]=$this->lang->line("Logout");
+		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
+		
+		$this->load->view('contactSuccessful', $data);
+		return;
+	}
 	public function addcontact(){
+			//-------------------------------captcha------------------------------
+                $captcha;
+                if(isset($_POST['g-recaptcha-response'])){
+                  $captcha=$_POST['g-recaptcha-response'];
+                }
+                if(!$captcha){
+                	$errorMsg="Please check the captcha form.";
+                	$data["lang_label"]=$this->nativesession->get("language");
+                	$data["PrevURL"]=base_url();
+            		$data["error"]=$errorMsg;
+                	$this->nativesession->set("lastPageVisited","login");
+                	$data['redirectToWhatPage']="Contact Us Page";
+                	$data['redirectToPHP']=base_url().MY_PATH."footer/getContactUS";
+                	
+                	$data["successTile"]=$this->lang->line("successTile");
+                	$data["failedTitle"]=$this->lang->line("failedTitle");
+                	$data["goToHomePage"]=$this->lang->line("goToHomePage");
+                	 
+                	$this->load->view('failedPage', $data);
+                	return;
+                  
+                }
+                $fields = array(
+                    'secret'    =>  "6Lec9AYTAAAAALrIwia-e_3Lc2pb3Vj0ZTbI9gEN",
+                    'response'  =>  $captcha,
+                    'remoteip'  =>  $_SERVER['REMOTE_ADDR']
+                );
+                $postvars = '';
+                foreach($fields as $key=>$value) {
+                        $postvars .= $key . "=" . $value . "&";
+                }
+                $ch = curl_init();
+                $url = "https://www.google.com/recaptcha/api/siteverify?";
+                curl_setopt($ch,CURLOPT_URL,$url);
+                curl_setopt($ch,CURLOPT_POST, 1);                //0 for a get request
+                curl_setopt($ch,CURLOPT_POSTFIELDS,$postvars);
+                curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch,CURLOPT_CONNECTTIMEOUT ,3);
+                curl_setopt($ch,CURLOPT_TIMEOUT, 20);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                $response = curl_exec($ch);
+                curl_close ($ch);
+
+
+                $result = json_decode($response,true);
+                
+            if($result['success'] == false)
+            {
+            	$errorMsg=$this->lang->line("HomeSignUpCheckCaptchaForm");
+            	
+            	$data["lang_label"]=$this->nativesession->get("language");
+            	$data["PrevURL"]=base_url();
+            	$data["error"]=$errorMsg;
+            	$this->nativesession->set("lastPageVisited","login");
+            	$data['redirectToWhatPage']="SignUp Page";
+            	$data['redirectToPHP']=base_url().MY_PATH."footer/getContactUS";
+            	$data["successTile"]=$this->lang->line("successTile");
+            	$data["failedTitle"]=$this->lang->line("failedTitle");
+            	$data["goToHomePage"]=$this->lang->line("goToHomePage");
+            	 
+            	$this->load->view('failedPage', $data);
+            	return;
+             
+            }
+            //-------------------------end of checking captcha
+		
+		
+		
+		
+		
+		
+		
+		
 		$data['name'] = $this->input->post('name');
+		log_message('error', '...'.$data['name']);
 		$data['phone'] = $this->input->post('phone');
 		$data['email'] = $this->input->post('email');
 		$data['message'] = $this->input->post('message');
@@ -194,7 +297,7 @@ class footer  extends CI_Controller {
 		$data['createDate']=date("Y-m-d H:i:s");
 		$data['status'] = "U";
 		$row=$this->contact_model->addContactModel($data);
-		
+		log_message('error', 'ADDING');
 		$loginUser=$this->nativesession->get("user");
 		if(isset($loginUser))
 			$thread["userID"]=$loginUser['userID'];
@@ -215,7 +318,8 @@ class footer  extends CI_Controller {
 		$thread["page_visit"]=PageContactUs;
 		$this->pagevisited_model->insert($thread);
 		
-		$this->getContactUS();
+		//$this->getContactUS();
+		$this->testSuccess();
 	}
 	
 
