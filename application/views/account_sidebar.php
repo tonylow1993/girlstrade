@@ -82,9 +82,9 @@
               	 	echo "<li><a href=$approverequest1><i class=\"icon-ok-1\"></i> $ApproveRequest <span class=\"badge\">$approveMsgCount</span></a></li>";
               	 	
               	 	if($activeNav==3)
-              	 		echo "<li><a  class=\"active\" href=$myads1><i class=\"icon-docs-1\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
+              	 		echo "<li><a  class=\"active\" href=$myads1><i class=\"icon-th-thumb\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
          	     	else 
-         	     		echo "<li><a href=$myads1><i class=\"icon-docs-1\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
+         	     		echo "<li><a href=$myads1><i class=\"icon-th-thumb\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
          	     		
          	     if($activeNav==5)
               				echo "<li><a  class=\"active\" href=$saveditems1><i class=\"icon-heart\"></i> $SavedItems <span class=\"badge\">$savedAdsCount</span></a></li>";

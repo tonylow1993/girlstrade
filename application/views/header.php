@@ -170,14 +170,56 @@ echo json_encode($usr);;
           if(empty($usr)){ 
             ?>  
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?php echo base_url().MY_PATH; ?>home/loginPage?prevURL=<?php echo urlencode(current_url());?>"><i class="icon-login"></i><?php if (!isset($Login)) $Login = 'Login'; echo $Login;?></a></li>
-            <li><a href="<?php echo base_url(); echo MY_PATH;?>home/signupPage"><i class="icon-doc-text-1"></i><?php if (!isset($Signup)) $Signup = 'Signup'; echo $Signup;?></a></li>  
-            <li class="postadd"><a class="btn btn-block   btn-border btn-post btn-tw" href="<?php echo base_url(); echo MY_PATH;?>newPost/index?prevURL=<?php echo urlencode((current_url()));?>"><?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?><i class="icon-pencil-2"></i></a></li>
+            <li><a href="<?php echo base_url().MY_PATH; ?>home/loginPage?prevURL=<?php echo urlencode(current_url());?>">
+            <i  id="menubarTitle" class="icon-login"></i>
+            <span id="menubarTitle" >
+            <?php if (!isset($Login)) $Login = 'Login'; echo $Login;?>
+            </span>
+            </a></li>
+            <li><a href="<?php echo base_url(); echo MY_PATH;?>home/signupPage">
+            <i  id="menubarTitle" class="icon-doc-text-1"></i>
+            <span id="menubarTitle" >
+            <?php if (!isset($Signup)) $Signup = 'Signup'; echo $Signup;?>
+            </span>
+            </a></li>  
+            <li class="postadd"><a class="btn btn-block   btn-border btn-post btn-tw" href="<?php echo base_url(); echo MY_PATH;?>newPost/index?prevURL=<?php echo urlencode((current_url()));?>">
+            <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?>
+            <i class="icon-pencil-2"></i></a>
+            
+            </li>
           </ul>
          <?php }else{?>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?php echo base_url(); echo MY_PATH;?>home/profilePage"><i class="icon-user-woman"></i><?php if (!isset($Profile)) $Profile = 'Profile'; echo $usr["username"]; //echo $Profile; ?></a></li>
-            <li><a href="<?php echo base_url(); echo MY_PATH;?>home/logout"><i class="icon-logout"></i><?php if (!isset($Logout)) $Logout = 'Logout'; echo $Logout;?></a></li>
+            <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+            <i id="menubarTitle" class="icon-user-woman"></i>
+            <span id="menubarTitle" >
+         	<?php if (!isset($Profile)) $Profile = 'Profile'; echo $usr["username"]; //echo $Profile; ?>
+            </span>
+            <i id="angleDown" class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu user-menu">
+                <li <?php echo $menuMyAds?>><a id="menuDropDownItem" href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/3";?>">
+                
+                <i id="menuDropDownItem" class="icon-th-thumb"></i> My Ads </a>
+                
+                </li>
+                <li <?php echo $menuInbox?>><a id="menuDropDownItem" href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/1";?>">
+                
+                <i id="menuDropDownItem" class="icon-pencil-2"></i> Inbox&nbsp;<span id="badgeMenu" class="badge"><?php echo $menuInboxNum;?></span> </a>
+                
+                </li>
+                <li <?php echo $menuPendingRequest?>><a id="menuDropDownItem" href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/6";?>">
+                
+                <i id="menuDropDownItem" class="icon-clock-2"></i> Pending Request(s)&nbsp;<span id="badgeMenu" class="badge"><?php echo $menuPendingRequestNumber;?></span> </a>
+                
+                </li>
+           	</ul>     
+            </li>
+            <li><a href="<?php echo base_url(); echo MY_PATH;?>home/logout"><i id="menubarTitle" class="icon-logout"></i>
+            <span id="menubarTitle">
+         	<?php if (!isset($Logout)) $Logout = 'Logout'; echo $Logout;?></a></li>
+            </span>
             <li class="postadd"><a class="btn btn-border btn-danger" href="<?php echo base_url(); echo MY_PATH;?>newPost/index?prevURL=<?php echo urlencode((current_url()));?>"><?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?><i class="icon-pencil-2"></i></a></li>
           </ul>
           <?php }?>       

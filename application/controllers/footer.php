@@ -74,6 +74,13 @@ class footer  extends CI_Controller {
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data["lang_label"]=$this->nativesession->get("language");
+		//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+		//----------------------------
 		$this->load->view("about-us", $data);
 	}
 	
@@ -109,7 +116,13 @@ class footer  extends CI_Controller {
 		$data["lang_label"]=$this->nativesession->get("language");
 		
 		$data["result"]=$this->contacttype_model->getContactType();
-		
+		//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+		//----------------------------
 		$this->load->view("contact", $data);
 	
 	}
@@ -134,6 +147,13 @@ class footer  extends CI_Controller {
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data["lang_label"]=$this->nativesession->get("language");
+		//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+		//----------------------------
 		$this->load->view("faq", $data);
 	
 	}
@@ -158,6 +178,13 @@ class footer  extends CI_Controller {
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data["lang_label"]=$this->nativesession->get("language");
+		//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+		//----------------------------
 		$this->load->view("privacy", $data);
 	
 	}
@@ -182,6 +209,13 @@ class footer  extends CI_Controller {
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data["lang_label"]=$this->nativesession->get("language");
+		//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+		//----------------------------
 		$this->load->view("terms", $data);
 	
 	}
@@ -210,7 +244,13 @@ class footer  extends CI_Controller {
 		$data["Profile"]=$this->lang->line("Profile");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
-		
+		//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+		//----------------------------
 		$this->load->view('contactSuccessful', $data);
 		return;
 	}
@@ -232,7 +272,13 @@ class footer  extends CI_Controller {
                 	$data["successTile"]=$this->lang->line("successTile");
                 	$data["failedTitle"]=$this->lang->line("failedTitle");
                 	$data["goToHomePage"]=$this->lang->line("goToHomePage");
-                	 
+                	 //----------setup the header menu----------
+					$data["menuMyAds"]="";
+					$data["menuInbox"]="";
+					$data["menuInboxNum"]="0";
+					$data["menuPendingRequest"]="";
+					$data["menuPendingRequestNumber"]="0";
+					//----------------------------
                 	$this->load->view('failedPage', $data);
                 	return;
                   
@@ -274,7 +320,13 @@ class footer  extends CI_Controller {
             	$data["successTile"]=$this->lang->line("successTile");
             	$data["failedTitle"]=$this->lang->line("failedTitle");
             	$data["goToHomePage"]=$this->lang->line("goToHomePage");
-            	 
+            	 //----------setup the header menu----------
+				$data["menuMyAds"]="";
+				$data["menuInbox"]="";
+				$data["menuInboxNum"]="0";
+				$data["menuPendingRequest"]="";
+				$data["menuPendingRequestNumber"]="0";
+				//----------------------------
             	$this->load->view('failedPage', $data);
             	return;
              

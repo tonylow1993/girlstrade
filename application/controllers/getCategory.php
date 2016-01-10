@@ -238,7 +238,13 @@ class getCategory extends CI_Controller {
 	 	$data["lblLocation"]=$this->lang->line("lblLocation");
 	 	$data["lblPriceRange"]=$this->lang->line("lblPriceRange");
 	 	$data["lblPaymentOptions"]=$this->lang->line("lblPaymentOptions");
-	 	
+	 	//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+		//----------------------------
 		$this->load->view('category.php', $data);
 	}
 	

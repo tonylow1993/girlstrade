@@ -77,6 +77,13 @@ class itemComments  extends CI_Controller {
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				//----------setup the header menu----------
+				$data["menuMyAds"]="";
+				$data["menuInbox"]="";
+				$data["menuInboxNum"]="0";
+				$data["menuPendingRequest"]="";
+				$data["menuPendingRequestNumber"]="0";
+				//----------------------------
 				$this->load->view('failedPage', $data);
 				return;
 				

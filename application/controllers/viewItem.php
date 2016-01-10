@@ -72,6 +72,13 @@
             $data["postID"]=$postId;
             $itemCommentInfo=$this->itemcomments_model->getItemCommentsbyPostID($postId);
             $data["itemCommentList"]=$itemCommentInfo;
+            //----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
             if($var == null)
             {
                 $this->nativesession->set("lastPageVisited","processError");

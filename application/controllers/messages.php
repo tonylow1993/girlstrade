@@ -580,6 +580,13 @@ function addDayswithdate($date,$days){
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				//----------setup the header menu----------
+				$data["menuMyAds"]="";
+				$data["menuInbox"]="";
+				$data["menuInboxNum"]="0";
+				$data["menuPendingRequest"]="";
+				$data["menuPendingRequestNumber"]="0";
+				//----------------------------
 				$this->load->view('successPage', $data);
 				return;
 			}
@@ -929,6 +936,13 @@ function addDayswithdate($date,$days){
 			$result["description"]=$postInfo[0]->description;
 			$result["buyerName"]=$buyerNameArr[0]->username;
 			$result["sellerName"]=$sellerNameArr[0]->username;
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-viewMessageHistory", $result);
 		}
 		

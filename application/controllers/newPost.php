@@ -183,7 +183,13 @@ class newPost extends CI_Controller {
 				$data["userName"]=$user1["username"];
 			
 			}
-			
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
             $this->load->view('newPost', $data);
 		}
 	}
@@ -366,6 +372,13 @@ class newPost extends CI_Controller {
 			$data["lblLocation"]=$this->lang->line("lblLocation");
 			$data["lblAllLocations"]=$this->lang->line("lblAllLocations");
 			$data["PleaseNotCloseBrowse"]=$this->lang->line("PleaseNotCloseBrowse");
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view('editPost', $data);
 		}
 	}
@@ -959,7 +972,13 @@ public function getChildCategory($parentID)
 		$data["successTile"]=$this->lang->line("successTile");
 		$data["failedTitle"]=$this->lang->line("failedTitle");
 		$data["goToHomePage"]=$this->lang->line("goToHomePage");
-		 
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		//---------------------------- 
 		$this->load->view('successPage', $data);
 		 //}
     }
@@ -1260,7 +1279,13 @@ public function getChildCategory($parentID)
     	$data["successTile"]=$this->lang->line("successTile");
     	$data["failedTitle"]=$this->lang->line("failedTitle");
     	$data["goToHomePage"]=$this->lang->line("goToHomePage");
-    		
+    	//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		//----------------------------	
     	$this->load->view('successPage', $data);
     	//}
     }

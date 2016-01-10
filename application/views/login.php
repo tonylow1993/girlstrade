@@ -13,7 +13,9 @@ window.onload = function(){
               <h2 class="inner-logo-title"> 
                 <!-- Original Logo will be placed here  --> 
                 <img width="50px" height="50px" src="<?php echo base_url();?>images/site/girlstrade_logo.png">
+                <span id="login_signupTitle">
                 Login
+                </span>
             </div>
             <div class="panel-body">
               <form role="form" name="myForm" action="<?php echo base_url().MY_PATH; ?>home/loginUser"  method="post">

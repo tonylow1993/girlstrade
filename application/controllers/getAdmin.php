@@ -60,12 +60,26 @@ class getAdmin extends CI_Controller {
 		if($Photo==0){
 		$data["lang_label"]=$this->nativesession->get("language");
 		$this->nativesession->set("lastPageVisited","login");
+		//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+		//----------------------------
 		$this->load->view('adminLogin', $data);
 		}
 		
 	}
 	public function getAccountPage($activeNav=1, $pageNum=1){
 		   $data["pageNum"]=$pageNum;
+		   //----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$loginUser=$this->nativesession->get("user");
 			if($loginUser!=null && isset($loginUser)){
 				if(strcmp($loginUser["username"],"admin")==0){
@@ -451,7 +465,13 @@ class getAdmin extends CI_Controller {
 		
 		$data['activeNav']=1;
 		$data["lang_label"]=$this->nativesession->get("language");
-			
+		//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+		//----------------------------	
 		$data['itemList']=$this->post_model->getUItemList();
 		$this->load->view('adminPost.php', $data);
 		}else{

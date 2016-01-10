@@ -157,7 +157,13 @@ class Home extends CI_Controller {
 			
 			}
 			
-			
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view('index', $data);
 		}catch(Exception $ex)
 		{
@@ -190,6 +196,13 @@ class Home extends CI_Controller {
 			$data["lang_label"]=$this->nativesession->get("language");
 			$var = $this->post_model->getPostByID($postId);
 			$data["postID"]=$postId;
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			if($var == null)
 			{
 				$this->nativesession->set("lastPageVisited","processError");
@@ -803,7 +816,13 @@ class Home extends CI_Controller {
 			$this->userloginhistory_model->insert($loginhist);
 			$this->user->update($user);
 			
-			
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view('successPage', $data);
 	}	
 	
@@ -877,7 +896,13 @@ function generateRandomString($length = 8) {
 		$data["successTile"]=$this->lang->line("successTile");
 		$data["failedTitle"]=$this->lang->line("failedTitle");
 		$data["goToHomePage"]=$this->lang->line("goToHomePage");
-		
+		//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 		$this->load->view('successPage', $data);
 		}
 	}
@@ -940,7 +965,13 @@ function generateRandomString($length = 8) {
 			$data["successTile"]=$this->lang->line("successTile");
 			$data["failedTitle"]=$this->lang->line("failedTitle");
 			$data["goToHomePage"]=$this->lang->line("goToHomePage");
-	
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view('successPage', $data);
 		}
 	}
@@ -1186,6 +1217,13 @@ function generateRandomString($length = 8) {
 		$data["successTile"]=$this->lang->line("successTile");
 		$data["failedTitle"]=$this->lang->line("failedTitle");
 		$data["goToHomePage"]=$this->lang->line("goToHomePage");
+		//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 		if($result==1 && $result2==1) {
 			$data["error"]=$data["error"]."Registration has been completed!";
 			$this->load->view('successPage', $data);
@@ -1338,6 +1376,13 @@ function generateRandomString($length = 8) {
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInInbox($userID);
 			$myList=$this->messages_model->getInBoxByPostUserId($userID, $pageNum);
 			$data["result"]=$this->mapInBoxToView($myList, "Inbox");
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="class=\"active\"";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-inbox", $data);
 		}
 		else if($activeNav==2)
@@ -1345,6 +1390,13 @@ function generateRandomString($length = 8) {
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInApproveAndReject($userID);
 			$myList=$this->requestpost_model->getApproveAndReject($userID, $pageNum);
 			$data["result"]=$this->mapReqeustPostToView($myList);
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-approve-request-ads", $data);
 		}
 		else if($activeNav==3)
@@ -1352,15 +1404,37 @@ function generateRandomString($length = 8) {
 			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInMyAds($userID);
 			$myList=$this->post_model->getMyAds($userID, $pageNum);
 			$data["result"]=$this->mapPostToView($myList);
+			//----------setup the header menu----------
+			$data["menuMyAds"]="class=\"active\"";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-myads", $data);
 		}
 		else if($activeNav==4)
+		{
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-home", $data);
-		else if($activeNav==5)
+		}else if($activeNav==5)
 		{
 			$data["NoOfItemCount"]=$this->savedAds_model->getNoOfItemCountInSavedAds($userID);
 			$myList=$this->savedAds_model->getSavedAds($userID, $pageNum);
 			$data["result"]=$this->mapReqeustPostToView($myList);
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-saved-search", $data);
 		}
 		else if($activeNav==6)
@@ -1368,6 +1442,13 @@ function generateRandomString($length = 8) {
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInPendingApproval($userID);
 			$myList=$this->requestpost_model->getPendingApproval($userID, $pageNum);
 			$data["result"]=$this->mapReqeustPostToView($myList);
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="class=\"active\"";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-pending-approval-ads", $data);
 		}
 		else if($activeNav==10)
@@ -1375,6 +1456,13 @@ function generateRandomString($length = 8) {
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInOutgoing($userID);
 			$myList=$this->messages_model->getOutgoingByUserId($userID, $pageNum);
 			$data["result"]=$this->mapInBoxToView($myList, "OutBox");
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-outbox", $data);
 			
 		}
@@ -1382,18 +1470,39 @@ function generateRandomString($length = 8) {
 			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInArchiveAds($userID);
 			$myList=$this->post_model->getArchiveAds($userID, $pageNum);
 			$data["result"]=$this->mapPostToView($myList);
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-archived-ads", $data);
 		}
 		else if($activeNav==11){
 			$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInBuyAdsHistory($userID);
 			$myList=$this->tradecomments_model->getBuyAdsHistory($userID, $pageNum);
 			$data["result"]=$this->mapTradeCommentToView($myList);
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-my-buy-history", $data);
 		}else if($activeNav==12){
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInDirectSendHistory($userID);
 			$myList=$this->requestpost_model->getDirectSendHistory($userID, $pageNum);
 			$data["result"]=$this->mapReqeustPostToView($myList, "buyer");
 			$data["DirectSendType"]="Buyer";
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-directsend-history", $data);
 		}else if($activeNav==13){
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInDirectSendHistoryAsSeller($userID);
@@ -1401,13 +1510,34 @@ function generateRandomString($length = 8) {
 			//var_dump($myList);
 			$data["result"]=$this->mapReqeustPostToViewOfArray($myList, "seller");
 			$data["DirectSendType"]="Seller";
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-directsend-history", $data);
 		}
-		else if($activeNav==8)
+		else if($activeNav==8){
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-statements", $data);
-		else if($activeNav==9)
+		}else if($activeNav==9){
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view("account-close", $data);
-		
+		}
 	}
 	
 	public function mapReqeustPostToView($inbox, $type="buyer")
@@ -2425,7 +2555,13 @@ function generateRandomString($length = 8) {
 			$data["failedTitle"]=$this->lang->line("failedTitle");
 			$data["goToHomePage"]=$this->lang->line("goToHomePage");
 			 
-			
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			//----------------------------
 			$this->load->view('successPage', $data);
 						
 		}else{

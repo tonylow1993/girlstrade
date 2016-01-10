@@ -10,7 +10,9 @@
             <h2 class="inner-logo-title"> 
                 <!-- Original Logo will be placed here  --> 
                 <img width="50px" height="50px" src="<?php echo base_url();?>images/site/girlstrade_logo.png">
+                <span id="login_signupTitle">
                 Registration
+                </span>
 			</h2>
 			</div>
             <div class="row">

@@ -14,7 +14,44 @@
 .map iframe{
     pointer-events: none;
 }
-
+#menubarTitle 
+{
+	color: #8A2D2D;
+	font-weight: bold;
+	//font-size: 15px;
+}
+#login_signupTitle
+{
+	//color: #E2348C;
+	font-weight: bold;
+	//font-size: 40px;
+}
+#menubarTitle:hover
+{
+	//color: #F13434;;
+}
+#menusubTitle
+{
+	font-size: 12px;
+}
+#badgeMenu
+{
+	background-color:#BF5F56;
+}
+#menuDropDownItem
+{
+	color: #8A2D2D;
+	font-size: 12px;
+}
+#menuDropDownItem:hover
+{
+	color: #CE3D3D;
+}
+#angleDown
+{
+	color: #E22D0C;
+	font-weight: bold;
+}
 a,
 a:focus, 
 a:hover, 
