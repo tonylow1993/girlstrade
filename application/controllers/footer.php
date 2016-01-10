@@ -294,7 +294,8 @@ class footer  extends CI_Controller {
 		$data['email'] = $this->input->post('email');
 		$data['message'] = $this->input->post('message');
 		$data["contactTypeID"]=$this->input->post('contactTypeID');
-		$data['createDate']=date("Y-m-d H:i:s");
+		$data['createDate']=date("Y-m-d H:i:s"); 
+		$data['updateDate']=date("Y-m-d H:i:s"); 
 		$data['status'] = "U";
 		$row=$this->contact_model->addContactModel($data);
 		log_message('error', 'ADDING');
