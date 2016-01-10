@@ -20,11 +20,8 @@ SET time_zone = "+00:00";
 -- Database: `raydb`
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `abusemessages`
---
+Create database if not exists `raydb`;
+use raydb;
 
 CREATE TABLE IF NOT EXISTS `abusemessages` (
   `messageID` int(11) NOT NULL AUTO_INCREMENT,
