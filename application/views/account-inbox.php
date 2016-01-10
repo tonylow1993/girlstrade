@@ -84,7 +84,7 @@
                         echo "<label>";
                         echo "  <input type=\"checkbox\">";
                         echo "</label>";
-                      	echo "</div></td>";
+                      	echo "</td>";
                     	echo "<td style=\"width:20%\">$from</td>";
                     	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
@@ -196,7 +196,7 @@
             </div>
             <!--/.row-box End--> 
             
-          </div>
+         
         </div>
         <!--/.page-content--> 
       </div>
@@ -207,46 +207,7 @@
   <!-- /.main-container -->
   <!-- Modal contactAdvertiser -->
 </div>
-<div class="modal fade" id="contactAdvertiser" tabindex="-1" role="dialog">
 
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title"><i class=" icon-mail-2"></i> Contact advertiser </h4>
-      </div>
-      <div class="modal-body">
-        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/replyMessage/<?php echo $postID;?>/<?php echo $messageID;?>/inbox">
- <!--           <div class="form-group">
-            <label for="recipient-name" class="control-label">Name: <font color="red">*</font></label>
-            <input class="form-control required" value="<?php echo $firstName; echo ' '.$lastName;?>" id="recipient-name" name="recipient-name" required="true" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
-          </div> -->
-<!--           <div class="form-group"> -->
-<!--             <label for="sender-email" class="control-label">E-mail: <font color="red">*</font></label> -->
-   <!--          <input id="sender-email" name="sender-email" type="text" disabled="disabled" value="<?php echo $email;?>" data-content="Must be a valid e-mail address (user@gmail.com)" data-trigger="manual" data-placement="top" placeholder="email@you.com" required="true" class="form-control email">-->
-<!--           </div> -->
-<!--           <div class="form-group"> -->
-<!--             <label for="recipient-Phone-Number"  class="control-label">Phone Number:</label> -->
-      <!--       <input type="text"  maxlength="60" disabled="disabled" value="<?php echo $phoneNo;?>"class="form-control" id="recipient-Phone-Number" name="recipient-Phone-Number">-->
-<!--           </div> -->
-          <div class="form-group">
-            <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(300) </span>:</label>
-            <textarea class="form-control"  rows="5" columns="30"  required="true" id="message-text" name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
-          </div>
-          <div class="form-group">
-            <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
-          </div>
-                    	
-        </form>
-      </div>
-      <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-success pull-right" onclick="setup(); return false;">Send message!</button>
-      	<button id="validate" hidden="true" type="submit"></button>
-      </div>
-  </div>
-</div>
-</div>
 
 <div class="modal fade" id="markSoldAds" tabindex="-1" role="dialog">
 
@@ -312,8 +273,39 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="contactAdvertiser" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><i class=" icon-mail-2"></i> Contact advertiser </h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/replyMessage/<?php echo $postID;?>/<?php echo $messageID;?>/inbox">
+
+          <div class="form-group">
+            <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(300) </span>:</label>
+            <textarea class="form-control"  rows="5" columns="30"  required="true" id="message-text" name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+          </div>
+          <div class="form-group">
+            <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+          </div>
+                    	
+        </form>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-success pull-right" onclick="setup(); return false;">Send message!</button>
+      	<button id="validate" hidden="true" type="submit"></button>
+      </div>
+  </div>
+</div>
+</div>
   <?php include "footer1.php"; ?>
   <!--/.footer--> 
+  
 </div>
 <!-- /.wrapper --> 
 <script>
