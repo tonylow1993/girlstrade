@@ -1135,5 +1135,16 @@ class getAdmin extends CI_Controller {
 		}
 		$this->getAccountPage(10);
 	}
+	
+	public function replyMessage(){
+		try{
+			
+		}catch(Exception $ex)
+		{
+			echo $ex->getMessage();
+			return;
+		}
+		$this->getAccountPage(10);
+	}
 }
 ?>

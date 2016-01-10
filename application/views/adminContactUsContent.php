@@ -50,16 +50,11 @@
                        echo "<h5>".$message."<br/>Posted On: ". $createDate."</h5>";
                       	 	echo "</div></td>";
                       	 	echo "<td style=\"width:10%\" class=\"action-td\"><div>";
-                      	 	 $actionType="actionType".$Num;
-                $commentIDCtrl="contactID".$Num;
-                echo "<input type='hidden' name='".$commentIDCtrl."' value='".$contactID."' />";
-          
-                echo "<select id='".$actionType."' name='".$actionType."'   style='font-size:1.3em'>";
-                echo "<option selected='selected' value='A'>Approve</option>";
-                echo "<option value='U'>Unverified</option>";
-                echo "</select>";
+                      	 		echo "<a class=\"btn btn-primary btn-xs\" href=\"#contactAdvertiser\" data-toggle=\"modal\" contactid='$contactID' 
+						  			email='$email' phone='$phone'   name='$name'> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
+                    		
                 echo "</div>";
-                  echo "</td><td></td></tr>";
+                  echo "</td></tr>";
 				}
                
             	}
