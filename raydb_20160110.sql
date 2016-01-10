@@ -599,7 +599,6 @@ CREATE TABLE IF NOT EXISTS `requestpost` (
 -- Dumping data for table `requestpost`
 --
 
- --------------------------------------------------------
 
 --
 -- Table structure for table `savedAds`
