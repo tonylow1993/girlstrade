@@ -49,8 +49,7 @@
                                             <h5 class="list-title gray"><strong>Contact us</strong></h5>
 
              
-                     <form name="contactForm" id="contactForm" class="form-horizontal" method="post" onSubmit="return contactAction()"
-                     action="<?php echo base_url(); echo MY_PATH;?>footer/addcontact”>
+                     <form name="contactForm" id="contactForm" class="form-horizontal" method="post" onSubmit="return contactAction()" action="<?php echo base_url(); echo MY_PATH;?>footer/addcontact">
                     <fieldset>
 						<div class="row">
                             <div class="col-sm-6">
@@ -75,7 +74,7 @@
                              <div class="col-sm-6">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input id="email" name="email" type="email" placeholder="Email Address" class="form-control ">
+                                    <input id="email" name="email" type="email" placeholder="Email Address" class="form-control" required="true">
                                 </div>
                             </div>
                             </div>
@@ -198,7 +197,7 @@
 		  //$contactForm.find(':submit').click();
 		  document.contactForm.submitButton.click();
 		  return;
-	  }
+  }
   	var recaptcha = $("#g-recaptcha-response").val();
    	var isValid=true;
       if(recaptcha == ""){
