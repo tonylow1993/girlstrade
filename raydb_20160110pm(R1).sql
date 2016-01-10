@@ -3,13 +3,16 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 09, 2016 at 09:12 PM
+-- Generation Time: Jan 10, 2016 at 07:22 AM
 -- Server version: 5.5.45-cll-lve
 -- PHP Version: 5.4.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+DROP DATABASE `raydb`;
+CREATE DATABASE `raydb`;
+USE `raydb`;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,8 +23,11 @@ SET time_zone = "+00:00";
 -- Database: `raydb`
 --
 
-Create database if not exists `raydb`;
-use raydb;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `abusemessages`
+--
 
 CREATE TABLE IF NOT EXISTS `abusemessages` (
   `messageID` int(11) NOT NULL AUTO_INCREMENT,
@@ -101,10 +107,10 @@ INSERT INTO `category` (`categoryID`, `parentID`, `level`, `name`, `nameCH`, `po
 (14, NULL, 1, 'Lingerie', '內衣褲', 0, 'images/category_icon/內衣褲.png', 0, 4, 2),
 (15, NULL, 1, 'Electronics', '電子產品', 0, 'images/category_icon/電子產品.png', 0, 4, 0),
 (16, NULL, 1, 'Sportwear', '運動服', 0, 'images/category_icon/運動服.png', 0, 1, 9),
-(17, NULL, 1, 'Other', '其他', 0, 'images/category_icon/其他.png', 0, 5, 9),
-(18, 1, 2, 'General', '多用途', 3, 'images/category_icon/多用途.png', 43, 0, 29),
-(19, 1, 2, 'Long Dress', '長裙', 5, 'images/category_icon/長裙.png', 117, 0, 10),
-(20, 1, 2, 'Short Dress', '短裙', 0, 'images/category_icon/短裙.png', 0, 0, 7),
+(17, NULL, 1, 'Other', '其他', 0, 'images/category_icon/其他.png', 0, 5, 10),
+(18, 1, 2, 'General', '多用途', 3, 'images/category_icon/多用途.png', 45, 0, 29),
+(19, 1, 2, 'Long Dress', '長裙', 5, 'images/category_icon/長裙.png', 117, 0, 11),
+(20, 1, 2, 'Short Dress', '短裙', 0, 'images/category_icon/短裙.png', 0, 0, 9),
 (21, 1, 2, 'Formal Dress', '禮服', 0, 'images/category_icon/禮服.png', 0, 0, 12),
 (22, 2, 2, 'General', '多用途', 0, 'images/category_icon/多用途.png', 0, 0, 37),
 (23, 2, 2, 'T-Shirt', '短袖衫', 0, 'images/category_icon/短袖衫.png', 0, 0, 24),
@@ -124,7 +130,7 @@ INSERT INTO `category` (`categoryID`, `parentID`, `level`, `name`, `nameCH`, `po
 (37, 5, 2, 'Formal', '隆重連衫褲', 0, 'images/category_icon/隆重連衫褲.png', 0, 0, 0),
 (38, 5, 2, 'Sporty', '運動連衫褲', 0, 'images/category_icon/運動連衫褲.png', 0, 0, 2),
 (39, 8, 2, 'General', '多用途', 0, 'images/category_icon/多用途.png', 0, 0, 24),
-(40, 8, 2, 'Handbag', '手袋', 0, 'images/category_icon/手袋.png', 0, 0, 9),
+(40, 8, 2, 'Handbag', '手袋', 0, 'images/category_icon/手袋.png', 0, 0, 14),
 (41, 8, 2, 'Backpack', '背包', 0, 'images/category_icon/背包.png', 0, 0, 7),
 (42, 8, 2, 'Wallet', '錢包', 0, 'images/category_icon/錢包.png', 0, 0, 14),
 (43, 8, 2, 'Shoulder Bag', '單肩包', 0, 'images/category_icon/單肩包.png', 0, 0, 2),
@@ -136,7 +142,7 @@ INSERT INTO `category` (`categoryID`, `parentID`, `level`, `name`, `nameCH`, `po
 (49, 7, 2, 'Watch', '手錶', 0, 'images/category_icon/手錶.png', 0, 0, 3),
 (51, 9, 2, 'General', '多用途', 0, 'images/category_icon/多用途.png', 0, 0, 0),
 (52, 9, 2, 'High heels', '高跟鞋', 0, 'images/category_icon/高跟鞋.png', 0, 0, 0),
-(53, 9, 2, 'Sneakers', '帆布鞋', 0, 'images/category_icon/帆布鞋.png', 0, 0, 2),
+(53, 9, 2, 'Sneakers', '帆布鞋', 0, 'images/category_icon/帆布鞋.png', 0, 0, 3),
 (54, 9, 2, 'Sandals', '拖鞋', 0, 'images/category_icon/拖鞋.png', 0, 0, 0),
 (55, 9, 2, 'Boots', '靴子', 0, 'images/category_icon/靴子.png', 0, 0, 0),
 (56, 16, 2, 'General', '多用途', 0, 'images/category_icon/多用途.png', 0, 0, 2),
@@ -196,15 +202,12 @@ CREATE TABLE IF NOT EXISTS `contactHistory` (
   `contactTypeID` varchar(45) CHARACTER SET utf8 NOT NULL,
   `message` varchar(800) CHARACTER SET utf8 DEFAULT NULL,
   `createDate` datetime NOT NULL,
+  `status` varchar(3) NOT NULL,
+  `updateDate` datetime NOT NULL,
   PRIMARY KEY (`contactID`),
   KEY `contactTypeID` (`contactTypeID`),
   KEY `contactTypeID_2` (`contactTypeID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `contactHistory`
---
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -218,13 +221,18 @@ CREATE TABLE IF NOT EXISTS `contactType` (
   `nameCH` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   `value` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`contactTypeID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `contactType`
 --
 
-
+INSERT INTO `contactType` (`contactTypeID`, `name`, `nameCH`, `value`) VALUES
+(1, 'Advertising', '廣告查詢', 'advertising'),
+(2, 'Girlstrade Partnership', '合作方案', 'partnership'),
+(3, 'Girlstrade Account', '會員帳戶', 'account'),
+(4, 'General Suggestions', '提出意見', 'suggestions'),
+(5, 'Others', '其他查詢', 'others');
 
 -- --------------------------------------------------------
 
@@ -256,7 +264,13 @@ CREATE TABLE IF NOT EXISTS `interestedproduct` (
 -- Dumping data for table `interestedproduct`
 --
 
-
+INSERT INTO `interestedproduct` (`postID`, `viewCount`, `session_id`, `createDate`) VALUES
+(555, 106, NULL, NULL),
+(579, 21, NULL, NULL),
+(571, 11, NULL, NULL),
+(597, 6, NULL, NULL),
+(598, 5, NULL, NULL),
+(602, 4, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -280,6 +294,7 @@ CREATE TABLE IF NOT EXISTS `itemcomments` (
 --
 -- Dumping data for table `itemcomments`
 --
+
 
 -- --------------------------------------------------------
 
@@ -451,7 +466,6 @@ CREATE TABLE IF NOT EXISTS `message` (
 --
 -- Dumping data for table `message`
 --
--- --------------------------------------------------------
 
 --
 -- Table structure for table `pagevisited`
@@ -469,6 +483,7 @@ CREATE TABLE IF NOT EXISTS `pagevisited` (
 --
 -- Dumping data for table `pagevisited`
 --
+
 
 -- --------------------------------------------------------
 
@@ -489,11 +504,13 @@ CREATE TABLE IF NOT EXISTS `picture` (
   PRIMARY KEY (`sequence`),
   KEY `fk_picture_1_idx` (`postID`),
   KEY `fk_picture_2_idx` (`userID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=318 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=328 ;
 
 --
 -- Dumping data for table `picture`
 --
+
+
 -- --------------------------------------------------------
 
 --
@@ -535,11 +552,13 @@ CREATE TABLE IF NOT EXISTS `post` (
   `deleteDate` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`postID`),
   KEY `fk_post_1_idx` (`catID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=615 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=619 ;
 
 --
 -- Dumping data for table `post`
 --
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `postmessage`
@@ -578,6 +597,7 @@ CREATE TABLE IF NOT EXISTS `postviewhistory` (
 --
 -- Dumping data for table `postviewhistory`
 --
+
 -- --------------------------------------------------------
 
 --
@@ -599,6 +619,8 @@ CREATE TABLE IF NOT EXISTS `requestpost` (
 -- Dumping data for table `requestpost`
 --
 
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `savedAds`
@@ -668,7 +690,12 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `createDate` date DEFAULT NULL,
   PRIMARY KEY (`sequence`,`postID`),
   KEY `fk_table1_1_idx` (`postID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tag`
+--
+
 
 -- --------------------------------------------------------
 
@@ -698,6 +725,7 @@ CREATE TABLE IF NOT EXISTS `tradecomments` (
 --
 -- Dumping data for table `tradecomments`
 --
+
 
 -- --------------------------------------------------------
 
@@ -752,8 +780,8 @@ INSERT INTO `user` (`userID`, `username`, `ip`, `point`, `accountStatus`, `creat
 (67, 'tester', '219.77.95.89', 0, 'A', '2015-12-20 19:14:06', 'PREMIUMPOSTEXPIRYDAYS', '2015-12-23 09:31:25', NULL, NULL, NULL, NULL, NULL, NULL),
 (68, 'test123', '219.77.95.89', 0, 'A', '2015-12-20 19:21:16', 'PREMIUMPOSTEXPIRYDAYS', '2015-12-20 12:21:16', NULL, NULL, NULL, NULL, NULL, NULL),
 (69, 'mytest', '219.77.95.89', 0, 'A', '2015-12-20 19:22:03', 'PREMIUMPOSTEXPIRYDAYS', '2015-12-20 12:22:03', NULL, NULL, NULL, NULL, NULL, NULL),
-(70, 'tonylow123', '113.255.13.203', 0, 'A', '2015-12-22 05:47:45', 'PREMIUMPOSTEXPIRYDAYS', '2016-01-06 00:00:58', NULL, NULL, NULL, NULL, NULL, NULL),
-(71, 'rchiu1hk', '203.168.206.172', 0, 'A', '2015-12-26 22:20:12', 'PREMIUMPOSTEXPIRYDAYS', '2016-01-09 10:19:40', NULL, NULL, NULL, NULL, NULL, NULL),
+(70, 'tonylow123', '113.255.13.203', 0, 'A', '2015-12-22 05:47:45', 'PREMIUMPOSTEXPIRYDAYS', '2016-01-10 19:06:15', NULL, NULL, NULL, NULL, NULL, NULL),
+(71, 'rchiu1hk', '203.168.206.172', 0, 'A', '2015-12-26 22:20:12', 'PREMIUMPOSTEXPIRYDAYS', '2016-01-10 19:40:58', NULL, NULL, NULL, NULL, NULL, NULL),
 (72, 'rchiu2hk', '203.168.206.172', 0, 'A', '2015-12-26 22:21:15', 'PREMIUMPOSTEXPIRYDAYS', '2015-12-27 23:33:48', NULL, NULL, NULL, NULL, NULL, NULL),
 (73, 'rchiu3hk', '203.168.206.172', 0, 'A', '2015-12-26 22:22:01', 'PREMIUMPOSTEXPIRYDAYS', '2015-12-27 23:37:23', NULL, NULL, NULL, NULL, NULL, NULL),
 (74, 'rchiu4hk', '203.168.206.172', 0, 'A', '2015-12-26 22:23:28', 'PREMIUMPOSTEXPIRYDAYS', '2015-12-27 23:49:10', NULL, NULL, NULL, NULL, NULL, NULL),
@@ -865,6 +893,7 @@ CREATE TABLE IF NOT EXISTS `userloginhistory` (
 -- Dumping data for table `userloginhistory`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -929,9 +958,9 @@ CREATE TABLE IF NOT EXISTS `userstat` (
 
 INSERT INTO `userstat` (`userID`, `inboxMsgCount`, `approveMsgCount`, `myAdsCount`, `savedAdsCount`, `pendingMsgCount`, `archivedAdsCount`, `visitCount`, `totalMyAdsCount`, `favoriteAdsCount`, `outgoingMsgCount`, `buyAdsCount`, `directsendhistCount`) VALUES
 (65, 1, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 1),
-(66, 2, 0, 4, 0, 0, 0, 113, 7, 0, 1, 0, 0),
+(66, 2, 0, 4, 0, 0, 0, 114, 7, 0, 1, 0, 0),
 (67, 2, 0, 1, 0, 0, 0, 21, 2, 0, 0, 0, 0),
-(70, 0, 0, 2, 0, 0, 0, 18, 14, 0, 0, 0, 0),
+(70, 0, 0, 2, 0, 0, 0, 19, 18, 0, 0, 0, 0),
 (71, 0, 0, 1, 0, 0, 0, 9, 2, 0, 0, 0, 0);
 
 --
