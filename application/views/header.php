@@ -182,6 +182,25 @@ echo json_encode($usr);;
             <?php if (!isset($Signup)) $Signup = 'Signup'; echo $Signup;?>
             </span>
             </a></li>  
+            
+            <li>
+            <a id="lang" href=<?php $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+            echo base_url().MY_PATH."switchLang/changeLang_R1?prevURL=".urlencode(current_url());    
+            	?>>
+            <i  id="menubarTitle" class="icon-cog"></i>
+            <span id="menubarTitle" >
+            	<?php 
+                	//$lang_label=$this->session->userdata("language");
+                	//if (!isset($lang_label)) 
+                	//{
+                	//	$lang_label = 'chinese';
+                	//	$this->session->set_userdata("language", $lang_label);
+                	//}	
+                	echo $this->lang->line("lang_label_text");
+                	?>
+            </span>
+            </a>    	
+            </li>
             <li class="postadd"><a class="btn btn-block   btn-border btn-post btn-tw" href="<?php echo base_url(); echo MY_PATH;?>newPost/index?prevURL=<?php echo urlencode((current_url()));?>">
             <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?>
             <i class="icon-pencil-2"></i></a>
@@ -220,6 +239,26 @@ echo json_encode($usr);;
             <span id="menubarTitle">
          	<?php if (!isset($Logout)) $Logout = 'Logout'; echo $Logout;?></a></li>
             </span>
+            
+            <li>
+            <a id="lang" href=<?php $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+            echo base_url().MY_PATH."switchLang/changeLang_R1?prevURL=".urlencode(current_url());    
+            	?>>
+            <i  id="menubarTitle" class="icon-cog"></i>
+            <span id="menubarTitle" >
+            	<?php 
+                	//$lang_label=$this->session->userdata("language");
+                	//if (!isset($lang_label)) 
+                	//{
+                	//	$lang_label = 'chinese';
+                	//	$this->session->set_userdata("language", $lang_label);
+                	//}	
+                	echo $this->lang->line("lang_label_text");
+                	?>
+            </span>
+            </a>    	
+            </li>
+            
             <li class="postadd"><a class="btn btn-border btn-danger" href="<?php echo base_url(); echo MY_PATH;?>newPost/index?prevURL=<?php echo urlencode((current_url()));?>"><?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?><i class="icon-pencil-2"></i></a></li>
           </ul>
           <?php }?>       
