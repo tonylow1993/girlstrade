@@ -11,6 +11,13 @@
 * {
    //border-radius: 0 !important;
 }
+.selecter
+{
+	max-width: 100%;
+}
+#searchItemDropDown{
+	 max-width: 100%;
+}
 .map iframe{
     pointer-events: none;
 }

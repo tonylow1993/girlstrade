@@ -114,7 +114,7 @@
 	            	if($lang_label<>"english")
 	            		$name=$value[0]->nameCN;
 	            	if($value[0]->level==1)
-	            		echo "<li> <a href=\"$basePath\">$name.$postCount</a></li>";
+	            		echo "<li> <a href=\"$basePath\">$name $postCount</a></li>";
 	            	
 	            	}
 	            ?>
