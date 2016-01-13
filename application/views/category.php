@@ -1,5 +1,6 @@
 <?php $title = "Search Page";  include("header.php"); ?>
-
+<!-- CSS WHEEL SLIDER -->
+<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/noUiSlider/jquery.nouislider.min.css">
 <div id="wrapper">
   
   <!-- /.header -->
@@ -80,7 +81,7 @@
                 </select>
             </div>-->
            <div class="col-sm-3">
-            	<button class="btn btn-primary btn-block btn-pink"> <i class="fa fa-search"></i> </button>  	
+            	<button class="btn btn-primary btn-block btn-pink"> <i class="fa fa-search"></i> Search</button>  	
 <!--            	        	 <button class="btn btn-block btn-primary  "> <i class="fa fa-search"></i> </button> -->
            	</div>
             
@@ -101,7 +102,9 @@
               <!--/.categories-list-->
               
               <div class="locations-list  list-filter">
-                <h5 class="list-title"><strong><a href="#"><?php echo $lblLocation;?></a></strong></h5>
+                <h5 class="list-title"><strong>
+                <a href="#">
+                <i class="icon-location-circled"></i><?php echo trim($lblLocation);?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
                 <?php 
 	            foreach ($resLoc as $id=>$value)
@@ -123,7 +126,7 @@
               
               <!--/.locations-list-->
               <div class="locations-list  list-filter margin-top-30">
-                <h5 class="list-title"><strong><a href="#"><?php echo $lblPriceRange;?></a></strong></h5>
+                <h5 class="list-title"><strong><a href="#"><i class="icon-money"></i><?php echo $lblPriceRange;?></a></strong></h5>
                 <form role="form"  id="priceForm" class="form-inline "  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
                   <div class="margin-top-30">
                       <input type="number" placeholder="100" id="minPrice"
@@ -133,22 +136,42 @@
                       <input type="number" placeholder="1000 " id="maxPrice"  
                       value=<?php if($minPrice>0) echo $maxPrice;?>  
                       name="maxPrice" min="0" max="90000"   class="form-control price">
-                    
                   </div>
                   <div>
                     <div class="form-group no-padding">
                       <button id="priceRangeBtn" class="btn btn-default btn-pink btn-80 margin-top-10 " 
-                      type="submit">Filter</button>
+                      type="submit">Filter<i class="icon-search-2"></i></button>
                     </div>
                   </div>
                 </form>
                 <div style="clear:both"></div>
               </div>
-              
+              <!--PRICING MODEL-->
+              <!-- <div class="panel-group" id="accordion-v4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion-v4" href="#collapseFour">
+                                    Price
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="slider-snap"></div>
+                                <p class="slider-snap-text">
+                                    <span class="slider-snap-value-lower"></span>
+                                    <span class="slider-snap-value-upper"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
               
               
               <div class="locations-list  list-filter">
-                <h5 class="list-title"><strong><a href="#"><?php echo $lblCondition;?></a></strong></h5>
+                <h5 class="list-title"><strong><a href="#"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
                  <li> <a id="searchCriteria" href="#"><?php echo $lblConditionAll;?>
                   
@@ -476,8 +499,11 @@ function savedAds(ctrlValue, ctrlName) {
 </div>
 
 <!-- /.modal -->
- 
-
+ <!--  WHEEL PART -->
+<script src="<?php echo base_url();?>assets/plugins/noUiSlider/jquery.nouislider.all.min.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/plugins/mouse-wheel.js"></script>
+<script src="<?php echo base_url();?>assets/js/shop.app.js"></script>
 
 <?php include "footer2.php"; ?>
 

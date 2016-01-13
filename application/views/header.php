@@ -74,6 +74,8 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/custom.css">
+    
+    
 <script>
     paceOptions = {
       elements: true

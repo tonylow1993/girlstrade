@@ -283,7 +283,10 @@ $(document).ready(function() {
             return false;
         }
     });
-    
+    //App.init();
+    //App.initScrollBar();
+    MouseWheel.initMouseWheel();
+    //StyleSwitcher.initStyleSwitcher();
     
 }); // end Ready
 

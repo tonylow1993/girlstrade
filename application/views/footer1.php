@@ -59,7 +59,6 @@
 <script src="<?php echo base_url();?>assets/plugins/jquery.fs.scroller/jquery.fs.scroller.js"></script>
 <script src="<?php echo base_url();?>assets/plugins/jquery.fs.selecter/jquery.fs.selecter.js"></script>
 
-
 <!-- include custom script for site  --> 
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 
