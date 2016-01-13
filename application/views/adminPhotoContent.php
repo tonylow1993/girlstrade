@@ -4,7 +4,7 @@
             $basePath=base_url();
              $encodeCurrentURL=urlencode(current_url());
                $Num=0;
-              if($itemList<>null)
+              if($itemList<>null && count($itemList)>0)
               {
               	
               foreach($itemList as $id=>$item)
@@ -47,7 +47,9 @@
 			 	
 				}
                
-				}
+				}else{
+              	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+              }
 				echo "<br/><input type='hidden' name='NumRec' value='".$Num."' ></input>";
 // 				echo "</div></div></div>";
 				

@@ -17,18 +17,22 @@
              <div class="table-responsive">
              <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
+                 <?php if($itemList<>null && count($itemList)>0)
+            	{
+            	?>	
                     <tr>
                     <th data-type="numeric" data-sort-initial="true"> </th>
                     <th> <?php echo $this->lang->line("From");?> </th>
                     <th data-sort-ignore="true"> <?php echo $this->lang->line("Preview");?>  </th>
                     <th> <?php echo $this->lang->line("Action");?>  </th>
                    </tr>
+                   <?php }?>
                 </thead>
                 <tbody>
                 <?php 
                 $Num=0;
                 
-                if($itemList<>null)
+                if($itemList<>null && count($itemList)>0)
             	{
             		foreach($itemList as $id=>$row)
                   	{
@@ -86,7 +90,9 @@
                   echo "</td></tr>";
 				}
                
-            	}
+            	}else{
+              	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+              }
 				echo "<br/><input type='hidden' name='NumRec' value='".$Num."' ></input>";
               ?>  
                    <div class="pagination-bar text-center">
