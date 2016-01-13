@@ -12,7 +12,7 @@ hideMaxListItems: function(options)
 		speed: 1000,
 		moreText:'View More',
 		lessText:'View Less',
-		moreHTML:'<p class="maxlist-more"><a href="#"></a></p>', // requires class and child <a>
+		moreHTML:'<p class="maxlist-more" style="padding-left: 5px;"><a id="viewMore" href="#"></a></p>', // requires class and child <a>
 	};
 	var options =  $.extend(defaults, options);
 	

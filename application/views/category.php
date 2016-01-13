@@ -44,41 +44,41 @@
             ?>
           </select>
         </div>
-<!--         <div class="col-sm-3"> -->
-<!--           <select class="form-control selecter" name="location" id="id-location"> -->
+        <div class="col-sm-3"> 
+          <select class="form-control selecter" name="location" id="id-location"> 
             <?php 
-//             $str="";
-//             if($locID_==null or $locID_=="" or $locID_=='0')
-//             	$str=" selected='selected' ";
-//             echo "<option ".$str." value='0'> ".$lblAllLocations." </option>";
+             $str="";
+             if($locID_==null or $locID_=="" or $locID_=='0')
+             	$str=" selected='selected' ";
+             echo "<option ".$str." value='0'> ".$lblAllLocations." </option>";
             
-//             foreach ($resLoc as $id=>$value)
-//             {
-//             if(!isset($lang_label))
-// 	            		$lang_label="";
-//             	$name=$value[0]->name;
-//             	if($lang_label<>"english")
-//             		$name=$value[0]->nameCN;
-//             	if($value[0]->level==1)
-//             		echo "<option value='".$id."' style='background-color:#E9E9E9;font-weight:bold;' disabled='disabled'> -".$name." - </option>";
-//             	else 
-//             	{
-//             		$str="";
-//             		if($locID_==$id)
-//             			$str=" selected='selected' ";
-//             		echo "<option ".$str." value='".$id."'> ".$name." </option>";
-//             	}
-//             }
-//             ?>
-<!--           </select> -->
-<!--           </div> -->
-          <div class="col-sm-3">
+             foreach ($resLoc as $id=>$value)
+             {
+             if(!isset($lang_label))
+ 	            		$lang_label="";
+             	$name=$value[0]->name;
+             	if($lang_label<>"english")
+             		$name=$value[0]->nameCN;
+             	if($value[0]->level==1)
+             		echo "<option value='".$id."' style='background-color:#E9E9E9;font-weight:bold;' disabled='disabled'> -".$name." - </option>";
+             	else 
+             	{
+             		$str="";
+             		if($locID_==$id)
+             			$str=" selected='selected' ";
+             		echo "<option ".$str." value='".$id."'> ".$name." </option>";
+             	}
+             }
+             ?>
+           </select>
+           </div>
+          <!-- <div class="col-sm-3">
               <select class="form-control selecter"  id="sortByPrice" name="sortByPrice"  >
                   <option value="0"   <?php if(strcmp($sortByID_,"0")==0 or $sortByID_==0 or $sortByID_=='') echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
                   <option value="1"   <?php if(strcmp($sortByID_,"1")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceLowToHigh;?></option>
                   <option value="2"   <?php if(strcmp($sortByID_,"2")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceHighToLow;?></option>
                 </select>
-            </div>
+            </div>-->
            <div class="col-sm-3">
             	<button class="btn btn-primary btn-block btn-pink"> <i class="fa fa-search"></i> </button>  	
 <!--            	        	 <button class="btn btn-block btn-primary  "> <i class="fa fa-search"></i> </button> -->
@@ -114,7 +114,7 @@
 	            	if($lang_label<>"english")
 	            		$name=$value[0]->nameCN;
 	            	if($value[0]->level==1)
-	            		echo "<li> <a href=\"$basePath\">$name $postCount</a></li>";
+	            		echo "<li> <a id=\"searchCriteria\" href=\"$basePath\">$name $postCount</a></li>";
 	            	
 	            	}
 	            ?>
@@ -122,37 +122,46 @@
               </div>
               
               <!--/.locations-list-->
-              
               <div class="locations-list  list-filter margin-top-30">
                 <h5 class="list-title"><strong><a href="#"><?php echo $lblPriceRange;?></a></strong></h5>
                 <form role="form"  id="priceForm" class="form-inline "  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
                   <div class="margin-top-30">
-                    <div class="form-group col-sm-4 no-padding">
-                      <input type="number" placeholder="100"   value=<?php echo $minPrice;?>  id="minPrice"   name="minPrice"  min="0"  max="90000" class="form-control">
-                    </div>
-                    <div class="form-group col-sm-4 no-padding text-center margin-top-10">—</div>
-                    <div class="form-group col-sm-4 no-padding">
-                      <input type="number" placeholder="1000 " id="maxPrice"  value=<?php echo $maxPrice;?>  name="maxPrice" min="0" max="90000"   class="form-control">
-                    </div>
+                      <input type="number" placeholder="100" id="minPrice"
+                      value=<?php if($minPrice>0)echo $minPrice;?>     
+                      name="minPrice"  min="0"  max="90000" class="form-control price">
+                      <span id="menubarTitle"> - </span>
+                      <input type="number" placeholder="1000 " id="maxPrice"  
+                      value=<?php if($minPrice>0) echo $maxPrice;?>  
+                      name="maxPrice" min="0" max="90000"   class="form-control price">
+                    
                   </div>
                   <div>
                     <div class="form-group no-padding">
-                      <button class="btn btn-default btn-pink btn-80 margin-top-30 " type="submit">Filter</button>
+                      <button id="priceRangeBtn" class="btn btn-default btn-pink btn-80 margin-top-10 " 
+                      type="submit">Filter</button>
                     </div>
                   </div>
                 </form>
                 <div style="clear:both"></div>
               </div>
-              <!--/.list-filter
+              
+              
+              
               <div class="locations-list  list-filter">
-                <h5 class="list-title"><strong><a href="#"><?php echo $lblPaymentOptions;?></a></strong></h5>
+                <h5 class="list-title"><strong><a href="#"><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
-                  <li> <a href="#"><strong>All</strong> <span class="count">228,705</span></a></li>
-                  <li> <a href="#">Local Pickup<span class="count">28,705</span></a></li>
-                  <li> <a href="#">International Shipping<span class="count">18,705</span></a></li>
+                 <li> <a id="searchCriteria" href="#"><?php echo $lblConditionAll;?>
+                  
+                  		<span class="count">28,705</span></a></li>
+                  <li> <a id="searchCriteria" href="#"><?php echo $lblConditionNew;?>
+                  
+                  		<span class="count">28,705</span></a></li>
+                  <li> <a id="searchCriteria" href="#"><?php echo $lblConditionUsed;?>
+                  
+                  		<span class="count">18,705</span></a></li>
                 </ul>
               </div>
-              /.list-filter-->
+              
               
               <div style="clear:both"></div>
             </div>
@@ -161,12 +170,48 @@
           </aside>
         </div>
         <!--/.page-side-bar-->
+        
         <div class="col-sm-9 page-content col-thin-left">
-          <div class="category-list panel-bevel">
+          <div class="category-list">
+          <div class="tab-box "> 
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
+                <li class="active"><a href="#allAds" data-url="ajax/1.html" role="tab" data-toggle="tab">
+                <?php echo $lblConditionAny;?>
+                <span class="badge">228,705</span></a></li>
+                <li><a href="#newAds" data-url="ajax/2.html" role="tab" data-toggle="tab">
+                <?php echo $lblConditionNew;?>
+                <span class="badge">22,805</span></a></li>
+                <li><a href="#usedAds" data-url="ajax/3.html" role="tab" data-toggle="tab">
+                <?php echo $lblConditionUsed;?> 
+                <span class="badge">18,705</span></a></li>
+              </ul>
+              <div class="tab-filter">
+                <select class="selectpicker" data-style="btn-select" data-width="auto">
+                  <option>Relevance</option>
+                  <option>Price: Low to High</option>
+                  <option>Price: High to Low</option>
+                  <option>Newest</option>
+                </select>
+              </div>
+           </div>
+           <!--/.tab-box-->
+          
+          
            <div class="listing-filter">
+           	  <div class="pull-left col-xs-6">
+                <div class="breadcrumb-list"> <a href="#" class="current"> 
+                <span>All ads</span></a> in Hong Kong
+                <a href="#selectLocation" id="dropdownMenu1"  data-toggle="modal"> 
+                <span class="caret"></span> </a> </div>
+              </div>
               <div class="pull-left col-xs-6">
                </div>
-              <div class="pull-right col-xs-6 text-right listing-view-action"> <span class="list-view active"><i class="  icon-th"></i></span> <span class="compact-view"><i class=" icon-th-list  "></i></span> <span class="grid-view "><i class=" icon-th-large "></i></span> </div>
+              <div class="pull-right col-xs-6 text-right listing-view-action"> 
+              <span class="list-view active"><i class="  icon-th"></i>
+              </span> <span class="compact-view"><i class=" icon-th-list  "></i>
+              </span> <span class="grid-view "><i class=" icon-th-large "></i></span> 
+              </div>
               <div style="clear:both"></div>
             </div>
               
@@ -344,11 +389,94 @@ function savedAds(ctrlValue, ctrlName) {
 </script>
 <!-- /.wrapper --> 
 
+
+
 <!-- Modal Change City -->
 
+<div class="modal fade" id="selectLocation" tabindex="-1" role="dialog" aria-labelledby="countryPopup" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="countryPopup"><i class=" icon-map"></i> Select your region </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+        
+            <p>Popular cities in <strong>New York</strong>
+            </p>
 
+<div style="clear:both"></div>            
+            <div class="col-sm-6 no-padding">
+        <select  class="form-control selecter  " id="region-state" name="region-state">
+		<option value="">All States/Provinces</option>
+		<option value="Alabama">Alabama</option>
+		<option value="Alaska">Alaska</option>
+		<option value="Arizona">Arizona</option>
+		<option value="Arkansas">Arkansas</option>
+		<option value="California">California</option>
+		<option value="Colorado">Colorado</option>
+		<option value="Connecticut">Connecticut</option>
+		<option value="Delaware">Delaware</option>
+		<option value="District of Columbia">District of Columbia</option>
+		</select>
+            </div>
+           <div style="clear:both"></div>            
 
-<!-- /.modal --> 
+            <hr class="hr-thin">
+          </div>
+          <div class="col-md-4">
+            <ul  class="list-link list-unstyled">
+              <li> <a  href="#" title="">All Cities</a> </li>
+		 <li> <a  href="#" title="Albany">Albany</a> </li>
+		 <li> <a  href="#" title="Altamont">Altamont</a> </li>
+		 <li> <a  href="#" title="Amagansett">Amagansett</a> </li>
+		 <li> <a  href="#" title="Amawalk">Amawalk</a> </li>
+		 <li> <a  href="#" title="Bellport">Bellport</a> </li>
+		 <li> <a  href="#" title="Centereach">Centereach</a> </li>
+		 <li> <a  href="#" title="Chappaqua">Chappaqua</a> </li>
+         <li> <a  href="#" title="East Elmhurst">East Elmhurst</a> </li>
+		 <li> <a  href="#" title="East Greenbush">East Greenbush</a> </li>
+		 <li> <a  href="#" title="East Meadow">East Meadow</a> </li>
+	
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-link list-unstyled">
+              <li> <a  href="#" title="Elmont">Elmont</a> </li>
+		 <li> <a  href="#" title="Elmsford">Elmsford</a> </li>
+		 <li> <a  href="#" title="Farmingville">Farmingville</a> </li>
+		 <li> <a  href="#" title="Floral Park">Floral Park</a> </li>
+		 <li> <a  href="#" title="Flushing">Flushing</a> </li>
+		 <li> <a  href="#" title="Fonda">Fonda</a> </li>
+		 <li> <a  href="#" title="Freeport">Freeport</a> </li>
+		 <li> <a  href="#" title="Fresh Meadows">Fresh Meadows</a> </li>
+		 <li> <a  href="#" title="Fultonville">Fultonville</a> </li>
+		 <li> <a  href="#" title="Gansevoort">Gansevoort</a> </li>
+		 <li> <a  href="#" title="Garden City">Garden City</a> </li>
+
+	
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-link list-unstyled">
+               <li> <a  href="#" title="Oceanside">Oceanside</a> </li>
+		 <li> <a  href="#" title="Orangeburg">Orangeburg</a> </li>
+		 <li> <a  href="#" title="Orient">Orient</a> </li>
+         <li> <a  href="#" title="Ozone Park">Ozone Park</a> </li>
+
+	
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /.modal -->
+ 
 
 
 <?php include "footer2.php"; ?>

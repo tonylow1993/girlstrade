@@ -237,7 +237,11 @@ class getCategory extends CI_Controller {
 	 	$data["lblPriceHighToLow"]=$this->lang->line("lblPriceHighToLow");
 	 	$data["lblLocation"]=$this->lang->line("lblLocation");
 	 	$data["lblPriceRange"]=$this->lang->line("lblPriceRange");
-	 	$data["lblPaymentOptions"]=$this->lang->line("lblPaymentOptions");
+	 	$data["lblCondition"]=$this->lang->line("lblCondition");
+	 	$data["lblConditionNew"]=$this->lang->line("lblConditionNew");
+	 	$data["lblConditionUsed"]=$this->lang->line("lblConditionUsed");
+	 	$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
+	 	$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
 	 	//----------setup the header menu----------
 			$data["menuMyAds"]="";
 			$data["menuInbox"]="";

@@ -11,6 +11,15 @@
 * {
    //border-radius: 0 !important;
 }
+#viewMore
+{
+	color: #901313;
+	font-weight: normal;
+}
+#searchCriteria
+{
+	font-weight: normal;
+}
 .selecter
 {
 	max-width: 100%;
@@ -20,6 +29,20 @@
 }
 .map iframe{
     pointer-events: none;
+}
+.form-control.price
+{
+	width:40%;
+	display:inline;
+}
+#priceRangeBtn
+{
+	margin-left: inherit;
+}
+#maxPrice,
+#minPrice
+{
+	max-width: 40%;
 }
 #menubarTitle 
 {

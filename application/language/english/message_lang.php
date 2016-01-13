@@ -82,7 +82,12 @@ $lang["lblSearchSortBy"]="Sort by";
 $lang["lblPriceLowToHigh"]="Price: Low to High";
 $lang["lblPriceHighToLow"]="Price: High to Low";
 $lang["lblLocation"]="Location";  // newPost.php
-$lang["lblPriceRange"]="Price range";
+$lang["lblPriceRange"]="Price Range";
+$lang["lblCondition"]="Condition";
+$lang["lblConditionAny"]="Any Condition";
+$lang["lblConditionNew"]="New";
+$lang["lblConditionAll"]="All";
+$lang["lblConditionUsed"]="Used";
 $lang["lblPaymentOptions"]="Payment Options";
 
 // Login.php
