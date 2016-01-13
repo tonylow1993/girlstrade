@@ -28,7 +28,7 @@
                 <?php 
                 $Num=0;
                 
-                if($itemList<>null)
+                if($itemList<>null && count($itemList)>0)
             	{
             		foreach($itemList as $id=>$row)
                   	{
@@ -87,7 +87,9 @@
 //                   echo "</td></tr>";
 				}
                
-            	}
+            	}else{
+              	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+              }
 // 				echo "<br/><input type='hidden' name='NumRec' value='".$Num."' ></input>";
               ?>  
 <!--                    <div class="pagination-bar text-center"> -->

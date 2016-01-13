@@ -1894,6 +1894,7 @@ function generateRandomString($length = 8) {
 			$soldToUserName="";
 			$soldUserList=$this->messages_model->getSoldUserList($postID);
 			$postInfo=$this->post_model->getPostByPostID($postID);
+			$postUserID=$postInfo->userID;
 			$commentInfo=$this->tradecomments_model->getTradeCommentsbyPostID($postID);	
 			$preview="";
 			if($commentInfo<>null && count($commentInfo)>0)
@@ -1950,6 +1951,7 @@ function generateRandomString($length = 8) {
 					"messageID"=>$messageID,
 					"userID"=>$userID,
 					"fuserID"=>$fuserID,
+					"postUserID"=>$postUserID,
 					"createDate"=>$createDate,
 					"reply"=>$reply,
 					"preview"=>$preview,
