@@ -71,4 +71,29 @@
      //DO NOT EDIT THIS PART  -->
     
 </script> 
+<!-- JS Implementing Plugins -->
+<script src="<?php echo base_url();?>assets/plugins/back-to-top.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/smoothScroll.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/jquery.parallax.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<!-- JS Customization -->
+<script src="<?php echo base_url();?>assets/js/custom.js"></script>
+<!-- JS Page Level -->
+<script src="<?php echo base_url();?>assets/js/shop.app.js"></script>
+<script src="<?php echo base_url();?>assets/js/plugins/owl-carousel.js"></script>
+<script src="<?php echo base_url();?>assets/js/plugins/revolution-slider.js"></script>
+<!--Drop Down list-->
+
+<script>
+    jQuery(document).ready(function() {
+        App.init();
+        App.initScrollBar();
+        App.initParallaxBg();
+        OwlCarousel.initOwlCarousel();
+        RevolutionSlider.initRSfullWidth();     
+    });
+</script>
  <div class="modal"></div> 
