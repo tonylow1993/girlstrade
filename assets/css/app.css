@@ -11,6 +11,26 @@
 * {
    //border-radius: 0 !important;
 }
+
+#searchCriteria.listForOpenCat
+{
+	display:initial;
+}
+#openCat
+{
+	float: right;
+	color: #F9042E;
+	//display:initial;
+}
+#openCat:after
+{
+  //font-family:'Glyphicons Halflings';
+  //content:"\2212";
+}
+#openCat.collpased:after
+{
+  //content:"\2b";
+}
 #viewMore
 {
 	color: #901313;

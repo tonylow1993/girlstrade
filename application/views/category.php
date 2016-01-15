@@ -106,6 +106,40 @@
                 <a href="#">
                 <i class="icon-location-circled"></i><?php echo trim($lblLocation);?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
+                
+                
+                <li>
+                <a id="openCat" class="openCat" data-toggle="collapse" data-target="#collapseOne" 
+		           href="#collapseOne" onclick='return openCat(this.id);'>
+		          <i class="glyphicon glyphicon-plus"></i>
+		        </a>
+		        <a id="searchCriteria" class="listForOpenCat" href="">
+		        	Hong Kong (10)
+                </a>
+                </li>
+                <div id="collapseOne" class="panel-collapse collapse">
+            		<ul class=" list-unstyled long-list">
+            			<li>I AM A TEST</li>
+            		</ul>
+        		</div>
+                <li><a id="searchCriteria" href="">Kowloon (10)</a></li>
+                <li><a id="searchCriteria" href="">New Territories (10)</a></li>
+                
+                </ul>
+              </div>
+              
+              <!--/.locations-list-->
+              
+              
+              
+              
+              
+              <!--  
+              <div class="locations-list  list-filter">
+                <h5 class="list-title"><strong>
+                <a href="#">
+                <i class="icon-location-circled"></i><?php echo trim($lblLocation);?></a></strong></h5>
+                <ul class="browse-list list-unstyled long-list">
                 <?php 
 	            foreach ($resLoc as $id=>$value)
 	            {
@@ -123,7 +157,7 @@
 	            ?>
                 </ul>
               </div>
-              
+              -->
               <!--/.locations-list-->
               <div class="locations-list  list-filter margin-top-30">
                 <h5 class="list-title"><strong><a href="#"><i class="icon-money"></i><?php echo $lblPriceRange;?></a></strong></h5>
@@ -505,6 +539,23 @@ function savedAds(ctrlValue, ctrlName) {
 <script src="<?php echo base_url();?>assets/js/plugins/mouse-wheel.js"></script>
 <script src="<?php echo base_url();?>assets/js/shop.app.js"></script>
 
+<script>
+function openCat(id) { 
+    var thisitem = document.getElementById(id);
+    var plusIcon = '<i class="glyphicon glyphicon-plus\"></i>';
+    var minusIcon = '<i class="glyphicon glyphicon-minus\"></i>';
+    if(thisitem.childNodes[1] == plusIcon)
+    {
+    	thisitem.innerHTML = thisitem.innerHTML.replace(plusIcon, minusIcon);
+    }else if (thisitem.childNodes[1] == minusIcon)
+    {
+    	thisitem.innerHTML = thisitem.innerHTML.replace(minusIcon, plusIcon);
+    }
+    console.log(thisitem.childNodes[0]);
+    console.log(plusIcon);
+    return true;
+}
+</script>
 <?php include "footer2.php"; ?>
 
 </div>
