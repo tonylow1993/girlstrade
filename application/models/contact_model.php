@@ -15,9 +15,10 @@ class contact_model extends CI_Model {
 	        parent::__construct();
 	    }
 		public function updateUnverifiedContact($array){
+			$result=false;
 			try {
 				$this->db->trans_start();
-				foreach($array as $id=> $commentID)
+				foreach($array as $commentID)
 				{
 		
 					$data=array('status'=>'A', 'updateDate'=> date('Y-m-d h:i:s a', time()) );
@@ -26,11 +27,12 @@ class contact_model extends CI_Model {
 		
 				}
 				$this->db->trans_complete();
+				return $result;
 			}catch(Exception $ex)
 			{
 				echo $ex->getMessage();
-				return;
 			}
+			return $result;
 		}
 	    function addContactModel($data)
 	    {	

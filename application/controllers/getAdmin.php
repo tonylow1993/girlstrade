@@ -1158,6 +1158,12 @@ class getAdmin extends CI_Controller {
 	
 	public function replyMessage(){
 		try{
+			$contactID=$this->input->post("contactid");
+			$email=$this->input->post("email");
+			$message=$this->input->post("message-text");
+			$emailarray=array("email"=>$email);
+			$title="Reply to your enquires to our girlstrade website";
+			$this->sendAuthenticationEmail($emailarray, $message, $title);
 			
 		}catch(Exception $ex)
 		{
@@ -1166,5 +1172,34 @@ class getAdmin extends CI_Controller {
 		}
 		$this->getAccountPage(10);
 	}
+	
+	public function markresponsed(){
+		try{
+			$contactID=$this->input->post("contactID");
+			$messageArray=array($contactID);
+			$result=$this->contact_model->updateUnverifiedContact($messageArray);
+			if($result){
+				$data['status'] = 'A';
+				$data['class'] = "has-success";
+				$data['message'] = '';
+				$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
+				echo json_encode($data);
+			}
+			else {
+				$data['status'] = 'F';
+				$data['class'] = "has-error";
+				$data['message'] = '<div class="alert alert-danger"><strong>Warning! </strong>Error</div>';
+				$data['icon'] = '<em><span style="color:red"></span></em>';
+				echo json_encode($data);
+					
+			}
+		}catch(Exception $ex)
+		{
+			echo $ex->getMessage();
+			return;
+		}
+		//$this->getAccountPage(10);
+	}
+	
 }
 ?>

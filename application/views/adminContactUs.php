@@ -68,7 +68,15 @@
                       	 	echo "<td style=\"width:10%\" class=\"action-td\"><div>";
                       	 		echo "<a class=\"btn btn-primary btn-xs\" href=\"#contactAdvertiser\" data-toggle=\"modal\"  id='$contactID' 
 						  			email='$email' phone='$phone'   name='$name'> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
-                    		
+                      	 		$ctrlName1="AjaxLoad".$Num;
+                      	 		$errorctrlName1="ErrAjaxLoad".$Num;
+                      	 		$ctrlValue1="contactID".$Num;
+                      	 		$clickLink="clickLink".$Num;
+                      	 		
+                      	 		echo "<br/> <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
+                      	 		echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$contactID' />";
+                      	 		echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:markresponsed('$ctrlValue1', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-reply\"></i> ".$this->lang->line('Approve')." </a>";
+                      	 		
                 echo "</div>";
                   echo "</td></tr>";
 				}
@@ -106,7 +114,7 @@
         <h4 class="modal-title"><i class=" icon-mail-2"></i>  Reply contact</h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>getAdmin/replyMessage/">
+        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>getAdmin/replyMessage">
 			<div class="form-group">
             <label  class="control-label">Name</label>
         	<input type='text' class="form-control" id="name"   name="name"   value="<?php echo $name;?>">
@@ -120,7 +128,7 @@
         	</div>
           <div class="form-group">
           <label  class="control-label">Email</label>
-        	<input type='text'  disabled='disabled' class="form-control" id="email"  name="email"  value="<?php  echo $email;?>">
+        	<input type='text'  class="form-control" id="email"  name="email"  value="<?php  echo $email;?>">
                </div>
           <div class="form-group">
             <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(300) </span>:</label>
@@ -156,6 +164,27 @@
 </script>
   <?php include "footer1.php"; ?>
   <!--/.footer--> 
+  <script>
+  function setup()
+  {
+          var myform = document.getElementById("item");
+  	  	document.getElementById("item").submit();
+         	return true;
+  }
+function markresponsed(ctrlValue1, ctrlName, ctrlErrName) {
+	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>getAdmin/markresponsed",
+		data: { contactID: $( "#".concat(ctrlValue1) ).val()},
+		success: function(response){
+			var result = JSON.parse(response);
+	    	$("#".concat(ctrlName)).html(result.icon);
+	    	$("#".concat(ctrlErrName)).html(result.message);
+	    	}
+	});
+};
+</script>
 </div>
 
 
