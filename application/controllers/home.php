@@ -2870,6 +2870,33 @@ function generateRandomString($length = 8) {
 		$this->nativesession->set("user",$user);
 		$this->getAccountPage(4);
 	}
+	
+	public function check_session(){
+		$expired= $this->nativesession->_session_id_expired();
+		if($expired){
+				echo 0;
+				redirect(base_url().MY_PATH."home/loginPage");
+		
+			}else{
+				echo 1;
+			}
+		echo 0; 
+		
+		session_start();
+		
+		// 5 mins in seconds
+		$inactive = $this->nativesession->session_id_ttl;
+		$session_life = time() - $_session['timeout'];
+		if($session_life > $inactive)
+		{
+			session_destroy(); redirect(base_url().MY_PATH."home/loginPage");
+		}
+		else
+		{
+			$_session['timeout']=time();
+		}
+		
+	}
 }
 
 /* End of file welcome.php */

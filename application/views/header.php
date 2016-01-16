@@ -80,6 +80,22 @@
     paceOptions = {
       elements: true
     };
+    setInterval(function() {
+  	  // Do something every 1 minute 
+  	$.ajax({
+  	type : 'POST',
+  	url  : '<?php echo site_url("home/check_session")?>',
+  	success : function(data){
+  	if(data){
+  	   //your session is not expired
+  	}else{
+  	   //your session is already expired
+  	 //window.location.href="your url"; // or you can redirect from here also
+  	} 
+  	}});
+  	}, 60000);
+    
+    
 </script>
 <script src="<?php echo base_url();?>assets/js/pace.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/gen_validatorv4.js"></script>
