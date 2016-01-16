@@ -812,9 +812,9 @@ class Home extends CI_Controller {
 			$data["error"]=$errorMsg;
 			$this->nativesession->set("lastPageVisited","login");
 			$data['redirectToWhatPage']="Previous Page";
-			if($_SESSION["prevURL"]=="")
+			if($_SESSION["previousUrl"]=="")
 				$data['redirectToPHP']=base_url();
-			else if(strpos(((String)$_SESSION["prevURL"]),'loginPage') !== false)
+			else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
 				$data['redirectToPHP']=base_url();
  			else 
  				$data['redirectToPHP']=$_SESSION["prevURL"];
