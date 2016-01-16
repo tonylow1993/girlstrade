@@ -52,9 +52,6 @@ class itemComments  extends CI_Controller {
 	}
 	
 	public function insertItemComment(){
-		$expired= $this->nativesession->_session_id_expired();
-		if($expired){
-			$this->loginPage(); return;}
 		
 		try {
 			$prevURL=base_url();
@@ -64,6 +61,9 @@ class itemComments  extends CI_Controller {
 			}else if(isset($_SESSION["previousUrl"])){
 				$prevURL=$_SESSION["previousUrl"];
 			}
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
 			
 			$userInfo=$this->nativesession->get("user");
 			$usercommentID=0;

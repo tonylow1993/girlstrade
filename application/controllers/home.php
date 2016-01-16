@@ -303,8 +303,10 @@ class Home extends CI_Controller {
 	}
 	
 	
-	public function loginPage( $errorMsg=''){
+	public function loginPage( $errorMsg='', $activeNav=0){
 		$prevURL="";
+		if($activeNav!=0)
+			$prevURL=base_url().MY_PATH."home/getAccountPage/".$activeNav;
 		if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
 			$_SESSION["previousUrl"]=$prevURL;
@@ -1235,7 +1237,7 @@ function generateRandomString($length = 8) {
 	{
 		$expired= $this->nativesession->_session_id_expired();
 		if($expired){
-			$this->loginPage(); return;}
+			$this->loginPage('', $activeNav); return;}
 		
 		$data["previousCurrent_url"]=urlencode(current_url());
 		$data["MyAds"]=$this->lang->line("MyAds");

@@ -72,17 +72,18 @@ function addDayswithdate($date,$days){
 }
 		public function directSend($postID)
 		{
-			$expired= $this->nativesession->_session_id_expired();
-			if($expired){
-				$this->loginPage(); return;}
-			
 			try {
 			if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
 			$_SESSION["previousUrl"]=$prevURL;
-		}else if(isset($_SESSION["previousUrl"])){
-			$prevURL=$_SESSION["previousUrl"];
-		}
+			}else if(isset($_SESSION["previousUrl"])){
+				$prevURL=$_SESSION["previousUrl"];
+			}
+			
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
+				
 			$userInfo=$this->nativesession->get("user");
 			$username=$userinfo["username"];
 			$fUserID=0;
@@ -138,6 +139,12 @@ function addDayswithdate($date,$days){
 		}else if(isset($_SESSION["previousUrl"])){
 			$prevURL=$_SESSION["previousUrl"];
 		}
+		
+		$expired= $this->nativesession->_session_id_expired();
+		if($expired){
+			redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
+				
+		
 				$userInfo=$this->nativesession->get("user");
 				$fUserID=0;
 				if(!empty($userInfo))
@@ -186,9 +193,6 @@ function addDayswithdate($date,$days){
 		}
 		public function insertMessage($postID)
 		{
-			$expired= $this->nativesession->_session_id_expired();
-			if($expired){
-				$this->loginPage(); return;}
 			
 			try {
 			if(isset($_GET["prevURL"])){
@@ -197,7 +201,10 @@ function addDayswithdate($date,$days){
 		}else if(isset($_SESSION["previousUrl"])){
 			$prevURL=$_SESSION["previousUrl"];
 		}
-				
+		$expired= $this->nativesession->_session_id_expired();
+		if($expired){
+			redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
+					
 			$userInfo=$this->nativesession->get("user");
 			$username=$userInfo["username"];
 			$fUserID=0;
@@ -424,10 +431,15 @@ function addDayswithdate($date,$days){
 // 		}
 		public function replyMessage($postID, $messageID, $fromwhere="inbox")
 		{
+			if(strcmp($fromwhere,"inbox")==0)
+				$prevURL=base_url().MY_PATH."home/getAccountPage/1";
+			else
+				$prevURL=base_url().MY_PATH."home/getAccountPage/10";
+			
 			$expired= $this->nativesession->_session_id_expired();
 			if($expired){
-				$this->loginPage(); return;}
-			
+				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
+					
 			$userInfo=$this->nativesession->get("user");
 			$fUserID=0;
 			if(!empty($userInfo)){
@@ -543,9 +555,10 @@ function addDayswithdate($date,$days){
 		}
 		public function deleteMyAds()
 		{
+			$prevURL=base_url().MY_PATH."home/getAccountPage/3";
 			$expired= $this->nativesession->_session_id_expired();
 			if($expired){
-				$this->loginPage(); return;}
+				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
 			
 			try{
 			$userInfo=$this->nativesession->get("user");
@@ -652,9 +665,10 @@ function addDayswithdate($date,$days){
 		}
 		public function cancelPendingApproval()
 		{
+			$prevURL=base_url().MY_PATH."home/getAccountPage/6";
 			$expired= $this->nativesession->_session_id_expired();
 			if($expired){
-				$this->loginPage(); return;}
+				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
 			
 			try{
 			$userInfo=$this->nativesession->get("user");
@@ -705,9 +719,10 @@ function addDayswithdate($date,$days){
 		}
 		public function cancelSavedAds()
 		{
+			$prevURL=base_url().MY_PATH."home/getAccountPage/5";
 			$expired= $this->nativesession->_session_id_expired();
 			if($expired){
-				$this->loginPage(); return;}
+				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
 			
 			try{
 			$userInfo=$this->nativesession->get("user");
@@ -760,10 +775,11 @@ function addDayswithdate($date,$days){
 		
 		public function markSoldAds(){
 			try{
-				$expired= $this->nativesession->_session_id_expired();
-				if($expired){
-					$this->loginPage(); return;}
-				
+			$prevURL=base_url().MY_PATH."home/getAccountPage/3";
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
+			
 				$user=$this->nativesession->get("user");
 				$times=$this->tradecomments_model->getMaxTimesMarkSold($user["userID"]);
 				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST>0)
@@ -811,10 +827,11 @@ function addDayswithdate($date,$days){
 		
 		public function markSoldAdsInbox(){
 			try{
-				$expired= $this->nativesession->_session_id_expired();
-				if($expired){
-					$this->loginPage(); return;}
-				
+			$prevURL=base_url().MY_PATH."home/getAccountPage/1";
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
+			
 				$user=$this->nativesession->get("user");
 				$times=$this->tradecomments_model->getMaxTimesMarkSold($user["userID"]);
 				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST>0)
@@ -822,7 +839,7 @@ function addDayswithdate($date,$days){
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailyMarkSoldPerPost");
 					$data["error"]=$errorMsg;
 					$data['redirectToWhatPage']="Previous Page";
-					$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+					$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/1";
 					$data["successTile"]=$this->lang->line("successTile");
 					$data["failedTitle"]=$this->lang->line("failedTitle");
 					$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -863,10 +880,6 @@ function addDayswithdate($date,$days){
 		
 		public function markBuyerComment(){
 			try{
-				$expired= $this->nativesession->_session_id_expired();
-				if($expired){
-					$this->loginPage(); return;}
-				
 				
 				$ID=$_POST['commentID'];
 				$rating=$_POST['rating'];
@@ -878,6 +891,13 @@ function addDayswithdate($date,$days){
 					$redirectNum=10;
 				else if(strcmp($redirectPage, "account-my-buy-history.php")==0)
 					$redirectNum=11;
+				
+					$prevURL=base_url().MY_PATH."home/getAccountPage/".$redirectNum;
+					$expired= $this->nativesession->_session_id_expired();
+					if($expired){
+						redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
+							
+							
 				//log_message('error', "markBuyerComment:".$ID.", ".$rating.", ".$buyerComment);
 				//$postID=207;
 				//$soldUserID=48;
@@ -989,6 +1009,7 @@ function addDayswithdate($date,$days){
 			//----------------------------
 			$this->load->view("account-viewMessageHistory", $result);
 		}
+		
 		
 }
 ?>
