@@ -1233,6 +1233,10 @@ function generateRandomString($length = 8) {
 	}
 	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='')
 	{
+		$expired= $this->nativesession->_session_id_expired();
+		if($expired){
+			$this->loginPage(); return;}
+		
 		$data["previousCurrent_url"]=urlencode(current_url());
 		$data["MyAds"]=$this->lang->line("MyAds");
 		$data["PersonalHome"]=$this->lang->line("PersonalHome");

@@ -23,6 +23,7 @@ class updateAdmin extends CI_Controller {
      function updateUserPhotoStatus(){
      	$data["lang_label"] = $this->nativesession->get("language");
      	try {
+     		
      		$Num=$this->input->post("NumRec");
      		echo $Num;
      		$approvelist;

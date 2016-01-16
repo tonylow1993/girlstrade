@@ -684,7 +684,10 @@ public function getChildCategory($parentID)
     
     
     public function createNewPost($loginID, $loginUser, $prevURL='')
-    {
+    {$expired= $this->nativesession->_session_id_expired();
+		if($expired){
+			$this->loginPage(); return;}
+		
     	$data["lang_label_text"] = $this->lang->line("lang_label_text");
     	$data["Home"] = $this->lang->line("Home");
     	$data["About_us"] = $this->lang->line("About_us");

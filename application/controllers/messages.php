@@ -72,6 +72,10 @@ function addDayswithdate($date,$days){
 }
 		public function directSend($postID)
 		{
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				$this->loginPage(); return;}
+			
 			try {
 			if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
@@ -182,6 +186,10 @@ function addDayswithdate($date,$days){
 		}
 		public function insertMessage($postID)
 		{
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				$this->loginPage(); return;}
+			
 			try {
 			if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
@@ -248,7 +256,10 @@ function addDayswithdate($date,$days){
 		}
 		
 		public function approveSavedAds()
-		{
+		{$expired= $this->nativesession->_session_id_expired();
+		if($expired){
+			$this->loginPage(); return;}
+		
 			try{
 			$userInfo=$this->nativesession->get("user");
 			$fUserID=0;
@@ -321,6 +332,10 @@ function addDayswithdate($date,$days){
 		}
 		public function rejectSavedAds()
 		{
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				$this->loginPage(); return;}
+			
 			try{
 			$userInfo=$this->nativesession->get("user");
 			$fUserID=0;
@@ -409,6 +424,10 @@ function addDayswithdate($date,$days){
 // 		}
 		public function replyMessage($postID, $messageID, $fromwhere="inbox")
 		{
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				$this->loginPage(); return;}
+			
 			$userInfo=$this->nativesession->get("user");
 			$fUserID=0;
 			if(!empty($userInfo)){
@@ -524,6 +543,10 @@ function addDayswithdate($date,$days){
 		}
 		public function deleteMyAds()
 		{
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				$this->loginPage(); return;}
+			
 			try{
 			$userInfo=$this->nativesession->get("user");
 			$times=$this->messages_model->getMaxTimesDeleteAds($userInfo["userID"]);
@@ -629,6 +652,10 @@ function addDayswithdate($date,$days){
 		}
 		public function cancelPendingApproval()
 		{
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				$this->loginPage(); return;}
+			
 			try{
 			$userInfo=$this->nativesession->get("user");
 			$fUserID=0;
@@ -678,6 +705,10 @@ function addDayswithdate($date,$days){
 		}
 		public function cancelSavedAds()
 		{
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				$this->loginPage(); return;}
+			
 			try{
 			$userInfo=$this->nativesession->get("user");
 			$fUserID=0;
@@ -729,6 +760,9 @@ function addDayswithdate($date,$days){
 		
 		public function markSoldAds(){
 			try{
+				$expired= $this->nativesession->_session_id_expired();
+				if($expired){
+					$this->loginPage(); return;}
 				
 				$user=$this->nativesession->get("user");
 				$times=$this->tradecomments_model->getMaxTimesMarkSold($user["userID"]);
@@ -777,7 +811,10 @@ function addDayswithdate($date,$days){
 		
 		public function markSoldAdsInbox(){
 			try{
-		
+				$expired= $this->nativesession->_session_id_expired();
+				if($expired){
+					$this->loginPage(); return;}
+				
 				$user=$this->nativesession->get("user");
 				$times=$this->tradecomments_model->getMaxTimesMarkSold($user["userID"]);
 				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST>0)
@@ -826,6 +863,9 @@ function addDayswithdate($date,$days){
 		
 		public function markBuyerComment(){
 			try{
+				$expired= $this->nativesession->_session_id_expired();
+				if($expired){
+					$this->loginPage(); return;}
 				
 				
 				$ID=$_POST['commentID'];
@@ -899,6 +939,10 @@ function addDayswithdate($date,$days){
 		}
 	
 		public function getViewMessageHistory($userID, $postID, $fuserID){
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				$this->loginPage(); return;}
+			
 			$userInfo=$this->nativesession->get("user");
 			if(!empty($userInfo)) {
 				if(strcmp($userID ,$userInfo["userID"])!=0){

@@ -52,6 +52,9 @@ class itemComments  extends CI_Controller {
 	}
 	
 	public function insertItemComment(){
+		$expired= $this->nativesession->_session_id_expired();
+		if($expired){
+			$this->loginPage(); return;}
 		
 		try {
 			$prevURL=base_url();

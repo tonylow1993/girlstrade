@@ -26,9 +26,11 @@
  * @link        http://www.codeigniter.com/user_guide/libraries/sessions.html
  */
 class nativesession {
-    var $session_id_ttl = 660; // session id time to live (TTL) in seconds
+    var $session_id_ttl = 600; // session id time to live (TTL) in seconds
     var $flash_key = 'flash'; // prefix for "flash" variables (eg. flash:new:message)
-
+	var $old_session_data;
+	
+	
     function __construct()
     {
     	$this->_sess_run();
@@ -81,6 +83,7 @@ class nativesession {
     public function delete( $key )
     {
     	unset( $_SESSION[$key] );
+    	$this->old_session_data=$_SESSION;
     }
     function destroy()
     {
@@ -91,6 +94,7 @@ class nativesession {
               setcookie(session_name(), '', time()-42000, '/');
         }
         session_destroy();
+        $this->old_session_data=$_SESSION;
     }
 
     /**
@@ -122,6 +126,7 @@ class nativesession {
                 $_SESSION[$key] = $val;
             }
         }
+        $this->old_session_data=$_SESSION;
     }
 
     /**
@@ -140,7 +145,8 @@ class nativesession {
             {
                 unset($_SESSION[$key]);
             }
-        }        
+        }
+        $this->old_session_data=$_SESSION;
     }
 
     /**
@@ -183,24 +189,25 @@ class nativesession {
     function _session_id_expired()
     {
     	$userSet=true;
-    	if($_SESSION==null || !isset( $_SESSION['user']))
-    		$userSet=false;
-    	else if($old_session_data==null || !isset($old_session_data['user'])){
+    	if(!isset($this->old_session_data) or !isset($this->old_session_data['user'])){
     		$userSet=false;
     	}
     	
     	
     	
-        if ( $_SESSION==null || !isset( $_SESSION['regenerated'] ) )
+        if ( !isset($_SESSION) or !isset( $_SESSION['regenerated'] ) )
         {
-        	if(isset($old_session_data['regenerated'])){
-        		$this->regenerate_id();
-        		$this->set_userdata(array("session_id", session_id()));
+        	//ob_start();
+        	if(isset($this->old_session_data['regenerated'])){
+        		//$this->regenerate_id();
+        		//$this->set_userdata(array("session_id", session_id()));
         		$_SESSION['regenerated'] =$old_session_data['regenerated'];
         	}else{
-	        	$this->regenerate_id();
-	        	$this->set_userdata(array("session_id", session_id()));
+	        	//$this->regenerate_id();
+	        	//$this->set_userdata(array("session_id", session_id()));
+	        	$this->_sess_run();
 	        	$_SESSION['regenerated'] = time();
+	        	$this->old_session_data=$_SESSION;
 	            return false;
         	}
         }
@@ -209,17 +216,25 @@ class nativesession {
 
         if ( $_SESSION['regenerated'] <=  $expiry_time )
         {
-        	$this->regenerate_id();
-        	$this->set_userdata(array("session_id", session_id()));
-        	if($userSet)
+        	//ob_start();
+        	//$this->regenerate_id();
+        	//$this->set_userdata(array("session_id", session_id()));
+        	if($userSet){
+        		$this->_sess_run();
+        		$_SESSION['regenerated'] = time();
+        		$this->old_session_data=$_SESSION;
             	return true;
+        	}
         }
-
+		$this->_sess_run();
+		$_SESSION['regenerated'] = time();
+		$this->old_session_data=$_SESSION;
         return false;
     }
     public function set( $key, $value )
     {
     	$_SESSION[$key] = $value;
+    	$this->old_session_data=$_SESSION;
     }
     
     public function get( $key )
