@@ -185,7 +185,7 @@ class nativesession {
     	$userSet=true;
     	if($_SESSION==null || !isset( $_SESSION['user']))
     		$userSet=false;
-    	else if(!isset($old_session_data['user'])){
+    	else if($old_session_data==null || !isset($old_session_data['user'])){
     		$userSet=false;
     	}
     	
