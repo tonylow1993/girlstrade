@@ -182,12 +182,27 @@ class nativesession {
     */
     function _session_id_expired()
     {
-        if ( !isset( $_SESSION['regenerated'] ) )
+    	$userSet=true;
+    	if($_SESSION==null || !isset( $_SESSION['user']))
+    		$userSet=false;
+    	else if(!isset($old_session_data['user'])){
+    		$userSet=false;
+    	}
+    	
+    	
+    	
+        if ( $_SESSION==null || !isset( $_SESSION['regenerated'] ) )
         {
-        	$this->regenerate_id();
-        	$this->set_userdata(array("session_id", session_id()));
-        	$_SESSION['regenerated'] = time();
-            return false;
+        	if(isset($old_session_data['regenerated'])){
+        		$this->regenerate_id();
+        		$this->set_userdata(array("session_id", session_id()));
+        		$_SESSION['regenerated'] =$old_session_data['regenerated'];
+        	}else{
+	        	$this->regenerate_id();
+	        	$this->set_userdata(array("session_id", session_id()));
+	        	$_SESSION['regenerated'] = time();
+	            return false;
+        	}
         }
 
         $expiry_time = time() - $this->session_id_ttl;
@@ -196,8 +211,8 @@ class nativesession {
         {
         	$this->regenerate_id();
         	$this->set_userdata(array("session_id", session_id()));
-        	
-            return true;
+        	if($userSet)
+            	return true;
         }
 
         return false;
