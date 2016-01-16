@@ -345,6 +345,13 @@ class Home extends CI_Controller {
           $data["Password"]=$this->lang->line("Password");
           $data["SignUp"]=$this->lang->line("SignUp");
           $data["LostYourPassword"]=$this->lang->line("LostYourPassword");
+          //----------setup the header menu----------
+          $data["menuMyAds"]="";
+          $data["menuInbox"]="";
+          $data["menuInboxNum"]="0";
+          $data["menuPendingRequest"]="";
+          $data["menuPendingRequestNumber"]="0";
+          //----------------------------
           
           $this->load->view('login', $data);
 	}
@@ -804,12 +811,13 @@ class Home extends CI_Controller {
 			$data["PrevURL"]=$prevURL;
 			$data["error"]=$errorMsg;
 			$this->nativesession->set("lastPageVisited","login");
-			$data['redirectToWhatPage']="Home Page";
+			$data['redirectToWhatPage']="Previous Page";
 			if($_SESSION["prevURL"]=="")
 				$data['redirectToPHP']=base_url();
-			else
+			else if(strpos(((String)$_SESSION["prevURL"]),'loginPage') !== false)
 				$data['redirectToPHP']=base_url();
-// 				$data['redirectToPHP']=$_SESSION["prevURL"];
+ 			else 
+ 				$data['redirectToPHP']=$_SESSION["prevURL"];
 			$data["successTile"]=$this->lang->line("successTile");
 			$data["failedTitle"]=$this->lang->line("failedTitle");
 			$data["goToHomePage"]=$this->lang->line("goToHomePage");
