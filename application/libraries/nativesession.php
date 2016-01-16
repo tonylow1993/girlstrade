@@ -26,7 +26,7 @@
  * @link        http://www.codeigniter.com/user_guide/libraries/sessions.html
  */
 class nativesession {
-    var $session_id_ttl = 360; // session id time to live (TTL) in seconds
+    var $session_id_ttl = 660; // session id time to live (TTL) in seconds
     var $flash_key = 'flash'; // prefix for "flash" variables (eg. flash:new:message)
 
     function __construct()
@@ -152,14 +152,14 @@ class nativesession {
         	session_start();
 
         // check if session id needs regeneration
-        if ( $this->_session_id_expired() )
-        {
+        //if ( $this->_session_id_expired() )
+        //{
             // regenerate session id (session data stays the
             // same, but old session storage is destroyed)
-            $this->regenerate_id();
-            $this->set_userdata(array("session_id", session_id()));
-        }
-		else {
+         //   $this->regenerate_id();
+         //   $this->set_userdata(array("session_id", session_id()));
+        //}
+		//else {
 			if(isset($_GET["session_id"]))
 			{
 				$this->set_userdata(array("session_id", $_GET["session_id"]));
@@ -168,7 +168,7 @@ class nativesession {
 // 				$this->regenerate_id();
 // 				$this->set_userdata(array("session_id", session_id()));
 			}
-		}
+		//}
         $this->set_userdata("session_id", session_id());
         // delete old flashdata (from last request)
         $this->_flashdata_sweep();
@@ -184,7 +184,9 @@ class nativesession {
     {
         if ( !isset( $_SESSION['regenerated'] ) )
         {
-            $_SESSION['regenerated'] = time();
+        	$this->regenerate_id();
+        	$this->set_userdata(array("session_id", session_id()));
+        	$_SESSION['regenerated'] = time();
             return false;
         }
 
@@ -192,6 +194,9 @@ class nativesession {
 
         if ( $_SESSION['regenerated'] <=  $expiry_time )
         {
+        	$this->regenerate_id();
+        	$this->set_userdata(array("session_id", session_id()));
+        	
             return true;
         }
 

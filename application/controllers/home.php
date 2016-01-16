@@ -1894,7 +1894,7 @@ function generateRandomString($length = 8) {
 			$soldToUserName="";
 			$soldUserList=$this->messages_model->getSoldUserList($postID);
 			$postInfo=$this->post_model->getPostByPostID($postID);
-			$postUserID=$postInfo->userID;
+			$postUserID=$postInfo[0]->userID;
 			$commentInfo=$this->tradecomments_model->getTradeCommentsbyPostID($postID);	
 			$preview="";
 			if($commentInfo<>null && count($commentInfo)>0)
@@ -2875,27 +2875,32 @@ function generateRandomString($length = 8) {
 		$expired= $this->nativesession->_session_id_expired();
 		if($expired){
 				echo 0;
-				redirect(base_url().MY_PATH."home/loginPage");
+				$this->loginPage();
 		
 			}else{
 				echo 1;
 			}
-		echo 0; 
-		
+		//echo 0; 
+		/*
 		session_start();
 		
 		// 5 mins in seconds
 		$inactive = $this->nativesession->session_id_ttl;
-		$session_life = time() - $_session['timeout'];
-		if($session_life > $inactive)
-		{
-			session_destroy(); redirect(base_url().MY_PATH."home/loginPage");
-		}
-		else
-		{
+		if(isset($_session['timeout'])){
+			$session_life = time() - $_session['timeout'];
+			if($session_life > $inactive)
+			{
+				session_destroy(); //redirect(base_url().MY_PATH."home/loginPage");
+				$this->loginPage();
+			}
+			else
+			{
+				$_session['timeout']=time();
+			}
+		}else{
 			$_session['timeout']=time();
 		}
-		
+		*/
 	}
 }
 
