@@ -8,6 +8,7 @@
 					<div class="kv-avatar center-block" style="width:200px">
 						<h3 class="text-left"><?php echo $userName; ?> </h3>
 						<input id="avatar" name="avatar" type="file" class="file-loading" accept="image/*">
+						<div id="uploadImgError"></div>
 					</div>
 					<!-- include other inputs if needed and include a form submit (save) button -->
 					
@@ -69,13 +70,14 @@
 				function upload()
 				{
 					var myform = document.getElementById("newPost");
-					//check whether browser fully supports all File API
-					var file = document.getElementById('avatar').value;
+
+					var fileNo = document.getElementById('avatar').files.length;
 					
-					if(file == null)
+					console.log(fileNo);
+					
+					if(fileNo == 0)
 					{
 					   $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
-					   location.href = "#uploadImgError";                 //Go to the target element.
 					   return false; 
 					}
 					else //if(r == false)
