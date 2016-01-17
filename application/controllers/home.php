@@ -303,9 +303,12 @@ class Home extends CI_Controller {
 	}
 	
 	
-	public function loginPage( $errorMsg=''){
+	public function loginPage( $errorMsg='', $activeNav=0){
 		$prevURL="";
-		if(isset($_GET["prevURL"])){
+		if($activeNav!=0){
+			$prevURL=base_url().MY_PATH."home/getAccountPage/".$activeNav;
+			$_SESSION["previousUrl"]=$prevURL;
+		} else if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
 			$_SESSION["previousUrl"]=$prevURL;
 		}else if(isset($_SESSION["previousUrl"])){
@@ -343,6 +346,13 @@ class Home extends CI_Controller {
           $data["Password"]=$this->lang->line("Password");
           $data["SignUp"]=$this->lang->line("SignUp");
           $data["LostYourPassword"]=$this->lang->line("LostYourPassword");
+          //----------setup the header menu----------
+          $data["menuMyAds"]="";
+          $data["menuInbox"]="";
+          $data["menuInboxNum"]="0";
+          $data["menuPendingRequest"]="";
+          $data["menuPendingRequestNumber"]="0";
+          //----------------------------
           
           $this->load->view('login', $data);
 	}
@@ -802,12 +812,13 @@ class Home extends CI_Controller {
 			$data["PrevURL"]=$prevURL;
 			$data["error"]=$errorMsg;
 			$this->nativesession->set("lastPageVisited","login");
-			$data['redirectToWhatPage']="Home Page";
-			if($_SESSION["prevURL"]=="")
+			$data['redirectToWhatPage']="Previous Page";
+			if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 				$data['redirectToPHP']=base_url();
-			else
+			else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
 				$data['redirectToPHP']=base_url();
-// 				$data['redirectToPHP']=$_SESSION["prevURL"];
+ 			else 
+ 				$data['redirectToPHP']=$_SESSION["previousUrl"];
 			$data["successTile"]=$this->lang->line("successTile");
 			$data["failedTitle"]=$this->lang->line("failedTitle");
 			$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -1233,6 +1244,21 @@ function generateRandomString($length = 8) {
 	}
 	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='')
 	{
+		
+		
+		if(isset($_GET["prevURL"])){
+			$prevURL=$_GET["prevURL"];
+			$_SESSION["previousUrl"]=$prevURL;
+		}else if(isset($_SESSION["previousUrl"])){
+			$prevURL=$_SESSION["previousUrl"];
+		}
+		
+		
+		
+		$expired= $this->nativesession->_session_id_expired();
+		if($expired){
+			$this->loginPage('', $activeNav); return;}
+		
 		$data["previousCurrent_url"]=urlencode(current_url());
 		$data["MyAds"]=$this->lang->line("MyAds");
 		$data["PersonalHome"]=$this->lang->line("PersonalHome");
@@ -1894,7 +1920,7 @@ function generateRandomString($length = 8) {
 			$soldToUserName="";
 			$soldUserList=$this->messages_model->getSoldUserList($postID);
 			$postInfo=$this->post_model->getPostByPostID($postID);
-			$postUserID=$postInfo->userID;
+			$postUserID=$postInfo[0]->userID;
 			$commentInfo=$this->tradecomments_model->getTradeCommentsbyPostID($postID);	
 			$preview="";
 			if($commentInfo<>null && count($commentInfo)>0)
@@ -2869,6 +2895,38 @@ function generateRandomString($length = 8) {
 		$user = $this->user->getUserByUserID($userID);
 		$this->nativesession->set("user",$user);
 		$this->getAccountPage(4);
+	}
+	
+	public function check_session(){
+		$expired= $this->nativesession->_session_id_expired();
+		if($expired){
+				echo 0;
+				$this->loginPage();
+		
+			}else{
+				echo 1;
+			}
+		//echo 0; 
+		/*
+		session_start();
+		
+		// 5 mins in seconds
+		$inactive = $this->nativesession->session_id_ttl;
+		if(isset($_session['timeout'])){
+			$session_life = time() - $_session['timeout'];
+			if($session_life > $inactive)
+			{
+				session_destroy(); //redirect(base_url().MY_PATH."home/loginPage");
+				$this->loginPage();
+			}
+			else
+			{
+				$_session['timeout']=time();
+			}
+		}else{
+			$_session['timeout']=time();
+		}
+		*/
 	}
 }
 
