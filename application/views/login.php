@@ -18,7 +18,7 @@ window.onload = function(){
                 </span>
             </div>
             <div class="panel-body">
-              <form role="form" name="myForm" action="<?php echo base_url().MY_PATH; ?>home/loginUser"  method="post">
+              <form role="form" name="myForm" action="<?php echo base_url().MY_PATH; ?>home/loginUser?prevURL=<?php echo $PrevURL; ?>"  method="post">
                 <div id="error">
                     </div>
                 <div class="form-group">

@@ -305,9 +305,10 @@ class Home extends CI_Controller {
 	
 	public function loginPage( $errorMsg='', $activeNav=0){
 		$prevURL="";
-		if($activeNav!=0)
+		if($activeNav!=0){
 			$prevURL=base_url().MY_PATH."home/getAccountPage/".$activeNav;
-		if(isset($_GET["prevURL"])){
+			$_SESSION["previousUrl"]=$prevURL;
+		} else if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
 			$_SESSION["previousUrl"]=$prevURL;
 		}else if(isset($_SESSION["previousUrl"])){
@@ -812,12 +813,12 @@ class Home extends CI_Controller {
 			$data["error"]=$errorMsg;
 			$this->nativesession->set("lastPageVisited","login");
 			$data['redirectToWhatPage']="Previous Page";
-			if($_SESSION["previousUrl"]=="")
+			if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 				$data['redirectToPHP']=base_url();
-			else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
-				$data['redirectToPHP']=base_url();
+			//else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+			//	$data['redirectToPHP']=base_url();
  			else 
- 				$data['redirectToPHP']=$_SESSION["prevURL"];
+ 				$data['redirectToPHP']=$_SESSION["previousUrl"];
 			$data["successTile"]=$this->lang->line("successTile");
 			$data["failedTitle"]=$this->lang->line("failedTitle");
 			$data["goToHomePage"]=$this->lang->line("goToHomePage");
