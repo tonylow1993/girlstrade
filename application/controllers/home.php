@@ -1,4 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+include 'ChromePhp.php';
+
 
 class Home extends CI_Controller {
 	
@@ -2788,26 +2790,55 @@ function generateRandomString($length = 8) {
 			mkdir($upload_dir_resize, 0777,true);
 		}
 		$this->load->library('image_lib');
-		for($i=1; $i<=1; $i++)
-		{
 		
-			$imgPath = $upload_dir . '/'.$userName.'_'.(new DateTime())->format('Y-m-d-H-i-s').'_'.$i.'.png';
-			$thumb_fileName=$userName.'_'.(new DateTime())->format('Y-m-d-H-i-s').'_thumb_'.$i.'.png';
-			$main_fileName=$userName.'_'.(new DateTime())->format('Y-m-d-H-i-s').'_main_'.$i.'.png';
-			 
-			$config['file_name'] = basename($imgPath);
-			$config['upload_path'] = $upload_dir;
-			$config['allowed_types'] = 'gif|jpg|png|bmp|jpeg';
-			 
-			$this->upload->initialize($config);
-			if ( ! $this->upload->do_upload("image".$i))
+		$imgPath = $upload_dir . '/'.$userName.'_'.(new DateTime())->format('Y-m-d-H-i-s').'_'.$i.'.png';
+		$thumb_fileName=$userName.'_'.(new DateTime())->format('Y-m-d-H-i-s').'_thumb_'.$i.'.png';
+		$main_fileName=$userName.'_'.(new DateTime())->format('Y-m-d-H-i-s').'_main_'.$i.'.png';
+		 
+		$config['file_name'] = basename($imgPath);
+		$config['upload_path'] = $upload_dir;
+		$config['allowed_types'] = 'gif|jpg|png|bmp|jpeg';
+		 
+		$this->upload->initialize($config);
+		
+		ChromePhp::log($upload_dir);
+		if ( ! $this->upload->do_upload("avatar"))
+		{
+			if($this->upload->display_errors()<>'')
 			{
-				if($this->upload->display_errors()<>'')
+				$hasImage=$this->input->post("avatar");
+				if(!isset($hasImage) or empty($hasImage))
+					continue;
+				$error = $this->upload->display_errors();
+				$data=array('error'=> $error);
+				$data["prevURL"]=base_url();
+				$data['redirectToWhatPage']="New Post Page";
+				$data['redirectToPHP']=base_url().MY_PATH."newPost";
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+			}
+		}
+		else
+		{
+			$this->image_lib->clear();
+			$config2['image_library'] = 'gd2';
+			$config2['source_image'] = $this->upload->upload_path.$this->upload->file_name;
+			$config2['new_image'] = $upload_dir_resize.'/'.$thumb_fileName;
+			//$config2['file_path']=$upload_dir_resize.'/'.$thumb_fileName;
+			$config2['maintain_ratio'] = TRUE;
+			//$config2['create_thumb'] = TRUE;
+			//$config2['thumb_marker'] = '_thumb';
+			$config2['width'] = THUMBNAILSIZEWIDTH;
+			$config2['height'] = THUMBNAILSIZEHEIGHT;
+			//$this->load->library('image_lib',$config2);
+			$this->image_lib->initialize($config2);
+			if ( !$this->image_lib->resize()){
+				if($this->image_lib->display_errors()<>'')
 				{
-					$hasImage=$this->input->post("image".$i);
-					if(!isset($hasImage) or empty($hasImage))
-						continue;
-					$error = $this->upload->display_errors();
+					$error = $this->image_lib->display_errors();
 					$data=array('error'=> $error);
 					$data["prevURL"]=base_url();
 					$data['redirectToWhatPage']="New Post Page";
@@ -2824,14 +2855,15 @@ function generateRandomString($length = 8) {
 				$this->image_lib->clear();
 				$config2['image_library'] = 'gd2';
 				$config2['source_image'] = $this->upload->upload_path.$this->upload->file_name;
-				$config2['new_image'] = $upload_dir_resize.'/'.$thumb_fileName;
-				//$config2['file_path']=$upload_dir_resize.'/'.$thumb_fileName;
+				$config2['new_image'] = $upload_dir_resize.'/'.$main_fileName;
+				//$config3['file_path']=$upload_dir_resize.'/'.$main_fileName;
+	
 				$config2['maintain_ratio'] = TRUE;
 				//$config2['create_thumb'] = TRUE;
-				//$config2['thumb_marker'] = '_thumb';
-				$config2['width'] = THUMBNAILSIZEWIDTH;
-				$config2['height'] = THUMBNAILSIZEHEIGHT;
-				//$this->load->library('image_lib',$config2);
+				//$config2['thumb_marker'] = '_main';
+				$config2['width'] = MAINPICSIZEWIDTH;
+				$config2['height'] = MAINPICSIZEHEIGHT;
+				//$this->load->library('image_lib',$config3);
 				$this->image_lib->initialize($config2);
 				if ( !$this->image_lib->resize()){
 					if($this->image_lib->display_errors()<>'')
@@ -2841,54 +2873,23 @@ function generateRandomString($length = 8) {
 						$data["prevURL"]=base_url();
 						$data['redirectToWhatPage']="New Post Page";
 						$data['redirectToPHP']=base_url().MY_PATH."newPost";
+						$this->load->view('failedPage', $data);
 						$data["successTile"]=$this->lang->line("successTile");
 						$data["failedTitle"]=$this->lang->line("failedTitle");
 						$data["goToHomePage"]=$this->lang->line("goToHomePage");
-						$this->load->view('failedPage', $data);
 						return;
 					}
 				}
 				else
 				{
-					$this->image_lib->clear();
-					$config2['image_library'] = 'gd2';
-					$config2['source_image'] = $this->upload->upload_path.$this->upload->file_name;
-					$config2['new_image'] = $upload_dir_resize.'/'.$main_fileName;
-					//$config3['file_path']=$upload_dir_resize.'/'.$main_fileName;
-		
-					$config2['maintain_ratio'] = TRUE;
-					//$config2['create_thumb'] = TRUE;
-					//$config2['thumb_marker'] = '_main';
-					$config2['width'] = MAINPICSIZEWIDTH;
-					$config2['height'] = MAINPICSIZEHEIGHT;
-					//$this->load->library('image_lib',$config3);
-					$this->image_lib->initialize($config2);
-					if ( !$this->image_lib->resize()){
-						if($this->image_lib->display_errors()<>'')
-						{
-							$error = $this->image_lib->display_errors();
-							$data=array('error'=> $error);
-							$data["prevURL"]=base_url();
-							$data['redirectToWhatPage']="New Post Page";
-							$data['redirectToPHP']=base_url().MY_PATH."newPost";
-							$this->load->view('failedPage', $data);
-							$data["successTile"]=$this->lang->line("successTile");
-							$data["failedTitle"]=$this->lang->line("failedTitle");
-							$data["goToHomePage"]=$this->lang->line("goToHomePage");
-							return;
-						}
-					}
-					else
-					{
-						 
-						$imgInfo['userID'] = $userID;
-						$imgInfo['picturePath'] = $upload_dir_resize;
-						$imgInfo['pictureName'] = $main_fileName;
-						$imgInfo['photostatus'] = 'U';
-						$imgInfo['thumbnailPath'] = $upload_dir_resize;
-						$imgInfo['thumbnailName']  =$thumb_fileName;
-						$this->user->updatePhoto($imgInfo);
-					}
+					 
+					$imgInfo['userID'] = $userID;
+					$imgInfo['picturePath'] = $upload_dir_resize;
+					$imgInfo['pictureName'] = $main_fileName;
+					$imgInfo['photostatus'] = 'U';
+					$imgInfo['thumbnailPath'] = $upload_dir_resize;
+					$imgInfo['thumbnailName']  =$thumb_fileName;
+					$this->user->updatePhoto($imgInfo);
 				}
 			}
 		}
