@@ -198,31 +198,11 @@ input[type=checkbox]
 					  
 					  
 					  <div class="form-group">
-					  <label class="col-md-3 control-label text-center" for="textarea"><?php $Extra;?> </label>
+					  <label class="col-md-3 control-label text-center" for="textarea">Search Tag</label>
 					  <div class="col-md-8">
-					  <div class="panel-group" id="accordion">
-						  <div class="panel panel-info">
-							<div class="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
-							  <h4 class="panel-title accordion-toggle">
-								  <?php echo $ExtraInfo;?>
-							  </h4>
-							</div>
-							<div id="collapseOne" class="panel-collapse collapse">
-							  <div class="panel-body">
-								
-								
-								
-								
-								
-								
 								 <!-- Textarea -->
-                      <div class="form-group">
-                          <label class="col-md-3 control-label text-center" for="textarea"><?php echo $SearchTags;?></label>
-                          <div class="col-md-8">
                               <input class="form-control" data-role="tagsinput" id="tagsInput" name="tagsInput" />
                               <em>(Maximum: Five Tags Allowed)</em>
-                          </div>
-                      </div>
                      <script>
                             $('input').on('beforeItemAdd', function(event) {
                                 var elt = $('#tagsInput');
@@ -247,26 +227,17 @@ input[type=checkbox]
                                 //document.write($( this ).serialize());
                                 });
                       </script>
-
-                      
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-						<div id="generalLocation" class="form-group">
-                          <label class="col-md-3 control-label text-center" ><?php echo $lblLocation;?></label>
-                         
-                      <div class="col-md-8">
+					  </div>
+					  </div>
+                     
+					  
+					  
+					  
+					  
+					  
+					  <div class="form-group">
+					  <label class="col-md-3 control-label text-center" for="textarea">Location</label>
+					  <div class="col-md-8">
 				          <select class="form-control" name="locID2" id="locID2" >
 				            <option selected="selected" value=""><?php echo $lblAllLocations;?> </option>
 				            <?php 
@@ -284,37 +255,8 @@ input[type=checkbox]
 				            	}
 				            ?>
 				          </select>
-				        </div>
-				        </div>
-
-
-
-
-
-
-
-						
-								
-								
-								
-								
-								
-								
-								
-								
-							  </div>
-							</div>
-						  </div>
-						</div>
 					  </div>
 					  </div>
-                     
-					  
-					  
-					  
-					  
-					  
-					  
 					  
 					  
 					  
@@ -414,14 +356,15 @@ input[type=checkbox]
 <script>
 var img = null;
 
+var fileList = null;
+
 $("#image").fileinput({
     allowedFileExtensions : ['jpg', 'png','gif','jpeg','bmp'],
     maxFileCount:5,
     maxFileSize: 10000000,
 	
 	showUpload: false,
-	
-	uploadAsync: false,
+	uploadAsync: true,
     uploadUrl: "<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>"
 });
 
@@ -429,70 +372,68 @@ function setup()
 {
     var myform = document.getElementById("newPost");
 	//check whether browser fully supports all File API
-	
 		
-        if (window.File && window.FileReader && window.FileList && window.Blob)
-        {
-        	for(i=1;i<=5;i++)
-    		{
-	            //get the file size and file type from file input field
-	            try {
-	            	$("#uploadImgError").html('');
-					var fsize = $('#image').item(i).size;
-					var ftype = $('#image').item(i).type;
-					var fname = $('#image').item(i).name;
-	// 	            var fwidth=$('#image'+i)[0].files[0].clientwidth;
-	// 	            var fheigth=$('#image'+i)[0].files[0].clientheight;
-					var img=document.getElementById('image').item(i);
-					var fwidth=img.clientWidth;
-					var fheight=img.clientHeight;
-	// 	            alert(fwidth);
-	// 	            alert(fheight);
-	            } catch(err)
-	            {
+	if (window.File && window.FileReader && window.FileList && window.Blob)
+	{
+		for(i=1;i<=5;i++)
+		{
+			//get the file size and file type from file input field
+			try {
+				$("#uploadImgError").html('');
+				var fsize = $('#image').item(i).size;
+				var ftype = $('#image').item(i).type;
+				var fname = $('#image').item(i).name;
+// 	            var fwidth=$('#image'+i)[0].files[0].clientwidth;
+// 	            var fheigth=$('#image'+i)[0].files[0].clientheight;
+				var img=document.getElementById('image').item(i);
+				var fwidth=img.clientWidth;
+				var fheight=img.clientHeight;
+// 	            alert(fwidth);
+// 	            alert(fheight);
+			} catch(err)
+			{
 // 	            	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Error!</span></em>');
 // 	                 location.href = "#uploadImgError"+i;                 //Go to the target element.
 // 	                 return false;
-					continue;
-	            }
+				continue;
+			}
 // 	            if(fwidth<800 || fheight<800)
 // 	            {
 // 	            	$("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Image Resolution need greater than 800x800t!</span></em>');
 // 	                 location.href = "#uploadImgError"+i;                 //Go to the target element.
 // 	                 return false; 
 // 	            }
-				if(fsize<500000){
-					 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Image is too small and need greater than 500KB.</span></em>');
-	                 location.href = "#uploadImgError";                 //Go to the target element.
-	                 return false; 
+			if(fsize<500000){
+				 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Image is too small and need greater than 500KB.</span></em>');
+				 location.href = "#uploadImgError";                 //Go to the target element.
+				 return false; 
+			}
+			if(fsize>8048576) //do something if file size more than 1 mb (1048576)
+			{
+				 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Exceed File Size Limit!</span></em>');
+				 location.href = "#uploadImgError";                 //Go to the target element.
+				 return false; 
+			}
+			   switch(ftype)
+				{
+					case 'image/png':
+					case 'image/gif':
+					case 'image/bmp':
+					case 'image/jpeg':
+					case 'image/jpg':
+						break;
+					default:
+						 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Unsupported File Type Images!</span></em>');
+						location.href = "#uploadImgError";                 //Go to the target element.
+						return false; 
 				}
-	            if(fsize>8048576) //do something if file size more than 1 mb (1048576)
-	            {
-	            	 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Exceed File Size Limit!</span></em>');
-	                 location.href = "#uploadImgError";                 //Go to the target element.
-	                 return false; 
-	            }
-                   switch(ftype)
-                    {
-                        case 'image/png':
-                        case 'image/gif':
-                        case 'image/bmp':
-                        case 'image/jpeg':
-                        case 'image/jpg':
-                            break;
-                        default:
-                        	 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Unsupported File Type Images!</span></em>');
-                       		location.href = "#uploadImgError";                 //Go to the target element.
-                        	return false; 
-                    }
-    		}
+		}
+	}else{
 
-        }else{
-
-        	 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please upgrade your browser, because your current browser lacks some new features we need!</span></em>');
-             location.href = "#uploadImgError";                 //Go to the target element.
-             return false; 
-        }
+		 $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please upgrade your browser, because your current browser lacks some new features we need!</span></em>');
+		 location.href = "#uploadImgError";                 //Go to the target element.
+		 return false; 
+	}
 	
 	if(!myform.checkValidity())
 	{
@@ -505,7 +446,7 @@ function setup()
         var up = document.getElementById('image').value;
         img=up;
         
-        if(up == "")
+        if(fileList == null || fileList.length == 0)
         {
            $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
            location.href = "#uploadImgError";                 //Go to the target element.
@@ -517,10 +458,26 @@ function setup()
 
             setForm(function(data)
             {
-                console.log(data);
                 if(data == true)
                 {
-                    document.getElementById("newPost").submit();
+					var formData = new FormData(myform);
+					for (var i=0; i<fileList.length; i++){
+						formData.append('filelist[]', fileList[i]); 
+					}
+					$('#image').fileinput('clear');
+					$('#image').fileinput('disable');
+					//console.log (formData.get('image'));
+					$.ajax({
+						url: "<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>",
+						data: formData,
+						processData: false,
+						contentType: false,
+						type: 'POST',
+						success:function(msg){
+							$("#modal-header").innerHTML = "<h1>Your post has been successfully uploaded.</h1>"
+							setTimeout(function(){window.location = "<?php echo base_url(); echo MY_PATH;?>";}, 200);
+						}
+					});
                 }
                 return data;
             });
@@ -530,25 +487,24 @@ function setup()
 
 function setForm(callback)
 {
-                          $('.progress-bar').css('width', 100+'%').attr('aria-valuenow', 100);
-                            callback(true);
+	  $('.progress-bar').css('width', 100+'%').attr('aria-valuenow', 100);
+		callback(true);
 }
 
 function isEmptyUploadFile(callback)
 {
-    if(img == null)
+	
+    if(fileList == null || fileList.length == 0)
         callback(true);
     else
         callback(false);
 
 }
-    function clearErrorMessage()
-    {
-        $("#recaptchaError").html('');
-    }
 
-   
-   
+function clearErrorMessage()
+{
+	$("#recaptchaError").html('');
+}
 </script>
 
 <?php include "footer2.php"; ?>

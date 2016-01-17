@@ -37,7 +37,7 @@ class newPost extends CI_Controller {
         
         public function index($userID=0, $username='', $errorMsg='')
 	{
-		if(isset($_GET["prevURL"])){
+	if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
 			$_SESSION["previousUrl"]=$prevURL;
 		}else if(isset($_SESSION["previousUrl"])){
@@ -131,17 +131,9 @@ class newPost extends CI_Controller {
             $this->nativesession->set("lastPageVisited","newPost");
 			if(empty($userInfo))
 			{
-				//----------setup the header menu----------
-				$data["menuMyAds"]="";
-				$data["menuInbox"]="";
-				$data["menuInboxNum"]="0";
-				$data["menuPendingRequest"]="";
-				$data["menuPendingRequestNumber"]="0";
-				//----------------------------
-				
 				$errorMsg=$this->lang->line("PostPleaseLoginFirst");
 				$data["error"]=$errorMsg;
-				$data["prevURL"]='';
+				$data["prevURL"]=$prevURL;
 				$data['redirectToWhatPage']="Login in Page";
 				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
 				$data["successTile"]=$this->lang->line("successTile");
@@ -153,18 +145,11 @@ class newPost extends CI_Controller {
 			$NumOfPostTimes=$this->post->getNUMOFTIMESPOST($data["userID"]);
 			if($NumOfPostTimes>NUMOFTIMESPOST)
 			{
-				//----------setup the header menu----------
-				$data["menuMyAds"]="";
-				$data["menuInbox"]="";
-				$data["menuInboxNum"]="0";
-				$data["menuPendingRequest"]="";
-				$data["menuPendingRequestNumber"]="0";
-				//----------------------------
 				$errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="Previous Page";
-				$data['redirectToPHP']=$prevURL; //base_url().MY_PATH."home/loginPage";
+				$data['redirectToWhatPage']="Login in Page";
+				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -700,16 +685,6 @@ public function getChildCategory($parentID)
     
     public function createNewPost($loginID, $loginUser, $prevURL='')
     {
-    	if(isset($_GET["prevURL"])){
-    		$prevURL=$_GET["prevURL"];
-    		$_SESSION["previousUrl"]=$prevURL;
-    	}else if(isset($_SESSION["previousUrl"])){
-    		$prevURL=$_SESSION["previousUrl"];
-    	}
-    	$expired= $this->nativesession->_session_id_expired();
-		if($expired){
-			redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
-			
     	$data["lang_label_text"] = $this->lang->line("lang_label_text");
     	$data["Home"] = $this->lang->line("Home");
     	$data["About_us"] = $this->lang->line("About_us");
@@ -794,7 +769,7 @@ public function getChildCategory($parentID)
         $recaptcha = $this->input->post('g-recaptcha-response',true); 
         $negotiable = $this->input->post('negotiable'); 
         $soldqty=$this->input->post("soldqty");
-        
+		
         if (isset($_POST['negotiable'])) {
             $negotiable = true;
         }else
@@ -854,16 +829,16 @@ public function getChildCategory($parentID)
         }
         $this->post->updateStat();
         $this->load->library('image_lib');
-	    $number_of_files = sizeof($_FILES['images']['tmp_name']);
-	    $files = $_FILES['images'];
-		ChromePhp::log($number_of_files);
+		$filelist=$_FILES['filelist'];
+	    $number_of_files = sizeof($_FILES['filelist']['tmp_name']);
+		ChromePhp::log($filelist);
         for ($i=0;$i<$number_of_files;$i++)
         {
-			$_FILES['image']['name'] = $files['name'][$i];
-			$_FILES['image']['type'] = $files['type'][$i];
-			$_FILES['image']['tmp_name'] = $files['tmp_name'][$i];
-			$_FILES['image']['error'] = $files['error'][$i];
-			$_FILES['image']['size'] = $files['size'][$i];
+			$_FILES['image']['name'] = $filelist['name'][$i];
+			$_FILES['image']['type'] = $filelist['type'][$i];
+			$_FILES['image']['tmp_name'] = $filelist['tmp_name'][$i];
+			$_FILES['image']['error'] = $filelist['error'][$i];
+			$_FILES['image']['size'] = $filelist['size'][$i];
 			
 			$imgPath = $upload_dir . '/'.$userName.'_'.(new DateTime())->format('Y-m-d-H-i-s').'_'.$i.'.png';
 			$thumb_fileName=$userName.'_'.(new DateTime())->format('Y-m-d-H-i-s').'_thumb_'.$i.'.png';
@@ -1299,8 +1274,6 @@ public function getChildCategory($parentID)
     	$data['redirectToWhatPage']="Previous Page";
     	if($prevURL=="")
     		$data['redirectToPHP']=base_url();
-    	else if(strpos($prevURL,'loginPage') !== false)
-    			$data['redirectToPHP']=base_url();
     	else
     		$data['redirectToPHP']=urldecode($prevURL);
     	$data["successTile"]=$this->lang->line("successTile");
