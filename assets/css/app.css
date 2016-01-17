@@ -11,12 +11,132 @@
 * {
    //border-radius: 0 !important;
 }
+.modalBody
+{
+	padding-left: 5%;
+}
+.searchCat3 
+{
+	color: #cb41bf;
+	font-size: 14px;
+}
+.searchCat2
+{
+	color: #57c41e;
+	font-size: 14px;
+}
+.searchCat
+{
+	color: #1a86d9;
+	font-size: 14px;
+}
+.btn-searchCat3 {
+  background-color: #cb41bf;
+  color: #FFFFFF;
+  font-size: 12px;
+  padding-top: 0px;
+  padding-right: 4px;
+  padding-left: 4px;
+  padding-bottom: 2px;
+  width:32.8%;
+}
 
+.btn-searchCat3:hover, .btn-searchCat3:focus, .btn-searchCat3:active, 
+.btn-searchCat3.active, .open .dropdown-toggle.btn-searchCat3{
+  background-color: #e200d5;
+  border-color: #e200d5;
+  color: #FFFFFF;
+}
+
+.btn-searchCat3:active, .btn-searchCat3.active, .open .dropdown-toggle.btn-searchCat3 {
+  background: #cb41bf;
+}
+
+.btn-searchCat3.disabled, .btn-searchCat3[disabled], 
+fieldset[disabled] .btn-searchCat3, .btn-searchCat3.disabled:hover, 
+.btn-searchCat3[disabled]:hover, fieldset[disabled] .btn-searchCat3:hover, 
+.btn-searchCat3.disabled:focus, .btn-searchCat3[disabled]:focus, 
+fieldset[disabled] .btn-searchCat3:focus, .btn-searchCat3.disabled:active, 
+.btn-searchCat3[disabled]:active, fieldset[disabled] .btn-searchCat3:active, 
+.btn-searchCat3.disabled.active, .btn-searchCat3.active[disabled], 
+fieldset[disabled] .btn-searchCat3.active {
+  background-color: #cb41bf;
+}
+
+.btn-searchCat2 {
+  background-color: #57c41e;
+  color: #FFFFFF;
+  font-size: 12px;
+  padding-top: 0px;
+  padding-right: 4px;
+  padding-left: 4px;
+  padding-bottom: 2px;
+  width:32.8%;
+}
+
+.btn-searchCat2:hover, .btn-searchCat2:focus, .btn-searchCat2:active, 
+.btn-searchCat2.active, .open .dropdown-toggle.btn-searchCat2{
+  background-color: #57df1a;
+  border-color: #57df1a;
+  color: #FFFFFF;
+}
+
+.btn-searchCat2:active, .btn-searchCat2.active, .open .dropdown-toggle.btn-searchCat2 {
+  background: #cb41bf;
+}
+
+.btn-searchCat2.disabled, .btn-searchCat2[disabled], 
+fieldset[disabled] .btn-searchCat2, .btn-searchCat.disabled:hover, 
+.btn-searchCat2[disabled]:hover, fieldset[disabled] .btn-searchCat2:hover, 
+.btn-searchCat2.disabled:focus, .btn-searchCat2[disabled]:focus, 
+fieldset[disabled] .btn-searchCat2:focus, .btn-searchCat2.disabled:active, 
+.btn-searchCat2[disabled]:active, fieldset[disabled] .btn-searchCat2:active, 
+.btn-searchCat2.disabled.active, .btn-searchCat2.active[disabled], 
+fieldset[disabled] .btn-searchCat2.active {
+  background-color: #71dd2d;
+}
+
+.btn-searchCat {
+  background-color: #1a86d9;
+  color: #FFFFFF;
+  font-size: 12px;
+  padding-top: 0px;
+  padding-right: 4px;
+  padding-left: 4px;
+  padding-bottom: 2px;
+  width:32.8%;
+}
+
+.btn-searchCat:hover, .btn-searchCat:focus, .btn-searchCat:active, .btn-searchCat.active, .open .dropdown-toggle.btn-searchCat{
+  background-color: #20a7f2;
+  border-color: #20a7f2;
+  color: #FFFFFF;
+}
+
+.btn-searchCat:active, .btn-searchCat.active, .open .dropdown-toggle.btn-searchCat {
+  background: #1a86d9;
+}
+
+.btn-searchCat.disabled, .btn-searchCat[disabled], fieldset[disabled] .btn-searchCat, .btn-searchCat.disabled:hover, .btn-searchCat[disabled]:hover, fieldset[disabled] .btn-searchCat:hover, .btn-searchCat.disabled:focus, .btn-searchCat[disabled]:focus, fieldset[disabled] .btn-searchCat:focus, .btn-searchCat.disabled:active, .btn-searchCat[disabled]:active, fieldset[disabled] .btn-searchCat:active, .btn-searchCat.disabled.active, .btn-searchCat.active[disabled], fieldset[disabled] .btn-searchCat.active {
+  background-color: #1a86d9;
+}
+span.badge.openSubCat
+{
+	color:#F3F3F3;
+	background-color: #CCCCCC;
+	padding-top: 1px;
+}
+span.badge.openCat
+{
+	color:#F3637C;
+	background-color: #CCCCCC;
+	padding-top: 1px;
+}
 #searchCriteria.listForOpenCat
 {
 	display:initial;
 }
-#openCat
+.openCat
 {
 	float: right;
 	color: #F9042E;

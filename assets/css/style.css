@@ -962,7 +962,7 @@ button.btn-search {
 .cat-list h3, .title-3 {
   font-family: Open Sans Condensed, Helvetica Neue, sans-serif;
   font-weight: bold;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 }
 
 .cat-list h3 a, .cat-list h3 {

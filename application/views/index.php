@@ -375,14 +375,14 @@ window.onload = function(){
             		$imageIcon=$value[0]->iconImage;
             		if($value[0]->childCount<>0){
             		echo "<div class=\"cat-list\">";
-            		echo "<h3 class=\"cat-title\"><img  style=\"margin:0px; padding:0px;\"  src=$imageIcon alt='' height='30' width='30'><a class=\"title-font\"  style=\"margin:0px; padding:0px;\"  href='$path'>$name $postCount</a>";
+            		echo "<h3 class=\"cat-title\"><img  style=\"margin:0px; padding:0px;\"  src=$imageIcon alt='' height='30' width='30'><a class=\"title-font\"  style=\"margin:0px; padding:0px;padding-left:3px;\"  href='$path'>$name $postCount</a>";
             		
             		echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\">   <span class=\" icon-down-open-big\"></span> </span>";
             		echo "</h3>";
             		echo "<ul class=\"cat-collapse collapse in cat-id-$total\">";
             		} else {
             			echo "<div class=\"cat-list\">";
-            			echo "<h3 ><img style=\"margin:0px; padding:0px;\"  src=$imageIcon alt='' height='30' width='30'><a class=\"title-font\" style=\"margin:0px; padding:0px;\" href='$path'>$name $postCount</a>";
+            			echo "<h3 ><img style=\"margin:0px; padding:0px;\"  src=$imageIcon alt='' height='30' width='30'><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;\" href='$path'>$name $postCount</a>";
             			
             			echo "<span data-target=\".cat-id-$total\"  >  </span>";
             			echo "</h3>";

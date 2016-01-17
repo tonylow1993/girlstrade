@@ -95,7 +95,7 @@
   <div class="main-container">
     <div class="container">
       <div class="row">
-        <div class="col-sm-3 page-sidebar">
+        <div id="leftMenuSearchPage" class="col-sm-3 page-sidebar">
           <aside>
             <div class="inner-box panel-bevel">
               
@@ -103,27 +103,120 @@
               
               <div class="locations-list  list-filter">
                 <h5 class="list-title"><strong>
-                <a href="#">
+                <a href="javascript:void(0);">
                 <i class="icon-location-circled"></i><?php echo trim($lblLocation);?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
                 
                 
                 <li>
-                <a id="openCat" class="openCat" data-toggle="collapse" data-target="#collapseOne" 
-		           href="#collapseOne" onclick='return openCat(this.id);'>
+                <a id="bigCatKowloon" class="openCat" data-toggle="collapse" data-target="#kowloonDist" 
+		           href="#kowloonDist;javascript:void(0);" onclick='return openCat(this.id);'>
+		          <span class="badge openCat">
 		          <i class="glyphicon glyphicon-plus"></i>
+		          </span>
 		        </a>
 		        <a id="searchCriteria" class="listForOpenCat" href="">
-		        	Hong Kong (10)
+		        	九龍 (10)
                 </a>
                 </li>
-                <div id="collapseOne" class="panel-collapse collapse">
+                <div id="kowloonDist" class="panel-collapse collapse">
             		<ul class=" list-unstyled long-list">
-            			<li>I AM A TEST</li>
+            			<li>
+            			<a id="smallCatKTArea" class="openCat" data-toggle="collapse" data-target="#ktArea" 
+				           href="#ktArea;javascript:void(0);" onclick='return openCat(this.id);'>
+				          <span class="badge openSubCat">
+				          <i class="glyphicon glyphicon-plus"></i>
+				          </span>
+				        </a>
+            			<a id="searchCriteria" class="listForOpenCat" href="">
+            				觀塘區 (11)
+            			</a>
+            			</li>
+            			
+            			<div id="ktArea" class="panel-collapse collapse">
+            			<ul class=" list-unstyled long-list">
+            				<li>
+            				<a id="searchCriteria" class="listForOpenCat" href="">
+            					觀塘 (5)
+            				</a>
+            				</li>
+            				<li>
+            				<a id="searchCriteria" class="listForOpenCat" href="">
+            					牛頭角 (5)
+            				</a>
+            				</li>
+            				<li>
+            				<a id="searchCriteria" class="listForOpenCat" href="">
+            					藍田 (5)
+            				</a>
+            				</li>
+            			</ul>
+            			</div>
+            			
+            			
+            			
+            			
+            			
+            			<li>
+            			<a id="searchCriteria" class="listForOpenCat" href="">
+            			黃大仙區 (11)
+            			</a>
+            			</li>
+            			<li>
+            			<a id="searchCriteria" class="listForOpenCat" href="">
+            			油尖旺區 (13)
+            			</a>
+            			</li>
             		</ul>
         		</div>
-                <li><a id="searchCriteria" href="">Kowloon (10)</a></li>
-                <li><a id="searchCriteria" href="">New Territories (10)</a></li>
+                <li>
+                <a id="bigCatHK" class="openCat" data-toggle="collapse" data-target="#hongkongDist" href="#hongkongDist;javascript:void(0);" onclick='return openCat(this.id);'>
+		          <span class="badge openCat">
+		          <i class="glyphicon glyphicon-plus"></i>
+		          </span>
+		        </a>
+                <a id="searchCriteria" class="listForOpenCat" href="">香港 (10)</a>
+                </li>
+                
+                <div id="hongkongDist" class="panel-collapse collapse">
+            		<ul class=" list-unstyled long-list">
+            			<li>
+            			<a id="searchCriteria" class="listForOpenCat" href="">
+            			東區 (11)
+            			</a>
+            			</li>
+            			<li>
+            			<a id="searchCriteria" class="listForOpenCat" href="">
+            			中西區 (11)
+            			</a>
+            			</li>
+            		</ul>
+        		</div>
+                
+                <li>
+                <a id="bigCatNewTerr" class="openCat" data-toggle="collapse" data-target="#newTerrDist" 
+                href="#newTerrDist;javascript:void(0);" onclick='return openCat(this.id);'>
+		          <span class="badge openCat">
+		          <i class="glyphicon glyphicon-plus"></i>
+		          </span>
+		        </a>
+                <a id="searchCriteria" class="listForOpenCat" href="">新界 (10)</a>
+                </li>
+                
+                <div id="newTerrDist" class="panel-collapse collapse">
+            		<ul class=" list-unstyled long-list">
+            			<li>
+            			<a id="searchCriteria" class="listForOpenCat" href="">
+            			離島區 (11)
+            			</a>
+            			</li>
+            			<li>
+            			<a id="searchCriteria" class="listForOpenCat" href="">
+            			荃灣區 (11)
+            			</a>
+            			</li>
+            		</ul>
+        		</div>
                 
                 </ul>
               </div>
@@ -137,7 +230,7 @@
               <!--  
               <div class="locations-list  list-filter">
                 <h5 class="list-title"><strong>
-                <a href="#">
+                <a href="">
                 <i class="icon-location-circled"></i><?php echo trim($lblLocation);?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
                 <?php 
@@ -160,7 +253,7 @@
               -->
               <!--/.locations-list-->
               <div class="locations-list  list-filter margin-top-30">
-                <h5 class="list-title"><strong><a href="#"><i class="icon-money"></i><?php echo $lblPriceRange;?></a></strong></h5>
+                <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-money"></i><?php echo $lblPriceRange;?></a></strong></h5>
                 <form role="form"  id="priceForm" class="form-inline "  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
                   <div class="margin-top-30">
                       <input type="number" placeholder="100" id="minPrice"
@@ -205,7 +298,7 @@
               
               
               <div class="locations-list  list-filter">
-                <h5 class="list-title"><strong><a href="#"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
+                <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
                  <li> <a id="searchCriteria" href="#"><?php echo $lblConditionAll;?>
                   
@@ -243,6 +336,20 @@
                 <?php echo $lblConditionUsed;?> 
                 <span class="badge">18,705</span></a></li>
               </ul>
+              <div id="mobileFilter">
+              
+              <a class="btn btn-sm btn-searchCat" href="#selectCategory" data-toggle="modal"> 
+				<i class="icon-book-open"> </i> 
+				Category 
+              </a>
+              <a class="btn btn-sm btn-searchCat2" href="#selectLocation" data-toggle="modal"> 
+				<i class="icon-compass"> </i> 
+				Location 
+              </a>
+              <a class="btn btn-sm btn-searchCat3" href="#selectPriceRange" data-toggle="modal"> 
+				$ Price Range
+              </a>
+              </div>
               <div class="tab-filter">
                 <select class="selectpicker" data-style="btn-select" data-width="auto">
                   <option>Relevance</option>
@@ -257,8 +364,10 @@
           
            <div class="listing-filter">
            	  <div class="pull-left col-xs-6">
-                <div class="breadcrumb-list"> <a href="#" class="current"> 
-                <span>All ads</span></a> in Hong Kong
+                <div class="breadcrumb-list"> 
+                <a href="#" class="current"> 
+                <span>All ads</span> </a>
+                 in Hong Kong
                 <a href="#selectLocation" id="dropdownMenu1"  data-toggle="modal"> 
                 <span class="caret"></span> </a> </div>
               </div>
@@ -460,8 +569,12 @@ function savedAds(ctrlValue, ctrlName) {
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-12">
-        
-            <p>Popular cities in <strong>New York</strong>
+        	
+            <p>
+            <div class="searchCat2">
+            <i class="icon-location-circled"></i>
+            Districts of <strong>Hong Kong</strong>
+            </div>
             </p>
 
 <div style="clear:both"></div>            
@@ -485,43 +598,78 @@ function savedAds(ctrlValue, ctrlName) {
           </div>
           <div class="col-md-4">
             <ul  class="list-link list-unstyled">
-              <li> <a  href="#" title="">All Cities</a> </li>
-		 <li> <a  href="#" title="Albany">Albany</a> </li>
-		 <li> <a  href="#" title="Altamont">Altamont</a> </li>
-		 <li> <a  href="#" title="Amagansett">Amagansett</a> </li>
-		 <li> <a  href="#" title="Amawalk">Amawalk</a> </li>
-		 <li> <a  href="#" title="Bellport">Bellport</a> </li>
-		 <li> <a  href="#" title="Centereach">Centereach</a> </li>
-		 <li> <a  href="#" title="Chappaqua">Chappaqua</a> </li>
-         <li> <a  href="#" title="East Elmhurst">East Elmhurst</a> </li>
-		 <li> <a  href="#" title="East Greenbush">East Greenbush</a> </li>
-		 <li> <a  href="#" title="East Meadow">East Meadow</a> </li>
+              <li> <a  href="#" title="Wan Chai">
+              <font color="blue">
+              Wan Chai
+              </font>
+              </a> </li>
+		 <li> <a  href="#" title="Bauseway Bay">
+		 <font color="blue">
+		 Causeway Bay
+		 </font>
+		 </a> </li>
+		 <li> <a  href="#" title="Admirty">
+		 <font color="blue">
+		 Admirty
+		 </font>
+		 </a> </li>
+		 <li> <a  href="#" title="Central">
+		 <font color="blue">
+		 Central
+		 </font>
+		 </a> </li>
+		
 	
             </ul>
           </div>
           <div class="col-md-4">
             <ul class="list-link list-unstyled">
-              <li> <a  href="#" title="Elmont">Elmont</a> </li>
-		 <li> <a  href="#" title="Elmsford">Elmsford</a> </li>
-		 <li> <a  href="#" title="Farmingville">Farmingville</a> </li>
-		 <li> <a  href="#" title="Floral Park">Floral Park</a> </li>
-		 <li> <a  href="#" title="Flushing">Flushing</a> </li>
-		 <li> <a  href="#" title="Fonda">Fonda</a> </li>
-		 <li> <a  href="#" title="Freeport">Freeport</a> </li>
-		 <li> <a  href="#" title="Fresh Meadows">Fresh Meadows</a> </li>
-		 <li> <a  href="#" title="Fultonville">Fultonville</a> </li>
-		 <li> <a  href="#" title="Gansevoort">Gansevoort</a> </li>
-		 <li> <a  href="#" title="Garden City">Garden City</a> </li>
+              <li> <a  href="#" title="WongTaiSin">
+              <font color="green">
+              Wong Tai Sin
+              </font>
+              </a> </li>
+		 <li> <a  href="#" title="KwunTong">
+		 <font color="green">
+		 Kwun Tong
+		 </font></a> </li>
+		 <li> <a  href="#" title="NgauTauKok">
+		 <font color="green">
+		 Ngau Tau Kok
+		 </font>
+		 </a> </li>
+		 <li> <a  href="#" title="KowloonBay">
+		 <font color="green">
+		 Kowloon Bay
+		 </font>
+		 </a> </li>
+		 
 
 	
             </ul>
           </div>
           <div class="col-md-4">
             <ul class="list-link list-unstyled">
-               <li> <a  href="#" title="Oceanside">Oceanside</a> </li>
-		 <li> <a  href="#" title="Orangeburg">Orangeburg</a> </li>
-		 <li> <a  href="#" title="Orient">Orient</a> </li>
-         <li> <a  href="#" title="Ozone Park">Ozone Park</a> </li>
+               <li> <a  href="#" title="CheungSok">
+               <font color="red">
+               Cheung Sok
+               </font>
+               </a> </li>
+		 	<li> <a  href="#" title="MaWan">
+		 	<font color="red">
+		 	Ma Wan
+		 	</font>
+		 	</a> </li>
+			 <li> <a  href="#" title="TangLungChau">
+			 <font color="red">
+			 Tang Lung Chau
+			 </font>
+			 </a> </li>
+         	<li> <a  href="#" title="LantauIsland">
+         	<font color="red">
+         	Lantau Island
+         	</font>
+         	</a> </li>
 
 	
             </ul>
@@ -531,8 +679,117 @@ function savedAds(ctrlValue, ctrlName) {
     </div>
   </div>
 </div>
-
 <!-- /.modal -->
+<!-- Modal Price Range-->
+
+<div class="modal fade" id="selectPriceRange" tabindex="-1" role="dialog" aria-labelledby="pricePopup" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="pricePopup"><i class=" icon-money"></i> 
+        Select your price range </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="locations-list  list-filter margin-top-30">
+                <h5 class="list-title">
+                <div class="modalBody"
+                <strong><a href="javascript:void(0);">
+                $ <?php echo $lblPriceRange;?></a></strong>
+                </div>
+                </h5>
+                <form role="form"  id="priceForm" class="form-inline modalBody"  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
+                  <div class="margin-top-30">
+                      <input type="number" placeholder="100" id="minPrice"
+                      value=<?php if($minPrice>0)echo $minPrice;?>     
+                      name="minPrice"  min="0"  max="90000" class="form-control price">
+                      <span id="menubarTitle"> - </span>
+                      <input type="number" placeholder="1000 " id="maxPrice"  
+                      value=<?php if($minPrice>0) echo $maxPrice;?>  
+                      name="maxPrice" min="0" max="90000"   class="form-control price">
+                  </div>
+                  <div>
+                    <div class="form-group no-padding">
+                      <button id="priceRangeBtn" class="btn btn-default btn-pink btn-80 margin-top-10 " 
+                      type="submit">Filter<i class="icon-search-2"></i></button>
+                    </div>
+                  </div>
+                </form>
+                <div style="clear:both"></div>
+              </div>
+              <!--PRICING MODEL-->
+                    </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal -->
+<!-- Modal Category -->
+
+<div class="modal fade" id="selectCategory" tabindex="-1" role="dialog" aria-labelledby="categoryPopup" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="countryPopup"><i class=" icon-book-open"></i> Filter with selected category </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+        	
+            <p>
+            <div class="searchCat">
+            <strong><i class="icon-th"></i>Category</strong>
+            </div>
+            </p>
+
+			<div style="clear:both"></div>            
+            <div class="col-sm-6 no-padding">
+        <select  class="form-control selecter  " id="region-state" name="region-state">
+		<option value="">Search Item</option>
+		<option value="Alabama">Shoes</option>
+		<option value="Alaska">Hat</option>
+		</select>
+            </div>
+           <div style="clear:both"></div>            
+
+            <hr class="hr-thin">
+          </div>
+          <div class="locations-list  list-filter modalBody">
+          <ul class="browse-list list-unstyled">
+          <li>
+          <a id="searchCriteria" class="listForOpenCat" href=""><strong>Dress</strong></a>
+          </li>
+          <ul class="list-unstyled">
+          <li>
+          <a id="searchCriteria" class="listForOpenCat" href="">Long Dress</a>
+          </li>
+          <li>
+          <a id="searchCriteria" class="listForOpenCat" href="">Short Dress</a>
+          </li>
+          <li>
+          <a id="searchCriteria" class="listForOpenCat" href="">Formal Dress</a>
+          </li>
+          </ul>
+          <li>
+          <a id="searchCriteria" class="listForOpenCat" href=""><strong>Tops</strong></a>
+          </li>
+          </ul>
+          </div>
+      	</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal -->
+
+
+
+
  <!--  WHEEL PART -->
 <script src="<?php echo base_url();?>assets/plugins/noUiSlider/jquery.nouislider.all.min.js"></script>
 <script src="<?php echo base_url();?>assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -541,18 +798,33 @@ function savedAds(ctrlValue, ctrlName) {
 
 <script>
 function openCat(id) { 
+	
+	
     var thisitem = document.getElementById(id);
-    var plusIcon = '<i class="glyphicon glyphicon-plus\"></i>';
-    var minusIcon = '<i class="glyphicon glyphicon-minus\"></i>';
+    
+    var plusIcon = 'glyphicon glyphicon-plus';
+    var minusIcon = 'glyphicon glyphicon-minus';
+    /*
     if(thisitem.childNodes[1] == plusIcon)
     {
     	thisitem.innerHTML = thisitem.innerHTML.replace(plusIcon, minusIcon);
     }else if (thisitem.childNodes[1] == minusIcon)
     {
     	thisitem.innerHTML = thisitem.innerHTML.replace(minusIcon, plusIcon);
+    }*/
+    var elms = document.getElementById(id).getElementsByTagName("I");
+        
+   	//console.log(elms[0].tagName);
+    var x = elms[0].className;
+    if(x == plusIcon)
+    {
+    	elms[0].className = "glyphicon glyphicon-minus";
+    }else if (x == minusIcon)
+    {
+    	elms[0].className = "glyphicon glyphicon-plus";
     }
-    console.log(thisitem.childNodes[0]);
-    console.log(plusIcon);
+    //console.log(x);
+    
     return true;
 }
 </script>

@@ -252,6 +252,9 @@ $(document).ready(function() {
             
             $('#ProfileMenuAccount').removeClass('in');
             $('#ProfileMenuAccount').addClass('out');
+            
+            //search left hand menu
+            document.getElementById('leftMenuSearchPage').style.display = "none";
         } else {
             //$('#ProfileMenuAds').removeClass('out');
             //$('#ProfileMenuAds').addClass('in');

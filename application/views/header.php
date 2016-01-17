@@ -184,6 +184,12 @@ echo json_encode($usr);;
             <?php if (!isset($Signup)) $Signup = 'Signup'; echo $Signup;?>
             </span>
             </a></li>  
+            <li><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
+            <i  id="menubarTitle" class="icon-search-2"></i>
+            <span id="menubarTitle" >
+            Search Post
+            </span>
+            </a></li> 
             
             <li>
             <a id="lang" href=<?php $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
@@ -241,7 +247,12 @@ echo json_encode($usr);;
             <span id="menubarTitle">
          	<?php if (!isset($Logout)) $Logout = 'Logout'; echo $Logout;?></a></li>
             </span>
-            
+            <li><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
+            <i  id="menubarTitle" class="icon-search-2"></i>
+            <span id="menubarTitle" >
+            Search Post
+            </span>
+            </a></li> 
             <li>
             <a id="lang" href=<?php $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
             echo base_url().MY_PATH."switchLang/changeLang_R1?prevURL=".urlencode(current_url());    
