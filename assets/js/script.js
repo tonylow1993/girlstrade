@@ -254,7 +254,8 @@ $(document).ready(function() {
             $('#ProfileMenuAccount').addClass('out');
             
             //search left hand menu
-            document.getElementById('leftMenuSearchPage').style.display = "none";
+            if(document.getElementById('leftMenuSearchPage'))
+            	document.getElementById('leftMenuSearchPage').style.display = "none";
         } else {
             //$('#ProfileMenuAds').removeClass('out');
             //$('#ProfileMenuAds').addClass('in');
@@ -288,7 +289,7 @@ $(document).ready(function() {
     });
     //App.init();
     //App.initScrollBar();
-    MouseWheel.initMouseWheel();
+    //MouseWheel.initMouseWheel(); <--ENABLE THIS LINE FOR PRICE SLIDER
     //StyleSwitcher.initStyleSwitcher();
     
 }); // end Ready
