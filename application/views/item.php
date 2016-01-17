@@ -416,7 +416,8 @@
         <h4 class="modal-title"><i class=" icon-mail-2"></i> Contact advertiser </h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode($previousCurrent_url);?>">
+        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode(current_url());?>">  
+      <!--   $previousCurrent_url -->
      <!--       <div class="form-group">
             <label for="recipient-name" class="control-label">Name: <font color="red">*</font></label>
             <input .class="form-control required"  maxlength="50" value="<?php echo $firstName; echo ' '.$lastName;?>" id="recipient-name" name="recipient-name"  required="true" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
