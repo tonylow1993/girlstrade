@@ -2252,8 +2252,12 @@ h1.pricetag span, h1.trtri span {
   font-weight: bold;
 }
 
+.modal-header h1{
+  color: white;
+}
+
 .modal-header {
-  background: none repeat scroll 0 0 #f8f8f8;
+  background: none repeat scroll 0 0 #337AB7;
   border-top: 1px solid #ddd;
   padding: 8px;
   position: relative;

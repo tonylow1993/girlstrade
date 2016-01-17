@@ -282,12 +282,12 @@ input[type=checkbox]
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1>Processing...<?php echo $PleaseNotCloseBrowse;?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
+                                    <h1 id ="modal-text">Processing...<?php echo $PleaseNotCloseBrowse;?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
                                 </div>
                                 <div class="modal-body">
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped active" role="progressbar"
-                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">   
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar" id="upload-progress-bar"
+                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">   
                                         </div>
                                     </div>
 
@@ -468,14 +468,28 @@ function setup()
 					$('#image').fileinput('disable');
 					//console.log (formData.get('image'));
 					$.ajax({
+						xhr: function()
+						{
+							var xhr = new window.XMLHttpRequest();
+							//Upload progress
+							xhr.upload.addEventListener("progress", function(evt){
+							  if (evt.lengthComputable) {
+								var percentComplete = evt.loaded / evt.total*100;
+								//Do something with upload progress
+								$("#upload-progress-bar").width(percentComplete+"%");
+								console.log(percentComplete);
+							  }
+							}, false);
+							return xhr;
+						},
 						url: "<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>",
 						data: formData,
 						processData: false,
 						contentType: false,
 						type: 'POST',
 						success:function(msg){
-							$("#modal-header").innerHTML = "<h1>Your post has been successfully uploaded.</h1>"
-							setTimeout(function(){window.location = "<?php echo base_url(); echo MY_PATH;?>";}, 200);
+							$("#modal-text").html("Your post has been successfully uploaded.");
+							setTimeout(function(){window.location = "<?php echo base_url();?>";}, 2000);
 						}
 					});
                 }
@@ -505,6 +519,7 @@ function clearErrorMessage()
 {
 	$("#recaptchaError").html('');
 }
+
 </script>
 
 <?php include "footer2.php"; ?>
