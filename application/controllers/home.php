@@ -815,8 +815,8 @@ class Home extends CI_Controller {
 			$data['redirectToWhatPage']="Previous Page";
 			if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 				$data['redirectToPHP']=base_url();
-			//else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
-			//	$data['redirectToPHP']=base_url();
+			else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+				$data['redirectToPHP']=base_url();
  			else 
  				$data['redirectToPHP']=$_SESSION["previousUrl"];
 			$data["successTile"]=$this->lang->line("successTile");
@@ -1244,6 +1244,17 @@ function generateRandomString($length = 8) {
 	}
 	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='')
 	{
+		
+		
+		if(isset($_GET["prevURL"])){
+			$prevURL=$_GET["prevURL"];
+			$_SESSION["previousUrl"]=$prevURL;
+		}else if(isset($_SESSION["previousUrl"])){
+			$prevURL=$_SESSION["previousUrl"];
+		}
+		
+		
+		
 		$expired= $this->nativesession->_session_id_expired();
 		if($expired){
 			$this->loginPage('', $activeNav); return;}
