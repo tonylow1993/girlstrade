@@ -179,7 +179,7 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	    $strQuery=$strQuery.$priceStr.$sortStr." limit ".$olimit.",".$ulimit;
 	}
 	try {
-		echo $strQuery;
+		//echo $strQuery;
 		$query = $this->db->query($strQuery);
 		$var=$query->result();
 
