@@ -695,7 +695,7 @@ function savedAds(ctrlValue, ctrlName) {
 
           <div class="locations-list  list-filter margin-top-30">
                 <h5 class="list-title">
-                <div class="modalBody"
+                <div class="modalBody">
                 <strong><a href="javascript:void(0);">
                 $ <?php echo $lblPriceRange;?></a></strong>
                 </div>
