@@ -60,14 +60,23 @@
              	$name=$value[0]->name;
              	if($lang_label<>"english")
              		$name=$value[0]->nameCN;
-             	if($value[0]->level==1)
-             		echo "<option value='".$id."' style='background-color:#E9E9E9;font-weight:bold;' disabled='disabled'> -".$name." - </option>";
-             	else 
+             	if($value[0]->level==1){
+             		$str="";
+             		if(strcmp($locID_,$id)==0)
+             			$str=" selected='selected' ";
+             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
+             	}else if($value[0]->level==2)
              	{
              		$str="";
              		if($locID_==$id)
              			$str=" selected='selected' ";
-             		echo "<option ".$str." value='".$id."'> ".$name." </option>";
+             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;'>--".$name." </option>";
+             	}else if($value[0]->level==3)
+             	{
+             		$str="";
+             		if($locID_==$id)
+             			$str=" selected='selected' ";
+             		echo "<option ".$str." value='".$id."'>----".$name." </option>";
              	}
              }
              ?>
@@ -234,7 +243,7 @@
                 <i class="icon-location-circled"></i><?php echo trim($lblLocation);?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
                 <?php 
-	            foreach ($resLoc as $id=>$value)
+	            /*foreach ($resLoc as $id=>$value)
 	            {
 	            	$postCount="(".$value[0]->postCount.")";
 	            	if(!isset($lang_label))
@@ -246,7 +255,7 @@
 	            	if($value[0]->level==1)
 	            		echo "<li> <a id=\"searchCriteria\" href=\"$basePath\">$name $postCount</a></li>";
 	            	
-	            	}
+	            	}*/
 	            ?>
                 </ul>
               </div>
@@ -266,8 +275,9 @@
                   </div>
                   <div>
                     <div class="form-group no-padding">
-                      <button id="priceRangeBtn" class="btn btn-default btn-pink btn-80 margin-top-10 " 
-                      type="submit">Filter<i class="icon-search-2"></i></button>
+                    <button class="btn btn-primary btn-block btn-pink"> <i class="icon-search-2"></i> Filter</button>
+                 <!--      <button id="priceRangeBtn" class="btn btn-default btn-pink btn-80 margin-top-10 " 
+                      type="submit">Filter<i class="icon-search-2"></i></button> -->
                     </div>
                   </div>
                 </form>
@@ -326,13 +336,13 @@
           <div class="tab-box "> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li class="active"><a href="#allAds" data-url="ajax/1.html" role="tab" data-toggle="tab">
+                <li class="active"><a href="#allAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionAny;?>
                 <span class="badge">228,705</span></a></li>
-                <li><a href="#newAds" data-url="ajax/2.html" role="tab" data-toggle="tab">
+                <li><a href="#newAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionNew;?>
                 <span class="badge">22,805</span></a></li>
-                <li><a href="#usedAds" data-url="ajax/3.html" role="tab" data-toggle="tab">
+                <li><a href="#usedAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionUsed;?> 
                 <span class="badge">18,705</span></a></li>
               </ul>
@@ -351,12 +361,17 @@
               </a>
               </div>
               <div class="tab-filter">
-                <select class="selectpicker" data-style="btn-select" data-width="auto">
+              <select class="selectpicker" data-style="btn-select" data-width="auto" id="sortByPrice" name="sortByPrice"  >
+                  <option value="0"   <?php if(strcmp($sortByID_,"0")==0 or $sortByID_==0 or $sortByID_=='') echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
+                  <option value="1"   <?php if(strcmp($sortByID_,"1")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceLowToHigh;?></option>
+                  <option value="2"   <?php if(strcmp($sortByID_,"2")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceHighToLow;?></option>
+                </select>
+             <!--    <select class="selectpicker" data-style="btn-select" data-width="auto">
                   <option>Relevance</option>
                   <option>Price: Low to High</option>
                   <option>Price: High to Low</option>
                   <option>Newest</option>
-                </select>
+                </select> -->
               </div>
            </div>
            <!--/.tab-box-->
@@ -514,30 +529,47 @@
 
 <?php include "footer1.php"; ?>
   <!-- /.footer --> 
+ </div>
   <script>
 function setup(){
 	var catID=document.getElementById("search-category").value;
-// 	var locID=document.getElementById("id-location").value;
-	var locID=0;
-	var sortByID=document.getElementById("sortByPrice").value;
-	var keywords=document.getElementById("ads").value;
-	   if(keywords.trim()=='')
-		   keywords='0';
-	document.getElementById("myForm").action="http://www.girlstrade.com/index.php/getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID);
-	document.getElementById("myForm").submit();
-}
-function priceSetup(){
-	var catID=document.getElementById("search-category").value;
-// 	var locID=document.getElementById("id-location").value;
-var locID=0;
+ 	var locID=document.getElementById("id-location").value;
+	//var locID=0;
 	var sortByID=document.getElementById("sortByPrice").value;
 	var keywords=document.getElementById("ads").value;
 	   if(keywords.trim()=='')
 		   keywords='0';
 	   var minPrice=document.getElementById("minPrice").value;
 	   var maxPrice=document.getElementById("maxPrice").value;
-	document.getElementById("priceForm").action="http://www.girlstrade.com/index.php/getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	
+	document.getElementById("myForm").action="http://girlstrade.zapto.org:8888/girlstrade/index.php/getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	document.getElementById("myForm").submit();
+}
+function priceSetup(){
+	var catID=document.getElementById("search-category").value;
+ 	var locID=document.getElementById("id-location").value;
+	//var locID=0;
+	var sortByID=document.getElementById("sortByPrice").value;
+	var keywords=document.getElementById("ads").value;
+	   if(keywords.trim()=='')
+		   keywords='0';
+	   var minPrice=document.getElementById("minPrice").value;
+	   var maxPrice=document.getElementById("maxPrice").value;
+	document.getElementById("priceForm").action="http://girlstrade.zapto.org:8888/girlstrade/index.php/getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
 	document.getElementById("priceForm").submit();
+}
+function priceSetup1(){
+	var catID=document.getElementById("search-category").value;
+ 	var locID=document.getElementById("id-location").value;
+//var locID=0;
+	var sortByID=document.getElementById("sortByPrice").value;
+	var keywords=document.getElementById("ads").value;
+	   if(keywords.trim()=='')
+		   keywords='0';
+	   var minPrice=document.getElementById("minPrice1").value;
+	   var maxPrice=document.getElementById("maxPrice1").value;
+	document.getElementById("priceForm1").action="http://girlstrade.zapto.org:8888/girlstrade/index.php/getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	document.getElementById("priceForm1").submit();
 }
 function savedAds(ctrlValue, ctrlName) {
 	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
@@ -598,12 +630,15 @@ function savedAds(ctrlValue, ctrlName) {
           </div>
           <div class="col-md-4">
             <ul  class="list-link list-unstyled">
-              <li> <a  href="#" title="Wan Chai">
+              <li> 
+              <a  href="http://girlstrade.zapto.org:8888/girlstrade/index.php/getCategory/getAll/1/0/1" title="Wan Chai">
               <font color="blue">
               Wan Chai
               </font>
               </a> </li>
-		 <li> <a  href="#" title="Bauseway Bay">
+		 <li> 
+		 
+		 <a  href="#" title="Bauseway Bay">
 		 <font color="blue">
 		 Causeway Bay
 		 </font>
@@ -697,22 +732,23 @@ function savedAds(ctrlValue, ctrlName) {
                 <h5 class="list-title">
                 <div class="modalBody">
                 <strong><a href="javascript:void(0);">
-                $ <?php echo $lblPriceRange;?></a></strong>
+                $ <?php echo $lblPriceRange;?>
+                </a></strong>
                 </div>
                 </h5>
-                <form role="form"  id="priceForm" class="form-inline modalBody"  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
+               <form role="form"  id="priceForm1" class="form-inline modalBody"  onSubmit="return priceSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
                   <div class="margin-top-30">
-                      <input type="number" placeholder="100" id="minPrice"
-                      value=<?php if($minPrice>0)echo $minPrice;?>     
-                      name="minPrice"  min="0"  max="90000" class="form-control price">
+                      <input type="number" placeholder="100" id="minPrice1"
+                      value=<?php  if($minPrice>0)echo $minPrice;?>     
+                      name="minPrice1"  min="0"  max="90000" class="form-control price">
                       <span id="menubarTitle"> - </span>
-                      <input type="number" placeholder="1000 " id="maxPrice"  
+                      <input type="number" placeholder="1000 " id="maxPrice1"  
                       value=<?php if($minPrice>0) echo $maxPrice;?>  
-                      name="maxPrice" min="0" max="90000"   class="form-control price">
+                      name="maxPrice1" min="0" max="90000"   class="form-control price">
                   </div>
                   <div>
                     <div class="form-group no-padding">
-                      <button id="priceRangeBtn" class="btn btn-default btn-pink btn-80 margin-top-10 " 
+                      <button id="priceRangeBtn1" class="btn btn-default btn-pink btn-80 margin-top-10 " 
                       type="submit">Filter<i class="icon-search-2"></i></button>
                     </div>
                   </div>
@@ -726,7 +762,7 @@ function savedAds(ctrlValue, ctrlName) {
       </div>
     </div>
   </div>
-</div>
+
 <!-- /.modal -->
 <!-- Modal Category -->
 
@@ -796,7 +832,9 @@ function savedAds(ctrlValue, ctrlName) {
 <script src="<?php echo base_url();?>assets/js/plugins/mouse-wheel.js"></script>
 <script src="<?php echo base_url();?>assets/js/shop.app.js"></script>
 
+
 <script>
+
 function openCat(id) { 
 	
 	
@@ -830,4 +868,3 @@ function openCat(id) {
 </script>
 <?php include "footer2.php"; ?>
 
-</div>

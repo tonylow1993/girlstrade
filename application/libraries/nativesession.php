@@ -155,6 +155,36 @@ class nativesession {
     function _sess_run()
     {
     	if(!isset($_SESSION))
+    		session_start();
+    
+    		// check if session id needs regeneration
+    		if ( $this->_session_id_expired_original() )
+    		{
+    			// regenerate session id (session data stays the
+    			// same, but old session storage is destroyed)
+    			$this->regenerate_id();
+    			$this->set_userdata(array("session_id", session_id()));
+    		}
+    		else {
+    			if(isset($_GET["session_id"]))
+    			{
+    				$this->set_userdata(array("session_id", $_GET["session_id"]));
+    			}
+    			else {
+    				// 				$this->regenerate_id();
+    				// 				$this->set_userdata(array("session_id", session_id()));
+    			}
+    		}
+    		$this->set_userdata("session_id", session_id());
+    		// delete old flashdata (from last request)
+    		$this->_flashdata_sweep();
+    
+    		// mark all new flashdata as old (data will be deleted before next request)
+    		$this->_flashdata_mark();
+    }
+    function _sess_run_custom()
+    {
+    	if(!isset($_SESSION))
         	session_start();
 
         // check if session id needs regeneration
@@ -186,6 +216,23 @@ class nativesession {
     /**
     * Checks if session has expired
     */
+    function _session_id_expired_original()
+    {
+    	if ( !isset( $_SESSION['regenerated'] ) )
+    	{
+    		$_SESSION['regenerated'] = time();
+    		return false;
+    	}
+    
+    	$expiry_time = time() - $this->session_id_ttl;
+    
+    	if ( $_SESSION['regenerated'] <=  $expiry_time )
+    	{
+    		return true;
+    	}
+    
+    	return false;
+    }
     function _session_id_expired()
     {
     	$userSet=true;
@@ -205,7 +252,7 @@ class nativesession {
         	}else{
 	        	//$this->regenerate_id();
 	        	//$this->set_userdata(array("session_id", session_id()));
-	        	$this->_sess_run();
+	        	$this->_sess_run_custom();
 	        	$_SESSION['regenerated'] = time();
 	        	$this->old_session_data=$_SESSION;
 	            return false;
@@ -220,13 +267,13 @@ class nativesession {
         	//$this->regenerate_id();
         	//$this->set_userdata(array("session_id", session_id()));
         	if($userSet){
-        		$this->_sess_run();
+        		$this->_sess_run_custom();
         		$_SESSION['regenerated'] = time();
         		$this->old_session_data=$_SESSION;
             	return true;
         	}
         }
-		$this->_sess_run();
+		$this->_sess_run_custom();
 		$_SESSION['regenerated'] = time();
 		$this->old_session_data=$_SESSION;
         return false;

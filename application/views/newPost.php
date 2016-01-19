@@ -249,9 +249,11 @@ input[type=checkbox]
 				            	if($lang_label<>"english")
 				            		$name=$value[0]->nameCN;
 				            	if($value[0]->level==1)
-				            		echo "<option value=\"$id\" style=\"background-color:#E9E9E9;font-weight:bold;\" disabled=\"disabled\"> - $name - </option>";
-				            	else 
-				            		echo "<option value=\"$id\"> $name </option>";
+				            		echo "<option value=\"$id\" style=\"background-color:#E9E9E9;font-weight:bold;\">$name</option>";
+				            	else if($value[0]->level==2)
+				            		echo "<option value=\"$id\" style=\"background-color:#E9E9E9;\">--$name</option>";
+				            	else if($value[0]->level==3)
+				            		echo "<option value=\"$id\">----$name</option>";
 				            	}
 				            ?>
 				          </select>
