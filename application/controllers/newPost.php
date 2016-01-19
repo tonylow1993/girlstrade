@@ -765,6 +765,11 @@ public function getChildCategory($parentID)
         $cat = $this->input->post('category-group',true); 
         $tags = $this->input->post('tagsInput',true); 
         $des = $this->input->post('descriptionTextarea',true); 
+        $content=nl2br(htmlentities($des, ENT_QUOTES, 'UTF-8'));
+        	
+        
+        
+        
         $price = $this->input->post('price',true); 
         $recaptcha = $this->input->post('g-recaptcha-response',true); 
         $negotiable = $this->input->post('negotiable'); 
@@ -801,7 +806,7 @@ public function getChildCategory($parentID)
         'itemPrice' => $price,
         'itemQual' => "1",
         'currency' => "HKD",
-        'description' => $des,
+        'description' => $content,
         'paymentMethod' => 'U',
         'status'  => 'U',
         'infoDisplayStatus'  => $negotiable,

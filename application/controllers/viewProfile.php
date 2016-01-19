@@ -13,6 +13,7 @@ class viewProfile extends getCategory {
             $this->lang->load("message",$this->nativesession->get('language'));
             
             $this->load->helper('language');
+            $this->load->helpers('site');
             $this->load->model('pagevisited_model');
             date_default_timezone_set("Asia/Hong_Kong");
             if($this->nativesession->get("language")!=null)

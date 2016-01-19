@@ -158,7 +158,7 @@ function sendIt() {
               			$visibleBuyerComment=$post->sellerRating<>null &&
               			$post->buyerRating==null;
               			$previewTitle=$post->itemName;
-              			$preview=$post->description;
+              			$preview=trimLongText(trim($post->description));
               			if($post->sellerRating<>null){
               				$preview=$preview."<br/>Seller Comment:  (". getRating($post->sellerRating).")";
               				$preview=$preview." ".$post->sellerComment;

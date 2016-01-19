@@ -413,7 +413,13 @@
 					$categoryName=$item["categoryName"];
 					$postCurrency=$item['postCurrency'];
 					$postItemPrice=$item['postItemPrice'];
-					$postDescription=$item['postDescription'];
+					$postDescription=trim($item['postDescription']);
+					
+					try{
+					$postDescription=trimLongText($postDescription);
+					} catch(Exception $ex){
+						
+					}
 					$postTitle=$item['postTitle'];
 					$postCreateDate=$item['postCreateDate'];
 					$picCount=$item["picCount"];

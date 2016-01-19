@@ -15,6 +15,7 @@ class getCategory extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('language');
 		$this->load->database();
+		$this->load->helpers('site');
 		date_default_timezone_set("Asia/Hong_Kong");
 		if($this->nativesession->get("language")!=null)
 		{
