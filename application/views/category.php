@@ -60,14 +60,23 @@
              	$name=$value[0]->name;
              	if($lang_label<>"english")
              		$name=$value[0]->nameCN;
-             	if($value[0]->level==1)
-             		echo "<option value='".$id."' style='background-color:#E9E9E9;font-weight:bold;' disabled='disabled'> -".$name." - </option>";
-             	else 
+             	if($value[0]->level==1){
+             		$str="";
+             		if(strcmp($locID_,$id)==0)
+             			$str=" selected='selected' ";
+             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
+             	}else if($value[0]->level==2)
              	{
              		$str="";
              		if($locID_==$id)
              			$str=" selected='selected' ";
-             		echo "<option ".$str." value='".$id."'> ".$name." </option>";
+             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;'>--".$name." </option>";
+             	}else if($value[0]->level==3)
+             	{
+             		$str="";
+             		if($locID_==$id)
+             			$str=" selected='selected' ";
+             		echo "<option ".$str." value='".$id."'>----".$name." </option>";
              	}
              }
              ?>
@@ -351,12 +360,17 @@
               </a>
               </div>
               <div class="tab-filter">
-                <select class="selectpicker" data-style="btn-select" data-width="auto">
+              <select class="selectpicker" data-style="btn-select" data-width="auto" id="sortByPrice" name="sortByPrice"  >
+                  <option value="0"   <?php if(strcmp($sortByID_,"0")==0 or $sortByID_==0 or $sortByID_=='') echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
+                  <option value="1"   <?php if(strcmp($sortByID_,"1")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceLowToHigh;?></option>
+                  <option value="2"   <?php if(strcmp($sortByID_,"2")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceHighToLow;?></option>
+                </select>
+             <!--    <select class="selectpicker" data-style="btn-select" data-width="auto">
                   <option>Relevance</option>
                   <option>Price: Low to High</option>
                   <option>Price: High to Low</option>
                   <option>Newest</option>
-                </select>
+                </select> -->
               </div>
            </div>
            <!--/.tab-box-->
@@ -598,12 +612,15 @@ function savedAds(ctrlValue, ctrlName) {
           </div>
           <div class="col-md-4">
             <ul  class="list-link list-unstyled">
-              <li> <a  href="#" title="Wan Chai">
+              <li> 
+              <a  href="#" title="Wan Chai">
               <font color="blue">
               Wan Chai
               </font>
               </a> </li>
-		 <li> <a  href="#" title="Bauseway Bay">
+		 <li> 
+		 
+		 <a  href="#" title="Bauseway Bay">
 		 <font color="blue">
 		 Causeway Bay
 		 </font>
@@ -796,7 +813,21 @@ function savedAds(ctrlValue, ctrlName) {
 <script src="<?php echo base_url();?>assets/js/plugins/mouse-wheel.js"></script>
 <script src="<?php echo base_url();?>assets/js/shop.app.js"></script>
 
+<script type="text/javascript">
+function redirect(spath)
+{
+var url = spath;
+window.location.href=url;
+}
+</script>
+
 <script>
+$(function(){
+	 $('#div_id').on('click',function(){
+	    window.location.href = "<?php echo site_url('getCategory/getAll/1/0/1'); ?>";
+	 });
+	});
+
 function openCat(id) { 
 	
 	
