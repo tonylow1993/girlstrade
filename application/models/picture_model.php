@@ -1,7 +1,7 @@
 <?php 
 	class picture_model extends CI_Model {
 	
-	    var $sequence = '';
+	    //var $sequence = '';
 	    var $postID = '';
 	    var $userID = '';
             var $picturePath = '';
@@ -40,6 +40,7 @@
 	        $this->db->trans_start();
                $this->db->insert('picture', $this);
                $this->db->trans_complete();
+               log_message('debug','value'.$this->db->last_query());
 	        }
 	    	catch (Exception $ex) {
 	    		echo 'Caught exception: ',  $ex->getMessage(), "\n";
