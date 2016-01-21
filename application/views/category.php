@@ -209,32 +209,45 @@
                			}else if($value[0]->level==2)
                			{
                				if($level==1){
-               					echo "<a id=\"searchCriteria\" class=\"listForOpenCat\" href=\"$path\">
-               					$name
-               					</a>
-               					</li>";
+               					
                					
                					if($locationID==1){
-               					echo "<div id=\"ktArea\" class=\"panel-collapse collapse\">
-               					<ul class=\" list-unstyled long-list\">";
+               						echo "<a id=\"searchCriteria\" style=\"color:blue;\" class=\"listForOpenCat\" href=\"$path\">
+               						$name
+               						</a>
+               						</li>";
+	               					echo "<div id=\"ktArea\" class=\"panel-collapse collapse\">
+	               					<ul class=\" list-unstyled long-list\">";
                					}
                					else if($locationID==2){
+               						echo "<a id=\"searchCriteria\" style=\"color:green;\" class=\"listForOpenCat\" href=\"$path\">
+               						$name
+               						</a>
+               						</li>";
                						echo "<div id=\"hkArea\" class=\"panel-collapse collapse\">
                					<ul class=\" list-unstyled long-list\">";
                					}else if($locationID==3){
+               						echo "<a id=\"searchCriteria\" style=\"color:red;\" class=\"listForOpenCat\" href=\"$path\">
+               						$name
+               						</a>
+               						</li>";
                						echo "<div id=\"ntArea\" class=\"panel-collapse collapse\">
                					<ul class=\" list-unstyled long-list\">";
                					}
                					
                				}else if($level==3){
                					$areaID="";
+               					$style="";
                					if($locationID==1){
                						$areaID="ktArea".$value[0]->locationID;
+               						$style="style=\"color:blue;\"";
                					}
                					else if($locationID==2){
                						$areaID="hkArea".$value[0]->locationID;
+               						$style="style=\"color:green;\"";
                					}else if($locationID==3){
                						$areaID="ntArea".$value[0]->locationID;
+               						$style="style=\"color:red;\"";
                					}
                					
                					
@@ -249,7 +262,7 @@
 	               					</span>
 	               					</a>
                					
-               					<a id=\"searchCriteria\" class=\"listForOpenCat\" href=\"$path\">
+               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" href=\"$path\">
                					$name
                					</a>
                					</li><div id=\"$areaID\" class=\"panel-collapse collapse\">
@@ -257,13 +270,17 @@
                					
                				}else if($level==2){
                					$areaID="";
+               					$style="";
                					if($locationID==1){
                						$areaID="ktArea".$value[0]->locationID;
+               						$style="style=\"color:blue;\"";
                					}
                					else if($locationID==2){
                						$areaID="hkArea".$value[0]->locationID;
+               						$style="style=\"color:green;\"";
                					}else if($locationID==3){
                						$areaID="ntArea".$value[0]->locationID;
+               						$style="style=\"color:red;\"";
                					}
                					echo "</ul></div>
                					<li>
@@ -273,7 +290,7 @@
 	               					<i class=\"glyphicon glyphicon-plus\"></i>
 	               					</span>
 	               					</a>
-               					<a id=\"searchCriteria\" class=\"listForOpenCat\" href=\"$path\">
+               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" href=\"$path\">
                					$name
                					</a>
                					</li><div id=\"$areaID\" class=\"panel-collapse collapse\">
@@ -284,16 +301,26 @@
                				
                			}else if($value[0]->level==3)
                			{
+               				$style="";
+               				if($locationID==1){
+               					$style="style=\"color:blue;\"";
+               				}
+               				else if($locationID==2){
+               					$style="style=\"color:green;\"";
+               				}else if($locationID==3){
+               					$style="style=\"color:red;\"";
+               				}
+               				
                				if($level==2){
                					echo "<li>
-               					<a id=\"searchCriteria\" class=\"listForOpenCat\" href=\"$path\">
+               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" href=\"$path\">
                					$name
                					</a>
                					</li>";
                					
                				}else if($level==3){
                					echo "<li>
-               					<a id=\"searchCriteria\" class=\"listForOpenCat\" href=\"$path\">
+               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" href=\"$path\">
                					$name
                					</a>
                					</li>";
