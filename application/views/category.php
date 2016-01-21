@@ -650,16 +650,27 @@ function savedAds(ctrlValue, ctrlName) {
 <div style="clear:both"></div>            
             <div class="col-sm-6 no-padding">
         <select  class="form-control selecter  " id="region-state" name="region-state">
-		<option value="">All States/Provinces</option>
-		<option value="Alabama">Alabama</option>
-		<option value="Alaska">Alaska</option>
-		<option value="Arizona">Arizona</option>
-		<option value="Arkansas">Arkansas</option>
-		<option value="California">California</option>
-		<option value="Colorado">Colorado</option>
-		<option value="Connecticut">Connecticut</option>
-		<option value="Delaware">Delaware</option>
-		<option value="District of Columbia">District of Columbia</option>
+		<option value="">All Districts</option>
+		<option value="4">中西區</option>
+		<option value="5">東區</option>
+		<option value="6">南區</option>
+		<option value="7">灣仔區</option>
+		<option value="8">深水埗區</option>
+		<option value="9">九龍城區</option>
+		<option value="10">觀塘區</option>
+		
+		<option value="11">黃大仙區</option>
+		<option value="12">油尖旺區</option>
+		<option value="13">離島區</option>
+		<option value="14">葵青區</option>
+		<option value="15">北區</option>
+		<option value="16">西貢區</option>
+		<option value="17">沙田區</option>
+		<option value="18">大埔區</option>
+		<option value="19">荃灣區</option>
+		<option value="20">屯門區</option>
+		<option value="21">元朗區</option>
+		
 		</select>
             </div>
            <div style="clear:both"></div>            
@@ -669,24 +680,24 @@ function savedAds(ctrlValue, ctrlName) {
           <div class="col-md-4">
             <ul  class="list-link list-unstyled">
               <li> 
-              <a  href="http://girlstrade.zapto.org:8888/girlstrade/index.php/getCategory/getAll/1/0/1" title="Wan Chai">
+              <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/69"?>" title="Wan Chai">
               <font color="blue">
               Wan Chai
               </font>
               </a> </li>
 		 <li> 
 		 
-		 <a  href="#" title="Bauseway Bay">
+		 <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/70"?>" title="Bauseway Bay">
 		 <font color="blue">
 		 Causeway Bay
 		 </font>
 		 </a> </li>
-		 <li> <a  href="#" title="Admirty">
+		 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/63"?>" title="Admirty">
 		 <font color="blue">
 		 Admirty
 		 </font>
 		 </a> </li>
-		 <li> <a  href="#" title="Central">
+		 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/64"?>" title="Central">
 		 <font color="blue">
 		 Central
 		 </font>
@@ -697,21 +708,21 @@ function savedAds(ctrlValue, ctrlName) {
           </div>
           <div class="col-md-4">
             <ul class="list-link list-unstyled">
-              <li> <a  href="#" title="WongTaiSin">
+              <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/43"?>" title="WongTaiSin">
               <font color="green">
               Wong Tai Sin
               </font>
               </a> </li>
-		 <li> <a  href="#" title="KwunTong">
+		 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/48"?>" title="KwunTong">
 		 <font color="green">
 		 Kwun Tong
 		 </font></a> </li>
-		 <li> <a  href="#" title="NgauTauKok">
+		 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/47"?>" title="NgauTauKok">
 		 <font color="green">
 		 Ngau Tau Kok
 		 </font>
 		 </a> </li>
-		 <li> <a  href="#" title="KowloonBay">
+		 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/46"?>" title="KowloonBay">
 		 <font color="green">
 		 Kowloon Bay
 		 </font>
@@ -723,24 +734,24 @@ function savedAds(ctrlValue, ctrlName) {
           </div>
           <div class="col-md-4">
             <ul class="list-link list-unstyled">
-               <li> <a  href="#" title="CheungSok">
+               <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/104"?>" title="MaOnShan">
                <font color="red">
-               Cheung Sok
+               Ma On Shan
                </font>
                </a> </li>
-		 	<li> <a  href="#" title="MaWan">
+		 	<li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/97"?>" title="YuenLong">
 		 	<font color="red">
-		 	Ma Wan
+		 	Yuen Long
 		 	</font>
 		 	</a> </li>
-			 <li> <a  href="#" title="TangLungChau">
+			 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/95"?>" title="TinShuiWai">
 			 <font color="red">
-			 Tang Lung Chau
+			 Tin Shui Wai
 			 </font>
 			 </a> </li>
-         	<li> <a  href="#" title="LantauIsland">
+         	<li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/92"?>" title="TsuengKwanO">
          	<font color="red">
-         	Lantau Island
+         	Tsueng Kwan O
          	</font>
          	</a> </li>
 
@@ -824,9 +835,9 @@ function savedAds(ctrlValue, ctrlName) {
 			<div style="clear:both"></div>            
             <div class="col-sm-6 no-padding">
         <select  class="form-control selecter  " id="region-state" name="region-state">
-		<option value="">Search Item</option>
-		<option value="Alabama">Shoes</option>
-		<option value="Alaska">Hat</option>
+		<option value="">All Categories</option>
+		<option value="1">連身裙</option>
+		<option value="15">電子產品</option>
 		</select>
             </div>
            <div style="clear:both"></div>            
@@ -853,6 +864,7 @@ function savedAds(ctrlValue, ctrlName) {
           <a id="searchCriteria" class="listForOpenCat" href=""><strong>Tops</strong></a>
           </li>
           </ul>
+          
           </div>
       	</div>
       </div>
