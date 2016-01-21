@@ -117,149 +117,202 @@
                 <ul class="browse-list list-unstyled long-list">
                 
                 
-                <li>
-                <a id="bigCatKowloon" class="openCat" data-toggle="collapse" data-target="#kowloonDist" 
-		           href="#kowloonDist;javascript:void(0);" onclick='return openCat(this.id);'>
-		          <span class="badge openCat">
-		          <i class="glyphicon glyphicon-plus"></i>
-		          </span>
-		        </a>
-		        <a id="searchCriteria" class="listForOpenCat" href="">
-		        	九龍 (10)
-                </a>
-                </li>
-                <div id="kowloonDist" class="panel-collapse collapse">
-            		<ul class=" list-unstyled long-list">
-            			<li>
-            			<a id="smallCatKTArea" class="openCat" data-toggle="collapse" data-target="#ktArea" 
-				           href="#ktArea;javascript:void(0);" onclick='return openCat(this.id);'>
-				          <span class="badge openSubCat">
-				          <i class="glyphicon glyphicon-plus"></i>
-				          </span>
-				        </a>
-            			<a id="searchCriteria" class="listForOpenCat" href="">
-            				觀塘區 (11)
-            			</a>
-            			</li>
-            			
-            			<div id="ktArea" class="panel-collapse collapse">
-            			<ul class=" list-unstyled long-list">
-            				<li>
-            				<a id="searchCriteria" class="listForOpenCat" href="">
-            					觀塘 (5)
-            				</a>
-            				</li>
-            				<li>
-            				<a id="searchCriteria" class="listForOpenCat" href="">
-            					牛頭角 (5)
-            				</a>
-            				</li>
-            				<li>
-            				<a id="searchCriteria" class="listForOpenCat" href="">
-            					藍田 (5)
-            				</a>
-            				</li>
-            			</ul>
-            			</div>
-            			
-            			
-            			
-            			
-            			
-            			<li>
-            			<a id="searchCriteria" class="listForOpenCat" href="">
-            			黃大仙區 (11)
-            			</a>
-            			</li>
-            			<li>
-            			<a id="searchCriteria" class="listForOpenCat" href="">
-            			油尖旺區 (13)
-            			</a>
-            			</li>
-            		</ul>
-        		</div>
-                <li>
-                <a id="bigCatHK" class="openCat" data-toggle="collapse" data-target="#hongkongDist" href="#hongkongDist;javascript:void(0);" onclick='return openCat(this.id);'>
-		          <span class="badge openCat">
-		          <i class="glyphicon glyphicon-plus"></i>
-		          </span>
-		        </a>
-                <a id="searchCriteria" class="listForOpenCat" href="">香港 (10)</a>
-                </li>
+               <?php  
+              $level=0;
+               $locationID=1;
+               foreach ($resLoc as $id=>$value)
+               {
+               	if($value[0]->locationID==0)
+               		continue;
+               	if(!isset($lang_label))
+               		$lang_label="";
+               		$name=$value[0]->name." (".$value[0]->viewCount.")";
+               		if($lang_label<>"english")
+               			$name=$value[0]->nameCN." (".$value[0]->viewCount.")";
+               			$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
+               			if($value[0]->level==1){
+               				
+               				if($level==2){
+               				
+               				}else if($level==3){
+               					echo "</ul></div></ul>
+               					</div>";
+               					if($value[0]->locationID==2){
+               						$locationID=2;
+               						echo "<li>
+               						<a id=\"bigCatHK\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#hongkongDist\" href=\"#hongkongDist;javascript:void(0);\" onclick='return openCat(this.id);'>
+               						<span class=\"badge openCat\">
+               						<i class=\"glyphicon glyphicon-plus\"></i>
+               						</span>
+               						</a>
+               						<a id=\"searchCriteria\" style=\"background-color: green;color: white;\" class=\"listForOpenCat\" href=\"$path\">$name</a>
+               						</li>
+               						
+               						<div id=\"hongkongDist\" class=\"panel-collapse collapse\">
+               						<ul class=\" list-unstyled long-list\">
+               							<li>
+               							<a id=\"smallCatKTArea\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#hkArea\"
+               								href=\"#hkArea;javascript:void(0);\" onclick='return openCat(this.id);'>
+               								<span class=\"badge openSubCat\">
+               								<i class=\"glyphicon glyphicon-plus\"></i>
+               								</span>
+               								</a>";
+               					}else if($value[0]->locationID==3){
+               						$locationID=3;
+               						echo "<li>
+               						<a id=\"bigCatNewTerr\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#newTerrDist\"
+               								href=\"#newTerrDist;javascript:void(0);\" onclick='return openCat(this.id);'>
+               								<span class=\"badge openCat\">
+               								<i class=\"glyphicon glyphicon-plus\"></i>
+               								</span>
+               								</a>
+               								<a id=\"searchCriteria\" style=\"background-color: red;color: white;\" class=\"listForOpenCat\" href=\"$path\">
+               								$name</a>
+               								</li>
+               						
+               								<div id=\"newTerrDist\" class=\"panel-collapse collapse\">
+               								<ul class=\" list-unstyled long-list\">
+               									<li>
+               									<a id=\"smallCatKTArea\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#ntArea\"
+               										href=\"#ntArea;javascript:void(0);\" onclick='return openCat(this.id);'>
+               										<span class=\"badge openSubCat\">
+               										<i class=\"glyphicon glyphicon-plus\"></i>
+               										</span>
+               										</a>";
+               					}
+               				}else if($level==0){
+               			
+	               				if($value[0]->locationID==1){	
+	               				echo "<li>
+	               				<a id=\"bigCatKowloon\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#kowloonDist\"
+	               						href=\"#kowloonDist;javascript:void(0);\" onclick='return openCat(this.id);'>
+	               						<span class=\"badge openCat\">
+	               						<i class=\"glyphicon glyphicon-plus\"></i>
+	               						</span>
+	               						</a>
+	               						<a id=\"searchCriteria\" style=\"background-color: blue;color: white;\" class=\"listForOpenCat\" href=\"$path\">
+	               						$name
+	               						</a>
+	               						</li>
+	               						<div id=\"kowloonDist\" class=\"panel-collapse collapse\">
+	               						<ul class=\" list-unstyled long-list\">
+	               						<li>
+	               						<a id=\"smallCatKTArea\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#ktArea\"
+	               								href=\"#ktArea;javascript:void(0);\" onclick='return openCat(this.id);'>
+	               								<span class=\"badge openSubCat\">
+	               								<i class=\"glyphicon glyphicon-plus\"></i>
+	               								</span>
+	               								</a>";
+	               				}
+               				}
+               				$level=1;
+               			}else if($value[0]->level==2)
+               			{
+               				if($level==1){
+               					echo "<a id=\"searchCriteria\" class=\"listForOpenCat\" href=\"$path\">
+               					$name
+               					</a>
+               					</li>";
+               					
+               					if($locationID==1){
+               					echo "<div id=\"ktArea\" class=\"panel-collapse collapse\">
+               					<ul class=\" list-unstyled long-list\">";
+               					}
+               					else if($locationID==2){
+               						echo "<div id=\"hkArea\" class=\"panel-collapse collapse\">
+               					<ul class=\" list-unstyled long-list\">";
+               					}else if($locationID==3){
+               						echo "<div id=\"ntArea\" class=\"panel-collapse collapse\">
+               					<ul class=\" list-unstyled long-list\">";
+               					}
+               					
+               				}else if($level==3){
+               					$areaID="";
+               					if($locationID==1){
+               						$areaID="ktArea".$value[0]->locationID;
+               					}
+               					else if($locationID==2){
+               						$areaID="hkArea".$value[0]->locationID;
+               					}else if($locationID==3){
+               						$areaID="ntArea".$value[0]->locationID;
+               					}
+               					
+               					
+               					echo "
+               					</ul>
+               					</div>
+               					<li>
+	               					<a id=\"smallCatKTArea\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#$areaID\"
+	               					href=\"#$areaID;javascript:void(0);\" onclick='return openCat(this.id);'>
+	               					<span class=\"badge openSubCat\">
+	               					<i class=\"glyphicon glyphicon-plus\"></i>
+	               					</span>
+	               					</a>
+               					
+               					<a id=\"searchCriteria\" class=\"listForOpenCat\" href=\"$path\">
+               					$name
+               					</a>
+               					</li><div id=\"$areaID\" class=\"panel-collapse collapse\">
+               					<ul class=\" list-unstyled long-list\">";
+               					
+               				}else if($level==2){
+               					$areaID="";
+               					if($locationID==1){
+               						$areaID="ktArea".$value[0]->locationID;
+               					}
+               					else if($locationID==2){
+               						$areaID="hkArea".$value[0]->locationID;
+               					}else if($locationID==3){
+               						$areaID="ntArea".$value[0]->locationID;
+               					}
+               					echo "</ul></div>
+               					<li>
+               						<a id=\"smallCatKTArea\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#$areaID\"
+	               					href=\"#$areaID;javascript:void(0);\" onclick='return openCat(this.id);'>
+	               					<span class=\"badge openSubCat\">
+	               					<i class=\"glyphicon glyphicon-plus\"></i>
+	               					</span>
+	               					</a>
+               					<a id=\"searchCriteria\" class=\"listForOpenCat\" href=\"$path\">
+               					$name
+               					</a>
+               					</li><div id=\"$areaID\" class=\"panel-collapse collapse\">
+               					<ul class=\" list-unstyled long-list\">";
+               					
+               				}
+               				$level=2;
+               				
+               			}else if($value[0]->level==3)
+               			{
+               				if($level==2){
+               					echo "<li>
+               					<a id=\"searchCriteria\" class=\"listForOpenCat\" href=\"$path\">
+               					$name
+               					</a>
+               					</li>";
+               					
+               				}else if($level==3){
+               					echo "<li>
+               					<a id=\"searchCriteria\" class=\"listForOpenCat\" href=\"$path\">
+               					$name
+               					</a>
+               					</li>";
+               				}
+               				$level=3;
+               			}
+           	    }
+               
+               
+
+               
                 
-                <div id="hongkongDist" class="panel-collapse collapse">
-            		<ul class=" list-unstyled long-list">
-            			<li>
-            			<a id="searchCriteria" class="listForOpenCat" href="">
-            			東區 (11)
-            			</a>
-            			</li>
-            			<li>
-            			<a id="searchCriteria" class="listForOpenCat" href="">
-            			中西區 (11)
-            			</a>
-            			</li>
-            		</ul>
-        		</div>
-                
-                <li>
-                <a id="bigCatNewTerr" class="openCat" data-toggle="collapse" data-target="#newTerrDist" 
-                href="#newTerrDist;javascript:void(0);" onclick='return openCat(this.id);'>
-		          <span class="badge openCat">
-		          <i class="glyphicon glyphicon-plus"></i>
-		          </span>
-		        </a>
-                <a id="searchCriteria" class="listForOpenCat" href="">新界 (10)</a>
-                </li>
-                
-                <div id="newTerrDist" class="panel-collapse collapse">
-            		<ul class=" list-unstyled long-list">
-            			<li>
-            			<a id="searchCriteria" class="listForOpenCat" href="">
-            			離島區 (11)
-            			</a>
-            			</li>
-            			<li>
-            			<a id="searchCriteria" class="listForOpenCat" href="">
-            			荃灣區 (11)
-            			</a>
-            			</li>
-            		</ul>
-        		</div>
-                
+                ?>
                 </ul>
-              </div>
-              
-              <!--/.locations-list-->
-              
-              
-              
-              
-              
-              <!--  
-              <div class="locations-list  list-filter">
-                <h5 class="list-title"><strong>
-                <a href="">
-                <i class="icon-location-circled"></i><?php echo trim($lblLocation);?></a></strong></h5>
-                <ul class="browse-list list-unstyled long-list">
-                <?php 
-	            /*foreach ($resLoc as $id=>$value)
-	            {
-	            	$postCount="(".$value[0]->postCount.")";
-	            	if(!isset($lang_label))
-	            		$lang_label="";
-	            	$name=$value[0]->name;
-	            	$basePath=base_url().MY_PATH."getCategory/getAll/1/".$catID_.'/'.$id.'/'.$keywords.'/'.$sortByID_;
-	            	if($lang_label<>"english")
-	            		$name=$value[0]->nameCN;
-	            	if($value[0]->level==1)
-	            		echo "<li> <a id=\"searchCriteria\" href=\"$basePath\">$name $postCount</a></li>";
-	            	
-	            	}*/
-	            ?>
-                </ul>
-              </div>
-              -->
+        		</div>
+              </ul>
+        		</div>
+               </ul>
+        		</div>
               <!--/.locations-list-->
               <div class="locations-list  list-filter margin-top-30">
                 <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-money"></i><?php echo $lblPriceRange;?></a></strong></h5>
@@ -283,28 +336,7 @@
                 </form>
                 <div style="clear:both"></div>
               </div>
-              <!--PRICING MODEL-->
-              <!-- <div class="panel-group" id="accordion-v4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion-v4" href="#collapseFour">
-                                    Price
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                            </h2>
-                        </div>
-                        <div id="collapseFour" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                <div class="slider-snap"></div>
-                                <p class="slider-snap-text">
-                                    <span class="slider-snap-value-lower"></span>
-                                    <span class="slider-snap-value-upper"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
+             
               
               
               <div class="locations-list  list-filter">
@@ -328,7 +360,7 @@
             
             <!--/.categories-list--> 
           </aside>
-        </div>
+       </div>
         <!--/.page-side-bar-->
         
         <div class="col-sm-9 page-content col-thin-left">
