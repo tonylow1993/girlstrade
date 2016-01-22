@@ -218,6 +218,7 @@
                						</li>";
 	               					echo "<div id=\"ktArea\" class=\"panel-collapse collapse\">
 	               					<ul class=\" list-unstyled long-list\">";
+	               					
                					}
                					else if($locationID==2){
                						echo "<a id=\"searchCriteria\" style=\"color:green;\" class=\"listForOpenCat\" href=\"$path\">
@@ -249,13 +250,13 @@
                						$areaID="ntArea".$value[0]->locationID;
                						$style="style=\"color:red;\"";
                					}
-               					
+               					$areaIDsamll="smallCatKTArea".$value[0]->locationID;
                					
                					echo "
                					</ul>
                					</div>
                					<li>
-	               					<a id=\"smallCatKTArea\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#$areaID\"
+	               					<a id=\"$areaIDsamll\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#$areaID\"
 	               					href=\"#$areaID;javascript:void(0);\" onclick='return openCat(this.id);'>
 	               					<span class=\"badge openSubCat\">
 	               					<i class=\"glyphicon glyphicon-plus\"></i>
@@ -282,9 +283,11 @@
                						$areaID="ntArea".$value[0]->locationID;
                						$style="style=\"color:red;\"";
                					}
+               					$areaIDsamll="smallCatKTArea".$value[0]->locationID;
+               					
                					echo "</ul></div>
                					<li>
-               						<a id=\"smallCatKTArea\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#$areaID\"
+               						<a id=\"$areaIDsamll\" class=\"openCat\" data-toggle=\"collapse\" data-target=\"#$areaID\"
 	               					href=\"#$areaID;javascript:void(0);\" onclick='return openCat(this.id);'>
 	               					<span class=\"badge openSubCat\">
 	               					<i class=\"glyphicon glyphicon-plus\"></i>
