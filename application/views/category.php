@@ -902,7 +902,25 @@ function savedAds(ctrlValue, ctrlName) {
             <div class="col-sm-6 no-padding">
         <select  class="form-control selecter  " id="region-state" name="region-state">
 		<option value="">All Districts</option>
-		<option value="4">中西區</option>
+		<?php 
+
+		foreach ($resLoc as $id=>$value)
+		{
+			if(!isset($lang_label))
+				$lang_label="";
+				$name=$value[0]->name;
+				if($lang_label<>"english")
+					$name=$value[0]->nameCN;
+					if($value[0]->level==2){
+							echo "<option  value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
+					}
+		}
+		
+		?>
+		
+		
+		
+	<!--  	<option value="4">中西區</option>
 		<option value="5">東區</option>
 		<option value="6">南區</option>
 		<option value="7">灣仔區</option>
@@ -920,7 +938,7 @@ function savedAds(ctrlValue, ctrlName) {
 		<option value="18">大埔區</option>
 		<option value="19">荃灣區</option>
 		<option value="20">屯門區</option>
-		<option value="21">元朗區</option>
+		<option value="21">元朗區</option> -->
 		
 		</select>
             </div>
