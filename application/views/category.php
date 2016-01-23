@@ -145,7 +145,7 @@
                						<i class=\"glyphicon glyphicon-plus\"></i>
                						</span>
                						</a>
-               						<a id=\"searchCriteria\" style=\"background-color: green;color: white;\" class=\"listForOpenCat\" href=\"$path\">$name</a>
+               						<a id=\"searchCriteria\" style=\"color: green;\" class=\"listForOpenCat\" href=\"$path\">$name</a>
                						</li>
                						
                						<div id=\"hongkongDist\" class=\"panel-collapse collapse\">
@@ -166,7 +166,7 @@
                								<i class=\"glyphicon glyphicon-plus\"></i>
                								</span>
                								</a>
-               								<a id=\"searchCriteria\" style=\"background-color: red;color: white;\" class=\"listForOpenCat\" href=\"$path\">
+               								<a id=\"searchCriteria\" style=\"color: red;\" class=\"listForOpenCat\" href=\"$path\">
                								$name</a>
                								</li>
                						
@@ -190,7 +190,7 @@
 	               						<i class=\"glyphicon glyphicon-plus\"></i>
 	               						</span>
 	               						</a>
-	               						<a id=\"searchCriteria\" style=\"background-color: blue;color: white;\" class=\"listForOpenCat\" href=\"$path\">
+	               						<a id=\"searchCriteria\" style=\"color: blue;\" class=\"listForOpenCat\" href=\"$path\">
 	               						$name
 	               						</a>
 	               						</li>
