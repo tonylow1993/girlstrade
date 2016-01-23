@@ -15,7 +15,7 @@ class searchresult_model extends CI_Model {
 		parent::__construct();
 		
 	}
-	function getNoOfItemCount($userID=0 , $catID=0, $locID=0 , $keywords='', $minPrice=0, $maxPrice=0)
+	function getNoOfItemCount($userID=0 , $catID=0, $locID=0 , $keywords='', $minPrice=0, $maxPrice=0, $allAds='allAds')
 	{if($catID==0 or $catID==null)
 		$catID=0;
 	else
@@ -54,12 +54,17 @@ class searchresult_model extends CI_Model {
 		$strLocQuery=" and (locID in (select locationID from location where parentID=".$locID." ) or locID=".$locID."  or ".$locID."=0) ";
 	else
 		$strLocQuery=" and (locID=".$locID." or ".$locID."=0) ";
-	
+
+		$strnewUsed="";
+		if(strcmp($allAds, 'newAds')==0)
+			$strnewUsed=" and newUsed='N' ";
+			else if(strcmp($allAds, 'usedAds')==0)
+				$strnewUsed=" and newUsed='U' ";
 	$strQuery="";
 	if(strcmp($catID, "0")!=0 && $this->isParentCatID($catID)){
 		$strQuery="select count(distinct postID) as NoOfCount from post where status='A' and (userID=$userID or $userID=0) ";
 		$strQuery=$strQuery." and remainQty>0  and (catID in (select categoryID from category where parentID=".$catID." ) or catID=".$catID."  or ".$catID."=0) ";
-		$strQuery=$strQuery.$strLocQuery;
+		$strQuery=$strQuery.$strLocQuery.$strnewUsed;
 		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
 		$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
 		if(strcmp($filterMore,"")!=0)
@@ -71,7 +76,7 @@ class searchresult_model extends CI_Model {
 	}else{
 		$strQuery="select count(distinct postID) as NoOfCount from post where status='A' and (userID=$userID or $userID=0) ";
 		$strQuery=$strQuery." and remainQty>0 and (catID=".$catID." or ".$catID."=0) ";
-		$strQuery=$strQuery.$strLocQuery;
+		$strQuery=$strQuery.$strLocQuery.$strnewUsed;
 		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
 		$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
 	if(strcmp($filterMore,"")!=0)
@@ -90,7 +95,7 @@ class searchresult_model extends CI_Model {
 	return $NoOfItemCount;
 	
 	}
-function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $sortByID="0", $minPrice=0, $maxPrice=0)
+function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $sortByID="0", $minPrice=0, $maxPrice=0, $allAds='allAds')
 {
 	if($catID==0 or $catID==null)
 		$catID=0;
@@ -150,13 +155,17 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	else
 		$strLocQuery=" and (locID=".$locID." or ".$locID."=0) ";
 	
-	$strQuery="";
-	
+	$strnewUsed="";
+	if(strcmp($allAds, 'newAds')==0)
+		$strnewUsed=" and newUsed='N' ";
+	else if(strcmp($allAds, 'usedAds')==0)
+		$strnewUsed=" and newUsed='U' ";
+		
 	$strQuery="";
 	if(strcmp($catID, "0")!=0 && $this->isParentCatID($catID)){
 		$strQuery="select * from post where status='A' and (userID=$userID or $userID=0) ";
 		$strQuery=$strQuery." and remainQty>0  and (catID in (select categoryID from category where parentID=".$catID." ) or catID=".$catID." or ".$catID."=0) ";
-		$strQuery=$strQuery.$strLocQuery;
+		$strQuery=$strQuery.$strLocQuery.$strnewUsed;
 		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
 		$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
 		
@@ -169,7 +178,7 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	}else{
 		$strQuery="select * from post where status='A' and (userID=$userID or $userID=0) ";
 		$strQuery=$strQuery." and remainQty>0  and (catID=".$catID." or ".$catID."=0) ";
-		$strQuery=$strQuery.$strLocQuery;
+		$strQuery=$strQuery.$strLocQuery.$strnewUsed;
 		$strQuery=$strQuery." and date_format(expriyDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') ";
 		$strQuery=$strQuery." and ( blockDate is null  or date_format(blockDate, '%Y-%m-%d') < date_format(curdate(), '%Y-%m-%d') ) ";
 	if(strcmp($filterMore,"")!=0)
@@ -219,6 +228,7 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 					'postCurrency'=>$post->currency,
 					'postItemPrice'=>$post->itemPrice,
 					'postDescription'=> $post->description,
+					'newUsed'=> $post->newUsed,
 					'postTitle'=>$post->itemName,
 					'postCreateDate'=>$post->createDate,
 					'picCount'=>count($pic),

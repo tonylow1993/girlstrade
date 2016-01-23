@@ -67,7 +67,7 @@ class getCategory extends CI_Controller {
 			echo json_encode($data);
 	}
 	
-	public function getAll($pageNum, $catID="0", $locID="0", $keywords='0', $sortByID="0", $minPrice="0", $maxPrice="0")
+	public function getAll($pageNum, $catID="0", $locID="0", $keywords='0', $sortByID="0", $minPrice="0", $maxPrice="0", $allAds='allAds')
 	{
 		try{
 			
@@ -105,7 +105,9 @@ class getCategory extends CI_Controller {
 			$locID=$this->input->post("location");
 		if($this->input->post("sortByPrice")<>'' && $this->input->post("sortByPrice")<>'0')
 			$sortByID=$this->input->post("sortByPrice");
-		
+		if($this->input->post("allAds")<>'' && $this->input->post("allAds")<>'allAds')
+				$allAds=$this->input->post("allAds");
+			
 		$data["sortByID_"]=$sortByID;
 		//$catID=$this->input->post('search-category');
 		//$locID=$this->input->post('id-location');
@@ -225,8 +227,9 @@ class getCategory extends CI_Controller {
 		
 		$data["minPrice"]=$minPrice;
 		$data["maxPrice"]=$maxPrice;
-		$data['itemList']=$this->searchresult_model->getItemList($pageNum,0, $catID, $locID, $keywords, $sortByID, $minPrice, $maxPrice);
-		$NoOfItemCount=$this->searchresult_model->getNoOfItemCount(0, $catID, $locID, $keywords, $minPrice, $maxPrice);
+		$data["activeTab"]="allAds";
+		$data['itemList']=$this->searchresult_model->getItemList($pageNum,0, $catID, $locID, $keywords, $sortByID, $minPrice, $maxPrice, $allAds);
+		$NoOfItemCount=$this->searchresult_model->getNoOfItemCount(0, $catID, $locID, $keywords, $minPrice, $maxPrice, $allAds);
 	 	$data["NoOfItemCount"]=$NoOfItemCount;
 					
 	 			
@@ -313,5 +316,18 @@ class getCategory extends CI_Controller {
 		}
 		return $result;	
 	}
+	
+	public function allAds()
+	{
+		$data['status'] = 'A';
+		$data['class'] = "has-success";
+		$data['message'] = '';
+		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
+		echo json_encode($data);
+		//return PartialView();
+	}
+	
+	
+	
 }
 ?>

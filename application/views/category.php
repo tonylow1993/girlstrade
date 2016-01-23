@@ -337,10 +337,10 @@
                
                 
                 ?>
-                </ul>
+                 </ul>
         		</div>
               </ul>
-        		</div>
+        		</div> 
                </ul>
         		</div>
               <!--/.locations-list-->
@@ -398,13 +398,13 @@
           <div class="tab-box "> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li class="active"><a href="#allAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionAny;?>
                 <span class="badge">228,705</span></a></li>
-                <li><a href="#newAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="#newAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionNew;?>
                 <span class="badge">22,805</span></a></li>
-                <li><a href="#usedAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="#usedAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionUsed;?> 
                 <span class="badge">18,705</span></a></li>
               </ul>
@@ -460,8 +460,9 @@
               
             <div class="adds-wrapper">
               <div class="tab-content">
-                <div class="tab-pane active" id="allAds">
+                <div class="tab-pane fade <?php if(strcmp($activeTab, "allAds")==0) echo "in active"; ?>" id="allAds">
                 	<?php
+                	
              $basePath=base_url().MY_PATH;
              $encodeCurrentURL=urlencode(current_url());
               if($itemList<>null && sizeof($itemList)>0)
@@ -545,7 +546,181 @@
                 
                 
                 </div>
-               
+               <div class="tab-pane <?php if(strcmp($activeTab, "newAds")==0) echo "active"; ?>" id="newAds">
+                	<?php
+             $basePath=base_url().MY_PATH;
+             $encodeCurrentURL=urlencode(current_url());
+              if($itemList<>null && sizeof($itemList)>0)
+              {
+              	$rowCount=0;
+              foreach($itemList as $id=>$item)
+				{
+					if(strcmp($item["newUsed"], "N")<>0)
+						continue;
+					
+					$rowCount=$rowCount+1;
+				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL;
+              		$locationName=$item["locationName"];
+					$categoryName=$item["categoryName"];
+					$postCurrency=$item['postCurrency'];
+					$postItemPrice=$item['postItemPrice'];
+					$postDescription=trim($item['postDescription']);
+					
+					try{
+					$postDescription=trimLongText($postDescription);
+					} catch(Exception $ex){
+						
+					}
+					$postTitle=$item['postTitle'];
+					$postCreateDate=$item['postCreateDate'];
+					$picCount=$item["picCount"];
+					$thumbnail=base_url().$item['thumbnailPath'].'/'.$item['thumbnailName'];
+					$postTypeAds=$item["postTypeAds"];	
+					echo  "<div class=\"item-list\"> ";
+					
+					if($postTypeAds=='topAds')
+					{
+					echo "<div class=\"cornerRibbons topAds\">";
+ 					echo  " <a href=\"#\"> Top Ads</a>";
+					echo "</div>";
+					}
+					else if($postTypeAds=='featuredAds')
+					{
+					echo "<div class=\"cornerRibbons featuredAds\"> ";
+					echo "<a href=\"#\"> Featured Ads</a>";
+					echo "</div>";
+					}
+					else if($postTypeAds=='urgentAds')
+					{
+					echo "<div class=\"cornerRibbons urgentAds\">";
+					echo "<a href=\"#\"> Urgent</a>";
+					echo "</div>";
+					}			
+					
+				echo  "<div class=\"col-sm-3 no-padding photobox\">";
+						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
+		              		
+						
+              		$ctrlName="AjaxLoad".$rowCount;
+              		$errorctrlName="ErrAjaxLoad".$rowCount;
+              		$ctrlValue="post".$rowCount;
+              		$postID2=$id;
+              		$clickLink="clickLink".$rowCount;
+              		$title=$this->lang->line("lblTitle");
+				echo "</div>";
+			    echo "<div class=\"col-sm-6 add-desc-box\">";
+                  echo "<div class=\"ads-details\">";
+                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$title $postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+                echo "</div>";
+                echo "<div class=\"col-sm-3 text-right  price-box\">";
+                echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
+                echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+                if($item["getDisableSavedAds"])
+               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+                else
+             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+                
+                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
+               echo "</div>";
+               }
+                         
+              }else{
+              	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+              }
+				
+              ?>  
+                
+                
+                
+                </div>
+                <div class="tab-pane <?php if(strcmp($activeTab, "usedAds")==0) echo "active"; ?>" id="usedAds">
+                	<?php
+             $basePath=base_url().MY_PATH;
+             $encodeCurrentURL=urlencode(current_url());
+              if($itemList<>null && sizeof($itemList)>0)
+              {
+              	$rowCount=0;
+              foreach($itemList as $id=>$item)
+				{
+					if(strcmp($item["newUsed"], "U")<>0)
+						continue;
+					$rowCount=$rowCount+1;
+				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL;
+              		$locationName=$item["locationName"];
+					$categoryName=$item["categoryName"];
+					$postCurrency=$item['postCurrency'];
+					$postItemPrice=$item['postItemPrice'];
+					$postDescription=trim($item['postDescription']);
+					
+					try{
+					$postDescription=trimLongText($postDescription);
+					} catch(Exception $ex){
+						
+					}
+					$postTitle=$item['postTitle'];
+					$postCreateDate=$item['postCreateDate'];
+					$picCount=$item["picCount"];
+					$thumbnail=base_url().$item['thumbnailPath'].'/'.$item['thumbnailName'];
+					$postTypeAds=$item["postTypeAds"];	
+					echo  "<div class=\"item-list\"> ";
+					
+					if($postTypeAds=='topAds')
+					{
+					echo "<div class=\"cornerRibbons topAds\">";
+ 					echo  " <a href=\"#\"> Top Ads</a>";
+					echo "</div>";
+					}
+					else if($postTypeAds=='featuredAds')
+					{
+					echo "<div class=\"cornerRibbons featuredAds\"> ";
+					echo "<a href=\"#\"> Featured Ads</a>";
+					echo "</div>";
+					}
+					else if($postTypeAds=='urgentAds')
+					{
+					echo "<div class=\"cornerRibbons urgentAds\">";
+					echo "<a href=\"#\"> Urgent</a>";
+					echo "</div>";
+					}			
+					
+				echo  "<div class=\"col-sm-3 no-padding photobox\">";
+						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
+		              		
+						
+              		$ctrlName="AjaxLoad".$rowCount;
+              		$errorctrlName="ErrAjaxLoad".$rowCount;
+              		$ctrlValue="post".$rowCount;
+              		$postID2=$id;
+              		$clickLink="clickLink".$rowCount;
+              		$title=$this->lang->line("lblTitle");
+				echo "</div>";
+			    echo "<div class=\"col-sm-6 add-desc-box\">";
+                  echo "<div class=\"ads-details\">";
+                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$title $postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+                echo "</div>";
+                echo "<div class=\"col-sm-3 text-right  price-box\">";
+                echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
+                echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+                if($item["getDisableSavedAds"])
+               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+                else
+             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+                
+                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
+               echo "</div>";
+               }
+                         
+              }else{
+              	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+              }
+				
+              ?>  
+                
+                
+                
+                </div>
               </div>
             </div>
             <!--/.adds-wrapper-->
@@ -599,6 +774,8 @@
   <!-- /.footer --> 
  </div>
   <script>
+  
+  
 function setup(){
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;
@@ -652,6 +829,50 @@ function savedAds(ctrlValue, ctrlName) {
 	    	}
 	});
 };
+</script>
+<script>
+  $('.tabs').bind('change', function (e) {
+	    var now_tab = e.target // activated tab
+
+	    // get the div's id
+	    var divid = $(now_tab).attr('href').substr(1);
+
+		   $(".tab-pane").each(function () {
+		       $(this).empty();
+		   });
+
+		   alert("<?php echo base_url().MY_PATH; ?>/getCategory/" + divid);
+		   $.ajax({
+		        url: "<?php echo base_url().MY_PATH; ?>/getCategory/" + divid,
+		        cache: false,
+		        type: "get",
+		        dataType: "html",
+		        success: function (result) {
+		            $("#" + divid).html(result);
+		        }
+		    });
+		   //$(this).tab('show')
+		});
+  </script>
+<script>
+
+// $('#tabstrip a').click(function (e) {
+//    e.preventDefault()
+//    var tabID = $(this).attr("href").substr(1);
+//    $(".tab-pane").each(function () {
+//        $(this).empty();
+//    });
+//    $.ajax({
+ //       url: "<?php echo base_url().MY_PATH; ?>getCategory/" + tabID,
+//         cache: false,
+//         type: "get",
+//         dataType: "html",
+//         success: function (result) {
+//             $("#" + tabID).html(result);
+//         }
+//     });
+//    $(this).tab('show')
+// });
 </script>
 <!-- /.wrapper --> 
 
@@ -866,8 +1087,25 @@ function savedAds(ctrlValue, ctrlName) {
             <div class="col-sm-6 no-padding">
         <select  class="form-control selecter  " id="region-state" name="region-state">
 		<option value="">All Categories</option>
-		<option value="1">連身裙</option>
-		<option value="15">電子產品</option>
+		<?php 
+		foreach ($result as $id=>$value)
+		{
+			if(!isset($lang_label))
+				$lang_label="";
+				$name=$value[0]->name;
+				$postCount="(".$value[0]->postCount.")";
+				if($lang_label<>"english")
+					$name=$value[0]->nameCH;
+					if($value[0]->level==1)
+					{
+						echo "<option value='".$id."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$name.$postCount." </option>";
+					}
+		}		
+		?>
+		
+		
+		
+		
 		</select>
             </div>
            <div style="clear:both"></div>            
@@ -877,21 +1115,23 @@ function savedAds(ctrlValue, ctrlName) {
           <div class="locations-list  list-filter modalBody">
           <ul class="browse-list list-unstyled">
           <li>
-          <a id="searchCriteria" class="listForOpenCat" href=""><strong>Dress</strong></a>
-          </li>
-          <ul class="list-unstyled">
-          <li>
-          <a id="searchCriteria" class="listForOpenCat" href="">Long Dress</a>
+          <a id="searchCriteria" class="listForOpenCat" href="<?php echo base_url().MY_PATH."getCategory/getAll/1/1";?>"><strong>Dress</strong></a>
           </li>
           <li>
-          <a id="searchCriteria" class="listForOpenCat" href="">Short Dress</a>
-          </li>
+	          <ul class="list-unstyled">
+	          <li>
+	          <a id="searchCriteria" class="listForOpenCat" href="<?php echo base_url().MY_PATH."getCategory/getAll/1/19";?>">Long Dress</a>
+	          </li>
+	          <li>
+	          <a id="searchCriteria" class="listForOpenCat" href="<?php echo base_url().MY_PATH."getCategory/getAll/1/20";?>">Short Dress</a>
+	          </li>
+	          <li>
+	          <a id="searchCriteria" class="listForOpenCat" href="<?php echo base_url().MY_PATH."getCategory/getAll/1/21";?>">Formal Dress</a>
+	          </li>
+	          </ul>
+	      </li>
           <li>
-          <a id="searchCriteria" class="listForOpenCat" href="">Formal Dress</a>
-          </li>
-          </ul>
-          <li>
-          <a id="searchCriteria" class="listForOpenCat" href=""><strong>Tops</strong></a>
+          <a id="searchCriteria" class="listForOpenCat" href="<?php echo base_url().MY_PATH."getCategory/getAll/1/2";?>"><strong>Tops</strong></a>
           </li>
           </ul>
           
