@@ -121,7 +121,7 @@ class getCategory extends CI_Controller {
 		//print_r($this->nativesession->userdata);
 		$searchhistory['session_id']=$this->nativesession->userdata('session_id');
                 date_default_timezone_set('Asia/Hong_Kong');
-                $date = date('Y-m-d h:i:s a', time());
+                $date = date('Y-m-d h:i:s', time());
 		$searchhistory['viewtime']=$date;
 		$searchhistory["minPrice"]=$minPrice;
 		$searchhistory["maxPrice"]=$maxPrice;
