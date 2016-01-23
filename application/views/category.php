@@ -787,7 +787,7 @@ function setup(){
 	   var minPrice=document.getElementById("minPrice").value;
 	   var maxPrice=document.getElementById("maxPrice").value;
 	
-	document.getElementById("myForm").action="http://girlstrade.zapto.org:8888/girlstrade/index.php/getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
 	document.getElementById("myForm").submit();
 }
 function priceSetup(){
@@ -800,7 +800,7 @@ function priceSetup(){
 		   keywords='0';
 	   var minPrice=document.getElementById("minPrice").value;
 	   var maxPrice=document.getElementById("maxPrice").value;
-	document.getElementById("priceForm").action="http://girlstrade.zapto.org:8888/girlstrade/index.php/getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	document.getElementById("priceForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
 	document.getElementById("priceForm").submit();
 }
 function priceSetup1(){
@@ -813,8 +813,34 @@ function priceSetup1(){
 		   keywords='0';
 	   var minPrice=document.getElementById("minPrice1").value;
 	   var maxPrice=document.getElementById("maxPrice1").value;
-	document.getElementById("priceForm1").action="http://girlstrade.zapto.org:8888/girlstrade/index.php/getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	document.getElementById("priceForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
 	document.getElementById("priceForm1").submit();
+}
+function locSetup1(){
+	var catID=document.getElementById("search-category").value;
+ 	var locID=document.getElementById("region-state").value;
+//var locID=0;
+	var sortByID=document.getElementById("sortByPrice").value;
+	var keywords=document.getElementById("ads").value;
+	   if(keywords.trim()=='')
+		   keywords='0';
+	   var minPrice=document.getElementById("minPrice1").value;
+	   var maxPrice=document.getElementById("maxPrice1").value;
+	document.getElementById("locForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	document.getElementById("locForm1").submit();
+}
+function catSetup1(){
+	var catID=document.getElementById("parent-category").value;
+ 	var locID=document.getElementById("id-location").value;
+//var locID=0;
+	var sortByID=document.getElementById("sortByPrice").value;
+	var keywords=document.getElementById("ads").value;
+	   if(keywords.trim()=='')
+		   keywords='0';
+	   var minPrice=document.getElementById("minPrice1").value;
+	   var maxPrice=document.getElementById("maxPrice1").value;
+	document.getElementById("catForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	document.getElementById("catForm1").submit();
 }
 function savedAds(ctrlValue, ctrlName) {
 	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
@@ -897,13 +923,17 @@ function savedAds(ctrlValue, ctrlName) {
             Districts of <strong>Hong Kong</strong>
             </div>
             </p>
-
+<form role="form"  id="locForm1" class="form-inline modalBody"  onSubmit="return locSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
+             
 <div style="clear:both"></div>            
             <div class="col-sm-6 no-padding">
         <select  class="form-control selecter  " id="region-state" name="region-state">
-		<option value="">All Districts</option>
+		
 		<?php 
-
+		$str="";
+		if($locID_==null or $locID_=="" or $locID_=='0')
+			$str=" selected='selected' ";
+		echo "<option ".$str." value=\"\">All Districts</option>";
 		foreach ($resLoc as $id=>$value)
 		{
 			if(!isset($lang_label))
@@ -912,7 +942,10 @@ function savedAds(ctrlValue, ctrlName) {
 				if($lang_label<>"english")
 					$name=$value[0]->nameCN;
 					if($value[0]->level==2){
-							echo "<option  value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
+						$str="";
+						if(strcmp($locID_, $id)==0)
+							$str=" selected='selected' ";
+							echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
 					}
 		}
 		
@@ -942,6 +975,13 @@ function savedAds(ctrlValue, ctrlName) {
 		
 		</select>
             </div>
+            <div>
+                    <div class="form-group no-padding">
+                      <button id="locRangeBtn1" class="btn btn-default btn-pink btn-80  " 
+                      type="submit">Filter<i class="icon-search-2"></i></button>
+                    </div>
+                  </div>
+                </form>	
            <div style="clear:both"></div>            
 
             <hr class="hr-thin">
@@ -1055,7 +1095,7 @@ function savedAds(ctrlValue, ctrlName) {
                 </div>
                 </h5>
                <form role="form"  id="priceForm1" class="form-inline modalBody"  onSubmit="return priceSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
-                  <div class="margin-top-30">
+                  <div >
                       <input type="number" placeholder="100" id="minPrice1"
                       value=<?php  if($minPrice>0)echo $minPrice;?>     
                       name="minPrice1"  min="0"  max="90000" class="form-control price">
@@ -1066,7 +1106,7 @@ function savedAds(ctrlValue, ctrlName) {
                   </div>
                   <div>
                     <div class="form-group no-padding">
-                      <button id="priceRangeBtn1" class="btn btn-default btn-pink btn-80 margin-top-10 " 
+                      <button id="priceRangeBtn1" class="btn btn-default btn-pink btn-80 " 
                       type="submit">Filter<i class="icon-search-2"></i></button>
                     </div>
                   </div>
@@ -1088,7 +1128,7 @@ function savedAds(ctrlValue, ctrlName) {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="countryPopup"><i class=" icon-book-open"></i> Filter with selected category </h4>
       </div>
       <div class="modal-body">
@@ -1100,12 +1140,21 @@ function savedAds(ctrlValue, ctrlName) {
             <strong><i class="icon-th"></i>Category</strong>
             </div>
             </p>
-
+		<form role="form"  id="catForm1" class="form-inline modalBody"  onSubmit="return catSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
+             
+                  
 			<div style="clear:both"></div>            
             <div class="col-sm-6 no-padding">
-        <select  class="form-control selecter  " id="region-state" name="region-state">
-		<option value="">All Categories</option>
+        <select  class="form-control selecter  " id="parent-category" name="parent-category">
+		
 		<?php 
+		
+		$str="";
+		if($catID_==null or $catID_=="" or $catID_==0)
+			$str=" selected='selected' ";
+		echo "<option ".$str." value=\"\">All Categories</option>";
+		
+		
 		foreach ($result as $id=>$value)
 		{
 			if(!isset($lang_label))
@@ -1116,7 +1165,10 @@ function savedAds(ctrlValue, ctrlName) {
 					$name=$value[0]->nameCH;
 					if($value[0]->level==1)
 					{
-						echo "<option value='".$id."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$name.$postCount." </option>";
+						$str="";
+						if(strcmp($catID_, $id)==0)
+							$str=" selected='selected' ";
+						echo "<option ".$str." value='".$id."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$name.$postCount." </option>";
 					}
 		}		
 		?>
@@ -1125,7 +1177,16 @@ function savedAds(ctrlValue, ctrlName) {
 		
 		
 		</select>
-            </div>
+		</div>
+				
+                    <div class="form-group no-padding">
+                      <button id="catRangeBtn1" class="btn btn-default btn-pink btn-80  " 
+                      type="submit">Filter<i class="icon-search-2"></i></button>
+                    </div>
+                
+                  
+                </form>	
+            
            <div style="clear:both"></div>            
 
             <hr class="hr-thin">
