@@ -100,7 +100,7 @@ var App = function () {
             handleHeader();
             handleMegaMenu();
         },
-
+        
         initScrollBar: function () {
             jQuery('.mCustomScrollbar').mCustomScrollbar({
                 theme:"minimal",

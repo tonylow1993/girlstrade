@@ -11,6 +11,14 @@
 * {
    //border-radius: 0 !important;
 }
+
+.searchLocation ul li a {
+  border-radius: 5px;
+  display: block;
+  //padding: 2px 25px 2px 5px;
+  position: relative;
+  color: #4e575d;
+}
 .modalBody
 {
 	padding-left: 5%;
@@ -135,6 +143,7 @@ span.badge.openCat
 #searchCriteria.listForOpenCat
 {
 	display:initial;
+	//padding:0px 60px 0px 0px;;
 }
 .openCat
 {

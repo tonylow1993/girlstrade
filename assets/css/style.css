@@ -1833,7 +1833,7 @@ display: block;
 .list-filter ul li a {
   border-radius: 5px;
   display: block;
-  padding: 2px 25px 2px 5px;
+  //padding: 2px 25px 2px 5px;
   position: relative;
   color: #4e575d;
 }
