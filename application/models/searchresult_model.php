@@ -228,6 +228,7 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 					'postCurrency'=>$post->currency,
 					'postItemPrice'=>$post->itemPrice,
 					'postDescription'=> $post->description,
+					'newUsed'=> $post->newUsed,
 					'postTitle'=>$post->itemName,
 					'postCreateDate'=>$post->createDate,
 					'picCount'=>count($pic),

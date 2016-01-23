@@ -461,9 +461,8 @@
             <div class="adds-wrapper">
               <div class="tab-content">
                 <div class="tab-pane fade <?php if(strcmp($activeTab, "allAds")==0) echo "in active"; ?>" id="allAds">
-                @Html.Partial("allAds")
                 	<?php
-                	/*
+                	
              $basePath=base_url().MY_PATH;
              $encodeCurrentURL=urlencode(current_url());
               if($itemList<>null && sizeof($itemList)>0)
@@ -541,7 +540,7 @@
               }else{
               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
               }
-				*/
+				
               ?>  
                 
                 
@@ -556,6 +555,9 @@
               	$rowCount=0;
               foreach($itemList as $id=>$item)
 				{
+					if(strcmp($item["newUsed"], "N")<>0)
+						continue;
+					
 					$rowCount=$rowCount+1;
 				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL;
               		$locationName=$item["locationName"];
@@ -641,6 +643,8 @@
               	$rowCount=0;
               foreach($itemList as $id=>$item)
 				{
+					if(strcmp($item["newUsed"], "U")<>0)
+						continue;
 					$rowCount=$rowCount+1;
 				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL;
               		$locationName=$item["locationName"];
