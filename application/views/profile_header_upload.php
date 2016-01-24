@@ -6,7 +6,7 @@
 				<div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
 				<form id="newPost" class="text-center" action="<?php echo base_url(); echo MY_PATH;?>home/uploadPhoto/<?php echo $userID.'/'.$userName; ?>" method="post" enctype="multipart/form-data">
 					<div class="kv-avatar center-block" style="width:200px">
-						<h3 class="text-left"><?php echo $userName; ?> </h3>
+						<h3><?php echo $userName; ?> </h3>
 						<input id="avatar" name="avatar" type="file" class="file-loading" accept="image/*">
 						<div id="uploadImgError"></div>
 					</div>
@@ -39,7 +39,7 @@
 					text-align: center;
 				}
 				.kv-avatar .file-input {
-					display: table-cell;
+					display: block;
 					max-width: 220px;
 				}
 				</style>

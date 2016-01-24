@@ -491,7 +491,8 @@ function setup()
 						type: 'POST',
 						success:function(msg){
 							$("#modal-text").html("Your post has been successfully uploaded.");
-							setTimeout(function(){window.location = "<?php echo base_url();?>";}, 2000);
+							setTimeout(function(){$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours.");}, 2000);
+							setTimeout(function(){window.location = "<?php echo base_url();?>";}, 5000);
 						}
 					});
                 }
