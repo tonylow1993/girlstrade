@@ -270,7 +270,10 @@ $(document).ready(function() {
         }
     });
     
-    
+    	if(document.getElementById('userStar'))
+    	{
+    		$('#userStar').raty({readOnly: true, score: 3 });
+    	}
     $('.map').click(function () {
     	//console.log('test');
         //$('.map iframe').css("pointer-events", "auto");

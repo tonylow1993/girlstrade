@@ -153,6 +153,38 @@ span.badge.openCat
 	//color:#F57289;
 	color:#333;
 }
+.userProfileTable td
+{
+	height: auto;
+}
+.userRating
+{
+	display: table-cell;
+    padding-top: 3px;
+}
+.userProfileTable p
+{
+	font-weight: bold;
+	color:#54339C;
+	//margin: 5px;
+	font-size: 14px;
+	padding-right: 5px;
+	//border: 1px solid #2F7EAD;
+}
+.userName
+{
+	color:#FF5151;
+	font-size: 20px;
+	background-color:#FFF6F6;
+	margin-top: 0;
+}
+.userProfileTable .userInfoData
+{
+	font-weight: normal;
+	color:#333;
+	padding-left: 8px;
+	font-size: 12px;
+}
 .itemInfo .itemInfoData
 {
 	margin: 3px;
@@ -191,6 +223,12 @@ div.panel-heading.seller-heading
 .inboxMsgButton
 {
 	background-color: #99F3CD;
+}
+
+#userStar
+{
+	display: inline;
+	
 }
 .inboxMsgButton:hover, .inboxMsgButton:focus, .inboxMsgButton:active, 
 .inboxMsgButton.active, .open .dropdown-toggle.inboxMsgButton {

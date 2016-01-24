@@ -84,8 +84,13 @@
 <!-- JS Page Level -->
 <script src="<?php echo base_url();?>assets/js/shop.app.js"></script>
 <script src="<?php echo base_url();?>assets/js/plugins/owl-carousel.js"></script>
+
+<!-- RATY -->
 <script src="<?php echo base_url();?>assets/js/plugins/revolution-slider.js"></script>
-<!--Drop Down list-->
+<script src="<?php echo base_url();?>assets/js/plugins/raty/jquery.raty.js"></script>
+<script type="text/javascript">
+    $.fn.raty.defaults.path = '<?php echo base_url();?>assets/js/plugins/raty/images';
+</script>
 
 <script>
     jQuery(document).ready(function() {

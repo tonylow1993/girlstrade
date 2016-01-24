@@ -25,32 +25,48 @@ function sendIt() {
           <aside>
             <div class="inner-box">
               <div class="categories-list  list-filter">
-                <h5 class="content-subheading"><i class="icon-user fa"></i><strong><?php echo $userName;?></strong></h5>
+                <h5 class="content-subheading userName"><i class="icon-user-woman"></i>
+                <strong><?php echo $userName;?></strong></h5>
                 
                 <ul class=" list-unstyled">
 	<!--			"<?php echo base_url();?>assets/img/default_profile_pic.png"-->
                 <img src="<?php echo $userPhotoPath;?>" class="img-thumbnail" alt="profilePic" width="auto" height="auto">
 	               <li><span class="count">&nbsp;(Normal User)</span> </li>
                 </ul>
+                <table class="userProfileTable">
+                <tr>
+                <td>
+                <p class="userRating">
+                User Rating: </p>
+                </td><td>
+                <div id="userStar"></div>
+                </td></tr>
+                </table>
               </div>
               <!--/.categories-list-->
               
               <div class="locations-list  list-filter">
-                <h5 class="list-title"><strong>Info:</strong></h5>
-                <ul class="browse-list list-unstyled long-list">
-
-                 <li>Registered Date: <?php echo $createDate;?>  </li>
-                 <li>Last Active:  <?php echo  $lastLoginTime;?></li>
-                 <li>Total Posts:  <?php $count=0; if($itemList!=null) $count=count($itemList); echo $count; ?></li>
-                </ul>
+                <h5 class="list-title"><strong>Info</strong></h5>
+                <table class="browse-list list-unstyled userProfileTable">
+				
+                 <tr><td><p>Registered Date: </p></td>
+                 <td><p class="userInfoData"><?php echo $createDate;?>  </p></td></tr>
+                 <tr><td><p>Last Account Activity:</p></td>  
+                 <td><p class="userInfoData"><?php echo  $lastLoginTime;?></p></td></tr>
+                 <tr><td><p>Total Posts:</p></td>  
+                 <td><p class="userInfoData"><?php $count=0; if($itemList!=null) $count=count($itemList); 
+                 echo $count; ?></p></td></tr>
+                </table>
               </div>
               <br />
               <?php $usr = $this->nativesession->get('user');
 					if(empty($usr)){ 
            			?>
-              <a href="#contactAdvertiser1" disabled='disabled' data-toggle="modal" class="btn   btn-default btn-block"><i class=" icon-mail-2"></i> Send Private Message</a>
+              <a href="#contactAdvertiser1" disabled='disabled' data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton">
+              <i class=" icon-mail-2"></i> Send Private Message</a>
                <?php }else{?>
-               <a href="#contactAdvertiser1" data-toggle="modal" class="btn   btn-default btn-block"><i class=" icon-mail-2"></i> Send Private Message</a>
+               <a href="#contactAdvertiser1" data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton">
+               <i class=" icon-mail-2"></i> Send Private Message</a>
               
                <?php }?>  
           </aside>

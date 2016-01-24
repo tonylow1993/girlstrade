@@ -75,6 +75,8 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/custom.css">
     
+    <!-- CSS RATY -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/js/plugins/raty/jquery.raty.css">
     
 <script>
     paceOptions = {
