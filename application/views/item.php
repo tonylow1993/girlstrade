@@ -174,6 +174,14 @@
                         New
                         </p></td>
                       </tr>
+                      <tr>
+                      	<td>
+                        <p class=" no-margin "><strong><?php echo $this->lang->line("lblDatePosted").": ";?></strong> 
+                        </p></td>
+                        <td><p class="itemInfoData">
+                        2016 Jan 01
+                        </p></td>
+                      </tr>
                     </table>
                   </aside>
                   
@@ -194,9 +202,9 @@
                 	if($getDisableSavedAds)
                      echo "<li><a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save ad </a> </li>";
                    else 
-                   	echo "<li><a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save ad </a> </li>";
+                   	echo "<li><a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save this item </a> </li>";
                    	
-                	echo "<li><a href=\"#shareAds\" data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-share-alt\"></i> Share ad </a></li>";
+                	echo "<li><a href=\"#shareAds\" data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-share-alt\"></i> Share this item </a></li>";
                       ?>
                       <li><a href="#reportAdvertiser" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> Report abuse </a> </li>
                     </ul>

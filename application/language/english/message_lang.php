@@ -180,6 +180,7 @@ $lang["NoRecordsFound"]="No record returned";
 $lang["lbltag"]="Tags";
 $lang["lblDescription"]="Description";
 $lang["lblType"]="Type";
+$lang["lblDatePosted"]="Date Posted";
 $lang["NotAllowCreatePostBlackList"]="You have been blocked.";
 $lang["adminPost"]="Approve Post";
 $lang["adminPhoto"]="Approve Photo";

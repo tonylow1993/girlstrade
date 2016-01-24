@@ -145,6 +145,15 @@ class viewProfile extends getCategory {
 	       $data["Logout"]=$this->lang->line("Logout");
 	       $data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 	         $this->nativesession->set("lastPageVisited","newPost");
+	         
+	         //----------setup the header menu----------
+				$data["menuMyAds"]="";
+				$data["menuInbox"]="";
+				$data["menuInboxNum"]="0";
+				$data["menuPendingRequest"]="";
+				$data["menuPendingRequestNumber"]="0";
+				//----------------------------
+				
             $this->load->view('profile', $data);
 	}
     
