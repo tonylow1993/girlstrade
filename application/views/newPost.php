@@ -273,7 +273,7 @@ input[type=checkbox]
                       <div class="form-group">
                           <label class="col-md-3 control-label text-center"></label>
                           <div class="col-md-8"> 
-                       	       <button type="submit" class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
+                       	       <button id="submit-upload-form" type="submit" class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
                               <button id="validate" hidden="true" type="submit"></button>
                           </div>
                        </div>
@@ -468,6 +468,12 @@ function setup()
 					}
 					$('#image').fileinput('clear');
 					$('#image').fileinput('disable');
+					$('#Adtitle').attr('disabled', 'disabled');
+					$('#soldqty').attr('disabled', 'disabled');
+					$('#descriptionTextarea').attr('disabled', 'disabled');
+					$('#tagsInput').attr('disabled', 'disabled');
+					$('#submit-upload-form').attr('disabled', 'disabled');
+					$('#price').attr('disabled', 'disabled');
 					//console.log (formData.get('image'));
 					$.ajax({
 						xhr: function()
