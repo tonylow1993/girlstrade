@@ -136,10 +136,11 @@
                     <table class="itemInfo">
                     <tr>
                         <td>
-                        <p class=" no-margin "><strong><?php echo $this->lang->line("lbltag").": ";?></strong> 
+                        <p class=" no-margin "><strong><?php echo $this->lang->line("lblView").": ";?></strong> 
                         </p>
                         </td><td><p class="itemInfoData">
-                        <?php echo $tagDesc;?>
+                        <?php //echo $tagDesc;?>
+                        0
                         </p></td>
                       </tr>
                     <tr>

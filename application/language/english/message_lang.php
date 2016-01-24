@@ -181,6 +181,7 @@ $lang["lbltag"]="Tags";
 $lang["lblDescription"]="Description";
 $lang["lblType"]="Type";
 $lang["lblDatePosted"]="Date Posted";
+$lang["lblView"]="Visits";
 $lang["NotAllowCreatePostBlackList"]="You have been blocked.";
 $lang["adminPost"]="Approve Post";
 $lang["adminPhoto"]="Approve Photo";
