@@ -155,8 +155,7 @@ input[type=checkbox]
                       <!-- photo -->
                       <div class="form-group">
                       	<label class="col-md-3 control-label text-center" for="textarea"> 
-                              <i class="icon-camera-1"></i><?php echo $Picture;?> 
-                              <br /> ( Minimum 1 picture required. Max picture file size is 4MB per each. First Picture is the default that will show to customer first) 
+                              <i class="icon-camera-1"></i><abbr title="Min. 1 picture required.&#013;Max. 5 pictures allowed.&#013;Max. picture file size 4MB per each.&#013;First Picture is the default that will show to customer first."><?php echo $Picture;?></abbr><font color="red">*</font></label>
                           </label>
                            <div class="col-md-8">
                               <div class="mb10">
@@ -197,11 +196,11 @@ input[type=checkbox]
 					  
 					  
 					  
-					  <div class="form-group">
+					  <!-- <div class="form-group">
 					  <label class="col-md-3 control-label text-center" for="textarea">Search Tag</label>
 					  <div class="col-md-8">
 								 <!-- Textarea -->
-                              <input class="form-control" data-role="tagsinput" id="tagsInput" name="tagsInput" />
+                               <!-- <input class="form-control" data-role="tagsinput" id="tagsInput" name="tagsInput" />
                               <em>(Maximum: Five Tags Allowed)</em>
                      <script>
                             $('input').on('beforeItemAdd', function(event) {
@@ -239,9 +238,9 @@ input[type=checkbox]
 					  <label class="col-md-3 control-label text-center" for="textarea">Location</label>
 					  <div class="col-md-8">
 				          <select class="form-control" name="locID2" id="locID2" >
-				            <option selected="selected" value=""><?php echo $lblAllLocations;?> </option>
+				            <option selected="selected" value=""><?php /*echo $lblAllLocations;*/?> </option>
 				            <?php 
-				            foreach ($resLoc as $id=>$value)
+				            /*foreach ($resLoc as $id=>$value)
 				            {
 				            	if(!isset($lang_label))
 					            		$lang_label="";
@@ -255,7 +254,7 @@ input[type=checkbox]
 				            	else if($value[0]->level==3)
 				            		echo "<option value=\"$id\">----$name</option>";
 				            	}
-				            ?>
+				            */?>
 				          </select>
 					  </div>
 					  </div>
@@ -273,7 +272,7 @@ input[type=checkbox]
                       <div class="form-group">
                           <label class="col-md-3 control-label text-center"></label>
                           <div class="col-md-8"> 
-                       	       <button type="submit" class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
+                       	       <button id="submit-upload-form" type="submit" class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
                               <button id="validate" hidden="true" type="submit"></button>
                           </div>
                        </div>
@@ -468,6 +467,12 @@ function setup()
 					}
 					$('#image').fileinput('clear');
 					$('#image').fileinput('disable');
+					$('#Adtitle').attr('disabled', 'disabled');
+					$('#soldqty').attr('disabled', 'disabled');
+					$('#descriptionTextarea').attr('disabled', 'disabled');
+					$('#tagsInput').attr('disabled', 'disabled');
+					$('#submit-upload-form').attr('disabled', 'disabled');
+					$('#price').attr('disabled', 'disabled');
 					//console.log (formData.get('image'));
 					$.ajax({
 						xhr: function()

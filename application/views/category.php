@@ -529,7 +529,7 @@
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 if($item["getDisableSavedAds"])
-               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+               		 echo "[<a style=\"pointer-events: none; cursor: default;color:grey;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
                 else
              	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
                 
@@ -943,35 +943,20 @@ function savedAds(ctrlValue, ctrlName) {
 					$name=$value[0]->nameCN;
 					if($value[0]->level==2){
 						$str="";
+						$fontcolor="";
 						if(strcmp($locID_, $id)==0)
 							$str=" selected='selected' ";
-							echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
+						if($value[0]->parentID==1)
+							$fontcolor="<font color=blue>";
+						else if($value[0]->parentID==2)
+							$fontcolor="<font color=green>";
+						else if($value[0]->parentID==3)
+							$fontcolor="<font color=red>";
+							echo "<option ".$str." value='".$id."' style='font-weight:bold;'>".$fontcolor.$name."</font></option>";
 					}
 		}
 		
 		?>
-		
-		
-		
-	<!--  	<option value="4">中西區</option>
-		<option value="5">東區</option>
-		<option value="6">南區</option>
-		<option value="7">灣仔區</option>
-		<option value="8">深水埗區</option>
-		<option value="9">九龍城區</option>
-		<option value="10">觀塘區</option>
-		
-		<option value="11">黃大仙區</option>
-		<option value="12">油尖旺區</option>
-		<option value="13">離島區</option>
-		<option value="14">葵青區</option>
-		<option value="15">北區</option>
-		<option value="16">西貢區</option>
-		<option value="17">沙田區</option>
-		<option value="18">大埔區</option>
-		<option value="19">荃灣區</option>
-		<option value="20">屯門區</option>
-		<option value="21">元朗區</option> -->
 		
 		</select>
             </div>
@@ -988,85 +973,136 @@ function savedAds(ctrlValue, ctrlName) {
           </div>
           <div class="col-md-4">
             <ul  class="list-link list-unstyled">
-              <li> 
-              <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/69"?>" title="Wan Chai">
-              <font color="blue">
-              Wan Chai
-              </font>
-              </a> </li>
-		 <li> 
-		 
-		 <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/70"?>" title="Bauseway Bay">
-		 <font color="blue">
-		 Causeway Bay
-		 </font>
-		 </a> </li>
-		 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/63"?>" title="Admirty">
-		 <font color="blue">
-		 Admirty
-		 </font>
-		 </a> </li>
-		 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/64"?>" title="Central">
-		 <font color="blue">
-		 Central
-		 </font>
-		 </a> </li>
-		
-	
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-link list-unstyled">
-              <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/43"?>" title="WongTaiSin">
-              <font color="green">
-              Wong Tai Sin
-              </font>
-              </a> </li>
-		 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/48"?>" title="KwunTong">
-		 <font color="green">
-		 Kwun Tong
-		 </font></a> </li>
-		 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/47"?>" title="NgauTauKok">
-		 <font color="green">
-		 Ngau Tau Kok
-		 </font>
-		 </a> </li>
-		 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/46"?>" title="KowloonBay">
-		 <font color="green">
-		 Kowloon Bay
-		 </font>
-		 </a> </li>
-		 
-
-	
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-link list-unstyled">
-               <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/104"?>" title="MaOnShan">
-               <font color="red">
-               Ma On Shan
-               </font>
-               </a> </li>
-		 	<li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/97"?>" title="YuenLong">
-		 	<font color="red">
-		 	Yuen Long
-		 	</font>
-		 	</a> </li>
-			 <li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/95"?>" title="TinShuiWai">
-			 <font color="red">
-			 Tin Shui Wai
-			 </font>
-			 </a> </li>
-         	<li> <a  href="<?php echo base_url().MY_PATH."getCategory/getAll/1/0/92"?>" title="TsuengKwanO">
-         	<font color="red">
-         	Tsueng Kwan O
-         	</font>
-         	</a> </li>
-
-	
-            </ul>
-          </div>
+              <?php 
+             	$level2=array();
+              foreach ($resLoc as $id=>$value){
+              	if($value[0]->parentID==1){
+              			array_push($level2,$value[0]->locationID);
+              	}
+              }
+              
+              $level3=array();
+              foreach ($resLoc as $id=>$value){
+              	if(in_array($value[0]->parentID, $level2)){
+              		array_push($level3, $value[0]->locationID);
+              	}
+              }
+              
+               
+              foreach ($resLoc as $id=>$value)
+              {
+              	if(!isset($lang_label))
+              		$lang_label="";
+              		$name=$value[0]->name;
+              		if($lang_label<>"english")
+              			$name=$value[0]->nameCN;
+              			if($value[0]->level==3){
+              				if(in_array($value[0]->locationID, $level3)){
+              					$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
+              								echo "<li>
+              								<a  href=$path title=$name>
+              								<font color=blue>
+              								$name
+              								</font>
+              								</a> </li>";
+              					}
+              				
+              			}
+              }
+              
+              ?>
+              
+              </ul>
+              </div>
+              
+              <div class="col-md-4">
+            <ul  class="list-link list-unstyled">
+              <?php 
+			$level2=array();
+              foreach ($resLoc as $id=>$value){
+              	if($value[0]->parentID==1){
+              			array_push($level2,$value[0]->locationID);
+              	}
+              }
+              
+              $level3=array();
+              foreach ($resLoc as $id=>$value){
+              	if(in_array($value[0]->parentID, $level2)){
+              		array_push($level3, $value[0]->locationID);
+              	}
+              }
+              
+              foreach ($resLoc as $id=>$value)
+              {
+              	if(!isset($lang_label))
+              		$lang_label="";
+              		$name=$value[0]->name;
+              		if($lang_label<>"english")
+              			$name=$value[0]->nameCN;
+              			if($value[0]->level==3){
+              					if(in_array($value[0]->locationID, $level3)){
+              						$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
+              								echo "<li>
+              								<a  href=$path title=$name>
+              								<font color=green>
+              								$name
+              								</font>
+              								</a> </li>";
+              					}
+              				
+              			}
+              }
+              
+              ?>
+              
+              </ul>
+              </div>
+              
+              <div class="col-md-4">
+            <ul  class="list-link list-unstyled">
+              <?php 
+				$level2=array();
+              foreach ($resLoc as $id=>$value){
+              	if($value[0]->parentID==1){
+              			array_push($level2,$value[0]->locationID);
+              	}
+              }
+              
+              $level3=array();
+              foreach ($resLoc as $id=>$value){
+              	if(in_array($value[0]->parentID, $level2)){
+              		array_push($level3, $value[0]->locationID);
+              	}
+              }
+              foreach ($resLoc as $id=>$value)
+              {
+              	if(!isset($lang_label))
+              		$lang_label="";
+              		$name=$value[0]->name;
+              		if($lang_label<>"english")
+              			$name=$value[0]->nameCN;
+              			if($value[0]->level==3){
+              				if(in_array($value[0]->locationID, $level3)){
+              						$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
+              								echo "<li>
+              								<a  href=$path title=$name>
+              								<font color=red>
+              								$name
+              								</font>
+              								</a> </li>";
+              					}
+              				
+              			}
+              }
+              
+              ?>
+              
+              </ul>
+              </div>
+              
+              
+              
+           
         </div>
       </div>
     </div>
