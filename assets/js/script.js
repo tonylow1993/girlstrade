@@ -256,6 +256,8 @@ $(document).ready(function() {
             //search left hand menu
             if(document.getElementById('leftMenuSearchPage'))
             	document.getElementById('leftMenuSearchPage').style.display = "none";
+            if(document.getElementById('viewItemBottomOpt'))
+            	document.getElementById('viewItemBottomOpt').style.display = "none";
         } else {
             //$('#ProfileMenuAds').removeClass('out');
             //$('#ProfileMenuAds').addClass('in');
@@ -282,6 +284,12 @@ $(document).ready(function() {
     });
     
     $('#descriptionTextarea').keydown(function(e) {
+        newLines = $(this).val().split("\n").length;
+        if(e.keyCode == 13 && newLines >= contactMsglines) {
+            return false;
+        }
+    });
+    $('#txtSendMessage').keydown(function(e) {
         newLines = $(this).val().split("\n").length;
         if(e.keyCode == 13 && newLines >= contactMsglines) {
             return false;

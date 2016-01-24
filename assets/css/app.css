@@ -140,6 +140,77 @@ span.badge.openCat
 	background-color: #CCCCCC;
 	padding-top: 1px;
 }
+.pricetag{
+	border: 2px solid #E2348C;
+	font-size: 20px;
+	margin-top:7px;
+	padding-top:1px;
+	padding-bottom:0px;
+}
+.itemInfo strong
+{
+	font-weight: bold;
+	//color:#F57289;
+	color:#333;
+}
+.itemInfo .itemInfoData
+{
+	margin: 3px;
+	//color:#823C3C;
+	color:#333;
+	padding-left: 8px;
+	font-size: 12px;
+}
+.seller-info-border
+{
+	border: 1px solid #2F7EAD;
+}
+div.panel-heading.seller-heading
+{
+	color:#823C3C;
+	border:none;
+	border-bottom: 1px solid #2F7EAD;
+	background-color: #FFF5F5;
+}
+.viewButton
+{
+	background-color: #F99F9F;
+}
+.viewButton:hover, .viewButton:focus, .viewButton:active, 
+.viewButton.active, .open .dropdown-toggle.viewButton {
+    background-color: #B37171;
+}
+.directSendButton
+{
+	background-color: #8CC8EA;
+}
+.directSendButton:hover, .directSendButton:focus, .directSendButton:active, 
+.directSendButton.active, .open .dropdown-toggle.directSendButton {
+    background-color: #6B97B1;
+}
+.inboxMsgButton
+{
+	background-color: #99F3CD;
+}
+.inboxMsgButton:hover, .inboxMsgButton:focus, .inboxMsgButton:active, 
+.inboxMsgButton.active, .open .dropdown-toggle.inboxMsgButton {
+    background-color: #619E84;
+}
+.seller-info {
+    padding: 0px;
+}
+.list-check li:first-child
+{
+	padding-left: 18px;
+}
+.panel-info
+{
+	margin-top:10px;
+}
+.itemName
+{
+	font-weight: bold;
+}
 #searchCriteria.listForOpenCat
 {
 	display:initial;
