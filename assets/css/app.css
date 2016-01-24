@@ -171,6 +171,11 @@ span.badge.openCat
 	padding-right: 5px;
 	//border: 1px solid #2F7EAD;
 }
+div.panel-heading.newPostHints
+{
+	border: 1px solid #FD7E7E;
+	background-color:#FD7E7E;
+}
 .userName
 {
 	color:#FF5151;

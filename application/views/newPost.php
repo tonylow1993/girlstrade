@@ -76,7 +76,9 @@ input[type=checkbox]
                       
                       <!-- Select Basic -->
                       <div id="generalCat" class="form-group">
-                          <label class="col-md-3 control-label text-center" > <?php echo $Category;?> <font color="red">*</font></label>
+                          <label class="col-md-3 control-label text-center" >
+                          <i class="icon-layout"></i>
+                           <?php echo $Category;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <select name="category-group" id="category-group" class="form-control" required="true">
                                   <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select One Category - </option>
@@ -101,7 +103,9 @@ input[type=checkbox]
                       
                       <!-- Select Basic -->
                       <div id="itemQuality" class="form-group">
-                          <label class="col-md-3 control-label text-center" > <?php echo $ItemQuality;?> <font color="red">*</font></label>
+                          <label class="col-md-3 control-label text-center" > 
+                          <i class="icon-eye-1"></i>
+						            <?php echo $ItemQuality;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <select name="itemQualityGroup" id="itemQualityGroup" class="form-control" required="true">
 <                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select - </option>
@@ -111,7 +115,9 @@ input[type=checkbox]
                           </div>
                       </div>
                       <div id="itemQty" class="form-group">
-                          <label class="col-md-3 control-label text-center" > Quantity <font color="red">*</font></label>
+                          <label class="col-md-3 control-label text-center" > 
+                          <i class="icon-flag"></i>
+                          Quantity <font color="red">*</font></label>
                           <div class="col-md-8">
                            
                               <select required="true" class="form-control" name="soldqty" id="soldqty">
@@ -127,7 +133,9 @@ input[type=checkbox]
                       
                       <!-- Textarea -->
                       <div class="form-group">
-                          <label class="col-md-3 control-label text-center" for="textarea"> <?php echo $Description;?> <font color="red">*</font></label>
+                          <label class="col-md-3 control-label text-center" for="textarea"> 
+                          <i class="icon-clipboard"></i>
+							<?php echo $Description;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="450"></textarea>
                           </div>
@@ -313,7 +321,7 @@ input[type=checkbox]
             </div>
             
             <div class="panel sidebar-panel">
-              <div class="panel-heading uppercase"><small><strong>How to sell quickly?</strong></small></div>
+              <div class="panel-heading newPostHints"><small><strong>How to sell quickly?</strong></small></div>
               <div class="panel-content">
                 <div class="panel-body text-left">
                   <ul class="list-check">
