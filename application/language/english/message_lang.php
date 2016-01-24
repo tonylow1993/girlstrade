@@ -212,3 +212,4 @@ $lang["Action"]="Action";
 $lang["sendEmail"]="send Email";
 $lang["adminContactUs"]="maintain contact us";
 $lang["YouHaveRemainPost"]="You have remain %s posts.";
+$lang["HomeLoginInvalid"]="Incorrect username or password";

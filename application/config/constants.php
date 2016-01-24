@@ -41,8 +41,8 @@ define('ITEMS_PER_PAGE', 20);
 /* Location: ./application/config/constants.php */
 
 define("ZeroUpdateRecordError", "No record updated");
-define("THUMBNAILSIZEWIDTH", 150);
-define("THUMBNAILSIZEHEIGHT", 150);
+define("THUMBNAILSIZEWIDTH", 300);
+define("THUMBNAILSIZEHEIGHT", 300);
 define("MAINPICSIZEWIDTH", 600);
 define("MAINPICSIZEHEIGHT", 600);
 

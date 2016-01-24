@@ -86,10 +86,10 @@
 // 						echo "<div style=\"position:relative; height:75px; width: 100%; overlfow:hidden;\">";
                       	$sizeimage=getimagesize($imagePath);
                       	echo "<p style=\"font-size:8px;padding:0px; margin: 0px;\">image size: ".$sizeimage[0]."x".$sizeimage[1]."</p>";
-                      	if($sizeimage[1]>130)
+                      	if($sizeimage[1]>300)
                       	{
-                      		$ratio= 100*130/ $sizeimage[1];
-                      		if($sizeimage[0]>90* 130/ $sizeimage[1])
+                      		$ratio= 100*300/ $sizeimage[1];
+                      		if($sizeimage[0]>90* 300/ $sizeimage[1])
                       			echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:100%; width:".$ratio."%; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                       		else 
                       		echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:100%; width:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
