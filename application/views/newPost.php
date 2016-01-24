@@ -294,12 +294,12 @@ input[type=checkbox]
                                     <h1 id ="modal-text">Processing...<?php echo $PleaseNotCloseBrowse;?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="progress">
+                                    <div id="progress-bar" class="progress">
                                         <div class="progress-bar progress-bar-striped active" role="progressbar" id="upload-progress-bar"
                                              aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">   
                                         </div>
                                     </div>
-
+									<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="backHomePage(); return false;" style="display: none;"><i class="fa fa-check"></i>Go to Homepage</button>
                                 </div>
                             </div>
                         </div>
@@ -504,8 +504,12 @@ function setup()
 						type: 'POST',
 						success:function(msg){
 							$("#modal-text").html("Your post has been successfully uploaded.");
-							setTimeout(function(){$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours.");}, 2000);
-							setTimeout(function(){window.location = "<?php echo base_url();?>";}, 5000);
+							setTimeout(function(){
+								$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours.");
+								$('#fwd-btn').css("display", "block");
+								$('#fwd-btn').css("margin", "auto");
+								$('#progress-bar').css("display", "none");
+							}, 2000);
 						}
 					});
                 }
@@ -534,6 +538,10 @@ function isEmptyUploadFile(callback)
 function clearErrorMessage()
 {
 	$("#recaptchaError").html('');
+}
+
+function backHomePage(){
+	window.location = "<?php echo base_url();?>";
 }
 
 </script>
