@@ -695,7 +695,8 @@ class Home extends CI_Controller {
 						"status"=>"F", "loginTime"=>  date("Y-m-d H:i:s"));
 				$this->userloginhistory_model->insert($loginhist);
 				
-				$errorMsg=$this->lang->line("HomeLoginInvalidUsername");
+				//$errorMsg=$this->lang->line("HomeLoginInvalidUsername");
+				$errorMsg=$this->lang->line("HomeLoginInvalid");
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["PrevURL"]=$prevURL;
 				$data["error"]=$errorMsg;
