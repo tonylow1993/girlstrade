@@ -198,7 +198,7 @@
               		$ctrlValue="post1";
               		$postID2=$postID;
               		$clickLink="clickLink1";
-              		$shareLink=base_url()."home/index/".$postID;
+              		$shareLink=base_url().MY_PATH."viewItem/index/".$postID;
                      echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 	if($getDisableSavedAds)
                      echo "<li><a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save ad </a> </li>";
@@ -598,15 +598,16 @@
         <h4 class="modal-title">Click copy button and paste in other apps to share </h4>
       </div>
       <div class="modal-body">
-      <h2 ID="copytext">
-			<?php echo $shareLink;?>
+      <h2 id="copytext">
+			<?php // echo $shareLink;?>
 			</h2>
-		<TEXTAREA ID="holdtext" STYLE="display:none;">
-		</TEXTAREA>
+		<textarea style="width: 500px; height: 100px;font-size:20" class="js-copytextarea" id="holdtext">
+		<?php echo $shareLink;?>
+		</textarea>
 		 </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success pull-right" onclick="ClipBoard()">Copy</button>
+      	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+        <button type="button" class="js-textareacopybtn btn btn-success pull-right">Copy</button>
       </div>
     </div>
   </div>
@@ -624,7 +625,24 @@ function passToModal() {
 
 $(document).ready(passToModal());
 
-function ClipBoard() 
+var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+copyTextareaBtn.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+       location.href=copyTextarea.innerHTML;
+           //"http://localhost:8888/girlstrade/index.php/viewItem/index/1"; 
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+
+function clipBoard() 
 {
 holdtext.innerText = copytext.innerText;
 Copied = holdtext.createTextRange();
