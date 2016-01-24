@@ -37,10 +37,17 @@
 					border: none;
 					box-shadow: none;
 					text-align: center;
+					width: 100% !important;
 				}
 				.kv-avatar .file-input {
 					display: block;
 					max-width: 220px;
+				}
+				.file-preview-frame .file-preview-image{
+					width: 100% !important;
+					height: auto !important;
+					max-width: 100%;
+					max-height: 150px;
 				}
 				</style>
 				<script src="<?php echo base_url();?>assets/js/fileinput2.js" type="text/javascript"></script>
