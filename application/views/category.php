@@ -1020,7 +1020,7 @@ function savedAds(ctrlValue, ctrlName) {
               <?php 
 			$level2=array();
               foreach ($resLoc as $id=>$value){
-              	if($value[0]->parentID==1){
+              	if($value[0]->parentID==2){
               			array_push($level2,$value[0]->locationID);
               	}
               }
@@ -1063,7 +1063,7 @@ function savedAds(ctrlValue, ctrlName) {
               <?php 
 				$level2=array();
               foreach ($resLoc as $id=>$value){
-              	if($value[0]->parentID==1){
+              	if($value[0]->parentID==3){
               			array_push($level2,$value[0]->locationID);
               	}
               }
