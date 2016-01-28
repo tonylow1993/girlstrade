@@ -153,6 +153,12 @@ class viewProfile extends getCategory {
 				$data["menuPendingRequest"]="";
 				$data["menuPendingRequestNumber"]="0";
 				//----------------------------
+				$data["activeTab"]="allAds";
+				$data["lblCondition"]=$this->lang->line("lblCondition");
+				$data["lblConditionNew"]=$this->lang->line("lblConditionNew");
+				$data["lblConditionUsed"]=$this->lang->line("lblConditionUsed");
+				$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
+				$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
 				
             $this->load->view('profile', $data);
 	}
@@ -241,6 +247,13 @@ class viewProfile extends getCategory {
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$this->nativesession->set("lastPageVisited","newPost");
+		$data["activeTab"]="allAds";
+		$data["lblCondition"]=$this->lang->line("lblCondition");
+		$data["lblConditionNew"]=$this->lang->line("lblConditionNew");
+		$data["lblConditionUsed"]=$this->lang->line("lblConditionUsed");
+		$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
+		$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
+		 
 		$this->load->view('profile', $data);
 	}
 	

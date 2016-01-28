@@ -29,8 +29,7 @@ function sendIt() {
                 <strong><?php echo $userName;?></strong></h5>
                 
                 <ul class=" list-unstyled">
-	<!--			"<?php echo base_url();?>assets/img/default_profile_pic.png"-->
-                <img src="<?php echo $userPhotoPath;?>" class="img-thumbnail" alt="profilePic" width="auto" height="auto">
+	            <img src="<?php echo $userPhotoPath;?>" class="img-thumbnail" alt="profilePic" width="auto" height="auto">
 	               <li><span class="count">&nbsp;(Normal User)</span> </li>
                 </ul>
                 <table class="userProfileTable">
@@ -62,28 +61,39 @@ function sendIt() {
               <?php $usr = $this->nativesession->get('user');
 					if(empty($usr)){ 
            			?>
-              <a href="#contactAdvertiser1" disabled='disabled' data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton">
+              <a href="#contactAdvertiser1" disabled="disabled" data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton">
               <i class=" icon-mail-2"></i> Send Private Message</a>
                <?php }else{?>
                <a href="#contactAdvertiser1" data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton">
                <i class=" icon-mail-2"></i> Send Private Message</a>
               
                <?php }?>  
+               </div>
           </aside>
         </div>
         <!--/.page-side-bar-->
         <div class="col-sm-9 page-content col-thin-left">
           <div class="category-list">
-<!--               <div class="tab-box ">  -->
           
-              <form action=" 
-   <?php $basePath=base_url();
+ 			<div class="tab-box "> 
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
+                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds"  role="tab" data-toggle="tab">
+                <?php echo $lblConditionAny;?>
+                <span class="badge">228,705</span></a></li>
+                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="#newAds"  role="tab" data-toggle="tab">
+                <?php echo $lblConditionNew;?>
+                <span class="badge">22,805</span></a></li>
+                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="#usedAds"  role="tab" data-toggle="tab">
+                <?php echo $lblConditionUsed;?> 
+                <span class="badge">18,705</span></a></li>
+              </ul>
+         		 <form action="<?php $basePath=base_url();
 //     			$encodeCurrentURL=urlencode(current_url());
 //     			$encodeCurrentURL=$prevURL;
     			$path=$basePath.MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$previousCurrent_url;
     			echo $path;
-               ?>" 
-          method="POST"> 
+               ?>" method="POST"> 
                  <div class="col-sm-3">
                 <select class="form-control selecter"   name="sortByPrice"   id="sortByPrice" data-width="auto">
                   <option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> >Sort by...</option>
@@ -95,36 +105,26 @@ function sendIt() {
                 </div>
                 <div class="col-sm-3">
 				<button type="submit"  class="btn btn-block btn-primary">Sort</button> 
- <!--                <button id="sortHref" onclick="sendIt()"  name="sortHref" 
-    			value=<?php 
-//     			$basePath=base_url();
-//     			$encodeCurrentURL=urlencode(current_url());
-//     			$path=$basePath.MY_PATH.'viewProfile/index/'.$postID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$encodeCurrentURL;
-//     			echo $path;
-    			?>  class="btn btn-block btn-primary  "> Sort</button> -->
     			
         	</div>
-</form>
+		</form>
             <!--/.tab-box-->
                <div class="pull-right backtolist"><a href=<?php echo $previousCurrent_url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
  
+           </div>
                
             <div class="adds-wrapper">
               <div class="tab-content">
+               <div class="tab-pane fade <?php if(strcmp($activeTab, "allAds")==0) echo "in active"; ?>" id="allAds">
+               
                 <?php
              $basePath=base_url();
              $encodeCurrentURL=urlencode(current_url());
-             $title=$this->lang->line("lblTitle");;
+             $title=$this->lang->line("lblTitle");
               if($itemList<>null)
               {
               	$rowCount=0;
-              	function getRating($rating){
-              		if($rating==1)return "Good";
-              		else if($rating==2)return "Bad";
-              		else if($rating==3)return "Average";
-              		else
-              			return "";
-              	}
+              
               foreach($itemList as $id=>$item)
 				{
 					$rowCount=$rowCount+1;
@@ -213,53 +213,264 @@ function sendIt() {
 				
               ?>  
               </div>
-            </div>
-            <!--/.adds-wrapper-->
-          </div>
+              
+               <div class="tab-pane <?php if(strcmp($activeTab, "newAds")==0) echo "active"; ?>" id="newAds">
+                <?php  
+             $basePath=base_url();
+             $encodeCurrentURL=urlencode(current_url());
+             $title=$this->lang->line("lblTitle");
+              if($itemList<>null)
+              {
+              	$rowCount=0;
+              
+              foreach($itemList as $id=>$item)
+				{
+					
+					$rowCount=$rowCount+1;
+				  $viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL;
+              		$locationName='';
+					$categoryName='';
+					$post=NULL;
+					$soldToUserName="";
+					$getDisableSavedAds=false;
+					foreach($item as $key=>$child)
+					{
+						if($key=='post')
+							$post=$child;
+						else if($key=='location')
+							$locationName=$child[0]->name;
+						else if($key=='category')
+							$categoryName=$child[0]->name;
+						else if($key=='soldToUser'){
+							if($child<> null && count($child)>0)
+								$soldToUserName=$child[0]->username;
+							else if($key=='savedAds')
+								$getDisableSavedAds=$child;
+						}
+					}
+					
+					if(strcmp($post->newUsed, "N")<>0)
+						continue;
+					
+					echo  "<div class=\"item-list\"> ";
+              		echo  "<div class=\"col-sm-2 no-padding photobox\">";
+					foreach($item as $pic=>$picObj)
+              		{	
+              			if($pic=='pic')
+              			{
+              				$picCount=count($picObj);
+              				if($picCount>0)
+              				{
+	              				for($x=0;$x<1;$x++)
+	              				{
+		              			$thumbnail=$basePath.$picObj[$x]->thumbnailPath.'/'.$picObj[$x]->thumbnailName;
+		              			echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
+		              			}
+              				}
+              			}
+              		}
+              		$enableMarkSoldBtn=false;
+              		$visibleBuyerComment=false;
+              		$soldToUserID=0;
+              			$soldToUserID=$post->soldToUserID;
+              			$enableMarkSoldBtn=$post->sellerRating==null;
+              			$visibleBuyerComment=$post->sellerRating<>null &&
+              			$post->buyerRating==null;
+              			$previewTitle=$post->itemName;
+              			$preview=trimLongText(trim($post->description));
+              			if($post->sellerRating<>null){
+              				$preview=$preview."<br/>Seller Comment:  (". getRating($post->sellerRating).")";
+              				$preview=$preview." ".$post->sellerComment;
+              			}
+              			if($post->buyerRating<>null){
+              				$preview=$preview."<br/> Buyer [$soldToUserName] Comment: (". getRating($post->buyerRating).")";
+              				$preview=$preview." ".$post->buyerComment;
+              			}
+              			
+              		
+              		$ctrlName="AjaxLoad".$rowCount;
+              		$errorctrlName="ErrAjaxLoad".$rowCount;
+              		$ctrlValue="post".$rowCount;
+              		$postID2=$post->postID;
+              		$clickLink="clickLink".$rowCount;
+				echo "</div>";
+			    echo "<div class=\"col-sm-7 add-desc-box\">";
+                 // echo "<div class=\"add-details\">";
+                echo "<div class=\"add-details\">";   
+			    echo "<h5 class=\"add-title\"> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
+                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+                echo "</div>";
+                echo "<div class=\"col-sm-3 text-right  price-box\">";
+                echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
+                  echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+               
+                  if($getDisableSavedAds)
+                  	echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+                  else
+                  echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+                  	echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
+               echo "</div>";
+				}
+               
+				}
+				
+              ?>  
+              </div>
+              
+            <div class="tab-pane <?php if(strcmp($activeTab, "usedAds")==0) echo "active"; ?>" id="usedAds">
+               
+                <?php
+             $basePath=base_url();
+             $encodeCurrentURL=urlencode(current_url());
+             $title=$this->lang->line("lblTitle");
+              if($itemList<>null)
+              {
+              	$rowCount=0;
+              
+              foreach($itemList as $id=>$item)
+				{
+					
+					$rowCount=$rowCount+1;
+				  $viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL;
+              		$locationName='';
+					$categoryName='';
+					$post=NULL;
+					$soldToUserName="";
+					$getDisableSavedAds=false;
+					foreach($item as $key=>$child)
+					{
+						if($key=='post')
+							$post=$child;
+						else if($key=='location')
+							$locationName=$child[0]->name;
+						else if($key=='category')
+							$categoryName=$child[0]->name;
+						else if($key=='soldToUser'){
+							if($child<> null && count($child)>0)
+								$soldToUserName=$child[0]->username;
+							else if($key=='savedAds')
+								$getDisableSavedAds=$child;
+						}
+					}
+					if(strcmp($post->newUsed, "U")<>0)
+						continue;
+					echo  "<div class=\"item-list\"> ";
+              		echo  "<div class=\"col-sm-2 no-padding photobox\">";
+					foreach($item as $pic=>$picObj)
+              		{	
+              			if($pic=='pic')
+              			{
+              				$picCount=count($picObj);
+              				if($picCount>0)
+              				{
+	              				for($x=0;$x<1;$x++)
+	              				{
+		              			$thumbnail=$basePath.$picObj[$x]->thumbnailPath.'/'.$picObj[$x]->thumbnailName;
+		              			echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
+		              			}
+              				}
+              			}
+              		}
+              		$enableMarkSoldBtn=false;
+              		$visibleBuyerComment=false;
+              		$soldToUserID=0;
+              			$soldToUserID=$post->soldToUserID;
+              			$enableMarkSoldBtn=$post->sellerRating==null;
+              			$visibleBuyerComment=$post->sellerRating<>null &&
+              			$post->buyerRating==null;
+              			$previewTitle=$post->itemName;
+              			$preview=trimLongText(trim($post->description));
+              			if($post->sellerRating<>null){
+              				$preview=$preview."<br/>Seller Comment:  (". getRating($post->sellerRating).")";
+              				$preview=$preview." ".$post->sellerComment;
+              			}
+              			if($post->buyerRating<>null){
+              				$preview=$preview."<br/> Buyer [$soldToUserName] Comment: (". getRating($post->buyerRating).")";
+              				$preview=$preview." ".$post->buyerComment;
+              			}
+              			
+              		
+              		$ctrlName="AjaxLoad".$rowCount;
+              		$errorctrlName="ErrAjaxLoad".$rowCount;
+              		$ctrlValue="post".$rowCount;
+              		$postID2=$post->postID;
+              		$clickLink="clickLink".$rowCount;
+				echo "</div>";
+			    echo "<div class=\"col-sm-7 add-desc-box\">";
+                 // echo "<div class=\"add-details\">";
+                echo "<div class=\"add-details\">";   
+			    echo "<h5 class=\"add-title\"> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
+                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+                echo "</div>";
+                echo "<div class=\"col-sm-3 text-right  price-box\">";
+                echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
+                  echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+               
+                  if($getDisableSavedAds)
+                  	echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+                  else
+                  echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+                  	echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
+               echo "</div>";
+				}
+               
+				}
+				
+              ?>  
+              </div>
+              
+              </div>
+            
+         	  </div>
+       		</div>
+       		
+       		
           <div class="pagination-bar text-center">
             <ul class="pagination">
             <?php 
             	$encodeCurrentURL=urlencode(current_url());
-            	$url_path=base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'?prevURL='.$previousCurrent_url;
+            	$url_path=base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID;
             	$pageNumPrev=$pageNum-1;
             	$pageNum2=$pageNum+1;
             	$pageNum3=$pageNum+2;
             	$pageNum4=$pageNum+3;
             	$pageNum5=$pageNum+4;
             	$pageNumNext=$pageNum+5;
-            	$keywords=base64_encode($keywords);
             	$itemPerPage=ITEMS_PER_PAGE;
             	 
-            	if($NoOfItemCount>0)
-            	{
+            	//if($NoOfItemCount>0)
+            	//{
             		if($pageNum<>1)
-            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$catID/$locID/$keywords/$sortByID\">Previous</a></li>";
-            		if($NoOfItemCount > 0)
-            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$catID/$locID/$keywords/$sortByID\">$pageNum</a></li>";
-            		if($NoOfItemCount > ($pageNum*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum2/$catID/$locID/$keywords/$sortByID\">$pageNum2</a></li>";
-            		if($NoOfItemCount > ($pageNum2*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum3/$catID/$locID/$keywords/$sortByID\">$pageNum3</a></li>";
-            		if($NoOfItemCount > ($pageNum3*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum4/$catID/$locID/$keywords/$sortByID\">$pageNum4</a></li>";
-            		if($NoOfItemCount > ($pageNum4*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum5/$catID/$locID/$keywords/$sortByID\">$pageNum5</a></li>";
-            		if($NoOfItemCount > ($pageNum5*$itemPerPage))
-            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$catID/$locID/$keywords/$sortByID\">Next</a></li>";
-            	}
+            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/0/0/0/$sortByID.'?prevURL='.$previousCurrent_url;\">Previous</a></li>";
+            		//if($NoOfItemCount > 0)
+            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/0/0/0/$sortByID.'?prevURL='.$previousCurrent_url;\">$pageNum</a></li>";
+//             		if($NoOfItemCount > ($pageNum*$itemPerPage))
+//             			echo "<li><a href=\"$url_path/$pageNum2/$catID/$locID/$keywords/$sortByID\">$pageNum2</a></li>";
+//             		if($NoOfItemCount > ($pageNum2*$itemPerPage))
+//             			echo "<li><a href=\"$url_path/$pageNum3/$catID/$locID/$keywords/$sortByID\">$pageNum3</a></li>";
+//             		if($NoOfItemCount > ($pageNum3*$itemPerPage))
+//             			echo "<li><a href=\"$url_path/$pageNum4/$catID/$locID/$keywords/$sortByID\">$pageNum4</a></li>";
+//             		if($NoOfItemCount > ($pageNum4*$itemPerPage))
+//             			echo "<li><a href=\"$url_path/$pageNum5/$catID/$locID/$keywords/$sortByID\">$pageNum5</a></li>";
+//             		if($NoOfItemCount > ($pageNum5*$itemPerPage))
+//             			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$catID/$locID/$keywords/$sortByID\">Next</a></li>";
+            	//}
              ?>
                 </ul>
           </div>
+      
       </div>
     </div>
   </div>
   </div>
+  
+</div>
 
   
   <!-- /.main-container -->
   
   <?php include "footer1.php"; ?>
-  </div>
+
 <div class="modal fade" id="contactAdvertiser1" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">
