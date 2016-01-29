@@ -372,13 +372,13 @@
               <div class="locations-list  list-filter">
                 <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
-                 <li> <a id="searchCriteria" href="#"><?php echo $lblConditionAll;?>
+                 <li> <a id="searchCriteria" href="#" onclick="return setupTab('allAds');" ><?php echo $lblConditionAll;?>
                   
                   		<span class="count">28,705</span></a></li>
-                  <li> <a id="searchCriteria" href="#"><?php echo $lblConditionNew;?>
+                  <li> <a id="searchCriteria" href="#" onclick="return setupTab('newAds');"><?php echo $lblConditionNew;?>
                   
                   		<span class="count">28,705</span></a></li>
-                  <li> <a id="searchCriteria" href="#"><?php echo $lblConditionUsed;?>
+                  <li> <a id="searchCriteria" href="#" onclick="return setupTab('usedAds');"><?php echo $lblConditionUsed;?>
                   
                   		<span class="count">18,705</span></a></li>
                 </ul>
@@ -775,7 +775,24 @@
  </div>
   <script>
   
-  
+  function setupTab(activeTab){
+		var catID=document.getElementById("search-category").value;
+	 	var locID=document.getElementById("id-location").value;
+		//var locID=0;
+		var sortByID=document.getElementById("sortByPrice").value;
+		var keywords=document.getElementById("ads").value;
+		   if(keywords.trim()=='')
+			   keywords='0';
+		   var minPrice=document.getElementById("minPrice").value;
+		   if(minPrice.trim()=='')
+			   minPrice=0;
+		   var maxPrice=document.getElementById("maxPrice").value;
+		   if(maxPrice.trim()=='')
+			   maxPrice=0;
+		
+		document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab);
+		document.getElementById("myForm").submit();
+	}
 function setup(){
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;

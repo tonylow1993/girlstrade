@@ -438,23 +438,23 @@ function sendIt() {
             	$pageNumNext=$pageNum+5;
             	$itemPerPage=ITEMS_PER_PAGE;
             	 
-            	//if($NoOfItemCount>0)
-            	//{
+            	if($NoOfItemCount>0)
+            	{
             		if($pageNum<>1)
             			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/0/0/0/$sortByID.'?prevURL='.$previousCurrent_url;\">Previous</a></li>";
-            		//if($NoOfItemCount > 0)
+            		if($NoOfItemCount > 0)
             			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/0/0/0/$sortByID.'?prevURL='.$previousCurrent_url;\">$pageNum</a></li>";
-//             		if($NoOfItemCount > ($pageNum*$itemPerPage))
-//             			echo "<li><a href=\"$url_path/$pageNum2/$catID/$locID/$keywords/$sortByID\">$pageNum2</a></li>";
-//             		if($NoOfItemCount > ($pageNum2*$itemPerPage))
-//             			echo "<li><a href=\"$url_path/$pageNum3/$catID/$locID/$keywords/$sortByID\">$pageNum3</a></li>";
-//             		if($NoOfItemCount > ($pageNum3*$itemPerPage))
-//             			echo "<li><a href=\"$url_path/$pageNum4/$catID/$locID/$keywords/$sortByID\">$pageNum4</a></li>";
-//             		if($NoOfItemCount > ($pageNum4*$itemPerPage))
-//             			echo "<li><a href=\"$url_path/$pageNum5/$catID/$locID/$keywords/$sortByID\">$pageNum5</a></li>";
-//             		if($NoOfItemCount > ($pageNum5*$itemPerPage))
-//             			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$catID/$locID/$keywords/$sortByID\">Next</a></li>";
-            	//}
+            		if($NoOfItemCount > ($pageNum*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum2/$catID/$locID/$keywords/$sortByID\">$pageNum2</a></li>";
+            		if($NoOfItemCount > ($pageNum2*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum3/$catID/$locID/$keywords/$sortByID\">$pageNum3</a></li>";
+            		if($NoOfItemCount > ($pageNum3*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum4/$catID/$locID/$keywords/$sortByID\">$pageNum4</a></li>";
+            		if($NoOfItemCount > ($pageNum4*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum5/$catID/$locID/$keywords/$sortByID\">$pageNum5</a></li>";
+            		if($NoOfItemCount > ($pageNum5*$itemPerPage))
+            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$catID/$locID/$keywords/$sortByID\">Next</a></li>";
+            	}
              ?>
                 </ul>
           </div>
