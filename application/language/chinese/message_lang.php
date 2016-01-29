@@ -215,3 +215,5 @@ $lang["sendEmail"]="send Email";
 $lang["adminContactUs"]="maintain contact us";
 $lang["YouHaveRemainPost"]="You have remain %s posts.";
 $lang["HomeLoginInvalid"]="Incorrect username or password";
+$lang["ExceedMAXTIMEDAILY_SENDMSGFROMBUYER"]="Exceed Max Daily Times to send to seller";
+$lang["ExceedMAXTIME_SENDMSGFROMBUYER"]="Exceed Max Total Times to send to seller";

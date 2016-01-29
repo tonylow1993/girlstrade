@@ -196,14 +196,15 @@ function addDayswithdate($date,$days){
 			
 			try {
 			if(isset($_GET["prevURL"])){
-			$prevURL=$_GET["prevURL"];
-			$_SESSION["previousUrl"]=$prevURL;
-		}else if(isset($_SESSION["previousUrl"])){
-			$prevURL=$_SESSION["previousUrl"];
-		}
+				$prevURL=$_GET["prevURL"];
+				$_SESSION["previousUrl"]=$prevURL;
+			}else if(isset($_SESSION["previousUrl"])){
+				$prevURL=$_SESSION["previousUrl"];
+			}
 		$expired= $this->nativesession->_session_id_expired();
 		if($expired){
-			redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
+			redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); 
+			return;}
 					
 			$userInfo=$this->nativesession->get("user");
 			$username=$userInfo["username"];
@@ -227,7 +228,7 @@ function addDayswithdate($date,$days){
 			'recipientName'=>$this->input->post('recipient-name'),
 			'senderEmail'=>$this->input->post('sender-email'),
 			'recipientPhoneNumber'=>$this->input->post('recipient-Phone-Number'));
-			var_dump($messageArray);
+			//var_dump($messageArray);
 			if(intval($userID)==intval($fUserID) and $fUserID<>0)
 			{
 						
@@ -236,6 +237,22 @@ function addDayswithdate($date,$days){
 				
 			}
 			else {
+				
+				$DailyMaxTimes=$this->messages_model->getMaxDailyTimesBuyerSendMsg($postID, $fUserID);
+				
+				if($DailyMaxTimes>MAXTIMEDAILY_SENDMSGFROMBUYER){
+					$errorMsg=$this->lang->line("ExceedMAXTIMEDAILY_SENDMSGFROMBUYER");
+					redirect(base_url().MY_PATH."viewItem/index/".$postID."/".$errorMsg."?prevURL=".$prevURL);
+				}
+				
+				$TotalMaxTimes=$this->messages_model->getMaxTotalTimesBuyerSendMsg($postID, $fUserID);
+				
+				if($TotalMaxTimes>MAXTIME_SENDMSGFROMBUYER){
+					$errorMsg=$this->lang->line("ExceedMAXTIME_SENDMSGFROMBUYER");
+					redirect(base_url().MY_PATH."viewItem/index/".$postID."/".$errorMsg."?prevURL=".$prevURL);
+				}
+				
+				
 				$messageID=$this->messages_model->insert($messageArray);
 				if($messageID)
 				{

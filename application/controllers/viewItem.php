@@ -21,6 +21,7 @@
                 $this->load->model('useremail_model', 'userEmail');
                 $this->load->model('tag_model');
                 $this->load->model('itemcomments_model');
+                $this->load->model('messages_model');
                 if($this->nativesession->get("language")!=null)
                 {
                 	$data["lang_label"] = $this->nativesession->get("language");
@@ -186,13 +187,17 @@
                 $this->postviewhistory_model->insert($thread);
                 
             } 
-		
-          //var_dump($data);
-           //$postInfo=$this->post->getPostByPostID($postId);
-            //echo "Checking line 156:";
-           // var_dump($postInfo);
-            //echo $postInfo[0]->postID;
-            //if(isset($var)){
+            
+            $userInfo=$this->nativesession->get("user");
+            $fUserID=0;
+            $data["DailyMaxTimes"]=0;
+            $data["TotalMaxTimes"]=0;
+            if(!empty($userInfo)){
+            	$fUserID=$userInfo["userID"];
+	            $data["DailyMaxTimes"]=$this->messages_model->getMaxDailyTimesBuyerSendMsg($postId, $fUserID);
+	            $data["TotalMaxTimes"]=$this->messages_model->getMaxTotalTimesBuyerSendMsg($postId, $fUserID);
+            }
+            
             	if  ( (strcmp($var[0]->status,"U")!=0 &&  strcmp($var[0]->status,"R")!=0
             			&&  strcmp($var[0]->status,"D")!=0 &&
             			($var[0]->blockDate==null || $var[0]->blockDate< date('Y-m-d')))

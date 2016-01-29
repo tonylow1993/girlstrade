@@ -351,7 +351,7 @@
                 	firstName="<?php echo $firstName;?>" lastName="<?php echo $lastName;?>"
                 	telNo="<?php echo $telNo;?>" phoneNo="<?php echo $phoneNo;?>"
                 	 data-toggle="modal" class="btn   btn-default inboxMsgButton">
-						<i class=" icon-mail-2"></i> Send a message </a> 
+						<i class=" icon-mail-2"></i> Send a message <?php if($DailyMaxTimes>0) echo "(".$DailyMaxTimes.")";?> </a> 
 						</div>
                         <!-- </div> -->
 
@@ -424,7 +424,7 @@
                 	firstName="<?php echo $firstName;?>" lastName="<?php echo $lastName;?>"
                 	telNo="<?php echo $telNo;?>" phoneNo="<?php echo $phoneNo;?>"
                 	 data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton">
-                	 <i class=" icon-mail-2"></i> Send a message </a> </div>
+                	 <i class=" icon-mail-2"></i> Send a message <?php if($DailyMaxTimes>0) echo "(".$DailyMaxTimes.")";?></a> </div>
                   <?php }?>   
                 </div>
               </div>

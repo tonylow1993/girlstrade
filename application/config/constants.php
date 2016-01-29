@@ -73,6 +73,9 @@ define("MAXTIMESDAILY_SENDFROMBUYER", 10);
 define("MAXTIMESDAILY_REPLYFROMSELLER", 10);
 define("MAXTIMESDAILY_DELETEADS",10);
 
+define("MAXTIMEDAILY_SENDMSGFROMBUYER", 3);
+define("MAXTIME_SENDMSGFROMBUYER", 10);
+
 define("SMTP_PROTOCOL" , "smtp");
 define("SMTP_HOST", "ssl://a2plcpnl0127.prod.iad2.secureserver.net" );
 define("SMTP_PORT", "465");

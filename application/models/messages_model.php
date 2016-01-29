@@ -103,8 +103,26 @@
 			return $NoOfItemCount;
 		}
 		
+		public function getMaxDailyTimesBuyerSendMsg($postID, $fUserID){
+			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where a.status in ('OC', 'Op') and a.fUserID=$fUserID and b.postID=$postID and a.createDate>=curdate() ";
+			$query2 = $this->db->query($strQuery);
+			$var2=$query2->result_array();
+			$NoOfItemCount=$var2[0]["NoOfCount"];
+				
+			return $NoOfItemCount;
+		}
+		
+		public function getMaxTotalTimesBuyerSendMsg($postID, $fUserID){
+			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where a.status in ('OC', 'Op') and a.fUserID=$fUserID and b.postID=$postID ";
+			$query2 = $this->db->query($strQuery);
+			$var2=$query2->result_array();
+			$NoOfItemCount=$var2[0]["NoOfCount"];
+		
+			return $NoOfItemCount;
+		}
+		
 		public function getMaxTimesBuyerSend($userID){
-			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where ((a.status in ('R', 'C') and a.userID=$userID) or (a.status in ('OC', 'Op') and a.fUserID=$userID)) and b.userID != $userID and a.createDate=curdate() ";    
+			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where ((a.status in ('R', 'C') and a.userID=$userID) or (a.status in ('OC', 'Op') and a.fUserID=$userID)) and b.userID != $userID and a.createDate>=curdate() ";    
 			$query2 = $this->db->query($strQuery);
 			$var2=$query2->result_array();
 			var_dump($var2);
@@ -113,7 +131,7 @@
 			return $NoOfItemCount;
 		}
 		public function getMaxTimesSellerSend($userID){
-			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where ((a.status in ('R', 'C') and a.userID=$userID) or (a.status in ('OC', 'Op') and a.fUserID=$userID)) and b.userID = $userID and a.createDate=curdate()";
+			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where ((a.status in ('R', 'C') and a.userID=$userID) or (a.status in ('OC', 'Op') and a.fUserID=$userID)) and b.userID = $userID and a.createDate>=curdate()";
 			$NoOfItemCount=0;
 			$query2 = $this->db->query($strQuery);
 			$var2=$query2->result_array();
@@ -123,7 +141,7 @@
 			return $NoOfItemCount;
 		}
 		public function getMaxTimesDeleteAds($userID){
-			$strQuery="select count(distinct a.postID) as NoOfCount from post a where a.userID = $userID and a.deleteDate=curdate()";
+			$strQuery="select count(distinct a.postID) as NoOfCount from post a where a.userID = $userID and a.deleteDate>=curdate()";
 			$NoOfItemCount=0;
 			$query2 = $this->db->query($strQuery);
 			$var2=$query2->result_array();
@@ -240,7 +258,7 @@
 	    			return true;
 	    		else 	throw new Exception(ZeroUpdateRecordError);
 		}catch (Exception $ex) {
-			echo 'Caught exception: ',  $ex->getMessage(), "\n";
+			//echo 'Caught exception: ',  $ex->getMessage(), "\n";
 			log_message('error', "[Class]: ".$this->router->fetch_class()."[Method:] ".
 					$this->router->fetch_method().
 					"[Line]: ".$ex->getLine()."[Error]: ".$ex->getMessage());
