@@ -286,6 +286,7 @@ hr.small {
 
 form input[type="text"], form input[type="email"], form input[type="password"] {
   height: 40px;
+  border-radius: 4px;
 }
 
 .form-control {
@@ -2714,7 +2715,8 @@ div.login-box .panel-footer label {
   background: none repeat scroll 0 0 #ffffff;
 	/*border-bottom: 1px solid #e1e1e1;*/
   display: block;
-  font-family: 'Roboto Condensed', Open Sans, Arial;
+  font-weight: 500;
+  font-family: MyCustomFont, serif;
   color: #2F6194;
   font-size: 12px;
   height: auto;
@@ -4320,3 +4322,13 @@ nav.slider-nav a.next {
   }
 
 }
+
+.countryPopup {
+	color: white;
+}
+
+.catRangeBtn1{
+    margin-top: auto;
+    margin-left: 15px;
+}
+

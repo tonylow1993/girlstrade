@@ -310,7 +310,7 @@ div.panel-heading.seller-heading
 #menubarTitle 
 {
 	color: #8A2D2D;
-	font-weight: bold;
+	font-weight: 500;
 	//font-size: 15px;
 }
 #login_signupTitle
@@ -336,6 +336,7 @@ div.panel-heading.seller-heading
 {
 	color: #8A2D2D;
 	font-size: 12px;
+	font-weight:500;
 }
 #menuDropDownItem:hover
 {

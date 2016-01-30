@@ -126,7 +126,9 @@ input[type=checkbox]
                   </div>
                 </div>
               </div>
-              <div class="panel panel-default">
+              
+              </div>
+			  <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title"> <a href="#collapseB2"  data-toggle="collapse"> <?php echo $this->lang->line("Settings");?> </a> </h4>
                 </div>
@@ -165,7 +167,6 @@ input[type=checkbox]
 				</form>
 				</div>
                   </div>
-                </div>
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading">
