@@ -4323,12 +4323,26 @@ nav.slider-nav a.next {
 
 }
 
-.countryPopup {
+#countryPopup {
 	color: white;
 }
 
-.catRangeBtn1{
+#pricePopup{
+	color: white;
+}
+
+#catRangeBtn1{
     margin-top: auto;
     margin-left: 15px;
 }
+
+#locRangeBtn1{
+	margin-top: auto;
+    margin-left: 15px;
+}
+
+#searchCat3{
+	color: #cb41bf;
+}
+
 

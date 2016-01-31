@@ -46,7 +46,8 @@
   padding-right: 4px;
   padding-left: 4px;
   padding-bottom: 2px;
-  width:32.8%;
+  width:32.3%;
+  line-height: 2;
 }
 
 .btn-searchCat3:hover, .btn-searchCat3:focus, .btn-searchCat3:active, 
@@ -79,7 +80,8 @@ fieldset[disabled] .btn-searchCat3.active {
   padding-right: 4px;
   padding-left: 4px;
   padding-bottom: 2px;
-  width:32.8%;
+  width:32.3%;
+  line-height: 2;
 }
 
 .btn-searchCat2:hover, .btn-searchCat2:focus, .btn-searchCat2:active, 
@@ -112,7 +114,8 @@ fieldset[disabled] .btn-searchCat2.active {
   padding-right: 4px;
   padding-left: 4px;
   padding-bottom: 2px;
-  width:32.8%;
+  width:32.3%;
+  line-height: 2;
 }
 
 .btn-searchCat:hover, .btn-searchCat:focus, .btn-searchCat:active, .btn-searchCat.active, .open .dropdown-toggle.btn-searchCat{

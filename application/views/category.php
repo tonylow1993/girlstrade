@@ -940,7 +940,7 @@ function savedAds(ctrlValue, ctrlName) {
             Districts of <strong>Hong Kong</strong>
             </div>
             </p>
-<form role="form"  id="locForm1" class="form-inline modalBody"  onSubmit="return locSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
+<form role="form"  id="locForm1" class="form-inline modalBody margin-top-20"  onSubmit="return locSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
              
 <div style="clear:both"></div>            
             <div class="col-sm-6 no-padding">
@@ -1139,16 +1139,16 @@ function savedAds(ctrlValue, ctrlName) {
       <div class="modal-body">
         <div class="row">
 
-          <div class="locations-list  list-filter margin-top-30">
+          <div class="locations-list  list-filter">
                 <h5 class="list-title">
                 <div class="modalBody">
-                <strong><a href="javascript:void(0);">
-                $ <?php echo $lblPriceRange;?>
-                </a></strong>
+				<div class="searchCat3">
+                <i class="fa fa-usd"></i>Price <strong>Range</strong>
+				</div>
                 </div>
                 </h5>
                <form role="form"  id="priceForm1" class="form-inline modalBody"  onSubmit="return priceSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
-                  <div >
+                  <div class="margin-top-20">
                       <input type="number" placeholder="100" id="minPrice1"
                       value=<?php  if($minPrice>0)echo $minPrice;?>     
                       name="minPrice1"  min="0"  max="90000" class="form-control price">
@@ -1159,7 +1159,7 @@ function savedAds(ctrlValue, ctrlName) {
                   </div>
                   <div>
                     <div class="form-group no-padding">
-                      <button id="priceRangeBtn1" class="btn btn-default btn-pink btn-80 " 
+                      <button id="priceRangeBtn1" class="btn btn-default btn-pink btn-80 margin-top-20" 
                       type="submit">Filter<i class="icon-search-2"></i></button>
                     </div>
                   </div>
@@ -1193,7 +1193,7 @@ function savedAds(ctrlValue, ctrlName) {
             <strong><i class="icon-th"></i>Category</strong>
             </div>
             </p>
-		<form role="form"  id="catForm1" class="form-inline modalBody"  onSubmit="return catSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
+		<form role="form"  id="catForm1" class="form-inline modalBody margin-top-20"  onSubmit="return catSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
              
                   
 			<div style="clear:both"></div>            
