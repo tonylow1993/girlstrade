@@ -13,7 +13,7 @@
           <?php include("profile_header.php");?>
           <div class="inner-box">
           	  <?php include("profile_visit.php");?>
-            <h2 class="title-2"><i class="icon-star-circled"></i> <?php echo $this->lang->line("Saved_Search");?> </h2>
+            <h2 class="title-2"><i class="icon-heart"></i> <?php echo $this->lang->line("Saved_Search");?> </h2>
              <div class="table-responsive">
               <div class="table-action">
                 <label for="checkAll">
