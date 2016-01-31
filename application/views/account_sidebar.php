@@ -45,7 +45,7 @@
               			 if($activeNav==4)
               					echo "<li><a  class=\"active\" href=$editprofile1><i class=\"icon-pencil-2\"></i> $EditProfile <span class=\"badge\"></span></a></li>";
          	     		 else 
-         	     		 	echo "<li><a href=$editprofile1><i class=\"icon-mail\"></i> $EditProfile <span class=\"badge\"></span></a></li>";
+         	     		 	echo "<li><a href=$editprofile1><i class=\"icon-user\"></i> $EditProfile <span class=\"badge\"></span></a></li>";
          	     		 	 
          	     		 if($activeNav==1)
               					echo "<li><a  class=\"active\" href=$accountinbox><i class=\"icon-pencil-2\"></i> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";

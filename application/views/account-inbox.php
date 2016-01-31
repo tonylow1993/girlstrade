@@ -14,7 +14,7 @@
          <?php include("profile_header.php");?>
           <div class="inner-box">
           	  <?php include("profile_visit.php");?>
-            <h2 class="title-2"><i class="icon-hourglass"></i> <?php echo $this->lang->line("Inbox");?> </h2>
+            <h2 class="title-2"><i class="icon-mail"></i> <?php echo $this->lang->line("Inbox");?> </h2>
             <div class="table-responsive">
 <!--               <div class="table-action"> -->
 <!--                 <label for="checkAll"> -->

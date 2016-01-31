@@ -13,7 +13,7 @@
          <?php include("profile_header.php");?>
           <div class="inner-box">
           	  <?php include("profile_visit.php");?>
-            <h2 class="title-2"><i class="icon-hourglass"></i> <?php echo $this->lang->line("OutBox");?> </h2>
+            <h2 class="title-2"><i class="icon-reply"></i> <?php echo $this->lang->line("OutBox");?> </h2>
             <div class="table-responsive">
               
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >

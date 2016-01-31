@@ -365,7 +365,7 @@
         <div class="col-sm-3  page-sidebar-right">
           <aside>
               <div class="panel sidebar-panel panel-contact-seller panel-bevel seller-info-border">
-              <div class="panel-heading seller-heading"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;Contact Seller</div>
+              <div class="panel-heading seller-heading pink-bg"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;Contact Seller</div>
          
               <div class="panel-content user-info">
                 <div class="panel-body text-center">
@@ -430,7 +430,7 @@
               </div>
             </div>
             <div class="panel sidebar-panel panel-bevel seller-info-border">
-              <div class="panel-heading  seller-heading"><i class="fa fa-shield"></i>&nbsp;&nbsp;&nbsp;Safety Tips for Buyers</div>
+              <div class="panel-heading  seller-heading pink-bg"><i class="fa fa-shield"></i>&nbsp;&nbsp;&nbsp;Safety Tips for Buyers</div>
              <div class="panel-content">
                 <div class="panel-body text-left">
                   <ul class="list-check">
