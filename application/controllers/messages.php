@@ -1018,11 +1018,11 @@ function addDayswithdate($date,$days){
 			$result["buyerName"]=$buyerNameArr[0]->username;
 			$result["sellerName"]=$sellerNameArr[0]->username;
 			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
+			$result["menuMyAds"]="";
+			$result["menuInbox"]="";
+			$result["menuInboxNum"]="0";
+			$result["menuPendingRequest"]="";
+			$result["menuPendingRequestNumber"]="0";
 			//----------------------------
 			$this->load->view("account-viewMessageHistory", $result);
 		}
