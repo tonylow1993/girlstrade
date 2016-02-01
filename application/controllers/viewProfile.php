@@ -253,7 +253,14 @@ class viewProfile extends getCategory {
 		$data["lblConditionUsed"]=$this->lang->line("lblConditionUsed");
 		$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
 		$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
-		 
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		//----------------------------
+				
 		$this->load->view('profile', $data);
 	}
 	

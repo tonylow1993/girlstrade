@@ -2439,6 +2439,14 @@ function generateRandomString($length = 8) {
 		}catch(Exeception $ex){
 			echo $ex->getMessage();
 		}
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		//----------------------------
+				
 		$this->profilePage();
 	}
 	public function updateProfile(){
