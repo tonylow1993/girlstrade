@@ -102,7 +102,7 @@ input[type=checkbox]
                        
                        <div id="generalLoc" class="form-group">
                           <label class="col-md-3 control-label text-center" >
-                          <i class="icon-layout"></i>
+                          <i class=" icon-location-2"></i>
                            <?php echo $lblLocation;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <select name="locID2" id="locID2" class="form-control" required="true">
