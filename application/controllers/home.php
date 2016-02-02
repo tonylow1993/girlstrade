@@ -165,6 +165,11 @@ class Home extends CI_Controller {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($user1)){
+				$menuCount=$this->getHeaderCount($user1["userID"]);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view('index', $data);
 		}catch(Exception $ex)
@@ -241,7 +246,12 @@ class Home extends CI_Controller {
 				$userCreateDate = $user[0]->createDate;
 				$data["userCreateDate"]=$userCreateDate;
 				//$data["errorMsg"]=array("success1"=> ($successMsg), "error"=> ($errorMsg));
-	
+				if(isset($user)){
+					$menuCount=$this->getHeaderCount($user[0]->userID);
+					$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+				}
+				
 				$userInfo=$this->userInfo->getUserInfoByUserID($data["userID"] );
 				$email=$this->userEmail->getUserEmailByUserID($data["userID"] );
 				if(isset($userInfo))
@@ -836,6 +846,11 @@ class Home extends CI_Controller {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($user)){
+				$menuCount=$this->getHeaderCount($user["userID"]);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view('successPage', $data);
 	}	
@@ -1237,6 +1252,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 		if($result==1 && $result2==1) {
 			$data["error"]=$data["error"]."Registration has been completed!";
@@ -1411,6 +1431,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-inbox", $data);
 		}
@@ -1425,6 +1450,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-approve-request-ads", $data);
 		}
@@ -1439,6 +1469,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-myads", $data);
 		}
@@ -1450,6 +1485,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-home", $data);
 		}else if($activeNav==5)
@@ -1463,6 +1503,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-saved-search", $data);
 		}
@@ -1477,6 +1522,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="class=\"active\"";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-pending-approval-ads", $data);
 		}
@@ -1491,6 +1541,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-outbox", $data);
 			
@@ -1505,6 +1560,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-archived-ads", $data);
 		}
@@ -1518,6 +1578,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-my-buy-history", $data);
 		}else if($activeNav==12){
@@ -1531,6 +1596,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-directsend-history", $data);
 		}else if($activeNav==13){
@@ -1545,6 +1615,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-directsend-history", $data);
 		}
@@ -1555,6 +1630,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-statements", $data);
 		}else if($activeNav==9){
@@ -1564,6 +1644,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view("account-close", $data);
 		}
@@ -2600,6 +2685,11 @@ function generateRandomString($length = 8) {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($user)){
+				$menuCount=$this->getHeaderCount($user['userID']);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view('successPage', $data);
 						
@@ -2905,6 +2995,41 @@ function generateRandomString($length = 8) {
 		$user = $this->user->getUserByUserID($userID);
 		$this->nativesession->set("user",$user);
 		$this->getAccountPage(4);
+	}
+	
+	public function getHeaderCount($userID){
+		$userStat=$this->userstat_model->getUserStat($userID);
+		
+		$data["inboxMsgCount"]=0;
+		$data["approveMsgCount"]=0;
+		$data["myAdsCount"]=0;
+		$data["savedAdsCount"]=0;
+		$data["pendingMsgCount"]=0;
+		$data["archivedAdsCount"]=0;
+		$data["visitCount"]=0;
+		$data["totalMyAdsCount"]=0;
+		$data["favoriteAdsCount"]=0;
+		$data["outgoingMsgCount"]=0;
+		$data["buyAdsCount"]=0;
+		$data["directsendhistCount"]=0;
+		$data["directsendhistCount1"]=0;
+		if(isset($userStat) && !empty($userStat)){
+			$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
+			$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
+			$data["myAdsCount"]=$userStat[0]->myAdsCount;
+			$data["savedAdsCount"]=$userStat[0]->savedAdsCount;
+			$data["pendingMsgCount"]=$userStat[0]->pendingMsgCount;
+			$data["archivedAdsCount"]=$userStat[0]->archivedAdsCount;
+			$data["visitCount"]=$userStat[0]->visitCount;
+			$data["totalMyAdsCount"]=$userStat[0]->totalMyAdsCount;
+			$data["favoriteAdsCount"]=$userStat[0]->favoriteAdsCount;
+			$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
+			$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
+			$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+			$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
+		}
+		
+		return $data;
 	}
 	
 	public function check_session(){

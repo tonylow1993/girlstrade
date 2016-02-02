@@ -85,7 +85,7 @@ function addDayswithdate($date,$days){
 				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
 				
 			$userInfo=$this->nativesession->get("user");
-			$username=$userinfo["username"];
+			$username=$userInfo["username"];
 			$fUserID=0;
 			if(!empty($userInfo) and isset($userInfo) and $userInfo<> null and $userInfo["userID"]<>0)
 				$fUserID=$userInfo["userID"];
