@@ -253,9 +253,11 @@
         	<div class="form-group">
              	<label  for="soldqty" class="control-label">Quantity<font color="red">*</font></label>
          		<select required="true" class="form-control selecter" name="soldqty" id="soldqty">
-        				  <option value="1"> 1 </option>
-                                   <option value="2"> 2 </option>
-        		</select>
+        				<?php 
+        				  	for ($x = 1; $x <= MAXSOLDQTY; $x++)
+        				  		echo "<option value=$x> $x </option>";
+        				  ?>
+		        </select>
         		<div id="soldqtyError" name="soldqtyError" ></div>
         	</div>
         	

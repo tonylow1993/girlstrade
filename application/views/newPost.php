@@ -121,9 +121,12 @@ input[type=checkbox]
                           <div class="col-md-8">
                            
                               <select required="true" class="form-control" name="soldqty" id="soldqty">
-		        				  <option value="1"> 1 </option>
-		                                   <option value="2"> 2 </option>
-		        					</select>
+		        				     <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select - </option>
+                                <?php 
+		        				  	for ($x = 1; $x <= MAXSOLDQTY; $x++) 
+		        				  		echo "<option value='$x'> $x </option>";
+		        				  ?>
+		        				 </select>
                           </div>
                       </div>
                       
@@ -548,4 +551,4 @@ function backHomePage(){
 
 <?php include "footer2.php"; ?>
   <!--/.footer--> 
-  </div>
+</div>

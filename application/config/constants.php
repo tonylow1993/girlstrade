@@ -56,6 +56,7 @@ define("FEATUREDADS", "featuredAds");
 define("URGENTADS", "urgentAds");
 
 define("MAXLENGTHMSG_SHOWN_IN_TABLE", 30);
+define("MAXSOLDQTY", 10);
 
 define("TITLECOLOR", "RED");
 define("PASSWORDEXPIRYDAYS", 30);
