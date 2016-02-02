@@ -103,7 +103,7 @@ if (is_array($array) || is_object($array))
 				$str=$str." UNION ALL ";
 				$str=$str." SELECT userID, 0,0,COUNT(*) AS myAdsCount, 0,0,0,0,0,0 ,0,0,0";
 				$str=$str." FROM post ";
-				$str=$str." where status='A'";
+				$str=$str." where status='A' or status='R' or status='U' ";
 				$str=$str." GROUP BY userID ";
 				$str=$str." UNION ALL ";
 				$str=$str." SELECT userID,0,0,0, COUNT(*) AS savedAdsCount,0,0,0,0,0 ,0,0,0";
@@ -140,7 +140,7 @@ if (is_array($array) || is_object($array))
 				$str=$str." group by userID";
 				$str=$str." Union all";
 				$str=$str." select fuserID, 0,0,0, 0,0,0,0,0,0,count(*),0,0";
-				$str=$str." from message where status='OC'";
+				$str=$str." from message where status='OC' or status='Op' ";
 				$str=$str." group by fuserID";
 				$str=$str." Union all";
 				$str=$str." select soldToUserID, 0,0,0, 0,0,0,0,0,0,0,count(*),0";
