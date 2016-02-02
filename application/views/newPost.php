@@ -99,7 +99,36 @@ input[type=checkbox]
                               </select>
                           </div>
                       </div>
-                               
+                       
+                       <div id="generalLoc" class="form-group">
+                          <label class="col-md-3 control-label text-center" >
+                          <i class="icon-layout"></i>
+                           <?php echo $lblLocation;?> <font color="red">*</font></label>
+                          <div class="col-md-8">
+                              <select name="locID2" id="locID2" class="form-control" required="true">
+                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - All Locations - </option>
+                                  <?php 
+						            foreach ($resLoc as $id=>$value)
+						            {
+							            if(!isset($lang_label))
+						 	            		$lang_label="";
+						             	$name=$value[0]->name;
+						             	if($lang_label<>"english")
+						             		$name=$value[0]->nameCN;
+						             	if($value[0]->level==1){
+						             		echo "<option  value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
+						             	}else if($value[0]->level==2)
+						             	{
+						            		echo "<option  value='".$id."' style='background-color:#E9E9E9;'>--".$name." </option>";
+						             	}else if($value[0]->level==3)
+						             	{
+						              		echo "<option  value='".$id."'>----".$name." </option>";
+						             	}
+             						}
+						            ?>
+                              </select>
+                          </div>
+                      </div>    
                       
                       <!-- Select Basic -->
                       <div id="itemQuality" class="form-group">

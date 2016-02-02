@@ -139,15 +139,15 @@
                         <p class=" no-margin "><strong><?php echo $this->lang->line("lblView").": ";?></strong> 
                         </p>
                         </td><td><p class="itemInfoData">
-                        <?php //echo $tagDesc;?>
-                        0
+                        <?php echo $visitCount;?>
+                        
                         </p></td>
                       </tr>
                     <tr>
                     	<td>
                         <p class=" no-margin "><strong><?php echo $this->lang->line("lblType").": ";?></strong> 
                         </p></td>
-                        <td><p class="itemInfoData">TYPE</p></td>
+                        <td><p class="itemInfoData"><?php echo $ChildCatName; ?></p></td>
                         
                       </tr>
                       <tr>
@@ -160,11 +160,11 @@
                       </tr>
                       <tr>
                       	<td>
-                        <p class="no-margin"><strong><?php echo $this->lang->line("lblLocation").": ";?></strong> <?php echo $LocationName;?> 
+                        <p class="no-margin"><strong><?php echo $this->lang->line("lblLocation").": ";?></strong> 
                         </p>
                         </td>
                         <td><p class="itemInfoData">
-                        LOCATION</p>
+                        <?php echo $LocationName;?></p>
                         </td>
                       </tr>
                       <tr>
@@ -172,7 +172,7 @@
                         <p class=" no-margin "><strong><?php echo $this->lang->line("lblCondition").": ";?></strong> 
                         </p></td>
                         <td><p class="itemInfoData">
-                        New
+                        <?php echo $condition;?>
                         </p></td>
                       </tr>
                       <tr>
@@ -180,7 +180,7 @@
                         <p class=" no-margin "><strong><?php echo $this->lang->line("lblDatePosted").": ";?></strong> 
                         </p></td>
                         <td><p class="itemInfoData">
-                        2016 Jan 01
+                        <?php echo $userCreateDate;?>
                         </p></td>
                       </tr>
                     </table>

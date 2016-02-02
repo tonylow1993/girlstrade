@@ -122,11 +122,13 @@
                 $data["price"] = $var[0]->itemPrice;
                 $data["AdsProduct"] = array($var[0]->postID => $pic);
                 $data["itemDesc"] = $var[0]->description;
+                $data["visitCount"]=$var[0]->viewCount;
                 $data["itemTitle"]=$var[0]->itemName;
+                $data["condition"]=strcmp($var[0]->newUsed, "N")==0 ? "NEW" :"USED"; 
                 if ($var[0]->locID>0)
                 	$data["LocationName"] = $data["lang_label"]<>"english" ? $location[0]->nameCN : $location[0]->name;
                 else 
-                	$data["LocationName"]="";
+                	$data["LocationName"]="All Locations";
                  $data["userName"] = $user[0]->username;
                 $data["userID"] = $user[0]->userID;
                 $userCreateDate = $user[0]->createDate;
