@@ -480,7 +480,7 @@ function sendIt() {
         <h4 class="modal-title"><i class=" icon-mail-2"></i> Contact advertiser </h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode($prevURL);?>">
+        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($prevURL);?>">
          <!--   <div class="form-group">
             <label for="recipient-name" class="control-label">Name: <font color="red">*</font></label>
             <input class="form-control required" name="recipient-name" id="recipient-name" placeholder="Your name" data-placement="top" required="true" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
