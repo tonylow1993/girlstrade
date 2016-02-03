@@ -319,7 +319,7 @@
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo "<a href=";
-		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url());
+		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
 		                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
 		                  echo "<i class=\"icon-right-hand\"></i> Direct send request </a>";
 	                  }
@@ -384,7 +384,7 @@
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo"<div class=\"user-ads-action\">";
 		                  echo "<a href=";
-		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url());
+		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
 		                  echo " data-toggle=\"modal\" class=\"btn btn-default btn-block directSendButton\">";
 		                  echo "<i class=\"icon-right-hand\"></i> Direct send request </a> </div>";
 	                  }
@@ -466,7 +466,7 @@
         <h4 class="modal-title" ><i class="fa icon-info-circled-alt"></i> There's something wrong with this  ads? </h4>
       </div>
       <div class="modal-body">
-        <form role="form" method="post" id="itemAbuse" action="<?php echo base_url(); echo MY_PATH;?>messages/insertAbuseMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode($previousCurrent_url);?>">
+        <form role="form" method="post" id="itemAbuse" action="<?php echo base_url(); echo MY_PATH;?>messages/insertAbuseMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
           <div class="form-group">
             <label for="reportreason" class="control-label">Reason:</label>
             <select name="reportreason" id="reportreason" class="form-control">
@@ -519,7 +519,7 @@
         <h4 class="modal-title"><i class=" icon-mail-2"></i> Contact advertiser </h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode(current_url());?>">  
+        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">  
       <!--   $previousCurrent_url -->
      <!--       <div class="form-group">
             <label for="recipient-name" class="control-label">Name: <font color="red">*</font></label>

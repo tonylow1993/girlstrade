@@ -25,6 +25,8 @@ class messages extends CI_Controller {
             $this->load->model('tradecomments_model');
             $this->load->model('admin_model');
             $this->load->model('mailtemplate_model');
+            $this->load->model('userstat_model');
+            
             date_default_timezone_set("Asia/Hong_Kong");
             if($this->nativesession->get("language")!=null)
             {
@@ -79,6 +81,10 @@ function addDayswithdate($date,$days){
 			}else if(isset($_SESSION["previousUrl"])){
 				$prevURL=$_SESSION["previousUrl"];
 			}
+			$prevprevURL="";
+			if(isset($_GET["prevprevURL"])){
+				$prevprevURL=$_GET["prevprevURL"];
+			}
 			
 			$expired= $this->nativesession->_session_id_expired();
 			if($expired){
@@ -111,8 +117,11 @@ function addDayswithdate($date,$days){
 					$data['redirectToPHP']=base_url();
 				else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
 					$data['redirectToPHP']=base_url();
-	 			else 
+	 			else {
 	 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+	 				if(strcmp($prevprevURL,"")<>0)
+	 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+	 			}
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -139,9 +148,12 @@ function addDayswithdate($date,$days){
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
 						$data['redirectToPHP']=base_url();
-		 			else 
-		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
-					$data["successTile"]=$this->lang->line("successTile");
+					else {
+	 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+	 				if(strcmp($prevprevURL,"")<>0)
+	 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+	 				}
+	 				$data["successTile"]=$this->lang->line("successTile");
 					$data["failedTitle"]=$this->lang->line("failedTitle");
 					$data["goToHomePage"]=$this->lang->line("goToHomePage");
 					
@@ -169,9 +181,12 @@ function addDayswithdate($date,$days){
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
 						$data['redirectToPHP']=base_url();
-		 			else 
+					else {
 		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
-					$data["successTile"]=$this->lang->line("successTile");
+		 				if(strcmp($prevprevURL,"")<>0)
+		 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+		 			}
+		 			$data["successTile"]=$this->lang->line("successTile");
 					$data["failedTitle"]=$this->lang->line("failedTitle");
 					$data["goToHomePage"]=$this->lang->line("goToHomePage");
 					$this->load->view('failedPage', $data);
@@ -191,6 +206,10 @@ function addDayswithdate($date,$days){
 			$prevURL=$_SESSION["previousUrl"];
 		}
 		
+		$prevprevURL="";
+		if(isset($_GET["prevprevURL"])){
+			$prevprevURL=$_GET["prevprevURL"];
+		}
 		$expired= $this->nativesession->_session_id_expired();
 		if($expired){
 			redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
@@ -203,7 +222,23 @@ function addDayswithdate($date,$days){
 				if($fUserID==0)
 				{
 					$errorMsg=$this->lang->line("MessagesDirectSendErrorLoginFirst");
-					redirect(base_url().MY_PATH."viewItem/index/".$postID."/".$errorMsg."?prevURL=".$prevURL);
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["PrevURL"]=$prevURL;
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+						$data['redirectToPHP']=base_url();
+					else {
+		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+		 				if(strcmp($prevprevURL,"")<>0)
+		 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+		 			}
+		 			$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
 					return;
 				}
 				
@@ -227,12 +262,57 @@ function addDayswithdate($date,$days){
 						$msg=$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg();
 						$this->sendAuthenticationEmail($email, $msg,$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg() );
 						$errorMsg=$this->lang->line("MessagesSendError");
-						redirect(base_url().MY_PATH."viewItem/index/".$postID."/EMPTY/".$errorMsg."?prevURL=".$prevURL);
+						$data["lang_label"]=$this->nativesession->get("language");
+						$data["PrevURL"]=$prevURL;
+						$data["error"]=$errorMsg;
+						$data['redirectToWhatPage']="Previous Page";
+						if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+							$data['redirectToPHP']=base_url();
+						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+							$data['redirectToPHP']=base_url();
+						else {
+		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+		 				if(strcmp($prevprevURL,"")<>0)
+		 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+		 				}
+		 				$data["successTile"]=$this->lang->line("successTile");
+						$data["failedTitle"]=$this->lang->line("failedTitle");
+						$data["goToHomePage"]=$this->lang->line("goToHomePage");
+						
+						//----------setup the header menu----------
+						$data["menuMyAds"]="";
+						$data["menuInbox"]="";
+						$data["menuInboxNum"]="0";
+						$data["menuPendingRequest"]="";
+						$data["menuPendingRequestNumber"]="0";
+						if(isset($userInfo)){
+							$menuCount=$this->getHeaderCount($fUserID);
+							$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+							$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+						}
+						//----------------------------
+						$this->load->view('successPage', $data);
 					}
 					else
 					{
 						$errorMsg=$this->lang->line("MessagesDirectSendErrorLoginFirst");
-						redirect(base_url().MY_PATH."viewItem/index/".$postID."/".$errorMsg."?prevURL=".$prevURL);
+						$data["lang_label"]=$this->nativesession->get("language");
+						$data["PrevURL"]=$prevURL;
+						$data["error"]=$errorMsg;
+						$data['redirectToWhatPage']="Previous Page";
+						if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+							$data['redirectToPHP']=base_url();
+						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+							$data['redirectToPHP']=base_url();
+						else {
+			 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+			 				if(strcmp($prevprevURL,"")<>0)
+			 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+			 			}
+			 			$data["successTile"]=$this->lang->line("successTile");
+						$data["failedTitle"]=$this->lang->line("failedTitle");
+						$data["goToHomePage"]=$this->lang->line("goToHomePage");
+						$this->load->view('failedPage', $data);
 					}
 				
 				}
@@ -251,6 +331,10 @@ function addDayswithdate($date,$days){
 				$_SESSION["previousUrl"]=$prevURL;
 			}else if(isset($_SESSION["previousUrl"])){
 				$prevURL=$_SESSION["previousUrl"];
+			}
+			$prevprevURL="";
+			if(isset($_GET["prevprevURL"])){
+				$prevprevURL=$_GET["prevprevURL"];
 			}
 		$expired= $this->nativesession->_session_id_expired();
 		if($expired){
@@ -284,8 +368,23 @@ function addDayswithdate($date,$days){
 			{
 						
 				$errorMsg=$this->lang->line("MessagesSendFromYourOwnError");
-				redirect(base_url().MY_PATH."viewItem/index/".$postID."/".$errorMsg."?prevURL=".$prevURL);
-				
+				$data["lang_label"]=$this->nativesession->get("language");
+					$data["PrevURL"]=$prevURL;
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+						$data['redirectToPHP']=base_url();
+					else {
+		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+		 				if(strcmp($prevprevURL,"")<>0)
+		 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+		 			}
+		 			$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
 			}
 			else {
 				
@@ -293,14 +392,46 @@ function addDayswithdate($date,$days){
 				
 				if($DailyMaxTimes>MAXTIMEDAILY_SENDMSGFROMBUYER){
 					$errorMsg=$this->lang->line("ExceedMAXTIMEDAILY_SENDMSGFROMBUYER");
-					redirect(base_url().MY_PATH."viewItem/index/".$postID."/".$errorMsg."?prevURL=".$prevURL);
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["PrevURL"]=$prevURL;
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+						$data['redirectToPHP']=base_url();
+					else {
+		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+		 				if(strcmp($prevprevURL,"")<>0)
+		 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+		 			}
+		 			$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
 				}
 				
 				$TotalMaxTimes=$this->messages_model->getMaxTotalTimesBuyerSendMsg($postID, $fUserID);
 				
 				if($TotalMaxTimes>MAXTIME_SENDMSGFROMBUYER){
 					$errorMsg=$this->lang->line("ExceedMAXTIME_SENDMSGFROMBUYER");
-					redirect(base_url().MY_PATH."viewItem/index/".$postID."/".$errorMsg."?prevURL=".$prevURL);
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["PrevURL"]=$prevURL;
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+						$data['redirectToPHP']=base_url();
+					else {
+		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+		 				if(strcmp($prevprevURL,"")<>0)
+		 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+		 			}
+		 			$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
 				}
 				
 				
@@ -315,13 +446,58 @@ function addDayswithdate($date,$days){
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller());
 					
 					$errorMsg=$this->lang->line("MessagesSendError");
-					redirect(base_url().MY_PATH."viewItem/index/".$postID."/EMPTY/".$errorMsg."?prevURL=".$prevURL);
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["PrevURL"]=$prevURL;
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+						$data['redirectToPHP']=base_url();
+					else {
+	 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+	 				if(strcmp($prevprevURL,"")<>0)
+	 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+	 				}
+	 				$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					
+					//----------setup the header menu----------
+					$data["menuMyAds"]="";
+					$data["menuInbox"]="";
+					$data["menuInboxNum"]="0";
+					$data["menuPendingRequest"]="";
+					$data["menuPendingRequestNumber"]="0";
+					if(isset($userInfo)){
+						$menuCount=$this->getHeaderCount($fUserID);
+						$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+						$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+					}
+					//----------------------------
+					$this->load->view('successPage', $data);
 				}
 				else 
 				{
 					$errorMsg=$this->lang->line("MessagesDirectSendErrorLoginFirst");
-					redirect(base_url().MY_PATH."viewItem/index/".$postID."/".$errorMsg."?prevURL=".$prevURL);
-				}	
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["PrevURL"]=$prevURL;
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+						$data['redirectToPHP']=base_url();
+					else {
+		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+		 				if(strcmp($prevprevURL,"")<>0)
+		 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+		 			}
+		 			$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
+				}
 			}
 			}
 			catch(Exception $e)
@@ -1078,6 +1254,39 @@ function addDayswithdate($date,$days){
 			$this->load->view("account-viewMessageHistory", $result);
 		}
 		
+		public function getHeaderCount($userID){
+			$userStat=$this->userstat_model->getUserStat($userID);
 		
+			$data["inboxMsgCount"]=0;
+			$data["approveMsgCount"]=0;
+			$data["myAdsCount"]=0;
+			$data["savedAdsCount"]=0;
+			$data["pendingMsgCount"]=0;
+			$data["archivedAdsCount"]=0;
+			$data["visitCount"]=0;
+			$data["totalMyAdsCount"]=0;
+			$data["favoriteAdsCount"]=0;
+			$data["outgoingMsgCount"]=0;
+			$data["buyAdsCount"]=0;
+			$data["directsendhistCount"]=0;
+			$data["directsendhistCount1"]=0;
+			if(isset($userStat) && !empty($userStat)){
+				$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
+				$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
+				$data["myAdsCount"]=$userStat[0]->myAdsCount;
+				$data["savedAdsCount"]=$userStat[0]->savedAdsCount;
+				$data["pendingMsgCount"]=$userStat[0]->pendingMsgCount;
+				$data["archivedAdsCount"]=$userStat[0]->archivedAdsCount;
+				$data["visitCount"]=$userStat[0]->visitCount;
+				$data["totalMyAdsCount"]=$userStat[0]->totalMyAdsCount;
+				$data["favoriteAdsCount"]=$userStat[0]->favoriteAdsCount;
+				$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
+				$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
+				$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+				$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
+			}
+		
+			return $data;
+		}
 }
 ?>
