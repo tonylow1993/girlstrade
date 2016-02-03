@@ -390,7 +390,7 @@ function addDayswithdate($date,$days){
 				
 				$DailyMaxTimes=$this->messages_model->getMaxDailyTimesBuyerSendMsg($postID, $fUserID);
 				
-				if($DailyMaxTimes>MAXTIMEDAILY_SENDMSGFROMBUYER){
+				if($DailyMaxTimes>MAXTIMEDAILY_SENDMSGFROMBUYER && MAXTIMEDAILY_SENDMSGFROMBUYER<UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMAXTIMEDAILY_SENDMSGFROMBUYER");
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
@@ -413,7 +413,7 @@ function addDayswithdate($date,$days){
 				
 				$TotalMaxTimes=$this->messages_model->getMaxTotalTimesBuyerSendMsg($postID, $fUserID);
 				
-				if($TotalMaxTimes>MAXTIME_SENDMSGFROMBUYER){
+				if($TotalMaxTimes>MAXTIME_SENDMSGFROMBUYER && MAXTIME_SENDMSGFROMBUYER<UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMAXTIME_SENDMSGFROMBUYER");
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
@@ -696,7 +696,7 @@ function addDayswithdate($date,$days){
 			
 			if($userID==$userInfo["userID"]){
 				$times=$this->messages_model->getMaxTimesSellerSend($userInfo["userID"]);
-				if($times>MAXTIMESDAILY_REPLYFROMSELLER && MAXTIMESDAILY_REPLYFROMSELLER>0){
+				if($times>MAXTIMESDAILY_REPLYFROMSELLER && MAXTIMESDAILY_REPLYFROMSELLER< UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailySellerReply");
 					$data["error"]=$errorMsg;
 					$data['redirectToWhatPage']="Previous Page";
@@ -713,7 +713,7 @@ function addDayswithdate($date,$days){
 				}
 			}else{
 				$times=$this->messages_model->getMaxTimesBuyerSend($userInfo["userID"]);
-				if($times>MAXTIMESDAILY_SENDFROMBUYER && MAXTIMESDAILY_SENDFROMBUYER>0){
+				if($times>MAXTIMESDAILY_SENDFROMBUYER && MAXTIMESDAILY_SENDFROMBUYER<UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailyBuyerReply");
 					$data["error"]=$errorMsg;
 					$data['redirectToWhatPage']="Previous Page";
@@ -807,7 +807,7 @@ function addDayswithdate($date,$days){
 			try{
 			$userInfo=$this->nativesession->get("user");
 			$times=$this->messages_model->getMaxTimesDeleteAds($userInfo["userID"]);
-			if($times> MAXTIMESDAILY_DELETEADS && MAXTIMESDAILY_DELETEADS>0)
+			if($times> MAXTIMESDAILY_DELETEADS && MAXTIMESDAILY_DELETEADS<UNLIMITEDTIMES)
 			{
 // 				$data['status'] = 'F';
 // 				$data['class'] = "has-error";
@@ -1026,7 +1026,7 @@ function addDayswithdate($date,$days){
 			
 				$user=$this->nativesession->get("user");
 				$times=$this->tradecomments_model->getMaxTimesMarkSold($user["userID"]);
-				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST>0)
+				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST<UNLIMITEDTIMES)
 				{
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailyMarkSoldPerPost");
 					$data["error"]=$errorMsg;
@@ -1078,7 +1078,7 @@ function addDayswithdate($date,$days){
 			
 				$user=$this->nativesession->get("user");
 				$times=$this->tradecomments_model->getMaxTimesMarkSold($user["userID"]);
-				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST>0)
+				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST<UNLIMITEDTIMES)
 				{
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailyMarkSoldPerPost");
 					$data["error"]=$errorMsg;

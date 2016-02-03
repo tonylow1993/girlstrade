@@ -76,6 +76,7 @@ define("MAXTIMESDAILY_DELETEADS",10);
 
 define("MAXTIMEDAILY_SENDMSGFROMBUYER", 3);
 define("MAXTIME_SENDMSGFROMBUYER", 10);
+define("UNLIMITEDTIMES", 9999);
 
 define("SMTP_PROTOCOL" , "smtp");
 define("SMTP_HOST", "ssl://a2plcpnl0127.prod.iad2.secureserver.net" );
