@@ -103,8 +103,20 @@ function addDayswithdate($date,$days){
 			if(intval($userID)==intval($fUserID) and $fuseRID<>0)
 			{
 				$errorMsg="You cannot request a message from your own post";
-				redirect(base_url().MY_PATH."viewItem/index/".$postID."/".$errorMsg."?prevURL=".$prevURL);
-				
+				$data["lang_label"]=$this->nativesession->get("language");
+				$data["PrevURL"]=$prevURL;
+				$data["error"]=$errorMsg;
+				$data['redirectToWhatPage']="Previous Page";
+				if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+					$data['redirectToPHP']=base_url();
+				else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+					$data['redirectToPHP']=base_url();
+	 			else 
+	 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
 			}
 			else 
 			{
@@ -117,14 +129,53 @@ function addDayswithdate($date,$days){
 					$path=base_url().MY_PATH."/home/loginPage";
 					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendToSeller( $username, $path);
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendToSeller());
+					
 					$errorMsg=$this->lang->line("MessagesDirectSendSuccess");
-					redirect(base_url().MY_PATH."viewItem/index/".$postID."/EMPTY/".($errorMsg)."?prevURL=".$prevURL);
-							
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["PrevURL"]=$prevURL;
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+						$data['redirectToPHP']=base_url();
+		 			else 
+		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					
+					//----------setup the header menu----------
+					$data["menuMyAds"]="";
+					$data["menuInbox"]="";
+					$data["menuInboxNum"]="0";
+					$data["menuPendingRequest"]="";
+					$data["menuPendingRequestNumber"]="0";
+					if(isset($userInfo)){
+						$menuCount=$this->getHeaderCount($fUserID);
+						$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+						$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+					}
+					//----------------------------
+					$this->load->view('successPage', $data);		
 				}
 				else 
 				{	$errorMsg=$this->lang->line("MessagesDirectSendErrorLoginFirst");
-					redirect(base_url().MY_PATH."viewItem/index/".$postID."/".$errorMsg."?prevURL=".$prevURL);
-				
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["PrevURL"]=$prevURL;
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+						$data['redirectToPHP']=base_url();
+		 			else 
+		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
+			
 				}
 			}
 			}catch (Exception $e) {

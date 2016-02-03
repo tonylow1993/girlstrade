@@ -319,7 +319,7 @@
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo "<a href=";
-		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode($previousCurrent_url);
+		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url());
 		                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
 		                  echo "<i class=\"icon-right-hand\"></i> Direct send request </a>";
 	                  }
@@ -384,7 +384,7 @@
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo"<div class=\"user-ads-action\">";
 		                  echo "<a href=";
-		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode($previousCurrent_url);
+		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url());
 		                  echo " data-toggle=\"modal\" class=\"btn btn-default btn-block directSendButton\">";
 		                  echo "<i class=\"icon-right-hand\"></i> Direct send request </a> </div>";
 	                  }
