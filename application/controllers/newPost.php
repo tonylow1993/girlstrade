@@ -143,7 +143,7 @@ class newPost extends CI_Controller {
 				return;
 			}
 			$NumOfPostTimes=$this->post->getNUMOFTIMESPOST($data["userID"]);
-			if($NumOfPostTimes>NUMOFTIMESPOST)
+			if($NumOfPostTimes>NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
 			{
 				$errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
 				$data["error"]=$errorMsg;
@@ -728,7 +728,7 @@ public function getChildCategory($parentID)
         $usertype="PREMIUMPOSTEXPIRYDAYS"; //$userInfo("usertype");
         
         $NumOfPostTimes=$this->post->getNUMOFTIMESPOST($userID);
-        if($NumOfPostTimes>NUMOFTIMESPOST)
+        if($NumOfPostTimes>NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
         {
     	    $errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
 				$data["error"]=$errorMsg;
