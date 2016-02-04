@@ -870,7 +870,11 @@ function setup(){
 	document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
 	document.getElementById("myForm").submit();
 }
+function isNumber(n) {
+	  return !isNaN(parseFloat(n)) && isFinite(n);
+	}
 function priceSetup(){
+	var returnvalue=true;
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;
 	//var locID=0;
@@ -878,22 +882,25 @@ function priceSetup(){
 	var keywords=document.getElementById("ads").value;
 	   if(keywords.trim()=='')
 		   keywords='0';
-	   var minPrice=document.getElementById("minPrice").value;
-	   var maxPrice=document.getElementById("maxPrice").value;
+	   var minPrice=(document.getElementById("minPrice").value);
+	   var maxPrice=(document.getElementById("maxPrice").value);
 
-	if(!isNumber(minPrice) || !isNumber(maxPrie))
-		alert("Invalid price format!");
-	else if(Number(minPrice) > Number(maxPrice))
-		alert("Invalid price range search!");
-	else {
+	   
+ 	if(!isNumber(minPrice) || !isNumber(maxPrice)){
+		alert("<?php echo $this->lang->line('invalidpriceformat'); ?>");
+ 		returnvalue=false;
+ 	}else if(Number(minPrice) > Number(maxPrice)){
+		alert("<?php echo $this->lang->line('invalidpricerange'); ?>");
+ 		returnvalue=false;
+ 	}else {
 		document.getElementById("priceForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
-		document.getElementById("priceForm").submit();
-	}
+ 		document.getElementById("priceForm").submit();
+ 	}
+ 	return returnvalue;
 }
-function isNumber(n) {
-	  return !isNaN(parseFloat(n)) && isFinite(n);
-	}
+
 function priceSetup1(){
+	var returnvalue=true;
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;
 //var locID=0;
@@ -901,16 +908,21 @@ function priceSetup1(){
 	var keywords=document.getElementById("ads").value;
 	   if(keywords.trim()=='')
 		   keywords='0';
-	   var minPrice=document.getElementById("minPrice1").value;
-	   var maxPrice=document.getElementById("maxPrice1").value;
-	   if(!isNumber(minPrice) || !isNumber(maxPrie))
-			alert("Invalid price format!");
-		else if(Number(minPrice) > Number(maxPrice))
-			alert("Invalid price range search!");
-		else {
-		document.getElementById("priceForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
-		document.getElementById("priceForm1").submit();
-		}
+	   var minPrice=(document.getElementById("minPrice1").value);
+	   var maxPrice=(document.getElementById("maxPrice1").value);
+	   
+ 	  if(!isNumber(minPrice) || !isNumber(maxPrice)){
+			alert("<?php echo $this->lang->line('invalidpriceformat'); ?>");
+ 			returnvalue=false;
+ 		}else if(Number(minPrice) > Number(maxPrice)){
+			alert("<?php echo $this->lang->line('invalidpricerange'); ?>");
+ 			returnvalue=false;
+		}else {
+		   document.getElementById("priceForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+			document.getElementById("priceForm1").submit();
+			
+	   } 
+ 	return returnvalue;
 }
 function locSetup1(){
 	var catID=document.getElementById("search-category").value;

@@ -217,3 +217,5 @@ $lang["YouHaveRemainPost"]="You have remain %s posts.";
 $lang["HomeLoginInvalid"]="Incorrect username or password";
 $lang["ExceedMAXTIMEDAILY_SENDMSGFROMBUYER"]="Exceed Max Daily Times to send to seller";
 $lang["ExceedMAXTIME_SENDMSGFROMBUYER"]="Exceed Max Total Times to send to seller";
+$lang["invalidpriceformat"]="Invalid price format!";
+$lang["invalidpricerange"]="Invalid price range search!";
