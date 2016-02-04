@@ -880,9 +880,19 @@ function priceSetup(){
 		   keywords='0';
 	   var minPrice=document.getElementById("minPrice").value;
 	   var maxPrice=document.getElementById("maxPrice").value;
-	document.getElementById("priceForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
-	document.getElementById("priceForm").submit();
+
+	if(!isNumber(minPrice) || !isNumber(maxPrie))
+		alert("Invalid price format!");
+	else if(Number(minPrice) > Number(maxPrice))
+		alert("Invalid price range search!");
+	else {
+		document.getElementById("priceForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+		document.getElementById("priceForm").submit();
+	}
 }
+function isNumber(n) {
+	  return !isNaN(parseFloat(n)) && isFinite(n);
+	}
 function priceSetup1(){
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;
@@ -893,8 +903,14 @@ function priceSetup1(){
 		   keywords='0';
 	   var minPrice=document.getElementById("minPrice1").value;
 	   var maxPrice=document.getElementById("maxPrice1").value;
-	document.getElementById("priceForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
-	document.getElementById("priceForm1").submit();
+	   if(!isNumber(minPrice) || !isNumber(maxPrie))
+			alert("Invalid price format!");
+		else if(Number(minPrice) > Number(maxPrice))
+			alert("Invalid price range search!");
+		else {
+		document.getElementById("priceForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+		document.getElementById("priceForm1").submit();
+		}
 }
 function locSetup1(){
 	var catID=document.getElementById("search-category").value;
