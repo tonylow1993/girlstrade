@@ -157,17 +157,22 @@ if (is_array($array) || is_object($array))
 				
 				$Str1a="update location set postCount=0;";
 				$Str2a="update category set postCount=0;";
-				$Str1="UPDATE location a INNER JOIN ( SELECT locID, COUNT(*) AS NoOfCount FROM post where status='A' GROUP BY locID )b ON a.locationID = b.locID ";
+				$Str1="UPDATE location a INNER JOIN ( SELECT locID, COUNT(*) AS NoOfCount FROM post where status='A' GROUP BY locID ) b ON a.locationID = b.locID ";
 					$Str1=$Str1."SET a.postCount = b.NoOfCount ";
 					$Str2="UPDATE category a INNER JOIN (SELECT catID, COUNT(*) AS NoOfCount FROM post where status='A' GROUP BY catID) b  ON a.categoryID = b.catID ";
 					$Str2=$Str2."SET a.postCount = b.NoOfCount ";
+					
+					$Str3a="UPDATE location a INNER JOIN ( SELECT parentID, SUM(postCount) AS NoOfCount FROM location ";
+					$Str3a=$Str3a."WHERE parentID IS NOT NULL and level=3 GROUP BY parentID ) b ON a.locationID = b.parentID ";
+					$Str3a=$Str3a." SET a.postCount = b.NoOfCount + a.postCount";
+					
+					
 					$Str3="UPDATE location a INNER JOIN ( SELECT parentID, SUM(postCount) AS NoOfCount FROM location ";
-					$Str3=$Str3."WHERE parentID IS NOT NULL GROUP BY parentID ) b ON a.locationID = b.parentID ";
-					$Str3=$Str3."SET a.postCount = b.NoOfCount + a.postCount";
+					$Str3=$Str3."WHERE parentID IS NOT NULL and level=2 GROUP BY parentID ) b ON a.locationID = b.parentID ";
+					$Str3=$Str3."  SET a.postCount = b.NoOfCount + a.postCount";
 					$Str4="UPDATE category a INNER JOIN (SELECT parentID, SUM(postCount) AS NoOfCount FROM category ";
 					$Str4=$Str4."WHERE parentID IS NOT NULL GROUP BY parentID ) b  ON a.categoryID = b.parentID ";
 					$Str4=$Str4."SET a.postCount = b.NoOfCount + a.postCount";
-			
 				$Str5="update category set childCount = 0;";
 				$Str6="update category a inner join ( ";
 				$Str6=$Str6." select parentID, count(*) as NoOfCount";
@@ -212,6 +217,7 @@ if (is_array($array) || is_object($array))
 				
 				$this->db->query($Str1);
 				$this->db->query($Str2);
+				$this->db->query($Str3a);
 				$this->db->query($Str3);
 				$this->db->query($Str4);
 				$this->db->query($Str5);

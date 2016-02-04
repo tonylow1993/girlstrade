@@ -42,9 +42,28 @@ $(document).ready(function() {
         owlitem.trigger('owl.prev');
     })
 
+   var owlitem1 = $(".item1-carousel");
+
+    owlitem1.owlCarousel({
+        //navigation : true, // Show next and prev buttons
+        navigation: false,
+        pagination: true,
+        items: 5,
+		itemsDesktopSmall: 	[979,3],
+		itemsTablet: [768, 3],
+        itemsTabletSmall: [660, 2],
+		itemsMobile: [400,1]
 
 
+    });
 
+    // Custom Navigation Events
+    $("#nextItem1").click(function() {
+        owlitem1.trigger('owl.next');
+    })
+    $("#prevItem1").click(function() {
+        owlitem1.trigger('owl.prev');
+    })
     // Featured Listings  carousel || HOME PAGE
     var featuredListSlider = $(".featured-list-slider");
 

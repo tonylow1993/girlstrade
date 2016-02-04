@@ -58,25 +58,26 @@
              if(!isset($lang_label))
  	            		$lang_label="";
              	$name=$value[0]->name;
+             	$postCount="(".$value[0]->postCount.")";
              	if($lang_label<>"english")
              		$name=$value[0]->nameCN;
              	if($value[0]->level==1){
              		$str="";
              		if(strcmp($locID_,$id)==0)
              			$str=" selected='selected' ";
-             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
+             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name.$postCount."</option>";
              	}else if($value[0]->level==2)
              	{
              		$str="";
              		if($locID_==$id)
              			$str=" selected='selected' ";
-             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;'>--".$name." </option>";
+             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;'>--".$name.$postCount." </option>";
              	}else if($value[0]->level==3)
              	{
              		$str="";
              		if($locID_==$id)
              			$str=" selected='selected' ";
-             		echo "<option ".$str." value='".$id."'>----".$name." </option>";
+             		echo "<option ".$str." value='".$id."'>----".$name.$postCount." </option>";
              	}
              }
              ?>
@@ -126,9 +127,9 @@
                		continue;
                	if(!isset($lang_label))
                		$lang_label="";
-               		$name=$value[0]->name." (".$value[0]->viewCount.")";
+               		$name=$value[0]->name." (".$value[0]->postCount.")";
                		if($lang_label<>"english")
-               			$name=$value[0]->nameCN." (".$value[0]->viewCount.")";
+               			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
                			$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
                			if($value[0]->level==1){
                				
