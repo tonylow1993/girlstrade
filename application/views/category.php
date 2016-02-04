@@ -374,13 +374,42 @@
                 <ul class="browse-list list-unstyled long-list">
                  <li> <a id="searchCriteria" href="#" onclick="return setupTab('allAds');" ><?php echo $lblConditionAll;?>
                   
-                  		<span class="count">28,705</span></a></li>
+                  		<span class="count">
+                  		<?php 
+			                $rowCount=0;
+			                if($itemList<>null && sizeof($itemList)>0)
+			                	$rowCount=sizeof($itemList);
+			                echo $rowCount;
+			                ?>
+                  		</span></a></li>
                   <li> <a id="searchCriteria" href="#" onclick="return setupTab('newAds');"><?php echo $lblConditionNew;?>
                   
-                  		<span class="count">28,705</span></a></li>
+                  		<span class="count">
+                  		<?php 
+			                $rowCount=0;
+			                if($itemList<>null && sizeof($itemList)>0)
+			                	foreach($itemList as $id=>$item)
+								{
+									if(strcmp($item["newUsed"], "N")<>0)
+										continue;
+									$rowCount=$rowCount+1;
+								}
+			                	echo $rowCount;
+			                ?>
+                  		</span></a></li>
                   <li> <a id="searchCriteria" href="#" onclick="return setupTab('usedAds');"><?php echo $lblConditionUsed;?>
                   
-                  		<span class="count">18,705</span></a></li>
+                  		<span class="count"><?php 
+			                $rowCount=0;
+			                if($itemList<>null && sizeof($itemList)>0)
+			                	foreach($itemList as $id=>$item)
+								{
+									if(strcmp($item["newUsed"], "U")<>0)
+										continue;
+									$rowCount=$rowCount+1;
+								}
+			                	echo $rowCount;
+			                ?></span></a></li>
                 </ul>
               </div>
               
@@ -398,15 +427,43 @@
           <div class="tab-box "> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\"";?>
+                ><a href="#allAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionAny;?>
-                <span class="badge">228,705</span></a></li>
+                <span class="badge"><?php 
+                $rowCount=0;
+                if($itemList<>null && sizeof($itemList)>0)
+                	$rowCount=sizeof($itemList);
+                echo $rowCount;
+                ?></span></a></li>
                 <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="#newAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionNew;?>
-                <span class="badge">22,805</span></a></li>
+                <span class="badge"><?php 
+                $rowCount=0;
+                if($itemList<>null && sizeof($itemList)>0)
+                	foreach($itemList as $id=>$item)
+					{
+						if(strcmp($item["newUsed"], "N")<>0)
+							continue;
+						$rowCount=$rowCount+1;
+					}
+                	echo $rowCount;
+                ?></span></a></li>
                 <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="#usedAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionUsed;?> 
-                <span class="badge">18,705</span></a></li>
+                	<span class="badge">
+	                <?php 
+	                $rowCount=0;
+	                if($itemList<>null && sizeof($itemList)>0)
+						foreach($itemList as $id=>$item)
+						{
+							if(strcmp($item["newUsed"], "U")<>0)
+								continue;
+							$rowCount=$rowCount+1;
+						}
+	                	echo $rowCount;
+	                ?></span></a>
+	            </li>
               </ul>
               <div id="mobileFilter">
               
@@ -624,7 +681,11 @@
                 echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
                echo "</div>";
                }
-                         
+                    
+               if($rowCount==0)
+               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+               	
+               
               }else{
               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
               }
@@ -711,7 +772,9 @@
                 echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
                echo "</div>";
                }
-                         
+               if($rowCount==0)
+               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+               	 
               }else{
               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
               }
