@@ -1211,22 +1211,47 @@ function generateRandomString($length = 8) {
 		}
 		
 	}
+	
+	function minusDayswithdate($date,$days){
+		 
+		$date = strtotime("-".$days." days", strtotime($date));
+		return  date("Y-m-d", $date);
+		 
+	}
 	public function activate($userID, $code){
 		echo 'activating userID: '.$userID;
 		echo 'code: '.$code;
 		$user = $this->user->getUserByUserID($userID);
-		$user['accountStatus'] = 'A';
+		$userEmail = $this->userEmail->getUserEmailByUserID($user['userID']);
+			
 		$result = 0;
 		$result2 = 0;
-		if($code != md5($user['createDate'])){
-			echo 'Your activation code is incorrect!';
-		}else{
-			$result = $this->user->update($user);
-			$userEmail = $this->userEmail->getUserEmailByUserID($user['userID']);
-			$userEmail['status'] = 'A';
-			$result2 = $this->userEmail->update($userEmail);
-		}
+		$result3=0;
 		$errorMsg="";
+		
+		if(isset($user) && isset($userEmail)){
+			if($code != md5($user['createDate'])){
+				echo 'Your activation code is incorrect!';
+			}else{
+				$expiryDate=$this->minusDayswithdate(date("Y-m-d H:i:s"), MAXDAYSACTIVATEUSEREXPIRYDAYS);
+				if(date_format($user['createDate'], '%Y-%m-%d') >= date_format($expiryDate, '%Y-%m-%d'))
+				{
+					if(strcmp($user['accountStatus'],"U")==0){
+						$user['accountStatus'] = 'A';
+						$userEmail['status'] = 'A';
+						$result = $this->user->update($user);
+						$result2 = $this->userEmail->update($userEmail);
+						$result3=1;
+					}else{
+						$errorMsg=$errorMsg."activation failed!<br/>";
+					}
+				}else{
+					$errorMsg=$errorMsg."your activation period has expired!<br/>";
+				}
+			}
+		}else{
+			$errorMsg=$errorMsg."activation failed due to your activation period has expired and account deleted!<br/>";
+		}
 		if($result == 1){
 			$errorMsg=$errorMsg."activate the user account successfully!<br/>";
 		}else{
@@ -1258,7 +1283,7 @@ function generateRandomString($length = 8) {
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
-		if($result==1 && $result2==1) {
+		if($result==1 && $result2==1 && $result3==1) {
 			$data["error"]=$data["error"]."Registration has been completed!";
 			$this->load->view('successPage', $data);
 		}
