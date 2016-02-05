@@ -203,12 +203,18 @@ if (is_array($array) || is_object($array))
 				$str9=$str9."  		set a.viewCount=b.NoOfCount;";
 					
 				$str10a="delete from interestedproduct;";
-				$str10="  insert into interestedproduct (postID, viewCount)";
-				$str10=$str10."  select postID, NoOfCount from (";
-				$str10=$str10."  		select postID, count(*) as NoOfCount";
-				$str10=$str10."  	from postviewhistory group by postID ) a";
-				$str10=$str10."  	order by a.NoOfCount desc limit 6;";
-					
+				$str10="  insert into interestedproduct (postID, viewCount, cookies_id)";
+				$str10=$str10."  select postID, NoOfCount, cookies_id from (";
+				$str10=$str10."  		select postID, count(*) as NoOfCount, cookies_id";
+				$str10=$str10."  	from postviewhistory group by postID, cookies_id ) a";
+				//$str10=$str10."  	order by a.NoOfCount desc limit 6;";
+				
+				$str11="  insert into interestedproduct (postID, viewCount)";
+				$str11=$str11."  select postID, NoOfCount from (";
+				$str11=$str11."  		select postID, count(*) as NoOfCount";
+				$str11=$str11."  	from postviewhistory group by postID) a";
+				$str11=$str11."  	order by a.NoOfCount desc limit 6;";
+				
 				$this->db->trans_start();
 				$this->db->query($deleteStr);
 				$this->db->query($str);
@@ -229,6 +235,7 @@ if (is_array($array) || is_object($array))
 				$this->db->query($str9);
 				$this->db->query($str10a);
 				$this->db->query($str10);
+				$this->db->query($str11);
 				$this->db->trans_complete();
 			}catch(Exception $ex)
 			{

@@ -219,8 +219,8 @@
 	    function getInterestedProduct()
 	    {
 	    	$sql='';
-	    	if(!empty($_SESSION['session_id']) && $_SESSION['session_id']!=null){
-	    		$sql.="where a.session_id='".$_SESSION['session_id']."' order by a.viewCount desc limit 6";
+	    	if(!empty($_COOKIE['gt_cookie_id']) && $_COOKIE['gt_cookie_id']!=null){
+	    		$sql.="where a.cookies_id='".$_COOKIE['gt_cookie_id']."' order by a.viewCount desc limit 6";
 	    	}
 	    	else 
 	    		$sql.="order by a.viewCount desc limit 6";
