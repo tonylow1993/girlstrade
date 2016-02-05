@@ -129,6 +129,31 @@ function addDayswithdate($date,$days){
 			}
 			else 
 			{
+				
+				$DailyMaxTimes=$this->messages_model->getMaxDailyTimesBuyerDirectSend($postID, $fUserID);
+				
+				if($DailyMaxTimes>MAXTIMEDAILY_DRECTSENDFROMBUYER && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES){
+					$errorMsg=$this->lang->line("ExceedMAXTIMEDAILY_DRECTSENDFROMBUYER");
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["PrevURL"]=$prevURL;
+					$data["error"]=$errorMsg;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+							$data['redirectToPHP']=base_url();
+							else {
+								$data['redirectToPHP']=$_SESSION["previousUrl"];
+								if(strcmp($prevprevURL,"")<>0)
+									$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+							}
+							$data["successTile"]=$this->lang->line("successTile");
+							$data["failedTitle"]=$this->lang->line("failedTitle");
+							$data["goToHomePage"]=$this->lang->line("goToHomePage");
+							$this->load->view('failedPage', $data);
+				}
+				
+				
 				$result=$this->requestpost_model->insert($messageArray);
 				if($result)
 				{

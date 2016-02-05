@@ -1234,7 +1234,7 @@ function generateRandomString($length = 8) {
 				echo 'Your activation code is incorrect!';
 			}else{
 				$expiryDate=$this->minusDayswithdate(date("Y-m-d H:i:s"), MAXDAYSACTIVATEUSEREXPIRYDAYS);
-				if(date_format($user['createDate'], '%Y-%m-%d') >= date_format($expiryDate, '%Y-%m-%d'))
+				if($user['createDate'] >= $expiryDate)
 				{
 					if(strcmp($user['accountStatus'],"U")==0){
 						$user['accountStatus'] = 'A';
@@ -1243,7 +1243,10 @@ function generateRandomString($length = 8) {
 						$result2 = $this->userEmail->update($userEmail);
 						$result3=1;
 					}else{
-						$errorMsg=$errorMsg."activation failed!<br/>";
+						if(strcmp($user['accountStatus'],"A")==0)
+							$errorMsg=$errorMsg."activation has been done before!<br/>";
+						else
+							$errorMsg=$errorMsg."activation failed!<br/>";
 					}
 				}else{
 					$errorMsg=$errorMsg."your activation period has expired!<br/>";
