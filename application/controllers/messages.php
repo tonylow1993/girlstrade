@@ -130,7 +130,7 @@ function addDayswithdate($date,$days){
 			else 
 			{
 				
-				$DailyMaxTimes=$this->messages_model->getMaxDailyTimesBuyerDirectSend($postID, $fUserID);
+				$DailyMaxTimes=$this->requestpost_model->getMaxDailyTimesBuyerDirectSend($postID, $fUserID);
 				
 				if($DailyMaxTimes>MAXTIMEDAILY_DRECTSENDFROMBUYER && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMAXTIMEDAILY_DRECTSENDFROMBUYER");
