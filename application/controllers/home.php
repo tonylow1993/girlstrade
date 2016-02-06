@@ -167,7 +167,7 @@ class Home extends CI_Controller {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($user1)){
 				$menuCount=$this->getHeaderCount($user1["userID"]);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user1["userID"]); //$menuCount["inboxMsgCount"];
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1447,6 +1447,8 @@ function generateRandomString($length = 8) {
         	$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
         	$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
         }
+        
+        $data["sellerRating"]=$this->tradecomments_model->getRating($userID);
         
 		if($activeNav==1)
 		{

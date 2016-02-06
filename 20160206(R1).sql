@@ -34,7 +34,7 @@ CREATE TABLE `abusemessages` (
   `recipientPhoneNumber` varchar(20) DEFAULT NULL,
   `createDate` datetime DEFAULT NULL,
   PRIMARY KEY (`messageID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -165,7 +165,7 @@ CREATE TABLE `contactHistory` (
   PRIMARY KEY (`contactID`),
   KEY `contactTypeID` (`contactTypeID`),
   KEY `contactTypeID_2` (`contactTypeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -333,6 +333,7 @@ CREATE TABLE `message` (
   `recipientPhoneNumber` varchar(100) DEFAULT NULL,
   `commentID` bigint(20) DEFAULT '0',
   `parentID` bigint(20) DEFAULT '0',
+  `readflag` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`messageID`),
   KEY `fk_message_1_idx` (`userID`),
   KEY `fk_message_2_idx` (`fUserID`),
@@ -340,7 +341,7 @@ CREATE TABLE `message` (
   CONSTRAINT `fk_message_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_message_2` FOREIGN KEY (`fUserID`) REFERENCES `user` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_message_3` FOREIGN KEY (`replyID`) REFERENCES `message` (`messageID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -400,7 +401,7 @@ CREATE TABLE `picture` (
   KEY `fk_picture_2_idx` (`userID`),
   CONSTRAINT `fk_picture_1` FOREIGN KEY (`postID`) REFERENCES `post` (`postID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_picture_2` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -455,7 +456,7 @@ CREATE TABLE `post` (
   PRIMARY KEY (`postID`),
   KEY `fk_post_1_idx` (`catID`),
   CONSTRAINT `fk_post_1` FOREIGN KEY (`catID`) REFERENCES `category` (`categoryID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -658,7 +659,7 @@ CREATE TABLE `tag` (
   PRIMARY KEY (`sequence`,`postID`),
   KEY `fk_table1_1_idx` (`postID`),
   CONSTRAINT `fk_table1_1` FOREIGN KEY (`postID`) REFERENCES `post` (`postID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -761,7 +762,7 @@ CREATE TABLE `user` (
   `blockDate` datetime DEFAULT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE KEY `usename_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -938,4 +939,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-06  9:47:27
+-- Dump completed on 2016-02-06 11:50:33

@@ -9,6 +9,8 @@ class viewProfile extends getCategory {
 		$this->load->model('post_model');
 		$this->load->model('users_model');
 		$this->load->model('user_model', 'user');
+		$this->load->model('tradecomments_model');
+		
 		$data["lang_label"] = $this->nativesession->get("language");
             $this->lang->load("message",$this->nativesession->get('language'));
             
@@ -125,7 +127,8 @@ class viewProfile extends getCategory {
             $NoOfItemCount=0;
 			$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords, $data["sortByID"]);
 			$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
-	      
+	      	$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
+	      	
 			$data["NoOfItemCount"]=$NoOfItemCount;
 	       $data["lang_label_text"] = $this->lang->line("lang_label_text");
 	       $data["lang_label"] = $this->nativesession->get("language");
@@ -227,7 +230,8 @@ class viewProfile extends getCategory {
 		$NoOfItemCount=0;
 		$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords, $data["sortByID"]);
 		$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
-		 
+		$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
+		
 		$data["NoOfItemCount"]=$NoOfItemCount;
 		$data["lang_label_text"] = $this->lang->line("lang_label_text");
 		$data["lang_label"] = $this->nativesession->get("language");

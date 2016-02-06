@@ -16,6 +16,7 @@
 		var $messageIOType='';
 		var $commentID='';
 		var $parentID=0;
+		var $readflag='N';
 		
 	    function __construct()
 	    {
@@ -91,6 +92,8 @@
 			return $query2->result();
 		}
 		
+		
+		
 		public function getNoOfItemCountInOutgoing($userId)
 		{
 			$strQuery="select count(distinct messageID) as NoOfCount from message where (status in ('R', 'C') and userID=$userId) or (status in ('OC', 'Op') and fUserID=$userId) ";
@@ -165,6 +168,17 @@
 		
 			return $query2->result();
 				
+		}
+		
+		public function getUnReadInboxMessage($userId){
+			$strQuery="select count(distinct messageID) as NoOfCount from message where ((status in ('Op', 'OC') and userID=$userId) or (status in ('R', 'C') and fUserID=$userId )) and readflag='N' ";
+			$NoOfItemCount=0;
+			$query2 = $this->db->query($strQuery);
+			$var2=$query2->result_array();
+			//var_dump($var2);
+			$NoOfItemCount=$var2[0]["NoOfCount"];
+				
+			return $NoOfItemCount;
 		}
 		
 		public function getNoOfItemCountInInbox($userId){

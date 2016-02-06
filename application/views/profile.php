@@ -38,7 +38,7 @@ function sendIt() {
                 <p class="userRating">
                 User Rating: </p>
                 </td><td>
-                <div id="userStar"></div>
+                <div id="userStar"><?php echo $sellerRating;?></div>
                 </td></tr>
                 </table>
               </div>

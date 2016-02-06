@@ -23,6 +23,17 @@ var $buyerDate='';
 		parent::__construct();
 	}
 	
+	function getRating($userID){
+		$strQuery="select sum(a.sellerRating) as NoOfCount from tradecomments a inner join post b on a.postID=b.postID where b.userID=$userID ";
+		$NoOfItemCount=0;
+		$query2 = $this->db->query($strQuery);
+		$var2=$query2->result_array();
+		//var_dump($var2);
+			$NoOfItemCount=$var2[0]["NoOfCount"];
+		return $NoOfItemCount;
+		
+	}
+	
 	function getTradeComments($ID){
 		$query = $this->db->from('tradecomments')->where('ID', $ID)->get();
 		$var=$query->result();
@@ -129,7 +140,7 @@ var $buyerDate='';
 			}
 		}catch(Exception $ex)
 		{
-			echo $ex->getMessage();
+			//echo $ex->getMessage();
 			log_message('error', "[Class]: ".$this->router->fetch_class()."[Method:] ".
 					$this->router->fetch_method().
 					"[Line]: ".$ex->getLine()."[Error]: ".$ex->getMessage());
@@ -188,7 +199,7 @@ var $buyerDate='';
 			$NoOfItemCount=0;
 			$query2 = $this->db->query($strQuery);
 			$var2=$query2->result_array();
-			var_dump($var2);
+			//var_dump($var2);
 			$NoOfItemCount=$var2[0]["NoOfCount"];
 		
 			return $NoOfItemCount;

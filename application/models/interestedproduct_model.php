@@ -4,6 +4,7 @@ class interestedproduct_model extends CI_Model {
 	var $postID ='';
 	var $viewCount ='';
 	var $session_id='';
+	var $cookies_id='';
 	var	$createDate='';
 		
 	function __construct()
