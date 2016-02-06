@@ -79,7 +79,7 @@
 						$postID=$row['postID'];
 						$soldToUserID=$row["soldToUserID"];
 						$soldToUserName=$row["soldToUserName"];
-                		echo "<tr>";
+                		echo "<tr onclick=\"editData($messageID)\">";
                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
                         echo "<label>";
                         echo "  <input type=\"checkbox\">";
@@ -195,7 +195,10 @@
               </table>
             </div>
             <!--/.row-box End--> 
-            
+            <form name="frmEdit" id="frmEdit" action="<?php echo base_url().MY_PATH;?>messages/updateReadInbox" method="post"/>
+				<input type="hidden" name="id" id="id" value="" />
+			</form>
+
          
         </div>
         <!--/.page-content--> 
@@ -308,6 +311,27 @@
   
 </div>
 <!-- /.wrapper --> 
+
+<script>
+function editData(id)
+{
+  //  $("#id").val(id);
+  //  document.frmEdit.submit();    
+
+   // $("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url().MY_PATH;?>messages/updateReadInbox",
+		data: { messageID: id },
+		success: function(response){
+			var result = JSON.parse(response);
+	    	//$("#".concat(ctrlName)).html(result.icon);
+	    //	$("#".concat(ctrlErrName)).html(result.message);
+	    	}
+	});
+    
+}
+</script>
 <script>
 function passToModal() {
    $("#markSoldAds").on("show.bs.modal", function(event) {

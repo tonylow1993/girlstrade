@@ -381,6 +381,7 @@ function addDayswithdate($date,$days){
 			'fUserID'=>intval($fUserID),
 			'parentID'=> 0,
 			'status' => "Op",
+			'readflag'=>'N',
             'createDate' => date("Y-m-d H:i:s"),
 			//'fUserID'=>intval($this->input->post('fuserID')),
 			//'title'=>$this->input->post('title'),
@@ -1313,5 +1314,15 @@ function addDayswithdate($date,$days){
 		
 			return $data;
 		}
+	public function updateReadInbox(){
+		$messageID=$_POST["messageID"];
+		$this->messages_model->updateReadInboxFlag($messageID);
+		$data['status'] = 'A';
+		$data['class'] = "has-success";
+		$data['message'] = '';
+		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
+		echo json_encode($data);
+		return;
+	}
 }
 ?>

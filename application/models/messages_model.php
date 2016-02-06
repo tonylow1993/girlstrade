@@ -22,7 +22,21 @@
 	    {
 	        parent::__construct();
 	    }
+	    function updateReadInboxFlag($messageID){
 	    
+	    	try {
+	    		$this->db->trans_start();
+	    		$data=array('readflag'=>'Y');
+	    		$this->db->where('ID', $messageID);
+	    		$result=$this->db->update('tradecomments', $data);
+	    		$this->db->trans_complete();
+	    	}catch(Exception $ex)
+	    	{
+	    		echo $ex->getMessage();
+	    		return;
+	    	}
+	    
+	    }
 	    public function isLastMessage($messageArray, $type){
 	    	
 	    	$postID=$messageArray->postID;
