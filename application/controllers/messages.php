@@ -164,6 +164,8 @@ function addDayswithdate($date,$days){
 					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendToSeller( $username, $path);
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendToSeller());
 					
+					$this->admin_model->getDirectSendStatByUserID($fUserID);
+					
 					$errorMsg=$this->lang->line("MessagesDirectSendSuccess");
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
@@ -783,7 +785,7 @@ function addDayswithdate($date,$days){
 					'recipientName'=>$this->input->post('recipient-name'),
 					'senderEmail'=>$this->input->post('sender-email'),
 					'recipientPhoneNumber'=>$this->input->post('recipient-Phone-Number'));
-			print_r($messageArray);
+			//print_r($messageArray);
 				
 // 			if(intval($userID)==intval($fUserID) and $fUserID<>0)
 // 			{
