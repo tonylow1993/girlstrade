@@ -81,7 +81,7 @@ class viewProfile extends getCategory {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($loginUser)){
 				$menuCount=$this->getHeaderCount($loginUser['userID']);
-				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']);
+				$data["menuInboxNum"]=$menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($loginUser['userID']);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -265,7 +265,7 @@ class viewProfile extends getCategory {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($loginUser)){
 				$menuCount=$this->getHeaderCount($loginUser['userID']);
-				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']);
+				$data["menuInboxNum"]= $menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($loginUser['userID']);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 		//----------------------------
