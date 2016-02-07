@@ -67,7 +67,14 @@ input[type=checkbox]
            <div id="accordion" class="panel-group">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h4 class="panel-title"> <a href="#collapseB1"  data-toggle="collapse"> <?php  echo $this->lang->line("My_Detail");?></a> </h4>
+                  <h4 class="panel-title"> 
+					<a href="#collapseB1"  data-toggle="collapse"> <?php  echo $this->lang->line("My_Detail");?></a> 
+					<a id="menuTitle" class="pull-right" data-toggle="collapse" href="#collapseB1" aria-expanded="true">
+					  <span id="menuTitle">
+						<i class="fa fa-angle-down"></i>
+					  </span>
+					</a>
+				  </h4>
                 </div>
                 <div class="panel-collapse collapse in" id="collapseB1">
                   <div class="panel-body">
@@ -130,7 +137,14 @@ input[type=checkbox]
               </div>
 			  <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h4 class="panel-title"> <a href="#collapseB2"  data-toggle="collapse"> <?php echo $this->lang->line("Settings");?> </a> </h4>
+                  <h4 class="panel-title"> 
+					<a href="#collapseB2"  data-toggle="collapse"> <?php echo $this->lang->line("Settings");?> </a> 
+					<a id="menuTitle" class="pull-right" data-toggle="collapse" href="#collapseB2" aria-expanded="true">
+					  <span id="menuTitle">
+						<i class="fa fa-angle-down"></i>
+					  </span>
+					</a>
+				  </h4>
                 </div>
                 <div class="panel-collapse collapse" id="collapseB2">
                   <div class="panel-body">
@@ -170,7 +184,14 @@ input[type=checkbox]
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h4 class="panel-title"> <a href="#collapseB3"  data-toggle="collapse"> <?php echo $this->lang->line("Preferences");?> </a> </h4>
+                  <h4 class="panel-title"> 
+					<a href="#collapseB3"  data-toggle="collapse"> <?php echo $this->lang->line("Preferences");?> </a> 
+					<a id="menuTitle" class="pull-right" data-toggle="collapse" href="#collapseB3" aria-expanded="true">
+					  <span id="menuTitle">
+						<i class="fa fa-angle-down"></i>
+					  </span>
+					</a>
+				  </h4>
                 </div>
                 <div class="panel-collapse collapse" id="collapseB3">
                   <div class="panel-body">
