@@ -3072,9 +3072,9 @@ function generateRandomString($length = 8) {
 		$data['class'] = "has-success";
 		$data['message'] = '';
 		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
-		//echo json_encode($data);
-		//return;
-		$this->getAccountPage("1", $pageNum);
+		echo json_encode($data);
+		return;
+		//$this->getAccountPage("1", $pageNum);
 	}
 	
 	public function check_session(){
