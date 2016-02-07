@@ -589,9 +589,9 @@
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 if($item["getDisableSavedAds"])
-               		 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
+               		 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
                 else
-             	   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
+             	   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
                 
                 echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
                echo "</div>";
@@ -963,7 +963,8 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 			var result = JSON.parse(response);
 	    	$("#".concat(ctrlName)).html(result.icon);
 	    	$("#Err".concat(ctrlName)).html(result.message);
-	    	$("#".concat(clickLink))
+	    	//$("#".concat(clickLink)).attr("href", "#");
+	    	$("#".concat(clickLink)).attr("style", "pointer-events: none; cursor: default;color:yellow;");
 	    	}
 	});
 };
