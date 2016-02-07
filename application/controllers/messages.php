@@ -192,7 +192,7 @@ function addDayswithdate($date,$days){
 					$data["menuPendingRequestNumber"]="0";
 					if(isset($userInfo)){
 						$menuCount=$this->getHeaderCount($fUserID);
-						$data["menuInboxNum"]=$menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($fUserID);
+						$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID); //$menuCount["inboxMsgCount"]; //
 						$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 					}
 					//----------------------------
@@ -314,7 +314,7 @@ function addDayswithdate($date,$days){
 						$data["menuPendingRequestNumber"]="0";
 						if(isset($userInfo)){
 							$menuCount=$this->getHeaderCount($fUserID);
-							$data["menuInboxNum"]=$menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($fUserID);
+							$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID); //$menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($fUserID);
 							$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 						}
 						//----------------------------
@@ -501,7 +501,7 @@ function addDayswithdate($date,$days){
 					$data["menuPendingRequestNumber"]="0";
 					if(isset($userInfo)){
 						$menuCount=$this->getHeaderCount($fUserID);
-						$data["menuInboxNum"]=$menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($fUserID);
+						$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID); //$menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($fUserID);
 						$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 					}
 					//----------------------------

@@ -256,7 +256,7 @@ class getCategory extends CI_Controller {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userInfo)){
 				$menuCount=$this->getHeaderCount($userInfo['userID']);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($userInfo['userID']);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo['userID']); //$menuCount["inboxMsgCount"]; //
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 		//----------------------------
