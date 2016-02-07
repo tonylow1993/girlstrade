@@ -177,6 +177,14 @@
                       </tr>
                       <tr>
                       	<td>
+                        <p class=" no-margin "><strong><?php echo $this->lang->line("lblRemainQty").": ";?></strong> 
+                        </p></td>
+                        <td><p class="itemInfoData">
+                        <?php echo $remainQty;?>
+                        </p></td>
+                      </tr>
+                      <tr>
+                      	<td>
                         <p class=" no-margin "><strong><?php echo $this->lang->line("lblDatePosted").": ";?></strong> 
                         </p></td>
                         <td><p class="itemInfoData">

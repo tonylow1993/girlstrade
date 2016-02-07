@@ -125,6 +125,7 @@
                 $data["itemName"] = $data["lang_label"]<>"english" ? $var[0]->itemNameCH : $var[0]->itemName;
                 $data["createDate"] = $var[0]->createDate;
                 $data["currency"] = $var[0]->currency;
+                $data["remainQty"]=$var[0]->remainQty;
                 $data["price"] = $var[0]->itemPrice;
                 $data["AdsProduct"] = array($var[0]->postID => $pic);
                 $data["itemDesc"] = $var[0]->description;
