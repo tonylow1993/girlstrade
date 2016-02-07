@@ -83,9 +83,9 @@
 						$soldToUserName=$row["soldToUserName"];
 						$readflag="";
 						if(strcmp($row["readflag"],"N")==0)
-							$readflag="bgcolor=\"#FF0000\"";
+							$readflag="bgcolor=\"#FF0000\" onclick=\"editData($messageID, $pageNum)\"";
 						
-                		echo "<tr ".$readflag." onclick=\"editData($messageID, $pageNum)\">";
+                		echo "<tr ".$readflag." >";
                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
                         echo "<label>";
                         echo "  <input type=\"checkbox\">";
@@ -330,7 +330,8 @@ function editData(id, pageNo)
 		url: "<?php echo base_url().MY_PATH;?>home/updateReadInbox",
 		data: { messageID: id , pageNum: pageNo},
 		success: function(response){
-			var result = JSON.parse(response);
+			location.href="<?php echo base_url().MY_PATH;?>home/getAccountPage/1/".concat(pageNo);
+			//var result = JSON.parse(response);
 	    	//$("#".concat(ctrlName)).html(result.icon);
 	    //	$("#".concat(ctrlErrName)).html(result.message);
 	    	}
