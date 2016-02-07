@@ -582,7 +582,7 @@
 				echo "</div>";
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
-                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$title $postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
@@ -670,7 +670,7 @@
 				echo "</div>";
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
-                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$title $postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
@@ -761,7 +761,7 @@
 				echo "</div>";
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
-                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$title $postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";

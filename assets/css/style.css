@@ -4349,4 +4349,21 @@ nav.slider-nav a.next {
 	background: #E2348C;
 }
 
+.ads-details h5 a{
+  color: #6B6B6B;
+  font-weight: 300;
+}
+
+.ads-details h5 .add-title-girlstrade a{
+  color: #212121;
+  font-weight: 500;
+}
+
+.ads-details h5 a:hover{
+  color: #E2348C;
+}
+
+.ads-details h5 .add-title-girlstrade a:hover{
+  color: #E2348C;
+}
 
