@@ -26,6 +26,8 @@
 <!--                   </div> -->
 <!--                 </div> -->
 <!--               </div> -->
+
+		<!-- table-striped -->	
               <table id="addManageTable" class="table  table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr>
@@ -81,7 +83,7 @@
 						$soldToUserName=$row["soldToUserName"];
 						$readflag="";
 						if(strcmp($row["readflag"],"N")==0)
-							$readflag="bgcolor=\"yellow\"";
+							$readflag="bgcolor=\"#FF0000\"";
 						
                 		echo "<tr ".$readflag." onclick=\"editData($messageID, $pageNum)\">";
                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
