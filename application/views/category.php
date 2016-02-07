@@ -1104,9 +1104,9 @@ function savedAds(ctrlValue, ctrlName) {
               {
               	if(!isset($lang_label))
               		$lang_label="";
-              		$name=$value[0]->name;
+              		$name=$value[0]->name." (".$value[0]->postCount.")";
               		if($lang_label<>"english")
-              			$name=$value[0]->nameCN;
+              			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
               			if($value[0]->level==3){
               				if(in_array($value[0]->locationID, $level3)){
               					$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
@@ -1147,9 +1147,9 @@ function savedAds(ctrlValue, ctrlName) {
               {
               	if(!isset($lang_label))
               		$lang_label="";
-              		$name=$value[0]->name;
+              		$name=$value[0]->name." (".$value[0]->postCount.")";
               		if($lang_label<>"english")
-              			$name=$value[0]->nameCN;
+              			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
               			if($value[0]->level==3){
               					if(in_array($value[0]->locationID, $level3)){
               						$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
@@ -1189,9 +1189,9 @@ function savedAds(ctrlValue, ctrlName) {
               {
               	if(!isset($lang_label))
               		$lang_label="";
-              		$name=$value[0]->name;
+              		$name=$value[0]->name." (".$value[0]->postCount.")";
               		if($lang_label<>"english")
-              			$name=$value[0]->nameCN;
+              			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
               			if($value[0]->level==3){
               				if(in_array($value[0]->locationID, $level3)){
               						$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
