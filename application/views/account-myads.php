@@ -77,10 +77,10 @@
 						 $soldUsersstr=base64_encode($soldUsersstr);
 						echo "<tr>";
 //                    	echo "<td style=\"width:5%; border: none;\" class=\"add-img-selector\"><div class=\"checkbox\">";
-                        echo "<label>";
-                        echo "  <input type=\"checkbox\">";
-                        echo "</label>";
-                      	echo "</div></td>";
+//                        echo "<label>";
+//                        echo "  <input type=\"checkbox\">";
+//                        echo "</label>";
+//                      	echo "</div></td>";
                       	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\"  class=\"add-image\">";
 //                       	echo  "<div class=\"col-sm-2 no-padding photobox\">";
 // 						echo "<div style=\"position:relative; height:75px; width: 100%; overlfow:hidden;\">";
