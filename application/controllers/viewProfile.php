@@ -10,7 +10,8 @@ class viewProfile extends getCategory {
 		$this->load->model('users_model');
 		$this->load->model('user_model', 'user');
 		$this->load->model('tradecomments_model');
-		
+		$this->load->model('messages_model');
+		$this->load->model('userstat_model');
 		$data["lang_label"] = $this->nativesession->get("language");
             $this->lang->load("message",$this->nativesession->get('language'));
             
@@ -72,7 +73,18 @@ class viewProfile extends getCategory {
 			$userInfo=$this->users_model->get_user_by_id($data["userID"]);
 			
 			$loginUser=$this->nativesession->get("user");
-			
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			if(isset($loginUser)){
+				$menuCount=$this->getHeaderCount($loginUser['userID']);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']);
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
+			//----------------------------
 			if($userInfo[0]->blockDate!=null && $userInfo[0]->blockDate> date('Y-m-d'))
 			{
 				if( empty($loginUser) || 						
@@ -87,13 +99,7 @@ class viewProfile extends getCategory {
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
-				//----------setup the header menu----------
-				$data["menuMyAds"]="";
-				$data["menuInbox"]="";
-				$data["menuInboxNum"]="0";
-				$data["menuPendingRequest"]="";
-				$data["menuPendingRequestNumber"]="0";
-				//----------------------------
+				
 				$this->load->view('failedPage', $data);
 				return;
 				}
@@ -105,7 +111,7 @@ class viewProfile extends getCategory {
 			$date=new DateTime($userInfo[0]->lastLoginTime);
 			$data["lastLoginTime"]=$date->format('Y-M-d H:i:s');
 			 $user1=$this->user->getUserByUserID($data["userID"]);
-			 if(strcmp($user1["photostatus"],"A")==0)
+		if(strcmp($user1["photostatus"],"A")==0)
 			$data["userPhotoPath"]=base_url().$user1['thumbnailPath'].'/'.$user1['thumbnailName'];
 		else 
 			$data["userPhotoPath"]=base_url()."images/user.jpg";
@@ -149,13 +155,7 @@ class viewProfile extends getCategory {
 	       $data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 	         $this->nativesession->set("lastPageVisited","newPost");
 	         
-	         //----------setup the header menu----------
-				$data["menuMyAds"]="";
-				$data["menuInbox"]="";
-				$data["menuInboxNum"]="0";
-				$data["menuPendingRequest"]="";
-				$data["menuPendingRequestNumber"]="0";
-				//----------------------------
+	        
 				$data["activeTab"]="allAds";
 				$data["lblCondition"]=$this->lang->line("lblCondition");
 				$data["lblConditionNew"]=$this->lang->line("lblConditionNew");
@@ -205,8 +205,8 @@ class viewProfile extends getCategory {
 			
 			
 			
-		$date=$userInfo[0]->lastLoginTime;
-		$data["lastLoginTime"]=$date; //->format('Y-m-d H:i:s');
+		$date=new DateTime($userInfo[0]->lastLoginTime);
+		$data["lastLoginTime"]=$date->format('Y-M-d H:i:s');
 		$user1=$this->user->getUserByUserID($data["userID"]);
 		if(strcmp($user1["photostatus"],"A")==0)
 			$data["userPhotoPath"]=base_url().$user1['thumbnailPath'].'/'.$user1['thumbnailName'];
@@ -215,7 +215,7 @@ class viewProfile extends getCategory {
 	
 	
 		$data["userName"]=$userInfo[0]->username;
-		$createDate=$userInfo[0]->createDate;
+		$createDate=(new DateTime($userInfo[0]->createDate))->format('Y-M-d');
 		$data["createDate"]=$createDate;
 		$data["prevURL"]=$previousUrl;
 		$data["pageNum"]=$pageNum;
@@ -258,15 +258,53 @@ class viewProfile extends getCategory {
 		$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
 		$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
 		//----------setup the header menu----------
-		$data["menuMyAds"]="";
-		$data["menuInbox"]="";
-		$data["menuInboxNum"]="0";
-		$data["menuPendingRequest"]="";
-		$data["menuPendingRequestNumber"]="0";
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			if(isset($loginUser)){
+				$menuCount=$this->getHeaderCount($loginUser['userID']);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']);
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 		//----------------------------
 				
 		$this->load->view('profile', $data);
 	}
+	public function getHeaderCount($userID){
+		$userStat=$this->userstat_model->getUserStat($userID);
 	
+		$data["inboxMsgCount"]=0;
+		$data["approveMsgCount"]=0;
+		$data["myAdsCount"]=0;
+		$data["savedAdsCount"]=0;
+		$data["pendingMsgCount"]=0;
+		$data["archivedAdsCount"]=0;
+		$data["visitCount"]=0;
+		$data["totalMyAdsCount"]=0;
+		$data["favoriteAdsCount"]=0;
+		$data["outgoingMsgCount"]=0;
+		$data["buyAdsCount"]=0;
+		$data["directsendhistCount"]=0;
+		$data["directsendhistCount1"]=0;
+		if(isset($userStat) && !empty($userStat)){
+			$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
+			$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
+			$data["myAdsCount"]=$userStat[0]->myAdsCount;
+			$data["savedAdsCount"]=$userStat[0]->savedAdsCount;
+			$data["pendingMsgCount"]=$userStat[0]->pendingMsgCount;
+			$data["archivedAdsCount"]=$userStat[0]->archivedAdsCount;
+			$data["visitCount"]=$userStat[0]->visitCount;
+			$data["totalMyAdsCount"]=$userStat[0]->totalMyAdsCount;
+			$data["favoriteAdsCount"]=$userStat[0]->favoriteAdsCount;
+			$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
+			$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
+			$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+			$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
+		}
+	
+		return $data;
+	}
 	
 }

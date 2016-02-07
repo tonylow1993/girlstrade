@@ -167,7 +167,7 @@ class Home extends CI_Controller {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($user1)){
 				$menuCount=$this->getHeaderCount($user1["userID"]);
-				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user1["userID"]); //$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user1["userID"]); //$this->messages_model->getUnReadInboxMessage($user[0]->userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -246,9 +246,11 @@ class Home extends CI_Controller {
 				$userCreateDate = $user[0]->createDate;
 				$data["userCreateDate"]=$userCreateDate;
 				//$data["errorMsg"]=array("success1"=> ($successMsg), "error"=> ($errorMsg));
-				if(isset($user)){
-					$menuCount=$this->getHeaderCount($user[0]->userID);
-					$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$loginUser=$this->nativesession->get("user");
+				
+				if(isset($loginUser["userID"])){
+					$menuCount=$this->getHeaderCount($loginUser["userID"]);
+					$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser["userID"]);
 					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 				}
 				
@@ -267,7 +269,6 @@ class Home extends CI_Controller {
 				$isSameUser=false;
 				$isPostAlready=false;
 				$isPendingRequest=true;
-				$loginUser=$this->nativesession->get("user");
 				if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
 				{
 					if($loginUser["userID"]==$user[0]->userID)
@@ -848,7 +849,7 @@ class Home extends CI_Controller {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($user)){
 				$menuCount=$this->getHeaderCount($user["userID"]);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user["userID"]);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1282,7 +1283,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1463,7 +1464,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1482,7 +1483,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1501,7 +1502,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1517,7 +1518,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1535,7 +1536,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1554,7 +1555,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1573,7 +1574,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1592,7 +1593,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1610,7 +1611,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1628,7 +1629,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1647,7 +1648,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1662,7 +1663,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1676,7 +1677,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -2145,6 +2146,7 @@ function generateRandomString($length = 8) {
 			$userID=$row->userID;
 			$fuserID=$row->fUserID;
 			$createDate=$row->createDate;
+			$readflag=$row->readflag;
 			//$messageIOType=$row->messageIOType;
 			$userarray=$this->users_model->get_user_by_id($userID);
 			$reply="";
@@ -2273,7 +2275,7 @@ function generateRandomString($length = 8) {
 					"viewItemPath"=>$viewItemPath,
 					"itemStatus"=>$itemStatus,
 					"status"=> $row->status,
-					
+					"readflag"=>$readflag,
 					"postUserID" =>$postUserID,
 					"NoOfDaysPending"=>$NoOfDaysPending,
 					"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
@@ -2717,7 +2719,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($user)){
 				$menuCount=$this->getHeaderCount($user['userID']);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user['userID']);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -3060,6 +3062,19 @@ function generateRandomString($length = 8) {
 		}
 		
 		return $data;
+	}
+	
+	public function updateReadInbox(){
+		$messageID=$_POST["messageID"];
+		$pageNum=$_POST["pageNum"];
+		$this->messages_model->updateReadInboxFlag($messageID);
+		$data['status'] = 'A';
+		$data['class'] = "has-success";
+		$data['message'] = '';
+		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
+		echo json_encode($data);
+		return;
+		//$this->getAccountPage("1", $pageNum);
 	}
 	
 	public function check_session(){

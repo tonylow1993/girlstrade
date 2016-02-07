@@ -190,7 +190,7 @@ function addDayswithdate($date,$days){
 					$data["menuPendingRequestNumber"]="0";
 					if(isset($userInfo)){
 						$menuCount=$this->getHeaderCount($fUserID);
-						$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+						$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID);
 						$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 					}
 					//----------------------------
@@ -312,7 +312,7 @@ function addDayswithdate($date,$days){
 						$data["menuPendingRequestNumber"]="0";
 						if(isset($userInfo)){
 							$menuCount=$this->getHeaderCount($fUserID);
-							$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+							$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID);
 							$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 						}
 						//----------------------------
@@ -497,7 +497,7 @@ function addDayswithdate($date,$days){
 					$data["menuPendingRequestNumber"]="0";
 					if(isset($userInfo)){
 						$menuCount=$this->getHeaderCount($fUserID);
-						$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+						$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID);
 						$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 					}
 					//----------------------------
@@ -1314,15 +1314,6 @@ function addDayswithdate($date,$days){
 		
 			return $data;
 		}
-	public function updateReadInbox(){
-		$messageID=$_POST["messageID"];
-		$this->messages_model->updateReadInboxFlag($messageID);
-		$data['status'] = 'A';
-		$data['class'] = "has-success";
-		$data['message'] = '';
-		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
-		echo json_encode($data);
-		return;
-	}
+	
 }
 ?>

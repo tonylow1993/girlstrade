@@ -26,7 +26,9 @@
 <!--                   </div> -->
 <!--                 </div> -->
 <!--               </div> -->
-              <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
+
+		<!-- table-striped -->	
+              <table id="addManageTable" class="table  table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr>
                     <th data-type="numeric" data-sort-initial="true"> </th>
@@ -79,7 +81,11 @@
 						$postID=$row['postID'];
 						$soldToUserID=$row["soldToUserID"];
 						$soldToUserName=$row["soldToUserName"];
-                		echo "<tr onclick=\"editData($messageID)\">";
+						$readflag="";
+						if(strcmp($row["readflag"],"N")==0)
+							$readflag="bgcolor=\"#FF0000\" onclick=\"editData($messageID, $pageNum)\"";
+						
+                		echo "<tr ".$readflag." >";
                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
                         echo "<label>";
                         echo "  <input type=\"checkbox\">";
@@ -313,7 +319,7 @@
 <!-- /.wrapper --> 
 
 <script>
-function editData(id)
+function editData(id, pageNo)
 {
   //  $("#id").val(id);
   //  document.frmEdit.submit();    
@@ -321,10 +327,11 @@ function editData(id)
    // $("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
 	$.ajax({
 		method: "POST",
-		url: "<?php echo base_url().MY_PATH;?>messages/updateReadInbox",
-		data: { messageID: id },
+		url: "<?php echo base_url().MY_PATH;?>home/updateReadInbox",
+		data: { messageID: id , pageNum: pageNo},
 		success: function(response){
-			var result = JSON.parse(response);
+			location.href="<?php echo base_url().MY_PATH;?>home/getAccountPage/1/".concat(pageNo);
+			//var result = JSON.parse(response);
 	    	//$("#".concat(ctrlName)).html(result.icon);
 	    //	$("#".concat(ctrlErrName)).html(result.message);
 	    	}
