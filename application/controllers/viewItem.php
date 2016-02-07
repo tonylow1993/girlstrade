@@ -131,7 +131,7 @@
                 	$data["LocationName"]="All Locations";
                  $data["userName"] = $user[0]->username;
                 $data["userID"] = $user[0]->userID;
-                $userCreateDate = $user[0]->createDate;
+                $userCreateDate = (new DateTime($user[0]->createDate))->format('Y-M-d');
                 $data["userCreateDate"]=$userCreateDate;
                 $date=$user[0]->lastLoginTime;
                 $data["lastLoginTime"]=$date; //->format('Y-m-d H:i:s');

@@ -205,8 +205,8 @@ class viewProfile extends getCategory {
 			
 			
 			
-		$date=$userInfo[0]->lastLoginTime;
-		$data["lastLoginTime"]=$date; //->format('Y-m-d H:i:s');
+		$date=new DateTime($userInfo[0]->lastLoginTime);
+		$data["lastLoginTime"]=$date->format('Y-M-d H:i:s');
 		$user1=$this->user->getUserByUserID($data["userID"]);
 		if(strcmp($user1["photostatus"],"A")==0)
 			$data["userPhotoPath"]=base_url().$user1['thumbnailPath'].'/'.$user1['thumbnailName'];
@@ -215,7 +215,7 @@ class viewProfile extends getCategory {
 	
 	
 		$data["userName"]=$userInfo[0]->username;
-		$createDate=$userInfo[0]->createDate;
+		$createDate=(new DateTime($userInfo[0]->createDate))->format('Y-M-d');
 		$data["createDate"]=$createDate;
 		$data["prevURL"]=$previousUrl;
 		$data["pageNum"]=$pageNum;
