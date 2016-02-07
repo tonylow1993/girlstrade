@@ -30,7 +30,7 @@
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr style="height:50px;">
-                    <th height="50px" data-type="numeric" data-sort-initial="true" style="border: none;"> </th>
+<!--                <th height="50px" data-type="numeric" data-sort-initial="true" style="border: none;"> </th>-->
                     <th style="border: none;"> <?php echo $this->lang->line("Photo");?> </th>
                     <th data-sort-ignore="true" style="border: none;"> <?php echo $this->lang->line("Ads_Detail");?> </th>
                     <th data-type="numeric" style="border: none;"> <?php echo $this->lang->line("Price");?> </th>
@@ -76,11 +76,11 @@
 						 $soldUsersstr=$soldUsersstr."  </select>  ";
 						 $soldUsersstr=base64_encode($soldUsersstr);
 						echo "<tr>";
-                    	echo "<td style=\"width:5%; border: none;\" class=\"add-img-selector\"><div class=\"checkbox\">";
-                        echo "<label>";
-                        echo "  <input type=\"checkbox\">";
-                        echo "</label>";
-                      	echo "</div></td>";
+//                    	echo "<td style=\"width:5%; border: none;\" class=\"add-img-selector\"><div class=\"checkbox\">";
+//                        echo "<label>";
+//                        echo "  <input type=\"checkbox\">";
+//                        echo "</label>";
+//                      	echo "</div></td>";
                       	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\"  class=\"add-image\">";
 //                       	echo  "<div class=\"col-sm-2 no-padding photobox\">";
 // 						echo "<div style=\"position:relative; height:75px; width: 100%; overlfow:hidden;\">";
