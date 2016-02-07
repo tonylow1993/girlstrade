@@ -378,8 +378,8 @@ p.required, .required sup {
 }
 
 .btn-primary {
-  background-color: #16A085;
-  border-color: #16A085;
+  background-color: #E2348C;
+  border-color: #E2348C;
   color: #fff;
 }
 
@@ -3444,8 +3444,8 @@ td.ads-details-td {
     font-size: 20px;
 	text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 9;
-	//-webkit-line-clamp: 4;
+    //-webkit-line-clamp: 9;
+	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	overflow: hidden !important;
 }
