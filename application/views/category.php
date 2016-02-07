@@ -352,13 +352,13 @@
                       <input type="number" placeholder="100" id="minPrice"
                       value=<?php if($minPrice>0)echo $minPrice;?>     
                       name="minPrice"  min="0"  max="90000" class="form-control price">
-                      <span id="menubarTitle"> - </span>
+                      <span id="menubarTitle"> — </span>
                       <input type="number" placeholder="1000 " id="maxPrice"  
                       value=<?php if($minPrice>0) echo $maxPrice;?>  
                       name="maxPrice" min="0" max="90000"   class="form-control price">
                   </div>
                   <div>
-                    <div class="form-group no-padding">
+                    <div class="form-group no-padding margin-top-20">
                     <button class="btn btn-primary btn-block btn-pink"> <i class="icon-search-2"></i> Filter</button>
                  <!--      <button id="priceRangeBtn" class="btn btn-default btn-pink btn-80 margin-top-10 " 
                       type="submit">Filter<i class="icon-search-2"></i></button> -->
@@ -370,7 +370,7 @@
              
               
               
-              <div class="locations-list  list-filter">
+              <div class="locations-list list-filter margin-top-30">
                 <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
                  <li> <a id="searchCriteria" href="#" onclick="return setupTab('allAds');" ><?php echo $lblConditionAll;?>
