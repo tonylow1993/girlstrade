@@ -3064,6 +3064,19 @@ function generateRandomString($length = 8) {
 		return $data;
 	}
 	
+	public function updateReadInbox(){
+		$messageID=$_POST["messageID"];
+		$pageNum=$_POST["pageNum"];
+		$this->messages_model->updateReadInboxFlag($messageID);
+		$data['status'] = 'A';
+		$data['class'] = "has-success";
+		$data['message'] = '';
+		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
+		//echo json_encode($data);
+		//return;
+		$this->getAccountPage("1", $pageNum);
+	}
+	
 	public function check_session(){
 		$expired= $this->nativesession->_session_id_expired();
 		if($expired){
