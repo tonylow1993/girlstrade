@@ -24,7 +24,7 @@ window.onload = function(){
 				<div class="col-sm-4  col-sm-4 search-col relative">
 				
                 <select class="btn btn-catSelect btn-search btn-block  catSelect dropdown-toggle" name="category" id="search-category">
-                    <option <?php if($catID="" or $catID=0) echo "selected='selected'"; ?> value="">
+                    <option style="background-color: #B9005E;" <?php if($catID="" or $catID=0) echo "selected='selected'"; ?> value="">
                         <?php echo $this->lang->line("lblAllCategories");?>
                     </option>
                     <?php 
@@ -37,7 +37,7 @@ window.onload = function(){
             	if($lang_label<>"english")
             		$name=$value[0]->nameCH;
             	if($value[0]->level==1)
-            		echo "<option value='".$id."' style='font-weight:bold;' >".$name.$postCount."</option>";
+            		echo "<option value='".$id."' style='background-color: #E1338B;' >".$name.$postCount."</option>";
             	else 
             	{
             		$str="";
