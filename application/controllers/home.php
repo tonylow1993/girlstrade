@@ -2146,6 +2146,7 @@ function generateRandomString($length = 8) {
 			$userID=$row->userID;
 			$fuserID=$row->fUserID;
 			$createDate=$row->createDate;
+			$readflag=$row->readflag;
 			//$messageIOType=$row->messageIOType;
 			$userarray=$this->users_model->get_user_by_id($userID);
 			$reply="";
@@ -2274,7 +2275,7 @@ function generateRandomString($length = 8) {
 					"viewItemPath"=>$viewItemPath,
 					"itemStatus"=>$itemStatus,
 					"status"=> $row->status,
-					
+					"readflag"=>$readflag,
 					"postUserID" =>$postUserID,
 					"NoOfDaysPending"=>$NoOfDaysPending,
 					"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,

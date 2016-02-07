@@ -79,7 +79,11 @@
 						$postID=$row['postID'];
 						$soldToUserID=$row["soldToUserID"];
 						$soldToUserName=$row["soldToUserName"];
-                		echo "<tr onclick=\"editData($messageID)\">";
+						$readflag="";
+						if(strcmp($row["readflag"],"N")==0)
+							$readflag="bgcolor=\"#FF0000\"";
+						
+                		echo "<tr ".$readflag." onclick=\"editData($messageID)\">";
                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
                         echo "<label>";
                         echo "  <input type=\"checkbox\">";
