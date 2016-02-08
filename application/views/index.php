@@ -402,7 +402,7 @@ window.onload = function(){
                 <div class="inner-box relative panel-bevel">
                 <h2 class="title-2"><span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">Interested</span> Items
             
-                <a id="nextItem1" class="link  pull-right carousel-nav"> <i class="icon-right-open-big"></i></a>
+                <a id="nextItem1" class="link pull-right carousel-nav"> <i class="icon-right-open-big"></i></a>
              <a id="prevItem1" class="link pull-right carousel-nav"> <i class="icon-left-open-big"></i> </a>
 
             </h2>

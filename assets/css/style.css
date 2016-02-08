@@ -3476,6 +3476,10 @@ td.ads-details-td {
     font-weight: 300;
     text-align: center;
     font-size: 30px;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: .75em;
 }
 
 .item1-carousel .item-desc {
@@ -3484,7 +3488,7 @@ td.ads-details-td {
     font-size: 20px;
 	text-overflow: ellipsis;
     display: -webkit-box;
-	-webkit-line-clamp: 9;
+	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	overflow: hidden !important;
 }
