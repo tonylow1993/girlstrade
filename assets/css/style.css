@@ -2105,24 +2105,28 @@ hr.thin {
     border-radius: 3px;
     color: #E2348C;
     font-size: 25px;
-    min-width: 150px;
+    min-width: 250px;
     padding: 5px 15px;
-    position: absolute;
+//    position: absolute;
     right: 30;
     text-align: center;
     top: 13px;
     z-index: 100;
     line-height: 40px;
     border: 1px solid #E2348C;
+	width: 40%;
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 @media(max-width:480px) {
   .pricetag {
     font-size: 18px;
-    line-height: 28px;
-    min-width: 90px;
+    line-height: 35px;
+    min-width: 250px;
     top: 13px;
     right: 30;
+	
   }
 }
 
@@ -3605,6 +3609,14 @@ span b{
   border-bottom-style: groove;
 }
 
+.ads-action{
+	margin-bottom: 20px;
+}
+
+#viewItemBottomOpt{
+	padding-top: 15px;
+    padding-bottom: 15px;
+}
 
 /* =============================================================== */
 /* BLOGS & BLOG DETAILS

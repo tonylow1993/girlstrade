@@ -49,9 +49,9 @@
         <div class="col-sm-9 page-content col-thin-right">
           <div class="inner inner-box ads-details-wrapper panel-bevel">
             <h2 class="itemName"> <?php echo $itemName;?> </h2>
+			<h1 class="pricetag"> <?php echo "\$".$price." (".$currency.")";?></h1>
             <span class="info-row"> <span class="date"><i class=" icon-clock"> </i> <?php echo $createDate;?> </span> - <span class="category"><?php echo $ParentCatName;?> </span>- <span class="item-location"><i class="fa fa-map-marker"></i> <?php echo $LocationName;?> </span> </span>
             <div class="ads-image">
-              <h1 class="pricetag"> <?php echo "\$".$price." (".$currency.")";?></h1>
               <ul class="bxslider">
                 <?php 
                 if($AdsProduct<>null)
