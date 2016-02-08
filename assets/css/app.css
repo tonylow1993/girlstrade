@@ -222,7 +222,7 @@ div.panel-heading.seller-heading
 }
 .directSendButton
 {
-	background-color: #8CC8EA;
+	background-color: #5A849C;
 }
 .directSendButton:hover, .directSendButton:focus, .directSendButton:active, 
 .directSendButton.active, .open .dropdown-toggle.directSendButton {
@@ -230,7 +230,7 @@ div.panel-heading.seller-heading
 }
 .inboxMsgButton
 {
-	background-color: #99F3CD;
+	background-color: #68B394;
 }
 
 #userStar
