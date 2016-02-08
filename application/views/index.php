@@ -7,7 +7,23 @@ window.onload = function(){
 	   document.getElementById("ads").focus();
 	};
 </script>
+<style id="jsbin-css">
+.progress-bar[aria-valuenow="1"],
+.progress-bar[aria-valuenow="2"] {
+  min-width: 3%;
+}
 
+.progress-bar[aria-valuenow="0"] {
+  color: gray;
+  min-width: 100%;
+  background: transparent;
+  box-shadow: none;
+}
+
+.progress-bar[aria-valuenow^="9"]:not([aria-valuenow="9"]) {
+  background: red;
+}
+</style>
 				
 <div class="intro">
     <div class="dtable hw100">
@@ -528,6 +544,24 @@ window.onload = function(){
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 id ="modal-text">Processing...<?php echo $this->lang->line("PleaseNotCloseBrowseWhileSearching");?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="progress-bar" class="progress">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar" id="upload-progress-bar"
+                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">   
+                                        </div>
+                                    </div>
+									<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="backHomePage(); return false;" style="display: none;"><i class="fa fa-check"></i>Go to Homepage</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          
         <div class="inner-box relative panel-bevel">
             <div class="row">
               <div class="col-md-5">
@@ -767,6 +801,60 @@ window.onload = function(){
 <!-- <script src="assets/plugins/jquery/jquery-migrate.min.js"></script> -->
 <!-- <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- JS Implementing Plugins -->
+
+<script>
+function setup(){
+	var catID=document.getElementById("search-category").value;
+ 	var locID=0;
+	var keywords=document.getElementById("ads").value;
+	   if(keywords.trim()=='')
+		   keywords='0';
+	   var minPrice=0;
+		   
+	   var maxPrice=0;
+
+	   $('#pleaseWaitDialog').modal('show');
+
+      setForm(function(data)
+       {
+           if(data == true)
+           {
+				$.ajax({
+					xhr: function()
+					{
+						var xhr = new window.XMLHttpRequest();
+						//Upload progress
+						xhr.upload.addEventListener("progress", function(evt){
+						  if (evt.lengthComputable) {
+							var percentComplete = evt.loaded / evt.total*100;
+							//Do something with upload progress
+							$("#upload-progress-bar").width(percentComplete+"%");
+							console.log(percentComplete);
+						  }
+						}, false);
+						return xhr;
+					},
+					url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
+					//data: formData,
+					processData: false,
+					contentType: false,
+					type: 'POST',
+					success:function(msg){
+						$('#progress-bar').css("display", "none");
+						$('#pleaseWaitDialog').modal('hide');
+					}
+				});
+           }
+           return data;
+       });
+}
+function setForm(callback)
+{
+	  $('.progress-bar').css('width', 100+'%').attr('aria-valuenow', 100);
+		callback(true);
+}
+</script>
+
 <script src="<?php echo base_url();?>assets/plugins/back-to-top.js"></script>
 <script src="<?php echo base_url();?>assets/plugins/smoothScroll.js"></script>
 <script src="<?php echo base_url();?>assets/plugins/jquery.parallax.js"></script>

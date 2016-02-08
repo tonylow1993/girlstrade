@@ -1,6 +1,25 @@
 <?php $title = "Search Page";  include("header.php"); ?>
 <!-- CSS WHEEL SLIDER -->
 <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/noUiSlider/jquery.nouislider.min.css">
+
+<style id="jsbin-css">
+.progress-bar[aria-valuenow="1"],
+.progress-bar[aria-valuenow="2"] {
+  min-width: 3%;
+}
+
+.progress-bar[aria-valuenow="0"] {
+  color: gray;
+  min-width: 100%;
+  background: transparent;
+  box-shadow: none;
+}
+
+.progress-bar[aria-valuenow^="9"]:not([aria-valuenow="9"]) {
+  background: red;
+}
+</style>
+
 <div id="wrapper">
   
   <!-- /.header -->
@@ -827,7 +846,23 @@
              ?>
                 </ul>
           </div>
-          
+          <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 id ="modal-text">Processing...<?php echo $this->lang->line("PleaseNotCloseBrowseWhileSearching");?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="progress-bar" class="progress">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar" id="upload-progress-bar"
+                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">   
+                                        </div>
+                                    </div>
+									<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="backHomePage(); return false;" style="display: none;"><i class="fa fa-check"></i>Go to Homepage</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
           
         </div>
         
@@ -855,10 +890,50 @@
 		   var maxPrice=document.getElementById("maxPrice").value;
 		   if(maxPrice.trim()=='')
 			   maxPrice=0;
-		
+
+// 		   $('#pleaseWaitDialog').modal('show');
+
+//           setForm(function(data)
+//            {
+//                if(data == true)
+//                {
+// 					$.ajax({
+// 						xhr: function()
+// 						{
+// 							var xhr = new window.XMLHttpRequest();
+// 							//Upload progress
+// 							xhr.upload.addEventListener("progress", function(evt){
+// 							  if (evt.lengthComputable) {
+// 								var percentComplete = evt.loaded / evt.total*100;
+// 								//Do something with upload progress
+// 								$("#upload-progress-bar").width(percentComplete+"%");
+// 								console.log(percentComplete);
+// 							  }
+// 							}, false);
+// 							return xhr;
+// 						},
+		//				url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
+// 						//data: formData,
+// 						processData: false,
+// 						contentType: false,
+// 						type: 'POST',
+// 						success:function(msg){
+// 							$('#progress-bar').css("display", "none");
+// 							$('#pleaseWaitDialog').modal('hide');
+// 						}
+// 					});
+//                }
+//                return data;
+//            });
+			
 		document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab);
 		document.getElementById("myForm").submit();
 	}
+  function setForm(callback)
+  {
+  	  $('.progress-bar').css('width', 100+'%').attr('aria-valuenow', 100);
+  		callback(true);
+  }
 function setup(){
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;
@@ -869,9 +944,44 @@ function setup(){
 		   keywords='0';
 	   var minPrice=document.getElementById("minPrice").value;
 	   var maxPrice=document.getElementById("maxPrice").value;
-	
-	document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
-	document.getElementById("myForm").submit();
+
+	   $('#pleaseWaitDialog').modal('show');
+
+       setForm(function(data)
+        {
+            if(data == true)
+            {
+					$.ajax({
+						xhr: function()
+						{
+							var xhr = new window.XMLHttpRequest();
+							//Upload progress
+							xhr.upload.addEventListener("progress", function(evt){
+							  if (evt.lengthComputable) {
+								var percentComplete = evt.loaded / evt.total*100;
+								//Do something with upload progress
+								$("#upload-progress-bar").width(percentComplete+"%");
+								console.log(percentComplete);
+							  }
+							}, false);
+							return xhr;
+						},
+						url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
+						//data: formData,
+						processData: false,
+						contentType: false,
+						type: 'POST',
+						success:function(msg){
+							$('#progress-bar').css("display", "none");
+							$('#pleaseWaitDialog').modal('hide');
+						}
+					});
+            }
+            return data;
+        });
+		
+	//document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	//document.getElementById("myForm").submit();
 }
 function isNumber(n) {
 	  return !isNaN(parseFloat(n)) && isFinite(n);
@@ -1482,6 +1592,10 @@ function openCat(id) {
     
     return true;
 }
+function backHomePage(){
+	window.location = "<?php echo base_url();?>";
+}
+
 </script>
 <?php include "footer2.php"; ?>
 
