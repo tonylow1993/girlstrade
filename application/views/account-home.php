@@ -66,7 +66,7 @@ input[type=checkbox]
           	  <?php include("profile_visit.php");?>
            <div id="accordion" class="panel-group">
               <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading" data-toggle="collapse" href="#collapseB1">
                   <h4 class="panel-title"> 
 					<a href="#collapseB1"  data-toggle="collapse"> <?php  echo $this->lang->line("My_Detail");?></a> 
 					<a id="menuTitle" class="pull-right" data-toggle="collapse" href="#collapseB1" aria-expanded="true">
@@ -109,8 +109,8 @@ input[type=checkbox]
                           <input name="telNo" type="text" pattern="\d*" maxlength="8"  class="form-control" id="Phone" placeholder="<?php echo $telNo;?>">
                         	<div class="checkbox">
                           <label>
-                            <input id="hidetelno" name='hidetelno' type="checkbox"  <?php  if($hidetelno==1) echo " checked "?> >
-                            <small> <?php echo $HidePhoneNumber;?> </small> </label>
+                            <input id="hidetelno" name='hidetelno' type="checkbox" <?php  if($hidetelno==1) echo " checked "?> >
+                            <small> &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $HidePhoneNumber;?> </small> </label>
                         </div>
                         </div>
                       </div>
@@ -126,7 +126,7 @@ input[type=checkbox]
                       </div>
                       <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                          <button type="submit" class="btn btn-default"><?php echo $this->lang->line("btnUpdate");?></button>
+                          <button type="submit" class="btn btn-primary"><?php echo $this->lang->line("btnUpdate");?></button>
                         </div>
                       </div>
                     </form>
@@ -136,7 +136,7 @@ input[type=checkbox]
               
               </div>
 			  <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading" data-toggle="collapse" href="#collapseB2">
                   <h4 class="panel-title"> 
 					<a href="#collapseB2"  data-toggle="collapse"> <?php echo $this->lang->line("Settings");?> </a> 
 					<a id="menuTitle" class="pull-right" data-toggle="collapse" href="#collapseB2" aria-expanded="true">
@@ -183,7 +183,7 @@ input[type=checkbox]
                   </div>
               </div>
               <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading" data-toggle="collapse" href="#collapseB3">
                   <h4 class="panel-title"> 
 					<a href="#collapseB3"  data-toggle="collapse"> <?php echo $this->lang->line("Preferences");?> </a> 
 					<a id="menuTitle" class="pull-right" data-toggle="collapse" href="#collapseB3" aria-expanded="true">
@@ -207,7 +207,7 @@ input[type=checkbox]
                           		$str="checked";
                             echo "<input id=\"chk1\" name=\"chk1\" type=\"checkbox\" ".$str.">";
                            ?>
-                            <?php echo $this->lang->line("Preferences_Desc1")?></label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line("Preferences_Desc1")?></label>
                         </div>
                         <div class="checkbox" >
                           <label>
@@ -216,7 +216,7 @@ input[type=checkbox]
                           	if($checkBox2==1)
                           		$str2="checked";
                             echo "<input id=\"chk2\" name=\"chk2\" type=\"checkbox\"  ".$str2.">";
-                           ?><?php echo $this->lang->line("Preferences_Desc2")?>
+                           ?>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line("Preferences_Desc2")?>
                             </label>
                         </div>
                       </div>
