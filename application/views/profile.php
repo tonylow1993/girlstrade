@@ -93,7 +93,7 @@ function sendIt() {
 //     			$encodeCurrentURL=$prevURL;
     			$path=$basePath.MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$previousCurrent_url;
     			echo $path;
-               ?>" method="POST"> 
+               ?>" class="margin-top-20" method="POST"> 
                  <div class="col-sm-3">
                 <select class="form-control selecter"   name="sortByPrice"   id="sortByPrice" data-width="auto">
                   <option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> >Sort by...</option>
@@ -109,7 +109,7 @@ function sendIt() {
         	</div>
 		</form>
             <!--/.tab-box-->
-               <div class="pull-right backtolist"><a href=<?php echo $previousCurrent_url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
+               <div class="pull-right backtolist margin-right-10"><a href=<?php echo $previousCurrent_url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
  
            </div>
                
