@@ -285,7 +285,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title"><?php echo $this->lang->line("popupTitleDeleteAds");?></h4>
+        <h2 id="modal-title-del" class="modal-title"><?php echo $this->lang->line("popupTitleDeleteAds");?></h2>
       </div>
       <div class="modal-body">
         <form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds">
@@ -297,8 +297,9 @@
         </form>
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success pull-right"   onclick="setupDeleteAds(); return false;">Submit</button>
+		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
+      	<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button id="submit-btn" type="button" class="btn btn-success pull-right"   onclick="setupDeleteAds(); return false;">Submit</button>
         	<button id="validate" hidden="true" type="submit"></button>
   
      	 </div>
@@ -394,9 +395,29 @@ var encodeHtmlEntity = function(str) {
 };
 function setupDeleteAds()
 {
-     var myform = document.getElementById("itemDelete");
-	  	document.getElementById("itemDelete").submit();
-       	return true;
+	$("#modal-title-del").html("Processing...");
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds",
+		data: { 
+			messageID: $("#messageID").val(),
+			userID: $("#userID").val() 
+		},
+		success: function(response){
+			$("#modal-title-del").html("Your post has been deleted.");
+			$('#fwd-btn').css("display", "block");
+			$('#fwd-btn').css("margin", "auto");
+			$('#cancel-btn').css("display", "none");
+			$('#submit-btn').css("display", "none");
+			
+			console.log("success");
+		}
+	});
+
+
+     //var myform = document.getElementById("itemDelete");
+	  	//document.getElementById("itemDelete").submit();
+    return false;
 }
 
 function setup()
