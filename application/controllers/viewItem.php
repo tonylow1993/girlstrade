@@ -160,13 +160,13 @@
                 
                 $isSameUser=false;
                 $isPostAlready=false;
-                $isPendingRequest=true;
+                $isPendingRequest=false;
               	if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
                 {
                 	if($loginUser["userID"]==$user[0]->userID)
                 		$isSameUser=true;
-                	$isPostAlready=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
-                	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "");
+                	$isPostAlready=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "");
+                	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
                 }
                 $data["isSameUser"]=$isSameUser;
  

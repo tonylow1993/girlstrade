@@ -27,9 +27,10 @@
   <br/>
   <div class="search-row-wrapper">
     <div class="container ">
-      <form  id="myForm"  onSubmit="return setup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">
+      <form  id="myForm"  onSubmit="return setup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_.'/'.$minPrice.'/'.$maxPrice.'/'.$activeTab;?>" method="POST">
             <div class="col-lg-3 col-sm-3 search-col relative"> <i class="icon-docs icon-append"></i>
                 <input type="text" name="ads"  id="ads" class="form-control has-icon" placeholder="Keywords" value="<?php if($keywords<>'0') echo trim($keywords);?>">
+              	<input type="hidden" name="paneActiveTab" id="paneActiveTab" value="<?php echo $activeTab;?>" >
               </div>
             
             <div class="col-sm-3">
@@ -392,7 +393,7 @@
               <div class="locations-list list-filter margin-top-30">
                 <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
-                 <li> <a id="searchCriteria" href="#" onclick="return setupTab('allAds');" ><?php echo $lblConditionAll;?>
+                 <li> <a id="searchCriteria" href="#allAds" onclick="return setupTab('allAds', 'searchCriteria');" ><?php echo $lblConditionAll;?>
                   
                   		<span class="count">
                   		<?php 
@@ -402,7 +403,7 @@
 			                echo $rowCount;
 			                ?>
                   		</span></a></li>
-                  <li> <a id="searchCriteria" href="#" onclick="return setupTab('newAds');"><?php echo $lblConditionNew;?>
+                  <li> <a id="newAds1" name="newAds1"  href="#newAds" onclick="return setupTab('newAds', 'newAds1');"><?php echo $lblConditionNew;?>
                   
                   		<span class="count">
                   		<?php 
@@ -417,7 +418,7 @@
 			                	echo $rowCount;
 			                ?>
                   		</span></a></li>
-                  <li> <a id="searchCriteria" href="#" onclick="return setupTab('usedAds');"><?php echo $lblConditionUsed;?>
+                  <li> <a id="usedAds1" name="usedAds1" href="#usedAds" onclick="return setupTab('usedAds', 'usedAds1');"><?php echo $lblConditionUsed;?>
                   
                   		<span class="count"><?php 
 			                $rowCount=0;
@@ -448,7 +449,7 @@
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
                 <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\"";?>
-                ><a href="#allAds"  role="tab" data-toggle="tab" onclick="return setupTab('allAds');">
+                ><a href="#allAds"  id="allAds2" name="allAds2"  role="tab" data-toggle="tab" onclick="return setupTab('allAds', 'allAds2');">
                 <?php echo $lblConditionAny;?>
                 <span class="badge"><?php 
                 $rowCount=0;
@@ -457,7 +458,7 @@
                 echo $rowCount;
                 ?></span></a></li>
                 <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>>
-                <a href="#newAds"  role="tab" data-toggle="tab" onclick="return setupTab('newAds');">
+                <a href="#newAds" id="newAds2" name="newAds2"  role="tab" data-toggle="tab" onclick="return setupTab('newAds', 'newAds2');">
                 <?php echo $lblConditionNew;?>
                 <span class="badge"><?php 
                 $rowCount=0;
@@ -471,7 +472,7 @@
                 	echo $rowCount;
                 ?></span></a></li>
                 <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>>
-                <a href="#usedAds"  role="tab" data-toggle="tab" onclick="return setupTab('usedAds');">
+                <a href="#usedAds" id="usedAds2" name="usedAds2"  role="tab" data-toggle="tab" onclick="return setupTab('usedAds', 'usedAds2');">
                 <?php echo $lblConditionUsed;?> 
                 	<span class="badge">
 	                <?php 
@@ -539,7 +540,7 @@
               
             <div class="adds-wrapper">
               <div class="tab-content">
-                <div class="tab-pane fade <?php if(strcmp($activeTab, "allAds")==0) echo "in active"; ?>" id="allAds">
+                <div class="tab-pane <?php if(strcmp($activeTab, "allAds")==0) echo "active"; ?>" id="allAds">
                 	<?php
                 	
              $basePath=base_url().MY_PATH;
@@ -625,7 +626,7 @@
                 
                 
                 </div>
-               <div class="tab-pane <?php if(strcmp($activeTab, "newAds")==0) echo "active"; ?>" id="newAds">
+               <div class="tab-pane  <?php if(strcmp($activeTab, "newAds")==0) echo "active"; ?>" id="newAds">
                 	<?php
              $basePath=base_url().MY_PATH;
              $encodeCurrentURL=urlencode(current_url());
@@ -846,37 +847,21 @@
              ?>
                 </ul>
           </div>
-          <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 id ="modal-text">Processing...<?php echo $this->lang->line("PleaseNotCloseBrowseWhileSearching");?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
-                                </div>
-                                <div class="modal-body">
-                                    <div id="progress-bar" class="progress">
-                                        <div class="progress-bar progress-bar-striped active" role="progressbar" id="upload-progress-bar"
-                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">   
-                                        </div>
-                                    </div>
-									<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="backHomePage(); return false;" style="display: none;"><i class="fa fa-check"></i>Go to Homepage</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          
           
         </div>
         
       </div>
     </div>
-  </div>
+ </div>
   <!-- /.main-container -->
 
 <?php include "footer1.php"; ?>
   <!-- /.footer --> 
- </div>
+</div>
   <script>
   
-  function setupTab(activeTab){
+  function setupTab(activeTab, activeCtrl){
 		var catID=document.getElementById("search-category").value;
 	 	var locID=document.getElementById("id-location").value;
 		//var locID=0;
@@ -890,9 +875,9 @@
 		   var maxPrice=document.getElementById("maxPrice").value;
 		   if(maxPrice.trim()=='')
 			   maxPrice=0;
-
-// 		   $('#pleaseWaitDialog').modal('show');
-
+		
+ //		   $('#pleaseWaitDialog').modal('show');
+ 		  	
 //           setForm(function(data)
 //            {
 //                if(data == true)
@@ -912,12 +897,13 @@
 // 							}, false);
 // 							return xhr;
 // 						},
-		//				url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
-// 						//data: formData,
+//						url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
+// 							//data: formData,
 // 						processData: false,
 // 						contentType: false,
 // 						type: 'POST',
 // 						success:function(msg){
+							//$("#".concat(activeCtrl)).attr("href", "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab));
 // 							$('#progress-bar').css("display", "none");
 // 							$('#pleaseWaitDialog').modal('hide');
 // 						}
@@ -944,6 +930,7 @@ function setup(){
 		   keywords='0';
 	   var minPrice=document.getElementById("minPrice").value;
 	   var maxPrice=document.getElementById("maxPrice").value;
+	   var activeTab=document.getElementById("paneActiveTab").value;
 
 	   $('#pleaseWaitDialog').modal('show');
 
@@ -980,7 +967,7 @@ function setup(){
             return data;
         });
 		
-	//document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	//document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab);
 	//document.getElementById("myForm").submit();
 }
 function isNumber(n) {
@@ -1128,7 +1115,23 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 
 
 <!-- Modal Change City -->
-
+<div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 id ="modal-text">Processing...<?php echo $this->lang->line("PleaseNotCloseBrowseWhileSearching");?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="progress-bar" class="progress">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar" id="upload-progress-bar"
+                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">   
+                                        </div>
+                                    </div>
+									<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="backHomePage(); return false;" style="display: none;"><i class="fa fa-check"></i>Go to Homepage</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 <div class="modal fade" id="selectLocation" tabindex="-1" role="dialog" aria-labelledby="countryPopup" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

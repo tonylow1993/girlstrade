@@ -95,19 +95,19 @@ class getCategory extends CI_Controller {
 			
 			
 			
-		if($this->input->post("ads")<> null && trim($this->input->post("ads"))<>"")
+		if(!empty($this->input->post("ads")) && $this->input->post("ads")<> null && trim($this->input->post("ads"))<>"")
 			$keywords=($this->input->post("ads"));
-		if($this->input->post("category")<>'' && $this->input->post("category")<>0)
+		if(!empty($this->input->post("category")) && $this->input->post("category")<>'' && $this->input->post("category")<>0)
 			$catID=$this->input->post("category");
 		//$_POST["category"];
 		//if(!isset($this->input->post("location")) or empty($this->input->post("location")) )
 		//	$locID="";
 		//else 
-		if($this->input->post("location")<>'' && $this->input->post("location")<>0)
+		if(!empty($this->input->post("location")) && $this->input->post("location")<>'' && $this->input->post("location")<>0)
 			$locID=$this->input->post("location");
-		if($this->input->post("sortByPrice")<>'' && $this->input->post("sortByPrice")<>'0')
+		if(!empty($this->input->post("sortByPrice")) && $this->input->post("sortByPrice")<>'' && $this->input->post("sortByPrice")<>'0')
 			$sortByID=$this->input->post("sortByPrice");
-		if($this->input->post("allAds")<>'' && $this->input->post("allAds")<>'allAds')
+		if(!empty($this->input->post("allAds")) && $this->input->post("allAds")<>'' && $this->input->post("allAds")<>'allAds')
 				$allAds=$this->input->post("allAds");
 			
 		$data["sortByID_"]=$sortByID;
