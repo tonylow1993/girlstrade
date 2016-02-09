@@ -118,7 +118,7 @@
 									type: 'POST',
 									success:function(msg){
 										$("#modal-text").html("Your avatar has been successfully uploaded.");
-										setTimeout(function(){window.location = "<?php echo base_url();?>";}, 2000);
+										setTimeout(function(){location.reload();}, 2000);
 									}
 								});
 							}

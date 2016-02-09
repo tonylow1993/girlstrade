@@ -1947,12 +1947,12 @@ hr.thin {
 /* =============================================================== */
 
 .sidebar-panel .panel-heading {
-  background: #f8f8f8;
+  background: #FD7E7E;
   position: relative;
   border-bottom: 1px solid #ddd;
   font-size: 16px;
   line-height: 22px;
-  border: 1px solid #E2348C;
+  //border: 1px solid #E2348C;
   color: white;
 }
 
