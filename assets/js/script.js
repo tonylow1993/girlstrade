@@ -11,9 +11,7 @@
 
 	
 $(document).ready(function() {
-
-
-
+    
     /*==================================
 	 Carousel 
 	====================================*/
@@ -42,7 +40,7 @@ $(document).ready(function() {
         owlitem.trigger('owl.prev');
     })
 
-   var owlitem1 = $(".item1-carousel");
+    var owlitem1 = $(".item1-carousel");
 
     owlitem1.owlCarousel({
         //navigation : true, // Show next and prev buttons
@@ -64,31 +62,29 @@ $(document).ready(function() {
     $("#prevItem1").click(function() {
         owlitem1.trigger('owl.prev');
     })
-    // Featured Listings  carousel || HOME PAGE
-    var featuredListSlider = $(".featured-list-slider");
+    
+    var owlitem2 = $(".item2-carousel");
 
-    featuredListSlider.owlCarousel({
+    owlitem2.owlCarousel({
         //navigation : true, // Show next and prev buttons
         navigation: false,
-        pagination: false,
+        pagination: true,
         items: 5,
-        itemsDesktopSmall: 	[979,3],
-        itemsTablet: [768, 3],
+		itemsDesktopSmall: 	[979,3],
+		itemsTablet: [768, 3],
         itemsTabletSmall: [660, 2],
-        itemsMobile: [400,1]
+		itemsMobile: [400,1]
 
 
     });
 
     // Custom Navigation Events
-    $(".featured-list-row .next").click(function() {
-        featuredListSlider.trigger('owl.next');
+    $("#nextItem2").click(function() {
+        owlitem2.trigger('owl.next');
     })
-    $(".featured-list-row .prev").click(function() {
-        featuredListSlider.trigger('owl.prev');
+    $("#prevItem2").click(function() {
+        owlitem2.trigger('owl.prev');
     })
-
-
     /*==================================
 	 Ajax Tab || CATEGORY PAGE
 	====================================*/
@@ -105,7 +101,7 @@ $(document).ready(function() {
         $(href).load(url, function(result) {
             pane.tab('show');
             // ajax pre-request callback function 
-            $('.tooltipHere').tooltip('hide');
+            $('.tooltipHere').tooltip();
             $('.grid-view').click(function(e) {
                 $(function() {
                     $('.item-list').matchHeight();
@@ -120,7 +116,7 @@ $(document).ready(function() {
     $('#allAds').load($('.active a').attr("data-url"), function(result) {
         $('.active a').tab('show');
         // ajax pre-request callback function 
-        $('.tooltipHere').tooltip('hide');
+        $('.tooltipHere').tooltip();
 
         $('.grid-view').click(function(e) {
             $(function() {
@@ -168,15 +164,6 @@ $(document).ready(function() {
 
     });
 
-    $(function() {
-        $('.row-featured .f-category').matchHeight();
-        $.fn.matchHeight._apply('.row-featured .f-category');
-    });
-
-    $(function() {
-        $('.has-equal-div > div').matchHeight();
-        $.fn.matchHeight._apply('.row-featured .f-category');
-    });
 
 
     $('.compact-view').click(function(e) { //use a class, since your ID gets mangled
@@ -201,15 +188,13 @@ $(document).ready(function() {
 	====================================*/
 
     $('.long-list').hideMaxListItems({
-        'max': 8,
+        'max': 15,
         'speed': 500,
         'moreText': 'View More ([COUNT])'
     });
 
 
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
+    $('.tooltipHere').tooltip(); // bootstrap tooltip
 
     $(".scrollbar").scroller(); // custom scroll bar plugin
 
@@ -255,73 +240,8 @@ $(document).ready(function() {
 		
     });
 
-    // DEMO PREVIEW
+	
 
-    $(".tbtn").click(function() {
-        $('.themeControll').toggleClass('active')
-    })
-    //$('.collapse-box').collapse("hide");
-    $(window).bind('resize load', function() {
-        if ($(this).width() < 767) {
-            $('#ProfileMenuAds').removeClass('in');
-            $('#ProfileMenuAds').addClass('out');
-            
-            $('#ProfileMenuEvaluate').removeClass('in');
-            $('#ProfileMenuEvaluate').addClass('out');
-            
-            $('#ProfileMenuAccount').removeClass('in');
-            $('#ProfileMenuAccount').addClass('out');
-            
-            //search left hand menu
-            if(document.getElementById('leftMenuSearchPage'))
-            	document.getElementById('leftMenuSearchPage').style.display = "none";
-            if(document.getElementById('viewItemBottomOpt'))
-            	document.getElementById('viewItemBottomOpt').style.display = "none";
-        } else {
-            //$('#ProfileMenuAds').removeClass('out');
-            //$('#ProfileMenuAds').addClass('in');
-            
-            //$('#ProfileMenuEvaluate').removeClass('in');
-            //$('#ProfileMenuEvaluate').addClass('out');
-            
-           // $('#ProfileMenuAccount').removeClass('in');
-           // $('#ProfileMenuAccount').addClass('out');
-        }
-    });
-    
-    	if(document.getElementById('userStar'))
-    	{
-    		$('#userStar').raty({readOnly: true, score: 3 });
-    	}
-    $('.map').click(function () {
-    	//console.log('test');
-        //$('.map iframe').css("pointer-events", "auto");
-    });
-    var contactMsglines = 10;
-    $('#contactUsMessage').keydown(function(e) {
-        newLines = $(this).val().split("\n").length;
-        if(e.keyCode == 13 && newLines >= contactMsglines) {
-            return false;
-        }
-    });
-    
-    $('#descriptionTextarea').keydown(function(e) {
-        newLines = $(this).val().split("\n").length;
-        if(e.keyCode == 13 && newLines >= contactMsglines) {
-            return false;
-        }
-    });
-    $('#txtSendMessage').keydown(function(e) {
-        newLines = $(this).val().split("\n").length;
-        if(e.keyCode == 13 && newLines >= contactMsglines) {
-            return false;
-        }
-    });
-    //App.init();
-    //App.initScrollBar();
-    //MouseWheel.initMouseWheel(); <--ENABLE THIS LINE FOR PRICE SLIDER
-    //StyleSwitcher.initStyleSwitcher();
-    
 }); // end Ready
 
 

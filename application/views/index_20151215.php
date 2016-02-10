@@ -37,7 +37,7 @@ window.onload = function(){
             	if($lang_label<>"english")
             		$name=$value[0]->nameCH;
             	if($value[0]->level==1)
-            		echo "<option value='".$id."' style='font-weight:bold;' >".$name.$postCount."</option>";
+            		echo "<option value='".$id."' style='background-color: #E1338B;' >".$name.$postCount."</option>";
             	else 
             	{
             		$str="";

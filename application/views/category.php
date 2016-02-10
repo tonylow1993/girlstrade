@@ -1,6 +1,25 @@
 <?php $title = "Search Page";  include("header.php"); ?>
 <!-- CSS WHEEL SLIDER -->
 <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/noUiSlider/jquery.nouislider.min.css">
+
+<style id="jsbin-css">
+.progress-bar[aria-valuenow="1"],
+.progress-bar[aria-valuenow="2"] {
+  min-width: 3%;
+}
+
+.progress-bar[aria-valuenow="0"] {
+  color: gray;
+  min-width: 100%;
+  background: transparent;
+  box-shadow: none;
+}
+
+.progress-bar[aria-valuenow^="9"]:not([aria-valuenow="9"]) {
+  background: red;
+}
+</style>
+
 <div id="wrapper">
   
   <!-- /.header -->
@@ -8,9 +27,10 @@
   <br/>
   <div class="search-row-wrapper">
     <div class="container ">
-      <form  id="myForm"  onSubmit="return setup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">
+      <form  id="myForm"  onSubmit="return setup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_.'/'.$minPrice.'/'.$maxPrice.'/'.$activeTab;?>" method="POST">
             <div class="col-lg-3 col-sm-3 search-col relative"> <i class="icon-docs icon-append"></i>
                 <input type="text" name="ads"  id="ads" class="form-control has-icon" placeholder="Keywords" value="<?php if($keywords<>'0') echo trim($keywords);?>">
+              	<input type="hidden" name="paneActiveTab" id="paneActiveTab" value="<?php echo $activeTab;?>" >
               </div>
             
             <div class="col-sm-3">
@@ -352,13 +372,13 @@
                       <input type="number" placeholder="100" id="minPrice"
                       value=<?php if($minPrice>0)echo $minPrice;?>     
                       name="minPrice"  min="0"  max="90000" class="form-control price">
-                      <span id="menubarTitle"> - </span>
+                      <span id="menubarTitle"> — </span>
                       <input type="number" placeholder="1000 " id="maxPrice"  
                       value=<?php if($minPrice>0) echo $maxPrice;?>  
                       name="maxPrice" min="0" max="90000"   class="form-control price">
                   </div>
                   <div>
-                    <div class="form-group no-padding">
+                    <div class="form-group no-padding margin-top-20">
                     <button class="btn btn-primary btn-block btn-pink"> <i class="icon-search-2"></i> Filter</button>
                  <!--      <button id="priceRangeBtn" class="btn btn-default btn-pink btn-80 margin-top-10 " 
                       type="submit">Filter<i class="icon-search-2"></i></button> -->
@@ -370,10 +390,10 @@
              
               
               
-              <div class="locations-list  list-filter">
+              <div class="locations-list list-filter margin-top-30">
                 <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
-                 <li> <a id="searchCriteria" href="#" onclick="return setupTab('allAds');" ><?php echo $lblConditionAll;?>
+                 <li> <a id="searchCriteria" href="#allAds" onclick="return setupTab('allAds', 'searchCriteria');" ><?php echo $lblConditionAll;?>
                   
                   		<span class="count">
                   		<?php 
@@ -383,7 +403,7 @@
 			                echo $rowCount;
 			                ?>
                   		</span></a></li>
-                  <li> <a id="searchCriteria" href="#" onclick="return setupTab('newAds');"><?php echo $lblConditionNew;?>
+                  <li> <a id="newAds1" name="newAds1"  href="#newAds" onclick="return setupTab('newAds', 'newAds1');"><?php echo $lblConditionNew;?>
                   
                   		<span class="count">
                   		<?php 
@@ -398,7 +418,7 @@
 			                	echo $rowCount;
 			                ?>
                   		</span></a></li>
-                  <li> <a id="searchCriteria" href="#" onclick="return setupTab('usedAds');"><?php echo $lblConditionUsed;?>
+                  <li> <a id="usedAds1" name="usedAds1" href="#usedAds" onclick="return setupTab('usedAds', 'usedAds1');"><?php echo $lblConditionUsed;?>
                   
                   		<span class="count"><?php 
 			                $rowCount=0;
@@ -429,7 +449,7 @@
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
                 <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\"";?>
-                ><a href="#allAds"  role="tab" data-toggle="tab">
+                ><a href="#allAds"  id="allAds2" name="allAds2"  role="tab" data-toggle="tab" onclick="return setupTab('allAds', 'allAds2');">
                 <?php echo $lblConditionAny;?>
                 <span class="badge"><?php 
                 $rowCount=0;
@@ -437,7 +457,8 @@
                 	$rowCount=sizeof($itemList);
                 echo $rowCount;
                 ?></span></a></li>
-                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="#newAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>>
+                <a href="#newAds" id="newAds2" name="newAds2"  role="tab" data-toggle="tab" onclick="return setupTab('newAds', 'newAds2');">
                 <?php echo $lblConditionNew;?>
                 <span class="badge"><?php 
                 $rowCount=0;
@@ -450,7 +471,8 @@
 					}
                 	echo $rowCount;
                 ?></span></a></li>
-                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="#usedAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>>
+                <a href="#usedAds" id="usedAds2" name="usedAds2"  role="tab" data-toggle="tab" onclick="return setupTab('usedAds', 'usedAds2');">
                 <?php echo $lblConditionUsed;?> 
                 	<span class="badge">
 	                <?php 
@@ -518,7 +540,7 @@
               
             <div class="adds-wrapper">
               <div class="tab-content">
-                <div class="tab-pane fade <?php if(strcmp($activeTab, "allAds")==0) echo "in active"; ?>" id="allAds">
+                <div class="tab-pane <?php if(strcmp($activeTab, "allAds")==0) echo "active"; ?>" id="allAds">
                 	<?php
                 	
              $basePath=base_url().MY_PATH;
@@ -580,18 +602,18 @@
 				echo "</div>";
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
-                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$title $postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 if($item["getDisableSavedAds"])
-               		 echo "[<a style=\"pointer-events: none; cursor: default;color:grey;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+               		 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
                 else
-             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+             	   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
                 
-                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
                echo "</div>";
                }
                          
@@ -604,7 +626,7 @@
                 
                 
                 </div>
-               <div class="tab-pane <?php if(strcmp($activeTab, "newAds")==0) echo "active"; ?>" id="newAds">
+               <div class="tab-pane  <?php if(strcmp($activeTab, "newAds")==0) echo "active"; ?>" id="newAds">
                 	<?php
              $basePath=base_url().MY_PATH;
              $encodeCurrentURL=urlencode(current_url());
@@ -668,16 +690,16 @@
 				echo "</div>";
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
-                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$title $postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 if($item["getDisableSavedAds"])
-               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
                 else
-             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
                 
                 echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
                echo "</div>";
@@ -759,16 +781,16 @@
 				echo "</div>";
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
-                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$title $postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 if($item["getDisableSavedAds"])
-               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
                 else
-             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>]";
+             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
                 
                 echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
                echo "</div>";
@@ -831,15 +853,15 @@
         
       </div>
     </div>
-  </div>
+ </div>
   <!-- /.main-container -->
 
 <?php include "footer1.php"; ?>
   <!-- /.footer --> 
- </div>
+</div>
   <script>
   
-  function setupTab(activeTab){
+  function setupTab(activeTab, activeCtrl){
 		var catID=document.getElementById("search-category").value;
 	 	var locID=document.getElementById("id-location").value;
 		//var locID=0;
@@ -854,9 +876,50 @@
 		   if(maxPrice.trim()=='')
 			   maxPrice=0;
 		
+ //		   $('#pleaseWaitDialog').modal('show');
+ 		  	
+//           setForm(function(data)
+//            {
+//                if(data == true)
+//                {
+// 					$.ajax({
+// 						xhr: function()
+// 						{
+// 							var xhr = new window.XMLHttpRequest();
+// 							//Upload progress
+// 							xhr.upload.addEventListener("progress", function(evt){
+// 							  if (evt.lengthComputable) {
+// 								var percentComplete = evt.loaded / evt.total*100;
+// 								//Do something with upload progress
+// 								$("#upload-progress-bar").width(percentComplete+"%");
+// 								console.log(percentComplete);
+// 							  }
+// 							}, false);
+// 							return xhr;
+// 						},
+//						url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
+// 							//data: formData,
+// 						processData: false,
+// 						contentType: false,
+// 						type: 'POST',
+// 						success:function(msg){
+							//$("#".concat(activeCtrl)).attr("href", "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab));
+// 							$('#progress-bar').css("display", "none");
+// 							$('#pleaseWaitDialog').modal('hide');
+// 						}
+// 					});
+//                }
+//                return data;
+//            });
+			
 		document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab);
 		document.getElementById("myForm").submit();
 	}
+  function setForm(callback)
+  {
+  	  $('.progress-bar').css('width', 100+'%').attr('aria-valuenow', 100);
+  		callback(true);
+  }
 function setup(){
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;
@@ -867,9 +930,45 @@ function setup(){
 		   keywords='0';
 	   var minPrice=document.getElementById("minPrice").value;
 	   var maxPrice=document.getElementById("maxPrice").value;
-	
-	document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
-	document.getElementById("myForm").submit();
+	   var activeTab=document.getElementById("paneActiveTab").value;
+
+	   $('#pleaseWaitDialog').modal('show');
+
+       setForm(function(data)
+        {
+            if(data == true)
+            {
+					$.ajax({
+						xhr: function()
+						{
+							var xhr = new window.XMLHttpRequest();
+							//Upload progress
+							xhr.upload.addEventListener("progress", function(evt){
+							  if (evt.lengthComputable) {
+								var percentComplete = evt.loaded / evt.total*100;
+								//Do something with upload progress
+								$("#upload-progress-bar").width(percentComplete+"%");
+								console.log(percentComplete);
+							  }
+							}, false);
+							return xhr;
+						},
+						url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
+						//data: formData,
+						processData: false,
+						contentType: false,
+						type: 'POST',
+						success:function(msg){
+							$('#progress-bar').css("display", "none");
+							$('#pleaseWaitDialog').modal('hide');
+						}
+					});
+            }
+            return data;
+        });
+		
+	//document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab);
+	//document.getElementById("myForm").submit();
 }
 function isNumber(n) {
 	  return !isNaN(parseFloat(n)) && isFinite(n);
@@ -951,7 +1050,7 @@ function catSetup1(){
 	document.getElementById("catForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
 	document.getElementById("catForm1").submit();
 }
-function savedAds(ctrlValue, ctrlName) {
+function savedAds(ctrlValue, ctrlName, clickLink) {
 	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
 	$.ajax({
 		method: "POST",
@@ -961,6 +1060,8 @@ function savedAds(ctrlValue, ctrlName) {
 			var result = JSON.parse(response);
 	    	$("#".concat(ctrlName)).html(result.icon);
 	    	$("#Err".concat(ctrlName)).html(result.message);
+	    	//$("#".concat(clickLink)).attr("href", "#");
+	    	$("#".concat(clickLink)).attr("style", "pointer-events: none; cursor: default;color:yellow;");
 	    	}
 	});
 };
@@ -1014,7 +1115,23 @@ function savedAds(ctrlValue, ctrlName) {
 
 
 <!-- Modal Change City -->
-
+<div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 id ="modal-text">Processing...<?php echo $this->lang->line("PleaseNotCloseBrowseWhileSearching");?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="progress-bar" class="progress">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar" id="upload-progress-bar"
+                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">   
+                                        </div>
+                                    </div>
+									<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="backHomePage(); return false;" style="display: none;"><i class="fa fa-check"></i>Go to Homepage</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 <div class="modal fade" id="selectLocation" tabindex="-1" role="dialog" aria-labelledby="countryPopup" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -1102,9 +1219,9 @@ function savedAds(ctrlValue, ctrlName) {
               {
               	if(!isset($lang_label))
               		$lang_label="";
-              		$name=$value[0]->name;
+              		$name=$value[0]->name." (".$value[0]->postCount.")";
               		if($lang_label<>"english")
-              			$name=$value[0]->nameCN;
+              			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
               			if($value[0]->level==3){
               				if(in_array($value[0]->locationID, $level3)){
               					$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
@@ -1145,9 +1262,9 @@ function savedAds(ctrlValue, ctrlName) {
               {
               	if(!isset($lang_label))
               		$lang_label="";
-              		$name=$value[0]->name;
+              		$name=$value[0]->name." (".$value[0]->postCount.")";
               		if($lang_label<>"english")
-              			$name=$value[0]->nameCN;
+              			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
               			if($value[0]->level==3){
               					if(in_array($value[0]->locationID, $level3)){
               						$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
@@ -1187,9 +1304,9 @@ function savedAds(ctrlValue, ctrlName) {
               {
               	if(!isset($lang_label))
               		$lang_label="";
-              		$name=$value[0]->name;
+              		$name=$value[0]->name." (".$value[0]->postCount.")";
               		if($lang_label<>"english")
-              			$name=$value[0]->nameCN;
+              			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
               			if($value[0]->level==3){
               				if(in_array($value[0]->locationID, $level3)){
               						$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
@@ -1478,6 +1595,10 @@ function openCat(id) {
     
     return true;
 }
+function backHomePage(){
+	window.location = "<?php echo base_url();?>";
+}
+
 </script>
 <?php include "footer2.php"; ?>
 

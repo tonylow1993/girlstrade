@@ -30,7 +30,7 @@
                   <tr>
                     <th data-type="numeric" data-sort-initial="true"> </th>
           <!--           <th> <?php echo $this->lang->line("From"); ?> </th-->
-                    ><th> <?php echo $this->lang->line("Photo"); ?> </th>
+                    <th> <?php echo $this->lang->line("Photo"); ?> </th>
                     <th data-sort-ignore="true"> <?php echo $this->lang->line("Ads_Detail"); ?> </th>
          <!--            <th> <?php  echo $this->lang->line("Option");?> </th> -->
                   </tr>

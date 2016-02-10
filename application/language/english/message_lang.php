@@ -109,7 +109,7 @@ $lang["Extra"]="Extra";
 $lang["ExtraInfo"]="Extra Info";
 $lang["SearchTags"]="Search Tags";
 $lang["PleaseNotCloseBrowse"]="Please do not close your browser while uploading image(s).";
-
+$lang["PleaseNotCloseBrowseWhileSearching"]="Please do not close your browser.";
 
 //Signup.php
 $lang["SignUpWelcomeMessage"]="Create your account, Its free";
@@ -221,3 +221,4 @@ $lang["ExceedMAXTIMEDAILY_DRECTSENDFROMBUYER"]="Exceed Max Daily Times to direct
 
 $lang["invalidpriceformat"]="Invalid price format!";
 $lang["invalidpricerange"]="Invalid price range search!";
+$lang["lblRemainQty"]="remain qty";

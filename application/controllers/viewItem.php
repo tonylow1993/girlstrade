@@ -22,6 +22,7 @@
                 $this->load->model('tag_model');
                 $this->load->model('itemcomments_model');
                 $this->load->model('messages_model');
+				$this->load->model('userstat_model');
                 if($this->nativesession->get("language")!=null)
                 {
                 	$data["lang_label"] = $this->nativesession->get("language");
@@ -79,7 +80,12 @@
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
-			//----------------------------
+			if(isset($loginUser)){
+				$menuCount=$this->getHeaderCount($loginUser['userID']);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']); //$menuCount["inboxMsgCount"]; //
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
+		//----------------------------
             if($var == null)
             {
                 $this->nativesession->set("lastPageVisited","processError");
@@ -119,6 +125,7 @@
                 $data["itemName"] = $data["lang_label"]<>"english" ? $var[0]->itemNameCH : $var[0]->itemName;
                 $data["createDate"] = $var[0]->createDate;
                 $data["currency"] = $var[0]->currency;
+                $data["remainQty"]=$var[0]->remainQty;
                 $data["price"] = $var[0]->itemPrice;
                 $data["AdsProduct"] = array($var[0]->postID => $pic);
                 $data["itemDesc"] = $var[0]->description;
@@ -131,7 +138,7 @@
                 	$data["LocationName"]="All Locations";
                  $data["userName"] = $user[0]->username;
                 $data["userID"] = $user[0]->userID;
-                $userCreateDate = $user[0]->createDate;
+                $userCreateDate = (new DateTime($user[0]->createDate))->format('Y-M-d');
                 $data["userCreateDate"]=$userCreateDate;
                 $date=$user[0]->lastLoginTime;
                 $data["lastLoginTime"]=$date; //->format('Y-m-d H:i:s');
@@ -153,13 +160,13 @@
                 
                 $isSameUser=false;
                 $isPostAlready=false;
-                $isPendingRequest=true;
+                $isPendingRequest=false;
               	if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
                 {
                 	if($loginUser["userID"]==$user[0]->userID)
                 		$isSameUser=true;
-                	$isPostAlready=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
-                	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "");
+                	$isPostAlready=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "");
+                	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
                 }
                 $data["isSameUser"]=$isSameUser;
  
@@ -288,6 +295,41 @@
         public function getPost($postId)
         {
             return $this->post->getPostByID($postId);
+        }
+        
+        public function getHeaderCount($userID){
+        	$userStat=$this->userstat_model->getUserStat($userID);
+        
+        	$data["inboxMsgCount"]=0;
+        	$data["approveMsgCount"]=0;
+        	$data["myAdsCount"]=0;
+        	$data["savedAdsCount"]=0;
+        	$data["pendingMsgCount"]=0;
+        	$data["archivedAdsCount"]=0;
+        	$data["visitCount"]=0;
+        	$data["totalMyAdsCount"]=0;
+        	$data["favoriteAdsCount"]=0;
+        	$data["outgoingMsgCount"]=0;
+        	$data["buyAdsCount"]=0;
+        	$data["directsendhistCount"]=0;
+        	$data["directsendhistCount1"]=0;
+        	if(isset($userStat) && !empty($userStat)){
+        		$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
+        		$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
+        		$data["myAdsCount"]=$userStat[0]->myAdsCount;
+        		$data["savedAdsCount"]=$userStat[0]->savedAdsCount;
+        		$data["pendingMsgCount"]=$userStat[0]->pendingMsgCount;
+        		$data["archivedAdsCount"]=$userStat[0]->archivedAdsCount;
+        		$data["visitCount"]=$userStat[0]->visitCount;
+        		$data["totalMyAdsCount"]=$userStat[0]->totalMyAdsCount;
+        		$data["favoriteAdsCount"]=$userStat[0]->favoriteAdsCount;
+        		$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
+        		$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
+        		$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+        		$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
+        	}
+        
+        	return $data;
         }
     }
 ?>

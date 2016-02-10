@@ -203,14 +203,13 @@ div.panel-heading.newPostHints
 }
 .seller-info-border
 {
-	border: 1px solid #2F7EAD;
+	//border: 1px solid #2F7EAD;
 }
 div.panel-heading.seller-heading
 {
-	color:#823C3C;
+	color:#FFFFFF;
 	border:none;
-	border-bottom: 1px solid #2F7EAD;
-	background-color: #FFF5F5;
+	background-color: #E2348C;
 }
 .viewButton
 {
@@ -222,7 +221,7 @@ div.panel-heading.seller-heading
 }
 .directSendButton
 {
-	background-color: #8CC8EA;
+	background-color: #5A849C;
 }
 .directSendButton:hover, .directSendButton:focus, .directSendButton:active, 
 .directSendButton.active, .open .dropdown-toggle.directSendButton {
@@ -230,7 +229,7 @@ div.panel-heading.seller-heading
 }
 .inboxMsgButton
 {
-	background-color: #99F3CD;
+	background-color: #68B394;
 }
 
 #userStar

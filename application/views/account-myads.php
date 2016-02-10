@@ -30,7 +30,7 @@
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr style="height:50px;">
-                    <th height="50px" data-type="numeric" data-sort-initial="true" style="border: none;"> </th>
+<!--                <th height="50px" data-type="numeric" data-sort-initial="true" style="border: none;"> </th>-->
                     <th style="border: none;"> <?php echo $this->lang->line("Photo");?> </th>
                     <th data-sort-ignore="true" style="border: none;"> <?php echo $this->lang->line("Ads_Detail");?> </th>
                     <th data-type="numeric" style="border: none;"> <?php echo $this->lang->line("Price");?> </th>
@@ -76,11 +76,11 @@
 						 $soldUsersstr=$soldUsersstr."  </select>  ";
 						 $soldUsersstr=base64_encode($soldUsersstr);
 						echo "<tr>";
-                    	echo "<td style=\"width:5%; border: none;\" class=\"add-img-selector\"><div class=\"checkbox\">";
-                        echo "<label>";
-                        echo "  <input type=\"checkbox\">";
-                        echo "</label>";
-                      	echo "</div></td>";
+//                    	echo "<td style=\"width:5%; border: none;\" class=\"add-img-selector\"><div class=\"checkbox\">";
+//                        echo "<label>";
+//                        echo "  <input type=\"checkbox\">";
+//                        echo "</label>";
+//                      	echo "</div></td>";
                       	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\"  class=\"add-image\">";
 //                       	echo  "<div class=\"col-sm-2 no-padding photobox\">";
 // 						echo "<div style=\"position:relative; height:75px; width: 100%; overlfow:hidden;\">";
@@ -122,7 +122,7 @@
 						$ctrlValue2="userID".$rowCount;
 						$clickLink="clickLink".$rowCount;
 						$shareLink=base_url()."home/index/".$messageID;
-						echo "<p><a class=\"btn btn-primary btn-xs\" href=$editPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Edit')." </a></p>";
+						//echo "<p><a class=\"btn btn-primary btn-xs\" href=$editPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Edit')." </a></p>";
                         echo "<p> <a class=\"btn btn-info btn-xs\" href=\"#shareAds\"  data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('Share')." </a></p>";
                         echo "<p>";
                         		
@@ -285,7 +285,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title"><?php echo $this->lang->line("popupTitleDeleteAds");?></h4>
+        <h2 id="modal-title-del" class="modal-title"><?php echo $this->lang->line("popupTitleDeleteAds");?></h2>
       </div>
       <div class="modal-body">
         <form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds">
@@ -297,8 +297,9 @@
         </form>
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success pull-right"   onclick="setupDeleteAds(); return false;">Submit</button>
+		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
+      	<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button id="submit-btn" type="button" class="btn btn-success pull-right"   onclick="setupDeleteAds(); return false;">Submit</button>
         	<button id="validate" hidden="true" type="submit"></button>
   
      	 </div>
@@ -394,9 +395,29 @@ var encodeHtmlEntity = function(str) {
 };
 function setupDeleteAds()
 {
-     var myform = document.getElementById("itemDelete");
-	  	document.getElementById("itemDelete").submit();
-       	return true;
+	$("#modal-title-del").html("Processing...");
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds",
+		data: { 
+			messageID: $("#messageID").val(),
+			userID: $("#userID").val() 
+		},
+		success: function(response){
+			$("#modal-title-del").html("Your post has been deleted.");
+			$('#fwd-btn').css("display", "block");
+			$('#fwd-btn').css("margin", "auto");
+			$('#cancel-btn').css("display", "none");
+			$('#submit-btn').css("display", "none");
+			
+			console.log("success");
+		}
+	});
+
+
+     //var myform = document.getElementById("itemDelete");
+	  	//document.getElementById("itemDelete").submit();
+    return false;
 }
 
 function setup()

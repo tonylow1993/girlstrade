@@ -27,8 +27,8 @@
 	    	try {
 	    		$this->db->trans_start();
 	    		$data=array('readflag'=>'Y');
-	    		$this->db->where('ID', $messageID);
-	    		$result=$this->db->update('tradecomments', $data);
+	    		$this->db->where('messageID', $messageID);
+	    		$result=$this->db->update('message', $data);
 	    		$this->db->trans_complete();
 	    	}catch(Exception $ex)
 	    	{
@@ -142,7 +142,7 @@
 			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where ((a.status in ('R', 'C') and a.userID=$userID) or (a.status in ('OC', 'Op') and a.fUserID=$userID)) and b.userID != $userID and a.createDate>=curdate() ";    
 			$query2 = $this->db->query($strQuery);
 			$var2=$query2->result_array();
-			var_dump($var2);
+			//var_dump($var2);
 			$NoOfItemCount=$var2[0]["NoOfCount"];
 			
 			return $NoOfItemCount;
@@ -152,7 +152,7 @@
 			$NoOfItemCount=0;
 			$query2 = $this->db->query($strQuery);
 			$var2=$query2->result_array();
-			var_dump($var2);
+			//var_dump($var2);
 			$NoOfItemCount=$var2[0]["NoOfCount"];
 				
 			return $NoOfItemCount;
@@ -162,7 +162,7 @@
 			$NoOfItemCount=0;
 			$query2 = $this->db->query($strQuery);
 			$var2=$query2->result_array();
-			var_dump($var2);
+			//var_dump($var2);
 			$NoOfItemCount=$var2[0]["NoOfCount"];
 		}
 		public function getInBoxByPostUserId($userId, $pageNum)

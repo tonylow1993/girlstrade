@@ -35,6 +35,8 @@ class getCategory extends CI_Controller {
 		$this->load->model('savedAds_model');
 		$this->load->model('searchresult_model');
 		$this->load->model('pagevisited_model');
+		$this->load->model('messages_model');
+		$this->load->model('userstat_model');
 	}
 	
 	public function savedAds()
@@ -93,19 +95,19 @@ class getCategory extends CI_Controller {
 			
 			
 			
-		if($this->input->post("ads")<> null && trim($this->input->post("ads"))<>"")
+		if( $this->input->post("ads")<> null && trim($this->input->post("ads"))<>"")
 			$keywords=($this->input->post("ads"));
-		if($this->input->post("category")<>'' && $this->input->post("category")<>0)
+		if( $this->input->post("category")<>'' && $this->input->post("category")<>0)
 			$catID=$this->input->post("category");
 		//$_POST["category"];
 		//if(!isset($this->input->post("location")) or empty($this->input->post("location")) )
 		//	$locID="";
 		//else 
-		if($this->input->post("location")<>'' && $this->input->post("location")<>0)
+		if( $this->input->post("location")<>'' && $this->input->post("location")<>0)
 			$locID=$this->input->post("location");
-		if($this->input->post("sortByPrice")<>'' && $this->input->post("sortByPrice")<>'0')
+		if( $this->input->post("sortByPrice")<>'' && $this->input->post("sortByPrice")<>'0')
 			$sortByID=$this->input->post("sortByPrice");
-		if($this->input->post("allAds")<>'' && $this->input->post("allAds")<>'allAds')
+		if( $this->input->post("allAds")<>'' && $this->input->post("allAds")<>'allAds')
 				$allAds=$this->input->post("allAds");
 			
 		$data["sortByID_"]=$sortByID;
@@ -252,6 +254,11 @@ class getCategory extends CI_Controller {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userInfo)){
+				$menuCount=$this->getHeaderCount($userInfo['userID']);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo['userID']); //$menuCount["inboxMsgCount"]; //
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 		//----------------------------
 		$this->load->view('category.php', $data);
 	}
@@ -327,7 +334,40 @@ class getCategory extends CI_Controller {
 		//return PartialView();
 	}
 	
+	public function getHeaderCount($userID){
+		$userStat=$this->userstat_model->getUserStat($userID);
 	
+		$data["inboxMsgCount"]=0;
+		$data["approveMsgCount"]=0;
+		$data["myAdsCount"]=0;
+		$data["savedAdsCount"]=0;
+		$data["pendingMsgCount"]=0;
+		$data["archivedAdsCount"]=0;
+		$data["visitCount"]=0;
+		$data["totalMyAdsCount"]=0;
+		$data["favoriteAdsCount"]=0;
+		$data["outgoingMsgCount"]=0;
+		$data["buyAdsCount"]=0;
+		$data["directsendhistCount"]=0;
+		$data["directsendhistCount1"]=0;
+		if(isset($userStat) && !empty($userStat)){
+			$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
+			$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
+			$data["myAdsCount"]=$userStat[0]->myAdsCount;
+			$data["savedAdsCount"]=$userStat[0]->savedAdsCount;
+			$data["pendingMsgCount"]=$userStat[0]->pendingMsgCount;
+			$data["archivedAdsCount"]=$userStat[0]->archivedAdsCount;
+			$data["visitCount"]=$userStat[0]->visitCount;
+			$data["totalMyAdsCount"]=$userStat[0]->totalMyAdsCount;
+			$data["favoriteAdsCount"]=$userStat[0]->favoriteAdsCount;
+			$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
+			$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
+			$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+			$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
+		}
+	
+		return $data;
+	}
 	
 }
 ?>

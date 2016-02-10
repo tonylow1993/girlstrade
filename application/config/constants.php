@@ -55,7 +55,7 @@ define("TOPADS", "topAds");
 define("FEATUREDADS", "featuredAds");
 define("URGENTADS", "urgentAds");
 
-define("MAXLENGTHMSG_SHOWN_IN_TABLE", 30);
+define("MAXLENGTHMSG_SHOWN_IN_TABLE", 300);
 define("MAXSOLDQTY", 10);
 
 define("TITLECOLOR", "RED");

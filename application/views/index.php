@@ -7,7 +7,23 @@ window.onload = function(){
 	   document.getElementById("ads").focus();
 	};
 </script>
+<style id="jsbin-css">
+.progress-bar[aria-valuenow="1"],
+.progress-bar[aria-valuenow="2"] {
+  min-width: 3%;
+}
 
+.progress-bar[aria-valuenow="0"] {
+  color: gray;
+  min-width: 100%;
+  background: transparent;
+  box-shadow: none;
+}
+
+.progress-bar[aria-valuenow^="9"]:not([aria-valuenow="9"]) {
+  background: red;
+}
+</style>
 				
 <div class="intro">
     <div class="dtable hw100">
@@ -24,7 +40,7 @@ window.onload = function(){
 				<div class="col-sm-4  col-sm-4 search-col relative">
 				
                 <select class="btn btn-catSelect btn-search btn-block  catSelect dropdown-toggle" name="category" id="search-category">
-                    <option <?php if($catID="" or $catID=0) echo "selected='selected'"; ?> value="">
+                    <option style="background-color: #B9005E;" <?php if($catID="" or $catID=0) echo "selected='selected'"; ?> value="">
                         <?php echo $this->lang->line("lblAllCategories");?>
                     </option>
                     <?php 
@@ -37,7 +53,7 @@ window.onload = function(){
             	if($lang_label<>"english")
             		$name=$value[0]->nameCH;
             	if($value[0]->level==1)
-            		echo "<option value='".$id."' style='font-weight:bold;' >".$name.$postCount."</option>";
+            		echo "<option value='".$id."' style='background-color: #E1338B;' >".$name.$postCount."</option>";
             	else 
             	{
             		$str="";
@@ -402,7 +418,7 @@ window.onload = function(){
                 <div class="inner-box relative panel-bevel">
                 <h2 class="title-2"><span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">Interested</span> Items
             
-                <a id="nextItem1" class="link  pull-right carousel-nav"> <i class="icon-right-open-big"></i></a>
+                <a id="nextItem1" class="link pull-right carousel-nav"> <i class="icon-right-open-big"></i></a>
              <a id="prevItem1" class="link pull-right carousel-nav"> <i class="icon-left-open-big"></i> </a>
 
             </h2>
@@ -528,6 +544,24 @@ window.onload = function(){
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 id ="modal-text">Processing...<?php echo $this->lang->line("PleaseNotCloseBrowseWhileSearching");?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="progress-bar" class="progress">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar" id="upload-progress-bar"
+                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">   
+                                        </div>
+                                    </div>
+									<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="backHomePage(); return false;" style="display: none;"><i class="fa fa-check"></i>Go to Homepage</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          
         <div class="inner-box relative panel-bevel">
             <div class="row">
               <div class="col-md-5">
@@ -767,6 +801,60 @@ window.onload = function(){
 <!-- <script src="assets/plugins/jquery/jquery-migrate.min.js"></script> -->
 <!-- <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- JS Implementing Plugins -->
+
+<script>
+function setup(){
+	var catID=document.getElementById("search-category").value;
+ 	var locID=0;
+	var keywords=document.getElementById("ads").value;
+	   if(keywords.trim()=='')
+		   keywords='0';
+	   var minPrice=0;
+		   
+	   var maxPrice=0;
+
+	   $('#pleaseWaitDialog').modal('show');
+
+      setForm(function(data)
+       {
+           if(data == true)
+           {
+				$.ajax({
+					xhr: function()
+					{
+						var xhr = new window.XMLHttpRequest();
+						//Upload progress
+						xhr.upload.addEventListener("progress", function(evt){
+						  if (evt.lengthComputable) {
+							var percentComplete = evt.loaded / evt.total*100;
+							//Do something with upload progress
+							$("#upload-progress-bar").width(percentComplete+"%");
+							console.log(percentComplete);
+						  }
+						}, false);
+						return xhr;
+					},
+					url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
+					//data: formData,
+					processData: false,
+					contentType: false,
+					type: 'POST',
+					success:function(msg){
+						$('#progress-bar').css("display", "none");
+						$('#pleaseWaitDialog').modal('hide');
+					}
+				});
+           }
+           return data;
+       });
+}
+function setForm(callback)
+{
+	  $('.progress-bar').css('width', 100+'%').attr('aria-valuenow', 100);
+		callback(true);
+}
+</script>
+
 <script src="<?php echo base_url();?>assets/plugins/back-to-top.js"></script>
 <script src="<?php echo base_url();?>assets/plugins/smoothScroll.js"></script>
 <script src="<?php echo base_url();?>assets/plugins/jquery.parallax.js"></script>

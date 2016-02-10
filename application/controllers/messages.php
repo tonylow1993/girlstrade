@@ -164,6 +164,8 @@ function addDayswithdate($date,$days){
 					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendToSeller( $username, $path);
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendToSeller());
 					
+					$this->admin_model->getDirectSendStatByUserID($fUserID);
+					
 					$errorMsg=$this->lang->line("MessagesDirectSendSuccess");
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
@@ -190,7 +192,7 @@ function addDayswithdate($date,$days){
 					$data["menuPendingRequestNumber"]="0";
 					if(isset($userInfo)){
 						$menuCount=$this->getHeaderCount($fUserID);
-						$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+						$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID); //$menuCount["inboxMsgCount"]; //
 						$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 					}
 					//----------------------------
@@ -312,7 +314,7 @@ function addDayswithdate($date,$days){
 						$data["menuPendingRequestNumber"]="0";
 						if(isset($userInfo)){
 							$menuCount=$this->getHeaderCount($fUserID);
-							$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+							$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID); //$menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($fUserID);
 							$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 						}
 						//----------------------------
@@ -471,6 +473,8 @@ function addDayswithdate($date,$days){
 					$msg=$this->mailtemplate_model->SendEmailMsgForSeller( $username, $path );
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller());
 					
+					$this->admin_model->getMessageStatByUserID($fUserID);
+					
 					$errorMsg=$this->lang->line("MessagesSendError");
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
@@ -497,7 +501,7 @@ function addDayswithdate($date,$days){
 					$data["menuPendingRequestNumber"]="0";
 					if(isset($userInfo)){
 						$menuCount=$this->getHeaderCount($fUserID);
-						$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+						$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID); //$menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($fUserID);
 						$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 					}
 					//----------------------------
@@ -783,7 +787,7 @@ function addDayswithdate($date,$days){
 					'recipientName'=>$this->input->post('recipient-name'),
 					'senderEmail'=>$this->input->post('sender-email'),
 					'recipientPhoneNumber'=>$this->input->post('recipient-Phone-Number'));
-			print_r($messageArray);
+			//print_r($messageArray);
 				
 // 			if(intval($userID)==intval($fUserID) and $fUserID<>0)
 // 			{
@@ -1314,15 +1318,6 @@ function addDayswithdate($date,$days){
 		
 			return $data;
 		}
-	public function updateReadInbox(){
-		$messageID=$_POST["messageID"];
-		$this->messages_model->updateReadInboxFlag($messageID);
-		$data['status'] = 'A';
-		$data['class'] = "has-success";
-		$data['message'] = '';
-		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
-		echo json_encode($data);
-		return;
-	}
+	
 }
 ?>

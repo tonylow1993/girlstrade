@@ -167,7 +167,7 @@ class Home extends CI_Controller {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($user1)){
 				$menuCount=$this->getHeaderCount($user1["userID"]);
-				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user1["userID"]); //$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user1["userID"]); //$menuCount["inboxMsgCount"]; // //$this->messages_model->getUnReadInboxMessage($user[0]->userID);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -246,9 +246,11 @@ class Home extends CI_Controller {
 				$userCreateDate = $user[0]->createDate;
 				$data["userCreateDate"]=$userCreateDate;
 				//$data["errorMsg"]=array("success1"=> ($successMsg), "error"=> ($errorMsg));
-				if(isset($user)){
-					$menuCount=$this->getHeaderCount($user[0]->userID);
-					$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$loginUser=$this->nativesession->get("user");
+				
+				if(isset($loginUser["userID"])){
+					$menuCount=$this->getHeaderCount($loginUser["userID"]);
+					$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser["userID"]); //$menuCount["inboxMsgCount"]; //$this->messages_model->getUnReadInboxMessage($loginUser["userID"]);
 					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 				}
 				
@@ -267,7 +269,6 @@ class Home extends CI_Controller {
 				$isSameUser=false;
 				$isPostAlready=false;
 				$isPendingRequest=true;
-				$loginUser=$this->nativesession->get("user");
 				if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
 				{
 					if($loginUser["userID"]==$user[0]->userID)
@@ -412,6 +413,7 @@ class Home extends CI_Controller {
 	
 	public function signup(){
 		
+		
             //-------------------------------captcha------------------------------
                 $captcha;
                 if(isset($_POST['g-recaptcha-response'])){
@@ -499,6 +501,8 @@ class Home extends CI_Controller {
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data['optionsRadios'] = "I"; // $this->input->post('optionsRadios');
 		$data['username'] = $this->input->post('username');
+		
+		
 		//$data['firstname'] = $this->input->post('firstname');
 		//$data['lastname'] = $this->input->post('lastname');
                 $data['firstname'] = "";
@@ -848,7 +852,7 @@ class Home extends CI_Controller {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($user)){
 				$menuCount=$this->getHeaderCount($user["userID"]);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user["userID"]); //$menuCount["inboxMsgCount"]; //
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1115,6 +1119,20 @@ function generateRandomString($length = 8) {
 			echo json_encode($data);
 			return;
 		}
+		
+		$validate=preg_match("/\p{Han}+/u", $data['username']);
+		if($validate){
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Username: ('. $data['username'] .') should not contain chinese word.</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Username</span></em>';
+			$data['usernameError']='Error';
+			echo json_encode($data);
+			return;
+		}
+		
+		
+		
 		$validate = $this->user->isUserExist($data['username']);
 		$data['validate'] = $validate;
 		if($validate){
@@ -1282,7 +1300,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($userID)){
 				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID); //$menuCount["inboxMsgCount"]; //
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -1449,24 +1467,24 @@ function generateRandomString($length = 8) {
         }
         
         $data["sellerRating"]=$this->tradecomments_model->getRating($userID);
-        
+        //----------setup the header menu----------
+        $data["menuMyAds"]="";
+        $data["menuInbox"]="class=\"active\"";
+        $data["menuInboxNum"]="0";
+        $data["menuPendingRequest"]="";
+        $data["menuPendingRequestNumber"]="0";
+        if(isset($userID)){
+        	$menuCount=$this->getHeaderCount($userID);
+        	$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID); //$menuCount["inboxMsgCount"]; //
+        	$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+        }
+        //----------------------------
+        		
 		if($activeNav==1)
 		{
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInInbox($userID);
 			$myList=$this->messages_model->getInBoxByPostUserId($userID, $pageNum);
 			$data["result"]=$this->mapInBoxToView($myList, "Inbox");
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="class=\"active\"";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
 			$this->load->view("account-inbox", $data);
 		}
 		else if($activeNav==2)
@@ -1474,164 +1492,56 @@ function generateRandomString($length = 8) {
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInApproveAndReject($userID);
 			$myList=$this->requestpost_model->getApproveAndReject($userID, $pageNum);
 			$data["result"]=$this->mapReqeustPostToView($myList);
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
-			$this->load->view("account-approve-request-ads", $data);
+				$this->load->view("account-approve-request-ads", $data);
 		}
 		else if($activeNav==3)
 		{
 			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInMyAds($userID);
 			$myList=$this->post_model->getMyAds($userID, $pageNum);
 			$data["result"]=$this->mapPostToView($myList);
-			//----------setup the header menu----------
-			$data["menuMyAds"]="class=\"active\"";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
 			$this->load->view("account-myads", $data);
 		}
 		else if($activeNav==4)
 		{
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
-			$this->load->view("account-home", $data);
+				$this->load->view("account-home", $data);
 		}else if($activeNav==5)
 		{
 			$data["NoOfItemCount"]=$this->savedAds_model->getNoOfItemCountInSavedAds($userID);
 			$myList=$this->savedAds_model->getSavedAds($userID, $pageNum);
 			$data["result"]=$this->mapReqeustPostToView($myList);
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
-			$this->load->view("account-saved-search", $data);
+				$this->load->view("account-saved-search", $data);
 		}
 		else if($activeNav==6)
 		{
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInPendingApproval($userID);
 			$myList=$this->requestpost_model->getPendingApproval($userID, $pageNum);
 			$data["result"]=$this->mapReqeustPostToView($myList);
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="class=\"active\"";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
-			$this->load->view("account-pending-approval-ads", $data);
+				$this->load->view("account-pending-approval-ads", $data);
 		}
 		else if($activeNav==10)
 		{
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInOutgoing($userID);
 			$myList=$this->messages_model->getOutgoingByUserId($userID, $pageNum);
 			$data["result"]=$this->mapInBoxToView($myList, "OutBox");
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
-			$this->load->view("account-outbox", $data);
+				$this->load->view("account-outbox", $data);
 			
 		}
 		else if($activeNav==7){
 			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInArchiveAds($userID);
 			$myList=$this->post_model->getArchiveAds($userID, $pageNum);
 			$data["result"]=$this->mapPostToView($myList);
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
 			$this->load->view("account-archived-ads", $data);
 		}
 		else if($activeNav==11){
 			$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInBuyAdsHistory($userID);
 			$myList=$this->tradecomments_model->getBuyAdsHistory($userID, $pageNum);
 			$data["result"]=$this->mapTradeCommentToView($myList);
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
 			$this->load->view("account-my-buy-history", $data);
 		}else if($activeNav==12){
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInDirectSendHistory($userID);
 			$myList=$this->requestpost_model->getDirectSendHistory($userID, $pageNum);
 			$data["result"]=$this->mapReqeustPostToView($myList, "buyer");
 			$data["DirectSendType"]="Buyer";
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
 			$this->load->view("account-directsend-history", $data);
 		}else if($activeNav==13){
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInDirectSendHistoryAsSeller($userID);
@@ -1639,47 +1549,11 @@ function generateRandomString($length = 8) {
 			//var_dump($myList);
 			$data["result"]=$this->mapReqeustPostToViewOfArray($myList, "seller");
 			$data["DirectSendType"]="Seller";
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
 			$this->load->view("account-directsend-history", $data);
 		}
 		else if($activeNav==8){
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
 			$this->load->view("account-statements", $data);
 		}else if($activeNav==9){
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userID)){
-				$menuCount=$this->getHeaderCount($userID);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
 			$this->load->view("account-close", $data);
 		}
 	}
@@ -2145,6 +2019,7 @@ function generateRandomString($length = 8) {
 			$userID=$row->userID;
 			$fuserID=$row->fUserID;
 			$createDate=$row->createDate;
+			$readflag=$row->readflag;
 			//$messageIOType=$row->messageIOType;
 			$userarray=$this->users_model->get_user_by_id($userID);
 			$reply="";
@@ -2273,7 +2148,7 @@ function generateRandomString($length = 8) {
 					"viewItemPath"=>$viewItemPath,
 					"itemStatus"=>$itemStatus,
 					"status"=> $row->status,
-					
+					"readflag"=>$readflag,
 					"postUserID" =>$postUserID,
 					"NoOfDaysPending"=>$NoOfDaysPending,
 					"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
@@ -2717,7 +2592,7 @@ function generateRandomString($length = 8) {
 			$data["menuPendingRequestNumber"]="0";
 			if(isset($user)){
 				$menuCount=$this->getHeaderCount($user['userID']);
-				$data["menuInboxNum"]=$menuCount["inboxMsgCount"];
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user['userID']);
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
@@ -3060,6 +2935,19 @@ function generateRandomString($length = 8) {
 		}
 		
 		return $data;
+	}
+	
+	public function updateReadInbox(){
+		$messageID=$_POST["messageID"];
+		$pageNum=$_POST["pageNum"];
+		$this->messages_model->updateReadInboxFlag($messageID);
+		$data['status'] = 'A';
+		$data['class'] = "has-success";
+		$data['message'] = '';
+		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
+		echo json_encode($data);
+		return;
+		//$this->getAccountPage("1", $pageNum);
 	}
 	
 	public function check_session(){

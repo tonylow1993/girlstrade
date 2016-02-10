@@ -88,11 +88,15 @@ if (is_array($array) || is_object($array))
 				$str=$str." 0 AS adsCount,0 AS favoriteAdsCount , 0 as outGoingMsgCount,";
 				$str=$str." 0 as BuyAdsCount, 0 as directsendhistCount ";
 				$str=$str." FROM message ";
-				$str=$str." WHERE STATUS='Op' or status='OC'";
+				$str=$str." WHERE STATUS='Op' or status='OC' ";
 				$str=$str." GROUP BY userID ";
 				$str=$str." Union all";
 				$str=$str." select fUserID as userID, count(*), 0, 0,0,0,0,0,0,0 ,0,0 ,0";
-				$str=$str." from message where status='R' or status='C'";
+				$str=$str." from message where status='R' ";
+				$str=$str." group by fUserID";
+				$str=$str." Union all";
+				$str=$str." select userID as userID, count(*), 0, 0,0,0,0,0,0,0 ,0,0 ,0";
+				$str=$str." from message where status='C' ";
 				$str=$str." group by fUserID";
 				$str=$str." UNION ALL ";
 				$str=$str." SELECT b.userID, 0, COUNT(*) AS approveMsgCount, 0,0,0,0,0,0,0,0,0,0 ";
@@ -135,8 +139,12 @@ if (is_array($array) || is_object($array))
 				$str=$str." WHERE typeAds='featuredAds' ";
 				$str=$str." GROUP BY userID ";
 				$str=$str." Union all";
+				$str=$str." select fUserID, 0,0,0, 0,0,0,0,0,0,count(*),0,0";
+				$str=$str." from message where (status='C') ";
+				$str=$str." group by userID";
+				$str=$str." Union all";
 				$str=$str." select userID, 0,0,0, 0,0,0,0,0,0,count(*),0,0";
-				$str=$str." from message where (status='R' or status='C') ";
+				$str=$str." from message where (status='R') ";
 				$str=$str." group by userID";
 				$str=$str." Union all";
 				$str=$str." select fuserID, 0,0,0, 0,0,0,0,0,0,count(*),0,0";
@@ -247,19 +255,34 @@ if (is_array($array) || is_object($array))
 		function getMessageStatByUserID($userID){
 			try{
 				$str="update userstat ,   ";
-				$str=$str." ( select  SUM(inboxMsgCount) as inboxMsgCount , sum(outGoingMsgCount) as outboxMsgCount  from ( ";
-				$str=$str." SELECT  COUNT(*) AS inboxMsgCount, 0 as outGoingMsgCount ";
+				$str=$str." ( select  SUM(b.inboxMsgCount) as inboxMsgCount , sum(b.outGoingMsgCount) as outboxMsgCount  from ( ";
+				$str=$str." SELECT  COUNT(*) AS inboxMsgCount, 0 as outGoingMsgCount  ";
 				$str=$str." FROM message ";
-				$str=$str." WHERE (STATUS='Op' or status='OC' ) and userID=$userID ";
+				$str=$str." WHERE (status='Op' or status='OC' ) and userID=$userID ";
 				$str=$str." Union all ";
 				$str=$str." select  count(*), 0 ";
-				$str=$str." from message where (status='R' or status='C' ) and fuserID=$userID ";
+				$str=$str." from message where (status='R' and fuserID=$userID ) or (status='C'  and userID=$userID ) ";
 				$str=$str." Union all";
 				$str=$str." select 0,count(*) ";
-				$str=$str." from message where (status='R' or status='C') and userID=$userID ";
+				$str=$str." from message where (status='R' and userID=$userID) or (status='C' and fuserID=$userID ) ";
 				$str=$str." union all ";
 				$str=$str." select  0,count(*) ";
-				$str=$str." from message where status='OC' and fuserID=$userID ) b  ) a set userstat.inboxMsgCount =a.inboxMsgCount , userstat.outgoingMsgCount= a.outboxMsgCount where userstat.userID=$userID ";
+				$str=$str." from message where (status='OC' or status='Op') and fuserID=$userID ) b ) a set userstat.inboxMsgCount =a.inboxMsgCount , userstat.outgoingMsgCount= a.outboxMsgCount where userstat.userID=$userID ";
+				$this->db->trans_start();
+				$this->db->query($str);
+				$this->db->trans_complete();
+			}catch(Exception $ex)
+			{
+				echo $ex->getMessage();
+				return;
+			}
+		}
+		function getDirectSendStatByUserID($userID){
+			try{
+				$str="update userstat ,   ";
+				$str=$str." (SELECT  COUNT(*) AS NoOfCount ";
+				$str=$str." FROM requestpost ";
+				$str=$str." WHERE status='U' and userID=$userID ) a set userstat.pendingMsgCount =a.NoOfCount where userstat.userID=$userID ";
 				$this->db->trans_start();
 				$this->db->query($str);
 				$this->db->trans_complete();
@@ -270,4 +293,5 @@ if (is_array($array) || is_object($array))
 			}
 		}
 }
+
 ?>
