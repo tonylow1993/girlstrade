@@ -413,6 +413,7 @@ class Home extends CI_Controller {
 	
 	public function signup(){
 		
+		
             //-------------------------------captcha------------------------------
                 $captcha;
                 if(isset($_POST['g-recaptcha-response'])){
@@ -500,6 +501,8 @@ class Home extends CI_Controller {
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data['optionsRadios'] = "I"; // $this->input->post('optionsRadios');
 		$data['username'] = $this->input->post('username');
+		
+		
 		//$data['firstname'] = $this->input->post('firstname');
 		//$data['lastname'] = $this->input->post('lastname');
                 $data['firstname'] = "";
@@ -1116,6 +1119,20 @@ function generateRandomString($length = 8) {
 			echo json_encode($data);
 			return;
 		}
+		
+		$validate=preg_match("/\p{Han}+/u", $data['username']);
+		if($validate){
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Username: ('. $data['username'] .') should not contain chinese word.</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Username</span></em>';
+			$data['usernameError']='Error';
+			echo json_encode($data);
+			return;
+		}
+		
+		
+		
 		$validate = $this->user->isUserExist($data['username']);
 		$data['validate'] = $validate;
 		if($validate){
