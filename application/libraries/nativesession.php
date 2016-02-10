@@ -60,6 +60,8 @@ class nativesession {
 
         // switch back to the new session id and send the cookie
         session_id($new_session_id);
+        session_cache_limiter('private, must-revalidate');
+        session_cache_expire(600);
         session_start();
 
         // restore the old session data into the new session
@@ -154,8 +156,12 @@ class nativesession {
     */
     function _sess_run()
     {
-    	if(!isset($_SESSION))
+    	if(!isset($_SESSION)){
+    		session_cache_limiter('private, must-revalidate');
+    		session_cache_expire(600);
     		session_start();
+    	}
+    		
     
     		// check if session id needs regeneration
     		if ( $this->_session_id_expired_original() )
