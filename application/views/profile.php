@@ -464,13 +464,13 @@ function sendIt() {
   </div>
   </div>
   
-</div>
+
 
   
   <!-- /.main-container -->
   
   <?php include "footer1.php"; ?>
-
+</div>
 <div class="modal fade" id="contactAdvertiser1" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">

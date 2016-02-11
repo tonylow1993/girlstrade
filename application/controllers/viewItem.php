@@ -80,7 +80,10 @@
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			$data["isloginedIn"]=false;
+			
 			if(isset($loginUser)){
+				$data["isloginedIn"]=true;
 				$menuCount=$this->getHeaderCount($loginUser['userID']);
 				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']); //$menuCount["inboxMsgCount"]; //
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];

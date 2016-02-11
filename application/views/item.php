@@ -323,7 +323,7 @@
                             <!--</div>-->	
 						<!--</div>-->
 						<div class="content-footer text-left" id="viewItemBottomOpt"> 
-				<?php if($isPostAlready==false or $isPendingRequest==false or $isSameUser==false)
+				<?php if(($isloginedIn) && ($isPostAlready==false or $isPendingRequest==false or $isSameUser==false))
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo "<a href=";
@@ -334,33 +334,41 @@
                   }
                   ?>  
                   <?php
-                  if($isPostAlready==true && $isSameUser==false)
+                  if(($isloginedIn) && ($isPostAlready==true && $isSameUser==false))
                   {
 	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default directSendButton\">";
 	                  echo "<i class=\" icon-info\"></i>Pending Request.</a>";
                   }
                   ?>
-                  <?php if($isPendingRequest==true && $isSameUser==false) 
+                  <?php if(($isloginedIn) && ($isPendingRequest==true && $isSameUser==false)) 
                   {
 	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default directSendButton\">";
 	                  echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
                   }
                   ?>
                   <?php
-                  if($isSameUser==true)
+                  if(($isloginedIn) && ($isSameUser==true))
                   {  
 	                  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
 	                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
 	                  echo "<i class=\" icon-pencil\"></i> Edit Item </a>";
                   }
                   ?>
-						
-						<a href="#contactAdvertiser" email="<?php echo $email;?>" 
-                	firstName="<?php echo $firstName;?>" lastName="<?php echo $lastName;?>"
-                	telNo="<?php echo $telNo;?>" phoneNo="<?php echo $phoneNo;?>"
-                	 data-toggle="modal" class="btn   btn-default inboxMsgButton">
-						<i class=" icon-mail-2"></i> Send a message <?php if($DailyMaxTimes>0) echo "(".$DailyMaxTimes.")";?> </a> 
-						</div>
+					<?php
+					if(($isloginedIn) && ($isSameUser==false))
+					{
+						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
+						firstName=\"$firstName\" lastName=\"$lastName\"
+						telNo=\"$telNo\" phoneNo=\"$phoneNo\"
+						data-toggle=\"modal\" class=\"btn   btn-default inboxMsgButton\">
+						<i class=\" icon-mail-2\"></i> Send a message";
+						if($DailyMaxTimes>0) 
+							echo "(".$DailyMaxTimes.")";
+						echo "</a>";
+												
+					}
+					?>	
+					</div>
                         <!-- </div> -->
 
             
@@ -387,7 +395,7 @@
               		</h3>
                     <!-- <p> Joined: <strong><?php //echo $userCreateDate;?></strong></p> -->
                   </div>
-                  <?php if($isPostAlready==false or $isPendingRequest==false or $isSameUser==false)
+                  <?php if(($isloginedIn) && ($isPostAlready==false or $isPendingRequest==false or $isSameUser==false))
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo"<div class=\"user-ads-action\">";
@@ -399,14 +407,14 @@
                   }
                   ?>  
                   <?php
-                  if($isPostAlready==true && $isSameUser==false)
+                  if(($isloginedIn) &&($isPostAlready==true && $isSameUser==false))
                   {
 	                  echo "<div class=\"user-ads-action\">"; 
 	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default btn-block directSendButton\">";
 	                  echo "<i class=\" icon-info\"></i>Pending Request.</a> </div>";
                   }
                   ?>
-                  <?php if($isPendingRequest==true && $isSameUser==false) 
+                  <?php if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                   {
 	                  echo "<div class=\"user-ads-action\">"; 
 	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default btn-block directSendButton\">";
@@ -414,7 +422,7 @@
                   }
                   ?>
                   <?php
-                  if($isSameUser==true)
+                  if(($isloginedIn) &&($isSameUser==true))
                   {  
 	                  echo "<div class=\"user-ads-action\">"; 
 	                  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
@@ -422,18 +430,20 @@
 	                  echo "<i class=\" icon-pencil\"></i> Edit Item </a> </div>";
                   }
                   ?>
-                  <?php $usr = $this->nativesession->get('user');
-					if(empty($usr)){ 
-           			?>
-                  <div class="user-ads-action"> <a href="#contactAdvertiser" data-toggle="modal" disabled="disabled" 
-                  class="btn   btn-default btn-block  inboxMsgButton"><i class=" icon-mail-2"></i> Send a message </a> </div>
-                  <?php }else{?>
-                	<div class="user-ads-action"> <a href="#contactAdvertiser" email="<?php echo $email;?>" 
-                	firstName="<?php echo $firstName;?>" lastName="<?php echo $lastName;?>"
-                	telNo="<?php echo $telNo;?>" phoneNo="<?php echo $phoneNo;?>"
-                	 data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton">
-                	 <i class=" icon-mail-2"></i> Send a message <?php if($DailyMaxTimes>0) echo "(".$DailyMaxTimes.")";?></a> </div>
-                  <?php }?>   
+                   <?php
+					if(($isloginedIn) && ($isSameUser==false))
+					{
+						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
+						firstName=\"$firstName\" lastName=\"$lastName\"
+						telNo=\"$telNo\" phoneNo=\"$phoneNo\"
+						data-toggle=\"modal\" class=\"btn   btn-default inboxMsgButton\">
+						<i class=\" icon-mail-2\"></i> Send a message";
+						if($DailyMaxTimes>0) 
+							echo "(".$DailyMaxTimes.")";
+						echo "</a>";
+												
+					}
+					?>	  
                 </div>
               </div>
             </div>
