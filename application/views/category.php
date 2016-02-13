@@ -46,6 +46,8 @@
 	            		$lang_label="";
             	$name=$value[0]->name;
             	$postCount="(".$value[0]->postCount.")";
+            	if(SHOW_BRACKETS_SEARCH_PAGE==0)
+            		$postCount="";
             	if($lang_label<>"english")
             		$name=$value[0]->nameCH;
             	if($value[0]->level==1)
@@ -79,6 +81,8 @@
  	            		$lang_label="";
              	$name=$value[0]->name;
              	$postCount="(".$value[0]->postCount.")";
+             	if(SHOW_BRACKETS_SEARCH_PAGE==0)
+             		$postCount="";
              	if($lang_label<>"english")
              		$name=$value[0]->nameCN;
              	if($value[0]->level==1){
@@ -147,9 +151,12 @@
                		continue;
                	if(!isset($lang_label))
                		$lang_label="";
-               		$name=$value[0]->name." (".$value[0]->postCount.")";
+               		$postCount=" (".$value[0]->postCount.")";
+               		if(SHOW_BRACKETS_SEARCH_PAGE==0)
+               			$postCount="";
+               		$name=$value[0]->name.$postCount;
                		if($lang_label<>"english")
-               			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
+               			$name=$value[0]->nameCN.$postCount;
                			$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
                			if($value[0]->level==1){
                				
@@ -395,6 +402,10 @@
                 <ul class="browse-list list-unstyled long-list">
                  <li> <a id="searchCriteria" href="#allAds" onclick="return setupTab('allAds', 'searchCriteria');" ><?php echo $lblConditionAll;?>
                   
+                  		<?php 
+                  		if(SHOW_BRACKETS_SEARCH_PAGE==1){
+                  			
+                  		?>
                   		<span class="count">
                   		<?php 
 			                $rowCount=0;
@@ -402,9 +413,16 @@
 			                	$rowCount=sizeof($itemList);
 			                echo $rowCount;
 			                ?>
-                  		</span></a></li>
+                  		</span>
+                  		<?php }?>
+                  		
+                  		</a></li>
                   <li> <a id="newAds1" name="newAds1"  href="#newAds" onclick="return setupTab('newAds', 'newAds1');"><?php echo $lblConditionNew;?>
                   
+                  <?php 
+                  		if(SHOW_BRACKETS_SEARCH_PAGE==1){
+                  			
+                  		?>
                   		<span class="count">
                   		<?php 
 			                $rowCount=0;
@@ -417,9 +435,14 @@
 								}
 			                	echo $rowCount;
 			                ?>
-                  		</span></a></li>
+                  		</span>
+                  		<?php }?>
+                  		</a></li>
                   <li> <a id="usedAds1" name="usedAds1" href="#usedAds" onclick="return setupTab('usedAds', 'usedAds1');"><?php echo $lblConditionUsed;?>
-                  
+                  		<?php 
+                  		if(SHOW_BRACKETS_SEARCH_PAGE==1){
+                  			
+                  		?>
                   		<span class="count"><?php 
 			                $rowCount=0;
 			                if($itemList<>null && sizeof($itemList)>0)
@@ -430,7 +453,9 @@
 									$rowCount=$rowCount+1;
 								}
 			                	echo $rowCount;
-			                ?></span></a></li>
+			                ?></span>
+			                <?php }?>
+			                </a></li>
                 </ul>
               </div>
               
@@ -451,15 +476,25 @@
                 <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\"";?>
                 ><a href="#allAds"  id="allAds2" name="allAds2"  role="tab" data-toggle="tab" onclick="return setupTab('allAds', 'allAds2');">
                 <?php echo $lblConditionAny;?>
+                <?php 
+                  		if(SHOW_BRACKETS_SEARCH_PAGE==1){
+                  			
+                  		?>
                 <span class="badge"><?php 
                 $rowCount=0;
                 if($itemList<>null && sizeof($itemList)>0)
                 	$rowCount=sizeof($itemList);
                 echo $rowCount;
-                ?></span></a></li>
+                ?></span>
+                <?php }?>
+                </a></li>
                 <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>>
                 <a href="#newAds" id="newAds2" name="newAds2"  role="tab" data-toggle="tab" onclick="return setupTab('newAds', 'newAds2');">
                 <?php echo $lblConditionNew;?>
+                <?php 
+                  		if(SHOW_BRACKETS_SEARCH_PAGE==1){
+                  			
+                  		?>
                 <span class="badge"><?php 
                 $rowCount=0;
                 if($itemList<>null && sizeof($itemList)>0)
@@ -470,11 +505,16 @@
 						$rowCount=$rowCount+1;
 					}
                 	echo $rowCount;
-                ?></span></a></li>
+                ?></span>
+                <?php }?>
+                </a></li>
                 <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>>
                 <a href="#usedAds" id="usedAds2" name="usedAds2"  role="tab" data-toggle="tab" onclick="return setupTab('usedAds', 'usedAds2');">
                 <?php echo $lblConditionUsed;?> 
-                	<span class="badge">
+                	<?php 
+                  		if(SHOW_BRACKETS_SEARCH_PAGE==1){
+                  			
+                  		?><span class="badge">
 	                <?php 
 	                $rowCount=0;
 	                if($itemList<>null && sizeof($itemList)>0)
@@ -485,7 +525,8 @@
 							$rowCount=$rowCount+1;
 						}
 	                	echo $rowCount;
-	                ?></span></a>
+	                ?></span>
+	                <?php }?></a>
 	            </li>
               </ul>
               <div id="mobileFilter">
@@ -1219,9 +1260,12 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
               {
               	if(!isset($lang_label))
               		$lang_label="";
-              		$name=$value[0]->name." (".$value[0]->postCount.")";
+              		$postCount=" (".$value[0]->postCount.")";
+              		if(SHOW_BRACKETS_SEARCH_PAGE==0)
+              			$postCount="";
+              		$name=$value[0]->name.$postCount;
               		if($lang_label<>"english")
-              			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
+              			$name=$value[0]->nameCN.$postCount;
               			if($value[0]->level==3){
               				if(in_array($value[0]->locationID, $level3)){
               					$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
@@ -1262,9 +1306,12 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
               {
               	if(!isset($lang_label))
               		$lang_label="";
-              		$name=$value[0]->name." (".$value[0]->postCount.")";
+              		$postCount=" (".$value[0]->postCount.")";
+              		if(SHOW_BRACKETS_SEARCH_PAGE==0)
+              			$postCount="";
+              		$name=$value[0]->name.$postCount;
               		if($lang_label<>"english")
-              			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
+              			$name=$value[0]->nameCN.$postCount;
               			if($value[0]->level==3){
               					if(in_array($value[0]->locationID, $level3)){
               						$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
@@ -1304,9 +1351,12 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
               {
               	if(!isset($lang_label))
               		$lang_label="";
-              		$name=$value[0]->name." (".$value[0]->postCount.")";
+              		$postCount=" (".$value[0]->postCount.")";
+              		if(SHOW_BRACKETS_SEARCH_PAGE==0)
+              			$postCount="";
+              		$name=$value[0]->name.$postCount;
               		if($lang_label<>"english")
-              			$name=$value[0]->nameCN." (".$value[0]->postCount.")";
+              			$name=$value[0]->nameCN.$postCount;
               			if($value[0]->level==3){
               				if(in_array($value[0]->locationID, $level3)){
               						$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
@@ -1423,6 +1473,8 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 				$lang_label="";
 				$name=$value[0]->name;
 				$postCount="(".$value[0]->postCount.")";
+				if(SHOW_BRACKETS_SEARCH_PAGE==0)
+					$postCount="";
 				if($lang_label<>"english")
 					$name=$value[0]->nameCH;
 					if($value[0]->level==1)
@@ -1464,6 +1516,8 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 	            		$lang_label="";
             	$name=$value[0]->name;
             	$postCount="(".$value[0]->postCount.")";
+            	if(SHOW_BRACKETS_SEARCH_PAGE==0)
+            		$postCount="";
             	if($lang_label<>"english")
             		$name=$value[0]->nameCH;
             	$path=base_url().MY_PATH."getCategory/getAll/1/".$value[0]->categoryID;

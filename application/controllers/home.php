@@ -1558,6 +1558,25 @@ function generateRandomString($length = 8) {
 		}
 	}
 	
+	public function viewAllComments($userID, $pageNum=1){
+		
+		$previousUrl="";
+		if(isset($_GET["prevURL"]))
+			$previousUrl=$_GET["prevURL"];
+			else
+				$previousUrl=base_url();
+				$prevURL=$previousUrl;
+				$_SESSION["previousUrl"]=$previousUrl;
+				$data["previousCurrent_url"]=($previousUrl);
+		$data["userID"]=$userID;
+		$data["pageNum"]=$pageNum;
+		
+		$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInBuyAdsHistory($userID);
+		$myList=$this->tradecomments_model->getBuyAdsHistory($userID, $pageNum);
+		$data["result"]=$this->mapTradeCommentToView($myList);
+		$this->load->view("profile_allComments", $data);
+	}
+	
 	public function mapReqeustPostToView($inbox, $type="buyer")
 	{
 		$result=null;

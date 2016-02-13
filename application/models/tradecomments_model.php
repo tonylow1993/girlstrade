@@ -29,7 +29,9 @@ var $buyerDate='';
 		$query2 = $this->db->query($strQuery);
 		$var2=$query2->result_array();
 		//var_dump($var2);
-			$NoOfItemCount=$var2[0]["NoOfCount"];
+		$NoOfItemCount=$var2[0]["NoOfCount"];
+		if($NoOfItemCount==null)
+			$NoOfItemCount=0;
 		return $NoOfItemCount;
 		
 	}
@@ -87,6 +89,29 @@ var $buyerDate='';
 	
 		return $NoOfItemCount;
 	}
+	
+	public function getLatestBuyerComment($userID){
+		$strQuery="select buyerComment as comments from tradecomments where (status='A')  and (soldToUserID=$userID) order by createDate desc";
+		$result="";
+		$query2 = $this->db->query($strQuery);
+		$var2=$query2->result_array();
+		if(isset($var2) && sizeof($var2)>0)
+		$result=$var2[0]["comments"];
+		
+		return $result;
+	}
+	
+	public function getLatestSellerComment($userID){
+		$strQuery="select a.sellerComment as comments from tradecomments a inner join post b on a.postID=b.postID where (a.status='A')  and (b.userID=$userID) order by a.createDate Desc";
+		$result="";
+		$query2 = $this->db->query($strQuery);
+		$var2=$query2->result_array();
+		if(isset($var2) && sizeof($var2)>0)
+		$result=$var2[0]["comments"];
+	
+		return $result;
+	}
+	
 	function updateTradeComment($data, $ID){
 		try{
 			$this->db->trans_start();
