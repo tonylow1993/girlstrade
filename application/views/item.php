@@ -448,14 +448,15 @@
                    <?php
 					if(($isloginedIn) && ($isSameUser==false))
 					{
+						echo "<div class=\"user-ads-action\">";
 						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
 						firstName=\"$firstName\" lastName=\"$lastName\"
 						telNo=\"$telNo\" phoneNo=\"$phoneNo\"
-						data-toggle=\"modal\" class=\"btn   btn-default inboxMsgButton\">
+						data-toggle=\"modal\" class=\"btn btn-default btn-block directSendButton\">
 						<i class=\" icon-mail-2\"></i> Send a message";
 						if($DailyMaxTimes>0) 
 							echo "(".$DailyMaxTimes.")";
-						echo "</a>";
+						echo "</a></div>";
 												
 					}
 					?>	  
