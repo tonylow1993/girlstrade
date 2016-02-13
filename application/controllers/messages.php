@@ -1069,7 +1069,7 @@ function addDayswithdate($date,$days){
 					return;
 				}
 				
-			$messageID=$_POST['messageID'];
+			$messageID=0; //$_POST['messageID'];
 			$postID=$_POST['postID'];;
 			$soldUserID=$_POST['soldUser'];
 			$rating=$_POST['rating'];

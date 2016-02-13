@@ -90,6 +90,26 @@ var $buyerDate='';
 		return $NoOfItemCount;
 	}
 	
+	function getSellerAdsHistory($userId, $pageNum){
+		$ulimit=ITEMS_PER_PAGE;
+		$olimit=0;
+		if ($pageNum>1)
+			$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+			$strQuery="select a.* from tradecomments a inner join post b on a.postID=b.postID where (a.status='A')  and (b.userID=$userId) limit $olimit, $ulimit";
+			$query2 = $this->db->query($strQuery);
+			$var2=$query2->result();
+		return $var2;
+	}
+	public function getNoOfItemCountInSellerAdsHistory($userId){
+		$strQuery="select count(distinct a.ID) as NoOfCount from tradecomments a inner join post b on a.postID=b.postID where (a.status='A')  and (b.userID=$userId) ";
+		$NoOfItemCount=0;
+		$query2 = $this->db->query($strQuery);
+		$var2=$query2->result_array();
+		var_dump($var2);
+		$NoOfItemCount=$var2[0]["NoOfCount"];
+	
+		return $NoOfItemCount;
+	}
 	public function getLatestBuyerComment($userID){
 		$strQuery="select buyerComment as comments from tradecomments where (status='A')  and (soldToUserID=$userID) order by createDate desc";
 		$result="";
@@ -141,12 +161,18 @@ var $buyerDate='';
 			$result= $this->db->get('tradecomments')->result_array();
 			
 			$commentID= $result[0]['ID'];
-			$row1= $this->db->update('message', array("commentID"=>$commentID), array('messageID' => $messageID));
-			
+			$row1=0;
+			if($messageID!=null && $messageID!=0)
+				$row1= $this->db->update('message', array("commentID"=>$commentID), array('messageID' => $messageID));
+				
 			$query = $this->db->from('post')->where('postID', $data["postID"])->get();
 			$var=$query->result();
 			$row2=0;
 			if($var!=null && count($var)>0){
+				if($messageID==null || $messageID==0){
+					$row1= $this->db->update('message', array("commentID"=>$commentID), array('postID' => $var[0]->postID, 'fUserID'=> $data["soldToUserID"]));
+				}
+				
 				$remainQty=$var[0]->remainQty;
 				$remainQty=$remainQty-$data["soldQty"];
 				if($remainQty<=0)

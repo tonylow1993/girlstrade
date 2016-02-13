@@ -1570,9 +1570,50 @@ function generateRandomString($length = 8) {
 				$data["previousCurrent_url"]=($previousUrl);
 		$data["userID"]=$userID;
 		$data["pageNum"]=$pageNum;
+		$userStat=$this->userstat_model->getUserStat($userID);
 		
-		$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInBuyAdsHistory($userID);
-		$myList=$this->tradecomments_model->getBuyAdsHistory($userID, $pageNum);
+		$data["inboxMsgCount"]=0;
+		$data["approveMsgCount"]=0;
+		$data["myAdsCount"]=0;
+		$data["savedAdsCount"]=0;
+		$data["pendingMsgCount"]=0;
+		$data["archivedAdsCount"]=0;
+		$data["visitCount"]=0;
+		$data["totalMyAdsCount"]=0;
+		$data["favoriteAdsCount"]=0;
+		$data["outgoingMsgCount"]=0;
+		$data["buyAdsCount"]=0;
+		$data["directsendhistCount"]=0;
+		$data["directsendhistCount1"]=0;
+		if(isset($userStat) && !empty($userStat)){
+			$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
+			$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
+			$data["myAdsCount"]=$userStat[0]->myAdsCount;
+			$data["savedAdsCount"]=$userStat[0]->savedAdsCount;
+			$data["pendingMsgCount"]=$userStat[0]->pendingMsgCount;
+			$data["archivedAdsCount"]=$userStat[0]->archivedAdsCount;
+			$data["visitCount"]=$userStat[0]->visitCount;
+			$data["totalMyAdsCount"]=$userStat[0]->totalMyAdsCount;
+			$data["favoriteAdsCount"]=$userStat[0]->favoriteAdsCount;
+			$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
+			$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
+			$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+			$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
+		}
+		
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="class=\"active\"";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		if(isset($userID)){
+			$menuCount=$this->getHeaderCount($userID);
+			$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID); //$menuCount["inboxMsgCount"]; //
+			$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+		}
+		$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInSellerAdsHistory($userID);
+		$myList=$this->tradecomments_model->getSellerAdsHistory($userID, $pageNum);
 		$data["result"]=$this->mapTradeCommentToView($myList);
 		$this->load->view("profile_allComments", $data);
 	}
