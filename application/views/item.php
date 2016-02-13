@@ -220,33 +220,82 @@
                   </div>
                 </div>
               </div>
-              <div class="content-footer text-left">  </div>
+              
+            <div class="content-footer text-left">  </div>
             </div>
             
-            <!--<div class="blog-post-footer">
-			</div>-->
+						<div class="content-footer text-left" id="viewItemBottomOpt"> 
+				<?php if(($isloginedIn) && ($isPostAlready==false or $isPendingRequest==false or $isSameUser==false))
+                  {
+	                  if($isPostAlready == false and $isSameUser ==false ){
+		                  echo "<a href=";
+		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
+		                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
+		                  echo "<i class=\"icon-right-hand\"></i> Direct send request </a>";
+	                  }
+                  }
+                  ?>  
+                  <?php
+                  if(($isloginedIn) && ($isPostAlready==true && $isSameUser==false))
+                  {
+	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default directSendButton\">";
+	                  echo "<i class=\" icon-info\"></i>Pending Request.</a>";
+                  }
+                  ?>
+                  <?php if(($isloginedIn) && ($isPendingRequest==true && $isSameUser==false)) 
+                  {
+	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default directSendButton\">";
+	                  echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                  }
+                  ?>
+                  <?php
+                  if(($isloginedIn) && ($isSameUser==true))
+                  {  
+	                  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
+	                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
+	                  echo "<i class=\" icon-pencil\"></i> Edit Item </a>";
+                  }
+                  ?>
+					<?php
+					if(($isloginedIn) && ($isSameUser==false))
+					{
+						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
+						firstName=\"$firstName\" lastName=\"$lastName\"
+						telNo=\"$telNo\" phoneNo=\"$phoneNo\"
+						data-toggle=\"modal\" class=\"btn   btn-default inboxMsgButton\">
+						<i class=\" icon-mail-2\"></i> Send a message";
+						if($DailyMaxTimes>0) 
+							echo "(".$DailyMaxTimes.")";
+						echo "</a>";
+												
+					}
+					?>	
+					</div>
+                        <!-- </div> -->
+			 <!-- 	<div class="blog-post-footer">
+ 			</div>
 
 
-                            <!-- <div style="clear: both"></div> -->
+                             <div style="clear: both"></div>
 							
-                            <!-- <div class="inner "> -->
-<!-- 								<div class="clearfix"> -->
-                                <!--<div class="col-md-12  blog-post-bottom">-->
-                                <!-- </div> -->
-<!--                             </div> -->
+                            <div class="inner "> 
+ 								<div class="clearfix"> 
+                                <div class="col-md-12  blog-post-bottom">
+                                </div> 
+                             </div> -->
 
 
 
-                            <!--<div class="blogs-comments-area">-->
-                               <!-- <h3 class="list-title">--> 
-                               <!-- <a href="" class="post-comments">--><?php //count($commentList);?> 
-                               <!-- Comments</a></h3>-->
+                            <div class="blogs-comments-area"></div>
+                                <h5 class="list-title">
+                                <strong><?php count($commentList);?> 
+                               Comments</strong></h5>
                                
                                
                                
 
-                                <!-- <div class="blogs-comment-respond" id="respond"> -->
-                                    <!--<ul class="blogs-comment-list">
+                                 <div class="blogs-comment-respond" id="respond"> 
+                                    <ul class="blogs-comment-list">
 										<?php 
 										if($commentList!=null && count($commentList)>0){
 										
@@ -315,62 +364,28 @@
 										}
 										?>
                                        
-                                    </ul> -->    <!--Comment list End-->
+                                    </ul>   <!--Comment list End-->
+                                    
+                                    <h5 class="list-title">
+                                <strong>LEAVE A COMMENT</strong></h5>
+                                    
+									   <form class="blogs-comment-form" id="blogs-commentform" method="post" action="<?php echo base_url().MY_PATH; ?>itemComments/insertItemComment?prevURL=<?php echo current_url();?>">         
+                                        <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div>
+                                        <div class="row form-group" ><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your email" aria-required="true" value="" name="email"></div><div class="col-md-6 text-left"><span>E-mail*</span></div></div>
+										<input type="hidden" name="postID"  value="<?php echo $postID;?>" >
+<!--                                     	<div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
 
-                                <!--</div>--><!-- #respond -->
+                                        <div class="form-group">
+                                            <textarea class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="Message" name="blogscomment"></textarea> </div>
+
+                                        <button type="submit" class="btn-success btn btn-lg"> Submit </button>
+
+										</form>
+                                </div><!-- #respond -->
 
 
-                            <!--</div>-->	
-						<!--</div>-->
-						<div class="content-footer text-left" id="viewItemBottomOpt"> 
-				<?php if(($isloginedIn) && ($isPostAlready==false or $isPendingRequest==false or $isSameUser==false))
-                  {
-	                  if($isPostAlready == false and $isSameUser ==false ){
-		                  echo "<a href=";
-		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
-		                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
-		                  echo "<i class=\"icon-right-hand\"></i> Direct send request </a>";
-	                  }
-                  }
-                  ?>  
-                  <?php
-                  if(($isloginedIn) && ($isPostAlready==true && $isSameUser==false))
-                  {
-	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default directSendButton\">";
-	                  echo "<i class=\" icon-info\"></i>Pending Request.</a>";
-                  }
-                  ?>
-                  <?php if(($isloginedIn) && ($isPendingRequest==true && $isSameUser==false)) 
-                  {
-	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default directSendButton\">";
-	                  echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
-                  }
-                  ?>
-                  <?php
-                  if(($isloginedIn) && ($isSameUser==true))
-                  {  
-	                  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
-	                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
-	                  echo "<i class=\" icon-pencil\"></i> Edit Item </a>";
-                  }
-                  ?>
-					<?php
-					if(($isloginedIn) && ($isSameUser==false))
-					{
-						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
-						firstName=\"$firstName\" lastName=\"$lastName\"
-						telNo=\"$telNo\" phoneNo=\"$phoneNo\"
-						data-toggle=\"modal\" class=\"btn   btn-default inboxMsgButton\">
-						<i class=\" icon-mail-2\"></i> Send a message";
-						if($DailyMaxTimes>0) 
-							echo "(".$DailyMaxTimes.")";
-						echo "</a>";
-												
-					}
-					?>	
-					</div>
-                        <!-- </div> -->
-
+                           
+					
             
           </div>
           <!--/.ads-details-wrapper--> 

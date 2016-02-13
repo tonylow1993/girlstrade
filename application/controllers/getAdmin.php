@@ -609,7 +609,7 @@ class getAdmin extends CI_Controller {
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=$this->mailtemplate_model->SendEmailApprovePost( $username);
-						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_mode->SendEmailApprovePostTitle());
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle());
 							
 					}
 					else if($status=='R')
