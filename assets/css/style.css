@@ -3627,6 +3627,34 @@ span b{
     padding-bottom: 15px;
 }
 
+.price-hide{
+	display: none;
+}
+
+.action-hide{
+	display: none;
+}
+
+
+@media screen and (max-width: 600px) {
+	.price-td{
+		display: none;
+	}
+	
+	.action-td{
+		display: none;
+	}
+	
+	.price-hide{
+		display: block;
+	}
+	
+	.action-hide{
+		display: block;
+	}
+}
+
+
 
 /* =============================================================== */
 /* BLOGS & BLOG DETAILS
