@@ -413,7 +413,6 @@ class Home extends CI_Controller {
 	
 	public function signup(){
 		
-		
             //-------------------------------captcha------------------------------
                 $captcha;
                 if(isset($_POST['g-recaptcha-response'])){
@@ -501,8 +500,6 @@ class Home extends CI_Controller {
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data['optionsRadios'] = "I"; // $this->input->post('optionsRadios');
 		$data['username'] = $this->input->post('username');
-		
-		
 		//$data['firstname'] = $this->input->post('firstname');
 		//$data['lastname'] = $this->input->post('lastname');
                 $data['firstname'] = "";
@@ -601,8 +598,8 @@ class Home extends CI_Controller {
                 	$data["failedTitle"]=$this->lang->line("failedTitle");
                 	$data["goToHomePage"]=$this->lang->line("goToHomePage");
                 	 
-                	$this->load->view('successPage', $data);
-                	
+                	//$this->load->view('successPage', $data);
+                	redirect('', 'location');
                 
             }
 	}
@@ -856,7 +853,7 @@ class Home extends CI_Controller {
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
-			$this->load->view('successPage', $data);
+			redirect('', 'location');
 	}	
 	
 function generateRandomString($length = 8) {
@@ -1119,20 +1116,6 @@ function generateRandomString($length = 8) {
 			echo json_encode($data);
 			return;
 		}
-		
-		$validate=preg_match("/\p{Han}+/u", $data['username']);
-		if($validate){
-			$data['status'] = 'F';
-			$data['class'] = "has-error";
-			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Username: ('. $data['username'] .') should not contain chinese word.</div>';
-			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Username</span></em>';
-			$data['usernameError']='Error';
-			echo json_encode($data);
-			return;
-		}
-		
-		
-		
 		$validate = $this->user->isUserExist($data['username']);
 		$data['validate'] = $validate;
 		if($validate){
@@ -1556,66 +1539,6 @@ function generateRandomString($length = 8) {
 		}else if($activeNav==9){
 			$this->load->view("account-close", $data);
 		}
-	}
-	
-	public function viewAllComments($userID, $pageNum=1){
-		
-		$previousUrl="";
-		if(isset($_GET["prevURL"]))
-			$previousUrl=$_GET["prevURL"];
-			else
-				$previousUrl=base_url();
-				$prevURL=$previousUrl;
-				$_SESSION["previousUrl"]=$previousUrl;
-				$data["previousCurrent_url"]=($previousUrl);
-		$data["userID"]=$userID;
-		$data["pageNum"]=$pageNum;
-		$userStat=$this->userstat_model->getUserStat($userID);
-		
-		$data["inboxMsgCount"]=0;
-		$data["approveMsgCount"]=0;
-		$data["myAdsCount"]=0;
-		$data["savedAdsCount"]=0;
-		$data["pendingMsgCount"]=0;
-		$data["archivedAdsCount"]=0;
-		$data["visitCount"]=0;
-		$data["totalMyAdsCount"]=0;
-		$data["favoriteAdsCount"]=0;
-		$data["outgoingMsgCount"]=0;
-		$data["buyAdsCount"]=0;
-		$data["directsendhistCount"]=0;
-		$data["directsendhistCount1"]=0;
-		if(isset($userStat) && !empty($userStat)){
-			$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
-			$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
-			$data["myAdsCount"]=$userStat[0]->myAdsCount;
-			$data["savedAdsCount"]=$userStat[0]->savedAdsCount;
-			$data["pendingMsgCount"]=$userStat[0]->pendingMsgCount;
-			$data["archivedAdsCount"]=$userStat[0]->archivedAdsCount;
-			$data["visitCount"]=$userStat[0]->visitCount;
-			$data["totalMyAdsCount"]=$userStat[0]->totalMyAdsCount;
-			$data["favoriteAdsCount"]=$userStat[0]->favoriteAdsCount;
-			$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
-			$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
-			$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
-			$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
-		}
-		
-		//----------setup the header menu----------
-		$data["menuMyAds"]="";
-		$data["menuInbox"]="class=\"active\"";
-		$data["menuInboxNum"]="0";
-		$data["menuPendingRequest"]="";
-		$data["menuPendingRequestNumber"]="0";
-		if(isset($userID)){
-			$menuCount=$this->getHeaderCount($userID);
-			$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID); //$menuCount["inboxMsgCount"]; //
-			$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-		}
-		$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInSellerAdsHistory($userID);
-		$myList=$this->tradecomments_model->getSellerAdsHistory($userID, $pageNum);
-		$data["result"]=$this->mapTradeCommentToView($myList);
-		$this->load->view("profile_allComments", $data);
 	}
 	
 	public function mapReqeustPostToView($inbox, $type="buyer")
