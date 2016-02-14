@@ -3126,7 +3126,9 @@ td.ads-details-td {
 	     padding: 5px 4px;
 		 font-size:11px;
   }
-  
+  #leftMenuSearchPage{
+	display: none;
+  }
 }
 
 @media (min-width: 768px) {

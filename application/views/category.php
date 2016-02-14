@@ -468,7 +468,7 @@
        </div>
         <!--/.page-side-bar-->
         
-        <div class="col-sm-9 page-content col-thin-left">
+        <div class="col-sm-12 col-md-9 page-content col-thin-left">
           <div class="category-list">
           <div class="tab-box "> 
               <!-- Nav tabs -->
@@ -1411,14 +1411,14 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
                       <input type="number" placeholder="100" id="minPrice1"
                       value=<?php  if($minPrice>0)echo $minPrice;?>     
                       name="minPrice1"  min="0"  max="90000" class="form-control price">
-                      <span id="menubarTitle"> - </span>
+                      <span id="menubarTitle"> — </span>
                       <input type="number" placeholder="1000 " id="maxPrice1"  
                       value=<?php if($minPrice>0) echo $maxPrice;?>  
                       name="maxPrice1" min="0" max="90000"   class="form-control price">
                   </div>
                   <div>
                     <div class="form-group no-padding">
-                      <button id="priceRangeBtn1" class="btn btn-default btn-pink btn-80 margin-top-20" 
+                      <button id="priceRangeBtn1" class="btn btn-default btn-pink margin-top-20" 
                       type="submit">Filter<i class="icon-search-2"></i></button>
                     </div>
                   </div>
