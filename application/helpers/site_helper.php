@@ -16,6 +16,22 @@ if ( ! function_exists('trimLongText'))
 	}
 		
 }
+if ( ! function_exists('trimLongTextInViewAllComments'))
+{
+	function trimLongTextInViewAllComments($message)
+	{
+		$message=str_replace(PHP_EOL,  ' ', $message);
+		$message=str_replace("<br />",  ' ', $message);
+		$message=preg_replace("/[\n\r]/",  ' ', $message);
+		$message=trim($message);
+		if(mb_strlen($message, 'utf-8')>MAXLENGTHMSG_SHOWN_IN_COMMENTS_TABLE)
+		{
+			$message=trim(substr($message,0,MAXLENGTHMSG_SHOWN_IN_COMMENTS_TABLE))."...";
+		}
+		return $message;
+	}
+
+}
 if(! function_exists('strlen_unicode')){
 	function strlen_unicode($str) {
 		return count(preg_split(

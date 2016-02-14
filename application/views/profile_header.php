@@ -44,8 +44,8 @@
                     <i class="fa fa-heart ln-shadow shape-5"></i> </div>
                   <div class="mcol-right"> 
                     <!-- Number of visitors -->
-                    <p><a href="#"><?php echo $sellerRating;//$favoriteAdsCount;?></a> <em>Rating</em></p>
-                  </div>
+                     <p><a href="#"><?php echo $favoriteAdsCount;?></a> <em>Favorites </em></p>
+                 </div>
                   <div class="clearfix"></div>
                 </div>
               </div>

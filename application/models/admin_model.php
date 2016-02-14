@@ -122,7 +122,7 @@ if (is_array($array) || is_object($array))
 				$str=$str." UNION ALL ";
 				$str=$str." SELECT userID, 0,0,0, 0,0,COUNT(*) AS archivedAdsCount,0,0,0 ,0,0,0";
 				$str=$str." FROM post ";
-				$str=$str." where status in ('Bc', 'So')";
+				$str=$str." where status = 'C' ";
 				$str=$str." GROUP BY userID ";
 				$str=$str." UNION ALL ";
 				$str=$str." SELECT a.userID, 0,0,0, 0,0,0,COUNT(*) AS visitCount,0,0 ,0,0,0";
@@ -139,7 +139,7 @@ if (is_array($array) || is_object($array))
 				$str=$str." WHERE typeAds='featuredAds' ";
 				$str=$str." GROUP BY userID ";
 				$str=$str." Union all";
-				$str=$str." select fUserID, 0,0,0, 0,0,0,0,0,0,count(*),0,0";
+				$str=$str." select fUserID as userID, 0,0,0, 0,0,0,0,0,0,count(*),0,0";
 				$str=$str." from message where (status='C') ";
 				$str=$str." group by userID";
 				$str=$str." Union all";
@@ -147,14 +147,13 @@ if (is_array($array) || is_object($array))
 				$str=$str." from message where (status='R') ";
 				$str=$str." group by userID";
 				$str=$str." Union all";
-				$str=$str." select fuserID, 0,0,0, 0,0,0,0,0,0,count(*),0,0";
+				$str=$str." select fuserID as userID, 0,0,0, 0,0,0,0,0,0,count(*),0,0";
 				$str=$str." from message where status='OC' or status='Op' ";
 				$str=$str." group by fuserID";
 				$str=$str." Union all";
-				$str=$str." select soldToUserID, 0,0,0, 0,0,0,0,0,0,0,count(*),0";
-				$str=$str." from post";
-				$str=$str." where status in ('So', 'Bc')";
-				$str=$str." and soldToUserID !=0";
+				$str=$str." select soldToUserID as userID, 0,0,0, 0,0,0,0,0,0,0,count(*),0";
+				$str=$str." from tradecomments";
+				$str=$str." where soldToUserID !=0";
 				$str=$str." group by soldToUserID";
 				$str=$str." Union all";
 				$str=$str." select userID, 0,0,0, 0,0,0,0,0,0,0,0,count(*)";

@@ -221,4 +221,4 @@ $lang["ExceedMAXTIMEDAILY_DRECTSENDFROMBUYER"]="Exceed Max Daily Times to direct
 
 $lang["invalidpriceformat"]="Invalid price format!";
 $lang["invalidpricerange"]="Invalid price range search!";
-$lang["lblRemainQty"]="remain qty";
+$lang["lblRemainQty"]="Quantity";

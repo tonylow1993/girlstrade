@@ -50,6 +50,8 @@ window.onload = function(){
 	            		$lang_label="";
             	$name=$value[0]->name;
             	$postCount="(".$value[0]->postCount.")";
+            	if(SHOW_BRACKETS_INDEX_PAGE==0)
+            		$postCount="";
             	if($lang_label<>"english")
             		$name=$value[0]->nameCH;
             	if($value[0]->level==1)
@@ -364,6 +366,8 @@ window.onload = function(){
 	            		$lang_label="";
             	$name=$value[0]->name;
             	$postCount="(".$value[0]->postCount.")";
+            	if(SHOW_BRACKETS_INDEX_PAGE==0)
+            		$postCount="";
             	if($lang_label<>"english")
             		$name=$value[0]->nameCH;
             	$path=base_url().MY_PATH."getCategory/getAll/1/".$value[0]->categoryID;
@@ -577,6 +581,8 @@ window.onload = function(){
 	                		$lang_label="";
 	                	$name=$value->name;
 	                	$postCount="(".$value->postCount.")";
+	                	if(SHOW_BRACKETS_INDEX_PAGE==0)
+	                		$postCount="";
 	                	if($lang_label<>"english")
 	                		$name=$value->nameCN;
 	                	$path=base_url().MY_PATH."getCategory/getAll/1/0/$value->locationID";
@@ -596,6 +602,8 @@ window.onload = function(){
                   			$lang_label="";
                   		$name=$value->name;
                   		$postCount="(".$value->postCount.")";
+                  		if(SHOW_BRACKETS_INDEX_PAGE==0)
+                  			$postCount="";
                   		if($lang_label<>"english")
                   			$name=$value->nameCN;
                   		$path=base_url().MY_PATH."getCategory/getAll/1/0/$value->locationID";
@@ -620,6 +628,8 @@ window.onload = function(){
                   			$lang_label="";
                   		$name=$value->name;
                   		$postCount="(".$value->postCount.")";
+                  		if(SHOW_BRACKETS_INDEX_PAGE==0)
+                  			$postCount="";
                   		if($lang_label<>"english")
                   			$name=$value->nameCH;
                   		$path=base_url().MY_PATH."getCategory/getAll/1/$value->categoryID";
@@ -638,6 +648,8 @@ window.onload = function(){
                   			$lang_label="";
                   		$name=$value->name;
                   		$postCount="(".$value->postCount.")";
+                  		if(SHOW_BRACKETS_INDEX_PAGE==0)
+                  			$postCount="";
                   		if($lang_label<>"english")
                   			$name=$value->nameCH;
                   		$path=base_url().MY_PATH."getCategory/getAll/1/$value->categoryID";
@@ -656,6 +668,8 @@ window.onload = function(){
                   			$lang_label="";
                   		$name=$value->name;
                   		$postCount="(".$value->postCount.")";
+                  		if(SHOW_BRACKETS_INDEX_PAGE==0)
+                  			$postCount="";
                   		if($lang_label<>"english")
                   			$name=$value->nameCH;
                   		$path=base_url().MY_PATH."getCategory/getAll/1/$value->categoryID";
@@ -688,6 +702,8 @@ window.onload = function(){
                   			$lang_label="";
                   		$name=$value->name;
                   		$postCount="(".$value->postCount.")";
+                  		if(SHOW_BRACKETS_INDEX_PAGE==0)
+                  			$postCount="";
                   		if($lang_label<>"english")
                   			$name=$value->nameCH;
                   		$path=base_url().MY_PATH."getCategory/getAll/1/$value->categoryID";

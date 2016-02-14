@@ -68,7 +68,7 @@ input[type=checkbox]
                       <div class="form-group">
                           <label class="col-md-3 control-label text-center" for="Adtitle"><i class="icon-pencil"></i> <?php echo $TopicTitle;?> <font color="red">*</font></label>
                           <div class="col-md-8">
-                              <input id="Adtitle" name="Adtitle" class="form-control input-md" type="text" required="true"  maxlength="100"/>
+                              <input id="Adtitle" name="Adtitle" class="form-control input-md" type="text" required="true"  maxlength="45"/>
 <!--                        <span class="help-block">A great title needs at least 5 words </span> -->
                               <em>(A Great Title Needs At Least 5 Words) </em>
                           </div>

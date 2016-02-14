@@ -24,13 +24,22 @@ var $buyerDate='';
 	}
 	
 	function getRating($userID){
-		$strQuery="select sum(a.sellerRating) as NoOfCount from tradecomments a inner join post b on a.postID=b.postID where b.userID=$userID ";
+		$strQuery="select sum(a.buyerRating) as rating, count(*) as NoOfCount from tradecomments a inner join post b on a.postID=b.postID where b.userID=$userID  and a.buyerRating!=0 and a.buyerRating is not null";
 		$NoOfItemCount=0;
+		$rating=0;
 		$query2 = $this->db->query($strQuery);
 		$var2=$query2->result_array();
 		//var_dump($var2);
-			$NoOfItemCount=$var2[0]["NoOfCount"];
-		return $NoOfItemCount;
+		$NoOfItemCount=$var2[0]["NoOfCount"];
+		$rating=$var2[0]["rating"];
+		if($rating==null){
+			$NoOfItemCount=0;
+			$rating=0;
+		}
+		if($NoOfItemCount!=0 && $rating!=null)
+			return intval($rating/$NoOfItemCount);
+		else 
+			return 0;
 		
 	}
 	
@@ -87,6 +96,49 @@ var $buyerDate='';
 	
 		return $NoOfItemCount;
 	}
+	
+	function getSellerAdsHistory($userId, $pageNum){
+		$ulimit=ITEMS_PER_PAGE;
+		$olimit=0;
+		if ($pageNum>1)
+			$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+			$strQuery="select a.* from tradecomments a inner join post b on a.postID=b.postID where (a.status='A')  and (b.userID=$userId) limit $olimit, $ulimit";
+			$query2 = $this->db->query($strQuery);
+			$var2=$query2->result();
+		return $var2;
+	}
+	public function getNoOfItemCountInSellerAdsHistory($userId){
+		$strQuery="select count(distinct a.ID) as NoOfCount from tradecomments a inner join post b on a.postID=b.postID where (a.status='A')  and (b.userID=$userId) ";
+		$NoOfItemCount=0;
+		$query2 = $this->db->query($strQuery);
+		$var2=$query2->result_array();
+		var_dump($var2);
+		$NoOfItemCount=$var2[0]["NoOfCount"];
+	
+		return $NoOfItemCount;
+	}
+	public function getLatestBuyerComment($userID){
+		$strQuery="select buyerComment as comments from tradecomments where (status='A')  and (soldToUserID=$userID) order by createDate desc";
+		$result="";
+		$query2 = $this->db->query($strQuery);
+		$var2=$query2->result_array();
+		if(isset($var2) && sizeof($var2)>0)
+		$result=$var2[0]["comments"];
+		
+		return $result;
+	}
+	
+	public function getLatestSellerComment($userID){
+		$strQuery="select a.sellerComment as comments from tradecomments a inner join post b on a.postID=b.postID where (a.status='A')  and (b.userID=$userID) order by a.createDate Desc";
+		$result="";
+		$query2 = $this->db->query($strQuery);
+		$var2=$query2->result_array();
+		if(isset($var2) && sizeof($var2)>0)
+		$result=$var2[0]["comments"];
+	
+		return $result;
+	}
+	
 	function updateTradeComment($data, $ID){
 		try{
 			$this->db->trans_start();
@@ -116,12 +168,18 @@ var $buyerDate='';
 			$result= $this->db->get('tradecomments')->result_array();
 			
 			$commentID= $result[0]['ID'];
-			$row1= $this->db->update('message', array("commentID"=>$commentID), array('messageID' => $messageID));
-			
+			$row1=0;
+			if($messageID!=null && $messageID!=0)
+				$row1= $this->db->update('message', array("commentID"=>$commentID), array('messageID' => $messageID));
+				
 			$query = $this->db->from('post')->where('postID', $data["postID"])->get();
 			$var=$query->result();
 			$row2=0;
 			if($var!=null && count($var)>0){
+				if($messageID==null || $messageID==0){
+					$row1= $this->db->update('message', array("commentID"=>$commentID), array('postID' => $var[0]->postID, 'fUserID'=> $data["soldToUserID"]));
+				}
+				
 				$remainQty=$var[0]->remainQty;
 				$remainQty=$remainQty-$data["soldQty"];
 				if($remainQty<=0)

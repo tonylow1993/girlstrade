@@ -56,6 +56,10 @@ define("FEATUREDADS", "featuredAds");
 define("URGENTADS", "urgentAds");
 
 define("MAXLENGTHMSG_SHOWN_IN_TABLE", 300);
+define("MAXLENGTHMSG_SHOWN_IN_COMMENTS_TABLE", 30);
+define("SHOW_BRACKETS_INDEX_PAGE", 0);
+define("SHOW_BRACKETS_SEARCH_PAGE", 0);
+define("SHOW_BRACKETS_PROFILE_PAGE", 0);
 define("MAXSOLDQTY", 10);
 
 define("TITLECOLOR", "RED");

@@ -57,12 +57,25 @@ function sendIt() {
                  echo $count; ?></p></td></tr>
                 </table>
               </div>
+              <?php 
+              if($recentBuyerComment!=""){
+	              echo "Latest Buyer Comment: ".$recentBuyerComment;
+	              echo "<br/>";
+              }
+              if($recentSellerComment!=""){
+	              echo "Latest Seller Comment: ".$recentSellerComment;
+	              echo "<br/>";
+              }
+              ?>
+              
+              
+              <a href="<?php echo base_url().MY_PATH."home/viewAllComments/$userID/1?prevURL=".urlencode(current_url()); ?>" > View all comments </a>
               <br />
               <?php $usr = $this->nativesession->get('user');
 					if(empty($usr)){ 
            			?>
-              <a href="#contactAdvertiser1" disabled="disabled" data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton">
-              <i class=" icon-mail-2"></i> Send Private Message</a>
+<!--               <a href="#contactAdvertiser1" disabled="disabled" data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton"> -->
+<!--               <i class=" icon-mail-2"></i> Send Private Message</a> -->
                <?php }else{?>
                <a href="#contactAdvertiser1" data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton">
                <i class=" icon-mail-2"></i> Send Private Message</a>
@@ -80,13 +93,53 @@ function sendIt() {
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
                 <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionAny;?>
-                <span class="badge">228,705</span></a></li>
+                <?php 
+                  		if(SHOW_BRACKETS_PROFILE_PAGE==1){
+                  			
+                  		?>
+                <span class="badge"><?php 
+                $rowCount=0;
+                if($itemList<>null && sizeof($itemList)>0)
+                	$rowCount=sizeof($itemList);
+                echo $rowCount;
+                ?></span>
+                <?php }?></a></li>
                 <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="#newAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionNew;?>
-                <span class="badge">22,805</span></a></li>
+                <?php 
+                  		if(SHOW_BRACKETS_PROFILE_PAGE==1){
+                  			
+                  		?>
+                <span class="badge"><?php 
+                $rowCount=0;
+                if($itemList<>null && sizeof($itemList)>0)
+                	foreach($itemList as $id=>$item)
+					{
+						if(strcmp($item["newUsed"], "N")<>0)
+							continue;
+						$rowCount=$rowCount+1;
+					}
+                	echo $rowCount;
+                ?></span>
+                <?php }?></a></li>
                 <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="#usedAds"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionUsed;?> 
-                <span class="badge">18,705</span></a></li>
+                <?php 
+                  		if(SHOW_BRACKETS_PROFILE_PAGE==1){
+                  			
+                  		?><span class="badge">
+	                <?php 
+	                $rowCount=0;
+	                if($itemList<>null && sizeof($itemList)>0)
+						foreach($itemList as $id=>$item)
+						{
+							if(strcmp($item["newUsed"], "U")<>0)
+								continue;
+							$rowCount=$rowCount+1;
+						}
+	                	echo $rowCount;
+	                ?></span>
+	                <?php }?></a></li>
               </ul>
          		 <form action="<?php $basePath=base_url();
 //     			$encodeCurrentURL=urlencode(current_url());
@@ -464,13 +517,13 @@ function sendIt() {
   </div>
   </div>
   
-</div>
+
 
   
   <!-- /.main-container -->
   
   <?php include "footer1.php"; ?>
-
+</div>
 <div class="modal fade" id="contactAdvertiser1" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">

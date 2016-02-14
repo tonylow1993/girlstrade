@@ -3126,7 +3126,9 @@ td.ads-details-td {
 	     padding: 5px 4px;
 		 font-size:11px;
   }
-  
+  #leftMenuSearchPage{
+	display: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -3624,6 +3626,34 @@ span b{
 	padding-top: 15px;
     padding-bottom: 15px;
 }
+
+.price-hide{
+	display: none;
+}
+
+.action-hide{
+	display: none;
+}
+
+
+@media screen and (max-width: 600px) {
+	.price-td{
+		display: none;
+	}
+	
+	.action-td{
+		display: none;
+	}
+	
+	.price-hide{
+		display: block;
+	}
+	
+	.action-hide{
+		display: block;
+	}
+}
+
 
 
 /* =============================================================== */

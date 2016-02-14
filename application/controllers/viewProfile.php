@@ -163,6 +163,11 @@ class viewProfile extends getCategory {
 				$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
 				$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
 				
+				
+			$data["recentBuyerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestBuyerComment($data["userID"]));
+			$data["recentSellerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestSellerComment($data["userID"]));
+				
+				
             $this->load->view('profile', $data);
 	}
     
@@ -272,6 +277,10 @@ class viewProfile extends getCategory {
 				
 		$this->load->view('profile', $data);
 	}
+	
+	
+	
+	
 	public function getHeaderCount($userID){
 		$userStat=$this->userstat_model->getUserStat($userID);
 	
