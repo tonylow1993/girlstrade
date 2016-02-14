@@ -24,15 +24,22 @@ var $buyerDate='';
 	}
 	
 	function getRating($userID){
-		$strQuery="select sum(a.sellerRating) as NoOfCount from tradecomments a inner join post b on a.postID=b.postID where b.userID=$userID ";
+		$strQuery="select sum(a.buyerRating) as rating, count(*) as NoOfCount from tradecomments a inner join post b on a.postID=b.postID where b.userID=$userID ";
 		$NoOfItemCount=0;
+		$rating=0;
 		$query2 = $this->db->query($strQuery);
 		$var2=$query2->result_array();
 		//var_dump($var2);
-		$NoOfItemCount=$var2[0]["NoOfCount"];
-		if($NoOfItemCount==null)
+		$NoOfItemCount=$var2[0]["rating"];
+		$rating=$var2[0]["NoOfCount"];
+		if($NoOfItemCount==null){
 			$NoOfItemCount=0;
-		return $NoOfItemCount;
+			$rating=0;
+		}
+		if($NoOfItemCount!=0)
+			return intval($rating/$NoOfItemCount);
+		else 
+			return 0;
 		
 	}
 	
