@@ -99,7 +99,7 @@ input[type=checkbox]
                        <div class="form-group">
 	                        <label  class="col-sm-3 control-label"><?php echo $this->lang->line("Country");?></label>
 	                        <div class="col-sm-9">
-	                          <input name="country" type="text" class="form-control" id="country" placeholder="HKG"  disabled="true">
+	                          <input name="country" type="text" class="form-control" id="country" placeholder="HKG" >
 	                        </div>
 	                      </div>
 	                    	                     
@@ -114,7 +114,14 @@ input[type=checkbox]
                         </div>
                         </div>
                       </div>
-                      
+                      <div class="form-group">
+	                        <label  class="col-sm-3 control-label"><?php echo $this->lang->line("MyIntroduction");?></label>
+	                        <div class="col-sm-9">
+	                            <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"   maxlength="900">
+	                            <?php echo $introduction;?>
+	                            </textarea>
+                           </div>
+	                    </div>
                       <div class="form-group hide"> <!-- remove it if dont need this part -->
                         <label  class="col-sm-3 control-label">Facebook account map</label>
                         <div class="col-sm-9">

@@ -67,7 +67,11 @@ function sendIt() {
 	              echo "<br/>";
               }
               ?>
-              
+              <?php 
+              echo "<br/>";
+              echo $this->lang->line("MyIntroduction")." :".$introduction;
+              echo "<br/>";
+              ?>
               
               <a href="<?php echo base_url().MY_PATH."home/viewAllComments/$userID/1?prevURL=".urlencode(current_url()); ?>" > View all comments </a>
               <br />
