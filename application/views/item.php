@@ -225,7 +225,7 @@
             </div>
             
 						<div class="content-footer text-left" id="viewItemBottomOpt"> 
-				<?php if(($Login) && ($isPostAlready==false or $isPendingRequest==false or $isSameUser==false))
+				<?php if(($isloginedIn) && ($isPostAlready==false or $isPendingRequest==false or $isSameUser==false))
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo "<a href=";
@@ -236,20 +236,20 @@
                   }
                   ?>  
                   <?php
-                  if(($Login) && ($isPostAlready==true && $isSameUser==false))
+                  if(($isloginedIn) && ($isPostAlready==true && $isSameUser==false))
                   {
 	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default directSendButton\">";
 	                  echo "<i class=\" icon-info\"></i>Pending Request.</a>";
                   }
                   ?>
-                  <?php if(($Login) && ($isPendingRequest==true && $isSameUser==false)) 
+                  <?php if(($isloginedIn) && ($isPendingRequest==true && $isSameUser==false)) 
                   {
 	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default directSendButton\">";
 	                  echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
                   }
                   ?>
                   <?php
-                  if(($Login) && ($isSameUser==true))
+                  if(($isloginedIn) && ($isSameUser==true))
                   {  
 	                  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
 	                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
@@ -257,7 +257,7 @@
                   }
                   ?>
 					<?php
-					if(($Login) && ($isSameUser==false))
+					if(($isloginedIn) && ($isSameUser==false))
 					{
 						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
 						firstName=\"$firstName\" lastName=\"$lastName\"
@@ -410,7 +410,7 @@
               		</h3>
                     <!-- <p> Joined: <strong><?php //echo $userCreateDate;?></strong></p> -->
                   </div>
-                  <?php if(($Login) && ($isPostAlready==false or $isPendingRequest==false or $isSameUser==false))
+                  <?php if(($isloginedIn) && ($isPostAlready==false or $isPendingRequest==false or $isSameUser==false))
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo"<div class=\"user-ads-action\">";
@@ -422,14 +422,14 @@
                   }
                   ?>  
                   <?php
-                  if(($Login) &&($isPostAlready==true && $isSameUser==false))
+                  if(($isloginedIn) &&($isPostAlready==true && $isSameUser==false))
                   {
 	                  echo "<div class=\"user-ads-action\">"; 
 	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default btn-block directSendButton\">";
 	                  echo "<i class=\" icon-info\"></i>Pending Request.</a> </div>";
                   }
                   ?>
-                  <?php if(($Login) &&($isPendingRequest==true && $isSameUser==false) )
+                  <?php if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                   {
 	                  echo "<div class=\"user-ads-action\">"; 
 	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default btn-block directSendButton\">";
@@ -437,7 +437,7 @@
                   }
                   ?>
                   <?php
-                  if(($Login) &&($isSameUser==true))
+                  if(($isloginedIn) &&($isSameUser==true))
                   {  
 	                  echo "<div class=\"user-ads-action\">"; 
 	                  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
@@ -446,7 +446,7 @@
                   }
                   ?>
                    <?php
-					if(($Login) && ($isSameUser==false))
+					if(($isloginedIn) && ($isSameUser==false))
 					{
 						echo "<div class=\"user-ads-action\">";
 						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
