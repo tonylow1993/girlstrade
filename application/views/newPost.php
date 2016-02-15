@@ -347,28 +347,41 @@ input[type=checkbox]
 
         <div class="col-md-3 reg-sidebar">
           <div class="reg-sidebar-inner text-center">
-            <div class="promo-text-box"> <i class=" icon-picture fa fa-4x icon-color-1"></i>
-              <h3><strong>Post a Free Classified</strong></h3>
-              <p> Post your free online classified ads with us. </p>
+            <div class="promo-text-box"> <i class="icon-lightbulb ln-shadow-radius shape-2"></i>
+              <h3><strong>Create a Post</strong></h3>
+              <p> Hints for posting on GirlsTrade. </p>
             </div>
             
             <div class="panel sidebar-panel">
-              <div class="panel-heading newPostHints"><small><strong>How to sell quickly?</strong></small></div>
+              <div class="panel-heading newPostHints"><small><strong>What are the Hints?</strong></small></div>
               <div class="panel-content">
                 <div class="panel-body text-left">
                   <ul class="list-check">
-                    <li> Use a brief title and  description of the item  </li>
+                    <li> No images required under Service</li>
                     <li> Make sure you post in the correct category</li>
-                    <li> Add nice photos to your ad</li>
-                    <li> Put a reasonable price</li>
-                    <li> Check the item before publish</li>
+                    <li> Post value higher than $20 (HKD)</li>
+                    <li> No adult-oriented content allowed</li>
 
                   </ul>
                 </div>
               </div>
             </div>
-            
-            
+            <div class="promo-text-box"> <i class=" icon-clock-2 ln-shadow-radius shape-4"></i>
+              <h3><strong>Approval Time</strong></h3>
+              <p> Post will be published within next 24 hours! </p>
+            </div>
+            <div class="panel sidebar-panel">
+              <div class="panel-heading newPostHints"><small><strong>How to pass the approval process?</strong></small></div>
+              <div class="panel-content">
+                <div class="panel-body text-left">
+                  <ul class="list-check">
+                    <li> Ensure image(s) is/are taken directly by you  </li>
+                    <li> Make sure it is a descriptive and appropriate in your title and description</li>
+
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div><!--/.reg-sidebar-->
       </div>
