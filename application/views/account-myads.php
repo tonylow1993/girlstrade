@@ -33,8 +33,8 @@
 <!--                <th height="50px" data-type="numeric" data-sort-initial="true" style="border: none;"> </th>-->
                     <th style="border: none;"> <?php echo $this->lang->line("Photo");?> </th>
                     <th data-sort-ignore="true" style="border: none;"> <?php echo $this->lang->line("Ads_Detail");?> </th>
-                    <th data-type="numeric" style="border: none;"> <?php echo $this->lang->line("Price");?> </th>
-                    <th style="border: none;"> <?php echo $this->lang->line("Option");?> </th>
+                    <th class="price-td" data-type="numeric" style="border: none;"> <?php echo $this->lang->line("Price");?> </th>
+                    <th class="action-td" style="border: none;"> <?php echo $this->lang->line("Option");?> </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -99,7 +99,35 @@
 //                       	echo "</div>";
                       	
 //                       	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                    	echo "</td>";
+                    	echo "<p class=\"price-hide\">$price</p>";
+						echo "<div class=\"action-hide\">";
+						$editPath=base_url().MY_PATH."newPost/showEditPost/".$messageID."?prevURL=".urlencode(current_url());
+						$sharePath=base_url().MY_PATH."messages/shareMyAds/".$messageID."/".$userID;
+						$deletePath=base_url().MY_PATH."messages/deleteMyAds/".$messageID."/".$userID;
+						
+						$rowCount=$rowCount+1;
+						$ctrlName1="AjaxLoad".$rowCount;
+						$errorctrlName1="ErrAjaxLoad".$rowCount;
+						$ctrlValue1="messageID".$rowCount;
+						$ctrlValue2="userID".$rowCount;
+						$clickLink="clickLink".$rowCount;
+						$shareLink=base_url()."home/index/".$messageID;
+						//echo "<p><a class=\"btn btn-primary btn-xs\" href=$editPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Edit')." </a></p>";
+                        echo "<p> <a class=\"btn btn-info btn-xs\" href=\"#shareAds\"  data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('Share')." </a></p>";
+                        echo "<p>";
+                        		
+                        echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
+                    	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
+                    	echo "<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
+                    	
+                    	echo "<div class=\"user-ads-action\"><a class=\"btn btn-danger btn-xs\"  href=\"#deleteAdsPopup\" data-toggle=\"modal\" id='$clickLink' data-id=\"$messageID\" data-userID=\"$userID\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></div></p>";
+                    	
+                        //echo "<a class=\"btn btn-danger btn-xs\"  href=\"javascript:deleteAds('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1)'\" id='$clickLink'> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></p>";
+                     	if($enableMarkSoldBtn)
+                        	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$messageID\"  data-soldusers=\"$soldUsersstr\"> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
+                        
+                        echo "</div>";
+						echo "</td>";
                       	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                          echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc."<br/>".$preview;
