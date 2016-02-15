@@ -39,7 +39,7 @@ var $buyerDate='';
 		if($NoOfItemCount!=0 && $rating!=null)
 			return intval($rating/$NoOfItemCount);
 		else 
-			return 0;
+			return 3;
 		
 	}
 	
