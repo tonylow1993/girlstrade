@@ -1,4 +1,4 @@
-<?php $title = "New Topic";  include("header.php"); ?>
+<?php $title = "How GirlsTrade Works?";  include("header.php"); ?>
 
 <!-- <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/howitworks/css/bootstrap.css" /> -->
 <!--<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/howitworks/css/bootstrap-theme.css" />-->
