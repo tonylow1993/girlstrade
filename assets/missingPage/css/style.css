@@ -1,0 +1,78 @@
+/*
+ * Template Name: Unify - Responsive Bootstrap Template
+ * Description: Business, Corporate, Portfolio, E-commerce, Blog and One Page Template.
+ * Version: 1.9
+ * Author: @htmlstream
+ * Website: http://htmlstream.com
+*/
+
+/*Import Global Compulsory CSS Files*/
+@import url(app.css);
+@import url(blocks.css);
+
+#errorBody {
+	border-radius: 0;
+}
+
+#errorBody {
+ color: #333;
+ font-size: 13px;
+ line-height: 1.6;
+}
+
+#errorBody .header-fixed-space {
+  padding-top: 94px;
+}
+#errorBody .header-fixed-space-v2 {
+	padding-top: 135px;
+}
+
+@media (max-width: 991px) {
+	#errorBody.header-fixed-space,
+	#errorBody.header-fixed-space-v2 {
+		padding-top: 0;
+	}
+}
+
+#errorBody p,
+#errorBody li,
+#errorBody li a,
+#errorBody label {
+ color: #fff;
+}
+
+#errorBody a {
+ color: #fff;
+ text-decoration: none;
+}
+
+#errorBody a,
+#errorBody a:focus,
+#errorBody a:hover,
+#errorBody a:active,
+#errorBody button,
+#errorBody button:hover {
+	outline: 0 !important;
+}
+
+#errorBody a:focus {
+text-decoration: none;
+}
+#errorBody a:hover {
+ color: #FF008B;
+ text-decoration: underline;
+}
+
+/*Boxed Layout
+------------------------------------*/
+#errorBody .wrapper {
+	background: #fff;
+}
+
+#errorBody .boxed-layout {
+  padding: 0;
+  box-shadow: 0 0 5px #ccc;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  background: url(../img/patterns/15.png) repeat;
+}

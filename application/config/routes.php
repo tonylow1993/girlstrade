@@ -39,7 +39,7 @@
 */
 
 $route['default_controller'] = "home";
-$route['404_override'] = '';
+$route['404_override'] = 'gtNotFound';
 
 $route['botdetect/captcha_handler/index'] = 'botdetect/captcha_handler/index';
 $route['botdetect/captcha_resource/get/(:any)'] = 'botdetect/captcha_resource/get/$1';
