@@ -17,6 +17,7 @@
 		var $hidetelno='';
 		var $checkBox1='';
 		var $checkBox2='';
+		var $introduction='';
 	    function __construct()
 	    {
 	        parent::__construct();
@@ -40,6 +41,7 @@
 	    	$this->lastModified = date("Y-m-d H:i:s");
 	    	$this->checkBox1=$data["checkBox1"];
 	    	$this->checkBox2=$data["checkBox2"];
+	    	$this->introduction=$data['introduction'];
 	    	$this->db->trans_start();
 	        $result= $this->db->update('userinfo', $this, array('userID' => $data['userID']));
 	        $this->db->trans_complete();
@@ -68,6 +70,8 @@
 				$this->lastModified = date("Y-m-d H:i:s");
 				$this->checkBox1=true;
 				$this->checkBox2=true;
+				$this->introduction=$data['introduction'];
+				
 				print_r($this);
 				$this->db->trans_start();
 				$result= $this->db->insert('userinfo', $this);
@@ -95,6 +99,7 @@
 	        		// 		    $this->gender = $data['gender'];
 	        		$this->telNo = $data['telNo'];
 	        		$this->hidetelno=$data("hidetelno");
+	        		$this->introduction=$data['introduction'];
 	        		$this->checkBox1=false;
 	        		$this->checkBox2=false;
 	        
@@ -130,6 +135,7 @@
 	    	$this->lastModified = date("Y-m-d H:i:s");
 			$this->checkBox1=$data["checkBox1"];
 			$this->checkBox2=$data["checkBox2"];
+			$this->introduction=$data['introduction'];
 		   print_r($this);
 		   $this->db->trans_start();
 			 $result= $this->db->update('userinfo', $this, array('userID' => $data['userID']));

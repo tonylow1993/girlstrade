@@ -15,6 +15,7 @@ function sendIt() {
  var info = document.getElementById("sortHref").value;
    document.location.href=info; //.concat(i);
 }
+
 </script>
 
 <div id="wrapper">
@@ -38,7 +39,7 @@ function sendIt() {
                 <p class="userRating">
                 User Rating: </p>
                 </td><td>
-                <div id="userStar"><?php echo $sellerRating;?></div>
+                <div id="userStar"></div>
                 </td></tr>
                 </table>
               </div>
@@ -67,7 +68,11 @@ function sendIt() {
 	              echo "<br/>";
               }
               ?>
-              
+              <?php 
+              echo "<br/>";
+              echo $this->lang->line("MyIntroduction")." :".$introduction;
+              echo "<br/>";
+              ?>
               
               <a href="<?php echo base_url().MY_PATH."home/viewAllComments/$userID/1?prevURL=".urlencode(current_url()); ?>" > View all comments </a>
               <br />
@@ -565,6 +570,10 @@ function sendIt() {
 </div>
 
   <script>
+  if(document.getElementById('userStar'))
+  {
+  	$('#userStar').raty({readOnly: true, score: <?php echo $sellerRating;?> });
+  }
 function setup()
 {
         var myform = document.getElementById("item");

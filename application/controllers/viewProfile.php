@@ -12,6 +12,7 @@ class viewProfile extends getCategory {
 		$this->load->model('tradecomments_model');
 		$this->load->model('messages_model');
 		$this->load->model('userstat_model');
+		$this->load->model('userInfo_model');
 		$data["lang_label"] = $this->nativesession->get("language");
             $this->lang->load("message",$this->nativesession->get('language'));
             
@@ -71,7 +72,12 @@ class viewProfile extends getCategory {
 			$postInfo=$this->post_model->getPostByPostID($postID);
 			$data["userID"]=$postInfo[0]->userID;
 			$userInfo=$this->users_model->get_user_by_id($data["userID"]);
+			$userInformation=$this->userInfo_model->getUserInfoByUserID($data["userID"]);
 			
+			if(isset($userInformation))
+				$data["introduction"]=$userInformation["introduction"];
+			else 
+				$data["introduction"]="";
 			$loginUser=$this->nativesession->get("user");
 			//----------setup the header menu----------
 			$data["menuMyAds"]="";
@@ -185,7 +191,12 @@ class viewProfile extends getCategory {
 		$data["lang_label"] = $this->lang->line("lang_label");
 		$data["userID"]=$userID;
 		$userInfo=$this->users_model->get_user_by_id($data["userID"]);
+		$userInformation=$this->userInfo_model->getUserInfoByUserID($data["userID"]);
 			
+		if(isset($userInformation))
+			$data["introduction"]=$userInformation[0]->introduction;
+			else
+				$data["introduction"]="";
 		$loginUser=$this->nativesession->get("user");
 			
 		if($userInfo[0]->blockDate!=null && $userInfo[0]->blockDate> date('Y-m-d'))

@@ -1467,6 +1467,7 @@ function generateRandomString($length = 8) {
 		$data["checkBox1"]=$userInfo["checkBox1"];
 		$data["checkBox2"]=$userInfo["checkBox2"];
 		$data["hidetelno"]=$userInfo["hidetelno"];
+		$data["introduction"]=$userInfo["introduction"];
 		//$data["documentType"]=$userInfo["documentType"];
 		}
 		$data["email"]=$email["email"];
@@ -2516,6 +2517,8 @@ function generateRandomString($length = 8) {
 				$userInfo['hidetelno']=true;
 			else
 				$userInfo['hidetelno']=false;
+		if(isset($_POST['descriptionTextarea']))
+			$userInfo['introduction']=$data['descriptionTextarea'];
 // 			if(isset($_POST['chk1']))
 // 				$userInfo['checkBox1']=true;
 // 			else
