@@ -33,3 +33,8 @@
 
     ErrorDocument 404 /index.php
 </IfModule>
+<FilesMatch "\.(ttf|otf|woff)$">
+<IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+</IfModule>
+</FilesMatch>
