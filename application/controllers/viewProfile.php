@@ -51,7 +51,7 @@ class viewProfile extends getCategory {
 		}
 		
 		$thread['ip']=$ip;
-		$thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+		$thread['cookies_id']=isset($_COOKIE['gt_cookie_id']) && $_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
 		$thread["page_visit"]=PageViewProfile;
 		$this->pagevisited_model->insert($thread);
 		

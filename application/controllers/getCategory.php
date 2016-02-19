@@ -89,7 +89,7 @@ class getCategory extends CI_Controller {
 			}
 			
 			$thread['ip']=$ip;
-			$thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+			$thread['cookies_id']=isset($_COOKIE['gt_cookie_id']) && $_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
 			$thread["page_visit"]=PageSearch;
 			$this->pagevisited_model->insert($thread);
 			
@@ -143,7 +143,7 @@ class getCategory extends CI_Controller {
 		}
 		
 		$searchhistory['ip']=$ip;
-		$searchhistory['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+		$searchhistory['cookies_id']=isset($_COOKIE['gt_cookie_id']) && $_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
 		
 		$this->searchhistory_model->insert($searchhistory);
 		

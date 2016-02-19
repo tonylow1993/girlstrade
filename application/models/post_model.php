@@ -219,7 +219,7 @@
 	    function getInterestedProduct()
 	    {
 	    	$sql='';
-	    	if(!empty($_COOKIE['gt_cookie_id']) && $_COOKIE['gt_cookie_id']!=null){
+	    	if(isset($_COOKIE['gt_cookie_id']) && !empty($_COOKIE['gt_cookie_id']) && $_COOKIE['gt_cookie_id']!=null){
 	    		$sql.="where a.cookies_id='".$_COOKIE['gt_cookie_id']."' order by a.viewCount desc limit 6";
 	    	}
 	    	else 

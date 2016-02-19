@@ -300,7 +300,7 @@ class Home extends CI_Controller {
 				}
 				
 				$thread['ip']=$ip;
-				$thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+				$thread['cookies_id']=isset($_COOKIE['gt_cookie_id']) && $_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
 				
 				$this->postviewhistory_model->insert($thread);
 	
@@ -581,7 +581,7 @@ class Home extends CI_Controller {
 		}
 		
 		$thread['ip']=$ip;
-		$thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+		$thread['cookies_id']=isset($_COOKIE['gt_cookie_id']) && $_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
 		$thread["page_visit"]=PageSignup;
 		$this->pagevisited_model->insert($thread);
 		
@@ -687,7 +687,7 @@ class Home extends CI_Controller {
 		}
 		
 		$thread['ip']=$ip;
-		$thread['cookies_id']=$_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
+		$thread['cookies_id']=isset($_COOKIE['gt_cookie_id']) && $_COOKIE['gt_cookie_id']!='' ? $_COOKIE['gt_cookie_id'] : 'Guest';
 		$thread["page_visit"]=PageSignin;
 		$this->pagevisited_model->insert($thread);
 		
