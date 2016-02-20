@@ -1199,9 +1199,9 @@ function generateRandomString($length = 8) {
 					$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID); //$menuCount["inboxMsgCount"]; //
 					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 				}
-				$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInSellerAdsHistory($userID);
-				$myList=$this->tradecomments_model->getSellerAdsHistory($userID, $pageNum);
-				$data["result"]=$this->mapTradeCommentToView($myList);
+				$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInMyAds($userID);
+				$myList=$this->post_model->getMyAds($userID, $pageNum);
+				$data["result"]=$this->mapPostToView($myList);
 				$this->load->view("profile_allComments", $data);
 	}
 	
@@ -2001,6 +2001,44 @@ function generateRandomString($length = 8) {
 				
 			}
 			
+			$itemComments=$this->itemcomments_model->getItemCommentsbyPostID($postID);
+			if($itemComments<> null && count($itemComments)>0){
+				foreach($itemComments as $comment){
+					$buyerInfo=$this->users_model->get_user_by_id($comment->usercommentID);
+					if($buyerInfo!=null && count($buyerInfo)>0){
+						$buyerUserName=$buyerInfo[0]->username;
+						if(strcmp($preview, "")==0)
+							$preview=$preview."Comment user: ".$buyerUserName;
+						else
+							$preview=$preview."<br/><br/>Comment user: ".$buyerUserName;
+						
+						$preview=$preview."<br/>".$comment->comments;
+						
+						$itemChildComments=$this->itemcomments_model->getItemCommentsbyPostIDParentID($postID, $comment->ID);
+						if($itemChildComments<> null && count($itemChildComments)>0){
+							foreach($itemChildComments as $childComment){
+								$buyerChildInfo=$this->users_model->get_user_by_id($childComment->usercommentID);
+								if($buyerChildInfo!=null && count($buyerChildInfo)>0){
+									$buyerUserName=$buyerChildInfo[0]->username;
+									if(strcmp($preview, "")==0)
+										$preview=$preview."--Reply Comment user: ".$buyerUserName;
+									else
+										$preview=$preview."<br/><br/>--Reply Comment user: ".$buyerUserName;
+								
+									$preview=$preview."<br/>----".$childComment->comments;
+							}
+						}
+						
+						
+						
+					}
+				}
+			}
+				if(strcmp($preview, "")!=0)
+					$preview=$preview."<br/>";
+						
+			}
+			
 			if($soldUserList<>null && count($soldUserList)>0  && $postInfo[0]->remainQty>0)
 				$enableMarkSoldBtn=true;
 			else 
@@ -2062,7 +2100,7 @@ function generateRandomString($length = 8) {
 		else
 			return "";
 	}
-	public function mapInBoxToView($inbox, $type)
+	function mapInBoxToView($inbox, $type)
 	{
 		$result=null;
 		$lang_label=$this->nativesession->get("language");
