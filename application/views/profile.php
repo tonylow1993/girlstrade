@@ -151,21 +151,21 @@ function sendIt() {
 //     			$encodeCurrentURL=$prevURL;
     			$path=$basePath.MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$previousCurrent_url;
     			echo $path;
-               ?>" class="margin-top-20" method="POST"> 
-                 <div class="col-sm-3">
-                <select class="form-control selecter"   name="sortByPrice"   id="sortByPrice" data-width="auto">
-                  <option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> >Sort by...</option>
-                  <option value="1" <?php if(strcmp($sortByID,"1")==0)  echo " selected='selected' ";?>>Price: Low to High</option>
-                  <option value="2" <?php if(strcmp($sortByID,"2")==0)  echo " selected='selected' ";?>>Price: High to Low</option>
-                  <option value="3" <?php  if(strcmp($sortByID,"3")==0)   echo " selected='selected' ";?>>Date: Most Recent</option>
-                  <option value="4" <?php  if(strcmp($sortByID,"4")==0)   echo " selected='selected' ";?>>Date: Oldest</option>
-                </select>
-                </div>
-                <div class="col-sm-3">
+               ?>" class="tab-filter" method="POST"> 
+			   <div class="select-short-by">
+					<select class="form-control selecter "   name="sortByPrice"   id="sortByPrice" data-width="auto">
+					  <option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> >Sort by...</option>
+					  <option value="1" <?php if(strcmp($sortByID,"1")==0)  echo " selected='selected' ";?>>Price: Low to High</option>
+					  <option value="2" <?php if(strcmp($sortByID,"2")==0)  echo " selected='selected' ";?>>Price: High to Low</option>
+					  <option value="3" <?php  if(strcmp($sortByID,"3")==0)   echo " selected='selected' ";?>>Date: Most Recent</option>
+					  <option value="4" <?php  if(strcmp($sortByID,"4")==0)   echo " selected='selected' ";?>>Date: Oldest</option>
+					</select>
+				</div>
+                <!--<div class="col-sm-3">
 				<button type="submit"  class="btn btn-block btn-primary">Sort</button> 
     			
-        	</div>
-		</form>
+				</div>-->
+			</form>
             <!--/.tab-box-->
                <div class="pull-right backtolist margin-right-10"><a href=<?php echo $previousCurrent_url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
  
