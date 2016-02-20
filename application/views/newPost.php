@@ -164,14 +164,19 @@ input[type=checkbox]
                       
                       
                       <!-- Textarea -->
-                      <div class="form-group">
+                      <div id="descriptionTextareaDiv" class="form-group">
                           <label class="col-md-3 control-label text-center" for="textarea"> 
                           <i class="icon-clipboard"></i>
 							<?php echo $Description;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="450"></textarea>
+	                          	<div id="descriptionTextareaAjaxLoad" class="center"></div>
+	                        	<div id="descriptionTextareaError" hidden="true"></div>
                           </div>
                       </div>
+                    
+                    
+                    
                     
                       <!-- Prepended text-->
                       <div class="form-group">
@@ -411,6 +416,22 @@ input[type=checkbox]
 var img = null;
 
 var fileList = null;
+$( "#descriptionTextarea" ).blur(function() {
+ 
+	$("#descriptionTextareaAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>newPost/validateDescLength",
+		data: { descTextarea: $( "#descriptionTextarea" ).val() },
+		success: function(response){
+			var result = JSON.parse(response);
+	    	$("#error").html(result.message);
+	    	$("#descriptionTextareaDiv").removeClass('has-success has-error').addClass(result.class);
+	    	$("#descriptionTextareaAjaxLoad").html(result.icon);
+	    	$("#descriptionTextareaError").html(result.err);
+	    	}
+	});
+});
 
 $("#image").fileinput({
     allowedFileExtensions : ['jpg', 'png','gif','jpeg','bmp'],

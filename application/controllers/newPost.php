@@ -1393,4 +1393,21 @@ public function getChildCategory($parentID)
 	
 		return $data;
 	}
+	
+	public function validateDescLength(){
+		$des = $this->input->post('descTextarea',true);
+		$content=nl2br(htmlentities($des, ENT_QUOTES, 'UTF-8'));
+		if(!ExceedDescLength($content, 450)){
+			$data['status'] = 'A';
+			$data['class'] = "has-success";
+			$data['message'] = '';
+			$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i> Valid Description</span></em>';
+		}else{
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed description length!</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Exceed description length</span></em>';
+		}
+		echo json_encode($data);
+	}
 }
