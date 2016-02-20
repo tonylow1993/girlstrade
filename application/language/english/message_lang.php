@@ -223,3 +223,4 @@ $lang["invalidpriceformat"]="Invalid price format!";
 $lang["invalidpricerange"]="Invalid price range search!";
 $lang["lblRemainQty"]="Quantity";
 $lang["MyIntroduction"]="Introduction";
+$lang["ExceedMaxDescLength"]="Exceed Max Description Length";

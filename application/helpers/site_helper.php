@@ -1,5 +1,19 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+
+if ( ! function_exists('ExceedDescLength'))
+{
+	function ExceedDescLength($message, $len)
+	{
+		$message=trim($message);
+		if(mb_strlen($message, 'utf-8')>$len)
+			return true;
+		return false;
+	}
+
+}
+
 if ( ! function_exists('trimLongText'))
 {
 	function trimLongText($message)

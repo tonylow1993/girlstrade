@@ -11,6 +11,7 @@ class newPost extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper(array('form', 'url'));
 		$this->load->database();
+		$this->load->helpers('site');
 		$this->load->library('upload');
 		$this->load->library('image_lib');
 		//$this->load->model('users_model');
@@ -19,7 +20,8 @@ class newPost extends CI_Controller {
                 $this->load->model('category_model', 'cat');
                 $this->load->model('tag_model', 'tag');
                 $this->load->model('location_model');
-                
+                $this->load->model('userstat_model');
+                $this->load->model('messages_model');
                 $this->load->helper('language');
                 date_default_timezone_set("Asia/Hong_Kong");
                 if($this->nativesession->get("language")!=null)
@@ -35,7 +37,7 @@ class newPost extends CI_Controller {
                 }
 	}
         
-        public function index($userID=0, $username='', $errorMsg='')
+    public function index($userID=0, $username='', $errorMsg='')
 	{
 	if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
@@ -142,6 +144,18 @@ class newPost extends CI_Controller {
 				$this->load->view('failedPage', $data);
 				return;
 			}
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			if(isset($userInfo)){
+				$menuCount=$this->getHeaderCount($userInfo["userID"]);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; // //$this->messages_model->getUnReadInboxMessage($user[0]->userID);
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
+			//----------------------------
 			$NumOfPostTimes=$this->post->getNUMOFTIMESPOST($data["userID"]);
 			if($NumOfPostTimes>NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
 			{
@@ -183,13 +197,7 @@ class newPost extends CI_Controller {
 				$data["userName"]=$user1["username"];
 			
 			}
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			//----------------------------
+			
             $this->load->view('newPost', $data);
 		}
 	}
@@ -726,7 +734,18 @@ public function getChildCategory($parentID)
         $userID=$userInfo["userID"];
         $userName=$userInfo["username"];
         $usertype="PREMIUMPOSTEXPIRYDAYS"; //$userInfo("usertype");
-        
+        //----------setup the header menu----------
+        $data["menuMyAds"]="";
+        $data["menuInbox"]="";
+        $data["menuInboxNum"]="0";
+        $data["menuPendingRequest"]="";
+        $data["menuPendingRequestNumber"]="0";
+        if(isset($userInfo)){
+        	$menuCount=$this->getHeaderCount($userInfo["userID"]);
+        	$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; // //$this->messages_model->getUnReadInboxMessage($user[0]->userID);
+        	$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+        }
+        //----------------------------
         $NumOfPostTimes=$this->post->getNUMOFTIMESPOST($userID);
         if($NumOfPostTimes>NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
         {
@@ -766,9 +785,19 @@ public function getChildCategory($parentID)
         $tags = $this->input->post('tagsInput',true); 
         $des = $this->input->post('descriptionTextarea',true); 
         $content=nl2br(htmlentities($des, ENT_QUOTES, 'UTF-8'));
-        	
         
-        
+        if(ExceedDescLength($content, 450)){
+	        $errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+	        $data["error"]=$errorMsg;
+	        $data["prevURL"]=$prevURL;
+	        $data['redirectToWhatPage']="New Post Page";
+	        $data['redirectToPHP']=base_url().MY_PATH."newPost";
+	        $data["successTile"]=$this->lang->line("successTile");
+	        $data["failedTitle"]=$this->lang->line("failedTitle");
+	        $data["goToHomePage"]=$this->lang->line("goToHomePage");
+	        $this->load->view('failedPage', $data);
+	        return;
+        }
         
         $price = $this->input->post('price',true); 
         $recaptcha = $this->input->post('g-recaptcha-response',true); 
@@ -1330,5 +1359,38 @@ public function getChildCategory($parentID)
 		return  date("Y-m-d", $date);
 	
 	}
+	public function getHeaderCount($userID){
+		$userStat=$this->userstat_model->getUserStat($userID);
 	
+		$data["inboxMsgCount"]=0;
+		$data["approveMsgCount"]=0;
+		$data["myAdsCount"]=0;
+		$data["savedAdsCount"]=0;
+		$data["pendingMsgCount"]=0;
+		$data["archivedAdsCount"]=0;
+		$data["visitCount"]=0;
+		$data["totalMyAdsCount"]=0;
+		$data["favoriteAdsCount"]=0;
+		$data["outgoingMsgCount"]=0;
+		$data["buyAdsCount"]=0;
+		$data["directsendhistCount"]=0;
+		$data["directsendhistCount1"]=0;
+		if(isset($userStat) && !empty($userStat)){
+			$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
+			$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
+			$data["myAdsCount"]=$userStat[0]->myAdsCount;
+			$data["savedAdsCount"]=$userStat[0]->savedAdsCount;
+			$data["pendingMsgCount"]=$userStat[0]->pendingMsgCount;
+			$data["archivedAdsCount"]=$userStat[0]->archivedAdsCount;
+			$data["visitCount"]=$userStat[0]->visitCount;
+			$data["totalMyAdsCount"]=$userStat[0]->totalMyAdsCount;
+			$data["favoriteAdsCount"]=$userStat[0]->favoriteAdsCount;
+			$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
+			$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
+			$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+			$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
+		}
+	
+		return $data;
+	}
 }
