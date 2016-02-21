@@ -10,6 +10,49 @@
     }
 </style>
 
+<style id="jsbin-css">
+.progress-bar[aria-valuenow="1"],
+.progress-bar[aria-valuenow="2"] {
+  min-width: 3%;
+}
+
+.progress-bar[aria-valuenow="0"] {
+  color: gray;
+  min-width: 100%;
+  background: transparent;
+  box-shadow: none;
+}
+
+.progress-bar[aria-valuenow^="9"]:not([aria-valuenow="9"]) {
+  background: red;
+}
+.panel-heading {
+    cursor: pointer;
+}
+
+/* CSS Method for adding Font Awesome Chevron Icons */
+ .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family:'FontAwesome';
+    content:"\f146";
+    float: right;
+    color: inherit;
+}
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+.panel-heading.collapsed .accordion-toggle:after {
+    /* symbol for "collapsed" panels */
+    content:"\f0fe";
+}
+</style>
+
 <script>
     paceOptions = {
       elements: true
@@ -414,9 +457,9 @@
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo"<div class=\"user-ads-action\">";
-		                  echo "<a href=";
-		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
-		                  echo " data-toggle=\"modal\" class=\"btn btn-default btn-block directSendButton\">";
+		                  echo "<a href=\"#directSend\"";
+		                  //echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
+		                  echo " data-toggle=\"modal\" id=\"directSendButton\" class=\"btn btn-default btn-block directSendButton\">";
 		                  echo "<i class=\"icon-right-hand\"></i> Direct send request </a> </div>";
 	                  }
                   }
@@ -551,38 +594,12 @@
         <h4 class="modal-title"><i class=" icon-mail-2"></i> Send Direct Request </h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">  
-      <!--   $previousCurrent_url -->
-     <!--       <div class="form-group">
-            <label for="recipient-name" class="control-label">Name: <font color="red">*</font></label>
-            <input .class="form-control required"  maxlength="50" value="<?php echo $firstName; echo ' '.$lastName;?>" id="recipient-name" name="recipient-name"  required="true" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
-          </div> -->
-<!--           <div class="form-group"> -->
-<!--             <label for="sender-email" class="control-label">E-mail: <font color="red">*</font></label> -->
- <!--             <input id="sender-email"  maxlength="50" name="sender-email"   value="<?php echo $email;?>" type="text" data-content="Must be a valid e-mail address (user@gmail.com)" data-trigger="manual" data-placement="top" placeholder="email@you.com" required="true" class="form-control email">  -->
-<!--           </div> -->
-<!--           <div class="form-group"> -->
-<!--             <label for="recipient-Phone-Number"  class="control-label">Phone Number:</label> -->
-<!--              <input type="text"  maxlength="30"   value="<?php echo $telNo;?>" class="form-control" name="recipient-Phone-Number" id="recipient-Phone-Number">  -->
-<!--           </div> -->
-          <div class="form-group">
-            <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(<?php echo DESCLENGTHINITEMPAGE;?>) </span>:</label>
-            <textarea id="txtSendMessage" class="form-control"  maxlength="<?php echo DESCLENGTHINITEMPAGE;?>"  rows="5" columns="30" 
-            required="true" id="message-text" name="message-text"  
-            style="resize:none"
-            placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
-          </div>
-          <div class="form-group">
-            <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-      	
-      	<button type="submit" class="btn btn-success" onclick="setup(); return false;">Send</button>
-      	<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
-        
-      	<button id="validate" hidden="true" type="submit"></button>
+		<h1 id ="modal-text">Sending request...<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
+        <div id="progress-bar" class="progress">
+			<div class="progress-bar progress-bar-striped active" role="progressbar" id="upload-progress-bar"
+				 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">   
+			</div>
+		</div>
       </div>
     </div>
   </div>
@@ -749,6 +766,31 @@ function setupAbuse()
 	  	document.getElementById("itemAbuse").submit();
        	return true;
 }
+
+$('#directSendButton').on('click', function () {
+	$.ajax({
+		xhr: function()
+		{
+			var xhr = new window.XMLHttpRequest();
+			//Upload progress
+			xhr.addEventListener("progress", function(evt){
+			  if (evt.lengthComputable) {
+				var percentComplete = evt.loaded / evt.total*100;
+				//Do something with upload progress
+				$("#upload-progress-bar").width(percentComplete+"%");
+				console.log(percentComplete);
+			  }
+			}, false);
+			return xhr;
+		},
+		url: "<?php echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url)?>",
+		type: 'POST',
+		success:function(msg){
+			$("#modal-text").html("You have send a direct request to the seller.");
+			setTimeout(function(msg){location.reload();}, 2500);
+		}
+	});
+});
 </script>
 <script>
 
