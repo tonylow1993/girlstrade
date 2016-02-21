@@ -97,7 +97,7 @@ if (is_array($array) || is_object($array))
 				$str=$str." Union all";
 				$str=$str." select userID as userID, count(*), 0, 0,0,0,0,0,0,0 ,0,0 ,0";
 				$str=$str." from message where status='C' ";
-				$str=$str." group by fUserID";
+				$str=$str." group by userID";
 				$str=$str." UNION ALL ";
 				$str=$str." SELECT b.userID, 0, COUNT(*) AS approveMsgCount, 0,0,0,0,0,0,0,0,0,0 ";
 				$str=$str." FROM requestpost a INNER JOIN post b ";
@@ -141,7 +141,7 @@ if (is_array($array) || is_object($array))
 				$str=$str." Union all";
 				$str=$str." select fUserID as userID, 0,0,0, 0,0,0,0,0,0,count(*),0,0";
 				$str=$str." from message where (status='C') ";
-				$str=$str." group by userID";
+				$str=$str." group by fUserID";
 				$str=$str." Union all";
 				$str=$str." select userID, 0,0,0, 0,0,0,0,0,0,count(*),0,0";
 				$str=$str." from message where (status='R') ";
