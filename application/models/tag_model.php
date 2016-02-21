@@ -15,7 +15,7 @@
             $this->db->trans_complete();
                   }catch(Exception $ex)
             {
-            	echo $ex->getMessage();
+            	//echo $ex->getMessage();
             	log_message('error', "[Class]: ".$this->router->fetch_class()."[Method:] ".
             			$this->router->fetch_method().
             			"[Line]: ".$ex->getLine()."[Error]: ".$ex->getMessage());

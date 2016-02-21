@@ -977,20 +977,20 @@ public function getChildCategory($parentID)
 			}
         }
         
-        if($tags != null && $tags !== '')
-        {
-            $myTags = explode(',', $tags);
-            foreach ($myTags as $value) {
+//         if($tags != null && $tags !== '')
+//         {
+//             $myTags = explode(',', $tags);
+//             foreach ($myTags as $value) {
                 
-                $postInfo = array(
-                    'postID'   => $postID,
-                    'tag'   =>  $value,
-                    'createDate'   =>  date("Y-m-d H:i:s")
-                    );
-                //echo "$value <br>";
-                $this->tag->insert($postInfo);
-            }
-        }
+//                 $postInfo = array(
+//                     'postID'   => $postID,
+//                     'tag'   =>  $value,
+//                     'createDate'   =>  date("Y-m-d H:i:s")
+//                     );
+//                 //echo "$value <br>";
+//                 $this->tag->insert($postInfo);
+//             }
+//         }
         
         $errorMsg=$this->lang->line("PostSuccess");
         //if($prevURL<>'')

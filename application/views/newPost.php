@@ -103,9 +103,9 @@ input[type=checkbox]
                        <div id="generalLoc" class="form-group">
                           <label class="col-md-3 control-label text-center" >
                           <i class=" icon-location-2"></i>
-                           <?php echo $lblLocation;?> <font color="red">*</font></label>
+                           <?php echo $lblLocation;?> </label>
                           <div class="col-md-8">
-                              <select name="locID2" id="locID2" class="form-control" required="true">
+                              <select name="locID2" id="locID2" class="form-control" >
                                   <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - All Locations - </option>
                                   <?php 
 						            foreach ($resLoc as $id=>$value)
@@ -570,8 +570,11 @@ function setup()
 						type: 'POST',
 						success:function(msg){
 							$("#modal-text").html("Your post has been successfully uploaded.");
-							setTimeout(function(){
-								$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours.");
+							setTimeout(function(msg){
+							//	if(msg.remainCount<=5)
+							//		$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours. You have remain ".concat(msg.remainCount).concat(" times of post"));
+							//	else
+									$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours.");
 								$('#fwd-btn').css("display", "block");
 								$('#fwd-btn').css("margin", "auto");
 								$('#progress-bar').css("display", "none");
