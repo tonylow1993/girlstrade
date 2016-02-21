@@ -40,6 +40,13 @@ define('ITEMS_PER_PAGE', 20);
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
 
+define("DESCLENGTHINNEWPOST", 450);
+define("DESCLENGTHINPROFILE",300);
+define("DESCLENGTHINITEMPAGE",300);
+define("DESCLENGTHININBOX",300);
+define("DESCLENGTHINOUTBOX",300);
+define("DESCLENGTHINMYADS",300);
+
 define("ZeroUpdateRecordError", "No record updated");
 define("THUMBNAILSIZEWIDTH", 300);
 define("THUMBNAILSIZEHEIGHT", 300);

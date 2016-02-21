@@ -154,8 +154,8 @@
         		<div id="ratingError" name="ratingError" ></div>
         	</div>
         	 <div class="form-group">
-            <label for="message-text" class="control-label">Message <span class="text-count">(1000) </span>:</label>
-            <textarea class="form-control"  id="message-text" name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <label for="message-text" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINOUTBOX;?>) </span>:</label>
+            <textarea class="form-control"  id="message-text" name="message-text" maxlength="<?php echo DESCLENGTHINOUTBOX;?>"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
          	
         </form>

@@ -290,8 +290,8 @@
         	</div>
         	
         	 <div class="form-group">
-            <label for="message-text" class="control-label">Message <span class="text-count">(300) </span>:</label>
-            <textarea class="form-control"  id="message-text"  maxlength="300"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <label for="message-text" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINMYADS;?>) </span>:</label>
+            <textarea class="form-control"  id="message-text"  maxlength="<?php echo DESCLENGTHINMYADS;?>"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
          	
         </form>

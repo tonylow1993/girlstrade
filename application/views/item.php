@@ -518,8 +518,8 @@
             <input type="text"  name="recipientemail" maxlength="60" class="form-control" id="recipientemail">
           </div>
           <div class="form-group">
-            <label for="messagetext2" class="control-label">Message <span class="text-count">(300) </span>:</label>
-            <textarea class="form-control"   maxlength="300" id="messagetext2" name="messagetext2"></textarea>
+            <label for="messagetext2" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINITEMPAGE;?>) </span>:</label>
+            <textarea class="form-control"   maxlength="<?php echo DESCLENGTHINITEMPAGE;?>" id="messagetext2" name="messagetext2"></textarea>
           </div>
           <div class="form-group">
             <label for="recipientname1" class="control-label">Name: </label>
@@ -568,8 +568,8 @@
 <!--              <input type="text"  maxlength="30"   value="<?php echo $telNo;?>" class="form-control" name="recipient-Phone-Number" id="recipient-Phone-Number">  -->
 <!--           </div> -->
           <div class="form-group">
-            <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(300) </span>:</label>
-            <textarea id="txtSendMessage" class="form-control"  maxlength="300"  rows="5" columns="30" 
+            <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(<?php echo DESCLENGTHINITEMPAGE;?>) </span>:</label>
+            <textarea id="txtSendMessage" class="form-control"  maxlength="<?php echo DESCLENGTHINITEMPAGE;?>"  rows="5" columns="30" 
             required="true" id="message-text" name="message-text"  
             style="resize:none"
             placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
@@ -607,7 +607,7 @@
 										<input type="hidden" name="postID"  value="<?php echo $postID;?>" ><!--                                     <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
 										<input type="hidden" name="parentID"  id="parentID" >
                                         <div class="form-group">
-                                            <textarea class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="Message" name="blogscomment"></textarea> </div>
+                                            <textarea class="form-control" maxlength="<?php echo DESCLENGTHINITEMPAGE;?>"  rows="5" columns="30"  placeholder="Message" name="blogscomment"></textarea> </div>
 
 <!--                                         <button type="submit" class="btn-success btn btn-lg"> Submit </button> -->
 

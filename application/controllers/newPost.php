@@ -786,7 +786,7 @@ public function getChildCategory($parentID)
         $des = $this->input->post('descriptionTextarea',true); 
         $content=nl2br(htmlentities($des, ENT_QUOTES, 'UTF-8'));
         
-        if(ExceedDescLength($content, 450)){
+        if(ExceedDescLength($content, DESCLENGTHINNEWPOST)){
 	        $errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 	        $data["error"]=$errorMsg;
 	        $data["prevURL"]=$prevURL;
@@ -1397,7 +1397,7 @@ public function getChildCategory($parentID)
 	public function validateDescLength(){
 		$des = $this->input->post('descTextarea',true);
 		$content=nl2br(htmlentities($des, ENT_QUOTES, 'UTF-8'));
-		if(!ExceedDescLength($content, 450)){
+		if(!ExceedDescLength($content, DESCLENGTHINNEWPOST)){
 			$data['status'] = 'A';
 			$data['class'] = "has-success";
 			$data['message'] = '';

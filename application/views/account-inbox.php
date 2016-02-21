@@ -267,8 +267,8 @@
         		<div id="soldqtyError" name="soldqtyError" ></div>
         	</div>
         	 <div class="form-group">
-            <label for="message-text" class="control-label">Message <span class="text-count">(300) </span>:</label>
-            <textarea class="form-control"  id="message-text"  maxlength="300"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <label for="message-text" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHININBOX;?>) </span>:</label>
+            <textarea class="form-control"  id="message-text"  maxlength="<?php echo DESCLENGTHININBOX;?>"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
          	
         </form>
@@ -295,8 +295,8 @@
         <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/replyMessage/<?php echo $postID;?>/<?php echo $messageID;?>/inbox">
 
           <div class="form-group">
-            <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(300) </span>:</label>
-            <textarea class="form-control"  rows="5" columns="30"  required="true" id="message-text" name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(<?php echo DESCLENGTHININBOX;?>) </span>:</label>
+            <textarea class="form-control"  rows="5" columns="30" maxlength="<?php echo DESCLENGTHININBOX;?>"  required="true" id="message-text" name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
           <div class="form-group">
             <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
