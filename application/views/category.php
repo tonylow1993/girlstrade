@@ -90,19 +90,19 @@
              		$str="";
              		if(strcmp($locID_,$id)==0)
              			$str=" selected='selected' ";
-             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name.$postCount."</option>";
+             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;'>".$name.$postCount."</option>";
              	}else if($value[0]->level==2)
              	{
              		$str="";
              		if($locID_==$id)
              			$str=" selected='selected' ";
-             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;'>--".$name.$postCount." </option>";
+             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;'>&nbsp;&nbsp;".$name.$postCount." </option>";
              	}else if($value[0]->level==3)
              	{
              		$str="";
              		if($locID_==$id)
              			$str=" selected='selected' ";
-             		echo "<option ".$str." value='".$id."'>----".$name.$postCount." </option>";
+             		echo "<option ".$str." value='".$id."'>&nbsp;&nbsp;&nbsp;&nbsp".$name.$postCount." </option>";
              	}
              }
              ?>
@@ -390,7 +390,7 @@
 						var html5Slider = document.getElementById('price-slider');
 
 						noUiSlider.create(html5Slider, {
-							start: [ 0, 200 ],
+							start: [ <?php if($minPrice>0)echo $minPrice; else echo 0;?>, <?php if($minPrice>0)echo $maxPrice; else echo 200;?> ],
 							connect: true,
 							range: {
 								'min': 0,
@@ -1451,13 +1451,13 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
                       name="minPrice1"  min="0"  max="90000" class="form-control price">
                       <span id="menubarTitle"> — </span>
                       <input type="number" placeholder="1000 " id="maxPrice1"  
-                      value=<?php if($minPrice>0) echo $maxPrice;?>  
+                      value=<?php if($maxPrice>0) echo $maxPrice;?>  
                       name="maxPrice1" min="0" max="90000"   class="form-control price">
 					  <script type="text/javascript">
 						var html5Slider = document.getElementById('price-slider1');
 
 						noUiSlider.create(html5Slider, {
-							start: [ 0, 200 ],
+							start: [ <?php if($minPrice>0)echo $minPrice; else echo 0;?>, <?php if($minPrice>0)echo $maxPrice; else echo 200;?> ],
 							connect: true,
 							range: {
 								'min': 0,
@@ -1466,7 +1466,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 						});
 						
 						var minPrice1 = document.getElementById('minPrice1');
-						var maxPrice1 = document.getElementById('minPrice1');
+						var maxPrice1 = document.getElementById('maxPrice1');
 						
 						html5Slider.noUiSlider.on('update', function( values, handle ) {
 
