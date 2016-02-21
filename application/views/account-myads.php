@@ -54,6 +54,7 @@
                   		$createDate=$row['createDate'];
                   		$itemStatus=$row['itemStatus'];
                   		$messageID=$id;
+                  		$postID=$row['postID'];
                   		$status=$row["status"];
                   		$userID=$row['userID'];
                   		$rejectReason=$row['rejectReason'];
@@ -111,7 +112,7 @@
 						$ctrlValue1="messageID".$rowCount;
 						$ctrlValue2="userID".$rowCount;
 						$clickLink="clickLink".$rowCount;
-						$shareLink=base_url()."home/index/".$messageID;
+						$shareLink=base_url().MY_PATH."viewItem/index/".$postID;
 						//echo "<p><a class=\"btn btn-primary btn-xs\" href=$editPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Edit')." </a></p>";
                         echo "<p> <a class=\"btn btn-info btn-xs\" href=\"#shareAds\"  data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('Share')." </a></p>";
                         echo "<p>";
@@ -149,9 +150,9 @@
 						$ctrlValue1="messageID".$rowCount;
 						$ctrlValue2="userID".$rowCount;
 						$clickLink="clickLink".$rowCount;
-						$shareLink=base_url()."home/index/".$messageID;
+						$shareLink=base_url().MY_PATH."viewItem/index/".$postID;
 						//echo "<p><a class=\"btn btn-primary btn-xs\" href=$editPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Edit')." </a></p>";
-                        echo "<p> <a class=\"btn btn-info btn-xs\" href=\"#shareAds\"  data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('Share')." </a></p>";
+                        echo "<p> <a class=\"btn btn-info btn-xs\" href=\"#shareAds\"  data-toggle=\"modal\" data-sharelink='$shareLink'> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('Share')." </a></p>";
                         echo "<p>";
                         		
                         echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
@@ -232,18 +233,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title"><?php echo $this->lang->line("popupTitleShareLink");?> </h4>
+        <h4 class="modal-title">Click copy button and paste in other apps to share </h4>
       </div>
       <div class="modal-body">
-        <h2 ID="copytext" >
-			<?php echo $shareLink;?>
+      <h2 id="copytext">
+			<?php // echo $shareLink;?>
 			</h2>
-		<TEXTAREA ID="holdtext" STYLE="display:none;">
-		</TEXTAREA>
-      </div>
+		<input style="width: 500px; height: 100px;font-size:20" class="js-copytextarea" id="holdtext" name="holdtext">
+		 </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success pull-right" onclick="ClipBoard()">Copy</button>
+      	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+        <button type="button" class="js-textareacopybtn btn btn-success pull-right">Copy</button>
       </div>
     </div>
   </div>
@@ -340,6 +340,22 @@
 </div>
 <!-- /.wrapper --> 
 <script>
+var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+copyTextareaBtn.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+       //location.href=copyTextarea.innerHTML;
+           //"http://localhost:8888/girlstrade/index.php/viewItem/index/1"; 
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
 function passToModal() {
     $('#markSoldAds').on('show.bs.modal', function(event) {
         $("#postID").val($(event.relatedTarget).data('id'));
@@ -349,6 +365,10 @@ function passToModal() {
     $('#deleteAdsPopup').on('show.bs.modal', function(event) {
         $("#messageID").val($(event.relatedTarget).data('id'));
         $("#userID").val($(event.relatedTarget).data('userID'));
+    });
+
+    $('#shareAds').on('show.bs.modal', function(event) {
+        $("#holdtext").val($(event.relatedTarget).data('sharelink'));
     });
 }
 $(document).ready(passToModal());
