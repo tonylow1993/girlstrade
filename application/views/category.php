@@ -379,11 +379,11 @@
                   <div class="margin-top-30">
 					  <div id="price-slider" class="price-slider"></div>
                       <input type="number" placeholder="0" id="minPrice"
-                      value=<?php if($minPrice>0)echo $minPrice;?>     
+                      value=<?php if($minPrice>0) echo $minPrice;?>     
                       name="minPrice"  min="0"  max="1000" class="form-control price">
                       <span id="menubarTitle"> — </span>
                       <input type="number" placeholder="200 " id="maxPrice"  
-                      value=<?php if($minPrice>0) echo $maxPrice;?>  
+                      value=<?php if($maxPrice>0) echo $maxPrice;?>  
                       name="maxPrice" min="0" max="1000"   class="form-control price">
 					  
 					  <script type="text/javascript">
