@@ -137,7 +137,7 @@ input[type=checkbox]
 						            <?php echo $ItemQuality;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <select name="itemQualityGroup" id="itemQualityGroup" class="form-control" required="true">
-<                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select - </option>
+                                <!--   <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select - </option>  -->
                                    <option value="N"> New </option>
                                    <option value="U"> Used </option>
                               </select>
@@ -150,7 +150,7 @@ input[type=checkbox]
                           <div class="col-md-8">
                            
                               <select required="true" class="form-control" name="soldqty" id="soldqty">
-		        				     <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select - </option>
+		        				<!--    <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select - </option> -->
                                 <?php 
 		        				  	for ($x = 1; $x <= MAXSOLDQTY; $x++) 
 		        				  		echo "<option value='$x'> $x </option>";
