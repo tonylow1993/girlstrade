@@ -77,7 +77,7 @@
                       	$historyPath=base_url().MY_PATH."messages/getViewMessageHistory/$fuserID/$postID/$userID?prevURL=".urlencode(current_url());
                       	echo "<a class=\"btn btn-info btn-xs\" href=\"$historyPath\" > <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('History')." </a>";
                       	
-                      	if($row["enableMarkSoldBtn"] && $row["soldToUserID"]==$fuserID)
+                      	if($row["enableMarkSoldBtn"] && $row["soldToUserID"]==$fuserID && $commentID!=0)
                       	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"   > <i class=\"fa fa-edit\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
                       	echo "</div></td>";
                   		echo "</tr>";

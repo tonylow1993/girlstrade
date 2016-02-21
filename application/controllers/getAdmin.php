@@ -1160,7 +1160,7 @@ class getAdmin extends CI_Controller {
 		try{
 			$contactID=$this->input->post("contactid");
 			$email=$this->input->post("email");
-			$message=$this->input->post("message-text");
+			$message=nl2br(htmlentities($this->input->post("message-text"), ENT_QUOTES, 'UTF-8'));
 			$emailarray=array("email"=>$email);
 			$title="Reply to your enquires to our girlstrade website";
 			$this->sendAuthenticationEmail($emailarray, $message, $title);
