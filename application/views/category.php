@@ -404,7 +404,6 @@
 						html5Slider.noUiSlider.on('update', function( values, handle ) {
 
 							var value = values[handle];
-
 							if ( handle ) {
 								maxPrice.value = Math.round(value);
 							} else {
@@ -413,11 +412,13 @@
 						});
 
 						minPrice.addEventListener('change', function(){
-							html5Slider.noUiSlider.set([null, this.value]);
+							console.log(this.value);
+							html5Slider.noUiSlider.set([this.value, null]);
 						});
 
 						maxPrice.addEventListener('change', function(){
-							html5Slider.noUiSlider.set([this.value, null]);
+							console.log(this.value);
+							html5Slider.noUiSlider.set([null, this.value]);
 						});
 					</script>
                   </div>
@@ -1454,9 +1455,9 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
                       value=<?php if($maxPrice>0) echo $maxPrice;?>  
                       name="maxPrice1" min="0" max="90000"   class="form-control price">
 					  <script type="text/javascript">
-						var html5Slider = document.getElementById('price-slider1');
+						var html5Slider1 = document.getElementById('price-slider1');
 
-						noUiSlider.create(html5Slider, {
+						noUiSlider.create(html5Slider1, {
 							start: [ <?php if($minPrice>0)echo $minPrice; else echo 0;?>, <?php if($minPrice>0)echo $maxPrice; else echo 200;?> ],
 							connect: true,
 							range: {
@@ -1468,7 +1469,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 						var minPrice1 = document.getElementById('minPrice1');
 						var maxPrice1 = document.getElementById('maxPrice1');
 						
-						html5Slider.noUiSlider.on('update', function( values, handle ) {
+						html5Slider1.noUiSlider.on('update', function( values, handle ) {
 
 							var value = values[handle];
 
@@ -1480,11 +1481,11 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 						});
 
 						minPrice1.addEventListener('change', function(){
-							html5Slider.noUiSlider.set([null, this.value]);
+							html5Slider1.noUiSlider.set([this.value, null]);
 						});
 
 						maxPrice1.addEventListener('change', function(){
-							html5Slider.noUiSlider.set([this.value, null]);
+							html5Slider1.noUiSlider.set([null, this.value]);
 						});
 					</script>
                   </div>
