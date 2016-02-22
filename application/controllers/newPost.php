@@ -197,6 +197,7 @@ class newPost extends CI_Controller {
 				$data["userName"]=$user1["username"];
 			
 			}
+			$data['remainCount'] = 4;
 			
             $this->load->view('newPost', $data);
 		}
@@ -1006,13 +1007,11 @@ public function getChildCategory($parentID)
 		$data["successTile"]=$this->lang->line("successTile");
 		$data["failedTitle"]=$this->lang->line("failedTitle");
 		$data["goToHomePage"]=$this->lang->line("goToHomePage");
-		//----------setup the header menu----------
-		$data["menuMyAds"]="";
-		$data["menuInbox"]="";
-		$data["menuInboxNum"]="0";
-		$data["menuPendingRequest"]="";
-		$data["menuPendingRequestNumber"]="0";
-		//---------------------------- 
+		
+		$msg['status'] = 'A';
+		$msg['class'] = "has-success";
+		$data['remainCount'] = 4;
+		//echo json_encode($msg);
 		$this->load->view('successPage', $data);
 		 //}
     }

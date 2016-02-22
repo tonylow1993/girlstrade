@@ -570,10 +570,10 @@ function setup()
 						type: 'POST',
 						success:function(msg){
 							$("#modal-text").html("Your post has been successfully uploaded.");
-							setTimeout(function(msg){
-							//	if(msg.remainCount<=5)
-							//		$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours. You have remain ".concat(msg.remainCount).concat(" times of post"));
-							//	else
+							setTimeout(function(){
+								//if($remainCount<=5)
+								//	$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours. You have remain ".concat($remainCount).concat(" times of post"));
+								//else
 									$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours.");
 								$('#fwd-btn').css("display", "block");
 								$('#fwd-btn').css("margin", "auto");
