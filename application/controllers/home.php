@@ -1202,6 +1202,12 @@ function generateRandomString($length = 8) {
 				$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInMyAds($userID);
 				$myList=$this->post_model->getMyAds($userID, $pageNum);
 				$data["result"]=$this->mapPostToView($myList);
+				$data["activeTab"]="allAds";
+				$data["lblSellerInfo"]="Seller";
+				$data["lblBuyerInfo"]="Buyer";
+				$data["lblConditionAll"]="All";
+				
+				
 				$this->load->view("profile_allComments", $data);
 	}
 	

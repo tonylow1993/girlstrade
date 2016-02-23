@@ -156,10 +156,11 @@
                 	$data["lastName"]=$userInfo["lastName"];
                 	$data["firstName"]=$userInfo["firstName"];
                 	$data["phoneNo"]=$userInfo["phoneNo"];
+                	$data["sellerphone"]=$userInfo["phoneNo"];
                 	$data["telNo"]=$userInfo["telNo"];
                 }
                 $data["email"]=$email["email"];
-                
+                $data["selleremail"]=$email["email"];
                 
                 $isSameUser=false;
                 $isPostAlready=false;
@@ -168,11 +169,12 @@
                 {
                 	if($loginUser["userID"]==$user[0]->userID)
                 		$isSameUser=true;
-                	$isPostAlready=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "");
+                	$isPostAlready=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "A");
                 	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
                 }
                 $data["isSameUser"]=$isSameUser;
- 
+ 				$data["hasRequestContact"]=true;
+ 				$data["hasBuyerList"]=true;
                 $data["isPostAlready"]=$isPostAlready;
                 $data["isPendingRequest"]=$isPendingRequest;
                 $thread["postID"]=$postId;

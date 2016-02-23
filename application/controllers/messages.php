@@ -893,6 +893,14 @@ function addDayswithdate($date,$days){
 		public function deleteMyAds()
 		{
 			$prevURL=base_url().MY_PATH."home/getAccountPage/3";
+			if(isset($_GET["prevURL"])){
+				$prevURL=$_GET["prevURL"];
+			}
+			$_SESSION["previousUrl"]=$prevURL;
+			
+			
+			
+			
 			$expired= $this->nativesession->_session_id_expired();
 			if($expired){
 				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
@@ -911,7 +919,7 @@ function addDayswithdate($date,$days){
 				$errorMsg=$this->lang->line("ExceedMaxTimesDailyDeleteAds");
 				$data["error"]=$errorMsg;
 				$data['redirectToWhatPage']="Previous Page";
-				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -949,7 +957,7 @@ function addDayswithdate($date,$days){
 				$errorMsg="success in delete ads";
 				$data["error"]=$errorMsg;
 				$data['redirectToWhatPage']="Previous Page";
-				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -967,7 +975,7 @@ function addDayswithdate($date,$days){
 				$errorMsg="error in saving";
 				$data["error"]=$errorMsg;
 				$data['redirectToWhatPage']="Previous Page";
-				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -987,7 +995,7 @@ function addDayswithdate($date,$days){
 				$errorMsg=$exMessage;
 				$data["error"]=$errorMsg;
 				$data['redirectToWhatPage']="Previous Page";
-				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
+				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");

@@ -279,25 +279,23 @@ input[type=checkbox]
                   }
                   ?>  
                   <?php
-                  if(($isloginedIn) && ($isPostAlready==true && $isSameUser==false))
+                  if(($isloginedIn) &&($isPostAlready==true && $isSameUser==false))
                   {
-	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default directSendButton\">";
-	                  echo "<i class=\" icon-info\"></i>Pending Request.</a>";
+	                  echo "<a href=\"#sellerInfo\" data-toggle=\"modal\" data-phone=\"$sellerphone\" data-email=\"$selleremail\" class=\"btn   btn-default directSendButton\">";
+	                  echo "<i class=\" icon-info\"></i>View Seller Contact Information.</a>";
                   }
                   ?>
-                  <?php if(($isloginedIn) && ($isPendingRequest==true && $isSameUser==false)) 
+                  <?php if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                   {
-	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default directSendButton\">";
+	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default  directSendButton\">";
 	                  echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
                   }
                   ?>
                   <?php
-                  if(($isloginedIn) && ($isSameUser==true))
+                  if(($isloginedIn) &&($isSameUser==true))
                   {  
-	                  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
-	                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
-	                  echo "<i class=\" icon-pencil\"></i> Edit Item </a>";
-                  }
+                  	echo "<a href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a>";
+                  	}
                   ?>
 					<?php
 					if(($isloginedIn) && ($isSameUser==false))
@@ -313,6 +311,13 @@ input[type=checkbox]
 												
 					}
 					?>	
+					<?php
+					if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true || $hasBuyerList==true))
+					{
+						echo "<a  href=\"#sellerActionPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default directSendButton\"> <i class=\" icon-pencil\"></i> Action </a>";
+						
+					}
+					?>
 					</div>
                         <!-- </div> -->
 			 <!-- 	<div class="blog-post-footer">
@@ -413,8 +418,8 @@ input[type=checkbox]
                                 <strong>LEAVE A COMMENT</strong></h5>
                                     
 									   <form class="blogs-comment-form" id="blogs-commentform" method="post" action="<?php echo base_url().MY_PATH; ?>itemComments/insertItemComment?prevURL=<?php echo current_url();?>">         
-                                        <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div>
-                                        <div class="row form-group" ><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your email" aria-required="true" value="" name="email"></div><div class="col-md-6 text-left"><span>E-mail*</span></div></div>
+<!--                                         <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div> -->
+<!--                                         <div class="row form-group" ><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your email" aria-required="true" value="" name="email"></div><div class="col-md-6 text-left"><span>E-mail*</span></div></div> -->
 										<input type="hidden" name="postID"  value="<?php echo $postID;?>" >
 <!--                                     	<div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
 
@@ -468,8 +473,8 @@ input[type=checkbox]
                   if(($isloginedIn) &&($isPostAlready==true && $isSameUser==false))
                   {
 	                  echo "<div class=\"user-ads-action\">"; 
-	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default btn-block directSendButton\">";
-	                  echo "<i class=\" icon-info\"></i>Pending Request.</a> </div>";
+	                  echo "<a href=\"#sellerInfo\" data-toggle=\"modal\" data-phone=\"$sellerphone\" data-email=\"$selleremail\" class=\"btn   btn-default btn-block directSendButton\">";
+	                  echo "<i class=\" icon-info\"></i>View Seller Contact Information.</a> </div>";
                   }
                   ?>
                   <?php if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
@@ -482,10 +487,13 @@ input[type=checkbox]
                   <?php
                   if(($isloginedIn) &&($isSameUser==true))
                   {  
-	                  echo "<div class=\"user-ads-action\">"; 
-	                  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
-	                  echo " data-toggle=\"modal\" class=\"btn btn-default btn-block directSendButton\">";
-	                  echo "<i class=\" icon-pencil\"></i> Edit Item </a> </div>";
+                  	echo "<div class=\"user-ads-action\"><a  href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a></div>";
+                  	 
+                  	
+	                //  echo "<div class=\"user-ads-action\">";
+	                //  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
+	                //  echo " data-toggle=\"modal\" class=\"btn btn-default btn-block directSendButton\">";
+	                //  echo "<i class=\" icon-pencil\"></i> Edit Item </a> </div>";
                   }
                   ?>
                    <?php
@@ -502,7 +510,15 @@ input[type=checkbox]
 						echo "</a></div>";
 												
 					}
-					?>	  
+					?>	 
+					<?php
+					if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true || $hasBuyerList==true))
+					{
+						echo "<div class=\"user-ads-action\"><a  href=\"#sellerActionPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Action </a></div>";
+						
+					}
+					?>
+					
                 </div>
               </div>
             </div>
@@ -531,8 +547,77 @@ input[type=checkbox]
   <!-- /.footer -->
 </div>
 <!-- /.wrapper --> 
+<div class="modal fade" id="sellerActionPopup" tabindex="-1" role="dialog">
 
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h2 id="modal-title-del" class="modal-title">Seller Action</h2>
+      </div>
+      <div class="modal-body">
+      <form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds?prevURL=".urlencode($previousCurrent_url)>
+           <div class="form-group">
+           			
+           	</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
+      	<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       <button id="submit-btn" type="button" class="btn btn-success pull-right"   onclick="setupDeleteAds(); return false;">Submit</button>
+        	<button id="validate" hidden="true" type="submit"></button>
+  
+       </div>
+    </div>
+  </div>
+</div>
 <!-- Modal contactAdvertiser -->
+<div class="modal fade" id="deleteAdsPopup" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h2 id="modal-title-del" class="modal-title"><?php echo $this->lang->line("popupTitleDeleteAds");?></h2>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds?prevURL=<?php echo urlencode($previousCurrent_url);?>">
+           <div class="form-group">
+           		<input type="hidden" id="messageID" name="messageID" >   	
+           		<input type="hidden" id="userID" name="userID" >   
+           	</div>		
+           	<button id="cancel-btn" type="button" >Cancel</button>
+           	<button id="submit-btn" type="submit" >Delete</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
+      		
+     	 </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="sellerInfo" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h2 id="modal-title-del" class="modal-title">Seller Contact Information</h2>
+      </div>
+      <div class="modal-body">
+        <input id="sellerphone" name="sellerphone">
+        <input id="selleremail" name="selleremail">
+      </div>
+      <div class="modal-footer">
+		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
+      	<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="reportAdvertiser" tabindex="-1" role="dialog" >
 
@@ -663,8 +748,8 @@ input[type=checkbox]
       <h3 class="blogs-comment-reply-title list-title">LEAVE A COMMENT</h3>
 
                     <form class="blogs-comment-form" id="blogs-commentformPopup" method="post" action="<?php echo base_url().MY_PATH; ?>itemComments/insertItemComment?prevURL=<?php echo current_url();?>">         
-                                        <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div>
-                                        <div class="row form-group" ><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your email" aria-required="true" value="" name="email"></div><div class="col-md-6 text-left"><span>E-mail*</span></div></div>
+<!--                                         <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div> -->
+<!--                                         <div class="row form-group" ><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your email" aria-required="true" value="" name="email"></div><div class="col-md-6 text-left"><span>E-mail*</span></div></div> -->
 										<input type="hidden" name="postID"  value="<?php echo $postID;?>" ><!--                                     <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
 										<input type="hidden" name="parentID"  id="parentID" >
                                         <div class="form-group">
@@ -716,7 +801,16 @@ function passToModal() {
     $('#replyComment').on('show.bs.modal', function(event) {
         $("#parentID").val($(event.relatedTarget).data('id'));
     });
+    $('#deleteAdsPopup').on('show.bs.modal', function(event) {
+        $("#messageID").val($(event.relatedTarget).data('id'));
+        $("#userID").val($(event.relatedTarget).data('userID'));
+    });
+    $('#sellerInfo').on('show.bs.modal', function(event) {
+        $("#sellerphone").val($(event.relatedTarget).data('phone'));
+        $("#selleremail").val($(event.relatedTarget).data('email'));
+    });
 }
+
 
 $(document).ready(passToModal());
 
@@ -736,7 +830,32 @@ copyTextareaBtn.addEventListener('click', function(event) {
     console.log('Oops, unable to copy');
   }
 });
+function setupDeleteAds()
+{
+	$("#modal-title-del").html("Processing...");
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds",
+		data: { 
+			messageID: $("#postID").val(),
+			userID: $("#userID").val() 
+		},
+		success: function(response){
+			$("#modal-title-del").html("Your post has been deleted.");
+			$('#fwd-btn').css("display", "block");
+			$('#fwd-btn').css("margin", "auto");
+			$('#cancel-btn').css("display", "none");
+			$('#submit-btn').css("display", "none");
+			
+			console.log("success");
+		}
+	});
 
+
+     //var myform = document.getElementById("itemDelete");
+	  	//document.getElementById("itemDelete").submit();
+    return false;
+}
 function clipBoard() 
 {
 holdtext.innerText = copytext.innerText;

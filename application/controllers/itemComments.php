@@ -93,8 +93,8 @@ class itemComments  extends CI_Controller {
 			}
 			
 			$postID=$this->input->post("postID");
-			$name=$this->input->post("author");
-			$email=$this->input->post("email");
+		//	$name=$this->input->post("author");
+		//	$email=$this->input->post("email");
 			$comment=$this->input->post("blogscomment");
 			$parentID=$this->input->post("parentID");
 			
