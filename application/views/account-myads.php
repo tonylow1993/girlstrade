@@ -64,6 +64,7 @@
 						$price=$row['price'];
 						$NoOfSoldUsers=0;
 						$enableMarkSoldBtn= $row["enableMarkSoldBtn"];
+						$enableRepostBtn=$row["enableRepostBtn"];
                   		$soldUsers=$row["soldUsers"];
 						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
 						if($soldUsers!=null){
@@ -166,7 +167,9 @@
                         //echo "<a class=\"btn btn-danger btn-xs\"  href=\"javascript:deleteAds('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1)'\" id='$clickLink'> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></p>";
                      	if($enableMarkSoldBtn)
                         	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$messageID\"  data-soldusers=\"$soldUsersstr\"> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
-                        
+                        if($enableRepostBtn)
+                        	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#confirmRepost\"  data-id=\"$messageID\"> <i class=\"fa fa-mail-forward\"></i>Repost</a></div></p>";
+                        	
                         echo "</div></td>";
                   		echo "</tr>";
                   	}
@@ -246,6 +249,26 @@
       <div class="modal-footer">
       	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
         <button type="button" class="js-textareacopybtn btn btn-success pull-right">Copy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="confirmRepost" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Confirm Repost </h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+        <button type="button" class="btn btn-success pull-right" >Repost</button>
+        	<button id="validate" hidden="true" type="submit"></button>
       </div>
     </div>
   </div>

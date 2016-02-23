@@ -2063,6 +2063,7 @@ function generateRandomString($length = 8) {
 			$itemStatus='OPEN';
 			$NoOfDaysPending=10;
 			$NoOfDaysb4ExpiryContact=10;
+			$enableRepostBtn=true;
 			//var_dump($soldUserList);
 			$arrayMessage=array($messageID => array("postID"=>$postID,
 					"messageID"=>$messageID,
@@ -2082,6 +2083,7 @@ function generateRandomString($length = 8) {
 					"status"=>$status,
 					"soldUsers"=>$soldUserList,
 					"enableMarkSoldBtn"=>$enableMarkSoldBtn,
+					"enableRepostBtn"=>$enableRepostBtn,
 					"visibleBuyerComment"=>$visibleBuyerComment,
 					"soldToUserID"=>$soldToUserID,
 					"soldToUserName"=>$soldToUserName, 
