@@ -370,6 +370,7 @@ input[type=checkbox]
 											echo "<div class=\"blogs-comment-description\">";
 											echo "<p>$comments</p>";
 											echo "</div>";
+											if($isloginedIn)
 											echo "<div class=\"blogs-comment-reply\"><a data-toggle=\"modal\" href=\"#replyComment\"  data-id=\"$id\">Reply</a></div>";
 											
 											
@@ -413,7 +414,7 @@ input[type=checkbox]
 										?>
                                        
                                     </ul>   <!--Comment list End-->
-                                    
+                                    <?php if($isloginedIn) {?>
                                     <h5 class="list-title">
                                 <strong>LEAVE A COMMENT</strong></h5>
                                     
@@ -429,6 +430,7 @@ input[type=checkbox]
                                         <button type="submit" class="btn-success btn btn-lg"> Submit </button>
 
 										</form>
+										<?php }?>
                                 </div><!-- #respond -->
 
 
