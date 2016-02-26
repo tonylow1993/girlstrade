@@ -414,7 +414,7 @@ class Home extends CI_Controller {
 	public function signup(){
 		
             //-------------------------------captcha------------------------------
-                $captcha;
+                 $captcha;
                 if(isset($_POST['g-recaptcha-response'])){
                   $captcha=$_POST['g-recaptcha-response'];
                 }
@@ -527,6 +527,7 @@ class Home extends CI_Controller {
 		$userInfo['firstName'] = $data['firstname'];
 		$userInfo['gender'] = $data['gender'];
 		$userInfo['telNo'] = $data['telno'];
+		$userInfo['introduction']="";
 		if($this->input->post('hidetelno')!=null
 				&& $this->input->post('hidetelno')=="Yes")
 			$userInfo['hidetelno']=true;

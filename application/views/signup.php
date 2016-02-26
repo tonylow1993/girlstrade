@@ -316,7 +316,7 @@ function setup()
 	var recaptcha = $("#g-recaptcha-response").val();
  	var isValid=true;
     if(recaptcha == ""){
-		event.preventDefault();
+      	event.preventDefault();
         $('#captchaError').html("<em><span style=\"color:red\"> <i class=\"icon-cancel-1 fa\"></i> Please check the recaptcha </span></em>");
         isValid= false;
     } else
