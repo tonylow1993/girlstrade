@@ -31,10 +31,8 @@
               <table id="addManageTable" class="table  table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr>
-                    <th data-type="numeric" data-sort-initial="true"> </th>
                     <th> <?php echo $this->lang->line("From");?> </th>
                     <th data-sort-ignore="true"> <?php echo $this->lang->line("Preview");?>  </th>
-                    <th> <?php echo $this->lang->line("Reply");?>  </th>
                    </tr>
                 </thead>
                 <tbody>
@@ -86,24 +84,13 @@
 							$readflag="bgcolor=\"#FF0000\" onclick=\"editData($messageID, $pageNum)\"";
 						
                 		echo "<tr ".$readflag." >";
-                    	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
-                        echo "<label>";
-                        echo "  <input type=\"checkbox\">";
-                        echo "</label>";
-                      	echo "</td>";
-                    	echo "<td style=\"width:20%\">$from</td>";
-                    	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
-                    	echo "<div class=\"ads-details\">";
-                       echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
-                          echo "<br/>".$preview."<br/>Posted On: ". $createDate."</h5>";
-                      	 	echo "</div></td>";
-                      	$rowCount=$rowCount+1;
+                    	echo "<td style=\"width:20%\" class=\"add-image\">$from";
+                    	$rowCount=$rowCount+1;
                       	$ctrlName1="AjaxLoad".$rowCount;
                       	$errorctrlName1="ErrAjaxLoad".$rowCount;
                       	$ctrlValue1="messageID".$rowCount;
                       	$ctrlValue2="userID".$rowCount;
                       	$clickLink="clickLink".$rowCount;
-                    	echo "<td style=\"width:15%\" class=\"action-td\"><div>";
                     	echo "<p>";
                     	
                     	$usr = $this->nativesession->get('user');
@@ -161,7 +148,17 @@
 //                     	echo "<div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"  data-target=\"#markSoldAds\"  href=\"#markSoldAds\"  data-id=\"$postID\"  data-soldusername=\"$from\"  data-solduserID=\"$fuserID\"   data-soldusers=\"$soldUsersstr\"  $str> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div>";
                     	 
                     	
-			  			echo "</p></div></td>";
+			  			echo "</p></td>";
+                    	
+                    	
+                    	
+                    	
+                    	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
+                    	echo "<div class=\"ads-details\">";
+                       echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
+                          echo "<br/>".$preview."<br/>Posted On: ". $createDate."</h5>";
+                      	 	echo "</div></td>";
+                      	
                   		echo "</tr>";
                   	}
             	}

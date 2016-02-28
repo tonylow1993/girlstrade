@@ -19,10 +19,8 @@
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr>
-                    <th data-type="numeric" data-sort-initial="true"> </th>
                     <th> <?php echo $this->lang->line("To");?> </th>
                     <th data-sort-ignore="true"> <?php echo $this->lang->line("Preview");?> </th>
-                    <th> <?php echo $this->lang->line("Option");?> </th>
                    </tr>
                 </thead>
                 <tbody>
@@ -52,34 +50,31 @@
 						$postID=$row['postID'];
 						$commentID=$row["commentID"];
                 		echo "<tr>";
-                    	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
-                        echo "<label>";
-                        echo "  <input type=\"checkbox\">";
-                        echo "</label>";
-                      	echo "</div></td>";
-                    	echo "<td style=\"width:20%\">$reply</td>";
+                    	echo "<td style=\"width:20%\" class=\"add-image\">$reply<p>";
+                    	$usr = $this->nativesession->get('user');
+                    	$fuserID=$row["fuserID"];
+                    	$userID=$row["userID"];
+                    	if(!empty($usr)){
+                    		if($usr["userID"]!=$fuserID ){
+                    			$fuserID=$row["userID"];
+                    			$userID=$row["fuserID"];
+                    		}
+                    	}
+                    	 
+                    	$historyPath=base_url().MY_PATH."messages/getViewMessageHistory/$fuserID/$postID/$userID?prevURL=".urlencode(current_url());
+                    	echo "<a class=\"btn btn-info btn-xs\" href=\"$historyPath\" > <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('History')." </a>";
+                    	 
+                    	if($row["enableMarkSoldBtn"] && $row["soldToUserID"]==$fuserID && $commentID!=0)
+                    		echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"   > <i class=\"fa fa-edit\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
+                    	echo "</p></td>";
+                    	
+                    	
                     	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                        echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
                           echo "<br/>".$preview."<br/>Posted On: ". $createDate."</h5>";
                     		echo "</div></td>";
-                      	echo "<td style=\"width:10%\" class=\"action-td\"><div>";
-                      	$usr = $this->nativesession->get('user');
-                      	$fuserID=$row["fuserID"];
-                      	$userID=$row["userID"];
-                      	if(!empty($usr)){
-                      		if($usr["userID"]!=$fuserID ){
-                      			$fuserID=$row["userID"];
-                      			$userID=$row["fuserID"];
-                      		}
-                      	}
-                      		 
-                      	$historyPath=base_url().MY_PATH."messages/getViewMessageHistory/$fuserID/$postID/$userID?prevURL=".urlencode(current_url());
-                      	echo "<a class=\"btn btn-info btn-xs\" href=\"$historyPath\" > <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('History')." </a>";
                       	
-                      	if($row["enableMarkSoldBtn"] && $row["soldToUserID"]==$fuserID && $commentID!=0)
-                      	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"   > <i class=\"fa fa-edit\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
-                      	echo "</div></td>";
                   		echo "</tr>";
                   	}
             	}
