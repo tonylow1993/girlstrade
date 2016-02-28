@@ -3520,6 +3520,22 @@ td.ads-details-td {
   display: block;
 }
 
+.btn-120 {
+    width: 120px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.status-label{
+  margin: 10px;
+  text-align: center;
+  font-family: MyCustomFont, serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
 .btn-pink:disabled {
 	background-color: #EA75B1;
     border-color: #EA75B1;
