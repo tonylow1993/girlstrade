@@ -28,11 +28,9 @@
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr>
-                    <th data-type="numeric" data-sort-initial="true"> </th>
-                    <th> <?php echo $this->lang->line("Reply"); ?> </th><th> <?php echo $this->lang->line("Photo"); ?> </th>
+                    <th> <?php echo $this->lang->line("Reply"); ?> </th>
                     <th data-sort-ignore="true"> <?php echo $this->lang->line("Ads_Detail"); ?> </th>
-        	            <th> <?php  echo $this->lang->line("Option");?> </th>  
-                  </tr>
+        	      </tr>
                 </thead>
                 <tbody>
                   <?php 
@@ -55,15 +53,13 @@
 // 						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
 						$price=$row['price'];
                 		echo "<tr>";
-                    	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
-                        echo "<label>";
-                        echo "  <input type=\"checkbox\">";
-                        echo "</label>";
-                      	echo "</div></td>";
-                      	echo "<td style=\"width:10%\">$reply</td>";
-                    	echo "<td style=\"width:20%\" class=\"add-image\">";
+                       	echo "<td style=\"width:20%\" class=\"add-image\">";
                       	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                    	echo "</td>";
+                    	echo "<p>$reply</p>";
+                    	if($enableMarkSoldBtn)
+                    		echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"  data-seller=\"$from\"> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
+                    	
+                      	echo "</td>";
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                        echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
@@ -74,10 +70,7 @@
 						//echo "<td style=\"width:10%\" class=\"action-td\"><div>";
 // 						echo "<p> <a class=\"btn btn-primary btn-xs\" href=$cancelPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Cancel')." </a></p>";
 					//	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"  > <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
-                    		echo "<td style=\"width:10%\" class=\"action-td\">";
-                    		if($enableMarkSoldBtn)
-                    			echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"  data-seller=\"$from\"> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
-                   		echo "</td>";
+                    	echo "</td>";
                   		echo "</tr>";
                   	}
             	}

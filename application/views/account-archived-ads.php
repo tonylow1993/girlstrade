@@ -28,11 +28,8 @@
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr>
-                    <th data-type="numeric" data-sort-initial="true"> </th>
-          <!--           <th> <?php echo $this->lang->line("From"); ?> </th-->
-                    <th> <?php echo $this->lang->line("Photo"); ?> </th>
+                     <th> <?php echo $this->lang->line("Photo"); ?> </th>
                     <th data-sort-ignore="true"> <?php echo $this->lang->line("Ads_Detail"); ?> </th>
-         <!--            <th> <?php  echo $this->lang->line("Option");?> </th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -57,12 +54,6 @@
 						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
 						$price=$row['price'];
                 		echo "<tr>";
-                    	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
-                        echo "<label>";
-                        echo "  <input type=\"checkbox\">";
-                        echo "</label>";
-                      	echo "</div></td>";
-                      	//echo "<td style=\"width:10%\">$soldToUserName</td>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">";
                       	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                     	echo "</td>";
