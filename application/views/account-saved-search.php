@@ -25,16 +25,14 @@
                   </div>
                 </div>
               </div>
-             <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
-                <thead>
-                  <tr>
-                    <th data-type="numeric" data-sort-initial="true"> </th>
-                    <th> <?php echo $this->lang->line("Photo");?> </th>
-                    <th data-sort-ignore="true"> <?php echo $this->lang->line("Item_Detail");?> </th>
-                    <th> <?php echo $this->lang->line("Status");?> </th><th> <?php echo $this->lang->line("Cancel");?> </th>
-                   </tr>
-                </thead>
-                <tbody>
+             <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true">
+				<thead>
+				  <tr>
+					<th> <?php echo $this->lang->line("Photo");?> </th>
+					<th data-sort-ignore="true">  <?php echo $this->lang->line("Item_Detail");?>  </th>
+				  </tr>
+				</thead>
+				<tbody>
             <?php 
             if($result<>null)
             	{
@@ -53,33 +51,27 @@
                   		$NoOfDaysPending=$row['NoOfDaysPending'];
 						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
 						$price=$row['price'];
+						
+						$rowCount=$rowCount+1;
+						$ctrlName1="AjaxLoad".$rowCount;
+						$errorctrlName1="ErrAjaxLoad".$rowCount;
+						$ctrlValue1="messageID".$rowCount;
+						$clickLink="clickLink".$rowCount;
                 		echo "<tr>";
-                    	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
-                        echo "<label>";
-                        echo "  <input type=\"checkbox\">";
-                        echo "</label>";
-                      	echo "</div></td>";
-                      	echo "<td style=\"width:20%\" class=\"add-image\">";
+                    	echo "<td style=\"width:20%\" class=\"add-image\">";
                       	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                    	echo "</td>";
-                      	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
+                      	echo "<p>Status: $itemStatus</p>";
+                      	echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
+                      	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
+                      	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:cancelAds('$ctrlValue1','$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-trash\"></i> ".$this->lang->line('Cancel') ."</a>";
+                      	echo "</td>";
+                      	
+                      	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";;
                       echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
                           echo "<br/>Posted On: ". $createDate."</h5>";
                     	echo "</div></td>";
-                      	echo "<td style=\"width:5%\">$itemStatus</td>";
-                      	$rowCount=$rowCount+1;
-                    	$ctrlName1="AjaxLoad".$rowCount;
-						$errorctrlName1="ErrAjaxLoad".$rowCount;
-						$ctrlValue1="messageID".$rowCount;
-						$clickLink="clickLink".$rowCount;
-						
-				      	echo "<td style=\"width:10%\" class=\"action-td\"><div>";
-						echo "<p>";
-						echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
-						echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
-						echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:cancelAds('$ctrlValue1','$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-trash\"></i> ".$this->lang->line('Cancel') ."</a></p>";
-                      echo "</div></td>";
+                      	
                   		echo "</tr>";
                   	}
             	}
