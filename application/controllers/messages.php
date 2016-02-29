@@ -12,6 +12,8 @@ class messages extends CI_Controller {
 	      
 			$this->load->helper('url');
 			$this->load->database();
+			$this->load->helpers('site');
+			
 			$this->load->model('messages_model');
 			$this->load->model('users_model');
 			$this->load->model("userinfo_model");
@@ -671,9 +673,9 @@ function addDayswithdate($date,$days){
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
-					$msg=sprintf($this->lang->line("SendEmailMsgForDirectSendApproveOrRejectToSeller"), $username, $path );
-					$this->sendAuthenticationEmail($email, $msg, $this->lang->line("SendEmailTitleForDirectSendApproveOrRejectToSeller"));
-				
+					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendApproveOrRejectToSeller($username, $path );
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendApproveOrRejectToSeller());
+					
 					$data['status'] = 'A';
 				$data['class'] = "has-success";
 				$data['message'] = '';

@@ -23,6 +23,7 @@
                 $this->load->model('itemcomments_model');
                 $this->load->model('messages_model');
 				$this->load->model('userstat_model');
+				$this->load->model('picture_model');
                 if($this->nativesession->get("language")!=null)
                 {
                 	$data["lang_label"] = $this->nativesession->get("language");
@@ -173,8 +174,15 @@
                 	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
                 }
                 $data["isSameUser"]=$isSameUser;
- 				$data["hasRequestContact"]=true;
- 				$data["hasBuyerList"]=true;
+                $data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInApproveAndReject($loginUser['userID']);
+                $myList=$this->requestpost_model->getApproveAndReject($loginUser['userID'], 1);
+                $data["result"]=$this->mapReqeustPostToView($myList, 'seller', "ApproveAndReject");
+                	
+ 				$data["hasRequestContact"]=$data["result"]!=null && count($data["result"])>0;
+ 				$data["soldUsers"]=$this->messages_model->getSoldUserList($postId);
+ 				$data["hasBuyerList"]=$data["soldUsers"]!=null && count($data["soldUsers"])>0;
+ 					
+ 				$data["pageNum"]=1;
                 $data["isPostAlready"]=$isPostAlready;
                 $data["isPendingRequest"]=$isPendingRequest;
                 $thread["postID"]=$postId;
@@ -335,6 +343,114 @@
         	}
         
         	return $data;
+        }
+        public function mapReqeustPostToView($inbox, $type="buyer", $type2="DirectSend")
+        {
+        	$result=null;
+        	$lang_label=$this->nativesession->get("language");
+        	if($inbox!=null){
+        		foreach($inbox as $row)
+        		{
+        			$postID=$row->postID;
+        			$messageID=$row->postID."-".$row->userID;
+        			//$userID=$row->userID;
+        			$fuserID=$row->userID;
+        			$createDate=$row->createDate;
+        			$expiryDate=$row->expriyDate;
+        			$statusRP=$row->status;
+        			$status="";
+        			$name="";
+        			$previewTitle="";
+        			$previewDesc="";
+        			$price=0;
+        			$userID=0;
+        			$enableMarkSoldBtn=false;
+        			$visibleBuyerComment=false;
+        			$soldToUserID=0;
+        			$postInfo=$this->post->getPostByPostID($postID);
+        			if($postInfo<>null)
+        			{
+        				if ($lang_label<>"english")
+        					$name=$postInfo[0]->itemNameCH;
+        					else
+        						$name=$postInfo[0]->itemName;
+        						$soldToUserID=$postInfo[0]->soldToUserID;
+        						$enableMarkSoldBtn=$postInfo[0]->sellerRating==null;
+        						$visibleBuyerComment=$postInfo[0]->sellerRating<>null &&
+        						$postInfo[0]->buyerRating==null;
+        						$previewTitle=$name;
+        						$previewDesc=$postInfo[0]->description;
+        						$price=$postInfo[0]->currency." ".$postInfo[0]->itemPrice;
+        						$userID=$postInfo[0]->userID;
+        						$status=$postInfo[0]->status;
+        			}
+        			$userarray=$this->users_model->get_user_by_id($userID);
+        			$reply="";
+        			$from="";
+        			$sellerEmail="";
+        			if($userarray<>null)
+        			{
+        				$reply=$userarray[0]->username;
+        				$from=$reply;
+        			}
+        			$email="";
+        			if(strcmp($type,"buyer")==0)
+        				$email=$this->userEmail->getUserEmailByUserID($userID);
+        				else
+        					$email=$this->userEmail->getUserEmailByUserID($fuserID);
+        					if($email<>null){
+        						$sellerEmail=$email["email"];
+        					}
+        					$fUserarray=$this->users_model->get_user_by_id($fuserID);
+        					if($fUserarray<>null)
+        					{
+        						$from=$fUserarray[0]->username;
+        					}
+        						
+        					$pic=$this->picture_model->get_picture_by_postID($postID);
+        					$imagePath="";
+        					$picCount=count($pic);
+        					if($pic<>null)
+        					{
+        						$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
+        					}
+        					$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
+        
+        					$itemStatus=$status;
+        					$dStart=date_create('2015-09-20');
+        					$dDiff = $dStart->diff(date_create($expiryDate));
+        					$NoOfDaysPending=$dDiff->days;
+        					$NoOfDaysb4ExpiryContact=$dDiff->days;
+        					$arrayMessage=array($messageID => array("postID"=>$postID,
+        							"messageID"=>$messageID,
+        							"userID"=>$userID,
+        							"fuserID"=>$fuserID,
+        							"createDate"=>$createDate,
+        							"reply"=>$reply,
+        							"previewTitle"=>$previewTitle,
+        							"previewDesc"=>$previewDesc,
+        							"price"=>$price,
+        							"enableMarkSoldBtn"=>$enableMarkSoldBtn,
+        							"visibleBuyerComment"=>$visibleBuyerComment,
+        							"soldToUserID"=>$soldToUserID,
+        							"imagePath"=>$imagePath,
+        							"viewItemPath"=>$viewItemPath,
+        							"itemStatus"=>$itemStatus,
+        							"statusRP" =>$statusRP,
+        							"from"=>$from,
+        							"recordType" => $type2,
+        							"NoOfDaysPending"=>$NoOfDaysPending,
+        							"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
+        							"sellerEmail" => $sellerEmail,
+        							"replyUserID"=>$userID,
+        							"picCount"=>$picCount));
+        					if($result==null)
+        						$result=$arrayMessage;
+        						else
+        							$result=$result + $arrayMessage;
+        		}
+        	}
+        	return $result;
         }
     }
 ?>

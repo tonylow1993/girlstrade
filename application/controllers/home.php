@@ -1557,7 +1557,7 @@ function generateRandomString($length = 8) {
 			$data["NoOfItemCount"]= $data["NoOfItemCount"] + $this->requestpost_model->getNoOfItemCountInDirectSendHistoryAsSeller($userID);
 			$myList=$this->requestpost_model->getDirectSendHistoryAsSeller($userID, $pageNum);
 			//var_dump($myList);
-			if($data["result"]!=null && sizeof($data["result"])>0)
+			if($data["result"]!=null && count($data["result"])>0)
 				$data["result"]=array_merge($data["result"], $this->mapReqeustPostToViewOfArray($myList, "seller"));
 			else 
 				$data["result"]=$this->mapReqeustPostToViewOfArray($myList, "seller");
@@ -1588,7 +1588,7 @@ function generateRandomString($length = 8) {
 			$data["result"]=$this->mapReqeustPostToView($myList, "buyer", "PendingApproval");
 			$data["NoOfItemCount"]=$data["NoOfItemCount"]+$this->requestpost_model->getNoOfItemCountInDirectSendHistory($userID);
 			$myList=$this->requestpost_model->getDirectSendHistory($userID, $pageNum);
-			if($data["result"]!=null && sizeof($data["result"])>0)
+			if($data["result"]!=null && count($data["result"])>0)
 				$data["result"]=array_merge($data["result"],$this->mapReqeustPostToView($myList, "buyer"));
 			else
 				$data["result"]=$this->mapReqeustPostToView($myList, "buyer");
