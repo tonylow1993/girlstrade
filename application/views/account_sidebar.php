@@ -76,25 +76,25 @@
               		echo "<h5 class=\"collapse-title\"><a data-toggle=\"collapse\"  href=\"#ProfileMenuAds\"><span id=\"menuTitle\"><i class=\"icon-docs\"></i>".$this->lang->line('menuAds')."</span></a><a id=\"menuTitle\" class=\"pull-right\" data-toggle=\"collapse\"  href=\"#ProfileMenuAds\"><span id=\"menuTitle\"><i class=\"fa fa-angle-down\"></i></span></a></h5>";
                  	 echo "<div id=\"ProfileMenuAds\" class=\"panel-collapse collapse in\">";
                  	 echo  "<ul class=\"acc-list\">";
-                	if($activeNav==2)
-              			echo "<li><a  class=\"active\" href=$approverequest1><i class=\"icon-thumbs-up-1\"></i> $ApproveRequest <span class=\"badge\">$approveMsgCount</span></a></li>";
-              	 	else 
-              	 	echo "<li><a href=$approverequest1><i class=\"icon-ok-1\"></i> $ApproveRequest <span class=\"badge\">$approveMsgCount</span></a></li>";
-              	 	
+                	
               	 	if($activeNav==3)
               	 		echo "<li><a  class=\"active\" href=$myads1><i class=\"icon-th-thumb\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
          	     	else 
          	     		echo "<li><a href=$myads1><i class=\"icon-th-thumb\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
          	     		
-         	     if($activeNav==5)
-              				echo "<li><a  class=\"active\" href=$saveditems1><i class=\"icon-heart\"></i> $SavedItems <span class=\"badge\">$savedAdsCount</span></a></li>";
-         	     	else 
-         	     		echo "<li><a href=$saveditems1><i class=\"icon-heart\"></i> $SavedItems <span class=\"badge\">$savedAdsCount</span></a></li>";
-         	     	
+         	     if($activeNav==2)
+         	   		echo "<li><a  class=\"active\" href=$approverequest1><i class=\"icon-thumbs-up-1\"></i> Seller List <span class=\"badge\">$approveMsgCount +$directsendhistCount1</span></a></li>";
+       			else 
+       				echo "<li><a href=$approverequest1><i class=\"icon-ok-1\"></i> Seller List <span class=\"badge\">$approveMsgCount+$directsendhistCount1</span></a></li>";
+         	     				 
          	     if($activeNav==6)
-              		echo "<li><a  class=\"active\" href=$pendingrequest1><i class=\"icon-clock-2\"></i> $PendingRequest <span class=\"badge\">$pendingMsgCount</span></a></li>";
+              		echo "<li><a  class=\"active\" href=$pendingrequest1><i class=\"icon-clock-2\"></i> Buyer List <span class=\"badge\">$pendingMsgCount+$directsendhistCount</span></a></li>";
           		 	else 
-          		 		echo "<li><a href=$pendingrequest1><i class=\"icon-clock-2\"></i> $PendingRequest <span class=\"badge\">$pendingMsgCount</span></a></li>";
+          		 		echo "<li><a href=$pendingrequest1><i class=\"icon-clock-2\"></i> Buyer List <span class=\"badge\">$pendingMsgCount+$directsendhistCount</span></a></li>";
+          		 if($activeNav==5)
+          				echo "<li><a  class=\"active\" href=$saveditems1><i class=\"icon-heart\"></i> $SavedItems <span class=\"badge\">$savedAdsCount</span></a></li>";
+       	 			else
+   		 				echo "<li><a href=$saveditems1><i class=\"icon-heart\"></i> $SavedItems <span class=\"badge\">$savedAdsCount</span></a></li>";
           		 		
          	    
           		 	echo "</ul>";
@@ -131,15 +131,15 @@
           		 	else 
           		 		echo "<li><a href=$buyAdsHistory1><i class=\"icon-th-list-2\"></i>".$this->lang->line("BuyAdsHistory")."<span class=\"badge\">$buyAdsCount</span></a></li>";
           		 		
-         	     if($activeNav==12)
-              		echo "<li><a  class=\"active\" href=$directsentHistory1><i class=\"icon-mouse\"></i>".$this->lang->line("directsend_history")."<span class=\"badge\">$directsendhistCount</span></a></li>";
-          		 	else 
-          		 		echo "<li><a href=$directsentHistory1><i class=\"icon-mouse\"></i>".$this->lang->line("directsend_history")."<span class=\"badge\">$directsendhistCount</span></a></li>";
+//          	     if($activeNav==12)
+//               		echo "<li><a  class=\"active\" href=$directsentHistory1><i class=\"icon-mouse\"></i>".$this->lang->line("directsend_history")."<span class=\"badge\">$directsendhistCount</span></a></li>";
+//           		 	else 
+//           		 		echo "<li><a href=$directsentHistory1><i class=\"icon-mouse\"></i>".$this->lang->line("directsend_history")."<span class=\"badge\">$directsendhistCount</span></a></li>";
           		 	
-          		 	if($activeNav==13)
-          		 		echo "<li><a  class=\"active\" href=$directsentHistory2><i class=\"icon-users-1\"></i>".$this->lang->line("directsend_history_seller")."<span class=\"badge\">$directsendhistCount1</span></a></li>";
-          		 	else
-          		 		echo "<li><a href=$directsentHistory2><i class=\"icon-users-1\"></i>".$this->lang->line("directsend_history_seller")."<span class=\"badge\">$directsendhistCount1</span></a></li>";
+//           		 	if($activeNav==13)
+//           		 		echo "<li><a  class=\"active\" href=$directsentHistory2><i class=\"icon-users-1\"></i>".$this->lang->line("directsend_history_seller")."<span class=\"badge\">$directsendhistCount1</span></a></li>";
+//           		 	else
+//           		 		echo "<li><a href=$directsentHistory2><i class=\"icon-users-1\"></i>".$this->lang->line("directsend_history_seller")."<span class=\"badge\">$directsendhistCount1</span></a></li>";
           		 	 
           		 	
           		 	

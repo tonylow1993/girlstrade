@@ -1553,8 +1553,16 @@ function generateRandomString($length = 8) {
 		{
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInApproveAndReject($userID);
 			$myList=$this->requestpost_model->getApproveAndReject($userID, $pageNum);
-			$data["result"]=$this->mapReqeustPostToView($myList);
-				$this->load->view("account-approve-request-ads", $data);
+			$data["result"]=$this->mapReqeustPostToView($myList, 'seller', "ApproveAndReject");
+			$data["NoOfItemCount"]= $data["NoOfItemCount"] + $this->requestpost_model->getNoOfItemCountInDirectSendHistoryAsSeller($userID);
+			$myList=$this->requestpost_model->getDirectSendHistoryAsSeller($userID, $pageNum);
+			//var_dump($myList);
+			if($data["result"]!=null && sizeof($data["result"])>0)
+				$data["result"]=array_merge($data["result"], $this->mapReqeustPostToViewOfArray($myList, "seller"));
+			else 
+				$data["result"]=$this->mapReqeustPostToViewOfArray($myList, "seller");
+			$data["DirectSendType"]="Seller";
+			$this->load->view("account-approve-request-ads", $data);
 		}
 		else if($activeNav==3)
 		{
@@ -1577,8 +1585,16 @@ function generateRandomString($length = 8) {
 		{
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInPendingApproval($userID);
 			$myList=$this->requestpost_model->getPendingApproval($userID, $pageNum);
-			$data["result"]=$this->mapReqeustPostToView($myList);
-				$this->load->view("account-pending-approval-ads", $data);
+			$data["result"]=$this->mapReqeustPostToView($myList, "buyer", "PendingApproval");
+			$data["NoOfItemCount"]=$data["NoOfItemCount"]+$this->requestpost_model->getNoOfItemCountInDirectSendHistory($userID);
+			$myList=$this->requestpost_model->getDirectSendHistory($userID, $pageNum);
+			if($data["result"]!=null && sizeof($data["result"])>0)
+				$data["result"]=array_merge($data["result"],$this->mapReqeustPostToView($myList, "buyer"));
+			else
+				$data["result"]=$this->mapReqeustPostToView($myList, "buyer");
+					
+			$data["DirectSendType"]="Buyer";
+			$this->load->view("account-pending-approval-ads", $data);
 		}
 		else if($activeNav==10)
 		{
@@ -1599,28 +1615,14 @@ function generateRandomString($length = 8) {
 			$myList=$this->tradecomments_model->getBuyAdsHistory($userID, $pageNum);
 			$data["result"]=$this->mapTradeCommentToView($myList);
 			$this->load->view("account-my-buy-history", $data);
-		}else if($activeNav==12){
-			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInDirectSendHistory($userID);
-			$myList=$this->requestpost_model->getDirectSendHistory($userID, $pageNum);
-			$data["result"]=$this->mapReqeustPostToView($myList, "buyer");
-			$data["DirectSendType"]="Buyer";
-			$this->load->view("account-directsend-history", $data);
-		}else if($activeNav==13){
-			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInDirectSendHistoryAsSeller($userID);
-			$myList=$this->requestpost_model->getDirectSendHistoryAsSeller($userID, $pageNum);
-			//var_dump($myList);
-			$data["result"]=$this->mapReqeustPostToViewOfArray($myList, "seller");
-			$data["DirectSendType"]="Seller";
-			$this->load->view("account-directsend-history", $data);
-		}
-		else if($activeNav==8){
+		}else if($activeNav==8){
 			$this->load->view("account-statements", $data);
 		}else if($activeNav==9){
 			$this->load->view("account-close", $data);
 		}
 	}
 	
-	public function mapReqeustPostToView($inbox, $type="buyer")
+	public function mapReqeustPostToView($inbox, $type="buyer", $type2="DirectSend")
 	{
 		$result=null;
 		$lang_label=$this->nativesession->get("language");
@@ -1714,6 +1716,7 @@ function generateRandomString($length = 8) {
 					"itemStatus"=>$itemStatus,
 					"statusRP" =>$statusRP,
 					"from"=>$from,
+					"recordType" => $type2,
 					"NoOfDaysPending"=>$NoOfDaysPending,
 					"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
 					"sellerEmail" => $sellerEmail,
@@ -1728,7 +1731,7 @@ function generateRandomString($length = 8) {
 		return $result;
 	}
 	
-	public function mapReqeustPostToViewOfArray($inbox, $type="buyer")
+	public function mapReqeustPostToViewOfArray($inbox, $type="buyer", $type2="DirectSend")
 	{
 		$result=null;
 		$lang_label=$this->nativesession->get("language");
@@ -1822,6 +1825,7 @@ function generateRandomString($length = 8) {
 						"itemStatus"=>$itemStatus,
 						"statusRP" =>$statusRP,
 						"from"=>$reply,
+						"recordType" => $type2,
 						"NoOfDaysPending"=>$NoOfDaysPending,
 						"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
 						"sellerEmail" => $sellerEmail,

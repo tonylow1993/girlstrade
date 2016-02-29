@@ -30,12 +30,9 @@
              <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr>
-                    <th data-type="numeric" data-sort-initial="true"> </th>
-                    <th> <?php echo $this->lang->line("From");?> </th><th> <?php echo $this->lang->line("Photo");?> </th>
+                    <th> <?php echo $this->lang->line("From");?> </th>
                     <th data-sort-ignore="true"> <?php echo $this->lang->line("Ads_Detail");?></th>
-                     <th data-type="numeric" > <?php echo $this->lang->line("DaysExpiry"); ?> </th>
-                    <th><?php echo $this->lang->line("Option");?></th>
-                   </tr>
+                    </tr>
                 </thead>
                 <tbody>
             <?php 
@@ -44,6 +41,46 @@
             		$rowCount=0;
                   	foreach($result as $id=>$row)
                   	{
+                  		if(strcmp($row['recordType'],"DirectSend")==0){
+                  			$from=$row['from'];
+                  			$reply=$row['reply'];
+                  			$replyUserID=$row["replyUserID"];
+                  			$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
+                  			$imagePath=$row['imagePath'];
+                  			$previewTitle=$row['previewTitle'];
+                  			$previewDesc=$row["previewDesc"];
+                  			$createDate=$row['createDate'];
+                  			$itemStatus=$row['itemStatus'];
+                  			$statusRP=$row["statusRP"];
+                  			$messageID=$id;
+                  			$NoOfDaysPending=$row['NoOfDaysPending'];
+                  			$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
+                  			$price=$row['price'];
+                  			$sellerEmail=$row["sellerEmail"];
+                  			$status="";
+                  			if(strcmp($statusRP, 'A')==0)
+                  				$status="Approved";
+                  				else if(strcmp($statusRP, 'R')==0){
+                  					$status="Rejected";
+                  					$sellerEmail="";
+                  				}
+                  			
+                  				$userPath=base_url().MY_PATH."viewProfile/viewByUserID/".$replyUserID."/1?prevURL=".urlencode(current_url());
+                  				echo "<tr>";
+                  				echo "<td style=\"width:20%\" class=\"add-image\"><a href=$userPath>$reply</a>";
+                  				echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  				if(strcmp($statusRP, 'A')==0)
+                  					echo "<br/>Seller email: $sellerEmail";
+                  				echo "<br/>Status: $status";
+                  				echo "</td>";
+                  				echo "<td style=\"width:55%\" class=\"ads-details-td\">";
+                  				echo "<div class=\"ads-details\">";
+                  				echo "<h5><div class=\"add-title-girlstrade\"><a href=$viewItemPath>".$this->lang->line("lblTitle").$previewTitle."</a></div><a href=$viewItemPath>".$previewDesc."</a>";
+                  				echo "<br/>Posted On: ". $createDate."</h5>";
+                  				echo "</div></td>";
+                  				echo "</tr>";
+                  			
+                  		}else{
                   		$from=$row['from'];
                   		$reply=$row['reply'];
                   		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
@@ -58,42 +95,38 @@
 						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
 						$price=$row['price'];
                 		echo "<tr>";
-                    	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
-                        echo "<label>";
-                        echo "  <input type=\"checkbox\">";
-                        echo "</label>";
-                      	echo "</div></td>";
-                      	echo "<td style=\"width:10%\">$from</td>";
-                    	echo "<td style=\"width:20%\" class=\"add-image\">";
-                    	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	echo "<td style=\"width:20%\" class=\"add-image\">$from";
+                    	echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	echo "<br/>".$this->lang->line("DaysExpiry")." :".$NoOfDaysb4ExpiryContact;
+                    	$approvePath=base_url().MY_PATH."messages\approveSavedAds\$messageID\$userID";
+                    	$rejectPath=base_url().MY_PATH."messages\rejectSavedAds\$messageID\$userID";
+                    	$rowCount=$rowCount+1;
+                    	$ctrlName1="AjaxLoad".$rowCount;
+                    	$errorctrlName1="ErrAjaxLoad".$rowCount;
+                    	$ctrlValue1="messageID".$rowCount;
+                    	$ctrlValue2="userID".$rowCount;
+                    	$ctrlName2="AjaxLoad2_".$rowCount;
+                    	$errorctrlName2="ErrAjaxLoad2_".$rowCount;
+                    	$clickLink="clickLink".$rowCount;
+                    	$clickLink2="clickLink2_".$rowCount;
+                    	echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
+                    	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
+                    	echo "<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
+                    	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:approve('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-reply\"></i> ".$this->lang->line('Approve')." </a></p>";
+                    	echo "<div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
+                    	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:reject('$ctrlValue1','$ctrlValue2', '$ctrlName2', '$errorctrlName2')\" id='$clickLink2'><i class=\"fa fa-trash\"></i>  ".$this->lang->line('Reject')."</a></p>";
+                    	echo "</div>";
+                    	
                     	echo "</td>";
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                       echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
                           echo "<br/>Posted On: ". $createDate."</h5>";
                     		echo "</div></td>";
-                      	echo "<td style=\"width:10%\" class=\"action-td\">$NoOfDaysb4ExpiryContact</td>";
+                      		
                       	
-                      	echo "<td style=\"width:10%\" class=\"action-td\"><div>";
-                      	$approvePath=base_url().MY_PATH."messages\approveSavedAds\$messageID\$userID";
-						$rejectPath=base_url().MY_PATH."messages\rejectSavedAds\$messageID\$userID";
-						$rowCount=$rowCount+1;
-						$ctrlName1="AjaxLoad".$rowCount;
-						$errorctrlName1="ErrAjaxLoad".$rowCount;
-						$ctrlValue1="messageID".$rowCount;
-						$ctrlValue2="userID".$rowCount;
-						$ctrlName2="AjaxLoad2_".$rowCount;
-						$errorctrlName2="ErrAjaxLoad2_".$rowCount;
-						$clickLink="clickLink".$rowCount;
-                      	$clickLink2="clickLink2_".$rowCount;
-                      	echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
-                      	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
-                      	echo "<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
-                      	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:approve('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-reply\"></i> ".$this->lang->line('Approve')." </a></p>";
-                      	echo "<div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
-                      	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:reject('$ctrlValue1','$ctrlValue2', '$ctrlName2', '$errorctrlName2')\" id='$clickLink2'><i class=\"fa fa-trash\"></i>  ".$this->lang->line('Reject')."</a></p>";
-                      	echo "</div></td>";
                   		echo "</tr>";
+                  		}
                   	}
             	}
             ?>
