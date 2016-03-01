@@ -2068,7 +2068,13 @@ function generateRandomString($length = 8) {
 			$itemStatus='OPEN';
 			$NoOfDaysPending=10;
 			$NoOfDaysb4ExpiryContact=10;
-			$enableRepostBtn=true;
+			
+			$nextDate=$this->addDayswithdate($postInfo[0]->expriyDate, REPOSTEXPIRYDAYS);
+			$nextexpirydate="Next expiry date of this post is ".$nextDate;
+			$enableRepostBtn=false;
+			$today = date("Y-m-d");
+			if($postInfo[0]->expriyDate<$today)
+				$enableRepostBtn=true;
 			//var_dump($soldUserList);
 			$arrayMessage=array($messageID => array("postID"=>$postID,
 					"messageID"=>$messageID,
@@ -2077,6 +2083,7 @@ function generateRandomString($length = 8) {
 					"postUserID"=>$postUserID,
 					"createDate"=>$createDate,
 					"reply"=>$reply,
+					"nextexpirydate"=>$nextexpirydate,
 					"preview"=>$preview,
 					"previewTitle"=>$previewTitle,
 					"previewDesc"=>$previewDesc,
@@ -3057,7 +3064,20 @@ function generateRandomString($length = 8) {
 		return;
 		//$this->getAccountPage("1", $pageNum);
 	}
+	public function updateRepost(){
+		$postID=$_POST["postID"];
+		$pageNum=$_POST["pageNum"];
+		$post=$this->post_model->getPostByPostID($postID);
+		$data['expriyDate']=$this->addDayswithdate($post[0]->expriyDate, REPOSTEXPIRYDAYS);
+		$this->post_model->update($data, $postID);
+		$this->getAccountPage("3", $pageNum);
+	}
+	function addDayswithdate($date,$days){
 	
+		$date = strtotime("+".$days." days", strtotime($date));
+		return  date("Y-m-d", $date);
+	
+	}
 	public function check_session(){
 		$expired= $this->nativesession->_session_id_expired();
 		if($expired){

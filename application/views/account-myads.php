@@ -62,6 +62,7 @@
 						$NoOfSoldUsers=0;
 						$enableMarkSoldBtn= $row["enableMarkSoldBtn"];
 						$enableRepostBtn=$row["enableRepostBtn"];
+						$nextexpirydate=$row["nextexpirydate"];
                   		$soldUsers=$row["soldUsers"];
 						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
 						if($soldUsers!=null){
@@ -121,7 +122,7 @@
                      	if($enableMarkSoldBtn)
                         	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$messageID\"  data-soldusers=\"$soldUsersstr\"> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
                         if($enableRepostBtn)
-                        	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#confirmRepost\"  data-id=\"$messageID\"> <i class=\"fa fa-mail-forward\"></i>Repost</a></div></p>";
+                        	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#confirmRepost\"  data-id=\"$messageID\" data-nextexpirydate=\"$nextexpirydate\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-mail-forward\"></i>Repost</a></div></p>";
                         	
                         echo "</div></td>";
                       	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td\">";
@@ -227,10 +228,19 @@
         <h4 class="modal-title">Confirm Repost </h4>
       </div>
       <div class="modal-body">
+      	<form role="form" id="itemRepost" method="post" action="<?php echo base_url(); echo MY_PATH;?>home/updateRepost">
+           <div class="form-group">
+           		<input type="hidden" id="postID" name="postID" > 
+           		<input type="hidden" id="pageNum" name="pageNum" >   	
+           	</div>
+           	<div class="form-group">
+           		<input id="nextExpiryDate" name="nextExpiryDate" >
+           	</div>
+         </form>
       </div>
       <div class="modal-footer">
       	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
-        <button type="button" class="btn btn-success pull-right" >Repost</button>
+        <button type="button" class="btn btn-success pull-right" onclick="repost(); return false;" >Repost</button>
         	<button id="validate" hidden="true" type="submit"></button>
       </div>
     </div>
@@ -349,7 +359,11 @@ function passToModal() {
         $("#postID").val($(event.relatedTarget).data('id'));
          $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
     });
-
+    $('#confirmRepost').on('show.bs.modal', function(event) {
+        $("#postID").val($(event.relatedTarget).data('id'));
+        $("#pageNum").val($(event.relatedTarget).data('pagenum'));
+         $("#nextExpiryDate").val($(event.relatedTarget).data('nextexpirydate'));
+    });
     $('#deleteAdsPopup').on('show.bs.modal', function(event) {
         $("#messageID").val($(event.relatedTarget).data('id'));
         $("#userID").val($(event.relatedTarget).data('userID'));
@@ -472,7 +486,11 @@ function setup()
 	  	document.getElementById("item").submit();
        	return true;
 }
-
+function repost(){
+	var myform = document.getElementById("itemRepost");
+  	document.getElementById("itemRepost").submit();
+   	return true;
+}
 function ClipBoard() 
 {
 holdtext.innerText = copytext.innerText;
