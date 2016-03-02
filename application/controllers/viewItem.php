@@ -166,13 +166,16 @@
                 $isSameUser=false;
                 $isPostAlready=false;
                 $isPendingRequest=false;
+                $isBuyerApproveThisPost=false;
               	if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
                 {
                 	if($loginUser["userID"]==$user[0]->userID)
                 		$isSameUser=true;
+                	$isBuyerApproveThisPost=true; // need to do later
                 	$isPostAlready=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "A");
                 	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
                 }
+                $data["isBuyerApproveThisPost"]=$isBuyerApproveThisPost;
                 $data["isSameUser"]=$isSameUser;
                 $data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInApproveAndReject($loginUser['userID']);
                 $myList=$this->requestpost_model->getApproveAndReject($loginUser['userID'], 1);

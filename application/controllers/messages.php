@@ -1391,6 +1391,17 @@ function addDayswithdate($date,$days){
 		
 			return $data;
 		}
-	
+	public function marksoldclosed(){
+		
+	}
+	public function sellerFeedBack(){
+		
+	}
+	public function insertBuyerMessage($userID){
+		
+	}
+	public function buyerFeedBack(){
+		
+	}
 }
 ?>

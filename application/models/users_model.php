@@ -40,6 +40,11 @@
 	    	return $query->row();
 	    }
 	    
+	    function getUserByUsername($username){
+	    	$query = $this->db->from('user')->where('LOWER(username)', strtolower($username))->get();
+	    	return $query->result();
+	    }
+	    
 	    function isUserExist($username){
 	    	$query = $this->db->from('user')->where('LOWER(username)', strtolower($username))->get();
 	    	if ($query->num_rows() > 0){

@@ -300,18 +300,23 @@ input[type=checkbox]
 					<?php
 					if(($isloginedIn) && ($isSameUser==false))
 					{
-						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
-						firstName=\"$firstName\" lastName=\"$lastName\"
-						telNo=\"$telNo\" phoneNo=\"$phoneNo\"
-						data-toggle=\"modal\" class=\"btn   btn-default inboxMsgButton\">
-						<i class=\" icon-mail-2\"></i> Send a message";
-						if($DailyMaxTimes>0) 
-							echo "(".$DailyMaxTimes.")";
-						echo "</a>";
+// 						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
+// 						firstName=\"$firstName\" lastName=\"$lastName\"
+// 						telNo=\"$telNo\" phoneNo=\"$phoneNo\"
+// 						data-toggle=\"modal\" class=\"btn   btn-default inboxMsgButton\">
+// 						<i class=\" icon-mail-2\"></i> Send a message";
+// 						if($DailyMaxTimes>0) 
+// 							echo "(".$DailyMaxTimes.")";
+// 						echo "</a>";
 												
 					}
 					?>	
-					
+					<?php
+					if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
+					{
+						echo "<a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
+					}
+					?>
 					<?php
 					if(($isloginedIn) && ($isSameUser==true) && ( $hasBuyerList==true))
 					{
@@ -328,7 +333,26 @@ input[type=checkbox]
 						$soldUsersstr=base64_encode($soldUsersstr);
 						
 						
-						echo "<a  href=\"#sellerActionPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Mark Sold </a>";
+						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
+						$ctrlName1="AjaxLoad_1";
+						$errorctrlName1="ErrAjaxLoad_1";
+						echo "<a  href=\"javascript:marksold('$postID', '$ctrlName1', '$errorctrlName1')\" class=\"btn btn-default  directSendButton\"> <i class=\"fa fa-reply\"></i> Mark Sold </a>";
+						echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
+						
+// 						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+// 						if($soldUsers!=null){
+// 							$NoOfSoldUsers=count($soldUsers);
+// 							foreach($soldUsers as $row){
+// 								$soldUserID=$row->soldUserID;;
+// 								$soldUsername=$row->soldUsername;
+// 								$soldUsersstr=$soldUsersstr."  <option  value='".$soldUserID."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$soldUsername." </option>  ";
+// 							}
+// 						}
+// 						$soldUsersstr=$soldUsersstr."  </select>  ";
+// 						$soldUsersstr=base64_encode($soldUsersstr);
+						
+						
+// 						echo "<a  href=\"#sellerActionPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Mark Sold </a>";
 						
 					}
 					?>
@@ -522,18 +546,24 @@ input[type=checkbox]
                    <?php
 					if(($isloginedIn) && ($isSameUser==false))
 					{
-						echo "<div class=\"user-ads-action\">";
-						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
-						firstName=\"$firstName\" lastName=\"$lastName\"
-						telNo=\"$telNo\" phoneNo=\"$phoneNo\"
-						data-toggle=\"modal\" class=\"btn btn-default btn-block inboxMsgButton\">
-						<i class=\" icon-mail-2\"></i> Send a message";
-						if($DailyMaxTimes>0) 
-							echo "(".$DailyMaxTimes.")";
-						echo "</a></div>";
+// 						echo "<div class=\"user-ads-action\">";
+// 						echo "<a href=\"#contactAdvertiser\" email=\"$email\"
+// 						firstName=\"$firstName\" lastName=\"$lastName\"
+// 						telNo=\"$telNo\" phoneNo=\"$phoneNo\"
+// 						data-toggle=\"modal\" class=\"btn btn-default btn-block inboxMsgButton\">
+// 						<i class=\" icon-mail-2\"></i> Send a message";
+// 						if($DailyMaxTimes>0) 
+// 							echo "(".$DailyMaxTimes.")";
+// 						echo "</a></div>";
 												
 					}
 					?>	 
+					<?php
+					if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
+					{
+						echo "<a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
+					}
+					?>
 					<?php
 					if(($isloginedIn) && ($isSameUser==true) && ( $hasBuyerList==true))
 					{
@@ -549,8 +579,13 @@ input[type=checkbox]
 						$soldUsersstr=$soldUsersstr."  </select>  ";
 						$soldUsersstr=base64_encode($soldUsersstr);
 						
+						echo "<div class=\"user-ads-action\"><a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack </a></div>";
+						$ctrlName1="AjaxLoad";
+						$errorctrlName1="ErrAjaxLoad";
+						echo "<br/><a  href=\"javascript:marksold('$postID', '$ctrlName1', '$errorctrlName1')\" class=\"btn btn-default btn-block directSendButton\"> <i class=\"fa fa-reply\"></i> Mark Sold </a>";
+						echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
 						
-						echo "<div class=\"user-ads-action\"><a  href=\"#sellerActionPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Mark Sold </a></div>";
+						//echo "<div class=\"user-ads-action\"><a  href=\"#sellerActionPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Mark Sold </a></div>";
 						
 					}
 					?>
@@ -687,6 +722,93 @@ input[type=checkbox]
               </table>
       </div>
       
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="buyerFeedBackPopup" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="itemBuyerFeedBack" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/buyerFeedBack">
+           <div class="form-group">
+           		<input type="hidden" id="postID" name="postID" >   	
+           		<input type="hidden" id="userID" name="userID" >   	
+           	</div>
+          
+             <div class="form-group">
+             	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
+         		 <select required="true" class="form-control selecter" name="rating" id="rating">
+        				<option value='3'  style='background-color:#E9E9E9;font-weight:bold;' > Good</option>
+        				<option value='2'  style='background-color:#E9E9E9;font-weight:bold;' > Bad </option>
+        				<option value='1'  style='background-color:#E9E9E9;font-weight:bold;' > Average </option>
+        		</select>
+        		<div id="ratingError" name="ratingError" ></div>
+        	</div>
+        	 <div class="form-group">
+            <label for="message-text" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINMYADS;?>) </span>:</label>
+            <textarea class="form-control"  id="message-text"  maxlength="<?php echo DESCLENGTHINMYADS;?>"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+          </div>
+         	
+        </form>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success pull-right"   onclick="setupBuyerFeedBack(); return false;">Submit</button>
+        	<button id="validate" hidden="true" type="submit"></button>
+  
+     	 </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="sellerFeedBackPopup" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="itemSellerFeedBack" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/sellerFeedBack">
+           <div class="form-group">
+           		<input type="hidden" id="postID" name="postID" >   	
+           	</div>
+          <div class="form-group">
+         	<label for="soldUser" class="control-label">Sold To<font color="red">*</font></label>
+         	<div   id="divSoldUser" name="divSoldUser"  class="center">
+         	
+         	</div>
+         	<div id="soldUserError" name="soldUserError"></div>
+           </div>
+             <div class="form-group">
+             	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
+         		 <select required="true" class="form-control selecter" name="rating" id="rating">
+        				<option value='3'  style='background-color:#E9E9E9;font-weight:bold;' > Good</option>
+        				<option value='2'  style='background-color:#E9E9E9;font-weight:bold;' > Bad </option>
+        				<option value='1'  style='background-color:#E9E9E9;font-weight:bold;' > Average </option>
+        		</select>
+        		<div id="ratingError" name="ratingError" ></div>
+        	</div>
+        	
+        	
+        	 <div class="form-group">
+            <label for="message-text" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINMYADS;?>) </span>:</label>
+            <textarea class="form-control"  id="message-text"  maxlength="<?php echo DESCLENGTHINMYADS;?>"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+          </div>
+         	
+        </form>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success pull-right"   onclick="setupSellerFeedBack(); return false;">Submit</button>
+        	<button id="validate" hidden="true" type="submit"></button>
+  
+     	 </div>
     </div>
   </div>
 </div>
@@ -977,6 +1099,14 @@ function passToModal() {
         $("#postID").val($(event.relatedTarget).data('id'));
          $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
     });
+	$('#sellerFeedBackPopup').on('show.bs.modal', function(event) {
+        $("#postID").val($(event.relatedTarget).data('id'));
+         $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
+    });
+	$('#buyerFeedBackPopup').on('show.bs.modal', function(event) {
+        $("#postID").val($(event.relatedTarget).data('id'));
+         $("#userID").val($(event.relatedTarget).data('userid'));
+    });
     $('#replyComment').on('show.bs.modal', function(event) {
         $("#parentID").val($(event.relatedTarget).data('id'));
     });
@@ -991,6 +1121,19 @@ function passToModal() {
 }
 
 $(document).ready(passToModal());
+function marksold(ctrlValue1, ctrlName, ctrlErrName) {
+	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>messages/marksoldclosed",
+		data: { postID: $( "#".concat(ctrlValue1) ).val()},
+		success: function(response){
+			var result = JSON.parse(response);
+	    	$("#".concat(ctrlName)).html(result.icon);
+	    	$("#".concat(ctrlErrName)).html(result.message);
+	    	}
+	});
+};
 function approve(ctrlValue1, ctrlValue2, ctrlName, ctrlErrName) {
 	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
 	$.ajax({
@@ -1161,6 +1304,18 @@ function setup()
 {
         var myform = document.getElementById("item");
 	  	document.getElementById("item").submit();
+       	return true;
+}
+function setupBuyerFeedBack()
+{
+        var myform = document.getElementById("itemBuyerFeedBack");
+	  	document.getElementById("itemBuyerFeedBack").submit();
+       	return true;
+}
+function setupSellerFeedBack()
+{
+        var myform = document.getElementById("itemSellerFeedBack");
+	  	document.getElementById("itemSellerFeedBack").submit();
        	return true;
 }
 function setupComment(){

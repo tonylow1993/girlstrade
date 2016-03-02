@@ -1547,7 +1547,7 @@ function generateRandomString($length = 8) {
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInInbox($userID);
 			$myList=$this->messages_model->getInBoxByPostUserId($userID, $pageNum);
 			$data["result"]=$this->mapInBoxToView($myList, "Inbox");
-			$this->load->view("account-inbox", $data);
+			$this->load->view("account-inbox-new", $data);
 		}
 		else if($activeNav==2)
 		{
