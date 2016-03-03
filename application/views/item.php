@@ -580,10 +580,10 @@ input[type=checkbox]
 						$soldUsersstr=base64_encode($soldUsersstr);
 						
 						echo "<div class=\"user-ads-action\"><a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack </a></div>";
-						$ctrlName1="AjaxLoad";
-						$errorctrlName1="ErrAjaxLoad";
-						echo "<br/><a  href=\"javascript:marksold('$postID', '$ctrlName1', '$errorctrlName1')\" class=\"btn btn-default btn-block directSendButton\"> <i class=\"fa fa-reply\"></i> Mark Sold </a>";
-						echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
+						$ctrlName2="AjaxLoad_2";
+						$errorctrlName2="ErrAjaxLoad_2";
+						echo "<br/><a  href=\"javascript:marksold('$postID', '$ctrlName2', '$errorctrlName2')\" class=\"btn btn-default btn-block directSendButton\"> <i class=\"fa fa-reply\"></i> Mark Sold </a>";
+						echo " <div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
 						
 						//echo "<div class=\"user-ads-action\"><a  href=\"#sellerActionPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Mark Sold </a></div>";
 						
@@ -734,7 +734,7 @@ input[type=checkbox]
         <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="itemBuyerFeedBack" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/buyerFeedBack">
+        <form role="form" id="itemBuyerFeedBack" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/buyerFeedBack?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
            <div class="form-group">
            		<input type="hidden" id="postID" name="postID" >   	
            		<input type="hidden" id="userID" name="userID" >   	
@@ -774,7 +774,7 @@ input[type=checkbox]
         <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="itemSellerFeedBack" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/sellerFeedBack">
+        <form role="form" id="itemSellerFeedBack" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/sellerFeedBack?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
            <div class="form-group">
            		<input type="hidden" id="postID" name="postID" >   	
            	</div>
@@ -822,7 +822,7 @@ input[type=checkbox]
         <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="itemMarkSold" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/markSoldAds">
+        <form role="form" id="itemMarkSold" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/markSoldAds?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
            <div class="form-group">
            		<input type="hidden" id="postID" name="postID" >   	
            	</div>

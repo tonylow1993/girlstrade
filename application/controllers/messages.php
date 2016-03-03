@@ -1392,10 +1392,86 @@ function addDayswithdate($date,$days){
 			return $data;
 		}
 	public function marksoldclosed(){
-		
+		//$postID=$_POST["postID"];
+
+		$data['status'] = 'A';
+		$data['class'] = "has-success";
+		$data['message'] = '';
+		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
+		echo json_encode($data);
 	}
 	public function sellerFeedBack(){
+		try {
+			if(isset($_GET["prevURL"])){
+				$prevURL=$_GET["prevURL"];
+				$_SESSION["previousUrl"]=$prevURL;
+			}else if(isset($_SESSION["previousUrl"])){
+				$prevURL=$_SESSION["previousUrl"];
+			}
+			$prevprevURL="";
+			if(isset($_GET["prevprevURL"])){
+				$prevprevURL=$_GET["prevprevURL"];
+			}
+				
+			$expired= $this->nativesession->_session_id_expired();
+			if($expired){
+				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
 		
+				$userInfo=$this->nativesession->get("user");
+				$fUserID=0;
+				$username="";
+				if(!empty($userInfo) and isset($userInfo) and $userInfo<> null and $userInfo["userID"]<>0)
+				{	$fUserID=$userInfo["userID"];
+				$username=$userInfo["username"];
+				
+				}
+				$postInfo=$this->post->getPostByPostID($postID);
+				$userID=$postInfo[0]->userID;
+					//----------setup the header menu----------
+					$data["menuMyAds"]="";
+					$data["menuInbox"]="";
+					$data["menuInboxNum"]="0";
+					$data["menuPendingRequest"]="";
+					$data["menuPendingRequestNumber"]="0";
+					if(isset($userInfo)){
+						$menuCount=$this->getHeaderCount($fUserID);
+						$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID); //$menuCount["inboxMsgCount"]; //
+						$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+					}
+					//----------------------------
+								
+		
+					$messageArray=array(
+							'userID'=>$fUserID,
+							'postID'=>$postID,
+							'status'=>'U',
+							'viewOption'=>'U',
+							'createDate'=>date("Y-m-d H:i:s"),
+							'expriyDate'=>$this->addDayswithdate(date("Y-m-d H:i:s"), DIRECTSENDEXPIRYDAYS));
+					if(intval($userID)==intval($fUserID) and $fUserID<>0)
+					{
+						$errorMsg="You cannot request a message from your own post";
+						$data["lang_label"]=$this->nativesession->get("language");
+						$data["PrevURL"]=$prevURL;
+						$data["error"]=$errorMsg;
+						$data['redirectToWhatPage']="Previous Page";
+						if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+							$data['redirectToPHP']=base_url();
+							else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+								$data['redirectToPHP']=base_url();
+								else {
+									$data['redirectToPHP']=$_SESSION["previousUrl"];
+									if(strcmp($prevprevURL,"")<>0)
+										$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+								}
+								$data["successTile"]=$this->lang->line("successTile");
+								$data["failedTitle"]=$this->lang->line("failedTitle");
+								$data["goToHomePage"]=$this->lang->line("goToHomePage");
+								$this->load->view('failedPage', $data);
+					}
+		}catch(Exception $ex){
+			
+		}
 	}
 	public function insertBuyerMessage($userID){
 		
