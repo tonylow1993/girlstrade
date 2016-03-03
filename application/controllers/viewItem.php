@@ -171,8 +171,9 @@
                 {
                 	if($loginUser["userID"]==$user[0]->userID)
                 		$isSameUser=true;
-                	$isBuyerApproveThisPost=true; // need to do later
                 	$isPostAlready=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "A");
+                	$isBuyerApproveThisPost=$isPostAlready; // need to do later
+                	         
                 	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
                 }
                 $data["isBuyerApproveThisPost"]=$isBuyerApproveThisPost;
