@@ -69,9 +69,9 @@
                   				echo "<td style=\"width:20%\" class=\"add-image\"><a href=$userPath>$reply</a>";
                   				echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                   				if(strcmp($statusRP, 'A')==0)
-                  					echo "<br/>Seller email: $sellerEmail";
+                  					echo "<p class=\"price-td\"><br/>Seller email: $sellerEmail";
                   					echo "<br/>Status: $status";
-                  					echo "</td>";
+                  					echo "</td></p>";
                   					echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                   					echo "<div class=\"ads-details\">";
                   					echo "<h5><div class=\"add-title-girlstrade\"><a href=$viewItemPath>".$this->lang->line("lblTitle").$previewTitle."</a></div><a href=$viewItemPath>".$previewDesc."</a>";
@@ -96,17 +96,16 @@
                 		echo "<tr>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">$reply";
                       	echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                    	echo "<br/>$NoOfDaysPending";
+                    	echo "<p class=\"price-td\"><br/>$NoOfDaysPending";
                     	$cancelPath=base_url().MY_PATH."messages\cancelPendingApproval\$messageID";
                     	$rowCount=$rowCount+1;
                     	$ctrlName1="AjaxLoad".$rowCount;
                     	$errorctrlName1="ErrAjaxLoad".$rowCount;
                     	$ctrlValue1="messageID".$rowCount;
                     	$clickLink="clickLink".$rowCount;
-                    	echo "<p>";
                     	echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
                     	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
-                    	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:cancelAds('$ctrlValue1','$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-trash\"></i>".$this->lang->line('Cancel')." </a></p>";
+                    	echo "<a class=\"btn btn-danger btn-xs btn-120\" href=\"javascript:cancelAds('$ctrlValue1','$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-ban\"></i> ".$this->lang->line('Cancel')." </a></p>";
                     	echo "</div></td>";
                     	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";

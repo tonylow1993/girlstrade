@@ -63,7 +63,7 @@
                       	echo "<p class=\"status-label\">Status: $itemStatus</p>";
                       	echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
                       	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
-                      	echo "<a class=\"btn btn-primary btn-xs btn-120\" href=\"javascript:cancelAds('$ctrlValue1','$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-trash\"></i> ".$this->lang->line('Cancel') ."</a>";
+                      	echo "<a class=\"btn btn-danger btn-xs btn-120\" href=\"javascript:cancelAds('$ctrlValue1','$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-ban\"></i> ".$this->lang->line('Cancel') ."</a>";
                       	echo "</td>";
                       	
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
