@@ -2859,6 +2859,8 @@ table.add-manage-table > tbody > tr > td, table.add-manage-table > tbody > tr > 
 
 .price-td {
   font-size: 16px;
+  font-weight: 300;
+  margin: 10px;
 }
 
 .action-td .btn {
@@ -3521,8 +3523,9 @@ td.ads-details-td {
 }
 
 .btn-120 {
-    width: 120px;
+    width: 80%;
     max-width: 100%;
+	min-width: 120px;
     margin-left: auto;
     margin-right: auto;
     display: block;
