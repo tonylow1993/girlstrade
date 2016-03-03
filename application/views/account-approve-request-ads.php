@@ -68,10 +68,10 @@
                   				$userPath=base_url().MY_PATH."viewProfile/viewByUserID/".$replyUserID."/1?prevURL=".urlencode(current_url());
                   				echo "<tr>";
                   				echo "<td style=\"width:20%\" class=\"add-image\"><a href=$userPath>$reply</a>";
-                  				echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  				echo "<p class=\"price-td\"><br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                   				if(strcmp($statusRP, 'A')==0)
                   					echo "<br/>Seller email: $sellerEmail";
-                  				echo "<br/>Status: $status";
+                  				echo "<br/>Status: $status</p>";
                   				echo "</td>";
                   				echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                   				echo "<div class=\"ads-details\">";
@@ -97,7 +97,7 @@
                 		echo "<tr>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">$from";
                     	echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                    	echo "<br/>".$this->lang->line("DaysExpiry")." :".$NoOfDaysb4ExpiryContact;
+                    	echo "<p class=\"price-td\">".$this->lang->line("DaysExpiry")." :".$NoOfDaysb4ExpiryContact;
                     	$approvePath=base_url().MY_PATH."messages\approveSavedAds\$messageID\$userID";
                     	$rejectPath=base_url().MY_PATH."messages\rejectSavedAds\$messageID\$userID";
                     	$rowCount=$rowCount+1;
@@ -112,9 +112,9 @@
                     	echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
                     	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
                     	echo "<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
-                    	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:approve('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-reply\"></i> ".$this->lang->line('Approve')." </a></p>";
+                    	echo "<a class=\"btn btn-success btn-xs btn-120\" href=\"javascript:approve('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-check\"></i> ".$this->lang->line('Approve')." </a></p>";
                     	echo "<div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
-                    	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:reject('$ctrlValue1','$ctrlValue2', '$ctrlName2', '$errorctrlName2')\" id='$clickLink2'><i class=\"fa fa-trash\"></i>  ".$this->lang->line('Reject')."</a></p>";
+                    	echo "<a class=\"btn btn-danger btn-xs btn-120\" href=\"javascript:reject('$ctrlValue1','$ctrlValue2', '$ctrlName2', '$errorctrlName2')\" id='$clickLink2'><i class=\"fa fa-times\"></i>  ".$this->lang->line('Reject')."</a></p>";
                     	echo "</div>";
                     	
                     	echo "</td>";
