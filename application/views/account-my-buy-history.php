@@ -55,9 +55,9 @@
                 		echo "<tr>";
                        	echo "<td style=\"width:20%\" class=\"add-image\">";
                       	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                    	echo "<p>$reply</p>";
+                    	echo "<p class=\"price-td\">$reply</p>";
                     	if($enableMarkSoldBtn)
-                    		echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-info btn-xs\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"  data-seller=\"$from\"> <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('MarkSold')." </a></div></p>";
+                    		echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-inverse btn-xs btn-120\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"  data-seller=\"$from\"> <i class=\"fa fa-thumb-tack\"></i> ".$this->lang->line('MarkSold')." </a></div></p>";
                     	
                       	echo "</td>";
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
