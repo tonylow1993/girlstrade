@@ -477,7 +477,7 @@
 	    		$location=$this->get_location_by_locationID($post->locID);
 	    		$soldToUser=$this->get_user_by_id($post->soldToUserID);
 	    		$temp=array('post'=> $post, 'pic'=> $pic, 'category'=> $category, 'location'=> $location,
-	    				'soldToUser'=> $soldToUser, 'savedAds'=>$this->searchresult_model->getDisableSavedAds($post->postID, $userID));
+	    				'soldToUser'=> $soldToUser, 'savedAds'=>$this->getDisableSavedAds($post->postID, $userID));
 	    	
 	    		if(is_null($result))
 	    		{
@@ -493,6 +493,15 @@
 	    		echo 'Caught exception: ',  $e->getMessage(), "\n";
 	    	}
 	    	
+	    }
+	    function getDisableSavedAds($postID, $userID){
+	    	$arr=array("postID"=> $postID, "userID"=> $userID);
+	    	$query = $this->db->from('savedAds')->where($arr)->get();
+	    	$var= $query->result();
+	    	if($var!=null && sizeof($var)>0)
+	    		return true;
+	    		else
+	    			return false;
 	    }
 	    public function get_user_by_id($userID)
 	    {

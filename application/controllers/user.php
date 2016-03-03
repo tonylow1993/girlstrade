@@ -33,6 +33,7 @@ class user extends CI_Controller {
             }
 	
 	}
+	
 	public function index($username,$pageNum=1, $catID='', $locID='',$keywords='',$sortByID="0")
 	{
 		$loginUser=$this->nativesession->get("user");
@@ -68,6 +69,11 @@ class user extends CI_Controller {
 			$data["lang_label_text"] = $this->lang->line("lang_label_text");
 		 	$data["lang_label"] = $this->lang->line("lang_label");
 		 	$userInfo=$this->users_model->getUserByUsername($username);
+		 	if(!isset($userInfo) or empty($userInfo))
+		 	{
+		 		echo $username;
+		 		return;
+		 	}
 		 	$userInformation=$this->userInfo_model->getUserInfoByUserID($userInfo[0]->userID);
 		 	$data["userID"]=$userInfo[0]->userID;	
 		 	if(isset($userInformation))

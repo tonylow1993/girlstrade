@@ -561,7 +561,7 @@ input[type=checkbox]
 					<?php
 					if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
 					{
-						echo "<a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
+						echo "<br/><a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 					}
 					?>
 					<?php
