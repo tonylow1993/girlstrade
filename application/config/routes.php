@@ -40,7 +40,7 @@
 
 $route['default_controller'] = "home";
 $route['404_override'] = 'gtNotFound';
-
+$route['user/(:any)'] = 'user/index/$1';
 $route['botdetect/captcha_handler/index'] = 'botdetect/captcha_handler/index';
 $route['botdetect/captcha_resource/get/(:any)'] = 'botdetect/captcha_resource/get/$1';
 /* End of file routes.php */
