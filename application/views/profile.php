@@ -538,7 +538,7 @@ function sendIt() {
         <h4 class="modal-title"><i class=" icon-mail-2"></i> Contact advertiser </h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertBuyerMessage/<?php echo $userID;?>?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($prevURL);?>">
+        <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertBuyerMessage?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($prevURL);?>">
          <!--   <div class="form-group">
             <label for="recipient-name" class="control-label">Name: <font color="red">*</font></label>
             <input class="form-control required" name="recipient-name" id="recipient-name" placeholder="Your name" data-placement="top" required="true" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
@@ -551,6 +551,9 @@ function sendIt() {
 <!--             <label for="recipient-Phone-Number"  class="control-label">Phone Number:</label> -->
 <!--             <input type="text"  maxlength="60" class="form-control" name="recipient-Phone-Number" id="recipient-Phone-Number"> -->
 <!--           </div> -->
+			<div class="form-group">
+           		<input type="hidden" id="userID" name="userID" value="<?php echo $userID;?>">   	
+           	</div>
           <div class="form-group">
             <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(<?php echo DESCLENGTHINPROFILE;?>) </span>:</label>
             <textarea class="form-control" required="true" id="message-text" name="message-text" rows="5" columns="30" maxlength="<?php echo DESCLENGTHINPROFILE;?>"   placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
