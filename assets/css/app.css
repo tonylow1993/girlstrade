@@ -3187,7 +3187,7 @@ blockquote.hero.hero-default small {
 /*Panels (Portlets)
 ------------------------------------*/
 .panel-heading {
-  color: #fff;  
+  color: orange;  
   padding: 5px 15px;
 }
 
