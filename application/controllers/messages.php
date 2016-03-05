@@ -1398,8 +1398,22 @@ function addDayswithdate($date,$days){
 		if($expired){
 			redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
 		
-			$postID=$this->input->post("postID");
-			
+			$postID=$this->input->post('postID');
+			$userInfo=$this->nativesession->get("user");
+			$fUserID=0;
+			$username="";
+			if(!empty($userInfo) and isset($userInfo) and $userInfo<> null and $userInfo["userID"]<>0)
+			{
+				$fUserID=$userInfo["userID"];
+				$username=$userInfo["username"];
+			}else{
+				$data['status'] = 'F';
+				$data['class'] = "has-error";
+				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong>Please login</div>';
+				$data['icon'] = '<em><span style="color:red"></span></em>';
+				echo json_encode($data);
+					
+			}
 			$postInfo=$this->post->getPostByPostID($postID);
 			$userID=$postInfo[0]->userID;
 			//----------setup the header menu----------
@@ -1419,13 +1433,14 @@ function addDayswithdate($date,$days){
 			$messageArray=array(
 					'status'=>'C'	
 			);
-			$messageResult=$this->post_model->update($messageArray, $postID);
+			$messageResult=$this->post->update($messageArray, $postID);
 			if($messageResult){
 				$data['status'] = 'A';
 				$data['class'] = "has-success";
 				$data['message'] = '';
 				$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
 				echo json_encode($data);
+				
 			}else{
 				$data['status'] = 'F';
 				$data['class'] = "has-error";
@@ -1442,6 +1457,7 @@ function addDayswithdate($date,$days){
 			$data['icon'] = '<em><span style="color:red"></span></em>';
 			echo json_encode($data);
 		}
+		return;
 	}
 	public function sellerFeedBack(){
 		try {

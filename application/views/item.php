@@ -336,6 +336,8 @@ input[type=checkbox]
 						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 						$ctrlName1="AjaxLoad_1";
 						$errorctrlName1="ErrAjaxLoad_1";
+						$postValueID="postValueCtrl_1";
+						echo "<input id='$postValueID' name='$postValueID' type='hidden' value='$postID'>";
 						echo "<a  href=\"javascript:marksold('$postID', '$ctrlName1', '$errorctrlName1')\" class=\"btn btn-default  directSendButton\"> <i class=\"fa fa-reply\"></i> Mark Sold </a>";
 						echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
 						
@@ -582,7 +584,9 @@ input[type=checkbox]
 						echo "<div class=\"user-ads-action\"><a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack </a></div>";
 						$ctrlName2="AjaxLoad_2";
 						$errorctrlName2="ErrAjaxLoad_2";
-						echo "<br/><a  href=\"javascript:marksold('$postID', '$ctrlName2', '$errorctrlName2')\" class=\"btn btn-default btn-block directSendButton\"> <i class=\"fa fa-reply\"></i> Mark Sold </a>";
+						$postValueID="postValueCtrl_2";
+						echo "<input id='$postValueID' name='$postValueID' type='hidden' value='$postID'>";
+						echo "<br/><a  href=\"javascript:marksold('$postValueID', '$ctrlName2', '$errorctrlName2')\" class=\"btn btn-default btn-block directSendButton\"> <i class=\"fa fa-reply\"></i> Mark Sold </a>";
 						echo " <div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
 						
 						//echo "<div class=\"user-ads-action\"><a  href=\"#sellerActionPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Mark Sold </a></div>";
