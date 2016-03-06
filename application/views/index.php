@@ -418,8 +418,48 @@ window.onload = function(){
             if($total<>0)
             	echo "</ul></div></div></div>";
             ?>
-    </div>
-                <div class="inner-box relative panel-bevel">
+			</div>
+			
+			<div class="col-lg-12 content-box ">
+                <div class="row row-featured row-featured-category">
+                    <div class="col-lg-12  box-title no-border">
+                       <div class="inner"><h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">Discover</span> from Listing<a href="category.html" class="sell-your-item"> View more <i class="  icon-th-list"></i> </a></h2>
+                       </div>
+                    </div>
+					<?php 
+					 $total=0;
+					 $lastCol=0;
+					foreach ($AllCategory as $id=>$value)
+					{
+						if(!isset($lang_label))
+								$lang_label="";
+						$name=$value[0]->name;
+						$postCount="(".$value[0]->postCount.")";
+						if(SHOW_BRACKETS_INDEX_PAGE==0)
+							$postCount="";
+						if($lang_label<>"english")
+							$name=$value[0]->nameCH;
+						$path=base_url().MY_PATH."getCategory/getAll/1/".$value[0]->categoryID;
+						
+						if($value[0]->level==1)
+						{
+							$imageIcon=$value[0]->iconImage;
+							if($value[0]->childCount<>0){
+								echo "<div class=\"col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category\">";
+								echo "<a href='$path'><img src=$imageIcon class=\"img-responsive\" alt=\"img\"> <h6> $name  </h6> </a>";
+								echo "</div>";
+							}
+						}
+					}
+					?>
+
+                </div>
+
+
+
+            </div>
+			
+        <div class="inner-box relative panel-bevel">
                 <h2 class="title-2"><span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">Interested</span> Items
             
                 <a id="nextItem1" class="link pull-right carousel-nav"> <i class="icon-right-open-big"></i></a>
