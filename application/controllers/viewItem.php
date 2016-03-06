@@ -158,7 +158,7 @@
                 	$data["lastName"]=$userInfo["lastName"];
                 	$data["firstName"]=$userInfo["firstName"];
                 	$data["phoneNo"]=$userInfo["phoneNo"];
-                	$data["sellerphone"]=$userInfo["phoneNo"];
+                	$data["sellerphone"]=$userInfo["telNo"];
                 	$data["telNo"]=$userInfo["telNo"];
                 }
                 $data["email"]=$email["email"];
