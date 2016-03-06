@@ -177,6 +177,7 @@ input[type=checkbox]
                       </li>
                     </ul> -->
                     <table class="itemInfo">
+                    <?php if(strcmp(SHOWVISITCOUNTINITEMPAGE, "Y")==0){?>
                     <tr>
                         <td>
                         <p class=" no-margin "><strong><?php echo $this->lang->line("lblView").": ";?></strong> 
@@ -186,6 +187,7 @@ input[type=checkbox]
                         
                         </p></td>
                       </tr>
+                      <?php }?>
                     <tr>
                     	<td>
                         <p class=" no-margin "><strong><?php echo $this->lang->line("lblType").": ";?></strong> 
