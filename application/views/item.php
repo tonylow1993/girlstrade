@@ -218,6 +218,7 @@ input[type=checkbox]
                         <?php echo $condition;?>
                         </p></td>
                       </tr>
+                      <?php if(strcmp(SHOWQTY,'Y')==0) {?>
                       <tr>
                       	<td>
                         <p class=" no-margin "><strong><?php echo $this->lang->line("lblRemainQty").": ";?></strong> 
@@ -226,6 +227,7 @@ input[type=checkbox]
                         <?php echo $remainQty;?>
                         </p></td>
                       </tr>
+                      <?php }?>
                       <tr>
                       	<td>
                         <p class=" no-margin "><strong><?php echo $this->lang->line("lblDatePosted").": ";?></strong> 
@@ -268,23 +270,16 @@ input[type=checkbox]
             </div>
             
 						<div class="content-footer text-left" id="viewItemBottomOpt"> 
-				<?php if(($isloginedIn) && ($isPostAlready==false or $isPendingRequest==false or $isSameUser==false))
+				<?php if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo "<a href=";
 		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
 		                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
-		                  echo "<i class=\"icon-right-hand\"></i> Direct send request </a>";
+		                  echo "<i class=\"icon-right-hand\"></i> Contact $username </a>";
 	                  }
                   }
                   ?>  
-                  <?php
-                  if(($isloginedIn) &&($isPostAlready==true && $isSameUser==false))
-                  {
-	                  echo "<a href=\"#sellerInfo\" data-toggle=\"modal\" data-phone=\"$sellerphone\" data-email=\"$selleremail\" class=\"btn   btn-default directSendButton\">";
-	                  echo "<i class=\" icon-info\"></i>View Seller Contact Information.</a>";
-                  }
-                  ?>
                   <?php if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                   {
 	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default  directSendButton\">";
@@ -292,11 +287,20 @@ input[type=checkbox]
                   }
                   ?>
                   <?php
-                  if(($isloginedIn) &&($isSameUser==true))
-                  {  
-                  	echo "<a href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a>";
-                  	}
+                  if(($isloginedIn) &&($isPostAlready==true && $isSameUser==false))
+                  {
+	                  echo "<a href=\"#sellerInfo\" data-toggle=\"modal\" data-phone=\"$sellerphone\" data-email=\"$selleremail\" class=\"btn   btn-default directSendButton\">";
+	                  echo "<i class=\" icon-info\"></i>View Seller Contact Information.</a>";
+                  }
                   ?>
+                  
+                 <?php
+					if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
+					{
+						echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a>";
+						
+					}
+					?>
 					<?php
 					if(($isloginedIn) && ($isSameUser==false))
 					{
@@ -358,13 +362,13 @@ input[type=checkbox]
 						
 					}
 					?>
-					<?php
-					if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
-					{
-						echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a>";
-						
-					}
-					?>
+					
+					 <?php
+                  if(($isloginedIn) &&($isSameUser==true))
+                  {  
+                  	echo "<a href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a>";
+                  	}
+                  ?>
 					</div>
                         <!-- </div> -->
 			 <!-- 	<div class="blog-post-footer">
@@ -507,14 +511,14 @@ input[type=checkbox]
               		</h3>
                     <!-- <p> Joined: <strong><?php //echo $userCreateDate;?></strong></p> -->
                   </div>
-                  <?php if(($isloginedIn) && ($isPostAlready==false or $isPendingRequest==false or $isSameUser==false))
+                  <?php if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false  or $isSameUser==false))
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 		                  echo"<div class=\"user-ads-action\">";
 		                  echo "<a href=\"#directSend\"";
 		                  //echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
 		                  echo " data-toggle=\"modal\" id=\"directSendButton\" class=\"btn btn-default btn-block directSendButton\">";
-		                  echo "<i class=\"icon-right-hand\"></i> Direct send request </a> </div>";
+		                  echo "<i class=\"icon-right-hand\"></i> Contact $userName </a> </div>";
 	                  }
                   }
                   ?>  
@@ -534,17 +538,13 @@ input[type=checkbox]
                   }
                   ?>
                   <?php
-                  if(($isloginedIn) &&($isSameUser==true))
-                  {  
-                  	echo "<div class=\"user-ads-action\"><a  href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a></div>";
-                  	 
-                  	
-	                //  echo "<div class=\"user-ads-action\">";
-	                //  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
-	                //  echo " data-toggle=\"modal\" class=\"btn btn-default btn-block directSendButton\">";
-	                //  echo "<i class=\" icon-pencil\"></i> Edit Item </a> </div>";
-                  }
-                  ?>
+					if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
+					{
+						echo "<div class=\"user-ads-action\"><a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum\"  class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a></div>";
+						
+					}
+					?>
+                  
                    <?php
 					if(($isloginedIn) && ($isSameUser==false))
 					{
@@ -594,12 +594,17 @@ input[type=checkbox]
 					}
 					?>
 					<?php
-					if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
-					{
-						echo "<div class=\"user-ads-action\"><a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a></div>";
-						
-					}
-					?>
+                  if(($isloginedIn) &&($isSameUser==true))
+                  {  
+                  	echo "<div class=\"user-ads-action\"><a  href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a></div>";
+                  	 
+                  	
+	                //  echo "<div class=\"user-ads-action\">";
+	                //  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
+	                //  echo " data-toggle=\"modal\" class=\"btn btn-default btn-block directSendButton\">";
+	                //  echo "<i class=\" icon-pencil\"></i> Edit Item </a> </div>";
+                  }
+                  ?>
                 </div>
               </div>
             </div>
@@ -711,14 +716,14 @@ input[type=checkbox]
             	$pageNum5=$pageNum+4;
             	$pageNumNext=$pageNum+5;
             	if($pageNum<>1)
-            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum\">$pageNum</a></li>";
-            	echo "<li><a href=\"$url_path/$pageNum2\">$pageNum2</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum3\">$pageNum3</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum4\">$pageNum4</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum5\">$pageNum5</a></li>";
+            		echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumPrev\">Previous</a></li>";
+            	echo "<li  class=\"active\"><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum\">$pageNum</a></li>";
+            	echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum2\">$pageNum2</a></li>";
+              	echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum3\">$pageNum3</a></li>";
+              	echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum4\">$pageNum4</a></li>";
+              	echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum5\">$pageNum5</a></li>";
               
-               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext\">Next</a></li>";
+               echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumNext\">Next</a></li>";
             ?>
                 </ul>
           </div>
@@ -1101,6 +1106,8 @@ input[type=checkbox]
 function passToModal() {
 	$('#sellerActionPopup').on('show.bs.modal', function(event) {
         $("#postID").val($(event.relatedTarget).data('id'));
+        $("#pageNum").val($(event.relatedTarget).data('pagenum'));
+        
          $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
     });
 	$('#sellerFeedBackPopup').on('show.bs.modal', function(event) {

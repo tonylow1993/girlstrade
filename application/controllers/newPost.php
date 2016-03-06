@@ -803,8 +803,10 @@ public function getChildCategory($parentID)
         $price = $this->input->post('price',true); 
         $recaptcha = $this->input->post('g-recaptcha-response',true); 
         $negotiable = $this->input->post('negotiable'); 
-        $soldqty=$this->input->post("soldqty");
-		
+        $soldqty=1;
+        if(strcmp(SHOWQTY, "Y")==0){
+        	$soldqty=$this->input->post("soldqty");
+        }
         if (isset($_POST['negotiable'])) {
             $negotiable = true;
         }else

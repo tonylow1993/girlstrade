@@ -51,8 +51,10 @@ function sendIt() {
 				
                  <tr><td><p>Registered Date: </p></td>
                  <td><p class="userInfoData"><?php echo $createDate; //->format('Y-m-d');?>  </p></td></tr>
-                 <tr><td><p>Last Account Activity:</p></td>  
+                 <?php if(strcmp(SHOWLASTACTIVITY,"Y")==0){?>
+                 <tr><td><p>Last Account Activity:</p></td>   
                  <td><p class="userInfoData"><?php echo  $lastLoginTime; //->format('Y-m-d H:i:s');?></p></td></tr>
+                 <?php }?>
                  <tr><td><p>Total Posts:</p></td>  
                  <td><p class="userInfoData"><?php $count=0; if($itemList!=null) $count=count($itemList); 
                  echo $count; ?></p></td></tr>

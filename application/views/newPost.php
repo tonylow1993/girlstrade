@@ -143,6 +143,7 @@ input[type=checkbox]
                               </select>
                           </div>
                       </div>
+                      <?php if(strcmp(SHOWQTY, 'Y')==0) {?>
                       <div id="itemQty" class="form-group">
                           <label class="col-md-3 control-label text-center" > 
                           <i class="icon-flag"></i>
@@ -158,7 +159,7 @@ input[type=checkbox]
 		        				 </select>
                           </div>
                       </div>
-                      
+                      <?php }?>
                    
                       
                       
