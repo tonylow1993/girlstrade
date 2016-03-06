@@ -48,7 +48,7 @@
                         <!--blog image-->
                         <div class="blog-post-img" >
 
-                            <a href="blog-details.html" >
+                            <a href="#" >
                                 <figure >
                                     <img class="img-responsive" alt="blog-post image" src="../images/blog/1.png" >
                                 </figure>
@@ -105,11 +105,12 @@
                           <div class="categories-list  list-filter">
                               <h5 class="list-title uppercase"><strong><a href="#"> Categories</a></strong></h5>
                               <ul class=" list-unstyled">
-                                  <li><a href=""><span class="title"> Fashion </span><span class="count">&nbsp;30</span></a> </li>
-                                  <li><a href=""><span class="title"> Gadgets </span><span class="count">&nbsp;35</span></a> </li>
-                                  <li><a href=""><span class="title"> Beauty </span><span class="count">&nbsp;85</span></a> </li>
-                                  <li><a href=""><span class="title"> Success  </span><span class="count">&nbsp;21</span></a> </li>
-                                  <li><a href=""><span class="title">Learning </span><span class="count">&nbsp;55</span></a> </li>
+                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/1"><span class="title">Dresses</span></a> </li>
+                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/2"><span class="title">Tops </span></a> </li>
+                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/3"><span class="title">Property </span></a> </li>
+                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/4"><span class="title">Outerwear </span></a> </li>
+                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/5"><span class="title">Rompers </span></a> </li>
+                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/6"><span class="title">Hat </span></a> </li>
                               </ul>
                           </div>
                           <!--/.categories-list-->
