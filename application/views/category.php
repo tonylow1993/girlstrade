@@ -434,7 +434,7 @@
               </div>
              
               
-              
+              <!-- 
               <div class="locations-list list-filter margin-top-30">
                 <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
@@ -511,8 +511,9 @@
           <div class="tab-box "> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\"";?>
-                ><a href="#allAds"  id="allAds2" name="allAds2"  role="tab" data-toggle="tab" onclick="return setupTab('allAds', 'allAds2');">
+                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\"";?>>
+                <!-- <a href="#allAds"  id="allAds2" name="allAds2"  role="tab" data-toggle="tab" onclick="return setupTab('allAds', 'allAds2');"> -->
+                <a href="#allAds"  id="allAds2" name="allAds2"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionAny;?>
                 <?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
@@ -527,7 +528,8 @@
                 <?php }?>
                 </a></li>
                 <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>>
-                <a href="#newAds" id="newAds2" name="newAds2"  role="tab" data-toggle="tab" onclick="return setupTab('newAds', 'newAds2');">
+                <!-- <a href="#newAds" id="newAds2" name="newAds2"  role="tab" data-toggle="tab" onclick="return setupTab('newAds', 'newAds2');"> -->
+                <a href="#newAds" id="newAds2" name="newAds2"  role="tab" data-toggle="tab">
                 <?php echo $lblConditionNew;?>
                 <?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
@@ -547,7 +549,8 @@
                 <?php }?>
                 </a></li>
                 <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>>
-                <a href="#usedAds" id="usedAds2" name="usedAds2"  role="tab" data-toggle="tab" onclick="return setupTab('usedAds', 'usedAds2');">
+                <!-- <a href="#usedAds" id="usedAds2" name="usedAds2"  role="tab" data-toggle="tab" onclick="return setupTab('usedAds', 'usedAds2');"> -->
+                <a href="#usedAds" id="usedAds2" name="usedAds2"  role="tab" data-toggle="tab" >
                 <?php echo $lblConditionUsed;?> 
                 	<?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
