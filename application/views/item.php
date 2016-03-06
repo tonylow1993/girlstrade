@@ -754,10 +754,12 @@ input[type=checkbox]
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
          		 <select required="true" class="form-control selecter" name="rating" id="rating">
-        				<option value='3'  style='background-color:#E9E9E9;font-weight:bold;' > Good</option>
-        				<option value='2'  style='background-color:#E9E9E9;font-weight:bold;' > Bad </option>
-        				<option value='1'  style='background-color:#E9E9E9;font-weight:bold;' > Average </option>
-        		</select>
+        			<?php 
+        			foreach(getRatingArray() as $rateID=>$rateName){
+         		 		echo "<option value='$rateID'  style='background-color:#E9E9E9;font-weight:bold;' > $rateName</option>";
+         		 	}
+         		 	?>
+         		 </select>
         		<div id="ratingError" name="ratingError" ></div>
         	</div>
         	 <div class="form-group">
@@ -799,10 +801,12 @@ input[type=checkbox]
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
          		 <select required="true" class="form-control selecter" name="rating" id="rating">
-        				<option value='3'  style='background-color:#E9E9E9;font-weight:bold;' > Good</option>
-        				<option value='2'  style='background-color:#E9E9E9;font-weight:bold;' > Bad </option>
-        				<option value='1'  style='background-color:#E9E9E9;font-weight:bold;' > Average </option>
-        		</select>
+        		<?php 
+        			foreach(getRatingArray() as $rateID=>$rateName){
+         		 		echo "<option value='$rateID'  style='background-color:#E9E9E9;font-weight:bold;' > $rateName</option>";
+         		 	}
+         		 	?>
+         		 	</select>
         		<div id="ratingError" name="ratingError" ></div>
         	</div>
         	
@@ -847,9 +851,17 @@ input[type=checkbox]
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
          		 <select required="true" class="form-control selecter" name="rating" id="rating">
-        				<option value='3'  style='background-color:#E9E9E9;font-weight:bold;' > Good</option>
+         		 	<?php 
+        			foreach(getRatingArray() as $rateID=>$rateName){
+         		 		echo "<option value='$rateID'  style='background-color:#E9E9E9;font-weight:bold;' > $rateName</option>";
+         		 	}
+         		 	?>
+         		 
+         		 
+        		<!--	<option value='3'  style='background-color:#E9E9E9;font-weight:bold;' > Good</option>
         				<option value='2'  style='background-color:#E9E9E9;font-weight:bold;' > Bad </option>
         				<option value='1'  style='background-color:#E9E9E9;font-weight:bold;' > Average </option>
+        		-->
         		</select>
         		<div id="ratingError" name="ratingError" ></div>
         	</div>

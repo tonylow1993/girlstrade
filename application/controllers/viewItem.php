@@ -11,6 +11,7 @@
 		$this->load->helper('url');
 		$this->load->database();
 		$this->load->model('users_model');
+		$this->load->helpers('site');
                 $this->load->model('post_model', 'post');
                 $this->load->model('requestpost_model');
                 $this->load->model('postviewhistory_model');
