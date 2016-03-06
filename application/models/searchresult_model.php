@@ -223,6 +223,28 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 			$loginuserID=0;
 			if(!empty($userInfo))
 				$loginuserID=$userInfo["userID"];
+			
+			$var = $this->getPostByID($post->postID);
+			$loginUser=$this->nativesession->get("user");
+			$user = $this->get_user_by_id($var[0]->userID);
+			
+			$isloginedIn=false;
+			$isSameUser=false;
+			$isPostAlready=false;
+			$isPendingRequest=false;
+			$username='';
+			if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
+			{
+				$username=$user[0]->username;
+				$isloginedIn=true;
+				if($loginUser["userID"]==$user[0]->userID)
+					$isSameUser=true;
+					$isPostAlready=$this->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "A");
+					$isPendingRequest=$this->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
+			}
+				
+				
+				
 			$temp=array('locationName'=> $locName,
 					'categoryName'=> $catName,
 					'postCurrency'=>$post->currency,
@@ -235,6 +257,11 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 					'postTypeAds'=>$post->typeAds,
 					'thumbnailPath'=>$thumbPath,
 					'thumbnailName'=>	$thumbName,
+					'isloginedIn'=> $isloginedIn,
+					'username'=>$username,
+					'isPendingRequest'=> $isPendingRequest,
+					'isPostAlready'=> $isPostAlready,
+					'isSameUser'=> $isSameUser,
 					'getDisableSavedAds'=>$this->getDisableSavedAds($post->postID, $loginuserID)
 			);	
 			
@@ -259,6 +286,38 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	return null;
 }
 
+public function get_user_by_id($userID)
+{
+	$query = $this->db->from('user')->where('userID', $userID)->limit(1)->get();
+
+	return $query->result();
+}
+
+function getPostByID($postID)
+            {
+                $whereArray = array('postID' => $postID);
+                $query = $this->db->from('post')->where('postID', $postID)->limit(1)->get();
+	        return $query->result();  
+            }
+function getfUserIDAndPostID($postID, $fUserID, $status)
+{
+	$statusSQL=array();
+	if($status==""){
+		$statusSQL=array('A', 'R', 'C');
+	}
+	else {
+		$statusSQL=array($status);
+	}
+	$query = $this->db->from('requestpost')->where_in('status', $statusSQL)
+	->where('userID', $fUserID)->where('postID', $postID)->get();
+	$var=$query->result();
+	if(!empty($var) and isset($var) and $var<>null and count($var)>0)
+	{
+		return true;
+	}
+	else
+		return false;
+}
 function getDisableSavedAds($postID, $userID){
 	$arr=array("postID"=> $postID, "userID"=> $userID);
 	$query = $this->db->from('savedAds')->where($arr)->get();

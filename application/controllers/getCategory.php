@@ -230,6 +230,11 @@ class getCategory extends CI_Controller {
 		$data["minPrice"]=$minPrice;
 		$data["maxPrice"]=$maxPrice;
 		$data["activeTab"]=$allAds;
+		
+
+		
+		
+		
 		$data['itemList']=$this->searchresult_model->getItemList($pageNum,0, $catID, $locID, $keywords, $sortByID, $minPrice, $maxPrice, $allAds);
 		$NoOfItemCount=$this->searchresult_model->getNoOfItemCount(0, $catID, $locID, $keywords, $minPrice, $maxPrice, $allAds);
 	 	$data["NoOfItemCount"]=$NoOfItemCount;

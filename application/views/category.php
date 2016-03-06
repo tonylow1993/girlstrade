@@ -636,7 +636,11 @@
 					$postCurrency=$item['postCurrency'];
 					$postItemPrice=$item['postItemPrice'];
 					$postDescription=trim($item['postDescription']);
-					
+					$isloginedIn=$item['isloginedIn'];
+					$isPendingRequest=$item['isPendingRequest'];
+					$isPostAlready=$item['isPostAlready'];
+					$isSameUser=$item['isSameUser'];
+					$username=$item['username'];
 					try{
 					$postDescription=trimLongText($postDescription);
 					} catch(Exception $ex){
@@ -687,11 +691,26 @@
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                if($item["getDisableSavedAds"])
+               /* if($item["getDisableSavedAds"])
                		 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
                 else
              	   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
-                
+                */
+                if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
+                {
+                	if($isPostAlready == false and $isSameUser ==false ){
+                		echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+                		echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                		echo " data-toggle=\"modal\" >";
+                		echo "<i class=\"icon-right-hand\"></i> Contact $username </a>";
+                	}
+                }
+                if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
+                {
+                	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
+                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                }
+                                  
                 echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
                echo "</div>";
                }
