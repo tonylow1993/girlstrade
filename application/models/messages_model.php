@@ -334,6 +334,12 @@
 	    	$query2 = $this->db->query($strQuery);
 	   		return $query2->result();
 	    }
+	    public function getAllFeedbacks($userID, $pageNum){
+	    
+	    }
+	    public function getNoOfItemCountInAllFeedbacks($userID){
+	    	
+	    }
 	}
-
+	
 ?>

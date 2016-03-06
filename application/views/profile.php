@@ -80,7 +80,7 @@ function sendIt() {
               echo "<br/>";
               ?>
               
-              <a href="<?php echo base_url().MY_PATH."home/viewAllComments/$userID/1?prevURL=".urlencode(current_url()); ?>" > View all comments </a>
+              <a href="<?php echo base_url().MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url()); ?>" > View all comments </a>
               <br />
               <?php $usr = $this->nativesession->get('user');
 					if(empty($usr)){ 
