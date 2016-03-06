@@ -181,7 +181,7 @@
                 $data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInApproveAndReject($loginUser['userID']);
                 $myList=$this->requestpost_model->getApproveAndReject($loginUser['userID'], 1);
                 $data["result"]=$this->mapReqeustPostToView($myList, 'seller', "ApproveAndReject");
-                	
+                $data["postID"]=$var[0]->postID;	
  				$data["hasRequestContact"]=$data["result"]!=null && count($data["result"])>0;
  				$data["soldUsers"]=$this->messages_model->getSoldUserList($postId);
  				$data["hasBuyerList"]=$data["soldUsers"]!=null && count($data["soldUsers"])>0;

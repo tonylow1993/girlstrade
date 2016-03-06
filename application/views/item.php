@@ -678,21 +678,21 @@ input[type=checkbox]
                     	$approvePath=base_url().MY_PATH."messages\approveSavedAds\$messageID\$userID";
                     	$rejectPath=base_url().MY_PATH."messages\rejectSavedAds\$messageID\$userID";
                     	$rowCount=$rowCount+1;
-                    	$ctrlName1="AjaxLoad".$rowCount;
-                    	$errorctrlName1="ErrAjaxLoad".$rowCount;
+                    	$ctrlName1="AjaxLoad1_".$rowCount;
+                    	$errorctrlName1="ErrAjaxLoad1_".$rowCount;
                     	$ctrlValue1="messageID".$rowCount;
                     	$ctrlValue2="userID".$rowCount;
                     	$ctrlName2="AjaxLoad2_".$rowCount;
                     	$errorctrlName2="ErrAjaxLoad2_".$rowCount;
                     	$clickLink="clickLink".$rowCount;
                     	$clickLink2="clickLink2_".$rowCount;
-                    	echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
                     	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
                     	echo "<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
+                    	echo "<p> <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
                     	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:approve('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-reply\"></i> ".$this->lang->line('Approve')." </a></p>";
-                    	echo "<div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
+                    	echo "<p><div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
                     	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:reject('$ctrlValue1','$ctrlValue2', '$ctrlName2', '$errorctrlName2')\" id='$clickLink2'><i class=\"fa fa-trash\"></i>  ".$this->lang->line('Reject')."</a></p>";
-                    	echo "</div>";
+                    	//echo "</div>";
                     	
                     	echo "</td>";
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
@@ -747,8 +747,8 @@ input[type=checkbox]
       <div class="modal-body">
         <form role="form" id="itemBuyerFeedBack" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/buyerFeedBack?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
            <div class="form-group">
-           		<input type="hidden" id="postID" name="postID" >   	
-           		<input type="hidden" id="userID" name="userID" >   	
+           		<input type="hidden" id="postID_1" name="postID_1" >   	
+           		<input type="hidden" id="userID_1" name="userID_1" >   	
            	</div>
           
              <div class="form-group">
@@ -787,7 +787,7 @@ input[type=checkbox]
       <div class="modal-body">
         <form role="form" id="itemSellerFeedBack" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/sellerFeedBack?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
            <div class="form-group">
-           		<input type="hidden" id="postID" name="postID" >   	
+           		<input type="hidden" id="postID_2" name="postID_2" >   	
            	</div>
           <div class="form-group">
          	<label for="soldUser" class="control-label">Sold To<font color="red">*</font></label>
@@ -835,7 +835,7 @@ input[type=checkbox]
       <div class="modal-body">
         <form role="form" id="itemMarkSold" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/markSoldAds?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
            <div class="form-group">
-           		<input type="hidden" id="postID" name="postID" >   	
+           		<input type="hidden" id="postID_3" name="postID_3" >   	
            	</div>
           <div class="form-group">
          	<label for="soldUser" class="control-label">Sold To<font color="red">*</font></label>
@@ -1107,18 +1107,18 @@ input[type=checkbox]
 
 function passToModal() {
 	$('#sellerActionPopup').on('show.bs.modal', function(event) {
-        $("#postID").val($(event.relatedTarget).data('id'));
+        $("#postID_3").val($(event.relatedTarget).data('id'));
         $("#pageNum").val($(event.relatedTarget).data('pagenum'));
         
          $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
     });
 	$('#sellerFeedBackPopup').on('show.bs.modal', function(event) {
-        $("#postID").val($(event.relatedTarget).data('id'));
+		 $("#postID_2").val($(event.relatedTarget).data('id'));
          $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
     });
 	$('#buyerFeedBackPopup').on('show.bs.modal', function(event) {
-        $("#postID").val($(event.relatedTarget).data('id'));
-         $("#userID").val($(event.relatedTarget).data('userid'));
+		 $("#postID_1").val($(event.relatedTarget).data('id'));
+         $("#userID_1").val($(event.relatedTarget).data('userid'));
     });
     $('#replyComment').on('show.bs.modal', function(event) {
         $("#parentID").val($(event.relatedTarget).data('id'));

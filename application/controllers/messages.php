@@ -28,6 +28,9 @@ class messages extends CI_Controller {
             $this->load->model('admin_model');
             $this->load->model('mailtemplate_model');
             $this->load->model('userstat_model');
+            $this->load->model('sellerfeedback_model');
+            $this->load->model('buyerfeedback_model');
+            $this->load->model('buyermessage_model');
             
             date_default_timezone_set("Asia/Hong_Kong");
             if($this->nativesession->get("language")!=null)
@@ -1143,7 +1146,7 @@ function addDayswithdate($date,$days){
 				}
 				
 			$messageID=0; //$_POST['messageID'];
-			$postID=$_POST['postID'];;
+			$postID=$_POST['postID_3'];;
 			$soldUserID=$_POST['soldUser'];
 			$rating=$_POST['rating'];
 			$buyerComment=nl2br(htmlentities($_POST['message-text'], ENT_QUOTES, 'UTF-8'));
@@ -1503,7 +1506,7 @@ function addDayswithdate($date,$days){
 							$data["goToHomePage"]=$this->lang->line("goToHomePage");
 							$this->load->view('failedPage', $data);
 				}
-				$postID=$this->input->post("postID");
+				$postID=$this->input->post("postID_2");
 				$rating=$this->input->post("rating");
 				$message=$this->input->post("message-text");
 				$buyerID=$this->input->post("soldUser");
@@ -1529,13 +1532,14 @@ function addDayswithdate($date,$days){
 		
 					$messageArray=array(
 							'buyerID'=>$buyerID,
+							'sellerID'=>$userID,
 							'postID'=>$postID,
 							'status'=>'U',
 							'content'=>$message,
 							'rating'=>$rating,
 							'createDate'=>date("Y-m-d H:i:s"),
 							);
-					$messageResult=$this->sellerfeedback_model->insertSellerFeedback($messageArray);
+					$messageResult=$this->sellerfeedback_model->insert($messageArray);
 					if($messageResult){
 						$errorMsg="Success in adding your feedback!";
 						$data["lang_label"]=$this->nativesession->get("language");
@@ -1609,7 +1613,7 @@ function addDayswithdate($date,$days){
 			if(isset($_GET["prevprevURL"])){
 				$prevprevURL=$_GET["prevprevURL"];
 			}
-		
+			$fromUserID=0;
 			$expired= $this->nativesession->_session_id_expired();
 			if($expired){
 				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
@@ -1643,7 +1647,7 @@ function addDayswithdate($date,$days){
 				}
 				$message=$this->input->post("message-text");
 				$userID=$this->input->post("userID");
-				$fromUserID==$fUserID;
+				$fromUserID=$fUserID;
 		
 				//----------setup the header menu----------
 				$data["menuMyAds"]="";
@@ -1772,7 +1776,7 @@ function addDayswithdate($date,$days){
 							$data["goToHomePage"]=$this->lang->line("goToHomePage");
 							$this->load->view('failedPage', $data);
 				}
-				$postID=$this->input->post("postID");
+				$postID=$this->input->post("postID_1");
 				$rating=$this->input->post("rating");
 				$message=$this->input->post("message-text");
 				$buyerID=$fUserID;
@@ -1795,6 +1799,7 @@ function addDayswithdate($date,$days){
 		
 				$messageArray=array(
 						'buyerID'=>$buyerID,
+						'sellerID'=>$userID,
 						'postID'=>$postID,
 						'status'=>'U',
 						'content'=>$message,
