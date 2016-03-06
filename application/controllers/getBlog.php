@@ -57,31 +57,37 @@
 		public function viewBlog ()
 		{
 			$data["lang_label_text"] = $this->lang->line("lang_label_text");
-		$data["Home"] = $this->lang->line("Home");
-		$data["About_us"] = $this->lang->line("About_us");
-		$data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
-		$data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
-		$data["Contact_us"] = $this->lang->line("Contact_us");
-		//log_message('debug', 'Contact Us words is: '.$data["Contact_us"]);
-		$data["FAQ"] = $this->lang->line("FAQ");
-		$data["Index_Footer1"] = $this->lang->line("Index_Footer1");
-		$data["Call_Now"] = $this->lang->line("Call_Now");
-		$data["Tel"] = $this->lang->line("Tel");
-	
-		$data["Login"]=$this->lang->line("Login");;
-		$data["Signup"]=$this->lang->line("Signup");
-		$data["Profile"]=$this->lang->line("Profile");
-		$data["Logout"]=$this->lang->line("Logout");
-		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
-		$data["lang_label"]=$this->nativesession->get("language");
-		//----------setup the header menu----------
+			$data["Home"] = $this->lang->line("Home");
+			$data["About_us"] = $this->lang->line("About_us");
+			$data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
+			$data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
+			$data["Contact_us"] = $this->lang->line("Contact_us");
+			//log_message('debug', 'Contact Us words is: '.$data["Contact_us"]);
+			$data["FAQ"] = $this->lang->line("FAQ");
+			$data["Index_Footer1"] = $this->lang->line("Index_Footer1");
+			$data["Call_Now"] = $this->lang->line("Call_Now");
+			$data["Tel"] = $this->lang->line("Tel");
+		
+			$data["Login"]=$this->lang->line("Login");;
+			$data["Signup"]=$this->lang->line("Signup");
+			$data["Profile"]=$this->lang->line("Profile");
+			$data["Logout"]=$this->lang->line("Logout");
+			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
+			$data["lang_label"]=$this->nativesession->get("language");
+			//----------setup the header menu----------
 			$data["menuMyAds"]="";
 			$data["menuInbox"]="";
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
-		//----------------------------
-			
+			//----------------------------
+			if(isset($loginUser)){
+				$data["isloginedIn"]=true;
+				$menuCount=$this->getHeaderCount($loginUser['userID']);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']); //$menuCount["inboxMsgCount"]; //
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
+				
 			$this->load->view('blog-details', $data);
 		}
     }
