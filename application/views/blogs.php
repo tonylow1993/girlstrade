@@ -1,5 +1,6 @@
 <?php $title = "Girls' Trading Platform";  include("header.php"); ?>
 <div id="wrapper">
+
   <div class="intro-inner">
     <div class="about-intro" style="
     background:url(../images/blogs-bg.jpg) no-repeat center;
@@ -48,7 +49,7 @@
 
                         <a href="<?php echo base_url().MY_PATH."blog-details";?>" >
                             <figure >
-                                <img class="img-responsive" alt="blog-post image" src="../images/blog/1.jpg" >
+                                <img class="img-responsive" alt="blog-post image" src="../images/blog/1.png" >
                             </figure>
                         </a>
                     </div>
@@ -58,17 +59,18 @@
                         <div class="blog-post-content-desc">
 
 
-                            <span class="info-row blog-post-meta"> <span class="date"><i class=" icon-clock"> </i> Today 1:21 pm </span>  -
-                                <span class="author"> <i class="fa fa-user"></i>  <a rel="author" title="Posts by Jhon Doe" href="#">Jhon Doe</a> </span>  -
-                                <span class="item-location"><i class="fa fa-comments"></i> Comments <a href="#">0</a> </span> </span>
+                            <span class="info-row blog-post-meta"> 
+								<span class="date"><i class=" icon-clock"> </i> 6 Mar 7:04 pm </span>  -
+                                <span class="author"> <i class="fa fa-user"></i>  <a rel="author" title="Posts by Jhon Doe" href="#">W.C</a> </span>
+							</span>
 
 
                             <div class="blog-post-content">
-                            <h2><a href="<?php echo base_url().MY_PATH."blog-details";?>">Curabitur pretium tincidunt lacus</a></h2>
-                            <p>Sint, hic, et qui inventore ex perferendis sunt aliquam commodi nihil vitae. Sint, hic, et qui inventore ex perferendis sunt aliquam.</p>
+                            <h2><a href="<?php echo base_url();?>getBlog/viewBlog">品味教主</a></h2>
+                            <p>今日唔記得帶隱形眼鏡，對於得百幾度近視既我，都不太重要， 眼濛濛有時都幾好吖，有時眼看不清，心反而可以看得清，大家有同感嗎？今日地鐵沿線交貨日，我會睇得清大家嗎@.@，哈哈，大家如果見到有個十下十下紫頭短鬆妹，不妨可以主動見下我，然後友善地問係咪交收紅菜頭護膚品呀，哈哈~友善亦係靚既美德之一，雖然現在這城市比較少，但總要有人踏出第一步，可以是你們嗎?今早在地鐵不停聽到某些女仔在品評另一位女仔的衣著品味及樣貌，再作比較，我心想，靚的定義是什麼是誰定的呢? 品味係獨特的，每人有自己風格，這就是屬於自己的品味，獨一無二的，根本就沒有一個準則及答案，不是嗎?本人覺得做屬於自己，靚自然會從心而發，每個人都可以做教主~最怕是好多想靚既女仔，但又要懶，唔付出，想靚都要對準自己所欠缺的是什麼，這才是靚的智者。</p>
                             <div class="row">
                                 <div class="col-md-12 clearfix blog-post-bottom">
-                                    <a class="btn btn-primary  pull-left" href="<?php echo base_url().MY_PATH."blog-details";?>">More info</a>
+                                    <a class="btn btn-primary  pull-left" href="<?php echo base_url();?>getBlog/viewBlog">More info</a>
                                 </div>
                             </div>
                             </div>
@@ -77,126 +79,6 @@
 
                     </div>
                 </article>
-
-                <article class="blog-post-item">
-                    <div class="inner-box">
-
-
-                        <!--blog image-->
-                        <div class="blog-post-img" >
-
-                            <a href="<?php echo base_url().MY_PATH."blog-details";?>" >
-                                <figure >
-                                    <img class="img-responsive" alt="blog-post image" src="../images/blog/2.jpg" >
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--blog content-->
-
-                        <div class="blog-post-content-desc">
-
-
-                            <span class="info-row blog-post-meta"> <span class="date"><i class=" icon-clock"> </i> Today 1:21 pm </span>  -
-                                <span class="author"> <i class="fa fa-user"></i>  <a rel="author" title="Posts by Jhon Doe" href="#">Jhon Doe</a> </span>  -
-                                <span class="item-location"><i class="fa fa-comments"></i> Comments <a href="#">0</a> </span> </span>
-
-
-                            <div class="blog-post-content">
-                                <h2><a href="<?php echo base_url().MY_PATH."blog-details";?>">Donec leo lorem, suscipit vitae eros et, tristique viverra orci</a></h2>
-                                <p>Sint, hic, et qui inventore ex perferendis sunt aliquam commodi nihil vitae. Sint, hic, et qui inventore ex perferendis sunt aliquam.</p>
-                                <div class="row">
-                                    <div class="col-md-12 clearfix blog-post-bottom">
-                                        <a class="btn btn-primary  pull-left" href="<?php echo base_url().MY_PATH."blog-details";?>">More info</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </article>
-
-                <article class="blog-post-item">
-                    <div class="inner-box">
-
-
-                        <!--blog image-->
-                        <div class="blog-post-img" >
-
-                            <a href="<?php echo base_url().MY_PATH."blog-details";?>" >
-                                <figure >
-                                    <img class="img-responsive" alt="blog-post image" src="../images/blog/9.jpg" >
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--blog content-->
-
-                        <div class="blog-post-content-desc">
-
-
-                            <span class="info-row blog-post-meta"> <span class="date"><i class=" icon-clock"> </i> Today 1:21 pm </span>  -
-                                <span class="author"> <i class="fa fa-user"></i>  <a rel="author" title="Posts by Jhon Doe" href="#">Jhon Doe</a> </span>  -
-                                <span class="item-location"><i class="fa fa-comments"></i> Comments <a href="#">0</a> </span> </span>
-
-
-                            <div class="blog-post-content">
-                                <h2><a href="<?php echo base_url().MY_PATH."blog-details";?>">Curabitur pretium tincidunt lacus</a></h2>
-                                <p>Sint, hic, et qui inventore ex perferendis sunt aliquam commodi nihil vitae. Sint, hic, et qui inventore ex perferendis sunt aliquam.</p>
-                                <div class="row">
-                                    <div class="col-md-12 clearfix blog-post-bottom">
-                                        <a class="btn btn-primary  pull-left" href="<?php echo base_url().MY_PATH."blog-details";?>">More info</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </article>
-
-                <article class="blog-post-item">
-                    <div class="inner-box">
-
-
-                        <!--blog image-->
-                        <div class="blog-post-img" >
-
-                            <a href="<?php echo base_url().MY_PATH."blog-details";?>" >
-                                <figure >
-                                    <img class="img-responsive" alt="blog-post image" src="../images/blog/4.jpg" >
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--blog content-->
-
-                        <div class="blog-post-content-desc">
-
-
-                            <span class="info-row blog-post-meta"> <span class="date"><i class=" icon-clock"> </i> Today 1:21 pm </span>  -
-                                <span class="author"> <i class="fa fa-user"></i>  <a rel="author" title="Posts by Jhon Doe" href="#">Jhon Doe</a> </span>  -
-                                <span class="item-location"><i class="fa fa-comments"></i> Comments <a href="#">0</a> </span> </span>
-
-
-                            <div class="blog-post-content">
-                                <h2><a href="<?php echo base_url().MY_PATH."blog-details";?>">In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo</a></h2>
-                                <p>Sint, hic, et qui inventore ex perferendis sunt aliquam commodi nihil vitae. Sint, hic, et qui inventore ex perferendis sunt aliquam.</p>
-                                <div class="row">
-                                    <div class="col-md-12 clearfix blog-post-bottom">
-                                        <a class="btn btn-primary  pull-left" href="<?php echo base_url().MY_PATH."blog-details";?>">More info</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </article>
-
-
-
 
             </div> <!--/.blog-post-wrapper-->
              </div><!--blogLeft-->

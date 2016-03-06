@@ -3359,6 +3359,10 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+#blog-detail-content-desc {
+	-webkit-line-clamp: 100;
+}
+
 .no-bottom {
       margin-bottom: 5px;
 }
@@ -3729,6 +3733,11 @@ span b{
  .blog-post-content-desc p {
     color: #4e575d;
     font-size: 14px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
 }
 
  .blog-post-meta {
