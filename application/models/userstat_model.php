@@ -14,6 +14,7 @@ class userstat_model extends CI_Model {
 	var $outgoingMsgCount='';
 	var $buyAdsCount=0;
 	var $directsendhistCount=0;
+	var $directsendhistCountAsSeller=0;
 	function __construct()
 	{
 		parent::__construct();

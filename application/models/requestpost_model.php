@@ -109,6 +109,31 @@ class requestpost_model extends CI_Model {
 	    	 
 	    	return $NoOfItemCount;
 	    }
+	    
+	    function getApproveAndRejectOfPost($userId, $postID, $pageNum)
+	    {
+	    	$ulimit=ITEMS_PER_PAGE;
+	    	$olimit=0;
+	    	if ($pageNum>1)
+	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+	    		$sql="select a.* from requestpost a inner join post b on a.postID=b.postID where b.userID=? and b.postID=? and a.status='U' ";
+	    		if($pageNum>0)
+	    			$this->db->limit($ulimit, $olimit);
+	    			$query = $this->db->query($sql, array($userId, $postID));
+	    
+	    			return $query->result();
+	    }
+	    function getNoOfItemCountInApproveAndRejectOfPost($userId, $postID){
+	    	$strQuery="select count(a.postID) as NoOfCount from requestpost a inner join post b on a.postID=b.postID where b.userID=? and b.postID=? and a.status='U' ";
+	    	$NoOfItemCount=0;
+	    	$query2 = $this->db->query($strQuery,  array($userId, $postID));
+	    	$var2=$query2->result_array();
+	    	var_dump($var2);
+	    	$NoOfItemCount=$var2[0]["NoOfCount"];
+	    	 
+	    	return $NoOfItemCount;
+	    }
+	    
 	    function getfUserIDAndPostID($postID, $fUserID, $status)
 	    {
 	    	$statusSQL=array();

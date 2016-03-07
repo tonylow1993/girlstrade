@@ -180,8 +180,8 @@
                 }
                 $data["isBuyerApproveThisPost"]=$isBuyerApproveThisPost;
                 $data["isSameUser"]=$isSameUser;
-                $data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInApproveAndReject($loginUser['userID']);
-                $myList=$this->requestpost_model->getApproveAndReject($loginUser['userID'], 0);
+                $data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInApproveAndRejectOfPost($loginUser['userID'], $var[0]->postID);
+                $myList=$this->requestpost_model->getApproveAndRejectOfPost($loginUser['userID'], $var[0]->postID,0);
                 $data["result"]=$this->mapReqeustPostToView($myList, 'seller', "ApproveAndReject");
                 $data["postID"]=$var[0]->postID;	
  				$data["hasRequestContact"]=$data["result"]!=null && count($data["result"])>0;

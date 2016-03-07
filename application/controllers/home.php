@@ -1625,7 +1625,7 @@ function generateRandomString($length = 8) {
         	$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
         	$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
         	$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
-        	$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
+        	$data["directsendhistCount1"]=$userStat[0]->directsendhistCountAsSeller;
         }
         
         $data["sellerRating"]=$this->tradecomments_model->getRating($userID);

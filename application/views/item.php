@@ -677,7 +677,7 @@ input[type=checkbox]
 						$price=$row['price'];
                 		echo "<tr>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">$from";
-                    	echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	//echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                     	echo "<br/>".$this->lang->line("DaysExpiry")." :".$NoOfDaysb4ExpiryContact;
                     	$approvePath=base_url().MY_PATH."messages\approveSavedAds\$messageID\$userID";
                     	$rejectPath=base_url().MY_PATH."messages\rejectSavedAds\$messageID\$userID";
