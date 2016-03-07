@@ -70,7 +70,7 @@
                   				echo "<td style=\"width:20%\" class=\"add-image\"><a href=$userPath>$reply</a>";
                   				echo "<p class=\"price-td\"><br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                   				if(strcmp($statusRP, 'A')==0)
-                  					echo "<br/>Seller email: $sellerEmail";
+                  					echo "<br/>Buyer email: $sellerEmail";
                   				echo "<br/>Status: $status</p>";
                   				echo "</td>";
                   				echo "<td style=\"width:55%\" class=\"ads-details-td\">";
