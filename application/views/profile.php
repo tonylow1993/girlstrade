@@ -31,12 +31,10 @@ function sendIt() {
                 
                 <ul class=" list-unstyled">
 	            <img src="<?php echo $userPhotoPath;?>" class="img-thumbnail" alt="profilePic" width="auto" height="auto">
+	            <img src="<?php echo base_url()."images/".$userRating; ?>" />
 	               <li><span class="count">&nbsp;(Normal User)</span> </li>
                 </ul>
-                     <p><img src="<?php echo base_url()."images/girlstrade_ratings_lq_bad.png"; ?>" />
-                    <img src="<?php echo base_url()."images/girlstrade_ratings_lq_normal.png"; ?>" />
-                    <img src="<?php echo base_url()."images/girlstrade_ratings_lq_good.png"; ?>" /></p>
-               
+                              
                 <table class="userProfileTable">
                 <tr>
                 <td>

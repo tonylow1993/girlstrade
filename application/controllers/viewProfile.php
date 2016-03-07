@@ -140,7 +140,7 @@ class viewProfile extends getCategory {
 			$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords, $data["sortByID"]);
 			$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
 	      	$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
-	      	
+	      	$data["userRating"]=$this->users_model->getUserRating($data["userID"]);
 			$data["NoOfItemCount"]=$NoOfItemCount;
 	       $data["lang_label_text"] = $this->lang->line("lang_label_text");
 	       $data["lang_label"] = $this->nativesession->get("language");
@@ -247,6 +247,8 @@ class viewProfile extends getCategory {
 		$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords, $data["sortByID"]);
 		$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
 		$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
+		$data["userRating"]=$this->users_model->getUserRating($data["userID"]);
+			
 		
 		$data["NoOfItemCount"]=$NoOfItemCount;
 		$data["lang_label_text"] = $this->lang->line("lang_label_text");

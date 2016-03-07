@@ -228,6 +228,8 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 			$loginUser=$this->nativesession->get("user");
 			$user = $this->get_user_by_id($var[0]->userID);
 			
+			$userRating=$this->getUserRating($var[0]->userID);
+			
 			$isloginedIn=false;
 			$isSameUser=false;
 			$isPostAlready=false;
@@ -251,6 +253,7 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 					'postItemPrice'=>$post->itemPrice,
 					'postDescription'=> $post->description,
 					'newUsed'=> $post->newUsed,
+					'userRating'=>$userRating,
 					'postTitle'=>$post->itemName,
 					'postCreateDate'=>$post->createDate,
 					'picCount'=>count($pic),
@@ -285,7 +288,9 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	}
 	return null;
 }
-
+public function getUserRating($userID){
+	return "girlstrade_ratings_lq_normal.png";
+}
 public function get_user_by_id($userID)
 {
 	$query = $this->db->from('user')->where('userID', $userID)->limit(1)->get();

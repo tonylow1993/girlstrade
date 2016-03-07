@@ -163,7 +163,8 @@
                 }
                 $data["email"]=$email["email"];
                 $data["selleremail"]=$email["email"];
-                
+                $data["userRating"]=$this->users_model->getUserRating($data["userID"]);
+                	
                 $isSameUser=false;
                 $isPostAlready=false;
                 $isPendingRequest=false;

@@ -275,10 +275,12 @@ input[type=checkbox]
 				<?php if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
+	                  	$imgRatingPath=base_url()."images/".$userRating;
+	                  	
 		                  echo "<a href=";
 		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
 		                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
-		                  echo "<i class=\"icon-right-hand\"></i> Contact $username </a>";
+		                  echo "<i class=\"icon-right-hand\"></i> Contact $username </a><img src=$imgRatingPath />";
 	                  }
                   }
                   ?>  
@@ -516,11 +518,13 @@ input[type=checkbox]
                   <?php if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false  or $isSameUser==false))
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
+	                  	$imgRatingPath=base_url()."images/".$userRating;
+	                  	
 		                  echo"<div class=\"user-ads-action\">";
 		                  echo "<a href=\"#directSend\"";
 		                  //echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
 		                  echo " data-toggle=\"modal\" id=\"directSendButton\" class=\"btn btn-default btn-block directSendButton\">";
-		                  echo "<i class=\"icon-right-hand\"></i> Contact $userName </a> </div>";
+		                  echo "<i class=\"icon-right-hand\"></i> Contact $userName </a><img src=$imgRatingPath /> </div>";
 	                  }
                   }
                   ?>  

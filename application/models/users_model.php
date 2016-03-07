@@ -116,5 +116,8 @@
 	        return 0;
 	    }
 	
+	    public function getUserRating($userID){
+	    	return "girlstrade_ratings_lq_normal.png";
+	    }
 	}
 ?>

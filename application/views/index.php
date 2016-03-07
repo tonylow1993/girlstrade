@@ -353,9 +353,9 @@ window.onload = function(){
       <div class="row">
            
     	<div class="col-sm-9 page-content col-thin-right">
-          <div class="inner-box category-content panel-bevel">
-            <h2 class="title-2"><span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">Discover</span> from Listing</h2>
-             <div class="row">
+          <div class="inner-box category-content panel-bevel" id="detailCategoryList" name="detailCategoryList" style="display:none;">
+             <div class="row" >
+            <h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">Discover</span> from Listing<a href="javascript:showSummaryCatDiv();" id="detailCatBtn" name="detailCatBtn" class="sell-your-item"> View less <i class="  icon-th-list"></i> </a></h2>
              <?php 
     	     $count=0;
     	     $total=0;
@@ -418,12 +418,13 @@ window.onload = function(){
             if($total<>0)
             	echo "</ul></div></div></div>";
             ?>
-			</div>
 			
-			<div class="col-lg-12 content-box ">
+			
+			</div>
+			<div class="col-lg-12 content-box " id="summaryCategoryList" name="summaryCategoryList" style="display:block;">
                 <div class="row row-featured row-featured-category">
                     <div class="col-lg-12  box-title no-border">
-                       <div class="inner"><h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">Discover</span> from Listing<a href="category.html" class="sell-your-item"> View more <i class="  icon-th-list"></i> </a></h2>
+                       <div class="inner"><h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">Discover</span> from Listing<a href="javascript:showDetailCatDiv();"  id="summaryCatBtn" name="summaryCatBtn" class="sell-your-item"> View more <i class="  icon-th-list"></i> </a></h2>
                        </div>
                     </div>
 					<?php 
@@ -859,6 +860,19 @@ window.onload = function(){
 <!-- JS Implementing Plugins -->
 
 <script>
+
+function showDetailCatDiv() {
+   document.getElementById('detailCategoryList').style.display = 'block';
+   document.getElementById('summaryCategoryList').style.display = 'none';
+    
+}
+
+function showSummaryCatDiv() {
+	   document.getElementById('summaryCategoryList').style.display = 'block';
+	   document.getElementById('detailCategoryList').style.display = 'none';
+	    
+	}
+
 function setup(){
 	var catID=document.getElementById("search-category").value;
  	var locID=0;
