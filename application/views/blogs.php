@@ -110,13 +110,13 @@
 
 
                                       <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="ads-details.html"><img class="no-margin" src="../images/blog/5.jpg" alt="img"></a> </div>
+                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/17?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src="http://www.girlstrade.com/USER_IMG/gttest1/Resize/gttest1_2016-03-06-00-08-39_thumb_0.png" alt="img"></a> </div>
                                       </div>
                                       <!--/.photobox-->
                                       <div class="col-sm-8 col-xs-8 add-desc-box">
                                           <div class="add-details">
-                                              <h5 class="add-title"> <a href="ads-details.html">Sed aliquam leo et dui venenatis cursus</a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i> Today 1:21 pm </span> </span> </div>
+                                              <h5 class="add-title"> <a href="http://www.girlstrade.com/viewItem/index/17?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1">Shiseido Maquillage cheek colors blush </a> </h5>
+                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i>  2016-03-06 00:08:39 </span> </span> </div>
                                       </div>
                                       <!--/.add-desc-box-->
 
@@ -127,13 +127,13 @@
 
 
                                       <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="ads-details.html"><img class="no-margin" src="../images/blog/7.jpg" alt="img"></a> </div>
+                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/15?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src="http://www.girlstrade.com/USER_IMG/rchiu3hk/Resize/rchiu3hk_2016-03-05-12-17-43_thumb_0.png" alt="img"></a> </div>
                                       </div>
                                       <!--/.photobox-->
                                       <div class="col-sm-8 col-xs-8 add-desc-box">
                                           <div class="add-details">
-                                              <h5 class="add-title"> <a href="ads-details.html">Maecenas vel consequat metus perferendis sunt aliquam </a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i> Today 12:50 pm </span> </span> </div>
+                                              <h5 class="add-title"> <a href="http://www.girlstrade.com/viewItem/index/15?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1">Kung Fu Panada  </a> </h5>
+                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i>  2016-03-05 12:17:43  </span> </span> </div>
                                       </div>
                                       <!--/.add-desc-box-->
 
@@ -144,55 +144,18 @@
 
 
                                       <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="ads-details.html"><img class="no-margin" src="../images/blog/3.jpg" alt="img"></a> </div>
+                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/3?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src="http://www.girlstrade.com/USER_IMG/tonylow123/Resize/tonylow123_2016-02-07-14-43-12_thumb_0.png" alt="img"></a> </div>
                                       </div>
                                       <!--/.photobox-->
                                       <div class="col-sm-8 col-xs-8 add-desc-box">
                                           <div class="add-details">
-                                              <h5 class="add-title"> <a href="ads-details.html">Pellentesque venenatis, arcu in aliquam ultricies</a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i> Today 12:10 pm </span> </span> </div>
+                                              <h5 class="add-title"> <a href="http://www.girlstrade.com/viewItem/index/3?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1">Taylor Big Baby Taylor-e Acoustic-Electric Gu </a> </h5>
+                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i> 2016-02-07 14:43:12 </span> </span> </div>
                                       </div>
                                       <!--/.add-desc-box-->
 
 
                                   </div>
-
-                                  <div class="item-list">
-
-
-                                      <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="ads-details.html"><img class="no-margin" src="images/item/tp/Image00006.jpg" alt="img"></a> </div>
-                                      </div>
-                                      <!--/.photobox-->
-                                      <div class="col-sm-8 col-xs-8 add-desc-box">
-                                          <div class="add-details">
-                                              <h5 class="add-title"> <a href="ads-details.html">Erat mauris tempus purus consectetur adipiscing elit.  </a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i> Today 10:30 am</span> </span> </div>
-                                      </div>
-                                      <!--/.add-desc-box-->
-
-
-                                  </div>
-
-                                  <div class="item-list">
-
-
-                                      <div class="col-sm-4 nocol-sm-4 col-xs-4 no-padding photoboxpadding photobox">
-                                          <div class="add-image">  <a href="ads-details.html"><img class="no-margin" src="../images/blog/10.jpg" alt="img"></a> </div>
-                                      </div>
-                                      <!--/.photobox-->
-                                      <div class="col-sm-8 col-xs-8 add-desc-box">
-                                          <div class="add-details">
-                                              <h5 class="add-title"> <a href="ads-details.html">Inventore ex perferendis sunt aliquam </a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i> Today 9:20 am </span> </span> </div>
-                                      </div>
-                                      <!--/.add-desc-box-->
-
-
-                                  </div>
-
-
-
 
                               </div>
 

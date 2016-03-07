@@ -6,7 +6,7 @@
   
   <div class="intro-inner">
     <div class="about-intro" style="
-    background-image:url(images/bg.jpg) no-repeat center;
+    background:url(../images/about-us-bg.jpg) no-repeat center;
 	background-size:cover;">
       <div class="dtable hw100">
         <div class="dtable-cell hw100">
