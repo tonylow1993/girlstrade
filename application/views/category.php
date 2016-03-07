@@ -644,6 +644,7 @@
 					$isPostAlready=$item['isPostAlready'];
 					$isSameUser=$item['isSameUser'];
 					$username=$item['username'];
+					$userRating=$item['userRating'];
 					try{
 					$postDescription=trimLongText($postDescription);
 					} catch(Exception $ex){
@@ -694,10 +695,10 @@
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                if(!$item["getDisableSavedAds"])
+                //if(!$item["getDisableSavedAds"])
                	//	 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
                 //else
-             	   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
+             	//   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
                 
                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
                 {
@@ -707,7 +708,7 @@
                 		echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
                 		echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
                 		echo " data-toggle=\"modal\" >";
-                		echo "<i class=\"icon-right-hand\"></i> Contact $username </a><img src=$imgRatingPath />";
+                		echo "<i class=\"icon-right-hand\"></i>Contact $username <img src=$imgRatingPath /></a>";
                 	}
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )

@@ -280,7 +280,7 @@ input[type=checkbox]
 		                  echo "<a href=";
 		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
 		                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
-		                  echo "<i class=\"icon-right-hand\"></i> Contact $username </a><img src=$imgRatingPath />";
+		                  echo "<i class=\"icon-right-hand\"></i>Contact $username <img src=$imgRatingPath /></a>";
 	                  }
                   }
                   ?>  
@@ -524,7 +524,7 @@ input[type=checkbox]
 		                  echo "<a href=\"#directSend\"";
 		                  //echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
 		                  echo " data-toggle=\"modal\" id=\"directSendButton\" class=\"btn btn-default btn-block directSendButton\">";
-		                  echo "<i class=\"icon-right-hand\"></i> Contact $userName </a><img src=$imgRatingPath /> </div>";
+		                  echo "<i class=\"icon-right-hand\"></i>Contact $userName <img src=$imgRatingPath /></a></div>";
 	                  }
                   }
                   ?>  
