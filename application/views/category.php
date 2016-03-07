@@ -1482,13 +1482,10 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 					  <script type="text/javascript">
 						var html5Slider1 = document.getElementById('price-slider1');
 
-<<<<<<< HEAD
+
 						noUiSlider.create(html5Slider1, {
 							start: [ <?php if($minPrice>0)echo $minPrice; else echo 0;?>, <?php if($minPrice>0)echo $maxPrice; else echo 200;?> ],
-=======
-						noUiSlider.create(html5Slider, {
-							start: [ <?php if($minPrice>0) echo $minPrice; else echo 0;?>, <?php if($maxPrice>0) echo $maxPrice; else echo 200;?> ],
->>>>>>> origin/master
+
 							connect: true,
 							range: {
 								'min': 0,

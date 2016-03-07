@@ -93,7 +93,8 @@ class requestpost_model extends CI_Model {
 	    	if ($pageNum>1)
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
 	    	$sql="select a.* from requestpost a inner join post b on a.postID=b.postID where b.userID=? and a.status='U' ";
-	    	$this->db->limit($ulimit, $olimit);
+	    	if($pageNum>0)
+	    		$this->db->limit($ulimit, $olimit);
 	    	$query = $this->db->query($sql, array($userId));
 	    	
 	    	return $query->result();

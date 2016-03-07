@@ -644,7 +644,7 @@ input[type=checkbox]
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title"><?php //echo $this->lang->line("popupTitleDirectSendApprove");?></h4>
+        <h4 class="modal-title">Approve or reject to request contact</h4>
       </div>
       <div class="modal-body">
         <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
@@ -711,7 +711,7 @@ input[type=checkbox]
                   	}
             	}
             ?>
-             <div class="pagination-bar text-center">
+        <!--      <div class="pagination-bar text-center">
             <ul class="pagination">
             <?php 
             	$url_path=base_url().MY_PATH."home/getAccountPage/2";
@@ -732,7 +732,7 @@ input[type=checkbox]
                echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumNext\">Next</a></li>";
             ?>
                 </ul>
-          </div>
+          </div> -->
             	 </tbody>
               </table>
       </div>
