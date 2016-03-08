@@ -114,6 +114,28 @@ input[type=checkbox]
                         </div>
                         </div>
                       </div>
+					  <div class="form-group">
+                        <label for="Wechat" class="col-sm-3 control-label">Wechat ID</label>
+                        <div class="col-sm-9">
+						  <input name="weChatNo" type="text" pattern="\d*" class="form-control" id="weChatNo" placeholder="Wechat ID">
+						  <div class="checkbox">
+						  <label>
+                            <input id="hidewechatno" name='hidewechatno' type="checkbox" checked>
+                            <small> &nbsp;&nbsp;&nbsp;&nbsp;Display Wechat ID </small> </label>
+                        </div>
+						</div>
+                      </div>
+					  <div class="form-group">
+                        <label for="Website" class="col-sm-3 control-label">Website</label>
+                        <div class="col-sm-9">
+						  <input name="Website" type="text" pattern="\d*" class="form-control" id="Website" placeholder="Website">
+						  <div class="checkbox">
+						  <label>
+                            <input id="hideweb" name='hideweb' type="checkbox" checked>
+                            <small> &nbsp;&nbsp;&nbsp;&nbsp;Show my website publicly</small> </label>
+                          </div>
+						</div>
+                      </div>
                       <div class="form-group">
 	                        <label  class="col-sm-3 control-label"><?php echo $this->lang->line("MyIntroduction");?></label>
 	                        <div class="col-sm-9">
