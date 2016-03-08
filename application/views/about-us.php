@@ -49,21 +49,21 @@ Bringing the right buyer and seller together is what we are trying to do within 
           <div class="inner">
             <div class="icon-box-wrap"> <i class="icon-book-open ln-shadow-box shape-3"></i></div>
             <h3 class="title-4">Customer service</h3>
-            <p>Ein herausragendes Beispiel für Story-Telling im modernen Webdesign. et suscipit sapien posuere quis. Maecenas ut iaculis nunc, eget efficitur ipsum. Nam vitae hendrerit tortor.</p>
+            <p>Girlstrade aims at providing the best service to our users. Connecting the right buyers and sellers is what we want to achieve.</p>
           </div>
         </div>
         <div class="col-sm-4 xs-gap">
           <div class="inner">
             <div class="icon-box-wrap"> <i class=" icon-lightbulb ln-shadow-box shape-6"></i></div>
             <h3 class="title-4">Seller satisfaction</h3>
-            <p>Ein herausragendes Beispiel für Story-Telling im modernen Webdesign. et suscipit sapien posuere quis. Maecenas ut iaculis nunc, eget efficitur ipsum. Nam vitae hendrerit tortor. .</p>
+            <p>Seller ratings are given by buyers according to their satisfaction about the trade. This information can on one hand facilitate buyers to make purchasing descision, while on the other hand help sellers to attract potential buyers.</p>
           </div>
         </div>
         <div class="col-sm-4 xs-gap">
           <div class="inner">
             <div class="icon-box-wrap"> <i class="icon-megaphone ln-shadow-box shape-5"></i></div>
             <h3 class="title-4">Best Offers </h3>
-            <p>Ein herausragendes Beispiel für Story-Telling im modernen Webdesign. et suscipit sapien posuere quis. Maecenas ut iaculis nunc, eget efficitur ipsum. Nam vitae hendrerit tortor. </p>
+            <p>Girlstrade provide a platform designated for girls in Hong Kong to not only make trades but also gather and help each other out. </p>
           </div>
         </div>
       </div>
