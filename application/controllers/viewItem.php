@@ -458,5 +458,125 @@
         	}
         	return $result;
         }
+        
+        public function getPreApproveHtmlList(){
+        	
+        	$postID=$this->input->post("postID");
+        	$pageNum=$this->input->post("pageNum");
+        	$loginUser=$this->nativesession->get("user");
+        	if(!isset($loginUser))
+        	{
+        		$data['status'] = 'F';
+        		$data['class'] = "has-error";
+        		$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Please login in</div>';
+        		$data['icon'] = '<em><span style="color:red"></span></em>';
+        		echo json_encode($data);
+        		return;
+        	}
+        	$NoOfItemCount=$this->requestpost_model->getNoOfItemCountInApproveAndRejectOfPost($loginUser['userID'], $postID);
+                $myList=$this->requestpost_model->getApproveAndRejectOfPost($loginUser['userID'], $postID,$pageNum);
+                $result=$this->mapReqeustPostToView($myList, 'seller', "ApproveAndReject");
+                
+        	$outputhtml="";
+        	$outputhtml=$outputhtml."<table id=\"addManageTable\" class=\"table table-striped table-bordered add-manage-table table demo\" data-filter=\"#filter\" data-filter-text-only=\"true\" > ";
+             $outputhtml=$outputhtml."   <thead> ";
+            $outputhtml=$outputhtml."      <tr> ";
+             $outputhtml=$outputhtml."       <th>".$this->lang->line("From")."</th> ";
+             $outputhtml=$outputhtml."       <th data-sort-ignore=\"true\">".$this->lang->line("Ads_Detail")."</th> ";
+             $outputhtml=$outputhtml."       </tr> ";
+             $outputhtml=$outputhtml."   </thead> ";
+             $outputhtml=$outputhtml."   <tbody> <tr></tr>";
+            	if($result<>null)
+            	{
+            		$rowCount=0;
+                  	foreach($result as $id=>$row)
+                  	{
+                  		
+                  		$from=$row['from'];
+                  		$reply=$row['reply'];
+                  		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
+                  		$imagePath=$row['imagePath'];
+                  		$previewTitle=$row['previewTitle'];
+                  		$previewDesc=$row["previewDesc"];
+                  		$createDate=$row['createDate'];
+                  		$itemStatus=$row['itemStatus'];
+                  		$messageID=$id;
+                  		$userID=$row['userID'];
+                  		$NoOfDaysPending=$row['NoOfDaysPending'];
+						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
+						$price=$row['price'];
+                		$outputhtml=$outputhtml."<tr>";
+                    	$outputhtml=$outputhtml."<td style=\"width:20%\" class=\"add-image\">$from";
+                    	$outputhtml=$outputhtml."<br/>".$this->lang->line("DaysExpiry")." :".$NoOfDaysb4ExpiryContact;
+                    	$approvePath=base_url().MY_PATH."messages\approveSavedAds\$messageID\$userID";
+                    	$rejectPath=base_url().MY_PATH."messages\rejectSavedAds\$messageID\$userID";
+                    	$rowCount=$rowCount+1;
+                    	$ctrlName1="AjaxLoad1_".$rowCount;
+                    	$errorctrlName1="ErrAjaxLoad1_".$rowCount;
+                    	$ctrlValue1="messageID".$rowCount;
+                    	$ctrlValue2="userID".$rowCount;
+                    	$ctrlName2="AjaxLoad2_".$rowCount;
+                    	$errorctrlName2="ErrAjaxLoad2_".$rowCount;
+                    	$clickLink="clickLink".$rowCount;
+                    	$clickLink2="clickLink2_".$rowCount;
+                    	$outputhtml=$outputhtml."<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
+                    	$outputhtml=$outputhtml."<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
+                    	$outputhtml=$outputhtml."<p> <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
+                    	$outputhtml=$outputhtml."<a class=\"btn btn-primary btn-xs\" href=\"javascript:approve('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-reply\"></i> ".$this->lang->line('Approve')." </a></p>";
+                    	$outputhtml=$outputhtml."<p><div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
+                    	$outputhtml=$outputhtml."<a class=\"btn btn-primary btn-xs\" href=\"javascript:reject('$ctrlValue1','$ctrlValue2', '$ctrlName2', '$errorctrlName2')\" id='$clickLink2'><i class=\"fa fa-trash\"></i>  ".$this->lang->line('Reject')."</a></p>";
+                    	
+                    	$outputhtml=$outputhtml."</td>";
+                      	$outputhtml=$outputhtml."<td style=\"width:55%\" class=\"ads-details-td\">";
+                    	$outputhtml=$outputhtml."<div class=\"ads-details\">";
+                      $outputhtml=$outputhtml."<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
+                          $outputhtml=$outputhtml."<br/>Posted On: ". $createDate."</h5>";
+                    		$outputhtml=$outputhtml."</div></td>";
+                      		
+                      	
+                  		$outputhtml=$outputhtml."</tr>";
+                  		
+                  	}
+            	}
+            
+            $outputhtml=$outputhtml." <div class=\"pagination-bar text-center\"> ";
+            $outputhtml=$outputhtml."<ul class=\"pagination\"> ";
+            	$pageNumPrev=$pageNum-1;
+            	$pageNum2=$pageNum+1;
+            	$pageNum3=$pageNum+2;
+            	$pageNum4=$pageNum+3;
+            	$pageNum5=$pageNum+4;
+            	$pageNumNext=$pageNum+5;
+            	$outputhtml=$outputhtml."<input type=\"hidden\" id=\"ctrlpostID\" name=\"ctrlpostID\" value=\"$postID\"/>";
+            	$outputhtml=$outputhtml."<input type=\"hidden\" id=\"ctrlpageNumPrev\" name=\"ctrlpageNumPrev\" value=\"$pageNumPrev\"/>";
+            	$outputhtml=$outputhtml."<input type=\"hidden\" id=\"ctrlpageNum\" name=\"ctrlpageNum\" value=\"$pageNum\"/>";
+            	$outputhtml=$outputhtml."<input type=\"hidden\" id=\"ctrlpageNum2\" name=\"ctrlpageNum2\" value=\"$pageNum2\"/>";
+            	$outputhtml=$outputhtml."<input type=\"hidden\" id=\"ctrlpageNum3\" name=\"ctrlpageNum3\" value=\"$pageNum3\"/>";
+            	$outputhtml=$outputhtml."<input type=\"hidden\" id=\"ctrlpageNum4\" name=\"ctrlpageNum4\" value=\"$pageNum4\"/>";
+            	$outputhtml=$outputhtml."<input type=\"hidden\" id=\"ctrlpageNum5\" name=\"ctrlpageNum5\" value=\"$pageNum5\"/>";
+            	$outputhtml=$outputhtml."<input type=\"hidden\" id=\"ctrlpageNumNext\" name=\"ctrlpageNumNext\" value=\"$pageNumNext\"/>";
+            	 
+            	
+            	if($pageNum<>1)
+            		$outputhtml=$outputhtml."<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumPrev\">Previous</a></li>";
+            	$outputhtml=$outputhtml."<li  class=\"active\"><a id=\"hrefPageNum\" href=\"#\" onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum</a></li>";
+            	$outputhtml=$outputhtml."<li><a id=\"hrefPageNum2\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum2\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum2</a></li>";
+            	$outputhtml=$outputhtml."<li><a id=\"hrefPageNum3\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum3\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum3</a></li>";
+            	$outputhtml=$outputhtml."<li><a id=\"hrefPageNum4\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum4\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum4</a></li>";
+            	$outputhtml=$outputhtml."<li><a id=\"hrefPageNum5\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum5\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum5</a></li>";
+            	$outputhtml=$outputhtml."<li><a id=\"hrefPageNumNext\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNumNext\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNumNext</a></li>";
+            	 
+              $outputhtml=$outputhtml."  </ul>";
+          		$outputhtml=$outputhtml."</div> ";
+            $outputhtml=$outputhtml."	 </tbody> ";
+            $outputhtml=$outputhtml."  </table> ";
+      		$data1['status'] = 'A';
+            $data1['class'] = 'has-success';
+            $data1['message'] = '';
+            $data1['icon'] = $outputhtml;
+            echo json_encode($data1);
+            return;
+        }
+        
     }
 ?>

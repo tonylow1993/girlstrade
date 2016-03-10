@@ -434,12 +434,13 @@
               </div>
              
               
-              <!-- 
+               
               <div class="locations-list list-filter margin-top-30">
                 <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
-                 <li> <a id="searchCriteria" href="#allAds" onclick="return setupTab('allAds', 'searchCriteria');" ><?php echo $lblConditionAll;?>
-                  
+                 <li> <a id="allAds1" href="#allAds" ><?php echo $lblConditionAll;?>
+             <!--     <li> <a id="searchCriteria" href="#allAds" onclick="return setupTab('allAds', 'allAds1');" ><?php echo $lblConditionAll;?>
+                  -->
                   		<?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
                   			
@@ -455,7 +456,7 @@
                   		<?php }?>
                   		
                   		</a></li>
-                  <li> <a id="newAds1" name="newAds1"  href="#newAds" onclick="return setupTab('newAds', 'newAds1');"><?php echo $lblConditionNew;?>
+                  <li> <a id="newAds1" name="newAds1"  href="#newAds" ><?php echo $lblConditionNew;?>
                   
                   <?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
@@ -476,7 +477,7 @@
                   		</span>
                   		<?php }?>
                   		</a></li>
-                  <li> <a id="usedAds1" name="usedAds1" href="#usedAds" onclick="return setupTab('usedAds', 'usedAds1');"><?php echo $lblConditionUsed;?>
+                  <li> <a id="usedAds1" name="usedAds1" href="#usedAds" ><?php echo $lblConditionUsed;?>
                   		<?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
                   			
@@ -964,7 +965,19 @@
   <!-- /.footer --> 
 </div>
   <script>
-  
+  $('.nav-tabs a').click(function(){
+	    $(this).tab('show');
+	})
+$('#allAds1').click(function(){
+	$('.nav-tabs a[href="#allAds"]').tab('show')
+	})	
+$('#newAds1').click(function(){
+	$('.nav-tabs a[href="#newAds"]').tab('show')
+	})	
+$('#usedAds1').click(function(){
+	$('.nav-tabs a[href="#usedAds"]').tab('show')
+	})	
+	
   function setupTab(activeTab, activeCtrl){
 		var catID=document.getElementById("search-category").value;
 	 	var locID=document.getElementById("id-location").value;
