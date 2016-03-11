@@ -234,10 +234,9 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 			$isSameUser=false;
 			$isPostAlready=false;
 			$isPendingRequest=false;
-			$username='';
+			$username=$user[0]->username;
 			if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
 			{
-				$username=$user[0]->username;
 				$isloginedIn=true;
 				if($loginUser["userID"]==$user[0]->userID)
 					$isSameUser=true;
