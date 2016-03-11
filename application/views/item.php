@@ -1252,7 +1252,7 @@ function passToModal() {
         $("#ctrlpageNum").val($(event.relatedTarget).data('pagenum'));
         
 	});  
-	 $("#hrefPageNum").onclick(getApproveList("ctrlpostID", "ctrlpageNum2", "tableBodyList", "tableBodyError"));
+	 //$("#hrefPageNum").onclick(getApproveList("ctrlpostID", "ctrlpageNum2", "tableBodyList", "tableBodyError"));
 		
 	$('#sellerFeedBackPopup').on('show.bs.modal', function(event) {
 		 $("#postID_2").val($(event.relatedTarget).data('id'));

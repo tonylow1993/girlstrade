@@ -108,4 +108,5 @@ define("UNKNOWNLOGINERROR", "UNKNOWNLOGINERROR");
 define("SHOWQTY", "N");
 define("SHOWLASTACTIVITY", "N");
 define("SHOWVISITCOUNTINITEMPAGE", "N");
+define("SHOWSELLERNAMEINSEARCHBUTTON","N");
 define("RATINGARRAY", array(3=> "Good", 2=>"Average", 1=>"Bad"));
