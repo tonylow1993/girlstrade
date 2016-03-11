@@ -706,6 +706,12 @@
                	//	 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
                 //else
              	//   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
+                if(!$isloginedIn and $isSameUser==false){
+                	$imgRatingPath=base_url()."images/".$userRating;
+                
+                	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact $showSellerName <img src=$imgRatingPath /></a>";
+                
+                }
                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
                 {
                 	if($isPostAlready == false and $isSameUser ==false ){
@@ -1235,7 +1241,24 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 <!-- /.wrapper --> 
 
 
+<div class="modal fade" id="loginPopup" tabindex="-1" role="dialog">
 
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Please login</h4>
+      	</div>
+      	<div class="modal-body">
+      	   <h2>Please login to continue the process</h2>
+      	   <br>
+      	   <a class="btn btn-primary btn-xs" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-reply"></i>Login</a></p>";
+                    	
+      	</div>
+    	
+    </div>
+ </div>
+</div>
 <!-- Modal Change City -->
 <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
                         <div class="modal-dialog">
