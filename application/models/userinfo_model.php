@@ -18,6 +18,12 @@
 		var $checkBox1='';
 		var $checkBox2='';
 		var $introduction='';
+		var $showWeChatID='';
+		var $weChatID='';
+		var $showWebSite='';
+		var $webSiteAddr='';
+		
+		
 	    function __construct()
 	    {
 	        parent::__construct();
@@ -32,21 +38,25 @@
 	    function update($data)
 	    {
 	    	try{
-	    	$this->userID = $data['userID'];
-	    	$this->lastName = $data['lastName'];
-	    	$this->firstName = $data['firstName'];
+	    	$result['userID'] = $data['userID'];
+	    	$result['lastName'] = $data['lastName'];
+	    	$result['firstName'] = $data['firstName'];
 // 	    	$this->gender = $data['gender'];
-	    	$this->telNo = $data['telNo'];
-	    	$this->hidetelno=$data["hidetelno"];
-	    	$this->lastModified = date("Y-m-d H:i:s");
-	    	$this->checkBox1=$data["checkBox1"];
-	    	$this->checkBox2=$data["checkBox2"];
-	    	$this->introduction=$data['introduction'];
+	    	$result['telNo'] = $data['telNo'];
+	    	$result['hidetelno']=$data["hidetelno"];
+	    	$result['lastModified'] = date("Y-m-d H:i:s");
+	    	$result['checkBox1']=$data["checkBox1"];
+	    	$result['checkBox2']=$data["checkBox2"];
+	    	$result['introduction']=$data['introduction'];
+	    	$result['showWeChatID']=$data['showWeChatID'];
+	    	$result['weChatID']=$data['weChatID'];
+	    	$result['showWebSite']=$data['showWebSite'];
+	    	$result['webSiteAddr']=$data['webSiteAddr'];
 	    	$this->db->trans_start();
-	        $result= $this->db->update('userinfo', $this, array('userID' => $data['userID']));
+	        $row= $this->db->update('userinfo', $result, array('userID' => $data['userID']));
 	        $this->db->trans_complete();
-	        if($result>0)
-	        	return $result;
+	        if($row>0)
+	        	return $row;
 	        else 
 	        	throw new Exception(ZeroUpdateRecordError);
 	    	    }catch(Exception $ex)
@@ -61,23 +71,26 @@
 	function insert($data)
 		{
 			try{
-				$this->userID = $data['userID'];
- 				$this->lastName = $data['lastName'];
- 				$this->firstName = $data['firstName'];
+				$result['userID'] = $data['userID'];
+ 				$result['lastName'] = $data['lastName'];
+ 				$result['firstName'] = $data['firstName'];
 				// 	    	$this->gender = $data['gender'];
- 				$this->telNo = $data['telNo'];
- 				$this->hidetelno=$data["hidetelno"];
-				$this->lastModified = date("Y-m-d H:i:s");
-				$this->checkBox1=true;
-				$this->checkBox2=true;
-				$this->introduction=$data['introduction'];
-				
-				print_r($this);
+ 				$result['telNo'] = $data['telNo'];
+ 				$result['hidetelno']=$data["hidetelno"];
+				$result['lastModified'] = date("Y-m-d H:i:s");
+				$result['checkBox1']=true;
+				$result['checkBox2']=true;
+				$result['introduction']=$data['introduction'];
+				$result['showWeChatID']=$data['showWeChatID'];
+				$result['weChatID']=$data['weChatID'];
+				$result['showWebSite']=$data['showWebSite'];
+				$result['webSiteAddr']=$data['webSiteAddr'];
+				//print_r($this);
 				$this->db->trans_start();
-				$result= $this->db->insert('userinfo', $this);
+				$row= $this->db->insert('userinfo', $result);
 				$this->db->trans_complete();
-				if($result>0)
-					return $result;
+				if($row>0)
+					return $row;
 				else
 					throw new Exception(ZeroUpdateRecordError);
 			}catch(Exception $ex)
@@ -93,23 +106,26 @@
 	        function insertUserInfo($data)
 	        {
 	        	try{
-	        		$this->userID = $data['userID'];
-	        		$this->lastName = $data['lastName'];
-	        		$this->firstName = $data['firstName'];
+	        		$result['userID'] = $data['userID'];
+	        		$result['lastName'] = $data['lastName'];
+	        		$result['firstName'] = $data['firstName'];
 	        		// 		    $this->gender = $data['gender'];
-	        		$this->telNo = $data['telNo'];
-	        		$this->hidetelno=$data("hidetelno");
-	        		$this->introduction=$data['introduction'];
-	        		$this->checkBox1=false;
-	        		$this->checkBox2=false;
-	        
+	        		$result['telNo'] = $data['telNo'];
+	        		$result['hidetelno']=$data("hidetelno");
+	        		$result['introduction']=$data['introduction'];
+	        		$result['checkBox1']=false;
+	        		$result['checkBox2']=false;
+	        		$result['showWeChatID']=$data['showWeChatID'];
+	        		$result['weChatID']=$data['weChatID'];
+	        		$result['showWebSite']=$data['showWebSite'];
+	        		$result['webSiteAddr']=$data['webSiteAddr'];
 	        
 	        		$this->lastModified = date("Y-m-d H:i:s");
 	        		$this->db->trans_start();
-	        		$result= $this->db->insert('userinfo', $this);
+	        		$row= $this->db->insert('userinfo', $result);
 	        		$this->db->trans_complete();
-	        		if($result>0)
-	        			return $result;
+	        		if($row>0)
+	        			return $row;
 	        		else
 	        			throw new Exception(ZeroUpdateRecordError);
 	        
@@ -126,22 +142,27 @@
 		function updateCheckBox($data)
 		{
 			try{
-			$this->userID = $data['userID'];
-	    	$this->lastName = $data['lastName'];
-	    	$this->firstName = $data['firstName'];
+			$result['userID'] = $data['userID'];
+	    	$result['lastName'] = $data['lastName'];
+	    	$result['firstName'] = $data['firstName'];
 // 	    	$this->gender = $data['gender'];
-	    	$this->telNo = $data['telNo'];
-	    	$this->hidetelno=$data["hidetelno"];
-	    	$this->lastModified = date("Y-m-d H:i:s");
-			$this->checkBox1=$data["checkBox1"];
-			$this->checkBox2=$data["checkBox2"];
-			$this->introduction=$data['introduction'];
-		   print_r($this);
+	    	$result['telNo'] = $data['telNo'];
+	    	$result['hidetelno']=$data["hidetelno"];
+	    	$result['lastModified'] = date("Y-m-d H:i:s");
+			$result['checkBox1']=$data["checkBox1"];
+			$result['checkBox2']=$data["checkBox2"];
+			$result['introduction']=$data['introduction'];
+			$result['showWeChatID']=$data['showWeChatID'];
+			$result['weChatID']=$data['weChatID'];
+			$result['showWebSite']=$data['showWebSite'];
+			$result['webSiteAddr']=$data['webSiteAddr'];
+			 
+		   //print_r($this);
 		   $this->db->trans_start();
-			 $result= $this->db->update('userinfo', $this, array('userID' => $data['userID']));
+			 $row= $this->db->update('userinfo', $result, array('userID' => $data['userID']));
 			 $this->db->trans_complete();
-			 if($result>0)
-			 	return $result;
+			 if($row>0)
+			 	return $row;
 			 else
 			  	throw new Exception(ZeroUpdateRecordError);
 	    	    }catch(Exception $ex)
@@ -156,21 +177,21 @@
 		function insertCheckBox($data)
 		{
 			try{
-				$this->userID = $data['userID'];
+				$result['userID'] = $data['userID'];
 // 				$this->lastName = $data['lastName'];
 // 				$this->firstName = $data['firstName'];
 				// 	    	$this->gender = $data['gender'];
 // 				$this->telNo = $data['telNo'];
 // 				$this->hidetelno=$data["hidetelno"];
-				$this->lastModified = date("Y-m-d H:i:s");
-				$this->checkBox1=$data["checkBox1"];
-				$this->checkBox2=$data["checkBox2"];
+				$result['lastModified'] = date("Y-m-d H:i:s");
+				$result['checkBox1']=$data["checkBox1"];
+				$result['checkBox2']=$data["checkBox2"];
 				print_r($this);
 				$this->db->trans_start();
-				$result= $this->db->insert('userinfo', $this);
+				$row= $this->db->insert('userinfo', $result);
 				$this->db->trans_complete();
-				if($result>0)
-					return $result;
+				if($row>0)
+					return $row;
 				else
 					throw new Exception(ZeroUpdateRecordError);
 			}catch(Exception $ex)

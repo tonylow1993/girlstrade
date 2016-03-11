@@ -1562,6 +1562,10 @@ function generateRandomString($length = 8) {
 		$data["checkBox1"]=false;
 		$data["checkBox2"]=false;
 		$data["hidetelno"]=false;
+		$data['showWeChatID']=true;
+		$data['weChatID']="";
+		$data['showWebSite']=true;
+		$data['webSiteAddr']="";
 		if(isset($userInfo) && !empty($userInfo) && $userInfo <>null)
 		{
 		$data["lastName"]=$userInfo["lastName"];
@@ -1575,6 +1579,12 @@ function generateRandomString($length = 8) {
 		$data["checkBox2"]=$userInfo["checkBox2"];
 		$data["hidetelno"]=$userInfo["hidetelno"];
 		$data["introduction"]=$userInfo["introduction"];
+		$data['showWeChatID']=$userInfo['showWeChatID'];
+		$data['weChatID']=$userInfo['weChatID'];
+		$data['showWebSite']=$userInfo['showWebSite'];
+		$data['webSiteAddr']=$userInfo['webSiteAddr'];
+		
+		
 		//$data["documentType"]=$userInfo["documentType"];
 		}
 		$data["email"]=$email["email"];
@@ -2650,7 +2660,7 @@ function generateRandomString($length = 8) {
 		$data["menuPendingRequestNumber"]="0";
 		//----------------------------
 				
-		$this->profilePage();
+		$this->getAccountPage(4);
 	}
 	public function updateProfile(){
 			 
@@ -2672,11 +2682,27 @@ function generateRandomString($length = 8) {
 			$userInfo['telNo'] = $data['telNo'];
 		}
 		if(isset($_POST['hidetelno']))
-				$userInfo['hidetelno']=true;
-			else
-				$userInfo['hidetelno']=false;
-		if(isset($_POST['descriptionTextarea']))
+			$userInfo['hidetelno']=true;
+		else
+			$userInfo['hidetelno']=false;
+		if(!empty($data['descriptionTextarea']))
 			$userInfo['introduction']=$data['descriptionTextarea'];
+		
+		if(!empty($data['weChatID']))
+			$userInfo['weChatID']=$data['weChatID'];
+		if(!empty($data['webSiteAddr']))
+			$userInfo['webSiteAddr']=$data['webSiteAddr'];
+		if(isset($_POST['showWeChatID']))
+			$userInfo['showWeChatID']=true;
+		else
+			$userInfo['showWeChatID']=false;
+		if(isset($_POST['showWebSite']))
+			$userInfo['showWebSite']=true;
+		else
+			$userInfo['showWebSite']=false;
+			
+			
+			
 // 			if(isset($_POST['chk1']))
 // 				$userInfo['checkBox1']=true;
 // 			else

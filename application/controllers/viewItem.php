@@ -160,6 +160,11 @@
                 	$data["phoneNo"]=$userInfo["phoneNo"];
                 	$data["sellerphone"]=$userInfo["telNo"];
                 	$data["telNo"]=$userInfo["telNo"];
+                	$data["hidetelno"]=$userInfo["hidetelno"];
+                	$data["showWeChatID"]=$userInfo["showWeChatID"];
+                	$data["weChatID"]=$userInfo["weChatID"];
+                	$data["showWebSite"]=$userInfo["showWebSite"];
+                	$data["webSiteAddr"]=$userInfo["webSiteAddr"];
                 }
                 $data["email"]=$email["email"];
                 $data["selleremail"]=$email["email"];

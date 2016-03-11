@@ -117,10 +117,10 @@ input[type=checkbox]
 					  <div class="form-group">
                         <label for="Wechat" class="col-sm-3 control-label">Wechat ID</label>
                         <div class="col-sm-9">
-						  <input name="weChatNo" type="text" pattern="\d*" class="form-control" id="weChatNo" placeholder="Wechat ID">
+						  <input name="weChatID" type="text" pattern="\d*" class="form-control" id="weChatID" placeholder="<?php echo $weChatID;?>">
 						  <div class="checkbox">
 						  <label>
-                            <input id="hidewechatno" name='hidewechatno' type="checkbox" checked>
+                            <input id="showWeChatID" name='showWeChatID' type="checkbox" <?php  if($showWeChatID==1) echo " checked "?>>
                             <small> &nbsp;&nbsp;&nbsp;&nbsp;Display Wechat ID </small> </label>
                         </div>
 						</div>
@@ -128,10 +128,10 @@ input[type=checkbox]
 					  <div class="form-group">
                         <label for="Website" class="col-sm-3 control-label">Website</label>
                         <div class="col-sm-9">
-						  <input name="Website" type="text" pattern="\d*" class="form-control" id="Website" placeholder="Website">
+						  <input name="webSiteAddr" type="text"  pattern="\d*" class="form-control" id="webSiteAddr" placeholder="<?php echo $webSiteAddr; ?>">
 						  <div class="checkbox">
 						  <label>
-                            <input id="hideweb" name='hideweb' type="checkbox" checked>
+                            <input id="showWebSite" name='showWebSite' type="checkbox" <?php  if($showWebSite==1) echo " checked "?>>
                             <small> &nbsp;&nbsp;&nbsp;&nbsp;Show my website publicly</small> </label>
                           </div>
 						</div>
