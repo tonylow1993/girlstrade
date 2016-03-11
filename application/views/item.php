@@ -268,11 +268,19 @@ input[type=checkbox]
                 </div>
               </div>
               
-            <div class="content-footer text-left">  </div>
             </div>
             
-						<div class="content-footer text-left" id="viewItemBottomOpt"> 
-				<?php if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
+			<div class="content-footer" > 
+				<?php 
+				
+				if(!$isloginedIn and $isSameUser==false){
+					$imgRatingPath=base_url()."images/".$userRating;
+					
+						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Contact $username <img src=$imgRatingPath /></a>";
+					
+				}
+				
+				if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 	                  	$imgRatingPath=base_url()."images/".$userRating;
@@ -299,11 +307,12 @@ input[type=checkbox]
                   ?>
                   
                  <?php
-					if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
-					{
-						echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a>";
+					//if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
+					//{
+						if($isSameUser==true)
+							echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a>";
 						
-					}
+					//}
 					?>
 					<?php
 					if(($isloginedIn) && ($isSameUser==false))
@@ -320,28 +329,34 @@ input[type=checkbox]
 					}
 					?>	
 					<?php
-					if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
-					{
+					//if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
+					//{
+					if($isSameUser==false)
 						echo "<a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
-					}
+					//}
 					?>
 					<?php
+					$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+					if($soldUsers!=null){
+						$NoOfSoldUsers=count($soldUsers);
+						foreach($soldUsers as $row){
+							$soldUserID=$row->soldUserID;;
+							$soldUsername=$row->soldUsername;
+							$soldUsersstr=$soldUsersstr."  <option  value='".$soldUserID."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$soldUsername." </option>  ";
+						}
+					}
+					$soldUsersstr=$soldUsersstr."  </select>  ";
+					$soldUsersstr=base64_encode($soldUsersstr);
+					
+					if($isSameUser==true)
+						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
+					if(($isloginedIn) &&($isSameUser==true))
+					{
+						echo "<a href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a>";
+					}
+						
 					if(($isloginedIn) && ($isSameUser==true) && ( $hasBuyerList==true))
 					{
-						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
-						if($soldUsers!=null){
-							$NoOfSoldUsers=count($soldUsers);
-							foreach($soldUsers as $row){
-								$soldUserID=$row->soldUserID;;
-								$soldUsername=$row->soldUsername;
-								$soldUsersstr=$soldUsersstr."  <option  value='".$soldUserID."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$soldUsername." </option>  ";
-							}
-						}
-						$soldUsersstr=$soldUsersstr."  </select>  ";
-						$soldUsersstr=base64_encode($soldUsersstr);
-						
-						
-						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 						$ctrlName1="AjaxLoad_1";
 						$errorctrlName1="ErrAjaxLoad_1";
 						$postValueID="postValueCtrl_1";
@@ -367,12 +382,7 @@ input[type=checkbox]
 					}
 					?>
 					
-					 <?php
-                  if(($isloginedIn) &&($isSameUser==true))
-                  {  
-                  	echo "<a href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a>";
-                  	}
-                  ?>
+					 
 					</div>
                         <!-- </div> -->
 			 <!-- 	<div class="blog-post-footer">
@@ -511,11 +521,20 @@ input[type=checkbox]
               			<a href="<?php echo base_url().MY_PATH;?>viewProfile/index/<?php echo $postID.'/1?prevURL='.urlencode($previousCurrent_url);?>" 
               			class="btn   btn-default btn-block viewButton">
               			<i class="icon-user-3"></i>
-              			View <?php echo $userName;?> Info</a> </div>
+              			View <?php echo $username;?> Info</a> </div>
               		</h3>
                     <!-- <p> Joined: <strong><?php //echo $userCreateDate;?></strong></p> -->
                   </div>
-                  <?php if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false  or $isSameUser==false))
+                  
+                  <?php
+                  if(!$isloginedIn and $isSameUser==false){
+                  	$imgRatingPath=base_url()."images/".$userRating;
+                  		
+                  	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-default btn-block  directSendButton\"> <i class=\" icon-pencil\"></i> Contact $username <img src=$imgRatingPath /></a>";
+                  		
+                  }
+                  
+                  if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false  or $isSameUser==false))
                   {
 	                  if($isPostAlready == false and $isSameUser ==false ){
 	                  	$imgRatingPath=base_url()."images/".$userRating;
@@ -544,11 +563,12 @@ input[type=checkbox]
                   }
                   ?>
                   <?php
-					if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
-					{
+					//if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
+					//{
+					if($isSameUser==true)
 						echo "<div class=\"user-ads-action\"><a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum\"  class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a></div>";
 						
-					}
+					//}
 					?>
                   
                    <?php
@@ -567,27 +587,33 @@ input[type=checkbox]
 					}
 					?>	 
 					<?php
-					if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
-					{
-						echo "<br/><a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
-					}
+					//if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
+					//{
+						if($isSameUser==false)
+							echo "<br/><a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
+					//}
 					?>
 					<?php
+					$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+					if($soldUsers!=null){
+						$NoOfSoldUsers=count($soldUsers);
+						foreach($soldUsers as $row){
+							$soldUserID=$row->soldUserID;;
+							$soldUsername=$row->soldUsername;
+							$soldUsersstr=$soldUsersstr."  <option  value='".$soldUserID."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$soldUsername." </option>  ";
+						}
+					}
+					$soldUsersstr=$soldUsersstr."  </select>  ";
+					$soldUsersstr=base64_encode($soldUsersstr);
+					
+					if($isSameUser==true)
+						echo "<div class=\"user-ads-action\"><a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack </a></div>";
+					if(($isloginedIn) &&($isSameUser==true))
+					{
+						echo "<div class=\"user-ads-action\"><a  href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a></div>";
+					}
 					if(($isloginedIn) && ($isSameUser==true) && ( $hasBuyerList==true))
 					{
-						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
-						if($soldUsers!=null){
-							$NoOfSoldUsers=count($soldUsers);
-							foreach($soldUsers as $row){
-								$soldUserID=$row->soldUserID;;
-								$soldUsername=$row->soldUsername;
-								$soldUsersstr=$soldUsersstr."  <option  value='".$soldUserID."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$soldUsername." </option>  ";
-							}
-						}
-						$soldUsersstr=$soldUsersstr."  </select>  ";
-						$soldUsersstr=base64_encode($soldUsersstr);
-						
-						echo "<div class=\"user-ads-action\"><a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack </a></div>";
 						$ctrlName2="AjaxLoad_2";
 						$errorctrlName2="ErrAjaxLoad_2";
 						$postValueID="postValueCtrl_2";
@@ -600,16 +626,13 @@ input[type=checkbox]
 					}
 					?>
 					<?php
-                  if(($isloginedIn) &&($isSameUser==true))
-                  {  
-                  	echo "<div class=\"user-ads-action\"><a  href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a></div>";
                   	 
                   	
 	                //  echo "<div class=\"user-ads-action\">";
 	                //  echo "<a href=\"".base_url().MY_PATH."newPost/showEditPost/".$postID."?prevURL=".urlencode($previousCurrent_url);
 	                //  echo " data-toggle=\"modal\" class=\"btn btn-default btn-block directSendButton\">";
 	                //  echo "<i class=\" icon-pencil\"></i> Edit Item </a> </div>";
-                  }
+                  
                   ?>
                 </div>
               </div>
@@ -642,12 +665,33 @@ input[type=checkbox]
 
   <div class="modal-dialog">
     <div class="modal-content">
+    <?php 
+      	$usr = $this->nativesession->get('user');
+      	if(!isset($usr) or empty($usr)){
+      	?>
+      	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Please login</h4>
+      	</div>
+      	<div class="modal-body">
+      	   <h2>Please login to continue the process</h2>
+      	   <br>
+      	   <a class="btn btn-primary btn-xs" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-reply"></i>Login</a></p>";
+                    	
+      	</div>
+        <?php } else {?>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title">Approve or reject to request contact</h4>
       </div>
       <div class="modal-body">
-        <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
+      	
+      	<div id="tableBodyError">
+      	
+      	
+      	</div>
+      	<div id="tableBodyList">
+      		<table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr>
                     <th> <?php echo $this->lang->line("From");?> </th>
@@ -711,44 +755,103 @@ input[type=checkbox]
                   	}
             	}
             ?>
-        <!--      <div class="pagination-bar text-center">
+             <div class="pagination-bar text-center">
             <ul class="pagination">
             <?php 
-            	$url_path=base_url().MY_PATH."home/getAccountPage/2";
             	$pageNumPrev=$pageNum-1;
             	$pageNum2=$pageNum+1;
             	$pageNum3=$pageNum+2;
             	$pageNum4=$pageNum+3;
             	$pageNum5=$pageNum+4;
             	$pageNumNext=$pageNum+5;
+            	echo "<input type=\"hidden\" id=\"ctrlpostID\" name=\"ctrlpostID\" value=\"$postID\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNumPrev\" name=\"ctrlpageNumPrev\" value=\"$pageNumPrev\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNum\" name=\"ctrlpageNum\" value=\"$pageNum\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNum2\" name=\"ctrlpageNum2\" value=\"$pageNum2\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNum3\" name=\"ctrlpageNum3\" value=\"$pageNum3\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNum4\" name=\"ctrlpageNum4\" value=\"$pageNum4\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNum5\" name=\"ctrlpageNum5\" value=\"$pageNum5\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNumNext\" name=\"ctrlpageNumNext\" value=\"$pageNumNext\"/>";
+            	 
+            	
             	if($pageNum<>1)
             		echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumPrev\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum\">$pageNum</a></li>";
-            	echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum2\">$pageNum2</a></li>";
-              	echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum3\">$pageNum3</a></li>";
-              	echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum4\">$pageNum4</a></li>";
-              	echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum5\">$pageNum5</a></li>";
+            	echo "<li  class=\"active\"><a id=\"hrefPageNum\" href=\"#\" onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum</a></li>";
+            	echo "<li><a id=\"hrefPageNum2\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum2\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum2</a></li>";
+            	echo "<li><a id=\"hrefPageNum3\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum3\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum3</a></li>";
+            	echo "<li><a id=\"hrefPageNum4\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum4\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum4</a></li>";
+            	echo "<li><a id=\"hrefPageNum5\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum5\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum5</a></li>";
+            	echo "<li><a id=\"hrefPageNumNext\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNumNext\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNumNext</a></li>";
+            	 
+            	
+            	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNum3\", \"tableBodyList\", \"tableBodyError\")\" >$pageNum3</a></li>";
+              	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNum4\", \"tableBodyList\", \"tableBodyError\")\" >$pageNum4</a></li>";
+              	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNum5\", \"tableBodyList\", \"tableBodyError\")\" >$pageNum5</a></li>";
+              	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNumNext\", \"tableBodyList\", \"tableBodyError\")\" >$pageNumNext</a></li>";
+              	//echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum3\">$pageNum3</a></li>";
+              	//echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum4\">$pageNum4</a></li>";
+              	//echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum5\">$pageNum5</a></li>";
               
-               echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumNext\">Next</a></li>";
+               //echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumNext\">Next</a></li>";
             ?>
                 </ul>
-          </div> -->
+          </div> 
             	 </tbody>
               </table>
+      	
+      	</div>
+      	
+        
       </div>
-      
+      <?php }?>
     </div>
   </div>
+</div>
+
+
+<div class="modal fade" id="loginPopup" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Please login</h4>
+      	</div>
+      	<div class="modal-body">
+      	   <h2>Please login to continue the process</h2>
+      	   <br>
+      	   <a class="btn btn-primary btn-xs" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-reply"></i>Login</a></p>";
+                    	
+      	</div>
+    	
+    </div>
+ </div>
 </div>
 <div class="modal fade" id="buyerFeedBackPopup" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">
     <div class="modal-content">
+    <?php 
+      	$usr = $this->nativesession->get('user');
+      	if(!isset($usr) or empty($usr)){
+      	?>
+      	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Please login</h4>
+      	</div>
+      	<div class="modal-body">
+      	   <h2>Please login to continue the process</h2>
+      	   <br>
+      	   <a class="btn btn-primary btn-xs" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-reply"></i>Login</a></p>";
+                    	
+      	</div>
+        <?php } else {?>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>
       </div>
       <div class="modal-body">
+      
         <form role="form" id="itemBuyerFeedBack" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/buyerFeedBack?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
            <div class="form-group">
            		<input type="hidden" id="postID_1" name="postID_1" >   	
@@ -779,6 +882,7 @@ input[type=checkbox]
         	<button id="validate" hidden="true" type="submit"></button>
   
      	 </div>
+     	 <?php }?>
     </div>
   </div>
 </div>
@@ -786,6 +890,21 @@ input[type=checkbox]
 
   <div class="modal-dialog">
     <div class="modal-content">
+    <?php 
+      	$usr = $this->nativesession->get('user');
+      	if(!isset($usr) or empty($usr)){
+      	?>
+      	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Please login</h4>
+      	</div>
+      	<div class="modal-body">
+      	   <h2>Please login to continue the process</h2>
+      	   <br>
+      	   <a class="btn btn-primary btn-xs" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-reply"></i>Login</a></p>";
+                    	
+      	</div>
+        <?php } else {?>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>
@@ -828,6 +947,7 @@ input[type=checkbox]
         	<button id="validate" hidden="true" type="submit"></button>
   
      	 </div>
+     	 <?php }?>
     </div>
   </div>
 </div>
@@ -1125,9 +1245,15 @@ function passToModal() {
 	$('#sellerActionPopup').on('show.bs.modal', function(event) {
         $("#postID_3").val($(event.relatedTarget).data('id'));
         $("#pageNum").val($(event.relatedTarget).data('pagenum'));
-        
-         $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
+          $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
     });
+	$('#sellerApprovePopup').on('show.bs.modal', function(event) {
+		$("#ctrlpostID").val($(event.relatedTarget).data('id'));
+        $("#ctrlpageNum").val($(event.relatedTarget).data('pagenum'));
+        
+	});  
+	 $("#hrefPageNum").onclick(getApproveList("ctrlpostID", "ctrlpageNum2", "tableBodyList", "tableBodyError"));
+		
 	$('#sellerFeedBackPopup').on('show.bs.modal', function(event) {
 		 $("#postID_2").val($(event.relatedTarget).data('id'));
          $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
@@ -1150,6 +1276,95 @@ function passToModal() {
 }
 
 $(document).ready(passToModal());
+function getApproveList(ctrlValue1, ctrlValue2, ctrlName, ctrlErrName) {
+	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>viewItem/getPreApproveHtmlList",
+		data: { postID: $( "#".concat(ctrlValue1) ).val(), 
+			pageNum: $( "#".concat(ctrlValue2) ).val()},
+		success: function(response){
+			var result;
+			try{
+			result=JSON.parse(response);
+			}catch(err){
+				alert(err.message);
+			}
+			$("#".concat(ctrlName)).html(result.icon);
+	    	$("#".concat(ctrlErrName)).html(result.message);
+	    	}
+	});
+};
+function jsbase64_decode(data) {
+	  //  discuss at: http://phpjs.org/functions/base64_decode/
+	  // original by: Tyler Akins (http://rumkin.com)
+	  // improved by: Thunder.m
+	  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+	  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+	  //    input by: Aman Gupta
+	  //    input by: Brett Zamir (http://brett-zamir.me)
+	  // bugfixed by: Onno Marsman
+	  // bugfixed by: Pellentesque Malesuada
+	  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+	  //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
+	  //   returns 1: 'Kevin van Zonneveld'
+	  //   example 2: base64_decode('YQ===');
+	  //   returns 2: 'a'
+
+	  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+	  var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
+	    ac = 0,
+	    dec = '',
+	    tmp_arr = [];
+
+	  if (!data) {
+	    return data;
+	  }
+
+	  data += '';
+
+	  do { // unpack four hexets into three octets using index points in b64
+	    h1 = b64.indexOf(data.charAt(i++));
+	    h2 = b64.indexOf(data.charAt(i++));
+	    h3 = b64.indexOf(data.charAt(i++));
+	    h4 = b64.indexOf(data.charAt(i++));
+
+	    bits = h1 << 18 | h2 << 12 | h3 << 6 | h4;
+
+	    o1 = bits >> 16 & 0xff;
+	    o2 = bits >> 8 & 0xff;
+	    o3 = bits & 0xff;
+
+	    if (h3 == 64) {
+	      tmp_arr[ac++] = String.fromCharCode(o1);
+	    } else if (h4 == 64) {
+	      tmp_arr[ac++] = String.fromCharCode(o1, o2);
+	    } else {
+	      tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
+	    }
+	  } while (i < data.length);
+
+	  dec = tmp_arr.join('');
+
+	  return dec.replace(/\0+$/, '');
+	}
+	    
+//encode(decode) html text into html entity
+var decodeHtmlEntity = function(str) {
+return str.replace(/&#(\d+);/g, function(match, dec) {
+return String.fromCharCode(dec);
+});
+};
+
+var encodeHtmlEntity = function(str) {
+var buf = [];
+for (var i=str.length-1;i>=0;i--) {
+buf.unshift(['&#', str[i].charCodeAt(), ';'].join(''));
+}
+return buf.join('');
+};
+
+
 function marksold(ctrlValue1, ctrlName, ctrlErrName) {
 	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
 	$.ajax({

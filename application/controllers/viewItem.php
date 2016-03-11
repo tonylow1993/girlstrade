@@ -141,7 +141,7 @@
                 	$data["LocationName"] = $data["lang_label"]<>"english" ? $location[0]->nameCN : $location[0]->name;
                 else 
                 	$data["LocationName"]="All Locations";
-                 $data["userName"] = $user[0]->username;
+                 $data["username"] = $user[0]->username;
                 $data["userID"] = $user[0]->userID;
                 $userCreateDate = (new DateTime($user[0]->createDate))->format('Y-M-d');
                 $data["userCreateDate"]=$userCreateDate;
@@ -150,9 +150,9 @@
                 $data["errorMsg"]=array("success1"=> ($successMsg), "error"=> ($errorMsg));
                 
                 $userInfo=$this->userInfo->getUserInfoByUserID($data["userID"] );
-                print_r($userInfo);
+                //print_r($userInfo);
                 $email=$this->userEmail->getUserEmailByUserID($data["userID"] );
-                print_r($email);
+                //print_r($email);
                 if(isset($userInfo))
                 {
                 	$data["lastName"]=$userInfo["lastName"];

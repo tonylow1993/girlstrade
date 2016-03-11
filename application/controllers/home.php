@@ -854,7 +854,7 @@ class Home extends CI_Controller {
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
-			redirect('', 'location');
+			$this->load->view('successPage', $data);
 	}	
 	
 function generateRandomString($length = 8) {
