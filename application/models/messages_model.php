@@ -200,7 +200,8 @@
 		}
 		
 		public function getUnReadInboxMessage($userId){
-			$strQuery="select count(distinct messageID) as NoOfCount from message where ((status in ('Op', 'OC') and userID=$userId) or (status in ('R', 'C') and fUserID=$userId )) and readflag='N' ";
+			//$strQuery="select count(distinct messageID) as NoOfCount from message where ((status in ('Op', 'OC') and userID=$userId) or (status in ('R', 'C') and fUserID=$userId )) and readflag='N' ";
+			$strQuery="select count(distinct ID) as NoOfCount from buyermessage where userID=$userId and readflag='N' ";
 			$NoOfItemCount=0;
 			$query2 = $this->db->query($strQuery);
 			$var2=$query2->result_array();
@@ -379,7 +380,7 @@
 	    }
 	    
 	    public function getNoOfItemCountInOutgoingByPostUserId($userID){
-	    	$strQuery="select count(*) as NoOfCount from buyermessage where fromUserID=userID";
+	    	$strQuery="select count(*) as NoOfCount from buyermessage where fromUserID=$userID";
 	    	$NoOfItemCount=0;
 	    	$query2 = $this->db->query($strQuery);
 	    	$var2=$query2->result_array();
@@ -393,7 +394,7 @@
 	    	if ($pageNum>1)
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
 	    			
-	    		$strQuery="select * from buyermessage where fromUserID=userID limit $olimit, $ulimit";
+	    		$strQuery="select * from buyermessage where fromUserID=$userID limit $olimit, $ulimit";
 	    		$query2 = $this->db->query($strQuery);
 	    			
 	    		return $query2->result();
