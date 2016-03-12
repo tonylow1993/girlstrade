@@ -40,14 +40,14 @@
                   		$fromusername=$row["fromusername"];
                   		$fromEmail=$row["fromEmail"];
                   		$content=$row["content"];
-                  		$readflag=$row["readflag"];
+                  		$readflag="";
 						if(strcmp($row["readflag"],"N")==0)
 							$readflag="bgcolor=\"#FF0000\" onclick=\"editData($id, $pageNum)\"";
 						
                 		echo "<tr ".$readflag." >";
                     	echo "<td style=\"width:20%\" class=\"add-image\">$fromusername";
                     	echo "<p>";
-                    	echo "<a class=\"btn btn-primary btn-xs\" href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
+                    	echo "<a class=\"btn btn-primary btn-xs\" href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$userID\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
                     	echo "</p></td>";
                     	
                     	
