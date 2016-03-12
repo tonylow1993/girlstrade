@@ -88,7 +88,7 @@ if (is_array($array) || is_object($array))
 				$str=$str." 0 AS adsCount,0 AS favoriteAdsCount , 0 as outGoingMsgCount,";
 				$str=$str." 0 as BuyAdsCount, 0 as directsendhistCount, 0 as directsendhistCountAsSeller ";
 				$str=$str." FROM buyermessage ";
-				$str=$str." WHERE STATUS='A' "; //Op' or status='OC' ";
+				//$str=$str." WHERE STATUS='A' "; //Op' or status='OC' ";
 				$str=$str." GROUP BY userID ";
 				//$str=$str." Union all";
 				//$str=$str." select fUserID as userID, count(*), 0, 0,0,0,0,0,0,0 ,0,0 ,0,0";
@@ -140,7 +140,7 @@ if (is_array($array) || is_object($array))
 				$str=$str." GROUP BY userID ";
 				$str=$str." Union all";
 				$str=$str." select fromUserID as userID, 0,0,0, 0,0,0,0,0,0,count(*),0,0,0";
-				$str=$str." from buyermessage where status='A' "; // (status='C') ";
+				//$str=$str." from buyermessage where status='A' "; // (status='C') ";
 				$str=$str." group by fromUserID";
 				//$str=$str." Union all";
 				//$str=$str." select userID, 0,0,0, 0,0,0,0,0,0,count(*),0,0,0";
