@@ -453,7 +453,7 @@ class getCategory extends CI_Controller {
 									'isPendingRequest'=> $isPendingRequest,
 									'isPostAlready'=> $isPostAlready,
 									'isSameUser'=> $isSameUser,
-									'hasBuyerList'=>$soldUsers!=null && count($soldUsers)>0,
+									'hasBuyerList'=>$result!=null && count($result)>0,
 									'soldUsers'=>$soldUsers,
 									'result'=>$result,
 									'postID'=>$var[0]->postID,

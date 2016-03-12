@@ -313,7 +313,7 @@ input[type=checkbox]
                  <?php
 					//if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
 					//{
-						if($isSameUser==true)
+						if($isSameUser==true && $hasRequestContact==true)
 							echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a>";
 						
 					//}
@@ -570,7 +570,7 @@ input[type=checkbox]
                   <?php
 					//if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
 					//{
-					if($isSameUser==true)
+					if($isSameUser==true && $hasRequestContact==true)
 						echo "<div class=\"user-ads-action\"><a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum\"  class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a></div>";
 						
 					//}
