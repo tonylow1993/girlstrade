@@ -1745,9 +1745,11 @@ function generateRandomString($length = 8) {
 		if($inbox!=null){
 			foreach($inbox as $row)
 			{
+				$userID=0;
+				$fromUserID=0;
 				if(strcmp($type, "Inbox")==0){
-				$userID=$row->userID;
-				$fromUserID=$row->fromUserID;
+					$userID=$row->userID;
+					$fromUserID=$row->fromUserID;
 				}else {
 					$userID=$row->fromUserID;
 					$fromUserID=$row->userID;

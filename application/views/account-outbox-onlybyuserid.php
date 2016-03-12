@@ -40,9 +40,9 @@
                   		$fromusername=$row["fromusername"];
                   		$fromEmail=$row["fromEmail"];
                   		$content=$row["content"];
-                  		$readflag=$row["readflag"];
-						if(strcmp($row["readflag"],"N")==0)
-							$readflag="bgcolor=\"#FF0000\" onclick=\"editData($messageID, $pageNum)\"";
+                  		$readflag="";
+						//if(strcmp($row["readflag"],"N")==0)
+					//		$readflag="bgcolor=\"#FF0000\" onclick=\"editData($id, $pageNum)\"";
 						
                 		echo "<tr ".$readflag." >";
                     	echo "<td style=\"width:20%\" class=\"add-image\">$fromusername";

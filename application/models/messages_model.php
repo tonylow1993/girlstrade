@@ -399,7 +399,7 @@
 	    		return $query2->result();
 	    }
 	    public function getNoOfItemCountInBuyerMessageInboxByPostUserId($userID){
-	    	$strQuery="select count(*) as NoOfCount from buyermessage where  userID=userID";
+	    	$strQuery="select count(*) as NoOfCount from buyermessage where  userID=$userID";
 	    	$NoOfItemCount=0;
 	    	$query2 = $this->db->query($strQuery);
 	    	$var2=$query2->result_array();
@@ -413,7 +413,7 @@
 	    	if ($pageNum>1)
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
 	    	
-	    		$strQuery="select * from buyermessage where  userID=userID limit $olimit, $ulimit";
+	    		$strQuery="select * from buyermessage where  userID=$userID limit $olimit, $ulimit";
 	    		$query2 = $this->db->query($strQuery);
 	    	
 	    		return $query2->result();
