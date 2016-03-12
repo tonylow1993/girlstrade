@@ -326,6 +326,18 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		public function SendEmailTitleForResetPassword(){
 			return "Email alert for your reset password";
 		}
+		public function SendEmailRejectFeedBack(){
+			
+		}
+		public function SendEmailRejectFeedBackTitle(){
+				
+		}
+		public function SendEmailApproveFeedBack(){
+				
+		}
+		public function SendEmailApproveFeedBackTitle(){
+				
+		}
 // 		public function ApproveOrRejectSendEmail(){
 // 			return "Send email when approve or reject direct send request";
 // 		}

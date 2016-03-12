@@ -224,3 +224,5 @@ $lang["invalidpricerange"]="Invalid price range search!";
 $lang["lblRemainQty"]="Quantity";
 $lang["MyIntroduction"]="Introduction";
 $lang["ExceedMaxDescLength"]="Exceed Max Description Length";
+$lang["adminApprovePrivateMsgByUserIDOnly"]="Approve Message";
+$lang["adminApproveFeedBack"]="Approve FeedBack";

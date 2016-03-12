@@ -1,6 +1,6 @@
 <?php
 class sellerfeedback_model extends CI_Model {
-	
+	var $ID='';
 	var $postID='';
 	var $sellerID='';
 	var $buyerID='';

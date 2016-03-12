@@ -15,6 +15,8 @@
               	 $abuseMessagePath=base_url().MY_PATH."getAdmin/getAccountPage/8";
               	 $sendEmailPath=base_url().MY_PATH."getAdmin/getAccountPage/9";
               	 $contactUsPath=base_url().MY_PATH."getAdmin/getAccountPage/10";
+              	 $approveFeedBackPath=base_url().MY_PATH."getAdmin/getAccountPage/11";
+              	 //$appravePrivateMsgByUserIDOnlyPath=base_url().MY_PATH."getAdmin/getAccountPage/12";
               	 
               		echo "<h5 class=\"collapse-title\"> ".$this->lang->line('lblMenu')." <a class=\"pull-right\" data-toggle=\"collapse\"  href=\"#Home\"><i class=\"fa fa-angle-down\"></i></a></h5>";
                  	 echo "<div id=\"Home\" class=\"panel-collapse collapse in\">";
@@ -24,6 +26,17 @@
                       	echo "<li><a class=\"active\" href=$adminPostPath>". $this->lang->line('adminPost')." <span class=\"badge\"></span></a></li>";
               	  	else 
               	  		echo "<li><a href=$adminPostPath>". $this->lang->line('adminPost')." <span class=\"badge\"></span></a></li>";
+              	  	if($activeNav==11)
+              	  		echo "<li><a class=\"active\" href=$approveFeedBackPath>". $this->lang->line('adminApproveFeedBack')." <span class=\"badge\"></span></a></li>";
+           	 		else
+               			echo "<li><a href=$approveFeedBackPath>". $this->lang->line('adminApproveFeedBack')." <span class=\"badge\"></span></a></li>";
+//               	  				if($activeNav==12)
+//               	  					echo "<li><a class=\"active\" href=$appravePrivateMsgByUserIDOnlyPath>". $this->lang->line('adminApprovePrivateMsgByUserIDOnly')." <span class=\"badge\"></span></a></li>";
+//               	  					else
+//               	  						echo "<li><a href=$appravePrivateMsgByUserIDOnlyPath>". $this->lang->line('adminApprovePrivateMsgByUserIDOnly')." <span class=\"badge\"></span></a></li>";
+              	  				
+              	  	
+              	  	
               	  	if($activeNav==2)
                       	echo "<li><a  class=\"active\" href=$adminPhotoPath> ".$this->lang->line('adminPhoto') ." <span class=\"badge\"></span></a></li>";
                 	else 

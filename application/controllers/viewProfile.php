@@ -194,7 +194,7 @@ class viewProfile extends getCategory {
 		$userInformation=$this->userInfo_model->getUserInfoByUserID($data["userID"]);
 			
 		if(isset($userInformation))
-			$data["introduction"]=$userInformation[0]->introduction;
+			$data["introduction"]=$userInformation["introduction"];
 			else
 				$data["introduction"]="";
 		$loginUser=$this->nativesession->get("user");
@@ -287,7 +287,10 @@ class viewProfile extends getCategory {
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 		//----------------------------
-				
+
+			$data["recentBuyerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestBuyerComment($data["userID"]));
+			$data["recentSellerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestSellerComment($data["userID"]));
+			
 		$this->load->view('profile', $data);
 	}
 	

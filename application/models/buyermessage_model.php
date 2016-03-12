@@ -9,6 +9,8 @@ class buyermessage_model extends CI_Model {
 	var $rejectSpecifiedReason='';
 	var $rejectDate='';
 	var $createDate='';
+	var $readflag='';
+	var $ID='';
 	
 	function __construct()
 	{

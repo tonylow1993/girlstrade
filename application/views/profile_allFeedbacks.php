@@ -96,7 +96,10 @@ function sendIt() {
             	{
             		foreach($result as $id=>$row)
                   	{
-                  		
+                  		$type=$row["type"];
+                  		$fromUser=$row["fromUser"];
+                  		$feedback=$row["feedback"];
+                  		$createDate=$row["createDate"];
 						echo "<tr>";
                       	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\">";
                       	echo "<p>$type</p> <p>$fromUser</p>";

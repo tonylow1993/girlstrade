@@ -53,6 +53,7 @@ class getAdmin extends CI_Controller {
         $this->load->model('mailtemplate_model');
         $this->load->model('contact_model');
         $this->load->model('contacttype_model');
+        $this->load->model('buyerfeedback_model');
 	}
 	
 	public function index($Photo=0)
@@ -124,10 +125,56 @@ class getAdmin extends CI_Controller {
 						$data['itemList']=$this->mapToContactUs($this->contact_model->getContactUnverifiedList($pageNum));
 						$this->load->view('adminContactUs.php', $data);
 					}
+					else if($activeNav==11){
+						$data["NoOfItemCount"]=$this->buyerfeedback_model->getNoOfItemCountInApproveFeedBack();
+						$data['itemList']=$this->mapToFeedBack($this->buyerfeedback_model->getApproveFeedBackUnverifiedList($pageNum));
+						$this->load->view('adminApproveFeedBack.php', $data);
+					}
 			}
+			
 	}
 	}
-	
+	public function mapToFeedBack($input){
+		$result=null;
+		if($input!=null && count($input)>0){
+			$lang_label=$this->nativesession->get("language");
+			foreach($input as $row)
+			{
+				$type=$row->type;
+				$ID=$row->ID;
+				$postID=$row->postID;
+				$status=$row->status;
+				$sellerID=$row->sellerID;
+				$buyerID=$row->buyerID;
+				$rating=$row->rating;
+				$content=$row->content;
+				$createDate=$row->createDate;
+				$sellerInfo=$this->users_model->get_user_by_id($sellerID);
+				$sellername=$sellerInfo[0]->username;
+				$buyerInfo=$this->users_model->get_user_by_id($buyerID);
+				$buyername=$buyerInfo[0]->username;
+				$arrayMessage=array($ID => 
+						array("postID"=>$postID,
+						"type"=>$type,
+						"sellerID"=>$sellerID,
+						"buyerID"=>$buyerID,
+						"content"=>$content,
+						"rating"=>$rating,
+						"status"=>$status,
+						"sellername"=>$sellername,
+						"buyername"=>$buyername,
+						"createDate"=>$createDate));
+					
+					
+				if($result==null)
+					$result=$arrayMessage;
+					else
+						$result=$result + $arrayMessage;
+			}
+		}
+		
+		return $result;
+	}
 	public function mapToContactUs($input){
 		$result=null;
 		if($input!=null && count($input)>0){
@@ -572,7 +619,76 @@ class getAdmin extends CI_Controller {
 		$this->admin_model->updateStat();
 		$this->getAccountPage(7);
 	}
-	
+	public function updateFeedBack(){
+		try {
+			$Num1=0;
+			$Temp1=$this->input->post("NumRec");
+			if(isset($Temp1))
+				$Num1=$this->input->post("NumRec");
+				echo $Num1;
+				$approvelist=array();
+				$rejectlist=array();
+				if($Num1>0)
+				{
+					$r=0;
+					for($i=1;$i<=$Num1;$i++)
+					{
+						$commentID=$this->input->post("postID".$i);
+						$type=$this->input->post("type".$i);
+						$userID=$this->input->post("userID".$i);
+						$email=$this->useremail_model->getUserEmailByUserID($userID);
+						$userEmailAddress=$email['email'];
+						//print_r($email);
+						//echo $userEmailAddress;
+						$status=$this->input->post("actionType".$i);
+						$rejectReason = $this->input->post("rejectReason".$i);
+						$rejectSpecifiedReason = $this->input->post("rejectSpecifiedReason".$i);
+						
+						if($status=='A')
+						{
+							$temp=array('commentID'=>$commentID , 'type'=>$type);
+							array_push($approvelist ,$temp);
+							$usernameArr=$this->users_model->get_user_by_id($userID);
+							$username=$usernameArr[0]->username;
+							$path=base_url().MY_PATH."home/loginPage";
+							$msg=$this->mailtemplate_model->SendEmailApproveFeedBack( $username);
+							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApproveFeedBackTitle());
+								
+						}
+						else if($status=='R')
+						{
+							$temp=array('type'=>$type, 'commentID'=>$commentID ,'rejectReason'=> $rejectReason, 'rejectSpecifiedReason'=>$rejectSpecifiedReason);
+							// 						if($r==0)
+							// 							$rejectlist=$temp;
+							// 						else
+							// 							$rejectlist=$rejectlist+$temp;
+							// 						$r=$r+1;
+							array_push($rejectlist ,$temp);
+		
+							$usernameArr=$this->users_model->get_user_by_id($userID);
+							$username=$usernameArr[0]->username;
+							$path=base_url().MY_PATH."home/loginPage";
+							$msg=$this->mailtemplate_model->SendEmailRejectFeedBack( $username, $rejectReason ,$rejectSpecifiedReason );
+							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectFeedBackTitle());
+								
+						}
+		
+						//array_push($rejectlist, strval($postID));
+					}
+					if(!is_null($approvelist))
+						$this->buyerfeedback_model->updateApprovePost($approvelist);
+						if(!is_null($rejectlist<>null))
+							$this->buyerfeedback_model->updateRejectPost($rejectlist);
+							echo $Num1."success";
+				}
+		}catch(Exception $ex)
+		{
+			echo $ex->getMessage();
+			return;
+		}
+		$this->admin_model->updateStat();
+		$this->getAccountPage(11);
+		}
 	public function updateItemComments(){
 		//$data["lang_label"] = $this->nativesession->get("language");
 	

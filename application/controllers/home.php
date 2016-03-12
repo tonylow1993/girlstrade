@@ -66,6 +66,7 @@ class Home extends CI_Controller {
         	    $this->load->model('itemcomments_model');
         	    $this->load->model('mailtemplate_model');
         	    $this->load->model('pagevisited_model');
+        	    $this->load->model('buyermessage_model');
 	}
 	public function index($errorMsg='', $successMsg='')
 	{
@@ -1218,17 +1219,17 @@ function generateRandomString($length = 8) {
 		if($myList!=null){
 			foreach($myList as $row)
 			{
-				$feedBackKey=$row["ID"]+$row["type"];
+				$feedBackKey=$row->ID.$row->type;
 				$type="";
-				$typeID=$row["type"];
-				if(strcmp($row["type"],"buyer")==0)
+				$typeID=$row->type;
+				if(strcmp($row->type,"buyer")==0)
 					$type="Comment from seller";
 				else 
 					$type="Comment from buyer";
 				$userName="";
-				$createDate=$row["createDate"];
-				$rating=$row["rating"];
-				$feedback=$row["content"];
+				$createDate=$row->createDate;
+				$rating=$row->rating;
+				$feedback=$row->content;
 				$arrayMessage=array($feedBackKey => 
 						array("type"=>$type,
 						"typeID"=>$typeID,
@@ -1654,10 +1655,16 @@ function generateRandomString($length = 8) {
         		
 		if($activeNav==1)
 		{
-			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInInbox($userID);
-			$myList=$this->messages_model->getInBoxByPostUserId($userID, $pageNum);
-			$data["result"]=$this->mapInBoxToView($myList, "Inbox");
-			$this->load->view("account-inbox-new", $data);
+// 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInInbox($userID);
+// 			$myList=$this->messages_model->getInBoxByPostUserId($userID, $pageNum);
+// 			$data["result"]=$this->mapInBoxToView($myList, "Inbox");
+// 			$this->load->view("account-inbox-new", $data);
+			
+			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageInboxByPostUserId($userID);
+			$myList=$this->messages_model->getBuyerMessageInBoxByPostUserId($userID, $pageNum);
+			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "Inbox");
+			$this->load->view("account-inbox-onlybyuserid", $data);
+			
 		}
 		else if($activeNav==2)
 		{
@@ -1708,10 +1715,10 @@ function generateRandomString($length = 8) {
 		}
 		else if($activeNav==10)
 		{
-			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInOutgoing($userID);
-			$myList=$this->messages_model->getOutgoingByUserId($userID, $pageNum);
-			$data["result"]=$this->mapInBoxToView($myList, "OutBox");
-				$this->load->view("account-outbox", $data);
+			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInOutgoingByPostUserId($userID);
+			$myList=$this->messages_model->getOutgoingByPostUserId($userID, $pageNum);
+			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "OutBox");
+				$this->load->view("account-outbox-onlybyuserid", $data);
 			
 		}
 		else if($activeNav==7){
@@ -1731,7 +1738,54 @@ function generateRandomString($length = 8) {
 			$this->load->view("account-close", $data);
 		}
 	}
-	
+	public function mapInBoxByPostUserIdToView($inbox, $type="Inbox"){
+
+		$result=null;
+		$lang_label=$this->nativesession->get("language");
+		if($inbox!=null){
+			foreach($inbox as $row)
+			{
+				if(strcmp($type, "Inbox")==0){
+				$userID=$row->userID;
+				$fromUserID=$row->fromUserID;
+				}else {
+					$userID=$row->fromUserID;
+					$fromUserID=$row->userID;
+				}
+				$createDate=$row->createDate;
+				$content=$row->content;
+				$status=$row->status;
+				
+				$userarray=$this->users_model->get_user_by_id($userID);
+				if($userarray<>null)
+					$username=$userarray[0]->username;
+				$userarray=$this->users_model->get_user_by_id($fromUserID);
+				if($userarray<>null)
+					$fromusername=$userarray[0]->username;
+				$email=$this->userEmail->getUserEmailByUserID($fromUserID);
+				$fromEmail="";
+				if($email<>null)
+					$fromEmail=$email["email"];
+				$readFlag=$row->readflag;
+				$ID=$row->ID;
+					$arrayMessage=array($ID => array("userID"=>$userID,
+								"fromUserID"=>$fromUserID,
+								"username" => $username,
+								"fromusername"=>$fromusername,
+								"fromEmail"=>$fromEmail,
+								"createDate"=>$createDate,
+								"status" =>$status,
+								"content"=>$content,
+								"readflag"=>$readFlag,
+								"type"=>$type));
+						if($result==null)
+							$result=$arrayMessage;
+							else
+								$result=$result + $arrayMessage;
+			}
+		}
+		return $result;
+	}
 	public function mapReqeustPostToView($inbox, $type="buyer", $type2="DirectSend")
 	{
 		$result=null;
@@ -3177,7 +3231,17 @@ function generateRandomString($length = 8) {
 		
 		return $data;
 	}
-	
+	public function updateReadInboxBuyerMessage(){
+		$messageID=$_POST["messageID"];
+		$pageNum=$_POST["pageNum"];
+		$this->messages_model->updateReadInboxBuyerMessageFlag($messageID);
+		$data['status'] = 'A';
+		$data['class'] = "has-success";
+		$data['message'] = '';
+		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
+		echo json_encode($data);
+		return;
+	}
 	public function updateReadInbox(){
 		$messageID=$_POST["messageID"];
 		$pageNum=$_POST["pageNum"];
@@ -3189,6 +3253,30 @@ function generateRandomString($length = 8) {
 		echo json_encode($data);
 		return;
 		//$this->getAccountPage("1", $pageNum);
+	}
+	public function insertBuyerMessage($type){
+		$user=$this->nativesession->get("user");
+			
+		$fromUserID="";
+		$userID="";
+		if(strcmp($type,"Inbox")==0){
+			$fromUserID=$user["userID"];
+			$userID=$_POST["userID_1"];
+		}
+		$content=$_POST["message-text_1"];
+		$pageNum=$_POST["pageNum_1"];
+		$data["userID"]=$userID;
+		$data["fromUserID"]=$fromUserID;
+		$data["content"]=$content;
+		$data["status"]="U";
+		$data["createDate"]=date("Y-m-d H:i:s");
+		$data["readflag"]="N";
+		$this->buyermessage_model->insert($data);
+		
+		if(strcmp($type,"Inbox")==0)
+			$this->getAccountPage("1", $pageNum);
+		else 
+			$this->getAccountPage("10", $pageNum);
 	}
 	public function updateRepost(){
 		$postID=$_POST["postID"];

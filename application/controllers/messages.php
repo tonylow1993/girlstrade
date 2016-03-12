@@ -1668,6 +1668,7 @@ function addDayswithdate($date,$days){
 						'fromUserID'=>$fromUserID,
 						'status'=>'U',
 						'content'=>$message,
+						'readflag'=>"N",
 						'createDate'=>date("Y-m-d H:i:s"),
 				);
 				$messageResult=$this->buyermessage_model->insert($messageArray);

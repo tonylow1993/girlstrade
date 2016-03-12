@@ -37,6 +37,21 @@
 	    	}
 	    
 	    }
+	    
+	    public function updateReadInboxBuyerMessageFlag($messageID){
+	    
+	    	try {
+	    		$this->db->trans_start();
+	    		$data=array('readflag'=>'Y');
+	    		$this->db->where('ID', $messageID);
+	    		$result=$this->db->update('buyermessage', $data);
+	    		$this->db->trans_complete();
+	    	}catch(Exception $ex)
+	    	{
+	    		echo $ex->getMessage();
+	    		return;
+	    	}
+	    }
 	    public function isLastMessage($messageArray, $type){
 	    	
 	    	$postID=$messageArray->postID;
@@ -335,10 +350,73 @@
 	   		return $query2->result();
 	    }
 	    public function getAllFeedbacks($userID, $pageNum){
-	    
+	    	$ulimit=ITEMS_PER_PAGE;
+	    	$olimit=0;
+	    	if ($pageNum>1)
+	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+	    	$strQuery="select b.* from (select a.* from ( ";
+	    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ";
+	    	$strQuery=$strQuery." union all ";
+	    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ";
+	    	$strQuery=$strQuery." ) a  order by a.createDate desc ) b limit $olimit, $ulimit";
+	    	//log_message('error', $strQuery.": param:fuserID: ".$fuserID." userID: ".$userID);;
+	    	$query2 = $this->db->query($strQuery);
+	    	return $query2->result();
 	    }
 	    public function getNoOfItemCountInAllFeedbacks($userID){
+	    	$strQuery="select count(*) as NoOfCount from ( ";
+	    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ";
+	    	$strQuery=$strQuery." union all ";
+	    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ";
+	    	$strQuery=$strQuery." ) a ";
+	    	$NoOfItemCount=0;
+	    	$query2 = $this->db->query($strQuery);
+	    	$var2=$query2->result_array();
+	    	//var_dump($var2);
+	    	$NoOfItemCount=$var2[0]["NoOfCount"];
 	    	
+	    	return $NoOfItemCount;
+	    }
+	    
+	    public function getNoOfItemCountInOutgoingByPostUserId($userID){
+	    	$strQuery="select count(*) as NoOfCount from buyermessage where fromUserID=userID";
+	    	$NoOfItemCount=0;
+	    	$query2 = $this->db->query($strQuery);
+	    	$var2=$query2->result_array();
+	    	$NoOfItemCount=$var2[0]["NoOfCount"];
+	    	
+	    	return $NoOfItemCount;
+	    }
+	    public function getOutgoingByPostUserId($userID, $pageNum){
+	    	$ulimit=ITEMS_PER_PAGE;
+	    	$olimit=0;
+	    	if ($pageNum>1)
+	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+	    			
+	    		$strQuery="select * from buyermessage where fromUserID=userID limit $olimit, $ulimit";
+	    		$query2 = $this->db->query($strQuery);
+	    			
+	    		return $query2->result();
+	    }
+	    public function getNoOfItemCountInBuyerMessageInboxByPostUserId($userID){
+	    	$strQuery="select count(*) as NoOfCount from buyermessage where  userID=userID";
+	    	$NoOfItemCount=0;
+	    	$query2 = $this->db->query($strQuery);
+	    	$var2=$query2->result_array();
+	    	$NoOfItemCount=$var2[0]["NoOfCount"];
+	    	
+	    	return $NoOfItemCount;
+	    }
+	    public function getBuyerMessageInBoxByPostUserId($userID, $pageNum){
+	    	$ulimit=ITEMS_PER_PAGE;
+	    	$olimit=0;
+	    	if ($pageNum>1)
+	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+	    	
+	    		$strQuery="select * from buyermessage where  userID=userID limit $olimit, $ulimit";
+	    		$query2 = $this->db->query($strQuery);
+	    	
+	    		return $query2->result();
 	    }
 	}
 	
