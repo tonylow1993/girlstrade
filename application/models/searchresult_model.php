@@ -192,101 +192,35 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 		$query = $this->db->query($strQuery);
 		$var=$query->result();
 
-		$result=null;
-		if($var!=null){
-		foreach($var as $post)
-		{
-			$pic=$this->get_picture_by_postID($post->postID);
-			$category=$this->get_category_by_categoryID($post->catID);
-			$catName="";
-			$locName="";
-			if(strcmp($this->lang->line("lang_label_text"),"english")==0)
-					$catName=$category[0]->name;
-			else
-				$catName=$category[0]->nameCH;
-			$location=$this->get_location_by_locationID($post->locID);
-			if($location[0]->locationID!=0){
-				if(strcmp($this->lang->line("lang_label_text"),"english")==0)
-					$locName=$location[0]->name;
-				else 
-					$locName=$location[0]->nameCN;
-			}
-			$thumbPath="";
-			$thumbName="";
-			if($pic!=null && count($pic)>0){
-				try{
-				$thumbPath=$pic[0]-> thumbnailPath;
-				$thumbName=$pic[0]->thumbnailName;
-				}catch(Exception $ex){}
-			}
-			$userInfo=$this->nativesession->get("user");
-			$loginuserID=0;
-			if(!empty($userInfo))
-				$loginuserID=$userInfo["userID"];
-			
-			$var = $this->getPostByID($post->postID);
-			$loginUser=$this->nativesession->get("user");
-			$user = $this->get_user_by_id($var[0]->userID);
-			
-			$userRating=$this->getUserRating($var[0]->userID);
-			
-			$isloginedIn=false;
-			$isSameUser=false;
-			$isPostAlready=false;
-			$isPendingRequest=false;
-			$username=$user[0]->username;
-			if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
-			{
-				$isloginedIn=true;
-				if($loginUser["userID"]==$user[0]->userID)
-					$isSameUser=true;
-					$isPostAlready=$this->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "A");
-					$isPendingRequest=$this->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
-			}
-				
-				
-				
-			$temp=array('locationName'=> $locName,
-					'categoryName'=> $catName,
-					'postCurrency'=>$post->currency,
-					'postItemPrice'=>$post->itemPrice,
-					'postDescription'=> $post->description,
-					'newUsed'=> $post->newUsed,
-					'userRating'=>$userRating,
-					'postTitle'=>$post->itemName,
-					'postCreateDate'=>$post->createDate,
-					'picCount'=>count($pic),
-					'postTypeAds'=>$post->typeAds,
-					'thumbnailPath'=>$thumbPath,
-					'thumbnailName'=>	$thumbName,
-					'isloginedIn'=> $isloginedIn,
-					'username'=>$username,
-					'isPendingRequest'=> $isPendingRequest,
-					'isPostAlready'=> $isPostAlready,
-					'isSameUser'=> $isSameUser,
-					'getDisableSavedAds'=>$this->getDisableSavedAds($post->postID, $loginuserID)
-			);	
-			
-			
-			
-			
-			
-			if(is_null($result))
-			{
-				$result=array($post->postID => $temp);
-			}else
-			{	$result=$result + array($post->postID => $temp);
-
-			}
-		}
-		return $result;
-		}
+		return $var;
+		
 	}catch(Exception $e)
 	{
 		echo 'Caught exception: ',  $e->getMessage(), "\n";
 	}
 	return null;
 }
+/*
+public function getSoldUserList($postID){
+	$str="select solduserList.userID as soldUserID, solduserList.username as soldUsername
+	    			from  (select b.userID, b.username ";
+	$str=$str."  from message a inner join user b on a.userID=b.userID ";
+	$str=$str." inner join post c on a.postID=c.postID ";
+	$str=$str."	where a.status in ('C', 'R') and c.userID != a.userID and  a.postID=".$postID;
+	$str=$str." union all ";
+	$str=$str." select b.userID, b.username ";
+	$str=$str."  from message a inner join user b on a.fUserID=b.userID ";
+	$str=$str." inner join post c on a.postID=c.postID ";
+	$str=$str."	where a.status in ('OC', 'Op') and  c.userID != a.fUserID and a.postID=".$postID;
+	$str=$str." union all ";
+	$str=$str." SELECT a.userID, b.username FROM requestpost a inner join user b
+								on a.userID=b.userID  inner join post c on a.postID=c.postID
+								where a.postID=".$postID. "  and c.userID != a.userID  ) solduserList ";
+	$str=$str."	group by solduserList.userID, solduserList.username";
+	$query=$this->db->query($str);
+	$var=$query->result();
+	return $var;
+}*/
 public function getUserRating($userID){
 	return "girlstrade_ratings_lq_normal.png";
 }
@@ -322,7 +256,7 @@ function getfUserIDAndPostID($postID, $fUserID, $status)
 	else
 		return false;
 }
-function getDisableSavedAds($postID, $userID){
+/* function getDisableSavedAds($postID, $userID){
 	$arr=array("postID"=> $postID, "userID"=> $userID);
 	$query = $this->db->from('savedAds')->where($arr)->get();
 	$var= $query->result();
@@ -330,7 +264,7 @@ function getDisableSavedAds($postID, $userID){
 		return true;
 	else
 		return false;
-}
+} */
 
 function getFilterByTags($keywords){
 	$strArr=explode(" " ,strtoupper($keywords));

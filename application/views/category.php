@@ -646,6 +646,10 @@
 					$isSameUser=$item['isSameUser'];
 					$username=$item['username'];
 					$userRating=$item['userRating'];
+					$soldUsers=$item['soldUsers'];
+					$hasBuyerList=$item['hasBuyerList'];
+					$postID=$item["postID"];
+					$result=serialize($item["result"]);
 					try{
 					$postDescription=trimLongText($postDescription);
 					} catch(Exception $ex){
@@ -728,7 +732,9 @@
                 	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
                 	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
                 }
-                                  
+                if($isSameUser==true && $hasBuyerList==true){
+                	echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\" data-result=\"$result\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-primary btn-block btn-pink\"> <i class=\" icon-pencil\"></i> Approve Request </a>";
+				 }              
                 echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
                echo "</div>";
                }
@@ -744,7 +750,8 @@
                 </div>
                <div class="tab-pane  <?php if(strcmp($activeTab, "newAds")==0) echo "active"; ?>" id="newAds">
                 	<?php
-             $basePath=base_url().MY_PATH;
+             		
+			$basePath=base_url().MY_PATH;
              $encodeCurrentURL=urlencode(current_url());
               if($itemList<>null && sizeof($itemList)>0)
               {
@@ -753,7 +760,6 @@
 				{
 					if(strcmp($item["newUsed"], "N")<>0)
 						continue;
-					
 					$rowCount=$rowCount+1;
 				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL;
               		$locationName=$item["locationName"];
@@ -761,7 +767,16 @@
 					$postCurrency=$item['postCurrency'];
 					$postItemPrice=$item['postItemPrice'];
 					$postDescription=trim($item['postDescription']);
-					
+					$isloginedIn=$item['isloginedIn'];
+					$isPendingRequest=$item['isPendingRequest'];
+					$isPostAlready=$item['isPostAlready'];
+					$isSameUser=$item['isSameUser'];
+					$username=$item['username'];
+					$userRating=$item['userRating'];
+					$soldUsers=$item['soldUsers'];
+					$hasBuyerList=$item['hasBuyerList'];
+					$postID=$item["postID"];
+					$result=serialize($item["result"]);
 					try{
 					$postDescription=trimLongText($postDescription);
 					} catch(Exception $ex){
@@ -803,31 +818,58 @@
               		$postID2=$id;
               		$clickLink="clickLink".$rowCount;
               		$title=$this->lang->line("lblTitle");
-				echo "</div>";
+				$showSellerName="";
+				if(strcmp(SHOWSELLERNAMEINSEARCHBUTTON,"Y")==0)
+                	$showSellerName=$username;
+                else {
+                	$showSellerName="seller";
+                }
+                echo "</div>";
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
                    echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
-                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span>- <span class=\"date\"><i class=\"icon-clock\"> </i> $username </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                if($item["getDisableSavedAds"])
-               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
-                else
-             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
+                //if(!$item["getDisableSavedAds"])
+               	//	 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
+                //else
+             	//   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
+                if(!$isloginedIn and $isSameUser==false){
+                	$imgRatingPath=base_url()."images/".$userRating;
                 
-                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
+                	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact $showSellerName <img src=$imgRatingPath /></a>";
+                
+                }
+                if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
+                {
+                	if($isPostAlready == false and $isSameUser ==false ){
+                		
+                		$imgRatingPath=base_url()."images/".$userRating;
+                		echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+                		echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                		echo " data-toggle=\"modal\" >";
+                		echo "<i class=\"icon-right-hand\"></i>Contact $showSellerName <img src=$imgRatingPath /></a>";
+                	}
+                }
+                if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
+                {
+                	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
+                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                }
+                if($isSameUser==true && $hasBuyerList==true){
+                	echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\" data-result=\"$result\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-primary btn-block btn-pink\"> <i class=\" icon-pencil\"></i> Approve Request </a>";
+				 }              
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
                echo "</div>";
                }
-                    
-               if($rowCount==0)
-               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
-               	
-               
+                         
               }else{
               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
               }
+				
 				
               ?>  
                 
@@ -836,7 +878,8 @@
                 </div>
                 <div class="tab-pane <?php if(strcmp($activeTab, "usedAds")==0) echo "active"; ?>" id="usedAds">
                 	<?php
-             $basePath=base_url().MY_PATH;
+  		
+			$basePath=base_url().MY_PATH;
              $encodeCurrentURL=urlencode(current_url());
               if($itemList<>null && sizeof($itemList)>0)
               {
@@ -852,7 +895,16 @@
 					$postCurrency=$item['postCurrency'];
 					$postItemPrice=$item['postItemPrice'];
 					$postDescription=trim($item['postDescription']);
-					
+					$isloginedIn=$item['isloginedIn'];
+					$isPendingRequest=$item['isPendingRequest'];
+					$isPostAlready=$item['isPostAlready'];
+					$isSameUser=$item['isSameUser'];
+					$username=$item['username'];
+					$userRating=$item['userRating'];
+					$soldUsers=$item['soldUsers'];
+					$hasBuyerList=$item['hasBuyerList'];
+					$postID=$item["postID"];
+					$result=serialize($item["result"]);
 					try{
 					$postDescription=trimLongText($postDescription);
 					} catch(Exception $ex){
@@ -894,29 +946,58 @@
               		$postID2=$id;
               		$clickLink="clickLink".$rowCount;
               		$title=$this->lang->line("lblTitle");
-				echo "</div>";
+				$showSellerName="";
+				if(strcmp(SHOWSELLERNAMEINSEARCHBUTTON,"Y")==0)
+                	$showSellerName=$username;
+                else {
+                	$showSellerName="seller";
+                }
+                echo "</div>";
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
                    echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
-                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span>- <span class=\"date\"><i class=\"icon-clock\"> </i> $username </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                if($item["getDisableSavedAds"])
-               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
-                else
-             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
+                //if(!$item["getDisableSavedAds"])
+               	//	 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
+                //else
+             	//   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
+                if(!$isloginedIn and $isSameUser==false){
+                	$imgRatingPath=base_url()."images/".$userRating;
                 
-                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
+                	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact $showSellerName <img src=$imgRatingPath /></a>";
+                
+                }
+                if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
+                {
+                	if($isPostAlready == false and $isSameUser ==false ){
+                		
+                		$imgRatingPath=base_url()."images/".$userRating;
+                		echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+                		echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                		echo " data-toggle=\"modal\" >";
+                		echo "<i class=\"icon-right-hand\"></i>Contact $showSellerName <img src=$imgRatingPath /></a>";
+                	}
+                }
+                if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
+                {
+                	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
+                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                }
+                if($isSameUser==true && $hasBuyerList==true){
+                	echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\" data-result=\"$result\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-primary btn-block btn-pink\"> <i class=\" icon-pencil\"></i> Approve Request </a>";
+				 }              
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
                echo "</div>";
                }
-               if($rowCount==0)
-               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
-               	 
+                         
               }else{
               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
               }
+				
 				
               ?>  
                 
@@ -976,6 +1057,15 @@
   <!-- /.footer --> 
 </div>
   <script>
+  function passToModal() {
+		$('#sellerApprovePopup').on('show.bs.modal', function(event) {
+	        $("$postID").val($(event.relatedTarget).data('id'));
+	        $("$pageNum").val($(event.relatedTarget).data('pagenum'));
+	        //  $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
+			$("$result").val($(event.relatedTarget).data('result'));
+	  	});
+  }
+  $(document).ready(passToModal());
   $('.nav-tabs a').click(function(){
 	    $(this).tab('show');
 	})
@@ -1240,7 +1330,153 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 </script>
 <!-- /.wrapper --> 
 
+<div class="modal fade" id="sellerApprovePopup" tabindex="-1" role="dialog">
 
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <?php 
+      	$usr = $this->nativesession->get('user');
+      	if(!isset($usr) or empty($usr)){
+      	?>
+      	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Please login</h4>
+      	</div>
+      	<div class="modal-body">
+      	   <h2>Please login to continue the process</h2>
+      	   <br>
+      	   <a class="btn btn-primary btn-xs" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-reply"></i>Login</a></p>";
+                    	
+      	</div>
+        <?php } else {?>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Approve or reject to request contact</h4>
+      </div>
+      <div class="modal-body">
+      	
+      	<div id="tableBodyError">
+      	
+      	
+      	</div>
+      	<div id="tableBodyList">
+      		<table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
+                <thead>
+                  <tr>
+                    <th> <?php echo $this->lang->line("From");?> </th>
+                    <th data-sort-ignore="true"> <?php echo $this->lang->line("Ads_Detail");?></th>
+                    </tr>
+                </thead>
+                <tbody>
+            <?php 
+            	$resultList=unserialize($result);
+            	if($resultList<>null)
+            	{
+            		$rowCount=0;
+                  	foreach($resultList as $id=>$row)
+                  	{
+                  		
+                  		$from=$row['from'];
+                  		$reply=$row['reply'];
+                  		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
+                  		$imagePath=$row['imagePath'];
+                  		$previewTitle=$row['previewTitle'];
+                  		$previewDesc=$row["previewDesc"];
+                  		$createDate=$row['createDate'];
+                  		$itemStatus=$row['itemStatus'];
+                  		$messageID=$id;
+                  		$userID=$row['userID'];
+                  		$NoOfDaysPending=$row['NoOfDaysPending'];
+						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
+						$price=$row['price'];
+                		echo "<tr>";
+                    	echo "<td style=\"width:20%\" class=\"add-image\">$from";
+                    	//echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	echo "<br/>".$this->lang->line("DaysExpiry")." :".$NoOfDaysb4ExpiryContact;
+                    	$approvePath=base_url().MY_PATH."messages\approveSavedAds\$messageID\$userID";
+                    	$rejectPath=base_url().MY_PATH."messages\rejectSavedAds\$messageID\$userID";
+                    	$rowCount=$rowCount+1;
+                    	$ctrlName1="AjaxLoad1_".$rowCount;
+                    	$errorctrlName1="ErrAjaxLoad1_".$rowCount;
+                    	$ctrlValue1="messageID".$rowCount;
+                    	$ctrlValue2="userID".$rowCount;
+                    	$ctrlName2="AjaxLoad2_".$rowCount;
+                    	$errorctrlName2="ErrAjaxLoad2_".$rowCount;
+                    	$clickLink="clickLink".$rowCount;
+                    	$clickLink2="clickLink2_".$rowCount;
+                    	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
+                    	echo "<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
+                    	echo "<p> <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
+                    	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:approve('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-reply\"></i> ".$this->lang->line('Approve')." </a></p>";
+                    	echo "<p><div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
+                    	echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:reject('$ctrlValue1','$ctrlValue2', '$ctrlName2', '$errorctrlName2')\" id='$clickLink2'><i class=\"fa fa-trash\"></i>  ".$this->lang->line('Reject')."</a></p>";
+                    	//echo "</div>";
+                    	
+                    	echo "</td>";
+                      	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
+                    	echo "<div class=\"ads-details\">";
+                      echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
+                          echo "<br/>Posted On: ". $createDate."</h5>";
+                    		echo "</div></td>";
+                      		
+                      	
+                  		echo "</tr>";
+                  		
+                  	}
+            	}
+            ?>
+             <div class="pagination-bar text-center">
+            <ul class="pagination">
+            <?php 
+            	$pageNumPrev=$pageNum-1;
+            	$pageNum2=$pageNum+1;
+            	$pageNum3=$pageNum+2;
+            	$pageNum4=$pageNum+3;
+            	$pageNum5=$pageNum+4;
+            	$pageNumNext=$pageNum+5;
+            	echo "<input type=\"hidden\" id=\"ctrlpostID\" name=\"ctrlpostID\" value=\"$postID\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNumPrev\" name=\"ctrlpageNumPrev\" value=\"$pageNumPrev\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNum\" name=\"ctrlpageNum\" value=\"$pageNum\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNum2\" name=\"ctrlpageNum2\" value=\"$pageNum2\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNum3\" name=\"ctrlpageNum3\" value=\"$pageNum3\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNum4\" name=\"ctrlpageNum4\" value=\"$pageNum4\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNum5\" name=\"ctrlpageNum5\" value=\"$pageNum5\"/>";
+            	echo "<input type=\"hidden\" id=\"ctrlpageNumNext\" name=\"ctrlpageNumNext\" value=\"$pageNumNext\"/>";
+            	 
+            	
+            	if($pageNum<>1)
+            		echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumPrev\">Previous</a></li>";
+            	echo "<li  class=\"active\"><a id=\"hrefPageNum\" href=\"#\" onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum</a></li>";
+            	echo "<li><a id=\"hrefPageNum2\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum2\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum2</a></li>";
+            	echo "<li><a id=\"hrefPageNum3\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum3\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum3</a></li>";
+            	echo "<li><a id=\"hrefPageNum4\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum4\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum4</a></li>";
+            	echo "<li><a id=\"hrefPageNum5\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum5\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum5</a></li>";
+            	echo "<li><a id=\"hrefPageNumNext\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNumNext\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNumNext</a></li>";
+            	 
+            	
+            	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNum3\", \"tableBodyList\", \"tableBodyError\")\" >$pageNum3</a></li>";
+              	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNum4\", \"tableBodyList\", \"tableBodyError\")\" >$pageNum4</a></li>";
+              	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNum5\", \"tableBodyList\", \"tableBodyError\")\" >$pageNum5</a></li>";
+              	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNumNext\", \"tableBodyList\", \"tableBodyError\")\" >$pageNumNext</a></li>";
+              	//echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum3\">$pageNum3</a></li>";
+              	//echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum4\">$pageNum4</a></li>";
+              	//echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum5\">$pageNum5</a></li>";
+              
+               //echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumNext\">Next</a></li>";
+            ?>
+                </ul>
+          </div> 
+            	 </tbody>
+              </table>
+      	
+      	</div>
+      	
+        
+      </div>
+      <?php }?>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="loginPopup" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">
@@ -1769,15 +2005,7 @@ function openCat(id) {
     
     var plusIcon = 'glyphicon glyphicon-plus';
     var minusIcon = 'glyphicon glyphicon-minus';
-    /*
-    if(thisitem.childNodes[1] == plusIcon)
-    {
-    	thisitem.innerHTML = thisitem.innerHTML.replace(plusIcon, minusIcon);
-    }else if (thisitem.childNodes[1] == minusIcon)
-    {
-    	thisitem.innerHTML = thisitem.innerHTML.replace(minusIcon, plusIcon);
-    }*/
-    var elms = document.getElementById(id).getElementsByTagName("I");
+      var elms = document.getElementById(id).getElementsByTagName("I");
         
    	//console.log(elms[0].tagName);
     var x = elms[0].className;
@@ -1795,6 +2023,88 @@ function openCat(id) {
 function backHomePage(){
 	window.location = "<?php echo base_url();?>";
 }
+function approve(ctrlValue1, ctrlValue2, ctrlName, ctrlErrName) {
+	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>messages/approveSavedAds",
+		data: { messageID: $( "#".concat(ctrlValue1) ).val(),
+		userID: $( "#".concat(ctrlValue2) ).val() },
+		success: function(response){
+			var result = JSON.parse(response);
+	    	$("#".concat(ctrlName)).html(result.icon);
+	    	$("#".concat(ctrlErrName)).html(result.message);
+	    	}
+	});
+};
+function reject(ctrlValue1, ctrlValue2, ctrlName, ctrlErrName) {
+	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>messages/rejectSavedAds",
+		data: { messageID: $( "#".concat(ctrlValue1) ).val(),
+		userID: $( "#".concat(ctrlValue2) ).val() },
+		success: function(response){
+			var result = JSON.parse(response);
+	    	$("#".concat(ctrlName)).html(result.icon);
+	    	$("#".concat(ctrlErrName)).html(result.message);
+	    	}
+	});
+};
+function jsbase64_decode(data) {
+	 
+	  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+	  var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
+	    ac = 0,
+	    dec = '',
+	    tmp_arr = [];
+
+	  if (!data) {
+	    return data;
+	  }
+
+	  data += '';
+
+	  do { // unpack four hexets into three octets using index points in b64
+	    h1 = b64.indexOf(data.charAt(i++));
+	    h2 = b64.indexOf(data.charAt(i++));
+	    h3 = b64.indexOf(data.charAt(i++));
+	    h4 = b64.indexOf(data.charAt(i++));
+
+	    bits = h1 << 18 | h2 << 12 | h3 << 6 | h4;
+
+	    o1 = bits >> 16 & 0xff;
+	    o2 = bits >> 8 & 0xff;
+	    o3 = bits & 0xff;
+
+	    if (h3 == 64) {
+	      tmp_arr[ac++] = String.fromCharCode(o1);
+	    } else if (h4 == 64) {
+	      tmp_arr[ac++] = String.fromCharCode(o1, o2);
+	    } else {
+	      tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
+	    }
+	  } while (i < data.length);
+
+	  dec = tmp_arr.join('');
+
+	  return dec.replace(/\0+$/, '');
+	}
+	    
+//encode(decode) html text into html entity
+var decodeHtmlEntity = function(str) {
+return str.replace(/&#(\d+);/g, function(match, dec) {
+return String.fromCharCode(dec);
+});
+};
+
+var encodeHtmlEntity = function(str) {
+var buf = [];
+for (var i=str.length-1;i>=0;i--) {
+buf.unshift(['&#', str[i].charCodeAt(), ';'].join(''));
+}
+return buf.join('');
+};
 
 </script>
 <?php include "footer2.php"; ?>

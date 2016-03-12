@@ -50,7 +50,7 @@
 			$prevUrl=$_SESSION["previousUrl"];
 	
 			$data["previousCurrent_url"] = urldecode($prevUrl);
-			$data["getDisableSavedAds"]=$this->searchresult_model->getDisableSavedAds($postId, $loginUser["userID"]);
+			$data["getDisableSavedAds"]=$this->post->getDisableSavedAds($postId, $loginUser["userID"]);
 			
 		try {
  	      $data["lang_label_text"] = $this->lang->line("lang_label_text");

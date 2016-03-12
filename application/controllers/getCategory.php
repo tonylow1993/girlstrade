@@ -37,6 +37,10 @@ class getCategory extends CI_Controller {
 		$this->load->model('pagevisited_model');
 		$this->load->model('messages_model');
 		$this->load->model('userstat_model');
+		$this->load->model('users_model');
+		$this->load->model('useremail_model');
+		$this->load->model('requestpost_model');
+		$this->load->model('picture_model');
 	}
 	
 	public function savedAds()
@@ -235,7 +239,7 @@ class getCategory extends CI_Controller {
 		
 		
 		
-		$data['itemList']=$this->searchresult_model->getItemList($pageNum,0, $catID, $locID, $keywords, $sortByID, $minPrice, $maxPrice, $allAds);
+		$data['itemList']=$this->mapToSearchResult($this->searchresult_model->getItemList($pageNum,0, $catID, $locID, $keywords, $sortByID, $minPrice, $maxPrice, $allAds));
 		$NoOfItemCount=$this->searchresult_model->getNoOfItemCount(0, $catID, $locID, $keywords, $minPrice, $maxPrice, $allAds);
 	 	$data["NoOfItemCount"]=$NoOfItemCount;
 					
@@ -373,6 +377,211 @@ class getCategory extends CI_Controller {
 	
 		return $data;
 	}
+	public function mapToSearchResult($var){
+		$searchResult=null;
+		if($var!=null){
+			foreach($var as $post)
+			{
+				$pic=$this->searchresult_model->get_picture_by_postID($post->postID);
+				$category=$this->searchresult_model->get_category_by_categoryID($post->catID);
+				$catName="";
+				$locName="";
+				if(strcmp($this->lang->line("lang_label_text"),"english")==0)
+					$catName=$category[0]->name;
+					else
+						$catName=$category[0]->nameCH;
+						$location=$this->searchresult_model->get_location_by_locationID($post->locID);
+						if($location[0]->locationID!=0){
+							if(strcmp($this->lang->line("lang_label_text"),"english")==0)
+								$locName=$location[0]->name;
+								else
+									$locName=$location[0]->nameCN;
+						}
+						$thumbPath="";
+						$thumbName="";
+						if($pic!=null && count($pic)>0){
+							try{
+								$thumbPath=$pic[0]-> thumbnailPath;
+								$thumbName=$pic[0]->thumbnailName;
+							}catch(Exception $ex){}
+						}
+						$userInfo=$this->nativesession->get("user");
+						$loginuserID=0;
+						if(!empty($userInfo))
+							$loginuserID=$userInfo["userID"];
+								
+							$var = $this->searchresult_model->getPostByID($post->postID);
+							$loginUser=$this->nativesession->get("user");
+							$user = $this->searchresult_model->get_user_by_id($var[0]->userID);
+								
+							$userRating=$this->searchresult_model->getUserRating($var[0]->userID);
+								
+							$isloginedIn=false;
+							$isSameUser=false;
+							$isPostAlready=false;
+							$isPendingRequest=false;
+							$username=$user[0]->username;
+							if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
+							{
+								$isloginedIn=true;
+								if($loginUser["userID"]==$user[0]->userID)
+									$isSameUser=true;
+									$isPostAlready=$this->searchresult_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "A");
+									$isPendingRequest=$this->searchresult_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
+							}
+		
+							$soldUsers=$this->messages_model->getSoldUserList($var[0]->postID);
+							$NoOfItemCount=$this->requestpost_model->getNoOfItemCountInApproveAndRejectOfPost($loginUser['userID'], $var[0]->postID);
+							$myList=$this->requestpost_model->getApproveAndRejectOfPost($loginUser['userID'], $var[0]->postID,0);
+							$result=$this->mapReqeustPostToView($myList, 'seller', "ApproveAndReject");
+							
+							$temp=array('locationName'=> $locName,
+									'categoryName'=> $catName,
+									'postCurrency'=>$post->currency,
+									'postItemPrice'=>$post->itemPrice,
+									'postDescription'=> $post->description,
+									'newUsed'=> $post->newUsed,
+									'userRating'=>$userRating,
+									'postTitle'=>$post->itemName,
+									'postCreateDate'=>$post->createDate,
+									'picCount'=>count($pic),
+									'postTypeAds'=>$post->typeAds,
+									'thumbnailPath'=>$thumbPath,
+									'thumbnailName'=>	$thumbName,
+									'isloginedIn'=> $isloginedIn,
+									'username'=>$username,
+									'isPendingRequest'=> $isPendingRequest,
+									'isPostAlready'=> $isPostAlready,
+									'isSameUser'=> $isSameUser,
+									'hasBuyerList'=>$soldUsers!=null && count($soldUsers)>0,
+									'soldUsers'=>$soldUsers,
+									'result'=>$result,
+									'postID'=>$var[0]->postID,
+									'getDisableSavedAds'=>$this->post_model->getDisableSavedAds($post->postID, $loginuserID)
+							);
+								
+								
+								
+								
+								
+							if(is_null($searchResult))
+							{
+								$searchResult=array($post->postID => $temp);
+							}else
+							{	$searchResult=$searchResult + array($post->postID => $temp);
+		
+							}
+			}
+		}
+			return $searchResult;
+	}
+	public function mapReqeustPostToView($inbox, $type="buyer", $type2="DirectSend")
+	{
+		$result=null;
+		$lang_label=$this->nativesession->get("language");
+		if($inbox!=null){
+			foreach($inbox as $row)
+			{
+				$postID=$row->postID;
+				$messageID=$row->postID."-".$row->userID;
+				//$userID=$row->userID;
+				$fuserID=$row->userID;
+				$createDate=$row->createDate;
+				$expiryDate=$row->expriyDate;
+				$statusRP=$row->status;
+				$status="";
+				$name="";
+				$previewTitle="";
+				$previewDesc="";
+				$price=0;
+				$userID=0;
+				$enableMarkSoldBtn=false;
+				$visibleBuyerComment=false;
+				$soldToUserID=0;
+				$postInfo=$this->post_model->getPostByPostID($postID);
+				if($postInfo<>null)
+				{
+					if ($lang_label<>"english")
+						$name=$postInfo[0]->itemNameCH;
+						else
+							$name=$postInfo[0]->itemName;
+							$soldToUserID=$postInfo[0]->soldToUserID;
+							$enableMarkSoldBtn=$postInfo[0]->sellerRating==null;
+							$visibleBuyerComment=$postInfo[0]->sellerRating<>null &&
+							$postInfo[0]->buyerRating==null;
+							$previewTitle=$name;
+							$previewDesc=$postInfo[0]->description;
+							$price=$postInfo[0]->currency." ".$postInfo[0]->itemPrice;
+							$userID=$postInfo[0]->userID;
+							$status=$postInfo[0]->status;
+				}
+				$userarray=$this->users_model->get_user_by_id($userID);
+				$reply="";
+				$from="";
+				$sellerEmail="";
+				if($userarray<>null)
+				{
+					$reply=$userarray[0]->username;
+					$from=$reply;
+				}
+				$email="";
+				if(strcmp($type,"buyer")==0)
+					$email=$this->userEmail->getUserEmailByUserID($userID);
+					else
+						$email=$this->useremail_model->getUserEmailByUserID($fuserID);
+						if($email<>null){
+							$sellerEmail=$email["email"];
+						}
+						$fUserarray=$this->users_model->get_user_by_id($fuserID);
+						if($fUserarray<>null)
+						{
+							$from=$fUserarray[0]->username;
+						}
 	
+						$pic=$this->picture_model->get_picture_by_postID($postID);
+						$imagePath="";
+						$picCount=count($pic);
+						if($pic<>null)
+						{
+							$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
+						}
+						$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
+	
+						$itemStatus=$status;
+						$dStart=date_create('2015-09-20');
+						$dDiff = $dStart->diff(date_create($expiryDate));
+						$NoOfDaysPending=$dDiff->days;
+						$NoOfDaysb4ExpiryContact=$dDiff->days;
+						$arrayMessage=array($messageID => array("postID"=>$postID,
+								"messageID"=>$messageID,
+								"userID"=>$userID,
+								"fuserID"=>$fuserID,
+								"createDate"=>$createDate,
+								"reply"=>$reply,
+								"previewTitle"=>$previewTitle,
+								"previewDesc"=>$previewDesc,
+								"price"=>$price,
+								"enableMarkSoldBtn"=>$enableMarkSoldBtn,
+								"visibleBuyerComment"=>$visibleBuyerComment,
+								"soldToUserID"=>$soldToUserID,
+								"imagePath"=>$imagePath,
+								"viewItemPath"=>$viewItemPath,
+								"itemStatus"=>$itemStatus,
+								"statusRP" =>$statusRP,
+								"from"=>$from,
+								"recordType" => $type2,
+								"NoOfDaysPending"=>$NoOfDaysPending,
+								"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
+								"sellerEmail" => $sellerEmail,
+								"replyUserID"=>$userID,
+								"picCount"=>$picCount));
+						if($result==null)
+							$result=$arrayMessage;
+							else
+								$result=$result + $arrayMessage;
+			}
+		}
+		return $result;
+	}
 }
 ?>

@@ -340,20 +340,21 @@ input[type=checkbox]
 					//}
 					?>
 					<?php
-					$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
-					if($soldUsers!=null){
-						$NoOfSoldUsers=count($soldUsers);
-						foreach($soldUsers as $row){
-							$soldUserID=$row->soldUserID;;
-							$soldUsername=$row->soldUsername;
-							$soldUsersstr=$soldUsersstr."  <option  value='".$soldUserID."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$soldUsername." </option>  ";
-						}
-					}
-					$soldUsersstr=$soldUsersstr."  </select>  ";
-					$soldUsersstr=base64_encode($soldUsersstr);
 					
-					if($isSameUser==true)
+					if($isSameUser==true && $hasBuyerList==true){
+						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+						if($soldUsers!=null){
+							$NoOfSoldUsers=count($soldUsers);
+							foreach($soldUsers as $row){
+								$soldUserID=$row->soldUserID;;
+								$soldUsername=$row->soldUsername;
+								$soldUsersstr=$soldUsersstr."  <option  value='".$soldUserID."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$soldUsername." </option>  ";
+							}
+						}
+						$soldUsersstr=$soldUsersstr."  </select>  ";
+						$soldUsersstr=base64_encode($soldUsersstr);
 						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
+					}
 					if(($isloginedIn) &&($isSameUser==true))
 					{
 						echo "<a href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a>";

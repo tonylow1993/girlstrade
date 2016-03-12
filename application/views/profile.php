@@ -277,7 +277,7 @@ function sendIt() {
               </div>
               
                <div class="tab-pane <?php if(strcmp($activeTab, "newAds")==0) echo "active"; ?>" id="newAds">
-                <?php  
+              <?php
              $basePath=base_url();
              $encodeCurrentURL=urlencode(current_url());
              $title=$this->lang->line("lblTitle");
@@ -287,7 +287,8 @@ function sendIt() {
               
               foreach($itemList as $id=>$item)
 				{
-					
+					if(strcmp($item["newUsed"], "N")<>0)
+						continue;
 					$rowCount=$rowCount+1;
 				  $viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL;
               		$locationName='';
@@ -310,10 +311,6 @@ function sendIt() {
 								$getDisableSavedAds=$child;
 						}
 					}
-					
-					if(strcmp($post->newUsed, "N")<>0)
-						continue;
-					
 					echo  "<div class=\"item-list\"> ";
               		echo  "<div class=\"col-sm-2 no-padding photobox\">";
 					foreach($item as $pic=>$picObj)
@@ -382,7 +379,7 @@ function sendIt() {
             <div class="tab-pane <?php if(strcmp($activeTab, "usedAds")==0) echo "active"; ?>" id="usedAds">
                
                 <?php
-             $basePath=base_url();
+$basePath=base_url();
              $encodeCurrentURL=urlencode(current_url());
              $title=$this->lang->line("lblTitle");
               if($itemList<>null)
@@ -391,7 +388,8 @@ function sendIt() {
               
               foreach($itemList as $id=>$item)
 				{
-					
+					if(strcmp($item["newUsed"], "U")<>0)
+						continue;
 					$rowCount=$rowCount+1;
 				  $viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL;
               		$locationName='';
@@ -414,8 +412,6 @@ function sendIt() {
 								$getDisableSavedAds=$child;
 						}
 					}
-					if(strcmp($post->newUsed, "U")<>0)
-						continue;
 					echo  "<div class=\"item-list\"> ";
               		echo  "<div class=\"col-sm-2 no-padding photobox\">";
 					foreach($item as $pic=>$picObj)

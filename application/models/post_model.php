@@ -477,7 +477,9 @@
 	    		$location=$this->get_location_by_locationID($post->locID);
 	    		$soldToUser=$this->get_user_by_id($post->soldToUserID);
 	    		$temp=array('post'=> $post, 'pic'=> $pic, 'category'=> $category, 'location'=> $location,
-	    				'soldToUser'=> $soldToUser, 'savedAds'=>$this->getDisableSavedAds($post->postID, $userID));
+	    				'soldToUser'=> $soldToUser, 
+	    				'newUsed'=>$post->newUsed,
+	    				'savedAds'=>$this->getDisableSavedAds($post->postID, $userID));
 	    	
 	    		if(is_null($result))
 	    		{

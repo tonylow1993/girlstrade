@@ -96,6 +96,7 @@ function sendIt() {
             	{
             		foreach($result as $id=>$row)
                   	{
+                  		
                   		$type=$row["type"];
                   		$fromUser=$row["fromUser"];
                   		$feedback=$row["feedback"];
@@ -154,20 +155,24 @@ function sendIt() {
                 	if($result<>null)
             	{
             		foreach($result as $id=>$row)
-            		{
-            			if(strcmp($row["typeID"],"buyer")<>0){
-	            			echo "<tr>";
-	                      	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\">";
-	                      	echo "<p>$type</p> <p>$fromUser</p>";
-							echo "</td>";
-						  	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td\">";
-	                    	echo "<div class=\"ads-details\">";
-	                         echo "<h5><div class=\"add-title-girlstrade\">$feedback</div>";
-	                          echo "<br/>Posted On: ". $createDate;
-	                        echo "</h5></div></td>";
-	                      	
-	                  		echo "</tr>";
-            			}
+                  	{
+                  		if(strcmp($row["typeID"], "buyer")==0)
+                  			continue;
+                  		$type=$row["type"];
+                  		$fromUser=$row["fromUser"];
+                  		$feedback=$row["feedback"];
+                  		$createDate=$row["createDate"];
+						echo "<tr>";
+                      	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\">";
+                      	echo "<p>$type</p> <p>$fromUser</p>";
+						echo "</td>";
+					  	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td\">";
+                    	echo "<div class=\"ads-details\">";
+                         echo "<h5><div class=\"add-title-girlstrade\">$feedback</div>";
+                          echo "<br/>Posted On: ". $createDate;
+                        echo "</h5></div></td>";
+                      	
+                  		echo "</tr>";
                   	}
             	}
                   ?>
@@ -210,23 +215,27 @@ function sendIt() {
                 	if($result<>null)
             	{
             		foreach($result as $id=>$row)
-            		{
-            			if(strcmp($row["typeID"],"buyer")==0){
-	            			echo "<tr>";
-	                      	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\">";
-	                      	echo "<p>$type</p> <p>$fromUser</p>";
-							echo "</td>";
-						  	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td\">";
-	                    	echo "<div class=\"ads-details\">";
-	                         echo "<h5><div class=\"add-title-girlstrade\">$feedback</div>";
-	                          echo "<br/>Posted On: ". $createDate;
-	                        echo "</h5></div></td>";
-	                      	
-	                  		echo "</tr>";
-            			}
+                  	{
+                  		if(strcmp($row["typeID"], "buyer")<>0)
+                  			continue;
+                  		$type=$row["type"];
+                  		$fromUser=$row["fromUser"];
+                  		$feedback=$row["feedback"];
+                  		$createDate=$row["createDate"];
+						echo "<tr>";
+                      	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\">";
+                      	echo "<p>$type</p> <p>$fromUser</p>";
+						echo "</td>";
+					  	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td\">";
+                    	echo "<div class=\"ads-details\">";
+                         echo "<h5><div class=\"add-title-girlstrade\">$feedback</div>";
+                          echo "<br/>Posted On: ". $createDate;
+                        echo "</h5></div></td>";
+                      	
+                  		echo "</tr>";
                   	}
             	}
-            	?>
+                  ?>
                    <div class="pagination-bar text-center">
             <ul class="pagination">
             <?php 
