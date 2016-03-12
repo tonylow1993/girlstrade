@@ -353,9 +353,9 @@ window.onload = function(){
       <div class="row">
            
     	<div class="col-sm-9 page-content col-thin-right">
-          <div class="inner-box category-content panel-bevel" id="detailCategoryList" name="detailCategoryList" style="display:none;">
-             <div class="row" >
-            <h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">Discover</span> from Listing<a href="javascript:showSummaryCatDiv();" id="detailCatBtn" name="detailCatBtn" class="sell-your-item"> View less <i class="  icon-th-list"></i> </a></h2>
+          <div class="content-box category-content panel-bevel" id="detailCategoryList" name="detailCategoryList" style="display:none;">
+             <div class="col-lg-12  box-title no-border" >
+				<div class="inner"><h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">Discover</span> from Listing<a href="javascript:showSummaryCatDiv();"  id="detailCatBtn" name="detailCatBtn" class="sell-your-item"> View less <i class="  icon-th-list"></i> </a></h2></div>
              <?php 
     	     $count=0;
     	     $total=0;

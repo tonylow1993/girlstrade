@@ -93,6 +93,10 @@ input[type=checkbox]
           <div class="inner inner-box ads-details-wrapper panel-bevel">
             <h2 class="itemName"> <?php echo $itemName;?> </h2>
 			<h1 class="pricetag"> <?php echo "\$".$price." (".$currency.")";?></h1>
+			<?php 
+				$imgRatingPath=base_url()."images/".$userRating;
+				echo "<h4><img src=\"$imgRatingPath\" class=\"ratingIcon\"><a href=".base_url().MY_PATH."viewProfile/index/".$postID.'/1?prevURL='.urlencode($previousCurrent_url).">$username</a></h4>";
+			?>
             <span class="info-row"> <span class="date"><i class=" icon-clock"> </i> <?php echo $createDate;?> </span> - <span class="category"><?php echo $ParentCatName;?> </span>- <span class="item-location"><i class="fa fa-map-marker"></i> <?php echo $LocationName;?> </span> </span>
             <div class="ads-image">
               <ul class="bxslider">
@@ -276,7 +280,7 @@ input[type=checkbox]
 				if(!$isloginedIn and $isSameUser==false){
 					$imgRatingPath=base_url()."images/".$userRating;
 					
-						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Contact $username <img src=$imgRatingPath /></a>";
+						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Contact Seller</a>";
 					
 				}
 				
@@ -288,7 +292,7 @@ input[type=checkbox]
 		                  echo "<a href=";
 		                  echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
 		                  echo " data-toggle=\"modal\" class=\"btn btn-default directSendButton\">";
-		                  echo "<i class=\"icon-right-hand\"></i>Contact $username <img src=$imgRatingPath /></a>";
+		                  echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
 	                  }
                   }
                   ?>  
@@ -332,7 +336,7 @@ input[type=checkbox]
 					//if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
 					//{
 					if($isSameUser==false)
-						echo "<a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
+						echo "<a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-success\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 					//}
 					?>
 					<?php
@@ -349,7 +353,7 @@ input[type=checkbox]
 					$soldUsersstr=base64_encode($soldUsersstr);
 					
 					if($isSameUser==true)
-						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
+						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 					if(($isloginedIn) &&($isSameUser==true))
 					{
 						echo "<a href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a>";
@@ -543,7 +547,7 @@ input[type=checkbox]
 		                  echo "<a href=\"#directSend\"";
 		                  //echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url);
 		                  echo " data-toggle=\"modal\" id=\"directSendButton\" class=\"btn btn-default btn-block directSendButton\">";
-		                  echo "<i class=\"icon-right-hand\"></i>Contact $userName <img src=$imgRatingPath /></a></div>";
+		                  echo "<i class=\"icon-right-hand\"></i>Contact Seller</a></div>";
 	                  }
                   }
                   ?>  
@@ -590,7 +594,7 @@ input[type=checkbox]
 					//if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
 					//{
 						if($isSameUser==false)
-							echo "<br/><a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
+							echo "<br/><a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-success btn-block\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 					//}
 					?>
 					<?php
@@ -607,7 +611,7 @@ input[type=checkbox]
 					$soldUsersstr=base64_encode($soldUsersstr);
 					
 					if($isSameUser==true)
-						echo "<div class=\"user-ads-action\"><a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> FeedBack </a></div>";
+						echo "<div class=\"user-ads-action\"><a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success btn-block\"> <i class=\" icon-pencil\"></i> FeedBack </a></div>";
 					if(($isloginedIn) &&($isSameUser==true))
 					{
 						echo "<div class=\"user-ads-action\"><a  href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a></div>";

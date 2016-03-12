@@ -3359,6 +3359,11 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.ratingIcon{
+	padding-bottom: 5px;
+	margin-right: 10px;
+}
+
 #blog-detail-content-desc {
 	-webkit-line-clamp: 100;
 }
