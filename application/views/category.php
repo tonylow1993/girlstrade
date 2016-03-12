@@ -697,11 +697,12 @@
                 else {
                 	$showSellerName="seller";
                 }
+				$imgRatingPath=base_url()."images/".$userRating;
                 echo "</div>";
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
                    echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
-                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span>- <span class=\"date\"><i class=\"icon-clock\"> </i> $username </span> </span> </div>";
+                   echo "<span class=\"info-row\"> <span class=\"user\"><img class=\"ratingIcon-xs\" src=$imgRatingPath> $username </span> - <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span></span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
@@ -713,7 +714,7 @@
                 if(!$isloginedIn and $isSameUser==false){
                 	$imgRatingPath=base_url()."images/".$userRating;
                 
-                	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact $showSellerName <img src=$imgRatingPath /></a>";
+                	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
                 
                 }
                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
@@ -724,7 +725,7 @@
                 		echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
                 		echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
                 		echo " data-toggle=\"modal\" >";
-                		echo "<i class=\"icon-right-hand\"></i>Contact $showSellerName <img src=$imgRatingPath /></a>";
+                		echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
                 	}
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
