@@ -298,7 +298,7 @@ input[type=checkbox]
                   ?>  
                   <?php if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                   {
-	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default  directSendButton\">";
+	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default  directSendButton disabled\">";
 	                  echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
                   }
                   ?>
@@ -534,7 +534,7 @@ input[type=checkbox]
                   if(!$isloginedIn and $isSameUser==false){
                   	$imgRatingPath=base_url()."images/".$userRating;
                   		
-                  	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-default btn-block  directSendButton\"> <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                  	echo "<div class=\"user-ads-action\"><a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-default btn-block  directSendButton\"> <i class=\" icon-pencil\"></i> Contact Seller</a></div>";
                   		
                   }
                   
@@ -562,7 +562,7 @@ input[type=checkbox]
                   <?php if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                   {
 	                  echo "<div class=\"user-ads-action\">"; 
-	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default btn-block directSendButton\">";
+	                  echo "<a href=\"\" data-toggle=\"modal\" class=\"btn   btn-default btn-block directSendButton disabled\">";
 	                  echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a> </div>";
                   }
                   ?>

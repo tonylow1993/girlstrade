@@ -3360,6 +3360,16 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.btn-40{
+	width: 40%;
+    max-width: 100%;
+    min-width: 120px;
+}
+
+.center-text{
+	text-align: center;
+}
+
 .center-obj{
 	margin: auto;
 	display: block;
@@ -3698,7 +3708,7 @@ span b{
 
 .close {
     color: #FFF;
-    opacity: .5;
+    opacity: .8;
 }
 
 
