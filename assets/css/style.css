@@ -1445,7 +1445,6 @@ display: block;
   float: left;
   clear: none;
   font-size: 12px;
-  width: 40%;
 }
 
 .item-list.make-compact h2.item-price {
@@ -1463,11 +1462,7 @@ display: block;
 }
 
 .item-list.make-compact .item-price {
-  float: left;
   font-size: 20px;
-  line-height: normal;
-  margin-bottom: 0;
-  padding-bottom: 0;
 }
 
 .item-list.make-compact .make-favorite span {
