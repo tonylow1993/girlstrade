@@ -534,7 +534,7 @@ input[type=checkbox]
                   if(!$isloginedIn and $isSameUser==false){
                   	$imgRatingPath=base_url()."images/".$userRating;
                   		
-                  	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-default btn-block  directSendButton\"> <i class=\" icon-pencil\"></i> Contact $username <img src=$imgRatingPath /></a>";
+                  	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-default btn-block  directSendButton\"> <i class=\" icon-pencil\"></i> Contact Seller</a>";
                   		
                   }
                   

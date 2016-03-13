@@ -1819,6 +1819,7 @@ display: block;
 .list-filter .count {
   color: #9a9a9a;
   font-size: 90%;
+  text-align: center;
 }
 
 .list-filter ul li {
@@ -2436,7 +2437,7 @@ div.login-box .panel-footer label {
   color: #333;
   font-size: 18px;
   line-height: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   margin-top: 30px;
   margin-left: -15px;
   margin-right: -15px;
@@ -3358,6 +3359,11 @@ td.ads-details-td {
 /* =============================================================== */
 /* ADDED BY TONY
 /* =============================================================== */
+
+.center-obj{
+	margin: auto;
+	display: block;
+}
 
 .ratingIcon-xs{
 	width: 18px;

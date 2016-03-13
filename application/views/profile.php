@@ -1,12 +1,5 @@
 <?php $title = "Girls' Trading Platform";  include("header.php");?>
 <style>
-.add-title-girlstrade {
-	padding: 0px;
-	margin: 0px;
-	border:0px;
-  color: blue;
-  font-weight: bold;
-}
 </style>
 <script type="text/javascript">
 function sendIt() {
@@ -26,13 +19,13 @@ function sendIt() {
           <aside>
             <div class="inner-box">
               <div class="categories-list  list-filter">
-                <h5 class="content-subheading userName"><i class="icon-user-woman"></i>
+                <h5 class="content-subheading userName"><img class="ratingIcon" src="<?php echo base_url()."images/".$userRating; ?>" />
                 <strong><?php echo $userName;?></strong></h5>
                 
                 <ul class=" list-unstyled">
-	            <img src="<?php echo $userPhotoPath;?>" class="img-thumbnail" alt="profilePic" width="auto" height="auto">
-	            <img src="<?php echo base_url()."images/".$userRating; ?>" />
-	               <li><span class="count">&nbsp;(Normal User)</span> </li>
+	            <img src="<?php echo $userPhotoPath;?>" class="img-thumbnail center-obj" alt="profilePic" width="auto" height="auto">
+	            
+	               <li><span class="count"><p>&nbsp;(Normal User)</p></span> </li>
                 </ul>
                               
                 <table class="userProfileTable">
@@ -255,20 +248,21 @@ function sendIt() {
 				echo "</div>";
 			    echo "<div class=\"col-sm-7 add-desc-box\">";
                  // echo "<div class=\"add-details\">";
-                echo "<div class=\"add-details\">";   
-			    echo "<h5 class=\"add-title\"> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
+                echo "<div class=\"ads-details\">";   
+			    echo "<h5> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
                   echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-               
-                  if($getDisableSavedAds)
+				  echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+				  echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
+                  /* if($getDisableSavedAds)
                   	echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
                   else
                   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
                   	echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
-               echo "</div>";
+               echo "</div>"; */
 				}
                
 				}
