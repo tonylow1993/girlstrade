@@ -313,7 +313,7 @@ input[type=checkbox]
                  <?php
 					//if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
 					//{
-						if($isSameUser==true && $hasRequestContact==true)
+						if($isSameUser==true)
 							echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a>";
 						
 					//}
@@ -340,21 +340,20 @@ input[type=checkbox]
 					//}
 					?>
 					<?php
-					
-					if($isSameUser==true && $hasBuyerList==true){
-						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
-						if($soldUsers!=null){
-							$NoOfSoldUsers=count($soldUsers);
-							foreach($soldUsers as $row){
-								$soldUserID=$row->soldUserID;;
-								$soldUsername=$row->soldUsername;
-								$soldUsersstr=$soldUsersstr."  <option  value='".$soldUserID."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$soldUsername." </option>  ";
-							}
+					$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+					if($soldUsers!=null){
+						$NoOfSoldUsers=count($soldUsers);
+						foreach($soldUsers as $row){
+							$soldUserID=$row->soldUserID;;
+							$soldUsername=$row->soldUsername;
+							$soldUsersstr=$soldUsersstr."  <option  value='".$soldUserID."'  style='background-color:#E9E9E9;font-weight:bold;' > ".$soldUsername." </option>  ";
 						}
-						$soldUsersstr=$soldUsersstr."  </select>  ";
-						$soldUsersstr=base64_encode($soldUsersstr);
-						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 					}
+					$soldUsersstr=$soldUsersstr."  </select>  ";
+					$soldUsersstr=base64_encode($soldUsersstr);
+					
+					if($isSameUser==true)
+						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 					if(($isloginedIn) &&($isSameUser==true))
 					{
 						echo "<a href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a>";
@@ -570,7 +569,7 @@ input[type=checkbox]
                   <?php
 					//if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
 					//{
-					if($isSameUser==true && $hasRequestContact==true)
+					if($isSameUser==true)
 						echo "<div class=\"user-ads-action\"><a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum\"  class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a></div>";
 						
 					//}
@@ -850,19 +849,7 @@ input[type=checkbox]
       	   <a class="btn btn-primary btn-xs" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-reply"></i>Login</a></p>";
                     	
       	</div>
-        <?php } else if(!$isBuyerApproveThisPost) {?>
-        <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        <h4 class="modal-title">Please login</h4>
-      	</div>
-      	<div class="modal-body">
-      	   <h2>To post feedback, you need to contact seller first.</h2>
-      	   <br>
-      	   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                 	
-      	</div>
-        
-        <?php }else {?>
+        <?php } else {?>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>
