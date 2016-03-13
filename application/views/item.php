@@ -314,7 +314,7 @@ input[type=checkbox]
 					//if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
 					//{
 						if($isSameUser==true)
-							echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-default  directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a>";
+							echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-default  directSendButton\"> <i class=\"fa fa-check\"></i> Approve Request </a>";
 						
 					//}
 					?>
@@ -356,7 +356,7 @@ input[type=checkbox]
 						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 					if(($isloginedIn) &&($isSameUser==true))
 					{
-						echo "<a href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a>";
+						echo "<a href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-danger\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a>";
 					}
 						
 					if(($isloginedIn) && ($isSameUser==true) && ( $hasBuyerList==true))
@@ -365,7 +365,7 @@ input[type=checkbox]
 						$errorctrlName1="ErrAjaxLoad_1";
 						$postValueID="postValueCtrl_1";
 						echo "<input id='$postValueID' name='$postValueID' type='hidden' value='$postID'>";
-						echo "<a  href=\"javascript:marksold('$postID', '$ctrlName1', '$errorctrlName1')\" class=\"btn btn-default  directSendButton\"> <i class=\"fa fa-reply\"></i> Mark Sold </a>";
+						echo "<a  href=\"javascript:marksold('$postID', '$ctrlName1', '$errorctrlName1')\" class=\"btn btn-inverse \"> <i class=\"fa fa-thumb-tack\"></i> Mark Sold </a>";
 						echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
 						
 // 						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
@@ -570,7 +570,7 @@ input[type=checkbox]
 					//if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
 					//{
 					if($isSameUser==true)
-						echo "<div class=\"user-ads-action\"><a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum\"  class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Approve Request </a></div>";
+						echo "<div class=\"user-ads-action\"><a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum\"  class=\"btn btn-default btn-block directSendButton\"> <i class=\"fa fa-check\"></i> Approve Request </a></div>";
 						
 					//}
 					?>
@@ -614,7 +614,7 @@ input[type=checkbox]
 						echo "<div class=\"user-ads-action\"><a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success btn-block\"> <i class=\" icon-pencil\"></i> FeedBack </a></div>";
 					if(($isloginedIn) &&($isSameUser==true))
 					{
-						echo "<div class=\"user-ads-action\"><a  href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> ".$this->lang->line('Delete')." </a></div>";
+						echo "<div class=\"user-ads-action\"><a  href=\"#deleteAdsPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userID=\"$userID\" class=\"btn btn-danger btn-block\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></div>";
 					}
 					if(($isloginedIn) && ($isSameUser==true) && ( $hasBuyerList==true))
 					{
@@ -622,7 +622,7 @@ input[type=checkbox]
 						$errorctrlName2="ErrAjaxLoad_2";
 						$postValueID="postValueCtrl_2";
 						echo "<input id='$postValueID' name='$postValueID' type='hidden' value='$postID'>";
-						echo "<br/><a  href=\"javascript:marksold('$postValueID', '$ctrlName2', '$errorctrlName2')\" class=\"btn btn-default btn-block directSendButton\"> <i class=\"fa fa-reply\"></i> Mark Sold </a>";
+						echo "<br/><a  href=\"javascript:marksold('$postValueID', '$ctrlName2', '$errorctrlName2')\" class=\"btn btn-inverse btn-block\"> <i class=\"fa fa-thumb-tack\"></i> Mark Sold </a>";
 						echo " <div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
 						
 						//echo "<div class=\"user-ads-action\"><a  href=\"#sellerActionPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-default btn-block directSendButton\"> <i class=\" icon-pencil\"></i> Mark Sold </a></div>";
