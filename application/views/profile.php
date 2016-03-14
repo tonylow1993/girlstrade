@@ -93,7 +93,7 @@ function sendIt() {
  			<div class="tab-box "> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds" id="allAds1" name="allAds1" role="tab" data-toggle="tab">
                 <?php echo $lblConditionAny;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -106,7 +106,7 @@ function sendIt() {
                 echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="#newAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="#newAds" id="newAds1" name="newAds1" role="tab" data-toggle="tab">
                 <?php echo $lblConditionNew;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -124,7 +124,7 @@ function sendIt() {
                 	echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="#usedAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="#usedAds" id="usedAds1" name="usedAds1" role="tab" data-toggle="tab">
                 <?php echo $lblConditionUsed;?> 
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -262,7 +262,8 @@ function sendIt() {
                   else
                   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
                   	echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
-               echo "</div>"; */
+               */
+               echo "</div>"; 
 				}
                
 				}
@@ -281,7 +282,7 @@ function sendIt() {
               
               foreach($itemList as $id=>$item)
 				{
-					if(strcmp($item["newUsed"], "N")<>0)
+					if(strcmp($item["newUsed"], "N")!=0)
 						continue;
 					$rowCount=$rowCount+1;
 				  $viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL;
@@ -353,16 +354,26 @@ function sendIt() {
 			    echo "<h5 class=\"add-title\"> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
+                
+                echo "<div class=\"col-sm-3 text-right  price-box\">";
+                echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
+                echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+                echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
+                
+                
+                /*
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
                   echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-               
+              
                   if($getDisableSavedAds)
                   	echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
                   else
                   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
                   	echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
-               echo "</div>";
+               */
+                  	echo "</div>";
 				}
                
 				}
@@ -379,10 +390,9 @@ $basePath=base_url();
               if($itemList<>null)
               {
               	$rowCount=0;
-              
               foreach($itemList as $id=>$item)
 				{
-					if(strcmp($item["newUsed"], "U")<>0)
+					if(strcmp($item["newUsed"], "U")!=0)
 						continue;
 					$rowCount=$rowCount+1;
 				  $viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL;
@@ -456,13 +466,10 @@ $basePath=base_url();
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
-                  echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-               
-                  if($getDisableSavedAds)
-                  	echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
-                  else
-                  echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
-                  	echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
+                echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+                echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
+                
                echo "</div>";
 				}
                
@@ -590,6 +597,18 @@ function savedAds(ctrlValue, ctrlName) {
 	    	}
 	});
 };
+$('.nav-tabs a').click(function(){
+    $(this).tab('show');
+})
+$('#allAds1').click(function(){
+$('.nav-tabs a[href="#allAds"]').tab('show')
+})	
+$('#newAds1').click(function(){
+$('.nav-tabs a[href="#newAds"]').tab('show')
+})	
+$('#usedAds1').click(function(){
+$('.nav-tabs a[href="#usedAds"]').tab('show')
+})	
 </script>
 
     <?php include "footer2.php"; ?>

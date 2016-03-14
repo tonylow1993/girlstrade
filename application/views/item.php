@@ -313,7 +313,7 @@ input[type=checkbox]
                  <?php
 					//if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
 					//{
-						if($isSameUser==true)
+						if($isSameUser==true && $hasRequestContact==true) 
 							echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-default  directSendButton\"> <i class=\"fa fa-check\"></i> Approve Request </a>";
 						
 					//}
@@ -569,7 +569,7 @@ input[type=checkbox]
                   <?php
 					//if(($isloginedIn) && ($isSameUser==true) && ($hasRequestContact==true))
 					//{
-					if($isSameUser==true)
+					if($isSameUser==true && $hasRequestContact==true)
 						echo "<div class=\"user-ads-action\"><a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum\"  class=\"btn btn-default btn-block directSendButton\"> <i class=\"fa fa-check\"></i> Approve Request </a></div>";
 						
 					//}
@@ -849,7 +849,20 @@ input[type=checkbox]
       	   <a class="btn btn-primary btn-xs" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-reply"></i>Login</a></p>";
                     	
       	</div>
-        <?php } else {?>
+      	<?php } else if(!$isBuyerApproveThisPost) {?>
+        <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Please login</h4>
+      	</div>
+      	<div class="modal-body">
+      	   <h2>To post feedback, you need to contact seller first.</h2>
+      	   <br>
+      	   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                 	
+      	</div>
+        
+        <?php }else {?>
+        
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title"><?php echo $this->lang->line("popupTitleMarkSold");?></h4>

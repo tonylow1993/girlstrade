@@ -864,7 +864,7 @@ public function getChildCategory($parentID)
 				$this->load->view('failedPage', $data);
 			return;
         }
-        $this->post->updateStat();
+        //$this->post->updateStat();
         $this->load->library('image_lib');
 		$filelist=$_FILES['filelist'];
 	    $number_of_files = sizeof($_FILES['filelist']['tmp_name']);

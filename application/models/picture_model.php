@@ -1,7 +1,7 @@
 <?php 
 	class picture_model extends CI_Model {
 	
-	    //var $sequence = '';
+	    var $sequence = '';
 	    var $postID = '';
 	    var $userID = '';
             var $picturePath = '';
