@@ -81,16 +81,16 @@
               	 		echo "<li><a  class=\"active\" href=$myads1><i class=\"icon-th-thumb\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
          	     	else 
          	     		echo "<li><a href=$myads1><i class=\"icon-th-thumb\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
-         	     		
+         	     $sellerCount=$approveMsgCount+$directsendhistCount1;		
          	     if($activeNav==2)
-         	   		echo "<li><a  class=\"active\" href=$approverequest1><i class=\"icon-thumbs-up-1\"></i> Seller List <span class=\"badge\">$approveMsgCount +$directsendhistCount1</span></a></li>";
+         	   		echo "<li><a  class=\"active\" href=$approverequest1><i class=\"icon-thumbs-up-1\"></i> Seller List <span class=\"badge\">$sellerCount</span></a></li>";
        			else 
-       				echo "<li><a href=$approverequest1><i class=\"icon-ok-1\"></i> Seller List <span class=\"badge\">$approveMsgCount+$directsendhistCount1</span></a></li>";
-         	     				 
+       				echo "<li><a href=$approverequest1><i class=\"icon-ok-1\"></i> Seller List <span class=\"badge\">$sellerCount</span></a></li>";
+         	     $buyerCount=$pendingMsgCount+$directsendhistCount;				 
          	     if($activeNav==6)
-              		echo "<li><a  class=\"active\" href=$pendingrequest1><i class=\"icon-clock-2\"></i> Buyer List <span class=\"badge\">$pendingMsgCount+$directsendhistCount</span></a></li>";
+              		echo "<li><a  class=\"active\" href=$pendingrequest1><i class=\"icon-clock-2\"></i> Buyer List <span class=\"badge\">$buyerCount</span></a></li>";
           		 	else 
-          		 		echo "<li><a href=$pendingrequest1><i class=\"icon-clock-2\"></i> Buyer List <span class=\"badge\">$pendingMsgCount+$directsendhistCount</span></a></li>";
+          		 		echo "<li><a href=$pendingrequest1><i class=\"icon-clock-2\"></i> Buyer List <span class=\"badge\">$buyerCount</span></a></li>";
           		 if($activeNav==5)
           				echo "<li><a  class=\"active\" href=$saveditems1><i class=\"icon-heart\"></i> $SavedItems <span class=\"badge\">$savedAdsCount</span></a></li>";
        	 			else
