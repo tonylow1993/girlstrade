@@ -226,3 +226,4 @@ $lang["MyIntroduction"]="Introduction";
 $lang["ExceedMaxDescLength"]="Exceed Max Description Length";
 $lang["adminApprovePrivateMsgByUserIDOnly"]="Approve Message";
 $lang["adminApproveFeedBack"]="Approve FeedBack";
+$lang["RequireLoginToAccess"]="This page required login to access";

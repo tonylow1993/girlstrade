@@ -1531,10 +1531,10 @@ function generateRandomString($length = 8) {
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$user1=$this->nativesession->get("user");
 		if(!isset($user1) or empty($user1) or $user1==null){
-			$errorMsg=$this->lang->line("PostPleaseLoginFirst");
+			$errorMsg=$this->lang->line("RequireLoginToAccess");
 			$data["error"]=$errorMsg;
 			$data['redirectToWhatPage']="Login in Page";
-			$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
+			$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."home/getAccountPage/".$activeNav;
 			$data["successTile"]=$this->lang->line("successTile");
 			$data["failedTitle"]=$this->lang->line("failedTitle");
 			$data["goToHomePage"]=$this->lang->line("goToHomePage");
