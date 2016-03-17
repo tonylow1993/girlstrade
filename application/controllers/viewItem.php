@@ -41,15 +41,38 @@
 	public function index($postId, $errorMsg='', $successMsg='')
 	{
 		$loginUser=$this->nativesession->get("user");
-		$prevUrl="";
+		
+		$prevItem_Url=base_url();
+		if(isset($_GET["prevItem_Url"]))
+			$prevItem_Url=$_GET["prevItem_Url"];
+		else if(isset($_SESSION["prevItem_Url"]))
+			$prevItem_Url=$_SESSION["prevViewFeedBack_Url"];
+		$_SESSION["prevItem_Url"]=$prevItem_Url;
+		$data["prevItem_Url"]=$prevItem_Url;
+		
+		
+		$prevUrl=base_url();
 		if(isset($_GET["prevURL"])) {
 			$prevUrl=$_GET["prevURL"];
 			$_SESSION["previousUrl"]=$prevUrl;
 		}
 		else if(isset($_SESSION["previousUrl"]))
 			$prevUrl=$_SESSION["previousUrl"];
-	
-			$data["previousCurrent_url"] = urldecode($prevUrl);
+		$data["prevUrl"]=$prevUrl;
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			if(isset($loginUser)){
+				$menuCount=$this->getHeaderCount($loginUser["userID"]);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser["userID"]); //$menuCount["inboxMsgCount"]; // //$this->messages_model->getUnReadInboxMessage($user[0]->userID);
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
+			//----------------------------
+					
+			$data["previousCurrent_url"] = $prevUrl;
 			$data["getDisableSavedAds"]=$this->post->getDisableSavedAds($postId, $loginUser["userID"]);
 			
 		try {
@@ -76,21 +99,7 @@
             $data["postID"]=$postId;
             $itemCommentInfo=$this->itemcomments_model->getItemCommentsbyPostID($postId);
             $data["itemCommentList"]=$itemCommentInfo;
-            //----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			$data["isloginedIn"]=false;
-			
-			if(isset($loginUser)){
-				$data["isloginedIn"]=true;
-				$menuCount=$this->getHeaderCount($loginUser['userID']);
-				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']); //$menuCount["inboxMsgCount"]; //
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-		//----------------------------
+            
             if($var == null)
             {
                 $this->nativesession->set("lastPageVisited","processError");
@@ -174,15 +183,17 @@
                 $isPostAlready=false;
                 $isPendingRequest=false;
                 $isBuyerApproveThisPost=false;
+                $isLoggedIn=false;
               	if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
                 {
                 	if($loginUser["userID"]==$user[0]->userID)
                 		$isSameUser=true;
                 	$isPostAlready=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "A");
                 	$isBuyerApproveThisPost=$isPostAlready; // need to do later
-                	         
+                	$isLoggedIn=true;
                 	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
                 }
+                $data["isloginedIn"]=$isLoggedIn;
                 $data["isBuyerApproveThisPost"]=$isBuyerApproveThisPost;
                 $data["isSameUser"]=$isSameUser;
                 $data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInApproveAndRejectOfPost($loginUser['userID'], $var[0]->postID);
@@ -246,8 +257,8 @@
      	     		$errorMsg=$this->lang->line("PostNotExistsNow");
      	     		$data["error"]=$errorMsg;
      	     		$data["prevURL"]=base_url();
-     	     		$data['redirectToWhatPage']="Home Page";
-     	     		$data['redirectToPHP']=base_url();
+     	     		$data['redirectToWhatPage']="Previous Page";
+     	     		$data['redirectToPHP']=$prevURL;
      	     		$data["successTile"]=$this->lang->line("successTile");
      	     		$data["failedTitle"]=$this->lang->line("failedTitle");
      	     		$data["goToHomePage"]=$this->lang->line("goToHomePage");

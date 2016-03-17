@@ -36,6 +36,14 @@ class viewProfile extends getCategory {
          public function index($postID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByID="0" )
 	{
 		
+		$prevProfile_Url=base_url();
+		if(isset($_GET["prevProfile_Url"]))
+			$prevProfile_Url=$_GET["prevProfile_Url"];
+		else if(isset($_SESSION["prevProfile_Url"]))
+			$prevProfile_Url=$_SESSION["prevProfile_Url"];
+		$_SESSION["prevProfile_Url"]=$prevProfile_Url;
+		$data["prevProfile_Url"]=$prevProfile_Url;
+		
 		$loginUser=$this->nativesession->get("user");
 		if(isset($loginUser))
 			$thread["userID"]=$loginUser['userID'];
@@ -78,7 +86,6 @@ class viewProfile extends getCategory {
 				$data["introduction"]=$userInformation["introduction"];
 			else 
 				$data["introduction"]="";
-			$loginUser=$this->nativesession->get("user");
 			//----------setup the header menu----------
 			$data["menuMyAds"]="";
 			$data["menuInbox"]="";
@@ -198,7 +205,18 @@ class viewProfile extends getCategory {
 			else
 				$data["introduction"]="";
 		$loginUser=$this->nativesession->get("user");
-			
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		if(isset($loginUser)){
+			$menuCount=$this->getHeaderCount($loginUser['userID']);
+			$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']); // $menuCount["inboxMsgCount"]; //
+			$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+		}
+		//----------------------------
 		if($userInfo[0]->blockDate!=null && $userInfo[0]->blockDate> date('Y-m-d'))
 		{
 			if( empty($loginUser) ||
@@ -275,18 +293,7 @@ class viewProfile extends getCategory {
 		$data["lblConditionUsed"]=$this->lang->line("lblConditionUsed");
 		$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
 		$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
-		//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($loginUser)){
-				$menuCount=$this->getHeaderCount($loginUser['userID']);
-				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']); // $menuCount["inboxMsgCount"]; //
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-		//----------------------------
+		
 
 			$data["recentBuyerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestBuyerComment($data["userID"]));
 			$data["recentSellerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestSellerComment($data["userID"]));

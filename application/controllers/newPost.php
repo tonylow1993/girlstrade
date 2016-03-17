@@ -39,6 +39,8 @@ class newPost extends CI_Controller {
         
     public function index($userID=0, $username='', $errorMsg='')
 	{
+		$prevURL=base_url();
+		
 	if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
 			$_SESSION["previousUrl"]=$prevURL;
@@ -137,7 +139,7 @@ class newPost extends CI_Controller {
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
 				$data['redirectToWhatPage']="Login in Page";
-				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
+				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -162,8 +164,8 @@ class newPost extends CI_Controller {
 				$errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="Login in Page";
-				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
+				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -205,6 +207,7 @@ class newPost extends CI_Controller {
 	
 	public function showEditPost($postID)
 	{
+		$prevURL=base_url();
 	if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
 			$_SESSION["previousUrl"]=$prevURL;
@@ -387,6 +390,11 @@ class newPost extends CI_Controller {
 			$data["menuInboxNum"]="0";
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
+			if(isset($userInfo)){
+				$menuCount=$this->getHeaderCount($userInfo["userID"]);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; // //$this->messages_model->getUnReadInboxMessage($user[0]->userID);
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 			//----------------------------
 			$this->load->view('editPost', $data);
 		}
@@ -694,6 +702,14 @@ public function getChildCategory($parentID)
     
     public function createNewPost($loginID, $loginUser, $prevURL='')
     {
+    	$prevURL=base_url();
+    	
+    	if(isset($_GET["prevURL"])){
+    		$prevURL=$_GET["prevURL"];
+    		$_SESSION["previousUrl"]=$prevURL;
+    	}else if(isset($_SESSION["previousUrl"])){
+    		$prevURL=$_SESSION["previousUrl"];
+    	}
     	$data["lang_label_text"] = $this->lang->line("lang_label_text");
     	$data["Home"] = $this->lang->line("Home");
     	$data["About_us"] = $this->lang->line("About_us");
@@ -712,13 +728,25 @@ public function getChildCategory($parentID)
     	$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
     	
     	$userInfo=$this->nativesession->get("user");
+    	//----------setup the header menu----------
+    	$data["menuMyAds"]="";
+    	$data["menuInbox"]="";
+    	$data["menuInboxNum"]="0";
+    	$data["menuPendingRequest"]="";
+    	$data["menuPendingRequestNumber"]="0";
+    	if(isset($userInfo)){
+    		$menuCount=$this->getHeaderCount($userInfo["userID"]);
+    		$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; // //$this->messages_model->getUnReadInboxMessage($user[0]->userID);
+    		$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+    	}
+    	//----------------------------
     	if(empty($userInfo))
  	        {
  	        	$errorMsg=$this->lang->line("PostPleaseLoginFirst");	
  	        	$data=array('error'=> $errorMsg);
  	    		$data["prevURL"]=$prevURL;
 				$data['redirectToWhatPage']="Login Page";
-				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
+				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -735,26 +763,15 @@ public function getChildCategory($parentID)
         $userID=$userInfo["userID"];
         $userName=$userInfo["username"];
         $usertype="PREMIUMPOSTEXPIRYDAYS"; //$userInfo("usertype");
-        //----------setup the header menu----------
-        $data["menuMyAds"]="";
-        $data["menuInbox"]="";
-        $data["menuInboxNum"]="0";
-        $data["menuPendingRequest"]="";
-        $data["menuPendingRequestNumber"]="0";
-        if(isset($userInfo)){
-        	$menuCount=$this->getHeaderCount($userInfo["userID"]);
-        	$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; // //$this->messages_model->getUnReadInboxMessage($user[0]->userID);
-        	$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-        }
-        //----------------------------
+        
         $NumOfPostTimes=$this->post->getNUMOFTIMESPOST($userID);
         if($NumOfPostTimes>NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
         {
     	    $errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
 				$data["error"]=$errorMsg;
         	$data["prevURL"]=$prevURL;
-        	$data['redirectToWhatPage']="Login in Page";
-        	$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
+        	$data['redirectToWhatPage']="Previous Page";
+        	$data['redirectToPHP']=$prevURL;
         	$data["successTile"]=$this->lang->line("successTile");
         	$data["failedTitle"]=$this->lang->line("failedTitle");
         	$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -1004,8 +1021,8 @@ public function getChildCategory($parentID)
        // {
       $data["error"]=$errorMsg;
 		$data["prevURL"]=$prevURL;
-		$data['redirectToWhatPage']="Home Page";
-		$data['redirectToPHP']=base_url();
+		$data['redirectToWhatPage']="Previous Page";
+		$data['redirectToPHP']=$prevURL;
 		$data["successTile"]=$this->lang->line("successTile");
 		$data["failedTitle"]=$this->lang->line("failedTitle");
 		$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -1020,12 +1037,14 @@ public function getChildCategory($parentID)
 	
     public function editPost($postID)
     {
-    if(isset($_GET["prevURL"])){
-			$prevURL=$_GET["prevURL"];
-			$_SESSION["previousUrl"]=$prevURL;
-		}else if(isset($_SESSION["previousUrl"])){
-			$prevURL=$_SESSION["previousUrl"];
-		}
+    $prevURL=base_url();
+    	
+    	if(isset($_GET["prevURL"])){
+    		$prevURL=$_GET["prevURL"];
+    		$_SESSION["previousUrl"]=$prevURL;
+    	}else if(isset($_SESSION["previousUrl"])){
+    		$prevURL=$_SESSION["previousUrl"];
+    	}
     	$data["lang_label_text"] = $this->lang->line("lang_label_text");
     	$data["Home"] = $this->lang->line("Home");
     	$data["About_us"] = $this->lang->line("About_us");
@@ -1044,13 +1063,25 @@ public function getChildCategory($parentID)
     	$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
     	 
     	$userInfo=$this->nativesession->get("user");
+    	//----------setup the header menu----------
+    	$data["menuMyAds"]="";
+    	$data["menuInbox"]="";
+    	$data["menuInboxNum"]="0";
+    	$data["menuPendingRequest"]="";
+    	$data["menuPendingRequestNumber"]="0";
+    	if(isset($userInfo)){
+    		$menuCount=$this->getHeaderCount($userInfo["userID"]);
+    		$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; // //$this->messages_model->getUnReadInboxMessage($user[0]->userID);
+    		$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+    	}
+    	//----------------------------
     	if(empty($userInfo))
     	{
     		$errorMsg=$this->lang->line("PostPleaseLoginFirst");
     		$data=array('error'=> $errorMsg);
     		$data["prevURL"]=$prevURL;
     		$data['redirectToWhatPage']="Login Page";
-    		$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
+    		$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";
     		$data["successTile"]=$this->lang->line("successTile");
     		$data["failedTitle"]=$this->lang->line("failedTitle");
     		$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -1068,8 +1099,8 @@ public function getChildCategory($parentID)
     		$errorMsg=$this->lang->line("PostPleaseLoginFirst");
     		$data=array('error'=> $errorMsg);
     		$data["prevURL"]=$prevURL;
-    		$data['redirectToWhatPage']="Login Page";
-    		$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
+    		$data['redirectToWhatPage']="Previous Page";
+    		$data['redirectToPHP']=$prevURL;
     		$data["successTile"]=$this->lang->line("successTile");
     		$data["failedTitle"]=$this->lang->line("failedTitle");
     		$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -1298,29 +1329,16 @@ public function getChildCategory($parentID)
     	}
     
     	$errorMsg=$this->lang->line("PostSuccess");
-    	//if($prevURL<>'')
-    	//{
-    	//	redirect(urldecode($prevURL));
-    	//}
-    	//else
-    	// {
     	$data["error"]=$errorMsg;
     	$data["prevURL"]=$prevURL;
     	$data['redirectToWhatPage']="Previous Page";
     	if($prevURL=="")
     		$data['redirectToPHP']=base_url();
     	else
-    		$data['redirectToPHP']=urldecode($prevURL);
+    		$data['redirectToPHP']=$prevURL;
     	$data["successTile"]=$this->lang->line("successTile");
     	$data["failedTitle"]=$this->lang->line("failedTitle");
     	$data["goToHomePage"]=$this->lang->line("goToHomePage");
-    	//----------setup the header menu----------
-		$data["menuMyAds"]="";
-		$data["menuInbox"]="";
-		$data["menuInboxNum"]="0";
-		$data["menuPendingRequest"]="";
-		$data["menuPendingRequestNumber"]="0";
-		//----------------------------	
     	$this->load->view('successPage', $data);
     	//}
     }

@@ -85,7 +85,7 @@ input[type=checkbox]
         <li><a href=<?php echo base_url().MY_PATH."getCategory/getAll/1/$ParentCatID";?>><?php echo $ParentCatName;?></a></li>
         <li class="active"><a href=<?php echo base_url().MY_PATH."getCategory/getAll/1/$ChildCatID";?>><?php echo $ChildCatName;?></a></li>
       </ol>
-      <div class="pull-right backtolist"><a href=<?php echo $previousCurrent_url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
+      <div class="pull-right backtolist"><a href=<?php $tempUrl=$prevUrl; if(strcmp($prevItem_Url, base_url())==0) echo $prevUrl; else echo $prevItem_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
     </div>
     <div class="container">
       <div class="row">
@@ -522,7 +522,7 @@ input[type=checkbox]
                   <div class="seller-info">
                     <h3 class="no-margin">
               			<div class="user-ads-action"> 
-              			<a href="<?php echo base_url().MY_PATH;?>viewProfile/index/<?php echo $postID.'/1?prevURL='.urlencode($previousCurrent_url);?>" 
+              			<a href="<?php echo base_url().MY_PATH;?>viewProfile/index/<?php echo $postID.'/1?prevURL='.urlencode($previousCurrent_url).'&prevProfile_Url='.urlencode(current_url());?>" 
               			class="btn   btn-default btn-block viewButton">
               			<i class="icon-user-3"></i>
               			View <?php echo $username;?> Info</a> </div>

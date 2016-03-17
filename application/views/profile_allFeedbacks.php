@@ -25,7 +25,7 @@ function sendIt() {
         <div class="col-sm-9 page-content col-thin-left">
           <div class="category-list">
            <div class="tab-box "> 
-                 <div class="pull-right backtolist margin-right-10"><a href=<?php echo $previousCurrent_url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
+                 <div class="pull-right backtolist margin-right-10"><a href=<?php echo $prevViewFeedBack_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
                 <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds"  role="tab" data-toggle="tab">

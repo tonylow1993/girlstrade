@@ -102,6 +102,19 @@ class itemComments  extends CI_Controller {
 					"comments"=> $comment, "status"=>"U", "createDate"=>date("Y-m-d H:i:s"));
 			
 			$this->itemcomments_model->insertItemComment($data);
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="class=\"active\"";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			if(isset($userInfo["userID"])){
+				$menuCount=$this->getHeaderCount($userInfo["userID"]);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; //
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
+			//----------------------------
+			
 			redirect($prevURL);
 		}
 		catch(Exception $ex){}

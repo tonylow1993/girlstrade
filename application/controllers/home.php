@@ -615,8 +615,15 @@ class Home extends CI_Controller {
 			$prevURL=$_SESSION["previousUrl"];
 		}
 		
-        log_message('debug', 'before logging in');
-		 $data["lang_label_text"] = $this->lang->line("lang_label_text");
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		//----------------------------
+        
+		$data["lang_label_text"] = $this->lang->line("lang_label_text");
 		$data["Home"] = $this->lang->line("Home");
             $data["About_us"] = $this->lang->line("About_us");
             $data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
@@ -731,18 +738,6 @@ class Home extends CI_Controller {
 				$username=$user['username'];
 				
 			}
-			//echo $errorMsg;
-			//print_r($user);
-			//var_dump($this->input);
-			//echo "..username..(".$username;
-			//echo ")..password..(".$password;
-			//echo ")..isset..(".isset($user);
-			//echo ")..empty..(".empty($user);
-			//echo ")..count..(".count($user);
-			//echo ")..Server ContentType..(".$_SERVER['CONTENT_TYPE'].")";
-			//var_dump($_POST);
-			//redirect($back2LoginPage."/".$errorMsg);
-			//return;		
 		}
 		else if(count($user)>0 and $user["accountStatus"] == 'U'){
 			
@@ -773,10 +768,8 @@ class Home extends CI_Controller {
 			 $data["username"]=$username;
 			$isValid = $this->userPassword->isValidPassword($data);
 			if($isValid){
-				//echo '<h1>You enter the correct password</h1>';
-                                $this->nativesession->set("user",$user);
-								//$this->nativesession->get["userID"]= $user['userID'];
-								//$this->nativesession->get["username"]= $data["username"];
+				 $user = $this->user->getUserByUsername($username);
+                  $this->nativesession->set("user",$user);
 			}else{
 				
 				$loginhist=array("username"=> $username, "logMsg"=>INCORRECTPASSWORD,
@@ -951,11 +944,33 @@ function generateRandomString($length = 8) {
 		{
 			if(!$this->userEmail->isEmailExist($emailAddress))
 			{
-				return;
+				$errorMsg=$this->lang->line("ResetPasswordFailed");
+				$data["lang_label"]=$this->nativesession->get("language");
+				$data["error"]=$errorMsg;
+				$this->nativesession->set("lastPageVisited","login");
+				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToPHP']=base_url();
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				
+				$this->load->view('failedPage', $data);
+				return;	
 			}
 			$user = $this->user->getUserByUserID($userID);
 			if($code != md5($user['createDate'])){
-					return;
+					$errorMsg=$this->lang->line("ResetPasswordFailed");
+				$data["lang_label"]=$this->nativesession->get("language");
+				$data["error"]=$errorMsg;
+				$this->nativesession->set("lastPageVisited","login");
+				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToPHP']=base_url();
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				
+				$this->load->view('failedPage', $data);
+				return;	
 			}
 				
 			$password=$this->generateRandomString();
@@ -1149,15 +1164,26 @@ function generateRandomString($length = 8) {
 	}
 	public function viewAllFeedback($userID, $pageNum=1){
 	
-		$previousUrl="";
-		if(isset($_GET["prevURL"]))
-			$previousUrl=$_GET["prevURL"];
-			else
-				$previousUrl=base_url();
-				$prevURL=$previousUrl;
-				$_SESSION["previousUrl"]=$previousUrl;
-				$data["previousCurrent_url"]=($previousUrl);
-				$data["userID"]=$userID;
+		$prevViewFeedBack_Url=base_url();
+		if(isset($_GET["prevViewFeedBack_Url"]))
+			$prevViewFeedBack_Url=$_GET["prevViewFeedBack_Url"];
+		else if(isset($_SESSION["prevViewFeedBack_Url"]))
+			$prevViewFeedBack_Url=$_SESSION["prevViewFeedBack_Url"];
+		$_SESSION["prevViewFeedBack_Url"]=$prevViewFeedBack_Url;
+		
+		$data["prevViewFeedBack_Url"]=$prevViewFeedBack_Url;
+		
+		$prevUrl=base_url();
+		if(isset($_GET["prevURL"])) {
+			$prevUrl=$_GET["prevURL"];
+			$_SESSION["previousUrl"]=$prevUrl;
+		}
+		else if(isset($_SESSION["previousUrl"]))
+			$prevUrl=$_SESSION["previousUrl"];
+			$data["prevUrl"]=$prevUrl;
+			$data["previousCurrent_url"]=$prevUrl;
+	
+			$data["userID"]=$userID;
 				$data["pageNum"]=$pageNum;
 				$userStat=$this->userstat_model->getUserStat($userID);
 	
@@ -2659,6 +2685,18 @@ function generateRandomString($length = 8) {
 				$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
 				$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
 			}
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="class=\"active\"";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			if(isset($userID)){
+				$menuCount=$this->getHeaderCount($userID);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID); //$menuCount["inboxMsgCount"]; //
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
+			//----------------------------
 		$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInInbox($userID);
 			$myList=$this->messages_model->getInBoxByPostUserId($userID, $pageNum);
 			$data["result"]=$this->mapInBoxToView($myList, "Inbox");
@@ -2710,12 +2748,17 @@ function generateRandomString($length = 8) {
 			echo $ex->getMessage();
 		}
 		//----------setup the header menu----------
-		$data["menuMyAds"]="";
-		$data["menuInbox"]="";
-		$data["menuInboxNum"]="0";
-		$data["menuPendingRequest"]="";
-		$data["menuPendingRequestNumber"]="0";
-		//----------------------------
+        $data["menuMyAds"]="";
+        $data["menuInbox"]="class=\"active\"";
+        $data["menuInboxNum"]="0";
+        $data["menuPendingRequest"]="";
+        $data["menuPendingRequestNumber"]="0";
+        if(isset($user['userID'])){
+        	$menuCount=$this->getHeaderCount($user['userID']);
+        	$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user['userID']); //$menuCount["inboxMsgCount"]; //
+        	$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+        }
+        //----------------------------
 				
 		$this->getAccountPage(4);
 	}
@@ -2835,8 +2878,18 @@ function generateRandomString($length = 8) {
 			$userEmail['email'] = $data['email'];
 		}
 		$this->userEmail->update($userEmail);
-		
-		log_message('debug', 'what happen?');
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="class=\"active\"";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		if(isset($user['userID'])){
+			$menuCount=$this->getHeaderCount($user['userID']);
+			$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user['userID']); //$menuCount["inboxMsgCount"]; //
+			$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+		}
+		//----------------------------
 		$this->getAccountPage(4);
 	}
 	
@@ -3075,6 +3128,19 @@ function generateRandomString($length = 8) {
 		}else if(isset($_SESSION["previousUrl"])){
 			$prevURL=$_SESSION["previousUrl"];
 		}
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		if($userID){
+			$menuCount=$this->getHeaderCount($userID);
+			$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID);
+			$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+		}
+		//----------------------------
+		
 		
 		$upload_dir= 'USER_PHOTO';
 		
@@ -3175,10 +3241,10 @@ function generateRandomString($length = 8) {
 						$data["prevURL"]=base_url();
 						$data['redirectToWhatPage']="New Post Page";
 						$data['redirectToPHP']=base_url().MY_PATH."newPost";
-						$this->load->view('failedPage', $data);
 						$data["successTile"]=$this->lang->line("successTile");
 						$data["failedTitle"]=$this->lang->line("failedTitle");
 						$data["goToHomePage"]=$this->lang->line("goToHomePage");
+						$this->load->view('failedPage', $data);
 						return;
 					}
 				}
@@ -3287,6 +3353,7 @@ function generateRandomString($length = 8) {
 		$post=$this->post_model->getPostByPostID($postID);
 		$data['expriyDate']=$this->addDayswithdate($post[0]->expriyDate, REPOSTEXPIRYDAYS);
 		$this->post_model->update($data, $postID);
+		
 		$this->getAccountPage("3", $pageNum);
 	}
 	function addDayswithdate($date,$days){

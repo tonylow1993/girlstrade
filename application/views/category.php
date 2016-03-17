@@ -634,7 +634,7 @@
               foreach($itemList as $id=>$item)
 				{
 					$rowCount=$rowCount+1;
-				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL;
+				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
               		$locationName=$item["locationName"];
 					$categoryName=$item["categoryName"];
 					$postCurrency=$item['postCurrency'];

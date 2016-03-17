@@ -71,7 +71,7 @@ function sendIt() {
               echo "<br/>";
               ?>
               
-              <a href="<?php echo base_url().MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url()); ?>" > View all comments </a>
+              <a href="<?php echo base_url().MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url())."&prevViewFeedBack_Url=",urlencode(current_url()); ?>"> View all comments </a>
               <br />
               <?php $usr = $this->nativesession->get('user');
 					if(empty($usr)){ 
@@ -146,7 +146,7 @@ function sendIt() {
          		 <form action="<?php $basePath=base_url();
 //     			$encodeCurrentURL=urlencode(current_url());
 //     			$encodeCurrentURL=$prevURL;
-    			$path=$basePath.MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$previousCurrent_url;
+    			$path=$basePath.MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());
     			echo $path;
                ?>" class="tab-filter" method="POST"> 
 			   <div class="select-short-by">
@@ -164,7 +164,7 @@ function sendIt() {
 				</div>-->
 			</form>
             <!--/.tab-box-->
-               <div class="pull-right backtolist margin-right-10"><a href=<?php echo $previousCurrent_url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
+               <div class="pull-right backtolist margin-right-10"><a href=<?php echo $prevProfile_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
  
            </div>
                

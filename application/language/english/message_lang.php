@@ -227,3 +227,4 @@ $lang["ExceedMaxDescLength"]="Exceed Max Description Length";
 $lang["adminApprovePrivateMsgByUserIDOnly"]="Approve Message";
 $lang["adminApproveFeedBack"]="Approve FeedBack";
 $lang["RequireLoginToAccess"]="This page required login to access";
+$lang["ResetPasswordFailed"]="Reset password failed. Please reset password again and check email.";

@@ -30,7 +30,7 @@
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr style="height:50px;">
-<                   <th style="border: none;"> <?php echo $this->lang->line("Photo");?> </th>
+                   <th style="border: none;"> <?php echo $this->lang->line("Photo");?> </th>
                     <th data-sort-ignore="true" style="border: none;"> <?php echo $this->lang->line("Ads_Detail");?> </th>
                  </tr>
                 </thead>
@@ -43,7 +43,7 @@
                   	{
                   		$from=$row['from'];
                   		$reply=$row['reply'];
-                  		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
+                  		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url())."&prevItem_Url=".urlencode(current_url());
                   		$imagePath=$row['imagePath'];
                   		$preview=$row['preview'];
                   		$previewTitle=$row['previewTitle'];
