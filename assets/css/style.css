@@ -1347,14 +1347,13 @@ display: block;
 }
 
 .add-title-girlstrade {
-  padding: 0px, 0px, 0px, 0px;
   color: blue;
-  font-weight: bold;
-  font-weight: normal;
+  font-weight: lighter;
   font-size: 20px;
   margin-bottom: 18px;
   margin-top: 10px;
   color: black;
+  font-family: MyCustomFont, serif;
 }
 
 .add-details a {
@@ -3354,6 +3353,12 @@ td.ads-details-td {
 /* =============================================================== */
 /* ADDED BY TONY
 /* =============================================================== */
+
+.post-time{
+	color: #6B6B6B;
+    font-weight: 300;
+	font-size: 15px;
+}
 
 .btn-40{
 	width: 40%;

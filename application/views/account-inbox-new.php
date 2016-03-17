@@ -84,7 +84,7 @@
 							$readflag="bgcolor=\"#FF0000\" onclick=\"editData($messageID, $pageNum)\"";
 						
                 		echo "<tr ".$readflag." >";
-                    	echo "<td style=\"width:20%\" class=\"add-image\">$from";
+                    	echo "<td style=\"width:20%\" class=\"text-center\">$from";
                     	$rowCount=$rowCount+1;
                       	$ctrlName1="AjaxLoad".$rowCount;
                       	$errorctrlName1="ErrAjaxLoad".$rowCount;
@@ -106,7 +106,7 @@
                     	echo $userID.$fuserID;
                     	$historyPath=base_url().MY_PATH."messages/getViewMessageHistory/$fuserID/$postID/$userID?prevURL=".urlencode(current_url());
                     	 
-                    	echo "<a class=\"btn btn-info btn-xs\" href=\"$historyPath\" > <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('History')." </a>";
+                    	echo "<a class=\"btn btn-info btn-120\" href=\"$historyPath\" > <i class=\"fa fa-mail-forward\"></i>".$this->lang->line('History')." </a>";
                     	
                     	echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
                     	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
@@ -156,7 +156,7 @@
                     	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                        echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
-                          echo "<br/>".$preview."<br/>Posted On: ". $createDate."</h5>";
+                          echo "<br/>".$preview."<br/><p class=\"post-time\">Posted On: ". $createDate."</p></h5>";
                       	 	echo "</div></td>";
                       	
                   		echo "</tr>";

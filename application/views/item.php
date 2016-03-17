@@ -500,6 +500,7 @@ input[type=checkbox]
 
 										</form>
 										<?php }?>
+										<br>
                                 </div><!-- #respond -->
 
 
@@ -822,9 +823,9 @@ input[type=checkbox]
 	        <h4 class="modal-title">Please login</h4>
       	</div>
       	<div class="modal-body">
-      	   <h2>Please login to continue the process</h2>
+      	   <h2 class="center-text">Please login to continue the process</h2>
       	   <br>
-      	   <a class="btn btn-primary btn-xs" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-reply"></i>Login</a></p>";
+      	   <a class="btn btn-primary btn-40 center-obj" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;Login</a></p>
                     	
       	</div>
     	
@@ -918,7 +919,7 @@ input[type=checkbox]
       	<div class="modal-body">
       	   <h2>Please login to continue the process</h2>
       	   <br>
-      	   <a class="btn btn-primary btn-xs" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-reply"></i>Login</a></p>";
+      	   <a class="btn btn-primary btn-40 center-obj" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;Login</a></p>
                     	
       	</div>
         <?php } else {?>
