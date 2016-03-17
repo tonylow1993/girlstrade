@@ -45,18 +45,18 @@
 							$readflag="bgcolor=\"#FF0000\" onclick=\"editData($id, $pageNum)\"";
 						
                 		echo "<tr ".$readflag." >";
-                    	echo "<td style=\"width:20%\" class=\"add-image\">$fromusername";
-                    	echo "<p>";
-                    	echo "<a class=\"btn btn-primary btn-xs\" href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
-                    	echo "</p></td>";
+                    	echo "<td style=\"width:20%\" class=\"text-center\"><p class=\"inbox-username\">$fromusername";
+                    	echo "</p>";
+                    	echo "<a class=\"btn btn-primary btn-xs btn-120\" href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
+                    	echo "</td>";
                     	
                     	
                     	
                     	
                     	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
-                       echo "<h5><div class=\"add-title-girlstrade\">".$content;
-                          echo "<br/>Posted On: ". $createDate."</h5>";
+                       echo "<h5><div class=\"add-title-girlstrade\"><p class=\"inbox-msg\">".$content;
+                          echo "</p><p class=\"post-time\">Posted On: ". $createDate."</p></h5>";
                       	 	echo "</div></td>";
                       	
                   		echo "</tr>";
