@@ -766,7 +766,7 @@ window.onload = function(){
     
     <!-- /.main-container -->
 
-	  <div class="page-info" style="background: url(<?php echo base_url();?>images/bg.jpg); background-size:cover">
+	<!-- <div class="page-info" style="background: url(<?php echo base_url();?>images/bg.jpg); background-size:cover">
     <div class="container text-center section-promo"> 
     	<div class="row">
         	<div class="col-sm-3 col-xs-6 col-xxs-12">
@@ -784,8 +784,8 @@ window.onload = function(){
                   				</div>
                             </div>
                           </div>
-  							<!-- /..iconbox -->
-                     </div><!--/.iconbox-wrap-->
+  							
+                     </div>
             </div>
             
             <div class="col-sm-3 col-xs-6 col-xxs-12">
@@ -803,8 +803,8 @@ window.onload = function(){
                   				</div>
                             </div>
                           </div>
-  							<!-- /..iconbox -->
-                     </div><!--/.iconbox-wrap-->
+  							
+                     </div>
             </div>
             
             <div class="col-sm-3 col-xs-6  col-xxs-12">
@@ -821,8 +821,8 @@ window.onload = function(){
                             	</div>
                             </div>
                           </div>
-  							<!-- /..iconbox -->
-                     </div><!--/.iconbox-wrap-->
+  							
+                     </div>
             </div>
             
             <div class="col-sm-3 col-xs-6 col-xxs-12">
@@ -841,14 +841,14 @@ window.onload = function(){
                   				</div>
                             </div>
                           </div>
-  							<!-- /..iconbox -->
-                     </div><!--/.iconbox-wrap-->
+  							
+                     </div>
             </div>
             
         </div>
     
     </div>
-  </div>
+  </div>-->
 
   <!-- /.page-info -->
   <!-- ending body -->
