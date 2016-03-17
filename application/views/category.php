@@ -808,18 +808,36 @@
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
                    echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
-                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+                   echo "<span class=\"info-row\"> <span class=\"user\"><img class=\"ratingIcon-xs\" src=$imgRatingPath> $username </span> - <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span></span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                if($item["getDisableSavedAds"])
-               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
-                else
-             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
+                if(!$isloginedIn and $isSameUser==false){
+                	$imgRatingPath=base_url()."images/".$userRating;
                 
-                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url()).">View Details</a>]</div>";
-               echo "</div>";
+                	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                
+                }
+                if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
+                {
+                	if($isPostAlready == false and $isSameUser ==false ){
+                		
+                		$imgRatingPath=base_url()."images/".$userRating;
+                		echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+                		echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                		echo " data-toggle=\"modal\" >";
+                		echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
+                	}
+                }
+                if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
+                {
+                	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
+                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                }
+                                  
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
+                echo "</div>";
                }
                     
                if($rowCount==0)
@@ -899,18 +917,36 @@
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
                    echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
-                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+                   echo "<span class=\"info-row\"> <span class=\"user\"><img class=\"ratingIcon-xs\" src=$imgRatingPath> $username </span> - <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span></span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                if($item["getDisableSavedAds"])
-               		 echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
-                else
-             	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
+                if(!$isloginedIn and $isSameUser==false){
+                	$imgRatingPath=base_url()."images/".$userRating;
                 
-                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url()).">View Details</a>]</div>";
-               echo "</div>";
+                	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                
+                }
+                if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
+                {
+                	if($isPostAlready == false and $isSameUser ==false ){
+                		
+                		$imgRatingPath=base_url()."images/".$userRating;
+                		echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+                		echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                		echo " data-toggle=\"modal\" >";
+                		echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
+                	}
+                }
+                if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
+                {
+                	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
+                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                }
+                                  
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
+                echo "</div>";
                }
                if($rowCount==0)
                	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";

@@ -497,7 +497,7 @@ input[type=checkbox]
                                             <textarea class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="Message" name="blogscomment"></textarea> </div>
 
                                         <button type="submit" class="btn-success btn btn-lg"> Submit </button>
-
+										<br>
 										</form>
 										<?php }?>
 										<br>
