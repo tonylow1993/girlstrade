@@ -59,6 +59,7 @@
 		else if(isset($_SESSION["previousUrl"]))
 			$prevUrl=$_SESSION["previousUrl"];
 		$data["prevUrl"]=$prevUrl;
+		$prevURL=$prevUrl;
 			//----------setup the header menu----------
 			$data["menuMyAds"]="";
 			$data["menuInbox"]="";
