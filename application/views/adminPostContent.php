@@ -11,7 +11,7 @@
               foreach($itemList as $id=>$item)
 				{
 					$Num=$Num+1;
-					$viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL;
+					$viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
 					
 					//$viewBasePath=$basePath."viewItem/index/".$id."/".$encodeCurrentURL;
               		$locationName='';

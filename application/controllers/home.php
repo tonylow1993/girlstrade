@@ -1886,7 +1886,7 @@ function generateRandomString($length = 8) {
 				$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 			}
 			$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
-		
+			
 			$itemStatus=$status;
 			$dStart=date_create('2015-09-20');
 			$dDiff = $dStart->diff(date_create($expiryDate));
@@ -1995,7 +1995,7 @@ function generateRandomString($length = 8) {
 					$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 				}
 				$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
-	
+			
 				$itemStatus=$status;
 				$dStart=date_create('2015-09-20');
 				$dDiff = $dStart->diff(date_create($expiryDate));
@@ -2094,7 +2094,7 @@ function generateRandomString($length = 8) {
 				$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 			}
 			$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
-		
+			
 			$itemStatus='OPEN';
 			$NoOfDaysPending=10;
 			$NoOfDaysb4ExpiryContact=10;
@@ -2257,7 +2257,7 @@ function generateRandomString($length = 8) {
 				$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 			}
 			$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
-		
+			
 			$itemStatus='OPEN';
 			$NoOfDaysPending=10;
 			$NoOfDaysb4ExpiryContact=10;
@@ -2429,7 +2429,7 @@ function generateRandomString($length = 8) {
 				$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 			}
 			$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
-		
+			
 			$itemStatus='OPEN';
 			$NoOfDaysPending=10;
 			$NoOfDaysb4ExpiryContact=10;
@@ -2516,8 +2516,8 @@ function generateRandomString($length = 8) {
 				{
 					$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 				}
-				$viewItemPath=base_url()."viewItem/index/$postID";
-				
+				$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
+			
 	            $itemStatus='OPEN';	
               	$NoOfDaysPending=10;  		
               	$NoOfDaysb4ExpiryContact=10;	

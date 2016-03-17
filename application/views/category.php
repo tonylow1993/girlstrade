@@ -730,7 +730,7 @@
                 	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
                 }
                                   
-                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
                echo "</div>";
                }
                          
@@ -756,7 +756,7 @@
 						continue;
 					
 					$rowCount=$rowCount+1;
-				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL;
+				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
               		$locationName=$item["locationName"];
 					$categoryName=$item["categoryName"];
 					$postCurrency=$item['postCurrency'];
@@ -818,7 +818,7 @@
                 else
              	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
                 
-                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
+                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url()).">View Details</a>]</div>";
                echo "</div>";
                }
                     
@@ -847,7 +847,7 @@
 					if(strcmp($item["newUsed"], "U")<>0)
 						continue;
 					$rowCount=$rowCount+1;
-				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL;
+				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
               		$locationName=$item["locationName"];
 					$categoryName=$item["categoryName"];
 					$postCurrency=$item['postCurrency'];
@@ -909,7 +909,7 @@
                 else
              	   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink'>Save</a>]";
                 
-                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL>View Details</a>]</div>";
+                echo "[<a href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url()).">View Details</a>]</div>";
                echo "</div>";
                }
                if($rowCount==0)

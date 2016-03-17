@@ -46,7 +46,7 @@
 		if(isset($_GET["prevItem_Url"]))
 			$prevItem_Url=$_GET["prevItem_Url"];
 		else if(isset($_SESSION["prevItem_Url"]))
-			$prevItem_Url=$_SESSION["prevViewFeedBack_Url"];
+			$prevItem_Url=$_SESSION["prevItem_Url"];
 		$_SESSION["prevItem_Url"]=$prevItem_Url;
 		$data["prevItem_Url"]=$prevItem_Url;
 		
@@ -438,7 +438,7 @@
         						$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
         					}
         					$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
-        
+			
         					$itemStatus=$status;
         					$dStart=date_create('2015-09-20');
         					$dDiff = $dStart->diff(date_create($expiryDate));
@@ -511,8 +511,8 @@
                   		
                   		$from=$row['from'];
                   		$reply=$row['reply'];
-                  		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
-                  		$imagePath=$row['imagePath'];
+                  		$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
+						$imagePath=$row['imagePath'];
                   		$previewTitle=$row['previewTitle'];
                   		$previewDesc=$row["previewDesc"];
                   		$createDate=$row['createDate'];

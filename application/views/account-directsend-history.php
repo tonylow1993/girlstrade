@@ -36,7 +36,7 @@
                   		$from=$row['from'];
                   		$reply=$row['reply'];
                   		$replyUserID=$row["replyUserID"];
-                  		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
+                  		$viewItemPath=$row['viewItemPath']."?prevItem_Url=".urlencode(current_url());
                   		$imagePath=$row['imagePath'];
                   		$previewTitle=$row['previewTitle'];
                   		$previewDesc=$row["previewDesc"];

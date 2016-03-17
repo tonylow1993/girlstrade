@@ -546,7 +546,7 @@ class getCategory extends CI_Controller {
 							$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 						}
 						$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
-	
+			
 						$itemStatus=$status;
 						$dStart=date_create('2015-09-20');
 						$dDiff = $dStart->diff(date_create($expiryDate));

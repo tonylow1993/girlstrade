@@ -1073,7 +1073,7 @@ class getAdmin extends CI_Controller {
 				$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 			}
 			$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
-		
+			
 		$previewTitle=$row->itemName;
 		$previewDesc=$row->description;
 		$createDate=$row->createDate;
