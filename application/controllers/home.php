@@ -2839,7 +2839,8 @@ function generateRandomString($length = 8) {
 		if(empty($address)){
 			log_message('debug', 'where my address?');
 			$address['userID'] = $user['userID'];
-			$address['country'] = $data['country'];
+			//$address['country'] = $data['country'];
+			$address['country'] = "HKG";
 // 	    	$address['area'] = $data['area'];
 // 	    	$address['district'] = $data['district'];
 // 	    	$address['street'] = $data['street'];
