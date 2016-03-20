@@ -149,13 +149,36 @@ function sendIt() {
     			$path=$basePath.MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());
     			echo $path;
                ?>" class="tab-filter" method="POST"> 
-			   <div class="select-short-by">
+			   <div class="form-group sort-group">
+				  <select class="form-control sort-select" name="sortByPrice"   id="sortByPrice" data-width="auto">
+					<option value="0">Sort by...</option>
+				    <option value="1">Price</option>
+				    <option value="2">Date</option>
+				    <option value="3">Category</option>
+				  </select>
+			    </div>
+			   
+			   <div class="form-group sort-group">
+				  <select class="form-control sort-select" name="sortMethod"   id="sortMethod" data-width="auto">
+					<option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> > &nbsp </option>
+				    
+				  </select>
+			    </div>
+			   
+			   <!--<div class="select-short-by">
 					<select class="form-control selecter "   name="sortByPrice"   id="sortByPrice" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> >Sort by...</option>
-					  <option value="1" <?php if(strcmp($sortByID,"1")==0)  echo " selected='selected' ";?>>Price: Low to High</option>
-					  <option value="2" <?php if(strcmp($sortByID,"2")==0)  echo " selected='selected' ";?>>Price: High to Low</option>
-					  <option value="3" <?php  if(strcmp($sortByID,"3")==0)   echo " selected='selected' ";?>>Date: Most Recent</option>
-					  <option value="4" <?php  if(strcmp($sortByID,"4")==0)   echo " selected='selected' ";?>>Date: Oldest</option>
+					  <option value="1" <?php if(strcmp($sortByID,"1")==0)  echo " selected='selected' ";?>>Price</option>
+					  <option value="2" <?php if(strcmp($sortByID,"2")==0)  echo " selected='selected' ";?>>Date</option>
+					  <option value="3" <?php if(strcmp($sortByID,"2")==0)  echo " selected='selected' ";?>>Category</option>
+					</select>
+				</div>
+				
+				<div class="select-short-by">
+					<select class="form-control selecter "   name="sortMethod"   id="sortMethod" data-width="auto">
+					  <option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> >Sort by...</option>
+					  <option value="1" <?php if(strcmp($sortByID,"1")==0)  echo " selected='selected' ";?>>Low to High</option>
+					  <option value="2" <?php if(strcmp($sortByID,"2")==0)  echo " selected='selected' ";?>>High to Low</option>
 					</select>
 				</div>
                 <!--<div class="col-sm-3">
@@ -611,6 +634,66 @@ $('.nav-tabs a[href="#newAds"]').tab('show')
 $('#usedAds1').click(function(){
 $('.nav-tabs a[href="#usedAds"]').tab('show')
 })	
+
+$(function() {
+
+  $('#sortByPrice').on('change', function(){
+	$('#sortMethod')
+	.find('option')
+	.remove()
+	.end();  
+	  
+    var selected = $(this).find("option:selected").val();
+    if (selected == 1){
+		selectValues = { "1": "High to Low", "2": "Low to High" };
+		
+		$.each(selectValues, function(key, value) {   
+			$('#sortMethod')
+			  .append($("<option></option>")
+			  .attr("value",key)
+			  .text(value)); 
+			}
+		);
+	}else if (selected == 2){
+		selectValues = { "1": "Most Recent", "2": "Oldest" };
+		
+		$.each(selectValues, function(key, value) {   
+			$('#sortMethod')
+			  .append($("<option></option>")
+			  .attr("value",key)
+			  .text(value)); 
+			}
+		);
+	}else{
+		$('#sortMethod').html("<option value=''>AllCategories </option>");
+		$('#sortMethod').append(
+			"<?php 
+					foreach ($AllCategory as $id=>$value)
+					{
+						if(!isset($lang_label))
+								$lang_label="";
+						$name=$value[0]->name;
+						$postCount="(".$value[0]->postCount.")";
+						if(SHOW_BRACKETS_INDEX_PAGE==0)
+							$postCount="";
+						if($lang_label<>"english")
+							$name=$value[0]->nameCH;
+						if($value[0]->level==1)
+							echo "<option value='".$id."' style='background-color: #E1338B;' >".$name.$postCount."</option>";
+						else 
+						{
+							$str="";
+							if($catID==$id)
+								$str=" selected='selected' ";
+							echo "<option ".$str." value='".$id."' style='margin-left:10px;'> &nbsp;&nbsp;&nbsp;&nbsp;".$name.$postCount." </option>";
+						}
+					}
+			?>"
+		);
+	}
+  });
+  
+});
 </script>
 
     <?php include "footer2.php"; ?>
