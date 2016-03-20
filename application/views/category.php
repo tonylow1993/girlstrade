@@ -707,6 +707,7 @@
                	//	 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
                 //else
              	//   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
                 if(!$isloginedIn and $isSameUser==false){
                 	$imgRatingPath=base_url()."images/".$userRating;
                 
@@ -727,11 +728,11 @@
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
                 	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                	echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
                 }
                                   
-                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
-               echo "</div>";
+                
+               echo "</div></div>";
                }
                          
               }else{
@@ -813,6 +814,7 @@
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
                 if(!$isloginedIn and $isSameUser==false){
                 	$imgRatingPath=base_url()."images/".$userRating;
                 
@@ -833,11 +835,11 @@
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
                 	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                	echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
                 }
                                   
-                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
-                echo "</div>";
+                
+                echo "</div></div>";
                }
                     
                if($rowCount==0)
@@ -942,7 +944,7 @@
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
                 	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                	echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
                 }
                                   
                 echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";

@@ -20,7 +20,7 @@
                     <i class="fa fa-eye ln-shadow shape-8"></i> </div>
                   <div class="mcol-right"> 
                     <!-- Number of visitors -->
-                    <p><a href="#"><?php echo $visitCount; ?></a> <em>visits</em></p>
+                    <p><a href="#"><?php echo $visitCount; ?></a> <em>Visits</em></p>
                   </div>
                   <div class="clearfix"></div>
                 </div>
