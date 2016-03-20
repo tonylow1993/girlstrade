@@ -3715,7 +3715,7 @@ span b{
 
 @media screen and (max-width: 600px) {
 	.price-td{
-		display: none;
+		//display: none;
 	}
 	
 	.action-td{
