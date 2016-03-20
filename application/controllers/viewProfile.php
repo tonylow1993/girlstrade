@@ -13,6 +13,7 @@ class viewProfile extends getCategory {
 		$this->load->model('messages_model');
 		$this->load->model('userstat_model');
 		$this->load->model('userInfo_model');
+		$this->load->model('category_model');
 		$data["lang_label"] = $this->nativesession->get("language");
             $this->lang->load("message",$this->nativesession->get('language'));
             
@@ -143,6 +144,9 @@ class viewProfile extends getCategory {
 				$data["sortByID"]=$this->input->post("sortByPrice");
 			else 
 				$data["sortByID"]=$sortByID;
+			
+			$data["sortTypeID"]="0";
+				
             $NoOfItemCount=0;
 			$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords, $data["sortByID"]);
 			$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
@@ -175,13 +179,40 @@ class viewProfile extends getCategory {
 				$data["lblConditionUsed"]=$this->lang->line("lblConditionUsed");
 				$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
 				$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
-				
+				$data["lblAllCategories"]=$this->lang->line("lblAllCategories");
+					
+				$data["AllCategory"]=$this->getAllCategory();
 				
 			$data["recentBuyerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestBuyerComment($data["userID"]));
 			$data["recentSellerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestSellerComment($data["userID"]));
 				
 				
             $this->load->view('profile', $data);
+	}
+	function getAllCategory()
+	{
+		$data['result']=null;
+		$data['query']=$this->category_model->getParentCategory();
+		if (!is_null($data['query'])) {
+			foreach($data['query'] as $row)
+			{
+				$result1=array($row->categoryID => array($row));
+				$result2=$this->getChildCategory($row->categoryID);
+				if(!is_null($result2))
+					if(is_null($data['result']))
+						$data['result']=$result1+$result2;
+						else
+							$data['result']=$data['result']+$result1+$result2;
+							else
+							{
+								if(is_null($data['result']))
+									$data['result']=$result1;
+									else
+										$data['result']=$data['result']+$result1;
+							}
+			}
+		}
+		return $data['result'];
 	}
     
 	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByID="0" )
@@ -294,7 +325,8 @@ class viewProfile extends getCategory {
 		$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
 		$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
 		
-
+		$data["AllCategory"]=$this->getAllCategory();
+			
 			$data["recentBuyerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestBuyerComment($data["userID"]));
 			$data["recentSellerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestSellerComment($data["userID"]));
 			
