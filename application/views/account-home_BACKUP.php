@@ -79,13 +79,29 @@ input[type=checkbox]
                 <div class="panel-collapse collapse in" id="collapseB1">
                   <div class="panel-body">
                   <form action="<?php echo base_url().MY_PATH.'home/updateProfile'?>" method="POST" >
-     			      
+     			      <div class="form-group">
+                        <label  class="col-sm-3 control-label"><?php echo $this->lang->line("FirstName");?></label>
+                        <div class="col-sm-9">
+                          <input name="firstName" type="text" class="form-control"  placeholder="<?php echo $firstName;?> ">
+                      </div>
+                      <div class="form-group">
+                        <label  class="col-sm-3 control-label"><?php  echo $this->lang->line("LastName");?></label>
+                        <div class="col-sm-9">
+                          <input name="lastName" type="text" class="form-control" placeholder="<?php echo $lastName; ?> ">
+                        </div>
+                      </div>
                       <div class="form-group">
                         <label  class="col-sm-3 control-label"><?php echo $this->lang->line("Email");?></label>
                         <div class="col-sm-9">
                           <input name="email" type="email" disabled="disabled" class="form-control"  placeholder="<?php echo $email; ?> ">
                         </div>
                       </div>
+                       <div class="form-group">
+	                        <label  class="col-sm-3 control-label"><?php echo $this->lang->line("Country");?></label>
+	                        <div class="col-sm-9">
+	                          <input name="country" type="text" class="form-control" id="country" placeholder="HKG" >
+	                        </div>
+	                      </div>
 	                    	                     
                       <div class="form-group">
                         <label for="Phone" class="col-sm-3 control-label"><?php echo $this->lang->line("Phone");?></label>
