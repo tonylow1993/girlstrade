@@ -128,10 +128,23 @@
                       	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                          echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc."<br/>".$preview;
-                          echo "<br/>Posted On: ". $createDate."<br/>Status: ".$status;
+                         $datePost = strtotime($createDate); 
+                         echo "<br/>Posted On: ". date("M d, Y", $datePost)."<br/>Status: ";
+                          
+                          if(strcmp($status, "Open")==0)
+                          {
+                          	echo "<font color=\"green\">".$status."</font>";
+                          }else if(strcmp($status, "Rejected")==0)
+                          {
+                          	echo "<font color=\"red\">".$status."</font>";
+                          }else if(strcmp($status, "Unverified")==0)
+                          {
+                          	echo "<font color=\"pink\">".$status."</font>";
+                          }
+                          
                    	  echo "<br/>Interested Buyer:  $NoOfSoldUsers";
                         if(strcmp($status, "Rejected")==0){
-                        	echo "<br/>Reject Reason: ".$rejectReason." with ".$rejectSpecifiedReason;
+                        	echo "<br/><font color=\"red\">Reject Reason: ".$rejectReason.": ".$rejectSpecifiedReason."</font>";
                         }
                         echo "</div></h5></td>";
                       	
