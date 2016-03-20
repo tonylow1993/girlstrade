@@ -728,7 +728,7 @@
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
                 	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                	echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
                 }
                                   
                 
@@ -835,7 +835,7 @@
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
                 	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                	echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
                 }
                                   
                 
@@ -944,7 +944,7 @@
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
                 	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	echo "<i class=\" icon-info\"></i>Pending for Seller's Approval.</a>";
+                	echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
                 }
                                   
                 echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
