@@ -140,6 +140,8 @@
                           }else if(strcmp($status, "Unverified")==0)
                           {
                           	echo "<font color=\"pink\">".$status."</font>";
+                          }else {
+                          	echo "<font color=\"grey\">".$status."</font>";
                           }
                           
                    	  echo "<br/>Interested Buyer:  $NoOfSoldUsers";
