@@ -1771,6 +1771,7 @@ display: block;
   margin-right: 15px;
   margin-top: 10px;
   min-width: 150px !important;
+  display: inline-block;
 }
 
 .tab-filter .selecter.bottom .selecter-options {
@@ -3353,6 +3354,16 @@ td.ads-details-td {
 /* =============================================================== */
 /* ADDED BY TONY
 /* =============================================================== */
+
+.sort-group{
+	width: 100px;
+    display: inline-block;
+    padding: 5px;
+}
+
+.sort-select{
+	height: 35px;
+}
 
 .inbox-msg{
 	color: black;
