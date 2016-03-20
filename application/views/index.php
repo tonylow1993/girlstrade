@@ -4,7 +4,7 @@ $title = "Girls' Trading Platform";
 
 <script>
 window.onload = function(){
-	   document.getElementById("ads").focus();
+	   //document.getElementById("ads").focus();
 	};
 </script>
 <style id="jsbin-css">
