@@ -1234,6 +1234,9 @@ function generateRandomString($length = 8) {
 				$data["lblSellerInfo"]="Feedbacks from buyer";
 				$data["lblBuyerInfo"]="Feedbacks from seller";
 				$data["lblConditionAll"]="All feedbacks";
+				$data["sortTypeID"]="0";
+				$data["sortByDate"]="0";
+				$data["sortByType"]="0";
 				
 				
 				$this->load->view("profile_allFeedbacks", $data);

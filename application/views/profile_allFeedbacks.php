@@ -78,6 +78,34 @@ function sendIt() {
 	                ?></span>
 	                <?php }?></a></li>
               </ul>
+              <form action="<?php $basePath=base_url();
+    			$path=$basePath.MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url())."&prevViewFeedBack_Url=".urlencode(current_url());
+    			echo $path;
+               ?>"  method="POST"> 
+               <div  style="width:150px">
+               		<select class="form-control selecter "   name="selectSortType"   id="selectSortType" data-width="auto">
+					  <option value="0" <?php if(strcmp($sortTypeID,"0")==0 or $sortTypeID==0) echo " selected='selected' ";?> >Sort type by...</option>
+					  <option value="1" <?php if(strcmp($sortTypeID,"1")==0)  echo " selected='selected' ";?>>Date</option>
+					  <option value="2" <?php if(strcmp($sortTypeID,"2")==0)  echo " selected='selected' ";?>>Type</option>
+					</select>
+                </div> 
+            	<div id="sortByDateDiv" style="width:150px;display:none;">
+					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto">
+					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
+					  <option value="3" <?php  if(strcmp($sortByDate,"1")==0)   echo " selected='selected' ";?>>Date: Most Recent</option>
+					  <option value="4" <?php  if(strcmp($sortByDate,"2")==0)   echo " selected='selected' ";?>>Date: Oldest</option>
+					</select>
+				</div> 
+				<div id="sortByTypeDiv" style="width:150px;display:none;">
+					<select class="form-control selecter "   name="sortByType"   id="sortByType" data-width="auto">
+					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort type by...</option>
+					  <option value="1" <?php  if(strcmp($sortByType,"1")==0)   echo " selected='selected' ";?>>Good</option>
+					  <option value="2" <?php  if(strcmp($sortByType,"2")==0)   echo " selected='selected' ";?>>Bad</option>
+					  <option value="3" <?php  if(strcmp($sortByType,"3")==0)   echo " selected='selected' ";?>>Average</option>
+					</select>
+				</div> 
+			</form>
+              
               </div>
             <div class="adds-wrapper">
             <div class="tab-content">
@@ -287,7 +315,24 @@ function sendIt() {
   
   <?php include "footer1.php"; ?>
 </div>
+<script>
+$('#selectSortType').change(function() {
+	  if($(this).val()=="2"){
+	   document.getElementById('sortByDateDiv').style.display = 'none';
+	   document.getElementById('sortByTypeDiv').style.display = 'block';
+	  }
+	  else if($(this).val()=="1"){
+		  document.getElementById('sortByDateDiv').style.display = 'block';
+	   document.getElementById('sortByTypeDiv').style.display = 'none';
+		  
+	  }else
+		  {
+		   document.getElementById('sortByDateDiv').style.display = 'none';
+		   document.getElementById('sortByTypeDiv').style.display = 'none';
+		  }
+});
 
+</script>
 
     <?php include "footer2.php"; ?>
 
