@@ -127,7 +127,7 @@
                         echo "</div></td>";
                       	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
-                         echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc."<br/>".$preview;
+                         echo "<h5><div class=\"add-title-girlstrade\"><u>".$previewTitle."</u></div>".$previewDesc."<br/>".$preview;
                          $datePost = strtotime($createDate); 
                          echo "<br/>Posted On: ". date("M d, Y", $datePost)."<br/>Status: ";
                           
