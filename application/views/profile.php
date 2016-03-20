@@ -148,54 +148,31 @@ function sendIt() {
 //     			$encodeCurrentURL=$prevURL;  class="tab-filter"
     			$path=$basePath.MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());
     			echo $path;
-<<<<<<< HEAD
                ?>" class="tab-filter" method="POST"> 
-			   <div class="form-group sort-group">
-				  <select class="form-control sort-select" name="sortByPrice"   id="sortByPrice" data-width="auto">
-					<option value="0">Sort by...</option>
-				    <option value="1">Price</option>
-				    <option value="2">Date</option>
-				    <option value="3">Category</option>
-				  </select>
-			    </div>
-			   
-			   <div class="form-group sort-group">
-				  <select class="form-control sort-select" name="sortMethod"   id="sortMethod" data-width="auto">
-					<option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> > &nbsp </option>
-				    
-				  </select>
-			    </div>
-			   
-			   <!--<div class="select-short-by">
-=======
-               ?>"  method="POST"> 
-               <div  style="width:150px">
-               		<select class="form-control selecter "   name="selectSortType"   id="selectSortType" data-width="auto">
-					  <option value="0" <?php if(strcmp($sortTypeID,"0")==0 or $sortTypeID==0) echo " selected='selected' ";?> >Sort type by...</option>
-					  <option value="1" <?php if(strcmp($sortTypeID,"1")==0)  echo " selected='selected' ";?>>Price</option>
-					  <option value="2" <?php if(strcmp($sortTypeID,"2")==0)  echo " selected='selected' ";?>>Date</option>
-					  <option value="3" <?php if(strcmp($sortTypeID,"2")==0)  echo " selected='selected' ";?>>Category</option>
+			   <div class="form-group sort-group" style="width:150px;">
+				  <select class="form-control sort-select" name="selectSortType"   id="selectSortType" data-width="auto">
+					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort by...</option>
+					  <option value="1" <?php if(strcmp($sortByType,"1")==0)  echo " selected='selected' ";?>>Price</option>
+					  <option value="2" <?php if(strcmp($sortByType,"2")==0)  echo " selected='selected' ";?>>Date</option>
+					  <option value="3" <?php if(strcmp($sortByType,"3")==0)  echo " selected='selected' ";?>>Category</option>
 					</select>
-                </div> 
-<!-- 			   <div class="select-short-by" id="sortByPriceDiv"> -->
-					<div id="sortByPriceDiv" style="width:150px">
->>>>>>> origin/master
+			    </div>
+			   
+			   	<div id="sortByPriceDiv" style="display:none;width:150px">
 					<select class="form-control selecter "   name="sortByPrice"   id="sortByPrice" data-width="auto">
-					  <option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> >Sort by...</option>
-					  <option value="1" <?php if(strcmp($sortByID,"1")==0)  echo " selected='selected' ";?>>Price</option>
-					  <option value="2" <?php if(strcmp($sortByID,"2")==0)  echo " selected='selected' ";?>>Date</option>
-					  <option value="3" <?php if(strcmp($sortByID,"2")==0)  echo " selected='selected' ";?>>Category</option>
+					  <option value="0" <?php if(strcmp($sortByPrice,"0")==0 or $sortByPrice==0) echo " selected='selected' ";?> >Sort by...</option>
+					  <option value="1" <?php if(strcmp($sortByPrice,"1")==0)  echo " selected='selected' ";?>>Low to High</option>
+					  <option value="2" <?php if(strcmp($sortByPrice,"2")==0)  echo " selected='selected' ";?>>High to Low</option>
 					</select>
 				</div>
 				
-				<div class="select-short-by">
-					<select class="form-control selecter "   name="sortMethod"   id="sortMethod" data-width="auto">
-					  <option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> >Sort by...</option>
-					  <option value="1" <?php if(strcmp($sortByID,"1")==0)  echo " selected='selected' ";?>>Low to High</option>
-					  <option value="2" <?php if(strcmp($sortByID,"2")==0)  echo " selected='selected' ";?>>High to Low</option>
+				<div id="sortByDateDiv" style="display:none;width:150px">
+					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto">
+					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
+					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>>Most Recent</option>
+					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>>Oldest</option>
 					</select>
-					</div> 
-<!-- 				<div id="filterByCategoryDiv"> -->
+				</div> 
 				<div id="filterByCategoryDiv" style="display:none;width:150px;">
 				<select class="form-control selecter" name="search-category" id="search-category" >
         	<?php 
@@ -651,11 +628,22 @@ $basePath=base_url();
 
   $('#selectSortType').change(function() {
 	  if($(this).val()=="3"){
+	  document.getElementById('sortByDateDiv').style.display = 'none';
 	   document.getElementById('sortByPriceDiv').style.display = 'none';
 	   document.getElementById('filterByCategoryDiv').style.display = 'block';
 	  }
-	  else{
-		  document.getElementById('sortByPriceDiv').style.display = 'block';
+	  else if($(this).val()=="2"){
+		  document.getElementById('sortByDateDiv').style.display = 'block';
+		   document.getElementById('sortByPriceDiv').style.display = 'none';
+		   document.getElementById('filterByCategoryDiv').style.display = 'none';
+		  }
+	  else if($(this).val()=="1"){
+		  document.getElementById('sortByDateDiv').style.display = 'none';
+		   document.getElementById('sortByPriceDiv').style.display = 'block';
+		   document.getElementById('filterByCategoryDiv').style.display = 'none';
+		  }else{
+		  document.getElementById('sortByDateDiv').style.display = 'none';			  
+		  document.getElementById('sortByPriceDiv').style.display = 'none';
 	   document.getElementById('filterByCategoryDiv').style.display = 'none';
 		  
 	  }

@@ -141,14 +141,15 @@ class viewProfile extends getCategory {
 			$data["keywords"]=base64_decode($keywords);
 			$tempSortByID=$this->input->post("sortByPrice");
 			if(!empty($tempSortByID))
-				$data["sortByID"]=$this->input->post("sortByPrice");
+				$data["sortByPrice"]=$this->input->post("sortByPrice");
 			else 
-				$data["sortByID"]=$sortByID;
+				$data["sortByPrice"]=$sortByID;
 			
-			$data["sortTypeID"]="0";
-				
-            $NoOfItemCount=0;
-			$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords, $data["sortByID"]);
+			$data["sortByType"]="0";
+			$data["sortByPrice"]="0";
+			$data["sortByDate"]="0";
+			$NoOfItemCount=0;
+			$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords, $data["sortByType"]);
 			$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
 	      	$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
 	      	$data["userRating"]=$this->users_model->getUserRating($data["userID"]);
