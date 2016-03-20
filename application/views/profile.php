@@ -150,7 +150,7 @@ function sendIt() {
     			echo $path;
                ?>" class="tab-filter" method="POST"> 
 			   <div class="form-group sort-group" style="width:150px;">
-				  <select class="form-control sort-select" name="selectSortType"   id="selectSortType" data-width="auto">
+				  <select class="form-control sort-select selecter" name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByType,"1")==0)  echo " selected='selected' ";?>>Price</option>
 					  <option value="2" <?php if(strcmp($sortByType,"2")==0)  echo " selected='selected' ";?>>Date</option>
@@ -630,16 +630,16 @@ $basePath=base_url();
 	  if($(this).val()=="3"){
 	  document.getElementById('sortByDateDiv').style.display = 'none';
 	   document.getElementById('sortByPriceDiv').style.display = 'none';
-	   document.getElementById('filterByCategoryDiv').style.display = 'block';
+	   document.getElementById('filterByCategoryDiv').style.display = 'inline-block';
 	  }
 	  else if($(this).val()=="2"){
-		  document.getElementById('sortByDateDiv').style.display = 'block';
+		  document.getElementById('sortByDateDiv').style.display = 'inline-block';
 		   document.getElementById('sortByPriceDiv').style.display = 'none';
 		   document.getElementById('filterByCategoryDiv').style.display = 'none';
 		  }
 	  else if($(this).val()=="1"){
 		  document.getElementById('sortByDateDiv').style.display = 'none';
-		   document.getElementById('sortByPriceDiv').style.display = 'block';
+		   document.getElementById('sortByPriceDiv').style.display = 'inline-block';
 		   document.getElementById('filterByCategoryDiv').style.display = 'none';
 		  }else{
 		  document.getElementById('sortByDateDiv').style.display = 'none';			  
