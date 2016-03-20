@@ -145,11 +145,20 @@ function sendIt() {
               </ul>
          		 <form action="<?php $basePath=base_url();
 //     			$encodeCurrentURL=urlencode(current_url());
-//     			$encodeCurrentURL=$prevURL;
+//     			$encodeCurrentURL=$prevURL;  class="tab-filter"
     			$path=$basePath.MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());
     			echo $path;
-               ?>" class="tab-filter" method="POST"> 
-			   <div class="select-short-by">
+               ?>"  method="POST"> 
+               <div  style="width:150px">
+               		<select class="form-control selecter "   name="selectSortType"   id="selectSortType" data-width="auto">
+					  <option value="0" <?php if(strcmp($sortTypeID,"0")==0 or $sortTypeID==0) echo " selected='selected' ";?> >Sort type by...</option>
+					  <option value="1" <?php if(strcmp($sortTypeID,"1")==0)  echo " selected='selected' ";?>>Price</option>
+					  <option value="2" <?php if(strcmp($sortTypeID,"2")==0)  echo " selected='selected' ";?>>Date</option>
+					  <option value="3" <?php if(strcmp($sortTypeID,"2")==0)  echo " selected='selected' ";?>>Category</option>
+					</select>
+                </div> 
+<!-- 			   <div class="select-short-by" id="sortByPriceDiv"> -->
+					<div id="sortByPriceDiv" style="width:150px">
 					<select class="form-control selecter "   name="sortByPrice"   id="sortByPrice" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortByID,"0")==0 or $sortByID==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByID,"1")==0)  echo " selected='selected' ";?>>Price: Low to High</option>
@@ -157,8 +166,43 @@ function sendIt() {
 					  <option value="3" <?php  if(strcmp($sortByID,"3")==0)   echo " selected='selected' ";?>>Date: Most Recent</option>
 					  <option value="4" <?php  if(strcmp($sortByID,"4")==0)   echo " selected='selected' ";?>>Date: Oldest</option>
 					</select>
-				</div>
-                <!--<div class="col-sm-3">
+					</div> 
+<!-- 				<div id="filterByCategoryDiv"> -->
+				<div id="filterByCategoryDiv" style="display:none;width:150px;">
+				<select class="form-control selecter" name="search-category" id="search-category" >
+        	<?php 
+        	$str="";
+        	if($catID==null or $catID=="" or $catID==0)
+        		$str=" selected='selected' ";
+        	echo "<option ".$str." value='0'>".$lblAllCategories."</option>";
+            foreach ($AllCategory as $id=>$value)
+            {
+            	if(!isset($lang_label))
+	            		$lang_label="";
+            	$name=$value[0]->name;
+            	$postCount="(".$value[0]->postCount.")";
+            	if(SHOW_BRACKETS_SEARCH_PAGE==0)
+            		$postCount="";
+            	if($lang_label<>"english")
+            		$name=$value[0]->nameCH;
+            	if($value[0]->level==1)
+            	{
+            		$str="";
+            		if(strcmp($catID,$id)==0)
+            			$str=" selected='selected' ";
+            		 echo "<option value='".$id."' ".$str." style='background-color:#E9E9E9;font-weight:bold;' > ".$name.$postCount." </option>";
+            	}else 
+            	{
+            		$str="";
+            		if(strcmp($catID,$id)==0)
+            			$str=" selected='selected' ";
+            		echo "<option ".$str." value='".$id."'> &nbsp;&nbsp;&nbsp;&nbsp;".$name.$postCount." </option>";
+            	}
+            }
+            ?>
+          </select>
+          </div>
+				 <!--<div class="col-sm-3">
 				<button type="submit"  class="btn btn-block btn-primary">Sort</button> 
     			
 				</div>-->
@@ -574,6 +618,22 @@ $basePath=base_url();
 </div>
 
   <script>
+
+  $('#selectSortType').change(function() {
+	  if($(this).val()=="3"){
+	   document.getElementById('sortByPriceDiv').style.display = 'none';
+	   document.getElementById('filterByCategoryDiv').style.display = 'block';
+	  }
+	  else{
+		  document.getElementById('sortByPriceDiv').style.display = 'block';
+	   document.getElementById('filterByCategoryDiv').style.display = 'none';
+		  
+	  }
+});
+
+  
+
+  
   if(document.getElementById('userStar'))
   {
   	$('#userStar').raty({readOnly: true, score: <?php echo $sellerRating;?> });
