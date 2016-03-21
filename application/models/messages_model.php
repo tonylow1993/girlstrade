@@ -350,25 +350,55 @@
 	    	$query2 = $this->db->query($strQuery);
 	   		return $query2->result();
 	    }
-	    public function getAllFeedbacks($userID, $pageNum){
+	    public function getAllFeedbacks($userID, $pageNum, $sortType, $sortByDate, $sortByType){
 	    	$ulimit=ITEMS_PER_PAGE;
 	    	$olimit=0;
 	    	if ($pageNum>1)
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+	    	$sortStr=" order by createDate desc ";
+	    	if(strcmp($sortType,"1")==0){
+	    		if(strcmp($sortByDate,"1")==0){
+	    			$sortStr=" order by createDate desc ";
+	    		}else if(strcmp($sortByDate,"2")==0){
+	    			$sortStr=" order by createDate asc ";
+	    		}
+	    	}
+	    	$filterStr="";
+	    	if(strcmp($sortType,"2")==0){
+	    		if(strcmp($sortByType,"1")==0){
+	    			$filterStr=" and rating=3 ";
+	    		}else if(strcmp($sortByType,"2")==0){
+	    			$filterStr=" and rating=1 ";
+	    		}else if(strcmp($sortByType,"3")==0){
+	    			$filterStr=" and rating=2 ";
+	    		}
+	    	}
+	    		
+	    		
 	    	$strQuery="select b.* from (select a.* from ( ";
-	    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ";
+	    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ".$filterStr;
 	    	$strQuery=$strQuery." union all ";
-	    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ";
-	    	$strQuery=$strQuery." ) a  order by a.createDate desc ) b limit $olimit, $ulimit";
+	    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ".$filterStr;
+	    	$strQuery=$strQuery." ) a  ".$sortStr." ) b limit $olimit, $ulimit";
 	    	//log_message('error', $strQuery.": param:fuserID: ".$fuserID." userID: ".$userID);;
 	    	$query2 = $this->db->query($strQuery);
 	    	return $query2->result();
 	    }
-	    public function getNoOfItemCountInAllFeedbacks($userID){
+	    public function getNoOfItemCountInAllFeedbacks($userID, $sortType, $sortByDate, $sortByType){
+	    	$filterStr="";
+	    	if(strcmp($sortType,"2")==0){
+	    		if(strcmp($sortByType,"1")==0){
+	    			$filterStr=" and rating=3 ";
+	    		}else if(strcmp($sortByType,"2")==0){
+	    			$filterStr=" and rating=1 ";
+	    		}else if(strcmp($sortByType,"3")==0){
+	    			$filterStr=" and rating=2 ";
+	    		}
+	    	}
 	    	$strQuery="select count(*) as NoOfCount from ( ";
-	    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ";
+	    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ".$filterStr;
 	    	$strQuery=$strQuery." union all ";
-	    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ";
+	    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ".$filterStr;
 	    	$strQuery=$strQuery." ) a ";
 	    	$NoOfItemCount=0;
 	    	$query2 = $this->db->query($strQuery);

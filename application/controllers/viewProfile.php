@@ -34,7 +34,7 @@ class viewProfile extends getCategory {
             }
             
 	}
-         public function index($postID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByID="0" )
+         public function index($postID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByType="0", $sortByPrice="", $sortByDate="0" )
 	{
 		
 		$prevProfile_Url=base_url();
@@ -139,15 +139,31 @@ class viewProfile extends getCategory {
 			$data["catID"]=$catID;
 			$data["locID"]=$locID;
 			$data["keywords"]=base64_decode($keywords);
-			$tempSortByID=$this->input->post("sortByPrice");
-			if(!empty($tempSortByID))
-				$data["sortByPrice"]=$this->input->post("sortByPrice");
-			else 
-				$data["sortByPrice"]=$sortByID;
 			
 			$data["sortByType"]="0";
 			$data["sortByPrice"]="0";
 			$data["sortByDate"]="0";
+			$tempSortByID=$this->input->post("sortByPrice");
+			if(!empty($tempSortByID))
+				$data["sortByPrice"]=$this->input->post("sortByPrice");
+			else
+				$data["sortByPrice"]=$sortByPrice;
+			$tempSortByID=$this->input->post("sortByType");
+			if(!empty($tempSortByID))
+				$data["sortByType"]=$this->input->post("sortByType");
+			else
+				$data["sortByType"]=$sortByType;
+							
+			$tempSortByID=$this->input->post("sortByDate");
+			if(!empty($tempSortByID))
+				$data["sortByDate"]=$this->input->post("sortByDate");
+			else
+				$data["sortByDate"]=$sortByDate;
+			$tempSortByID=$this->input->post("search-category");
+			if(!empty($tempSortByID))
+				$data["catID"]=$this->input->post("search-category");
+				
+			
 			$NoOfItemCount=0;
 			$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords, $data["sortByType"]);
 			$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
@@ -216,7 +232,7 @@ class viewProfile extends getCategory {
 		return $data['result'];
 	}
     
-	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByID="0" )
+	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByType="0", $sortByPrice="", $sortByDate="0")
 	{
 		$previousUrl="";
 		if(isset($_GET["prevURL"]))
@@ -288,13 +304,31 @@ class viewProfile extends getCategory {
 		$data["catID"]=$catID;
 		$data["locID"]=$locID;
 		$data["keywords"]=base64_decode($keywords);
+		$data["sortByType"]="0";
+		$data["sortByPrice"]="0";
+		$data["sortByDate"]="0";
 		$tempSortByID=$this->input->post("sortByPrice");
 		if(!empty($tempSortByID))
-			$data["sortByID"]=$this->input->post("sortByPrice");
+			$data["sortByPrice"]=$this->input->post("sortByPrice");
 		else
-			$data["sortByID"]=$sortByID;
+			$data["sortByPrice"]=$sortByPrice;
+		$tempSortByID=$this->input->post("sortByType");
+		if(!empty($tempSortByID))
+			$data["sortByType"]=$this->input->post("sortByType");
+		else
+			$data["sortByType"]=$sortByType;
+						
+		$tempSortByID=$this->input->post("sortByDate");
+		if(!empty($tempSortByID))
+			$data["sortByDate"]=$this->input->post("sortByDate");
+		else
+			$data["sortByDate"]=$sortByDate;
+		$tempSortByID=$this->input->post("search-category");
+		if(!empty($tempSortByID))
+			$data["catID"]=$this->input->post("search-category");
+			
 		$NoOfItemCount=0;
-		$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords, $data["sortByID"]);
+		$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords,0, 0,0,$data["sortByType"],$data["sortByPrice"], $data["sortByDate"]);
 		$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
 		$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
 		$data["userRating"]=$this->users_model->getUserRating($data["userID"]);

@@ -389,7 +389,7 @@
 	    return $NoOfItemCount;
 	    
 	    }
-	    function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $sortByID="0", $minPrice=0, $maxPrice=0)
+	    function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $sortByID="0", $minPrice=0, $maxPrice=0, $sortByType="0", $sortByPrice="0", $sortByDate="0")
 	    {
 	    	if($catID==0 or $catID==null)
 	    		$catID=0;
@@ -428,7 +428,7 @@
 	    	if ($pageNum>1)
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
 	    	$sortStr="";
-	    	if($sortByID<>"0")
+	    	if(strcmp($sortByID,"0")!=0)
 	    	{
 	    		if(strcmp($sortByID,"1")==0)
 	    			$sortStr=" order by itemPrice asc ";
@@ -439,6 +439,21 @@
 	    		else if(strcmp($sortByID,"4")==0)
 	    			$sortStr=" order by createDate asc ";
 	    	}
+	    	if(strcmp($sortByType,"1")==0){
+	    		if(strcmp($sortByPrice,"1")==0){
+	    			$sortStr=" order by itemPrice asc ";
+	    		}else if(strcmp($sortByPrice,"2")==0){
+	    			$sortStr=" order by itemPrice desc ";
+	    		}
+	    	}
+	    	if(strcmp($sortByType,"2")==0){
+	    		if(strcmp($sortByDate,"1")==0){
+	    			$sortStr=" order by createDate desc ";
+	    		}else if(strcmp($sortByDate,"2")==0){
+	    			$sortStr=" order by createDate asc ";
+	    		}
+	    	}
+	    	
 	    	$strQuery="";
 	    	if(strcmp($catID, "0")!=0 && $this->isParentCatID($catID)){
 	    		$strQuery="select * from post where status not in ('R', 'U', 'D') and (userID=$userID or $userID=0) ";

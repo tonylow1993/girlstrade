@@ -1227,9 +1227,6 @@ function generateRandomString($length = 8) {
 					$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID); //$menuCount["inboxMsgCount"]; //
 					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 				}
-				$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInAllFeedbacks($userID);
-				$myList=$this->messages_model->getAllFeedbacks($userID, $pageNum);
-				$data["result"]=$this->mapFeedbackToView($myList);
 				$data["activeTab"]="allAds";
 				$data["lblSellerInfo"]="Feedbacks from buyer";
 				$data["lblBuyerInfo"]="Feedbacks from seller";
@@ -1237,7 +1234,19 @@ function generateRandomString($length = 8) {
 				$data["sortTypeID"]="0";
 				$data["sortByDate"]="0";
 				$data["sortByType"]="0";
-				
+				$tempSortByID=$this->input->post("selectSortType");
+				if(!empty($tempSortByID))
+					$data["sortTypeID"]=$this->input->post("selectSortType");
+				$tempSortByID=$this->input->post("sortByDate");
+				if(!empty($tempSortByID))
+					$data["sortByDate"]=$this->input->post("sortByDate");
+				$tempSortByID=$this->input->post("sortByType");
+				if(!empty($tempSortByID))
+					$data["sortByType"]=$this->input->post("sortByType");
+				$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInAllFeedbacks($userID, $data["sortTypeID"], $data["sortByDate"], $data["sortByType"]);
+				$myList=$this->messages_model->getAllFeedbacks($userID, $pageNum, $data["sortTypeID"], $data["sortByDate"], $data["sortByType"]);
+				$data["result"]=$this->mapFeedbackToView($myList);
+					
 				
 				$this->load->view("profile_allFeedbacks", $data);
 	}
