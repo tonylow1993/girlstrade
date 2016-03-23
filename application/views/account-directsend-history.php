@@ -65,7 +65,14 @@
                       	echo "</div></td>";
                       	echo "<td style=\"width:10%\"><a href=$userPath>$reply</a></td>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">";
-                      	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	if(file_exists($imagePath))
+                    	{
+                      		echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	}else
+                    	{
+                    		$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+                    		echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	}
                     	echo "</td>";
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";

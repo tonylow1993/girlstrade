@@ -54,8 +54,14 @@
 						$price=$row['price'];
                 		echo "<tr>";
                        	echo "<td style=\"width:20%\" class=\"add-image\">";
-                      	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                    	echo "<p class=\"price-td\">$reply</p>";
+                       	if (file_exists($imagePath)) {
+                      		echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                       	}else
+                       	{
+                       		$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+                       		echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                       	}
+                      	echo "<p class=\"price-td\">$reply</p>";
                     	if($enableMarkSoldBtn)
                     		echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-inverse btn-xs btn-120\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$commentID\"  data-seller=\"$from\"> <i class=\"fa fa-thumb-tack\"></i> ".$this->lang->line('MarkSold')." </a></div></p>";
                     	

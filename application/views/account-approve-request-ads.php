@@ -68,7 +68,13 @@
                   				$userPath=base_url().MY_PATH."viewProfile/viewByUserID/".$replyUserID."/1?prevURL=".urlencode(current_url());
                   				echo "<tr>";
                   				echo "<td style=\"width:20%\" class=\"add-image\"><a href=$userPath>$reply</a>";
-                  				echo "<p class=\"price-td\"><br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  				if (file_exists($imagePath)) {
+                  					echo "<p class=\"price-td\"><br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  				}else
+                  				{
+                  					$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+                  					echo "<p class=\"price-td\"><br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  				}
                   				if(strcmp($statusRP, 'A')==0)
                   					echo "<br/>Buyer email: $sellerEmail";
                   				echo "<br/>Status: $status</p>";

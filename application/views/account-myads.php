@@ -79,6 +79,8 @@
                       	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\"  class=\"add-image\">";
 //                       	echo  "<div class=\"col-sm-2 no-padding photobox\">";
 // 						echo "<div style=\"position:relative; height:75px; width: 100%; overlfow:hidden;\">";
+                  	if (file_exists($imagePath)) {
+					
                       	$sizeimage=getimagesize($imagePath);
                       	echo "<p style=\"font-size:8px;padding:0px; margin: 0px;\">image size: ".$sizeimage[0]."x".$sizeimage[1]."</p>";
                       	if($sizeimage[1]>300)
@@ -90,7 +92,11 @@
                       		echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:100%; width:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                       	}else 
 								echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-						
+                  	}else
+                  	{
+                  		$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+						echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  	}	
 //                       	echo "</div>";
                       	
 //                       	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";

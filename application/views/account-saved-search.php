@@ -59,7 +59,15 @@
 						$clickLink="clickLink".$rowCount;
                 		echo "<tr>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">";
-                      	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	if(file_exists($imagePath))
+                    	{
+                      		echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	}
+                    	else
+                    	{
+                    		$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+                    		echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	}
                       	echo "<p class=\"status-label\">Status: $itemStatus</p>";
                       	echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
                       	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";

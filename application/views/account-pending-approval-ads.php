@@ -67,7 +67,13 @@
                   				$userPath=base_url().MY_PATH."viewProfile/viewByUserID/".$replyUserID."/1?prevURL=".urlencode(current_url());
                   				echo "<tr>";
                   				echo "<td style=\"width:20%\" class=\"add-image\"><a href=$userPath>$reply</a>";
-                  				echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  				if(file_exists($imagePath))
+                  				{
+                  					echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  				}else {
+                  					$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+                  					echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  				}
                   				if(strcmp($statusRP, 'A')==0)
                   					echo "<p class=\"price-td\"><br/>Seller email: $sellerEmail";
                   					echo "<br/>Status: $status";
@@ -95,8 +101,14 @@
                 		
                 		echo "<tr>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">$reply";
-                      	echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                    	echo "<p class=\"price-td\"><br/>$NoOfDaysPending";
+                    	if(file_exists($imagePath)){
+                      		echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  		}else
+                  		{
+                  			$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+                  			echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                  		}
+                      	echo "<p class=\"price-td\"><br/>$NoOfDaysPending";
                     	$cancelPath=base_url().MY_PATH."messages\cancelPendingApproval\$messageID";
                     	$rowCount=$rowCount+1;
                     	$ctrlName1="AjaxLoad".$rowCount;
