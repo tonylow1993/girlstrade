@@ -267,9 +267,16 @@ function sendIt() {
 		              			$thumbnail=$basePath.$picObj[$x]->thumbnailPath.'/'.$picObj[$x]->thumbnailName;
 		              			echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
 		              			}
+              				}else {
+              				$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+							echo "<div class=\"add-image\"> <span class=\"photo-count\">
+							<i class=\"fa fa-camera\"></i> 0 </span> <a href=\"$viewBasePath\">
+							<img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";
               				}
               			}
               		}
+              	
+
               		$enableMarkSoldBtn=false;
               		$visibleBuyerComment=false;
               		$soldToUserID=0;

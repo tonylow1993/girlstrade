@@ -678,6 +678,9 @@
 					}			
 					
 				echo  "<div class=\"col-sm-3 no-padding photobox\">";
+				if (!file_exists($thumbnail)) {
+					$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+				}
 						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
 		              		
 						
@@ -796,6 +799,9 @@
 					}			
 					
 				echo  "<div class=\"col-sm-3 no-padding photobox\">";
+				if (!file_exists($thumbnail)) {
+					$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+				}
 						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
 		              		
 						
@@ -906,6 +912,9 @@
 					}			
 					
 				echo  "<div class=\"col-sm-3 no-padding photobox\">";
+				if (!file_exists($thumbnail)) {
+					$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+				}
 						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
 		              		
 						
