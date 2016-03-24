@@ -81,7 +81,7 @@ function sendIt() {
               <form action="<?php $basePath=base_url();
     			$path=$basePath.MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url())."&prevViewFeedBack_Url=".urlencode(current_url());
     			echo $path;
-               ?>"  method="POST"> 
+               ?>"  method="POST" id="sortfrm" class="tab-filter" role="form"> 
                <div  style="width:150px">
                		<select class="form-control selecter "   name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortTypeID,"0")==0 or $sortTypeID==0) echo " selected='selected' ";?> >Sort type by...</option>
@@ -90,20 +90,22 @@ function sendIt() {
 					</select>
                 </div> 
             	<div id="sortByDateDiv" style="width:150px;display:none;">
-					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto">
+					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
-					  <option value="3" <?php  if(strcmp($sortByDate,"1")==0)   echo " selected='selected' ";?>>Date: Most Recent</option>
-					  <option value="4" <?php  if(strcmp($sortByDate,"2")==0)   echo " selected='selected' ";?>>Date: Oldest</option>
+					  <option value="3" <?php  if(strcmp($sortByDate,"3")==0)   echo " selected='selected' ";?>>Date: Most Recent</option>
+					  <option value="4" <?php  if(strcmp($sortByDate,"4")==0)   echo " selected='selected' ";?>>Date: Oldest</option>
 					</select>
 				</div> 
 				<div id="sortByTypeDiv" style="width:150px;display:none;">
-					<select class="form-control selecter "   name="sortByType"   id="sortByType" data-width="auto">
+					<select class="form-control selecter "   name="sortByType"   id="sortByType" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort type by...</option>
 					  <option value="1" <?php  if(strcmp($sortByType,"1")==0)   echo " selected='selected' ";?>>Good</option>
 					  <option value="2" <?php  if(strcmp($sortByType,"2")==0)   echo " selected='selected' ";?>>Bad</option>
 					  <option value="3" <?php  if(strcmp($sortByType,"3")==0)   echo " selected='selected' ";?>>Average</option>
 					</select>
 				</div> 
+					<noscript><input type="submit" value="Submit"></noscript>
+			
 			</form>
               
               </div>
@@ -154,14 +156,14 @@ function sendIt() {
             	$pageNum5=$pageNum+4;
             	$pageNumNext=$pageNum+5;
             	if($pageNum<>1)
-            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev?prevURL=$previousCurrent_url;\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
-            	echo "<li><a href=\"$url_path/$pageNum2?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum3?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum4?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum5?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
+            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Previous</a></li>";
+            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
+            	echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
+              	echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
+              	echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
+              	echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
               
-               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext?prevURL=$previousCurrent_url;\">Next</a></li>";
+               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Next</a></li>";
             ?>
                 </ul>
           </div>
@@ -215,14 +217,14 @@ function sendIt() {
             	$pageNum5=$pageNum+4;
             	$pageNumNext=$pageNum+5;
             	if($pageNum<>1)
-            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev?prevURL=$previousCurrent_url;\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
-            	echo "<li><a href=\"$url_path/$pageNum2?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum3?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum4?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum5?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
+            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Previous</a></li>";
+            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
+            	echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
+              	echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
+              	echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
+              	echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
               
-               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext?prevURL=$previousCurrent_url;\">Next</a></li>";
+               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Next</a></li>";
             ?>
                 </ul>
           </div>
@@ -275,14 +277,14 @@ function sendIt() {
             	$pageNum5=$pageNum+4;
             	$pageNumNext=$pageNum+5;
             	if($pageNum<>1)
-            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev?prevURL=$previousCurrent_url;\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
-            	echo "<li><a href=\"$url_path/$pageNum2?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum3?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum4?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum5?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
+            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Previous</a></li>";
+            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
+            	echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
+              	echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
+              	echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
+              	echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
               
-               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext?prevURL=$previousCurrent_url;\">Next</a></li>";
+               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Next</a></li>";
             ?>
                 </ul>
           </div>
@@ -316,6 +318,35 @@ function sendIt() {
   <?php include "footer1.php"; ?>
 </div>
 <script>
+
+function beginSort(){
+	var selectSortType=document.getElementById("selectSortType").value;
+	var sortByType=document.getElementById("sortByType").value;
+	var sortByDate=document.getElementById("sortByDate").value;
+	var actionpath="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1';?>".concat("/").concat(selectSortType).concat("/").concat(sortByDate).concat("/").concat(sortByType).concat("<?php echo '?prevURL='.urlencode(current_url()).'&prevViewFeedBack_Url='.urlencode(current_url());?>");
+	
+		document.getElementById("sortfrm").action=actionpath;
+		document.getElementById("sortfrm").submit();
+	
+}
+
+$( document ).ready(function() {
+    var sortType=document.getElementById('selectSortType').value;
+    if(sortType=="2"){
+ 	   document.getElementById('sortByDateDiv').style.display = 'none';
+ 	   document.getElementById('sortByTypeDiv').style.display = 'block';
+ 	  }
+ 	  else if(sortType=="1"){
+ 		  document.getElementById('sortByDateDiv').style.display = 'block';
+ 	   document.getElementById('sortByTypeDiv').style.display = 'none';
+ 		  
+ 	  }else
+ 		  {
+ 		   document.getElementById('sortByDateDiv').style.display = 'none';
+ 		   document.getElementById('sortByTypeDiv').style.display = 'none';
+ 		  }
+});
+
 $('#selectSortType').change(function() {
 	  if($(this).val()=="2"){
 	   document.getElementById('sortByDateDiv').style.display = 'none';

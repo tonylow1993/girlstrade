@@ -143,12 +143,8 @@ function sendIt() {
 	                ?></span>
 	                <?php }?></a></li>
               </ul>
-         		 <form action="<?php $basePath=base_url();
-//     			$encodeCurrentURL=urlencode(current_url());
-//     			$encodeCurrentURL=$prevURL;  class="tab-filter"
-    			$path=$basePath.MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/'.$locID.'/'.$keywords.'?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());
-    			echo $path;
-               ?>" class="tab-filter" method="POST"> 
+         		 <form role="form" method="POST" action="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/0/0?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());?>"
+         	     id="sortfrm" class="tab-filter"> 
 			   <div class="form-group sort-group" style="width:150px;">
 				  <select class="form-control sort-select selecter" name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort by...</option>
@@ -159,7 +155,7 @@ function sendIt() {
 			    </div>
 			   
 			   	<div id="sortByPriceDiv" style="display:none;width:150px">
-					<select class="form-control selecter "   name="sortByPrice"   id="sortByPrice" data-width="auto">
+					<select class="form-control selecter "   name="sortByPrice"   id="sortByPrice" data-width="auto"  onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByPrice,"0")==0 or $sortByPrice==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByPrice,"1")==0)  echo " selected='selected' ";?>>Low to High</option>
 					  <option value="2" <?php if(strcmp($sortByPrice,"2")==0)  echo " selected='selected' ";?>>High to Low</option>
@@ -167,14 +163,14 @@ function sendIt() {
 				</div>
 				
 				<div id="sortByDateDiv" style="display:none;width:150px">
-					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto">
+					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>>Most Recent</option>
 					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>>Oldest</option>
 					</select>
 				</div> 
 				<div id="filterByCategoryDiv" style="display:none;width:150px;">
-				<select class="form-control selecter" name="search-category" id="search-category" >
+				<select class="form-control selecter" name="search-category" id="search-category" onchange="beginSort();">
         	<?php 
         	$str="";
         	if($catID==null or $catID=="" or $catID==0)
@@ -211,6 +207,7 @@ function sendIt() {
 				<button type="submit"  class="btn btn-block btn-primary">Sort</button> 
     			
 				</div>-->
+				<noscript><input type="submit" value="Submit"></noscript>
 			</form>
             <!--/.tab-box-->
                <div class="pull-right backtolist margin-right-10"><a href=<?php echo $prevProfile_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
@@ -632,7 +629,29 @@ $basePath=base_url();
 </div>
 
   <script>
-
+  $( document ).ready(function() {
+	    var sortType=document.getElementById('selectSortType').value;
+	    if(sortType=="3"){
+	  	  document.getElementById('sortByDateDiv').style.display = 'none';
+	  	   document.getElementById('sortByPriceDiv').style.display = 'none';
+	  	   document.getElementById('filterByCategoryDiv').style.display = 'inline-block';
+	  	  }
+	  	  else if(sortType=="2"){
+	  		  document.getElementById('sortByDateDiv').style.display = 'inline-block';
+	  		   document.getElementById('sortByPriceDiv').style.display = 'none';
+	  		   document.getElementById('filterByCategoryDiv').style.display = 'none';
+	  		  }
+	  	  else if(sortType=="1"){
+	  		  document.getElementById('sortByDateDiv').style.display = 'none';
+	  		   document.getElementById('sortByPriceDiv').style.display = 'inline-block';
+	  		   document.getElementById('filterByCategoryDiv').style.display = 'none';
+	  		  }else{
+	  		  document.getElementById('sortByDateDiv').style.display = 'none';			  
+	  		  document.getElementById('sortByPriceDiv').style.display = 'none';
+	  	   document.getElementById('filterByCategoryDiv').style.display = 'none';
+	  		  
+	  	  }
+	});
   $('#selectSortType').change(function() {
 	  if($(this).val()=="3"){
 	  document.getElementById('sortByDateDiv').style.display = 'none';
@@ -663,6 +682,18 @@ $basePath=base_url();
   {
   	$('#userStar').raty({readOnly: true, score: <?php echo $sellerRating;?> });
   }
+
+
+function beginSort(){
+	var catID=document.getElementById("search-category").value;
+	var sortByType=document.getElementById("selectSortType").value;
+	var sortByPrice=document.getElementById("sortByPrice").value;
+	var sortByDate=document.getElementById("sortByDate").value;
+	var actionpath="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/';?>".concat(catID).concat("<?php echo '/0/0';?>").concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat('/').concat(sortByDate).concat("<?php echo '?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());?>");
+		document.getElementById("sortfrm").action=actionpath;
+		document.getElementById("sortfrm").submit();
+	
+}
 function setup()
 {
         var myform = document.getElementById("item");
@@ -695,65 +726,65 @@ $('#usedAds1').click(function(){
 $('.nav-tabs a[href="#usedAds"]').tab('show')
 })	
 
-$(function() {
+// $(function() {
 
-  $('#sortByPrice').on('change', function(){
-	$('#sortMethod')
-	.find('option')
-	.remove()
-	.end();  
+//   $('#sortByPrice').on('change', function(){
+// 	$('#sortMethod')
+// 	.find('option')
+// 	.remove()
+// 	.end();  
 	  
-    var selected = $(this).find("option:selected").val();
-    if (selected == 1){
-		selectValues = { "1": "High to Low", "2": "Low to High" };
+//     var selected = $(this).find("option:selected").val();
+//     if (selected == 1){
+// 		selectValues = { "1": "High to Low", "2": "Low to High" };
 		
-		$.each(selectValues, function(key, value) {   
-			$('#sortMethod')
-			  .append($("<option></option>")
-			  .attr("value",key)
-			  .text(value)); 
-			}
-		);
-	}else if (selected == 2){
-		selectValues = { "1": "Most Recent", "2": "Oldest" };
+// 		$.each(selectValues, function(key, value) {   
+// 			$('#sortMethod')
+// 			  .append($("<option></option>")
+// 			  .attr("value",key)
+// 			  .text(value)); 
+// 			}
+// 		);
+// 	}else if (selected == 2){
+// 		selectValues = { "1": "Most Recent", "2": "Oldest" };
 		
-		$.each(selectValues, function(key, value) {   
-			$('#sortMethod')
-			  .append($("<option></option>")
-			  .attr("value",key)
-			  .text(value)); 
-			}
-		);
-	}else{
-		$('#sortMethod').html("<option value=''>AllCategories </option>");
-		$('#sortMethod').append(
+// 		$.each(selectValues, function(key, value) {   
+// 			$('#sortMethod')
+// 			  .append($("<option></option>")
+// 			  .attr("value",key)
+// 			  .text(value)); 
+// 			}
+// 		);
+// 	}else{
+// 		$('#sortMethod').html("<option value=''>AllCategories </option>");
+// 		$('#sortMethod').append(
 			"<?php 
-					foreach ($AllCategory as $id=>$value)
-					{
-						if(!isset($lang_label))
-								$lang_label="";
-						$name=$value[0]->name;
-						$postCount="(".$value[0]->postCount.")";
-						if(SHOW_BRACKETS_INDEX_PAGE==0)
-							$postCount="";
-						if($lang_label<>"english")
-							$name=$value[0]->nameCH;
-						if($value[0]->level==1)
-							echo "<option value='".$id."' style='background-color: #E1338B;' >".$name.$postCount."</option>";
-						else 
-						{
-							$str="";
-							if($catID==$id)
-								$str=" selected='selected' ";
-							echo "<option ".$str." value='".$id."' style='margin-left:10px;'> &nbsp;&nbsp;&nbsp;&nbsp;".$name.$postCount." </option>";
-						}
-					}
+// 					foreach ($AllCategory as $id=>$value)
+// 					{
+// 						if(!isset($lang_label))
+// 								$lang_label="";
+// 						$name=$value[0]->name;
+// 						$postCount="(".$value[0]->postCount.")";
+// 						if(SHOW_BRACKETS_INDEX_PAGE==0)
+// 							$postCount="";
+// 						if($lang_label<>"english")
+// 							$name=$value[0]->nameCH;
+// 						if($value[0]->level==1)
+// 							echo "<option value='".$id."' style='background-color: #E1338B;' >".$name.$postCount."</option>";
+// 						else 
+// 						{
+// 							$str="";
+// 							if($catID==$id)
+// 								$str=" selected='selected' ";
+// 							echo "<option ".$str." value='".$id."' style='margin-left:10px;'> &nbsp;&nbsp;&nbsp;&nbsp;".$name.$postCount." </option>";
+// 						}
+// 					}
 			?>"
-		);
-	}
-  });
+// 		);
+// 	}
+//   });
   
-});
+// });
 </script>
 
     <?php include "footer2.php"; ?>

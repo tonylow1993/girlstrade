@@ -232,8 +232,16 @@ class viewProfile extends getCategory {
 		return $data['result'];
 	}
     
-	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByType="0", $sortByPrice="", $sortByDate="0")
+	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByType="0", $sortByPrice="0", $sortByDate="0")
 	{
+		$prevProfile_Url=base_url();
+		if(isset($_GET["prevProfile_Url"]))
+			$prevProfile_Url=$_GET["prevProfile_Url"];
+		else if(isset($_SESSION["prevProfile_Url"]))
+			$prevProfile_Url=$_SESSION["prevProfile_Url"];
+			$_SESSION["prevProfile_Url"]=$prevProfile_Url;
+			$data["prevProfile_Url"]=$prevProfile_Url;
+		
 		$previousUrl="";
 		if(isset($_GET["prevURL"]))
 			$previousUrl=$_GET["prevURL"];
@@ -359,6 +367,7 @@ class viewProfile extends getCategory {
 		$data["lblConditionUsed"]=$this->lang->line("lblConditionUsed");
 		$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
 		$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
+		$data["lblAllCategories"]=$this->lang->line("lblAllCategories");
 		
 		$data["AllCategory"]=$this->getAllCategory();
 			

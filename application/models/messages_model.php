@@ -357,9 +357,9 @@
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
 	    	$sortStr=" order by createDate desc ";
 	    	if(strcmp($sortType,"1")==0){
-	    		if(strcmp($sortByDate,"1")==0){
+	    		if(strcmp($sortByDate,"3")==0){
 	    			$sortStr=" order by createDate desc ";
-	    		}else if(strcmp($sortByDate,"2")==0){
+	    		}else if(strcmp($sortByDate,"4")==0){
 	    			$sortStr=" order by createDate asc ";
 	    		}
 	    	}

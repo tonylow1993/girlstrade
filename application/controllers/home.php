@@ -1162,7 +1162,7 @@ function generateRandomString($length = 8) {
 		}
 		echo json_encode($data);
 	}
-	public function viewAllFeedback($userID, $pageNum=1){
+	public function viewAllFeedback($userID, $pageNum=1, $sortTypeID="0", $sortByDate="0", $sortByType="0"){
 	
 		$prevViewFeedBack_Url=base_url();
 		if(isset($_GET["prevViewFeedBack_Url"]))
@@ -1237,12 +1237,18 @@ function generateRandomString($length = 8) {
 				$tempSortByID=$this->input->post("selectSortType");
 				if(!empty($tempSortByID))
 					$data["sortTypeID"]=$this->input->post("selectSortType");
+				else 
+					$data["sortTypeID"]=$sortTypeID;
 				$tempSortByID=$this->input->post("sortByDate");
 				if(!empty($tempSortByID))
 					$data["sortByDate"]=$this->input->post("sortByDate");
+				else 
+					$data["sortByDate"]=$sortByDate;
 				$tempSortByID=$this->input->post("sortByType");
 				if(!empty($tempSortByID))
 					$data["sortByType"]=$this->input->post("sortByType");
+				else 
+					$data["sortByType"]=$sortByType;
 				$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInAllFeedbacks($userID, $data["sortTypeID"], $data["sortByDate"], $data["sortByType"]);
 				$myList=$this->messages_model->getAllFeedbacks($userID, $pageNum, $data["sortTypeID"], $data["sortByDate"], $data["sortByType"]);
 				$data["result"]=$this->mapFeedbackToView($myList);
