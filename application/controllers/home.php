@@ -600,8 +600,8 @@ class Home extends CI_Controller {
                 	$data["failedTitle"]=$this->lang->line("failedTitle");
                 	$data["goToHomePage"]=$this->lang->line("goToHomePage");
                 	 
-                	//$this->load->view('successPage', $data);
-                	redirect('', 'location');
+                	$this->load->view('successPage', $data);
+                	//redirect('', 'location');
                 
             }
 	}
@@ -849,7 +849,10 @@ class Home extends CI_Controller {
 			}
 			//----------------------------
 			//$this->load->view('successPage', $data);
-			redirect($prevURL);
+			if(strpos(((String)$_SESSION["previousUrl"]),'signupPage') !== false)
+				redirect(base_url());
+			else
+				redirect($prevURL);
 	}	
 	
 function generateRandomString($length = 8) {
