@@ -335,7 +335,7 @@ input[type=checkbox]
 					<?php
 					//if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
 					//{
-					if($isSameUser==false)
+					if($isloginedIn && $isSameUser==false)
 						echo "<a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-success\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 					//}
 					?>
@@ -594,7 +594,7 @@ input[type=checkbox]
 					<?php
 					//if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
 					//{
-						if($isSameUser==false)
+						if($isloginedIn && $isSameUser==false)
 							echo "<br/><a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-success btn-block\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 					//}
 					?>
