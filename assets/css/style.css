@@ -2700,6 +2700,7 @@ div.login-box .panel-footer label {
 
 .user-panel-sidebar ul {
   padding: 0;
+  padding-top: 10px;
 }
 
 .user-panel-sidebar ul li {
