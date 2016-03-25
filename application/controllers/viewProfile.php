@@ -162,10 +162,24 @@ class viewProfile extends getCategory {
 			$tempSortByID=$this->input->post("search-category");
 			if(!empty($tempSortByID))
 				$data["catID"]=$this->input->post("search-category");
-				
 			
+			if(strcmp($data["sortByType"],"1")==0){
+				$data["sortByDate"]="0";
+				$data["catID"]="0";
+			}else if(strcmp($data["sortByType"],"2")==0){
+				$data["sortByPrice"]="0";
+				$data["catID"]="0";
+			}else if(strcmp($data["sortByType"],"3")==0){
+				$data["sortByDate"]="0";
+				$data["sortByPrice"]="0";
+			}else{
+				$data["sortByDate"]="0";
+				$data["sortByPrice"]="0";
+				$data["catID"]="0";
+			}
+				
 			$NoOfItemCount=0;
-			$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords, $data["sortByType"]);
+			$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $data["catID"], $locID, $keywords, $data["sortByType"]);
 			$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
 	      	$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
 	      	$data["userRating"]=$this->users_model->getUserRating($data["userID"]);
@@ -334,9 +348,23 @@ class viewProfile extends getCategory {
 		$tempSortByID=$this->input->post("search-category");
 		if(!empty($tempSortByID))
 			$data["catID"]=$this->input->post("search-category");
-			
+		
+			if(strcmp($data["sortByType"],"1")==0){
+				$data["sortByDate"]="0";
+				$data["catID"]="0";
+			}else if(strcmp($data["sortByType"],"2")==0){
+				$data["sortByPrice"]="0";
+				$data["catID"]="0";
+			}else if(strcmp($data["sortByType"],"3")==0){
+				$data["sortByDate"]="0";
+				$data["sortByPrice"]="0";
+			}else{
+				$data["sortByDate"]="0";
+				$data["sortByPrice"]="0";
+				$data["catID"]="0";
+			}
 		$NoOfItemCount=0;
-		$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $catID, $locID, $keywords,0, 0,0,$data["sortByType"],$data["sortByPrice"], $data["sortByDate"]);
+		$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $data["catID"], $locID, $keywords,0, 0,0,$data["sortByType"],$data["sortByPrice"], $data["sortByDate"]);
 		$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
 		$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
 		$data["userRating"]=$this->users_model->getUserRating($data["userID"]);

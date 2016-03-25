@@ -1252,6 +1252,16 @@ function generateRandomString($length = 8) {
 					$data["sortByType"]=$this->input->post("sortByType");
 				else 
 					$data["sortByType"]=$sortByType;
+				
+				if(strcmp($data["sortTypeID"],"1")==0){
+					$data["sortByType"]="0";
+				}else if(strcmp($data["sortTypeID"],"2")==0){
+					$data["sortByDate"]="0";
+				}else {
+					$data["sortByType"]="0";
+					$data["sortByDate"]="0";
+				}
+					
 				$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInAllFeedbacks($userID, $data["sortTypeID"], $data["sortByDate"], $data["sortByType"]);
 				$myList=$this->messages_model->getAllFeedbacks($userID, $pageNum, $data["sortTypeID"], $data["sortByDate"], $data["sortByType"]);
 				$data["result"]=$this->mapFeedbackToView($myList);
