@@ -757,29 +757,43 @@ window.onload = function(){
             </div>
             
             <div class="inner-box no-padding panel-bevel"> <img class="img-responsive" src="<?php echo base_url();?>images/site/add2.jpg" alt=""> </div>
+          	<div class="inner-box has-aff relative">
+              <a class="dummy-aff-img" href="category.html"><img src="<?php echo base_url();?>images/site/aff2.jpg" class="img-responsive" alt=" aff"> </a>
+
+          </div>
           </aside>
         </div>
         
 </div>
     </div>
     </div>
-    
+
     <!-- /.main-container -->
 
-	<!-- <div class="page-info" style="background: url(<?php echo base_url();?>images/bg.jpg); background-size:cover">
+	<div class="page-info userRatingTitleIndexFooterLine" style="background: url(<?php echo base_url();?>images/footerIndex.jpg); 
+	background-size:cover">
+	<div id="userRatingTitleIndexFooter">
+		What type of GirlsTrade user are you?
+	</div>
     <div class="container text-center section-promo"> 
     	<div class="row">
-        	<div class="col-sm-3 col-xs-6 col-xxs-12">
-                <div class="iconbox-wrap">
+        	
+            
+            <div class="col-md-4">
+            	<div class="iconbox-wrap">
                           <div class="iconbox">
                             <div class="iconbox-wrap-icon">
-                            <i class="icon  icon-group"></i>
+                            <img class="icon ratingIcon" src="<?php echo base_url()."images/girlstrade_ratings_lq_bad.png"; ?>"/>
+                            
                             </div>
                             <div class="iconbox-wrap-content">
-                              <h5><span id="indexFooterNumber"><?php echo $indexstat["trustedseller"];?></span> </h5>
+                              <h5><i class="icon  icon-user-female"></i> </h5>
                               <div  class="iconbox-wrap-text">
-                              <span id="indexFooterTitle">
-                  				<?php echo  $Trusted_Seller;?>
+                              <span id="indexFooterTitle" style="color: red;">
+                  				Bad User
+                  				<span id="indexFooterTitleDes" style="color: red;">
+                  				- poorly rated
+                  				</span>
                   				</span>
                   				</div>
                             </div>
@@ -788,17 +802,20 @@ window.onload = function(){
                      </div>
             </div>
             
-            <div class="col-sm-3 col-xs-6 col-xxs-12">
+            <div class="col-md-4">
             	<div class="iconbox-wrap">
                           <div class="iconbox">
                             <div class="iconbox-wrap-icon">
-                            <i class="icon  icon-th-large-1"></i>
+                             <img class="icon ratingIcon" src="<?php echo base_url()."images/girlstrade_ratings_lq_normal.png"; ?>"/>
                             </div>
-                            <div class="iconbox-wrap-content">
-                              <h5><span id="indexFooterNumber"><?php echo $indexstat["category"];?></span> </h5>
+                           <div class="iconbox-wrap-content">
+                              <h5><i class="icon  icon-user-female"></i> </h5>
                               <div  class="iconbox-wrap-text">
-                              <span id="indexFooterTitle">
-                  				<?php echo $Categories;?>
+                              <span id="indexFooterTitle" style="color: yellow;">
+                  				Normal User
+                  				<span id="indexFooterTitleDes" style="color: yellow;">
+                  				- standard
+                  				</span>
                   				</span>
                   				</div>
                             </div>
@@ -807,36 +824,20 @@ window.onload = function(){
                      </div>
             </div>
             
-            <div class="col-sm-3 col-xs-6  col-xxs-12">
+            <div class="col-md-4">
             	<div class="iconbox-wrap">
                           <div class="iconbox">
                             <div class="iconbox-wrap-icon">
-                            <i class="icon  icon-map"></i>
+                             <img class="icon ratingIcon" src="<?php echo base_url()."images/girlstrade_ratings_lq_good.png"; ?>"/>
                             </div>
                             <div class="iconbox-wrap-content">
-                              <h5><span id="indexFooterNumber"><?php echo $indexstat["location"];?></span> </h5>
+                              <h5><i class="icon  icon-user-female"></i> </h5>
                               <div  class="iconbox-wrap-text">
-                  				<span id="indexFooterTitle">            
-                  				<?php  echo $Location;?></span>
-                            	</div>
-                            </div>
-                          </div>
-  							
-                     </div>
-            </div>
-            
-            <div class="col-sm-3 col-xs-6 col-xxs-12">
-            	<div class="iconbox-wrap">
-                          <div class="iconbox">
-                            <div class="iconbox-wrap-icon">
-                            <i class="icon icon-facebook"></i>
-                            </div>
-                            <div class="iconbox-wrap-content">
-                              <h5><span id="indexFooterNumber">
-                              <?php echo $indexstat["facebookfans"];?></span> </h5>
-                              <div  class="iconbox-wrap-text"> 
-                              <span id="indexFooterTitle">
-                  				<?php echo $Facebook_Fans;?>
+                              <span id="indexFooterTitle" style="color: #1EDE1E;">
+                  				Good User
+                  				<span id="indexFooterTitleDes" style="color: #1EDE1E;">
+                  				- top notch
+                  				</span>
                   				</span>
                   				</div>
                             </div>
@@ -848,7 +849,7 @@ window.onload = function(){
         </div>
     
     </div>
-  </div>-->
+  </div>
 
   <!-- /.page-info -->
   <!-- ending body -->

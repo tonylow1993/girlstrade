@@ -4514,3 +4514,31 @@ nav.slider-nav a.next {
   }
 
 }
+.has-aff {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 3px 3px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    padding: 5px;
+}
+#indexFooterTitleDes
+{
+	text-transform: none;
+}
+#userRatingTitleIndexFooter
+{
+	font-family: fantasy;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+   	padding-top: 10px;
+   	font-size: 15px;
+    line-height: 35px;
+    color:#1464FF;
+    font-weight: bold;
+}
+.page-info.userRatingTitleIndexFooterLine
+{
+	padding:0;
+}
