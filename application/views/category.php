@@ -1723,7 +1723,8 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
             			$count=1;
             		}
             		if($total<>1)
-            			echo "</ul></div>";
+            			echo "</ul>";
+            			//echo "</ul></div>";
             		if($count==1)
             		{
             			if($total<>1)
@@ -1735,17 +1736,20 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
             		}
             		$imageIcon=$value[0]->iconImage;
             		if($value[0]->childCount<>0){
-            		echo "<div class=\"cat-list\">";
+            		//echo "<div class=\"cat-list\">";
             		echo "<h5 class=\"cat-title\"><a class=\"title-font\"  style=\"margin:0px; padding:0px;padding-left:3px;\"  href='$path'>$name $postCount</a>";
             		
-            		echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\">   <span class=\" icon-down-open-big\"></span> </span>";
+            		//echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\">   <span class=\" icon-down-open-big\"></span> </span>";
+            		//echo "<span class=\" icon-down-open-big\"></span>";
             		echo "</h5>";
-            		echo "<ul class=\"cat-collapse collapse in cat-id-$total\">";
+            	 
+            		//echo "<ul class=\"cat-collapse collapse in cat-id-$total\">";
+            		echo "<ul>";
             		} else {
-            			echo "<div class=\"cat-list\">";
+            			//echo "<div class=\"cat-list\">";
             			echo "<h5 ><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;\" href='$path'>$name $postCount</a>";
             			
-            			echo "<span data-target=\".cat-id-$total\"  >  </span>";
+            			//echo "<span data-target=\".cat-id-$total\"  >  </span>";
             			echo "</h5>";
             			echo "<ul>";
             			
