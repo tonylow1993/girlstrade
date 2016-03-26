@@ -352,7 +352,7 @@ input[type=checkbox]
 					$soldUsersstr=$soldUsersstr."  </select>  ";
 					$soldUsersstr=base64_encode($soldUsersstr);
 					
-					if($isSameUser==true)
+					if($isSameUser==true && $soldUsers!=null && count($soldUsers)>0)
 						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success\"> <i class=\" icon-pencil\"></i> FeedBack</a>";
 					if(($isloginedIn) &&($isSameUser==true))
 					{
@@ -611,7 +611,7 @@ input[type=checkbox]
 					$soldUsersstr=$soldUsersstr."  </select>  ";
 					$soldUsersstr=base64_encode($soldUsersstr);
 					
-					if($isSameUser==true)
+					if($isSameUser==true && $soldUsers!=null && count($soldUsers)>0)
 						echo "<div class=\"user-ads-action\"><a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success btn-block\"> <i class=\" icon-pencil\"></i> FeedBack </a></div>";
 					if(($isloginedIn) &&($isSameUser==true))
 					{
@@ -934,7 +934,7 @@ input[type=checkbox]
            	</div>
           <div class="form-group">
          	<label for="soldUser" class="control-label">Sold To<font color="red">*</font></label>
-         	<div   id="divSoldUser" name="divSoldUser"  class="center">
+         	<div   id="divSoldUser_2"  class="center">
          	
          	</div>
          	<div id="soldUserError" name="soldUserError"></div>
@@ -985,7 +985,7 @@ input[type=checkbox]
            	</div>
           <div class="form-group">
          	<label for="soldUser" class="control-label">Sold To<font color="red">*</font></label>
-         	<div   id="divSoldUser" name="divSoldUser"  class="center">
+         	<div   id="divSoldUser_1" name="divSoldUser_1"  class="center">
          	
          	</div>
          	<div id="soldUserError" name="soldUserError"></div>
@@ -1271,7 +1271,7 @@ function passToModal() {
 	$('#sellerActionPopup').on('show.bs.modal', function(event) {
         $("#postID_3").val($(event.relatedTarget).data('id'));
         $("#pageNum").val($(event.relatedTarget).data('pagenum'));
-          $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
+          $("#divSoldUser_1").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
     });
 	$('#sellerApprovePopup').on('show.bs.modal', function(event) {
 		$("#ctrlpostID").val($(event.relatedTarget).data('id'));
@@ -1282,7 +1282,7 @@ function passToModal() {
 		
 	$('#sellerFeedBackPopup').on('show.bs.modal', function(event) {
 		 $("#postID_2").val($(event.relatedTarget).data('id'));
-         $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
+         $("#divSoldUser_2").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
     });
 	$('#buyerFeedBackPopup').on('show.bs.modal', function(event) {
 		 $("#postID_1").val($(event.relatedTarget).data('id'));
@@ -1300,7 +1300,6 @@ function passToModal() {
         $("#selleremail").val($(event.relatedTarget).data('email'));
     });
 }
-
 $(document).ready(passToModal());
 function getApproveList(ctrlValue1, ctrlValue2, ctrlName, ctrlErrName) {
 	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
@@ -1321,59 +1320,7 @@ function getApproveList(ctrlValue1, ctrlValue2, ctrlName, ctrlErrName) {
 	    	}
 	});
 };
-function jsbase64_decode(data) {
-	  //  discuss at: http://phpjs.org/functions/base64_decode/
-	  // original by: Tyler Akins (http://rumkin.com)
-	  // improved by: Thunder.m
-	  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-	  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-	  //    input by: Aman Gupta
-	  //    input by: Brett Zamir (http://brett-zamir.me)
-	  // bugfixed by: Onno Marsman
-	  // bugfixed by: Pellentesque Malesuada
-	  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-	  //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
-	  //   returns 1: 'Kevin van Zonneveld'
-	  //   example 2: base64_decode('YQ===');
-	  //   returns 2: 'a'
 
-	  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-	  var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
-	    ac = 0,
-	    dec = '',
-	    tmp_arr = [];
-
-	  if (!data) {
-	    return data;
-	  }
-
-	  data += '';
-
-	  do { // unpack four hexets into three octets using index points in b64
-	    h1 = b64.indexOf(data.charAt(i++));
-	    h2 = b64.indexOf(data.charAt(i++));
-	    h3 = b64.indexOf(data.charAt(i++));
-	    h4 = b64.indexOf(data.charAt(i++));
-
-	    bits = h1 << 18 | h2 << 12 | h3 << 6 | h4;
-
-	    o1 = bits >> 16 & 0xff;
-	    o2 = bits >> 8 & 0xff;
-	    o3 = bits & 0xff;
-
-	    if (h3 == 64) {
-	      tmp_arr[ac++] = String.fromCharCode(o1);
-	    } else if (h4 == 64) {
-	      tmp_arr[ac++] = String.fromCharCode(o1, o2);
-	    } else {
-	      tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
-	    }
-	  } while (i < data.length);
-
-	  dec = tmp_arr.join('');
-
-	  return dec.replace(/\0+$/, '');
-	}
 	    
 //encode(decode) html text into html entity
 var decodeHtmlEntity = function(str) {
@@ -1500,7 +1447,7 @@ buf.unshift(['&#', str[i].charCodeAt(), ';'].join(''));
 }
 return buf.join('');
 };
-$(document).ready(passToModal());
+
 
 
 
