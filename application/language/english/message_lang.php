@@ -53,7 +53,7 @@ $lang["PostPleaseLoginFirst"]="Please login to continue process";
 $lang["PostErrorZeroPostIDE"]="Error in post due to zero postID";
 $lang["PostSuccess"]="New post has been created and will be approved within the next 12 hours by the system.";
 $lang["MessagesSendError"]="Message send successfully";
-$lang["PostNotExistsNow"]="This Ads is rejected or deleted or still in pending for verified now. View item is not available.";
+$lang["PostNotExistsNow"]="This Ads is rejected or closed or still in pending for verified now. View item is not available.";
 
 // Account navigation and sidebar
 $lang["MyAds"]="My Ads";
@@ -201,7 +201,8 @@ $lang["abuseMessage"]="abuse Message";
 $lang["quantity"]="Quantity";
 $lang["viewAbuseMessages"]="View Abuse Messages";
 $lang["directsend_history_seller"]="Contact Info Distrubuted";
-$lang["popupTitleDeleteAds"]="Are you sure to delete this ads?";
+$lang["popupTitleDeleteAds"]="Are you sure to close this ads?";
+$lang["CloseAds"]="Close Ads";
 $lang["Title"]="Title";
 $lang["BuyerName"]="Buyer Name";
 $lang["SellerName"]="Seller Name";
