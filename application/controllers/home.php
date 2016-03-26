@@ -536,7 +536,11 @@ class Home extends CI_Controller {
 			$userInfo['hidetelno']=false;
 // 		$userInfo("checkBox1")=true;
 // 		$userInfo("checkBox2")=true;
-		
+			$userInfo['showWeChatID']=false;
+			$userInfo['weChatID']='';
+			$userInfo['showWebSite']=false;
+			$userInfo['webSiteAddr']='';
+			
 		
 		
 		$userEmail['email'] = $data['email'];
