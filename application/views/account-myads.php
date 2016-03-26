@@ -113,7 +113,7 @@
 						$clickLink="clickLink".$rowCount;
 						$shareLink=base_url().MY_PATH."viewItem/index/".$postID;
 						//echo "<p><a class=\"btn btn-primary btn-xs\" href=$editPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Edit')." </a></p>";
-						if(strcmp($status, "Rejected")!=0 && strcmp($status, "Unverified")!=0){
+						if(strcmp($status, "Rejected")!=0 && strcmp($status, "Unverified")!=0 && strcmp($status, "Closed")!=0){
 							echo "<p> <a class=\"btn btn-info btn-xs btn-120\" href=\"#shareAds\"  data-toggle=\"modal\" data-sharelink='$shareLink'> <i class=\"fa fa-mail-forward\"></i> ".$this->lang->line('Share')." </a></p>";
 						}
 						echo "<p>";
@@ -121,7 +121,7 @@
                         echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
                     	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
                     	echo "<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
-                    	
+                    	if(strcmp($status, "Open")==0 or strcmp($status, "Expired")==0)
                     	echo "<div class=\"user-ads-action\"><a class=\"btn btn-danger btn-xs btn-120\"  href=\"#deleteAdsPopup\" data-toggle=\"modal\" id='$clickLink' data-id=\"$messageID\" data-userID=\"$userID\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></div></p>";
                     	
                         //echo "<a class=\"btn btn-danger btn-xs\"  href=\"javascript:deleteAds('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1)'\" id='$clickLink'> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></p>";

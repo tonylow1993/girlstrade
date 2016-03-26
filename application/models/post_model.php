@@ -551,7 +551,7 @@
 	        return $query->result();  
             }
             public function getNoOfItemCountInMyAds($userId){
-            	$strQuery="select count(distinct postID) as NoOfCount from post where status in ('A','U', 'R')  and (userID=$userId) ";
+            	$strQuery="select count(distinct postID) as NoOfCount from post where status in ('A','U', 'R', 'D')  and (userID=$userId) ";
             	$NoOfItemCount=0;
             	$query2 = $this->db->query($strQuery);
             	$var2=$query2->result_array();
@@ -566,7 +566,7 @@
             	if ($pageNum>1)
             		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
             	$whereArray = array('userID' => $userId);
-            	$in_where=array("A", "U", 'R');
+            	$in_where=array("A", "U", 'R', 'D');
             	$query = $this->db->from('post')->where($whereArray)->where_in("status", $in_where)->limit($ulimit, $olimit)->get();
             	return $query->result();
             }

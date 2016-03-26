@@ -2158,14 +2158,20 @@ function generateRandomString($length = 8) {
 			}
 			return $result;
 	}
-	public function getPostStatus($status){
+	public function getPostStatus($status, $enableRepostBtn){
 		if(strcmp($status,"U")==0)
 			return "Unverified";
-		else if(strcmp($status, "A")==0)
-			return "Open";
 		else if(strcmp($status,"R")==0)
 			return "Rejected";
-		return "";	
+		else if(strcmp($status,"D")==0)
+			return "Closed";
+		else if($enableRepostBtn)
+			return "Expired";
+		else if(strcmp($status, "A")==0)
+			return "Open";
+		
+		else
+			return "";	
 	}
 	public function mapPostToView($inbox)
 	{
@@ -2179,7 +2185,6 @@ function generateRandomString($length = 8) {
 			$fuserID=$row->userID;
 			$createDate=$row->createDate;
 			$userarray=$this->users_model->get_user_by_id($userID);
-			$status=$this->getPostStatus($row->status);
 			$reply="";
 			$from="";
 			if($userarray<>null)
@@ -2301,8 +2306,10 @@ function generateRandomString($length = 8) {
 			$nextexpirydate="Next expiry date of this post is ".$nextDate;
 			$enableRepostBtn=false;
 			$today = date("Y-m-d");
-			if($postInfo[0]->expriyDate<$today)
+			if($postInfo[0]->expriyDate<$today and strcmp($row->status,"D")!=0)
 				$enableRepostBtn=true;
+			$status=$this->getPostStatus($row->status, $enableRepostBtn);
+					
 			//var_dump($soldUserList);
 			$arrayMessage=array($messageID => array("postID"=>$postID,
 					"messageID"=>$messageID,
