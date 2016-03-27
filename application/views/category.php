@@ -586,7 +586,7 @@
               </a>
               </div>
               <div class="tab-filter">
-              <select class="selectpicker" data-style="btn-select" data-width="auto" id="sortByPrice" name="sortByPrice"  >
+              <select class="selectpicker" data-style="btn-select" data-width="auto" id="sortByPrice" name="sortByPrice"  onchange="setup();">
                   <option value="0"   <?php if(strcmp($sortByID_,"0")==0 or $sortByID_==0 or $sortByID_=='') echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
                   <option value="1"   <?php if(strcmp($sortByID_,"1")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceLowToHigh;?></option>
                   <option value="2"   <?php if(strcmp($sortByID_,"2")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceHighToLow;?></option>
@@ -655,6 +655,7 @@
 					$postCreateDate=$item['postCreateDate'];
 					$picCount=$item["picCount"];
 					$thumbnail=base_url().$item['thumbnailPath'].'/'.$item['thumbnailName'];
+					$checkImgFile=$item['thumbnailPath'].'/'.$item['thumbnailName'];
 					$postTypeAds=$item["postTypeAds"];	
 					echo  "<div class=\"item-list\"> ";
 					
@@ -678,7 +679,7 @@
 					}			
 					
 				echo  "<div class=\"col-sm-3 no-padding photobox\">";
-				if (!file_exists($thumbnail)) {
+				if (!is_file_exists($checkImgFile)) {
 					$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
 				}
 						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
@@ -776,6 +777,7 @@
 					$postCreateDate=$item['postCreateDate'];
 					$picCount=$item["picCount"];
 					$thumbnail=base_url().$item['thumbnailPath'].'/'.$item['thumbnailName'];
+					$checkImgFile=$item['thumbnailPath'].'/'.$item['thumbnailName'];
 					$postTypeAds=$item["postTypeAds"];	
 					echo  "<div class=\"item-list\"> ";
 					
@@ -799,7 +801,7 @@
 					}			
 					
 				echo  "<div class=\"col-sm-3 no-padding photobox\">";
-				if (!file_exists($thumbnail)) {
+				if (!is_file_exists($checkImgFile)) {
 					$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
 				}
 						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
@@ -889,6 +891,7 @@
 					$postCreateDate=$item['postCreateDate'];
 					$picCount=$item["picCount"];
 					$thumbnail=base_url().$item['thumbnailPath'].'/'.$item['thumbnailName'];
+					$checkImgFile=$item['thumbnailPath'].'/'.$item['thumbnailName'];
 					$postTypeAds=$item["postTypeAds"];	
 					echo  "<div class=\"item-list\"> ";
 					
@@ -912,7 +915,7 @@
 					}			
 					
 				echo  "<div class=\"col-sm-3 no-padding photobox\">";
-				if (!file_exists($thumbnail)) {
+				if (!is_file_exists($checkImgFile)) {
 					$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
 				}
 						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
@@ -1108,43 +1111,43 @@ function setup(){
 	   var maxPrice=document.getElementById("maxPrice").value;
 	   var activeTab=document.getElementById("paneActiveTab").value;
 
-	   $('#pleaseWaitDialog').modal('show');
+// 	   $('#pleaseWaitDialog').modal('show');
 
-       setForm(function(data)
-        {
-            if(data == true)
-            {
-					$.ajax({
-						xhr: function()
-						{
-							var xhr = new window.XMLHttpRequest();
-							//Upload progress
-							xhr.upload.addEventListener("progress", function(evt){
-							  if (evt.lengthComputable) {
-								var percentComplete = evt.loaded / evt.total*100;
-								//Do something with upload progress
-								$("#upload-progress-bar").width(percentComplete+"%");
-								console.log(percentComplete);
-							  }
-							}, false);
-							return xhr;
-						},
+//        setForm(function(data)
+//         {
+//             if(data == true)
+//             {
+// 					$.ajax({
+// 						xhr: function()
+// 						{
+// 							var xhr = new window.XMLHttpRequest();
+// 							//Upload progress
+// 							xhr.upload.addEventListener("progress", function(evt){
+// 							  if (evt.lengthComputable) {
+// 								var percentComplete = evt.loaded / evt.total*100;
+// 								//Do something with upload progress
+// 								$("#upload-progress-bar").width(percentComplete+"%");
+// 								console.log(percentComplete);
+// 							  }
+// 							}, false);
+// 							return xhr;
+// 						},
 						url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
-						//data: formData,
-						processData: false,
-						contentType: false,
-						type: 'POST',
-						success:function(msg){
-							$('#progress-bar').css("display", "none");
-							$('#pleaseWaitDialog').modal('hide');
-						}
-					});
-            }
-            return data;
-        });
+// 						//data: formData,
+// 						processData: false,
+// 						contentType: false,
+// 						type: 'POST',
+// 						success:function(msg){
+// 							$('#progress-bar').css("display", "none");
+// 							$('#pleaseWaitDialog').modal('hide');
+// 						}
+// 					});
+//             }
+//             return data;
+//         });
 		
-	//document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab);
-	//document.getElementById("myForm").submit();
+	document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab);
+	document.getElementById("myForm").submit();
 }
 function isNumber(n) {
 	  return !isNaN(parseFloat(n)) && isFinite(n);

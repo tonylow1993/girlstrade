@@ -45,6 +45,8 @@
                   		$reply=$row['reply'];
                   		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url())."&prevItem_Url=".urlencode(current_url());
                   		$imagePath=$row['imagePath'];
+                  		$checkImgFile=$row['checkImgFile'];
+                  		 
                   		$preview=$row['preview'];
                   		$previewTitle=$row['previewTitle'];
                   		$previewDesc=$row["previewDesc"];
@@ -79,7 +81,7 @@
                       	echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\"  class=\"add-image\">";
 //                       	echo  "<div class=\"col-sm-2 no-padding photobox\">";
 // 						echo "<div style=\"position:relative; height:75px; width: 100%; overlfow:hidden;\">";
-                  	if (file_exists($imagePath)) {
+                  	if (is_file_exists($checkImgFile)) {
 					
                       	$sizeimage=getimagesize($imagePath);
                       	echo "<p style=\"font-size:8px;padding:0px; margin: 0px;\">image size: ".$sizeimage[0]."x".$sizeimage[1]."</p>";

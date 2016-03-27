@@ -81,7 +81,7 @@ var $buyerDate='';
             	if ($pageNum>1)
             		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
             	$whereArray = array('soldToUserID' => $userId);
-            	$statusIn=array('A');;
+            	$statusIn=array('A');
             	$query = $this->db->from('tradecomments')->where($whereArray)->where_in('status', $statusIn) ->limit($ulimit, $olimit)->get();
             	$var= $query->result();
 			return $var;

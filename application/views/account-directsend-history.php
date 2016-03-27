@@ -38,6 +38,8 @@
                   		$replyUserID=$row["replyUserID"];
                   		$viewItemPath=$row['viewItemPath']."?prevItem_Url=".urlencode(current_url());
                   		$imagePath=$row['imagePath'];
+                  		$checkImgFile=$row['checkImgFile'];
+                  		 
                   		$previewTitle=$row['previewTitle'];
                   		$previewDesc=$row["previewDesc"];
                   		$createDate=$row['createDate'];
@@ -65,7 +67,7 @@
                       	echo "</div></td>";
                       	echo "<td style=\"width:10%\"><a href=$userPath>$reply</a></td>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">";
-                    	if(file_exists($imagePath))
+                    	if(is_file_exists($checkImgFile))
                     	{
                       		echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                     	}else

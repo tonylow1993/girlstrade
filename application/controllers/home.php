@@ -1736,7 +1736,7 @@ function generateRandomString($length = 8) {
 			$data["NoOfItemCount"]= $data["NoOfItemCount"] + $this->requestpost_model->getNoOfItemCountInDirectSendHistoryAsSeller($userID);
 			$myList=$this->requestpost_model->getDirectSendHistoryAsSeller($userID, $pageNum);
 			//var_dump($myList);
-			if($data["result"]!=null && count($data["result"])>0)
+			if(isset($data["result"]) && $data["result"]!=null && count($data["result"])>0)
 				$data["result"]=array_merge($data["result"], $this->mapReqeustPostToViewOfArray($myList, "seller"));
 			else 
 				$data["result"]=$this->mapReqeustPostToViewOfArray($myList, "seller");
@@ -1915,9 +1915,11 @@ function generateRandomString($length = 8) {
 			
 			$pic=$this->picture_model->get_picture_by_postID($postID);
 			$imagePath="";
+			$checkImgFile="";
 			$picCount=count($pic);
 			if($pic<>null)
 			{
+				$checkImgFile=$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 				$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 			}
 			$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
@@ -1940,6 +1942,7 @@ function generateRandomString($length = 8) {
 					"visibleBuyerComment"=>$visibleBuyerComment,
 					"soldToUserID"=>$soldToUserID,
 						"imagePath"=>$imagePath,
+					"checkImgFile"=> $checkImgFile,
 					"viewItemPath"=>$viewItemPath,
 					"itemStatus"=>$itemStatus,
 					"statusRP" =>$statusRP,
@@ -1961,7 +1964,7 @@ function generateRandomString($length = 8) {
 	
 	public function mapReqeustPostToViewOfArray($inbox, $type="buyer", $type2="DirectSend")
 	{
-		$result=null;
+		$result=array();
 		$lang_label=$this->nativesession->get("language");
 		if($inbox!=null){
 			foreach($inbox as $row)
@@ -2024,9 +2027,11 @@ function generateRandomString($length = 8) {
 					
 				$pic=$this->picture_model->get_picture_by_postID($postID);
 				$imagePath="";
+				$checkImgFile="";
 				$picCount=count($pic);
 				if($pic<>null)
 				{
+					$checkImgFile=$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 					$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 				}
 				$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
@@ -2049,6 +2054,7 @@ function generateRandomString($length = 8) {
 						"visibleBuyerComment"=>$visibleBuyerComment,
 						"soldToUserID"=>$soldToUserID,
 						"imagePath"=>$imagePath,
+						"checkImgFile"=> $checkImgFile,
 						"viewItemPath"=>$viewItemPath,
 						"itemStatus"=>$itemStatus,
 						"statusRP" =>$statusRP,
@@ -2059,6 +2065,7 @@ function generateRandomString($length = 8) {
 						"sellerEmail" => $sellerEmail,
 						"replyUserID"=>$userID,
 						"picCount"=>$picCount));
+				
 				if($result==null)
 					$result=$arrayMessage;
 				else
@@ -2292,8 +2299,10 @@ function generateRandomString($length = 8) {
 			$pic=$this->picture_model->get_picture_by_postID($postID);
 			$imagePath="";
 			$picCount=count($pic);
+			$checkImgFile="";
 			if($pic<>null)
 			{
+				$checkImgFile=$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 				$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 			}
 			$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
@@ -2324,6 +2333,7 @@ function generateRandomString($length = 8) {
 					"previewDesc"=>$previewDesc,
 					"price"=>$price,
 					"imagePath"=>$imagePath,
+					"checkImgFile"=>$checkImgFile,
 					"viewItemPath"=>$viewItemPath,
 					"itemStatus"=>$itemStatus,
 					"from"=>$from,
@@ -2465,9 +2475,11 @@ function generateRandomString($length = 8) {
 			
 			$pic=$this->picture_model->get_picture_by_postID($postID);
 			$imagePath="";
+			$checkImgFile="";
 			$picCount=count($pic);
 			if($pic<>null)
 			{
+				$checkImgFile=$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 				$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 			}
 			$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
@@ -2493,6 +2505,7 @@ function generateRandomString($length = 8) {
 					"previewDesc"=>$previewDesc,
 					"price"=>$price,
 					"imagePath"=>$imagePath,
+					"checkImgFile"=> $checkImgFile,
 					"viewItemPath"=>$viewItemPath,
 					"itemStatus"=>$itemStatus,
 					"status"=> $row->status,

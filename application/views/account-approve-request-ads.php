@@ -47,6 +47,7 @@
                   			$replyUserID=$row["replyUserID"];
                   			$viewItemPath=$row['viewItemPath']."?prevItem_Url=".urlencode(current_url());
                   			$imagePath=$row['imagePath'];
+                  			$checkImgFile=$row['checkImgFile'];
                   			$previewTitle=$row['previewTitle'];
                   			$previewDesc=$row["previewDesc"];
                   			$createDate=$row['createDate'];
@@ -68,7 +69,7 @@
                   				$userPath=base_url().MY_PATH."viewProfile/viewByUserID/".$replyUserID."/1?prevURL=".urlencode(current_url());
                   				echo "<tr>";
                   				echo "<td style=\"width:20%\" class=\"add-image\"><a href=$userPath>$reply</a>";
-                  				if (file_exists($imagePath)) {
+                  				if (is_file_exists($checkImgFile)) {
                   					echo "<p class=\"price-td\"><br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                   				}else
                   				{

@@ -128,9 +128,9 @@
           			echo "<li><a href=$approvedrequest1><i class=\"icon-hammer\"></i> $ApprovedRequest <span class=\"badge\">$archivedAdsCount</span></a></li>";
           			 
          	     if($activeNav==11)
-              		echo "<li><a  class=\"active\" href=$buyAdsHistory1><i class=\"icon-th-list-2\"></i>".$this->lang->line("BuyAdsHistory")."<span class=\"badge\">$buyAdsCount</span></a></li>";
+              		echo "<li><a  class=\"active\" href=$buyAdsHistory1><i class=\"icon-th-list-2\"></i>".$this->lang->line("ContactedAdsHistory")."<span class=\"badge\">$buyAdsCount</span></a></li>";
           		 	else 
-          		 		echo "<li><a href=$buyAdsHistory1><i class=\"icon-th-list-2\"></i>".$this->lang->line("BuyAdsHistory")."<span class=\"badge\">$buyAdsCount</span></a></li>";
+          		 		echo "<li><a href=$buyAdsHistory1><i class=\"icon-th-list-2\"></i>".$this->lang->line("ContactedAdsHistory")."<span class=\"badge\">$buyAdsCount</span></a></li>";
           		 		
 //          	     if($activeNav==12)
 //               		echo "<li><a  class=\"active\" href=$directsentHistory1><i class=\"icon-mouse\"></i>".$this->lang->line("directsend_history")."<span class=\"badge\">$directsendhistCount</span></a></li>";

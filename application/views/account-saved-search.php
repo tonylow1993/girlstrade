@@ -43,6 +43,8 @@
                   		$reply=$row['reply'];
                   		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url())."&prevItem_Url=".urlencode(current_url());
                   		$imagePath=$row['imagePath'];
+                  		$checkImgFile=$row['checkImgFile'];
+                  		 
                   		$previewTitle=$row['previewTitle'];
                   		$previewDesc=$row["previewDesc"];
                   		$createDate=$row['createDate'];
@@ -59,7 +61,7 @@
 						$clickLink="clickLink".$rowCount;
                 		echo "<tr>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">";
-                    	if(file_exists($imagePath))
+                    	if(is_file_exists($checkImgFile))
                     	{
                       		echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                     	}
