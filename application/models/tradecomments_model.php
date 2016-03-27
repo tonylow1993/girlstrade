@@ -75,14 +75,22 @@ var $buyerDate='';
 	
 		return $NoOfItemCount;
 	}
-	function getBuyAdsHistory($userId, $pageNum){
+	function getBuyAdsHistory($userId, $pageNum, $sortByDate){
             	$ulimit=ITEMS_PER_PAGE;
             	$olimit=0;
             	if ($pageNum>1)
             		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
             	$whereArray = array('soldToUserID' => $userId);
             	$statusIn=array('A');
-            	$query = $this->db->from('tradecomments')->where($whereArray)->where_in('status', $statusIn) ->limit($ulimit, $olimit)->get();
+            	$this->db->from('tradecomments')->where($whereArray)->where_in('status', $statusIn);
+            	if(strcmp($sortByDate,"1")==0)
+            		$query=$this->db->order_by('createDate', 'DESC')->limit($ulimit, $olimit)->get();
+            		else if(strcmp($sortByDate,"2")==0)
+            			$query=$this->db->order_by('createDate', 'ASC')->limit($ulimit, $olimit)->get();
+            			else
+            				$query=$this->db->limit($ulimit, $olimit)->get();
+            				 
+            	
             	$var= $query->result();
 			return $var;
 	}

@@ -14,15 +14,21 @@ class savedads_model extends CI_Model {
 	 
 	
 	
-	function getSavedAds($userId, $pageNum)
+	function getSavedAds($userId, $pageNum, $sortByDate)
 	{
 		$ulimit=ITEMS_PER_PAGE;
 		$olimit=0;
 		if ($pageNum>1)
 			$olimit=($pageNum-1)*ITEMS_PER_PAGE;
 		$arr=array("status"=>"U", "userID"=>$userId);
-		$query = $this->db->from('savedAds')->where($arr)->limit($ulimit, $olimit)->get();
-	  
+		$this->db->from('savedAds')->where($arr);
+		if(strcmp($sortByDate,"1")==0)
+			$query=$this->db->order_by('createDate', 'DESC')->limit($ulimit, $olimit)->get();
+		else if(strcmp($sortByDate,"2")==0)
+			$query=$this->db->order_by('createDate', 'ASC')->limit($ulimit, $olimit)->get();
+		else
+			$query=$this->db->limit($ulimit, $olimit)->get();
+					 
 		return $query->result();
 	}
 	public function getNoOfItemCountInSavedAds($userId){

@@ -1535,7 +1535,7 @@ function generateRandomString($length = 8) {
 		else 
 			$this->load->view('failedPage', $data);
 	}
-	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='')
+	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='', $sortByDate="0")
 	{
 		
 		
@@ -1714,7 +1714,8 @@ function generateRandomString($length = 8) {
         	$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
         }
         //----------------------------
-        		
+        $data["sortByDate"]=$sortByDate;
+        
 		if($activeNav==1)
 		{
 // 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInInbox($userID);
@@ -1723,7 +1724,7 @@ function generateRandomString($length = 8) {
 // 			$this->load->view("account-inbox-new", $data);
 			
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageInboxByPostUserId($userID);
-			$myList=$this->messages_model->getBuyerMessageInBoxByPostUserId($userID, $pageNum);
+			$myList=$this->messages_model->getBuyerMessageInBoxByPostUserId($userID, $pageNum, $sortByDate);
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "Inbox");
 			$this->load->view("account-inbox-onlybyuserid", $data);
 			
@@ -1746,7 +1747,7 @@ function generateRandomString($length = 8) {
 		else if($activeNav==3)
 		{
 			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInMyAds($userID);
-			$myList=$this->post_model->getMyAds($userID, $pageNum);
+			$myList=$this->post_model->getMyAds($userID, $pageNum, $sortByDate);
 			$data["result"]=$this->mapPostToView($myList);
 			$this->load->view("account-myads", $data);
 		}
@@ -1756,7 +1757,7 @@ function generateRandomString($length = 8) {
 		}else if($activeNav==5)
 		{
 			$data["NoOfItemCount"]=$this->savedAds_model->getNoOfItemCountInSavedAds($userID);
-			$myList=$this->savedAds_model->getSavedAds($userID, $pageNum);
+			$myList=$this->savedAds_model->getSavedAds($userID, $pageNum, $sortByDate);
 			$data["result"]=$this->mapReqeustPostToView($myList);
 				$this->load->view("account-saved-search", $data);
 		}
@@ -1778,20 +1779,20 @@ function generateRandomString($length = 8) {
 		else if($activeNav==10)
 		{
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInOutgoingByPostUserId($userID);
-			$myList=$this->messages_model->getOutgoingByPostUserId($userID, $pageNum);
+			$myList=$this->messages_model->getOutgoingByPostUserId($userID, $pageNum, $sortByDate);
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "OutBox");
 				$this->load->view("account-outbox-onlybyuserid", $data);
 			
 		}
 		else if($activeNav==7){
 			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInArchiveAds($userID);
-			$myList=$this->post_model->getArchiveAds($userID, $pageNum);
+			$myList=$this->post_model->getArchiveAds($userID, $pageNum, $sortByDate);
 			$data["result"]=$this->mapPostToView($myList);
 			$this->load->view("account-archived-ads", $data);
 		}
 		else if($activeNav==11){
 			$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInBuyAdsHistory($userID);
-			$myList=$this->tradecomments_model->getBuyAdsHistory($userID, $pageNum);
+			$myList=$this->tradecomments_model->getBuyAdsHistory($userID, $pageNum, $sortByDate);
 			$data["result"]=$this->mapTradeCommentToView($myList);
 			$this->load->view("account-my-buy-history", $data);
 		}else if($activeNav==8){

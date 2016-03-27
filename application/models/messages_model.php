@@ -418,16 +418,21 @@
 	    	
 	    	return $NoOfItemCount;
 	    }
-	    public function getOutgoingByPostUserId($userID, $pageNum){
+	    public function getOutgoingByPostUserId($userID, $pageNum, $sortByDate){
 	    	$ulimit=ITEMS_PER_PAGE;
 	    	$olimit=0;
 	    	if ($pageNum>1)
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
-	    			
-	    		$strQuery="select * from buyermessage where fromUserID=$userID limit $olimit, $ulimit";
-	    		$query2 = $this->db->query($strQuery);
-	    			
-	    		return $query2->result();
+    		$sortByDateString="";
+    		if(strcmp($sortByDate,"1")==0){
+    			$sortByDateString=" order by createDate desc";
+    		}else if(strcmp($sortByDate,"2")==0){
+    			$sortByDateString=" order by createDate asc";
+    		}
+    		$strQuery="select * from buyermessage where fromUserID=$userID $sortByDateString limit $olimit, $ulimit";
+    		$query2 = $this->db->query($strQuery);
+    			
+    		return $query2->result();
 	    }
 	    public function getNoOfItemCountInBuyerMessageInboxByPostUserId($userID){
 	    	$strQuery="select count(*) as NoOfCount from buyermessage where  userID=$userID";
@@ -438,16 +443,21 @@
 	    	
 	    	return $NoOfItemCount;
 	    }
-	    public function getBuyerMessageInBoxByPostUserId($userID, $pageNum){
+	    public function getBuyerMessageInBoxByPostUserId($userID, $pageNum, $sortByDate){
 	    	$ulimit=ITEMS_PER_PAGE;
 	    	$olimit=0;
 	    	if ($pageNum>1)
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
-	    	
-	    		$strQuery="select * from buyermessage where  userID=$userID limit $olimit, $ulimit";
-	    		$query2 = $this->db->query($strQuery);
-	    	
-	    		return $query2->result();
+    		$sortByDateString="";
+    		if(strcmp($sortByDate,"1")==0){
+    			$sortByDateString=" order by createDate desc";
+    		}else if(strcmp($sortByDate,"2")==0){
+    			$sortByDateString=" order by createDate asc";
+    		}
+    		$strQuery="select * from buyermessage where  userID=$userID $sortByDateString limit $olimit, $ulimit";
+    		$query2 = $this->db->query($strQuery);
+    	
+    		return $query2->result();
 	    }
 	}
 	

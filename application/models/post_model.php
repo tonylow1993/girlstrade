@@ -560,14 +560,21 @@
             		
             	return $NoOfItemCount;
             }
-            function getMyAds($userId, $pageNum){
+            function getMyAds($userId, $pageNum, $sortByDate){
             	$ulimit=ITEMS_PER_PAGE;
             	$olimit=0;
             	if ($pageNum>1)
             		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
             	$whereArray = array('userID' => $userId);
             	$in_where=array("A", "U", 'R', 'D');
-            	$query = $this->db->from('post')->where($whereArray)->where_in("status", $in_where)->limit($ulimit, $olimit)->get();
+            	$this->db->from('post')->where($whereArray)->where_in("status", $in_where);
+            	if(strcmp($sortByDate,"1")==0)
+            		$query=$this->db->order_by('createDate', 'DESC')->limit($ulimit, $olimit)->get();
+            	else if(strcmp($sortByDate,"2")==0)
+            		$query=$this->db->order_by('createDate', 'ASC')->limit($ulimit, $olimit)->get();
+            	else 
+            		$query=$this->db->limit($ulimit, $olimit)->get();
+            		 
             	return $query->result();
             }
 	
@@ -588,7 +595,7 @@
             
             	return $NoOfItemCount;
             }
-            function getArchiveAds($userId, $pageNum){
+            function getArchiveAds($userId, $pageNum, $sortByDate){
             	$ulimit=ITEMS_PER_PAGE;
             	$olimit=0;
             	if ($pageNum>1)
@@ -597,7 +604,13 @@
 //             	$orWhereArray= array('userID' => $userId, 'status'=>'Bc');
 //             	$statusIn=array('So', 'Bc');
             	$statusIn=array('C');
-            	$query = $this->db->from('post')->where($whereArray)->where_in('status', $statusIn) ->limit($ulimit, $olimit)->get();
+            	$this->db->from('post')->where($whereArray)->where_in('status', $statusIn);
+            	if(strcmp($sortByDate,"1")==0)
+            		$query=$this->db->order_by('createDate', 'DESC')->limit($ulimit, $olimit)->get();
+            		else if(strcmp($sortByDate,"2")==0)
+            			$query=$this->db->order_by('createDate', 'ASC')->limit($ulimit, $olimit)->get();
+            			else
+            				$query=$this->db->limit($ulimit, $olimit)->get();
             	return $query->result();
             }
 //             public function getNoOfItemCountInBuyAdsHistory($userId){
