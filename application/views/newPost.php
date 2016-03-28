@@ -522,7 +522,7 @@ function setup()
         var up = document.getElementById('image').value;
         img=up;
         var checkServiceCategory=document.getElementById('category-group').value;
-		if(checkServiceCategory!=85 && (fileList == null || fileList.length == 0))
+        if(checkServiceCategory!=85 && (fileList == null || fileList.length == 0))
         {
            $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
            location.href = "#uploadImgError";                 //Go to the target element.
