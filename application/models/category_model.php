@@ -10,6 +10,7 @@ class category_model extends CI_Model {
 		var $iconImage='';
 		var $viewCount=0;
 		var $childCount=0;
+		var $newPostNotRequiredImg='';
 	    function __construct()
 	    {
 	        parent::__construct();
