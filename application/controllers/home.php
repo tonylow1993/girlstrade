@@ -1276,7 +1276,7 @@ function generateRandomString($length = 8) {
 	
 	public function mapFeedbackToView($myList){
 		
-		$result=null;
+		$result=array();
 		$lang_label=$this->nativesession->get("language");
 		if($myList!=null){
 			foreach($myList as $row)
@@ -1803,7 +1803,7 @@ function generateRandomString($length = 8) {
 	}
 	public function mapInBoxByPostUserIdToView($inbox, $type="Inbox"){
 
-		$result=null;
+		$result=array();
 		$lang_label=$this->nativesession->get("language");
 		if($inbox!=null){
 			foreach($inbox as $row)
@@ -1853,7 +1853,7 @@ function generateRandomString($length = 8) {
 	}
 	public function mapReqeustPostToView($inbox, $type="buyer", $type2="DirectSend")
 	{
-		$result=null;
+		$result=array();
 		$lang_label=$this->nativesession->get("language");
 		if($inbox!=null){
 		foreach($inbox as $row)
@@ -2077,7 +2077,7 @@ function generateRandomString($length = 8) {
 	}
 	
 	public function mapTradeCommentToView($inbox){
-		$result=null;
+		$result=array();
 		$lang_label=$this->nativesession->get("language");
 		foreach($inbox as $row)
 		{
@@ -2183,7 +2183,7 @@ function generateRandomString($length = 8) {
 	}
 	public function mapPostToView($inbox)
 	{
-		$result=null;
+		$result=array();
 		$lang_label=$this->nativesession->get("language");
 		foreach($inbox as $row)
 		{
@@ -2368,7 +2368,7 @@ function generateRandomString($length = 8) {
 	}
 	function mapInBoxToView($inbox, $type)
 	{
-		$result=null;
+		$result=array();
 		$lang_label=$this->nativesession->get("language");
 		foreach($inbox as $row)
 		{
