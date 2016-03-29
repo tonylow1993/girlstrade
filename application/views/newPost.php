@@ -448,7 +448,6 @@ function setup()
 {
     var myform = document.getElementById("newPost");
 	//check whether browser fully supports all File API
-		
 	if (window.File && window.FileReader && window.FileList && window.Blob)
 	{
 		for(i=1;i<=5;i++)
@@ -522,11 +521,30 @@ function setup()
         var up = document.getElementById('image').value;
         img=up;
         var checkServiceCategory=document.getElementById('category-group').value;
-        if(checkServiceCategory!=85 && (fileList == null || fileList.length == 0))
+        <?php
+                $serviceCatList='';
+                foreach ($result as $id=>$value)
+                {
+                	if($value[0]->newPostNotRequiredImg==1){
+                		$serviceCatList=$serviceCatList.$id.",";
+                	}
+                }
+                ?>
+                
+            var serviceCatList='<?php echo $serviceCatList;?>';
+			var isServiceCat=0;
+			var fields=serviceCatList.split(',');
+            for(var i=0; i< fields.length; i++){
+				if(fields[i]==checkServiceCategory){
+					isServiceCat=1;
+					break;
+				}
+            }     
+        if((isServiceCat!=1) && ( fileList == null || fileList.length == 0))
         {
-           $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
-           location.href = "#uploadImgError";                 //Go to the target element.
-           return false; 
+               $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
+	           location.href = "#uploadImgError";                 //Go to the target element.
+	           return false;
         }
         else //if(r == false)
         {
@@ -598,8 +616,26 @@ function setForm(callback)
 function isEmptyUploadFile(callback)
 {
 	var checkServiceCategory=document.getElementById('category-group').value;
-	if(checkServiceCategory!=85 && (fileList == null || fileList.length == 0))
-        callback(true);
+		<?php
+            $serviceCatList='';
+            foreach ($result as $id=>$value)
+            {
+            	if($value[0]->newPostNotRequiredImg==1){
+            		$serviceCatList=$serviceCatList.$id.",";
+            	}
+            }
+            ?>
+            var serviceCatList='<?php echo $serviceCatList;?>';
+			var isServiceCat=0;
+			var fields=serviceCatList.split(',');
+            for(var i=0; i< fields.length; i++){
+				if(fields[i]==checkServiceCategory){
+					isServiceCat=1;
+					break;
+				}
+            } 
+  if((isServiceCat!=1) && (fileList == null || fileList.length == 0))
+	    callback(true);
     else
         callback(false);
 
