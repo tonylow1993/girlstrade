@@ -735,7 +735,7 @@
     width:280px;
     line-height:18px;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 450px) {
 
 	#howitworks .styled_list[data-type='process_box'] li .text .desc {
 	    font-size:11px;
