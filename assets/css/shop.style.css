@@ -2178,6 +2178,11 @@ li:first-child {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.collapseIcon{
+	position: relative;
+	top: -16px;
+}
+
 .tony .item{
 	width: 250px;
 }

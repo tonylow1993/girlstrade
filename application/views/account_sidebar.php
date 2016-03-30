@@ -36,7 +36,7 @@
                   </span>
                   </a>
                   <a id="menuTitle" class="pull-right" data-toggle="collapse"  href="#ProfileMenuAccount">
-                  <span id="menuTitle"><i class="fa fa-angle-down"></i></span></a></div>
+                  <span id="menuTitle"><i class="fa fa-angle-down collapseIcon"></i></span></a></div>
                   <div id="ProfileMenuAccount" class="panel-collapse collapse in">
                     <ul class="acc-list">
                     	<?php
@@ -74,7 +74,7 @@
 		        $pendingrequest1=base_url().MY_PATH."home/getAccountPage/6";
               	
               	 
-              		echo "<div class=\"collapse-title\"><a data-toggle=\"collapse\"  href=\"#ProfileMenuAds\" style=\"display:block;\"><span id=\"menuTitle\"><i class=\"icon-docs\"></i>".$this->lang->line('menuAds')."</span></a><a id=\"menuTitle\" class=\"pull-right\" data-toggle=\"collapse\"  href=\"#ProfileMenuAds\"><span id=\"menuTitle\"><i class=\"fa fa-angle-down\"></i></span></a></div>";
+              		echo "<div class=\"collapse-title\"><a data-toggle=\"collapse\"  href=\"#ProfileMenuAds\" style=\"display:block;\"><span id=\"menuTitle\"><i class=\"icon-docs\"></i>".$this->lang->line('menuAds')."</span></a><a id=\"menuTitle\" class=\"pull-right\" data-toggle=\"collapse\"  href=\"#ProfileMenuAds\"><span id=\"menuTitle\"><i class=\"fa fa-angle-down collapseIcon\"></i></span></a></div>";
                  	 echo "<div id=\"ProfileMenuAds\" class=\"panel-collapse collapse in\">";
                  	 echo  "<ul class=\"acc-list\">";
                 	
@@ -112,7 +112,7 @@
                   </a>
                   <a id="menuTitle" class="pull-right" data-toggle="collapse"  href="#ProfileMenuEvaluate" style="display:inline;">
                   <span id="menuTitle">
-                  <i class="fa fa-angle-down"></i>
+                  <i class="fa fa-angle-down collapseIcon"></i>
                   </span>
                   </a></div>
                   <div id="ProfileMenuEvaluate" class="panel-collapse collapse in">
