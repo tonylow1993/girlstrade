@@ -6,7 +6,7 @@
 
 <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/howitworks/css/style.css" />
 <!-- <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/howitworks/css/font-awesome.css" />-->
-<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/howitworks/css/media.css" />
+<!--<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/howitworks/css/media.css" />-->
 
 <div id="wrapper" style="background:rgb(238, 238, 238);">
    <div class="main-container" style="padding: 10px 0; padding-bottom:  50px;">
