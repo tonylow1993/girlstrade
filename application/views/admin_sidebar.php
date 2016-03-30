@@ -17,7 +17,7 @@
               	 $contactUsPath=base_url().MY_PATH."getAdmin/getAccountPage/10";
               	 $approveFeedBackPath=base_url().MY_PATH."getAdmin/getAccountPage/11";
               	 //$appravePrivateMsgByUserIDOnlyPath=base_url().MY_PATH."getAdmin/getAccountPage/12";
-              	 
+              	 $blogAdminPath=base_url().MY_PATH."getAdmin/getAccountPage/12";
               		echo "<h5 class=\"collapse-title\"> ".$this->lang->line('lblMenu')." <a class=\"pull-right\" data-toggle=\"collapse\"  href=\"#Home\"><i class=\"fa fa-angle-down\"></i></a></h5>";
                  	 echo "<div id=\"Home\" class=\"panel-collapse collapse in\">";
                  	 echo  "<ul class=\"acc-list\">";
@@ -75,7 +75,13 @@
               	  		echo "<li><a  class=\"active\" href=$sendEmailPath>".$this->lang->line('sendEmail') ." <span class=\"badge\"></span></a></li>";
               	  	else
               	  		echo "<li><a href=$sendEmailPath>".$this->lang->line('sendEmail') ." <span class=\"badge\"></span></a></li>";
-              	  	 
+              	  	
+              	  		if($activeNav==12)
+              	  			echo "<li><a  class=\"active\" href=$blogAdminPath>".$this->lang->line('adminBlog') ." <span class=\"badge\"></span></a></li>";
+              	  			else
+              	  				echo "<li><a href=$blogAdminPath>".$this->lang->line('adminBlog') ." <span class=\"badge\"></span></a></li>";
+              	  				 
+              	  		
           		 	echo "</ul>";
                   	echo "</div>";
                 echo "</div>";

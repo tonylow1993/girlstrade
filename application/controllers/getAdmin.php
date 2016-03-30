@@ -129,6 +129,8 @@ class getAdmin extends CI_Controller {
 						$data["NoOfItemCount"]=$this->buyerfeedback_model->getNoOfItemCountInApproveFeedBack();
 						$data['itemList']=$this->mapToFeedBack($this->buyerfeedback_model->getApproveFeedBackUnverifiedList($pageNum));
 						$this->load->view('adminApproveFeedBack.php', $data);
+					}else if($activeNav==12){
+						$this->load->view('adminBlogPage.php', $data);
 					}
 			}
 			
@@ -1316,6 +1318,8 @@ class getAdmin extends CI_Controller {
 		}
 		//$this->getAccountPage(10);
 	}
-	
+	public function uploadBlogPhoto(){
+		
+	}
 }
 ?>
