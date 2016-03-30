@@ -11,17 +11,7 @@
 
                         <h1 class="intro-title">Classified Blogs</h1>
 
-                        <h2>Sign up to subscribe to email alerts and <br> you'll never miss a post. Subscribe Now !</h2>
-                        <div class="row search-row animated fadeInUp">
-                            <div class="col-lg-4 col-sm-offset-2 col-sm-4 search-col relative ">
-                                <input type="text" value="" placeholder="Your email..." class="form-control locinput input-rel searchtag-input " >
-
-                            </div>
-
-                            <div class="col-lg-4 col-sm-4 search-col">
-                                <button class="btn btn-primary btn-search btn-block"><i class="icon-mail-1"></i><strong> Subscribe</strong></button>
-                            </div>
-                        </div>
+                        <h2>Keep track of the latest trend among girls and  <br> you'll never want to miss a post.</h2>
 
 
                     </div>
@@ -48,11 +38,9 @@
                         <!--blog image-->
                         <div class="blog-post-img" >
 
-                            <a href="#" >
                                 <figure >
                                     <img class="img-responsive" alt="blog-post image" src="../images/blog/1.png" >
                                 </figure>
-                            </a>
                         </div>
 
                         <!--blog content-->
@@ -66,7 +54,7 @@
 
 
                             <div class="blog-post-content">
-                                <h2><a href="#">品味教主</a></h2>
+                                <h2>品味教主</h2>
 
 
                                 <div class="blog-article-text">
