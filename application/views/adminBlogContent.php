@@ -4,13 +4,20 @@
 				
 				
 				<div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
-				<form id="newPost" class="text-center" action="<?php echo base_url(); echo MY_PATH;?>getAdmin/uploadBlogPhoto" method="post" enctype="multipart/form-data">
+				<form id="newPost" action="<?php echo base_url(); echo MY_PATH;?>getAdmin/uploadBlogPhoto" method="post" enctype="multipart/form-data">
 					<div class="kv-avatar center-block" style="width:200px">
 						<input id="avatar" name="avatar" type="file" class="file-loading" accept="image/*">
 						<div id="uploadImgError"></div>
 					</div>
 					<!-- include other inputs if needed and include a form submit (save) button -->
-					
+					<div style="width:400px">
+						<label>Title</label>
+						<textarea class="form-control" id="titleTextarea" name="titleTextarea" rows="4"  ></textarea>
+	                </div>
+	                <div style="width:400px">
+						<label>Description</label>
+						<textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  ></textarea>
+	                </div>
 					<div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -27,8 +34,10 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				</form>
+					</div>
+					<br/>
+				     <button type="submit"  onclick="setup(); return false;">Submit</button>
+                </form>
 				<style>
 				.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
 					margin: 0;
