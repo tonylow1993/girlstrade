@@ -138,4 +138,17 @@ class itemcomments_model  extends CI_Model {
 			return;
 		}
 	}
+	
+	public function getNUMOFTIMESPOSTITEMCOMMENTS($userID){
+		$sql="select count(*) as NoOfCount from itemcomments ";
+		$sql=$sql." 	where (status='A' or status='U') and createDate >= DATE_ADD(curdate(), INTERVAL -".NUMOFDAYSFORPOSTITEMCOMMENTS ." DAY) ";
+		$sql=$sql." 	and usercommentID=".$userID;
+		$NoOfPostCount=0;
+		$query2 = $this->db->query($sql);
+		$var2=$query2->result_array();
+		//var_dump($var2);
+		$NoOfPostCount=$var2[0]["NoOfCount"];
+		
+		return $NoOfPostCount;
+	}
 }

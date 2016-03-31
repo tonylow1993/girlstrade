@@ -70,6 +70,19 @@ class itemComments  extends CI_Controller {
 				redirect(base_url().MY_PATH."home/loginPage?prevURL=".$prevURL); return;}
 			
 			$userInfo=$this->nativesession->get("user");
+			
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="class=\"active\"";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			if(isset($userInfo["userID"])){
+				$menuCount=$this->getHeaderCount($userInfo["userID"]);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; //
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
+			//----------------------------
 			$usercommentID=0;
 			$username="";
 			if(!empty($userInfo)){
@@ -84,17 +97,27 @@ class itemComments  extends CI_Controller {
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
-				//----------setup the header menu----------
-				$data["menuMyAds"]="";
-				$data["menuInbox"]="";
-				$data["menuInboxNum"]="0";
-				$data["menuPendingRequest"]="";
-				$data["menuPendingRequestNumber"]="0";
-				//----------------------------
+				
 				$this->load->view('failedPage', $data);
 				return;
 				
 			}
+			
+			$NumOfPostTimes=$this->itemcomments_model->getNUMOFTIMESPOSTITEMCOMMENTS($usercommentID);
+			if($NumOfPostTimes>NUMOFTIMESPOSTITEMCOMMENTS && NUMOFTIMESPOSTITEMCOMMENTS<UNLIMITEDTIMES)
+			{
+				$errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOSTITEMCOMMENTS , NUMOFDAYSFORPOSTITEMCOMMENTS);
+				$data["error"]=$errorMsg;
+				$data["prevURL"]=$prevURL;
+				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToPHP']=$prevURL;
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+			}
+			
 			
 			$postID=$this->input->post("postID");
 		//	$name=$this->input->post("author");
@@ -106,18 +129,7 @@ class itemComments  extends CI_Controller {
 					"comments"=> $comment, "status"=>"A", "createDate"=>date("Y-m-d H:i:s"));
 			
 			$this->itemcomments_model->insertItemComment($data);
-			//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="class=\"active\"";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			if(isset($userInfo["userID"])){
-				$menuCount=$this->getHeaderCount($userInfo["userID"]);
-				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; //
-				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-			}
-			//----------------------------
+			
 			
 			redirect($prevURL);
 		}
