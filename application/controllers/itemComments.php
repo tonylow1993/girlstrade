@@ -103,7 +103,7 @@ class itemComments  extends CI_Controller {
 			$parentID=$this->input->post("parentID");
 			
 			$data=array("postID"=>$postID, "usercommentID" =>$usercommentID, "parentID"=>$parentID,      
-					"comments"=> $comment, "status"=>"U", "createDate"=>date("Y-m-d H:i:s"));
+					"comments"=> $comment, "status"=>"A", "createDate"=>date("Y-m-d H:i:s"));
 			
 			$this->itemcomments_model->insertItemComment($data);
 			//----------setup the header menu----------
