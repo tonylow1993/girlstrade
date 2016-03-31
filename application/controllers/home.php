@@ -2131,9 +2131,13 @@ function generateRandomString($length = 8) {
 			}
 				$pic=$this->picture_model->get_picture_by_postID($postID);
 			$imagePath="";
+			$checkImgFile="";
+			
 			$picCount=count($pic);
 			if($pic<>null)
 			{
+				$checkImgFile=$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
+				
 				$imagePath=base_url().$pic[0]->thumbnailPath.'/'.$pic[0]->thumbnailName;
 			}
 			$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
@@ -2153,6 +2157,7 @@ function generateRandomString($length = 8) {
 					"previewDesc"=>$previewDesc,
 					"price"=>$price,
 					"imagePath"=>$imagePath,
+					"checkImgFile"=>$checkImgFile,
 					"viewItemPath"=>$viewItemPath,
 					"itemStatus"=>$itemStatus,
 					"from"=>$from,
