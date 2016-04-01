@@ -55,7 +55,7 @@ input[type=checkbox]
    <div class="main-container">
     <div class="container">
      <?php echo validation_errors('<div>', '</div>'); ?>
-   <?php //echo form_open('newPost/createNewPost/'.$userID.'/'.$username); //'?prevURL='.urlencode($prevURL)); ?>
+   <?php $prevURLPATH=urlencode($prevURL); echo form_open('newPost/createNewPost/'.$userID.'/'.$username.'?prevURL='.$prevURLPATH); //'?prevURL='.urlencode($prevURL)); ?>
       <div class="row">
         <div class="col-md-9 page-content">
           <div class="inner-box category-content">
@@ -70,7 +70,7 @@ input[type=checkbox]
                       <div class="form-group">
                           <label class="col-md-3 control-label text-center" for="Adtitle"><i class="icon-pencil"></i> <?php echo $TopicTitle;?> <font color="red">*</font></label>
                           <div class="col-md-8">
-                              <input id="Adtitle" name="Adtitle" class="form-control input-md" type="text" required="true"  maxlength="45"/>
+                              <input id="Adtitle" name="Adtitle" class="form-control input-md" value="<?php echo set_value('Adtitle'); ?>" type="text" required="true"  maxlength="45"/>
 <!--                        <span class="help-block">A great title needs at least 5 words </span> -->
                               <em>(A Great Title Needs At Least 5 Words) </em>
                           </div>
@@ -93,9 +93,9 @@ input[type=checkbox]
 						            	if($lang_label<>"english")
 						            		$name=$value[0]->nameCH;
 						            	if($value[0]->level==1)
-						            		echo "<option value=\"$id\" style=\"background-color:#E9E9E9;font-weight:bold;\" > - $name - </option>";
+						            		echo "<option value=\"$id\" ".set_select('category-group', $id, ((null!=(set_select('category-group', $id)) )   ? TRUE : FALSE ))." style=\"background-color:#E9E9E9;font-weight:bold;\" > - $name - </option>";
 						            	else 
-						            		echo "<option value=\"$id\"> $name </option>";
+						            		echo "<option value=\"$id\" ".set_select('category-group', $id, ((null!=(set_select('category-group', $id)) )   ? TRUE : FALSE ))."> $name </option>";
 						            	}
 						            ?>
                               </select>
@@ -107,7 +107,7 @@ input[type=checkbox]
                           <i class=" icon-location-2"></i>
                            <?php echo $lblLocation;?> </label>
                           <div class="col-md-8">
-                              <select name="locID2" id="locID2" class="form-control" >
+                              <select name="locID2" id="locID2"  class="form-control" >
                                   <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - All Locations - </option>
                                   <?php 
 						            foreach ($resLoc as $id=>$value)
@@ -118,13 +118,13 @@ input[type=checkbox]
 						             	if($lang_label<>"english")
 						             		$name=$value[0]->nameCN;
 						             	if($value[0]->level==1){
-						             		echo "<option  value='".$id."' style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
+						             		echo "<option  value='".$id."' ".set_select('locID2', $id, (null!=(set_select('locID2', $id))  ? TRUE : FALSE ))." style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
 						             	}else if($value[0]->level==2)
 						             	{
-						            		echo "<option  value='".$id."' style='background-color:#E9E9E9;'>--".$name." </option>";
+						            		echo "<option  value='".$id."' ".set_select('locID2', $id, (null!=(set_select('locID2', $id))  ? TRUE : FALSE ))." style='background-color:#E9E9E9;'>--".$name." </option>";
 						             	}else if($value[0]->level==3)
 						             	{
-						              		echo "<option  value='".$id."'>----".$name." </option>";
+						              		echo "<option  value='".$id."' ".set_select('locID2', $id, ((null!=(set_select('locID2', $id)) )   ? TRUE : FALSE )).">----".$name." </option>";
 						             	}
              						}
 						            ?>
@@ -138,7 +138,7 @@ input[type=checkbox]
                           <i class="icon-eye-1"></i>
 						            <?php echo $ItemQuality;?> <font color="red">*</font></label>
                           <div class="col-md-8">
-                              <select name="itemQualityGroup" id="itemQualityGroup" class="form-control" required="true">
+                              <select name="itemQualityGroup" id="itemQualityGroup" value="<?php echo set_value('itemQualityGroup'); ?>" class="form-control" required="true">
                                 <!--   <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select - </option>  -->
                                    <option value="N"> New </option>
                                    <option value="U"> Used </option>
@@ -172,7 +172,7 @@ input[type=checkbox]
                           <i class="icon-clipboard"></i>
 							<?php echo $Description;?> <font color="red">*</font></label>
                           <div class="col-md-8">
-                              <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"></textarea>
+                              <textarea class="form-control"  id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"><?php echo set_value('descriptionTextarea'); ?></textarea>
 	                          	<div id="descriptionTextareaAjaxLoad" class="center"></div>
 	                        	<div id="descriptionTextareaError" hidden="true"></div>
                           </div>
@@ -186,13 +186,13 @@ input[type=checkbox]
                           <label class="col-md-3 control-label text-center" for="Price"><i class="icon-money"></i> <?php  echo $HKDPrice;?> <font color="red">*</font></label>
                           <div class="col-md-4">
                               <div class="input-group"> <span class="input-group-addon">$</span>
-                                  <input id="price" name="price" class="form-control" required="true" type="number" step="0.1" min=0>
+                                  <input id="price" name="price" value="<?php echo set_value('price'); ?>" class="form-control" required="true" type="int"  step="1"  min=1 >
                               </div>
                           </div>
                           <div class="col-md-4">
                               <div class="checkbox">
                                   <label>
-                                      <input type="checkbox" id="negotiable" name="negotiable">
+                                      <input type="checkbox" value="<?php echo set_value('negotiable'); ?>" id="negotiable" name="negotiable">
                                       <?php echo $Negotiable;?> 
                                   </label>
                               </div>

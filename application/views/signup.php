@@ -64,7 +64,7 @@
                       <?php echo $PhoneNumber;?> <font color="red">*</font></label>
                       <div class="col-md-6">
                         <input id="telno" name="telno" placeholder="HK Phone Number"
-         type="tel"   class="form-control input-md"   
+         type="tel"   class="form-control input-md"   value="<?php echo set_value('telno'); ?>"
          type="text" required="true"  maxlength="8" pattern="(?!99999999)\d{8}">
 <!--                         <div class="checkbox"> -->
 <!--                           <label> -->

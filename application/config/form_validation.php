@@ -13,14 +13,22 @@ $config = array(
 				)
 			),
 		'newPost/createNewPost' => array(
+				array( 	'field' => 'Adtitle',
+						'label' => 'lang:title',
+						'rules' => 'trim|required|min_length[10]|max_length[100]|xss_clean'
+				),
 				array( 	'field' => 'descriptionTextarea',
 						'label' => 'lang:Description',
-						'rules' => 'trim|required|min_length[5]|max_length[200]|xss_clean'
+						'rules' => 'trim|required|min_length[10]|max_length[200]|xss_clean'
+				),
+				array( 	'field' => 'category-group',
+						'label' => 'lang:Category',
+						'rules' => 'required'
 				),
 				array(
 						'field' => 'price',
 						'label' => 'lang:Price',
-						'rules' => 'required'
+						'rules' => 'callback_price_check'
 				)
 		)
 	);
