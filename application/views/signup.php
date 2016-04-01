@@ -3,6 +3,9 @@
 <div id="wrapper">
   <div class="main-container">
     <div class="container">
+    
+    <?php echo validation_errors(); ?>
+	
       <div class="row">
         <div class="col-md-8 page-content">
           <div class="inner-box category-content panel-bevel">
@@ -26,7 +29,7 @@
                     <div id="usernameDiv" class="form-group required">
                       <label class="col-md-4 control-label" > <?php echo $Username;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input id="username" name="username" placeholder="At least 5 characters" class="form-control input-md" required="true" type="text"/>
+                        <input id="username" name="username" value="<?php echo set_value('username'); ?>" placeholder="At least 5 characters" class="form-control input-md" required="true" type="text"/>
                         <div id="usernameAjaxLoad" class="center">
                         <div id="usernameError" hidden="true"></div>
                         </div>
@@ -76,7 +79,7 @@
                     <div id="emailDiv" class="form-group required">
                       <label for="inputEmail3" class="col-md-4 control-label"> <?php echo $Email;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input name="email" type="email" class="form-control" id="inputEmail3" required="true" placeholder="Email">
+                        <input name="email" type="email" value="<?php echo set_value('email'); ?>" class="form-control" id="inputEmail3" required="true" placeholder="Email">
                         <div id="emailAjaxLoad" class="center"></div>
                         <div id="emailError" hidden="true"></div>
                       </div>

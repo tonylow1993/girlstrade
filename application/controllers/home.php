@@ -408,10 +408,29 @@ class Home extends CI_Controller {
             $data["VerifyCaptcha"]=$this->lang->line("VerifyCaptcha");
             $data["Username"]=$this->lang->line("Username");
             $data["Password"]=$this->lang->line("Password");
+            $this->load->library('form_validation');
+           // $this->form_validation->set_rules('username', 'lang:Username', 'trim|required|min_length[5]|max_length[20]|xss_clean');
+           // $this->form_validation->set_rules('email', 'lang:Email', 'callback_email_check');
             
-            $this->load->view('signup', $data);
+            if ($this->form_validation->run() == FALSE)
+            {
+            	$this->load->view('signup', $data);
+            }else{
+            	
+            }
 	}
-	
+	public function email_check($str)
+	{
+		if ($str == 'test')
+		{
+			$this->form_validation->set_message('email_check', 'The %s field can not be the word "test"');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
 	public function signup(){
 		
             //-------------------------------captcha------------------------------
@@ -516,7 +535,6 @@ class Home extends CI_Controller {
 		//	return;
 		//}
 		
-
 		$data['checkboxes'] = $this->input->post('checkboxes');
 		
 		$user['username'] = $data['username'];
