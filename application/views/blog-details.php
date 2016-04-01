@@ -185,6 +185,7 @@
         </div>
   </div>
   <!-- /.main-container -->
-</div>
+
 <?php include "footer1.php"; ?>
+</div>
 <?php include "footer2.php"; ?>

@@ -49,7 +49,7 @@
 
                         <a href="<?php echo base_url();?>getBlog/viewBlog" >
                             <figure >
-                                <img class="img-responsive" alt="blog-post image" src="../images/blog/1.png" >
+                                <img class="img-responsive" alt="blog-post image" src=<?php echo $pic1;?> >
                             </figure>
                         </a>
                     </div>
@@ -67,7 +67,7 @@
 
                             <div class="blog-post-content">
                             <h2><a href="<?php echo base_url();?>getBlog/viewBlog">品味教主</a></h2>
-                            <p>今日唔記得帶隱形眼鏡，對於得百幾度近視既我，都不太重要， 眼濛濛有時都幾好吖，有時眼看不清，心反而可以看得清，大家有同感嗎？今日地鐵沿線交貨日，我會睇得清大家嗎@.@，哈哈，大家如果見到有個十下十下紫頭短鬆妹，不妨可以主動見下我，然後友善地問係咪交收紅菜頭護膚品呀，哈哈~友善亦係靚既美德之一，雖然現在這城市比較少，但總要有人踏出第一步，可以是你們嗎?今早在地鐵不停聽到某些女仔在品評另一位女仔的衣著品味及樣貌，再作比較，我心想，靚的定義是什麼是誰定的呢? 品味係獨特的，每人有自己風格，這就是屬於自己的品味，獨一無二的，根本就沒有一個準則及答案，不是嗎?本人覺得做屬於自己，靚自然會從心而發，每個人都可以做教主~最怕是好多想靚既女仔，但又要懶，唔付出，想靚都要對準自己所欠缺的是什麼，這才是靚的智者。</p>
+                            <p><?php echo $description; ?></p>
                             <div class="row">
                                 <div class="col-md-12 clearfix blog-post-bottom">
                                     <a class="btn btn-primary  pull-left" href="<?php echo base_url();?>getBlog/viewBlog">More info</a>
@@ -110,7 +110,7 @@
 
 
                                       <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/17?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src="http://www.girlstrade.com/USER_IMG/gttest1/Resize/gttest1_2016-03-06-00-08-39_thumb_0.png" alt="img"></a> </div>
+                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/17?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src=<?php echo $pic2;?> alt="img"></a> </div>
                                       </div>
                                       <!--/.photobox-->
                                       <div class="col-sm-8 col-xs-8 add-desc-box">
@@ -180,6 +180,7 @@
         </div>
 
 </div>
-</div>
+
 <?php include "footer1.php"; ?>
+</div>
 <?php include "footer2.php"; ?>

@@ -2,13 +2,24 @@
 class blog_model extends CI_Model {
 
 	var $ID;
-	
+	var $picPath1;
+	var $picName1;
+	var $picPath2;
+	var $picName2;
+	var $picPath3;
+	var $picName3;
+	var $title;
+	var $description;
 	
 	function __construct()
 	{
 		parent::__construct();
 	}
-	
+	function getBlog(){
+			$query = $this->db->from('blog')->get();
+			$var=$query->result();
+			return $var;
+	}
 	function updateBlog($data)
 	{
 		try {

@@ -65,6 +65,12 @@
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 			
 		$data["lang_label"]=$this->nativesession->get("language");
+		$data["result"]=$this->blog_model->getBlog();
+		$data["pic1"]=$data["result"][0]->picPath1.$data["result"][0]->picName1;
+		$data["pic2"]=$data["result"][0]->picPath2.$data["result"][0]->picName2;
+		$data["title"]=$data["result"][0]->title;
+		$data["description"]=$data["result"][0]->description;
+		
 		$this->load->view('blogs', $data);
 	}
 	
