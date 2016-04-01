@@ -5,6 +5,7 @@
     <div class="container">
     
     <?php echo validation_errors(); ?>
+	<?php echo form_open('home/signupPage'); ?>
 	
       <div class="row">
         <div class="col-md-8 page-content">
