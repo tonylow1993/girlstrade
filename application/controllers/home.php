@@ -16,6 +16,8 @@ class Home extends CI_Controller {
 // 		ini_set('upload_max_filesize',52428800); // 50 MB
 		$this->load->library("nativesession");
 		$this->load->helper('url');
+		$this->load->library('form_validation');
+		
 		$this->load->helpers('site');
 		$this->load->helper('language');
 		$this->load->database();
@@ -408,16 +410,8 @@ class Home extends CI_Controller {
             $data["VerifyCaptcha"]=$this->lang->line("VerifyCaptcha");
             $data["Username"]=$this->lang->line("Username");
             $data["Password"]=$this->lang->line("Password");
-            $this->load->library('form_validation');
-           // $this->form_validation->set_rules('username', 'lang:Username', 'trim|required|min_length[5]|max_length[20]|xss_clean');
-           // $this->form_validation->set_rules('email', 'lang:Email', 'callback_email_check');
-            
-            if ($this->form_validation->run() == FALSE)
-            {
-            	$this->load->view('signup', $data);
-            }else{
-            	
-            }
+           
+            $this->load->view('signup', $data);
 	}
 	public function email_check($str)
 	{
@@ -534,6 +528,13 @@ class Home extends CI_Controller {
 		//if($data['password'] != $data['retype']){
 		//	return;
 		//}
+		// $this->form_validation->set_rules('username', 'lang:Username', 'trim|required|min_length[5]|max_length[20]|xss_clean');
+		// $this->form_validation->set_rules('email', 'lang:Email', 'callback_email_check');
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->signupPage();
+		}else{
 		
 		$data['checkboxes'] = $this->input->post('checkboxes');
 		
@@ -626,6 +627,7 @@ class Home extends CI_Controller {
                 	//redirect('', 'location');
                 
             }
+         }
 	}
 	
 	public function loginUser(){

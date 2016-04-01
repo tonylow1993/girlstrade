@@ -1,6 +1,6 @@
 <?php
 $config = array(
-		'home/signupPage' => array(
+		'home/signup' => array(
 				array(
 						'field' => 'username',
 						'label' => 'lang:Username',
