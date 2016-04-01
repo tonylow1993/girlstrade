@@ -25,6 +25,7 @@
                 $this->load->model('messages_model');
 				$this->load->model('userstat_model');
 				$this->load->model('picture_model');
+				$this->load->model('abusemessages_model');
                 if($this->nativesession->get("language")!=null)
                 {
                 	$data["lang_label"] = $this->nativesession->get("language");
@@ -251,7 +252,8 @@
             		
             		$commentList=$this->itemcomments_model->getItemCommentsbyPostID($var[0]->postID);
             		$data["commentList"]=$this->mapToItemComments($commentList);           		
-            		
+            		$abuseList=$this->abusemessages_model->getAbuseMessagesListByPostID($var[0]->postID, 1);
+            		$data["abuseList"]=$this->mapToAbuseList($abuseList);
             	    $this->load->view('item', $data);
      	     	}else {
      	     		
@@ -274,7 +276,53 @@
      	     		 
      	     	}
 		}
-    
+    public function mapToAbuseList($input){
+    	$result=null;
+    	$lang_label=$this->nativesession->get("language");
+    	foreach($input as $row)
+    	{
+    		$postID=$row->postID;
+    		$fUserID=$row->fUserID;
+    		$messageID=$row->messageID;
+    		$createDate=$row->createDate;
+    		$status=$row->status;
+    		$username="";
+    		$reportreason=$row->reportreason;
+    		$strElapsedTime=$this->getStrElapsedTime($row->createDate);
+    		$content=$row->content;
+    		$postInfo=$this->post->getPostByPostID($postID);
+    		$userarray=$this->users_model->get_user_by_id($fUserID);
+    		
+    		if($userarray<>null)
+    		{
+    			$username=$userarray[0]->username;
+//     			if(strcmp($userarray[0]->photostatus,"A")==0)
+//     				$userPhotoPath=base_url().MY_PATH.$userarray[0]->thumbnailPath.'/'.$userarray[0]->thumbnailName;
+//     				else
+//     					$userPhotoPath=base_url()."images/user.jpg";
+    		}
+    	
+//     		$viewItemPath=base_url().MY_PATH."viewItem/index/$postID";
+    			
+    			
+    		$arrayMessage=array($messageID => array("postID"=>$postID,
+    				"fUserID"=>$fUserID,
+    				"username"=>$username,
+    				"content"=>$content,
+    				"status"=>$status,
+    				"reportreason"=>$reportreason,
+    				"strElapsedTime"=>$strElapsedTime,
+    				"createDate"=>$createDate
+    		));
+    			
+    		if($result==null)
+    			$result=$arrayMessage;
+    			else
+    				$result=$result + $arrayMessage;
+    	}
+    	return $result;
+    	
+    }
 		public function mapToItemComments ($input){
 			$result=null;
 			$lang_label=$this->nativesession->get("language");

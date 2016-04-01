@@ -376,8 +376,10 @@
 	    		
 	    		
 	    	$strQuery="select b.* from (select a.* from ( ";
-	    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ".$filterStr;
-	    	$strQuery=$strQuery." union all ";
+	    	if(strcmp(SHOWBUYERINFORMATION,"Y")==0){
+		    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ".$filterStr;
+		    	$strQuery=$strQuery." union all ";
+	    	}
 	    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ".$filterStr;
 	    	$strQuery=$strQuery." ) a  ".$sortStr." ) b limit $olimit, $ulimit";
 	    	//log_message('error', $strQuery.": param:fuserID: ".$fuserID." userID: ".$userID);;

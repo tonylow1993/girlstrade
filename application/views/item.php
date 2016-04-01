@@ -266,7 +266,12 @@ input[type=checkbox]
                    	
                 	echo "<li><a href=\"#shareAds\" data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-share-alt\"></i> Share this item </a></li>";
                       ?>
+                      <?php if($isSameUser==true && $abuseList!=null && count($abuseList)>0){?>
+                      <li><a href="#reportDeleteAbuseComplaint" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> Delete abuse </a> </li>
+                    	
+                      <?php }else {?>
                       <li><a href="#reportAdvertiser" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> Report abuse </a> </li>
+                    	<?php }?>
                     </ul>
                   </div>
                 </div>
@@ -1092,6 +1097,71 @@ input[type=checkbox]
   </div>
 </div>
 
+<div class="modal fade" id="reportDeleteAbuseComplaint" tabindex="-1" role="dialog" >
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" ><i class="fa icon-info-circled-alt"></i> There's something wrong with this  ads? </h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" method="post" id="itemDeleteAbuse" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteAbuseMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
+          <div id="tableBodyList">
+      		<table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
+                <thead>
+                  <tr>
+                    <th> <?php echo $this->lang->line("From");?> </th>
+                    <th data-sort-ignore="true"> <?php echo $this->lang->line("Ads_Detail");?></th>
+                    </tr>
+                </thead>
+                <tbody>
+            <?php 
+            	if($abuseList<>null)
+            	{
+            		$rowCount=0;
+                  	foreach($abuseList as $id=>$row)
+                  	{
+                  		
+                  		$from=$row['username'];
+                  		$createDate=$row['createDate'];
+                  		$status=$row['status'];
+                  		$fUserID=$row['fUserID'];
+                  		$content=$row['content'];
+                  		$reportreason=$row['reportreason'];
+                  		echo "<tr>";
+                    	echo "<td style=\"width:20%\" class=\"add-image\">$from";
+                    	$rowCount=$rowCount+1;
+                    	echo "</td>";
+                      	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
+                    	echo "<div class=\"ads-details\">";
+                      echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$reportreason."</div>".$content;
+                          echo "<br/>Posted On: ". $createDate."</h5>";
+                    		echo "</div></td>";
+                      		
+                      	
+                  		echo "</tr>";
+                  		
+                  	}
+            	}
+            ?>
+       
+            	 </tbody>
+              </table>
+      	
+      	</div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" type="submit" onclick="setupDeleteAbuse(); return false;" class="btn btn-primary">Request Delete Abuse</button>
+      	<button id="validate" hidden="true" type="submit"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="reportAdvertiser" tabindex="-1" role="dialog" >
 
   <div class="modal-dialog">
@@ -1554,7 +1624,12 @@ function setupAbuse()
 	  	document.getElementById("itemAbuse").submit();
        	return true;
 }
-
+function setupDeleteAbuse()
+{
+    var myform = document.getElementById("itemDeleteAbuse");
+  	document.getElementById("itemDeleteAbuse").submit();
+   	return true;
+}
 $('#directSendButton').on('click', function () {
 	$.ajax({
 		xhr: function()

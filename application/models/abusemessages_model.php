@@ -65,6 +65,19 @@ class abusemessages_model extends CI_Model {
 		return $var;
 	}
 	
+	public function getAbuseMessagesListByPostID($postID, $pageNum){
+{
+			$ulimit=ITEMS_PER_PAGE;
+			$olimit=0;
+			if ($pageNum>1)
+				$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+		
+				$statusIn=array('U');
+				$query = $this->db->from('abusemessages')->where('postID', $postID)->where_in('status', $statusIn)->get(); //->limit($ulimit, $olimit)
+				$var=$query->result();
+				return $var;
+	}
+	
 	function updateApprovePost($array)
 	{
 		try {
@@ -111,5 +124,6 @@ class abusemessages_model extends CI_Model {
 			echo $ex->getMessage();
 			return;
 		}
+	}
 	}
 }
