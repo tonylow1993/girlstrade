@@ -30,5 +30,19 @@ $config = array(
 						'label' => 'lang:Price',
 						'rules' => 'callback_price_check'
 				)
+		),
+		'home/updateProfile' => array(
+				array( 	'field' => 'descriptionTextarea',
+						'label' => 'lang:Description',
+						'rules' => 'trim|required|min_length[10]|max_length[200]|xss_clean'
+				),
+				array( 	'field' => 'weChatID',
+						'label' => 'weChatID',
+						'rules' => 'trim'
+				),
+				array( 	'field' => 'webSiteAddr',
+						'label' => 'webSiteAddr',
+						'rules' => 'trim'
+				)
 		)
 	);

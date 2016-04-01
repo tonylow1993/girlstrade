@@ -1662,6 +1662,8 @@ function generateRandomString($length = 8) {
 		$data["checkBox2"]=$userInfo["checkBox2"];
 		$data["hidetelno"]=$userInfo["hidetelno"];
 		$data["introduction"]=$userInfo["introduction"];
+		$data["descriptionTextarea"]=$userInfo["introduction"];
+		
 		$data['showWeChatID']=$userInfo['showWeChatID'];
 		$data['weChatID']=$userInfo['weChatID'];
 		$data['showWebSite']=$userInfo['showWebSite'];
@@ -2870,6 +2872,14 @@ function generateRandomString($length = 8) {
 			$userInfo['introduction']=$data['descriptionTextarea'];
 		
 			$userInfo['introduction']=nl2br(htmlentities($userInfo['introduction'], ENT_QUOTES, 'UTF-8'));
+			
+			if ($this->form_validation->run('home/updateProfile') == FALSE)
+			{
+				$this->getAccountPage(4);
+				return;
+			}
+			
+			
 			
 			if(ExceedDescLength($userInfo['introduction'], DESCLENGTHINNEWPOST)){
 				$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));

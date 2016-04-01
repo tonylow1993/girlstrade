@@ -78,6 +78,8 @@ input[type=checkbox]
                 </div>
                 <div class="panel-collapse collapse in" id="collapseB1">
                   <div class="panel-body">
+                     <?php echo validation_errors('<div>', '</div>'); ?>
+  
                   <form action="<?php echo base_url().MY_PATH.'home/updateProfile'?>" method="POST" >
      			      
                       <div class="form-group">
@@ -101,7 +103,7 @@ input[type=checkbox]
 					  <div class="form-group">
                         <label for="Wechat" class="col-sm-3 control-label">Wechat ID</label>
                         <div class="col-sm-9">
-						  <input name="weChatID" type="text" pattern="\d*" class="form-control" id="weChatID" placeholder="<?php echo $weChatID;?>">
+						  <input name="weChatID" type="text" pattern="\d*" class="form-control" id="weChatID" value="<?php echo set_value('weChatID', $weChatID); ?>" placeholder="<?php echo $weChatID;?>">
 						  <div class="checkbox">
 						  <label>
                             <input id="showWeChatID" name='showWeChatID' type="checkbox" <?php  if($showWeChatID==1) echo " checked "?>>
@@ -112,7 +114,7 @@ input[type=checkbox]
 					  <div class="form-group">
                         <label for="Website" class="col-sm-3 control-label">Website</label>
                         <div class="col-sm-9">
-						  <input name="webSiteAddr" type="text"  pattern="\d*" class="form-control" id="webSiteAddr" placeholder="<?php echo $webSiteAddr; ?>">
+						  <input name="webSiteAddr" type="text"  pattern="\d*" class="form-control" id="webSiteAddr" value="<?php echo set_value('webSiteAddr', $webSiteAddr); ?>" placeholder="<?php echo $webSiteAddr; ?>">
 						  <div class="checkbox">
 						  <label>
                             <input id="showWebSite" name='showWebSite' type="checkbox" <?php  if($showWebSite==1) echo " checked "?>>
@@ -123,8 +125,8 @@ input[type=checkbox]
                       <div class="form-group">
 	                        <label  class="col-sm-3 control-label"><?php echo $this->lang->line("MyIntroduction");?></label>
 	                        <div class="col-sm-9">
-	                            <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"   maxlength="900">
-	                            <?php echo $introduction;?>
+	                            <textarea class="form-control" style="vertical-align: top; horizontal-align: left;" id="descriptionTextarea" name="descriptionTextarea" rows="4"   maxlength="900">
+	                            <?php echo set_value('descriptionTextarea', $descriptionTextarea); ?>
 	                            </textarea>
                            </div>
 	                    </div>
