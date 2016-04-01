@@ -125,6 +125,23 @@ class itemComments  extends CI_Controller {
 			$comment=$this->input->post("blogscomment");
 			$parentID=$this->input->post("parentID");
 			
+			$comment=nl2br(htmlentities($comment, ENT_QUOTES, 'UTF-8'));
+				
+			if(ExceedDescLength($comment, DESCLENGTHINNEWPOST)){
+				$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+				$data["error"]=$errorMsg;
+				$data["prevURL"]=$prevURL;
+				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToPHP']=$prevURL;
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+			}
+			
+			
+			
 			$data=array("postID"=>$postID, "usercommentID" =>$usercommentID, "parentID"=>$parentID,      
 					"comments"=> $comment, "status"=>"A", "createDate"=>date("Y-m-d H:i:s"));
 			

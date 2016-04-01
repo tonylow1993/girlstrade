@@ -245,19 +245,44 @@ class footer  extends CI_Controller {
 		$data["Profile"]=$this->lang->line("Profile");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
+			$userInfo=$this->nativesession->get("user");
+		
 		//----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		if(isset($userInfo)){
+			$menuCount=$this->getHeaderCount($userInfo["userID"]);
+			$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; //
+			$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+		}
 		//----------------------------
 		$this->load->view('contactSuccessful', $data);
 		return;
 	}
 	public function addcontact(){
 			//-------------------------------captcha------------------------------
-                $captcha;
+		$userInfo=$this->nativesession->get("user");
+		
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		if(isset($userInfo)){
+			$menuCount=$this->getHeaderCount($userInfo["userID"]);
+			$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; //
+			$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+		}
+		//----------------------------
+		
+		
+		
+		
+				$captcha;
                 if(isset($_POST['g-recaptcha-response'])){
                   $captcha=$_POST['g-recaptcha-response'];
                 }
@@ -273,13 +298,7 @@ class footer  extends CI_Controller {
                 	$data["successTile"]=$this->lang->line("successTile");
                 	$data["failedTitle"]=$this->lang->line("failedTitle");
                 	$data["goToHomePage"]=$this->lang->line("goToHomePage");
-                	 //----------setup the header menu----------
-					$data["menuMyAds"]="";
-					$data["menuInbox"]="";
-					$data["menuInboxNum"]="0";
-					$data["menuPendingRequest"]="";
-					$data["menuPendingRequestNumber"]="0";
-					//----------------------------
+                	
                 	$this->load->view('failedPage', $data);
                 	return;
                   
@@ -321,13 +340,7 @@ class footer  extends CI_Controller {
             	$data["successTile"]=$this->lang->line("successTile");
             	$data["failedTitle"]=$this->lang->line("failedTitle");
             	$data["goToHomePage"]=$this->lang->line("goToHomePage");
-            	 //----------setup the header menu----------
-				$data["menuMyAds"]="";
-				$data["menuInbox"]="";
-				$data["menuInboxNum"]="0";
-				$data["menuPendingRequest"]="";
-				$data["menuPendingRequestNumber"]="0";
-				//----------------------------
+            	
             	$this->load->view('failedPage', $data);
             	return;
              
@@ -335,17 +348,42 @@ class footer  extends CI_Controller {
             //-------------------------end of checking captcha
 		
 		
-		
-		
-		
-		
-		
-		
 		$data['name'] = $this->input->post('name');
 		log_message('error', '...'.$data['name']);
 		$data['phone'] = $this->input->post('phone');
 		$data['email'] = $this->input->post('email');
 		$data['message'] = $this->input->post('message');
+		
+
+		$data['message']=nl2br(htmlentities($data['message'], ENT_QUOTES, 'UTF-8'));
+		
+		if(ExceedDescLength($data['message'], DESCLENGTHINNEWPOST)){
+			$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+			$data["error"]=$errorMsg;
+			$data["prevURL"]=$prevURL;
+			$data['redirectToWhatPage']="Previous Page";
+			if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+				$data['redirectToPHP']=base_url();
+				else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+					$data['redirectToPHP']=base_url();
+					else {
+						$data['redirectToPHP']=$_SESSION["previousUrl"];
+						if(strcmp($prevprevURL,"")<>0)
+							$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+					}
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
+					return;
+		}
+		
+		
+		
+		
+		
+		
+		
 		$data["contactTypeID"]=$this->input->post('contactTypeID');
 		$data['createDate']=date("Y-m-d H:i:s"); 
 		$data['updateDate']=date("Y-m-d H:i:s"); 

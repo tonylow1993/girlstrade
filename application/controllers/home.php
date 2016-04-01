@@ -2849,6 +2849,22 @@ function generateRandomString($length = 8) {
 		if(!empty($data['descriptionTextarea']))
 			$userInfo['introduction']=$data['descriptionTextarea'];
 		
+			$userInfo['introduction']=nl2br(htmlentities($userInfo['introduction'], ENT_QUOTES, 'UTF-8'));
+			
+			if(ExceedDescLength($userInfo['introduction'], DESCLENGTHINNEWPOST)){
+				$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+				$data["error"]=$errorMsg;
+				$data["prevURL"]=$prevURL;
+				$data['redirectToWhatPage']="Edit Profile Page";
+				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/4";
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+			}	
+			
+			
 		if(!empty($data['weChatID']))
 			$userInfo['weChatID']=$data['weChatID'];
 		if(!empty($data['webSiteAddr']))
@@ -3395,6 +3411,26 @@ function generateRandomString($length = 8) {
 			$userID=$_POST["userID_1"];
 		}
 		$content=$_POST["message-text_1"];
+		
+		$content=nl2br(htmlentities($content, ENT_QUOTES, 'UTF-8'));
+			
+		if(ExceedDescLength($content, DESCLENGTHINNEWPOST)){
+			$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+			$data["error"]=$errorMsg;
+			$data["prevURL"]=$prevURL;
+			$data['redirectToWhatPage']="Account Profile Page";
+			if(strcmp($type,"Inbox")==0)
+				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/1";
+			else 
+				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/10";
+			$data["successTile"]=$this->lang->line("successTile");
+			$data["failedTitle"]=$this->lang->line("failedTitle");
+			$data["goToHomePage"]=$this->lang->line("goToHomePage");
+			$this->load->view('failedPage', $data);
+			return;
+		}
+		
+		
 		$pageNum=$_POST["pageNum_1"];
 		$data["userID"]=$userID;
 		$data["fromUserID"]=$fromUserID;

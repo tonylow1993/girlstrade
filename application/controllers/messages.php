@@ -325,18 +325,43 @@ function addDayswithdate($date,$days){
 					return;
 				}
 				
+				$comment=nl2br(htmlentities($this->input->post('messagetext2'), ENT_QUOTES, 'UTF-8'));
 				
+				if(ExceedDescLength($comment, DESCLENGTHINNEWPOST)){
+					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+					$data["error"]=$errorMsg;
+					$data["prevURL"]=$prevURL;
+					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']="Previous Page";
+						if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+							$data['redirectToPHP']=base_url();
+						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+							$data['redirectToPHP']=base_url();
+						else {
+		 				$data['redirectToPHP']=$_SESSION["previousUrl"];
+		 				if(strcmp($prevprevURL,"")<>0)
+		 					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+		 				}
+		 			$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
+					return;
+				}
 				$messageArray=array(
 						'postID'=>intval($postID),
 						'fUserID'=>intval($fUserID),
 						'status' => "U",
 						'createDate' => date("Y-m-d H:i:s"),
 						'reportreason'=> $this->input->post('reportreason'),
-						'content'=>$this->input->post('messagetext2'),
+						'content'=>$comment,
 						'recipientName'=>$this->input->post('recipientname1'),
 						'senderEmail'=>$this->input->post('recipientemail'),
 						'recipientPhoneNumber'=>$this->input->post('recipientPhoneNumber1'));
-				print_r($messageArray);
+				
+				
+				
+				//print_r($messageArray);
 					$messageResult=$this->abusemessages_model->insert($messageArray);
 					if($messageResult)
 					{
@@ -1453,6 +1478,31 @@ function addDayswithdate($date,$days){
 									return;
 						}			
 				
+						
+						if(ExceedDescLength($buyerComment, DESCLENGTHINNEWPOST)){
+							$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+							$data["error"]=$errorMsg;
+							$data["prevURL"]=$prevURL;
+							$data['redirectToWhatPage']="Previous Page";
+							$data['redirectToWhatPage']="Previous Page";
+							if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+								$data['redirectToPHP']=base_url();
+								else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+									$data['redirectToPHP']=base_url();
+									else {
+										$data['redirectToPHP']=$_SESSION["previousUrl"];
+										if(strcmp($prevprevURL,"")<>0)
+											$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+									}
+									$data["successTile"]=$this->lang->line("successTile");
+									$data["failedTitle"]=$this->lang->line("failedTitle");
+									$data["goToHomePage"]=$this->lang->line("goToHomePage");
+									$this->load->view('failedPage', $data);
+									return;
+						}		
+						
+						
+						
 				$where=array('ID'=>intval($ID));
 				$messageArray=array('status' => "C", 'buyerDate' =>date("Y-m-d H:i:s"),
 						 'buyerRating'=> $rating, 'buyerComment'=> $buyerComment);
@@ -1686,6 +1736,23 @@ function addDayswithdate($date,$days){
 		
 				$userInfo=$this->nativesession->get("user");
 				$fUserID=0;
+		
+				//----------setup the header menu----------
+				$data["menuMyAds"]="";
+				$data["menuInbox"]="";
+				$data["menuInboxNum"]="0";
+				$data["menuPendingRequest"]="";
+				$data["menuPendingRequestNumber"]="0";
+				if(isset($userInfo)){
+					$menuCount=$this->getHeaderCount($userInfo["userID"]);
+					$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; //
+					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+				}
+				//----------------------------
+				
+				
+				
+				
 				$username="";
 				if(!empty($userInfo) and isset($userInfo) and $userInfo<> null and $userInfo["userID"]<>0)
 				{	
@@ -1716,24 +1783,33 @@ function addDayswithdate($date,$days){
 				$message=$this->input->post("message-text");
 				$buyerID=$this->input->post("soldUser");
 				
+				$message=nl2br(htmlentities($message, ENT_QUOTES, 'UTF-8'));
 				
+				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
+					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+					$data["error"]=$errorMsg;
+					$data["prevURL"]=$prevURL;
+					$data['redirectToWhatPage']="Previous Page";
+				if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+							$data['redirectToPHP']=base_url();
+							else {
+								$data['redirectToPHP']=$_SESSION["previousUrl"];
+								if(strcmp($prevprevURL,"")<>0)
+									$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+							}
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
+					return;
+				}
 				
 				
 				$postInfo=$this->post->getPostByPostID($postID);
 				$userID=$postInfo[0]->userID;
-					//----------setup the header menu----------
-					$data["menuMyAds"]="";
-					$data["menuInbox"]="";
-					$data["menuInboxNum"]="0";
-					$data["menuPendingRequest"]="";
-					$data["menuPendingRequestNumber"]="0";
-					if(isset($userInfo)){
-						$menuCount=$this->getHeaderCount($fUserID);
-						$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID); //$menuCount["inboxMsgCount"]; //
-						$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
-					}
-					//----------------------------
-								
+					
 		
 					$messageArray=array(
 							'buyerID'=>$buyerID,
@@ -1825,6 +1901,21 @@ function addDayswithdate($date,$days){
 		
 				$userInfo=$this->nativesession->get("user");
 				$fUserID=0;
+				//----------setup the header menu----------
+				$data["menuMyAds"]="";
+				$data["menuInbox"]="";
+				$data["menuInboxNum"]="0";
+				$data["menuPendingRequest"]="";
+				$data["menuPendingRequestNumber"]="0";
+				if(isset($userInfo)){
+					$menuCount=$this->getHeaderCount($userInfo["userID"]);
+					$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; //
+					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+				}
+				//----------------------------
+				
+				
+				
 				$username="";
 				if(!empty($userInfo) and isset($userInfo) and $userInfo<> null and $userInfo["userID"]<>0)
 				{
@@ -1854,19 +1945,28 @@ function addDayswithdate($date,$days){
 				$userID=$this->input->post("userID");
 				$fromUserID=$fUserID;
 		
-				//----------setup the header menu----------
-				$data["menuMyAds"]="";
-				$data["menuInbox"]="";
-				$data["menuInboxNum"]="0";
-				$data["menuPendingRequest"]="";
-				$data["menuPendingRequestNumber"]="0";
-				if(isset($userInfo)){
-					$menuCount=$this->getHeaderCount($fUserID);
-					$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID); //$menuCount["inboxMsgCount"]; //
-					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+				$message=nl2br(htmlentities($message, ENT_QUOTES, 'UTF-8'));
+				
+				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
+					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+					$data["error"]=$errorMsg;
+					$data["prevURL"]=$prevURL;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+							$data['redirectToPHP']=base_url();
+							else {
+								$data['redirectToPHP']=$_SESSION["previousUrl"];
+								if(strcmp($prevprevURL,"")<>0)
+									$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+							}
+							$data["successTile"]=$this->lang->line("successTile");
+							$data["failedTitle"]=$this->lang->line("failedTitle");
+							$data["goToHomePage"]=$this->lang->line("goToHomePage");
+							$this->load->view('failedPage', $data);
+							return;
 				}
-				//----------------------------
-		
 		
 				$messageArray=array(
 						'userID'=>$userID,
@@ -1957,6 +2057,20 @@ function addDayswithdate($date,$days){
 		
 				$userInfo=$this->nativesession->get("user");
 				$fUserID=0;
+				
+				//----------setup the header menu----------
+				$data["menuMyAds"]="";
+				$data["menuInbox"]="";
+				$data["menuInboxNum"]="0";
+				$data["menuPendingRequest"]="";
+				$data["menuPendingRequestNumber"]="0";
+				if(isset($userInfo)){
+					$menuCount=$this->getHeaderCount($userInfo["userID"]);
+					$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; //
+					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+				}
+				//----------------------------
+				
 				$username="";
 				if(!empty($userInfo) and isset($userInfo) and $userInfo<> null and $userInfo["userID"]<>0)
 				{
@@ -1989,19 +2103,29 @@ function addDayswithdate($date,$days){
 		
 				$postInfo=$this->post->getPostByPostID($postID);
 				$userID=$postInfo[0]->userID;
-				//----------setup the header menu----------
-				$data["menuMyAds"]="";
-				$data["menuInbox"]="";
-				$data["menuInboxNum"]="0";
-				$data["menuPendingRequest"]="";
-				$data["menuPendingRequestNumber"]="0";
-				if(isset($userInfo)){
-					$menuCount=$this->getHeaderCount($fUserID);
-					$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($fUserID); //$menuCount["inboxMsgCount"]; //
-					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+				
+				$message=nl2br(htmlentities($message, ENT_QUOTES, 'UTF-8'));
+				
+				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
+					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+					$data["error"]=$errorMsg;
+					$data["prevURL"]=$prevURL;
+					$data['redirectToWhatPage']="Previous Page";
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+						$data['redirectToPHP']=base_url();
+						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+							$data['redirectToPHP']=base_url();
+							else {
+								$data['redirectToPHP']=$_SESSION["previousUrl"];
+								if(strcmp($prevprevURL,"")<>0)
+									$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+							}
+							$data["successTile"]=$this->lang->line("successTile");
+							$data["failedTitle"]=$this->lang->line("failedTitle");
+							$data["goToHomePage"]=$this->lang->line("goToHomePage");
+							$this->load->view('failedPage', $data);
+							return;
 				}
-				//----------------------------
-		
 		
 				$messageArray=array(
 						'buyerID'=>$buyerID,
