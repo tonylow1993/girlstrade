@@ -1166,6 +1166,22 @@ input[type=checkbox]
 
   <div class="modal-dialog">
     <div class="modal-content">
+    <?php 
+      	$usr = $this->nativesession->get('user');
+      	if(!isset($usr) or empty($usr)){
+      	?>
+      	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Please login</h4>
+      	</div>
+      	<div class="modal-body">
+      	   <h2>Please login to continue the process</h2>
+      	   <br>
+      	   <a class="btn btn-primary btn-40 center-obj" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;Login</a></p>
+                    	
+      	</div>
+        <?php } else {?>
+    
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" ><i class="fa icon-info-circled-alt"></i> There's something wrong with this  ads? </h4>
@@ -1208,6 +1224,7 @@ input[type=checkbox]
         <button type="button" type="submit" onclick="setupAbuse(); return false;" class="btn btn-primary">Send Report</button>
       	<button id="validate" hidden="true" type="submit"></button>
       </div>
+      <?php }?>
     </div>
   </div>
 </div>
