@@ -11,5 +11,16 @@ $config = array(
 						'label' => 'lang:Email',
 						'rules' => 'callback_email_check'
 				)
-			)
+			),
+		'newPost/createNewPost' => array(
+				array( 	'field' => 'descriptionTextarea',
+						'label' => 'lang:Description',
+						'rules' => 'trim|required|min_length[5]|max_length[200]|xss_clean'
+				),
+				array(
+						'field' => 'price',
+						'label' => 'lang:Price',
+						'rules' => 'required'
+				)
+		)
 	);

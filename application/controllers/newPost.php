@@ -9,7 +9,8 @@ class newPost extends CI_Controller {
 		$this->load->library("nativesession");
 	    
 		$this->load->helper('url');
-		$this->load->helper(array('form', 'url'));
+		//$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
 		$this->load->database();
 		$this->load->helpers('site');
 		$this->load->library('upload');
@@ -804,6 +805,12 @@ public function getChildCategory($parentID)
         $des = $this->input->post('descriptionTextarea',true); 
         $content=nl2br(htmlentities($des, ENT_QUOTES, 'UTF-8'));
         
+        if ($this->form_validation->run('newPost/createNewPost') == FALSE)
+        {
+        	$this->index($loginID, $loginUser);
+        }else{
+        
+        
         if(ExceedDescLength($content, DESCLENGTHINNEWPOST)){
 	        $errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 	        $data["error"]=$errorMsg;
@@ -1035,6 +1042,7 @@ public function getChildCategory($parentID)
 		//echo json_encode($msg);
 		$this->load->view('successPage', $data);
 		 //}
+        }
     }
 	
     public function editPost($postID)

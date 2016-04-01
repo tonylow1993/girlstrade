@@ -54,6 +54,8 @@ input[type=checkbox]
   <div id="wrapper">
    <div class="main-container">
     <div class="container">
+     <?php echo validation_errors('<div>', '</div>'); ?>
+   <?php //echo form_open('newPost/createNewPost/'.$userID.'/'.$username); //'?prevURL='.urlencode($prevURL)); ?>
       <div class="row">
         <div class="col-md-9 page-content">
           <div class="inner-box category-content">
