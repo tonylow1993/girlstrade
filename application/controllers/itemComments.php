@@ -140,10 +140,11 @@ class itemComments  extends CI_Controller {
 				return;
 			}
 			
-			
-			
+			$status="U";
+			if(strcmp(NONEEDVERIFYITEMCOMMENT,"Y")==0)
+				$status="A";
 			$data=array("postID"=>$postID, "usercommentID" =>$usercommentID, "parentID"=>$parentID,      
-					"comments"=> $comment, "status"=>"A", "createDate"=>date("Y-m-d H:i:s"));
+					"comments"=> $comment, "status"=>$status, "createDate"=>date("Y-m-d H:i:s"));
 			
 			$this->itemcomments_model->insertItemComment($data);
 			
