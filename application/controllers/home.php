@@ -415,9 +415,9 @@ class Home extends CI_Controller {
 	}
 	public function email_check($str)
 	{
-		if ($str == 'test')
+		if ($str == 'test@test.com')
 		{
-			$this->form_validation->set_message('email_check', 'The %s field can not be the word "test"');
+			$this->form_validation->set_message('email_check', 'The %s field can not be the word "test@test.com"');
 			return FALSE;
 		}
 		else
