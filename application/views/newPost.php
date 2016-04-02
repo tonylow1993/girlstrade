@@ -67,7 +67,7 @@ input[type=checkbox]
                   <fieldset>
                       
                       <!-- Text input-->
-                      <div class="form-group">
+                      <div class="form-group row">
                           <label class="col-md-3 control-label text-center" for="Adtitle"><i class="icon-pencil"></i> <?php echo $TopicTitle;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <input id="Adtitle" name="Adtitle" class="form-control input-md" value="<?php echo set_value('Adtitle'); ?>" type="text" required="true"  maxlength="45"/>
@@ -77,7 +77,7 @@ input[type=checkbox]
                       </div>  
                       
                       <!-- Select Basic -->
-                      <div id="generalCat" class="form-group">
+                      <div id="generalCat" class="form-group row">
                           <label class="col-md-3 control-label text-center" >
                           <i class="icon-layout"></i>
                            <?php echo $Category;?> <font color="red">*</font></label>
@@ -102,7 +102,7 @@ input[type=checkbox]
                           </div>
                       </div>
                        
-                       <div id="generalLoc" class="form-group">
+                       <div id="generalLoc" class="form-group row">
                           <label class="col-md-3 control-label text-center" >
                           <i class=" icon-location-2"></i>
                            <?php echo $lblLocation;?> </label>
@@ -133,7 +133,7 @@ input[type=checkbox]
                       </div>    
                       
                       <!-- Select Basic -->
-                      <div id="itemQuality" class="form-group">
+                      <div id="itemQuality" class="form-group row">
                           <label class="col-md-3 control-label text-center" > 
                           <i class="icon-eye-1"></i>
 						            <?php echo $ItemQuality;?> <font color="red">*</font></label>
@@ -146,7 +146,7 @@ input[type=checkbox]
                           </div>
                       </div>
                       <?php if(strcmp(SHOWQTY, 'Y')==0) {?>
-                      <div id="itemQty" class="form-group">
+                      <div id="itemQty" class="form-group row">
                           <label class="col-md-3 control-label text-center" > 
                           <i class="icon-flag"></i>
                           Quantity <font color="red">*</font></label>
@@ -167,7 +167,7 @@ input[type=checkbox]
                       
                       
                       <!-- Textarea -->
-                      <div id="descriptionTextareaDiv" class="form-group">
+                      <div id="descriptionTextareaDiv" class="form-group row">
                           <label class="col-md-3 control-label text-center" for="textarea"> 
                           <i class="icon-clipboard"></i>
 							<?php echo $Description;?> <font color="red">*</font></label>
@@ -182,7 +182,7 @@ input[type=checkbox]
                     
                     
                       <!-- Prepended text-->
-                      <div class="form-group">
+                      <div class="form-group row">
                           <label class="col-md-3 control-label text-center" for="Price"><i class="icon-money"></i> <?php  echo $HKDPrice;?> <font color="red">*</font></label>
                           <div class="col-md-4">
                               <div class="input-group"> <span class="input-group-addon">$</span>
@@ -201,7 +201,7 @@ input[type=checkbox]
 
 
                       <!-- photo -->
-                      <div class="form-group">
+                      <div class="form-group row">
                       	<label class="col-md-3 control-label text-center" for="textarea"> 
                               <i class="icon-camera-1"></i><abbr title="Min. 1 picture required.&#013;Max. 5 pictures allowed.&#013;Max. picture file size 4MB per each.&#013;First Picture is the default that will show to customer first."><?php echo $Picture;?></abbr><font color="red">*</font></label>
                           </label>
@@ -317,7 +317,7 @@ input[type=checkbox]
 					  
 					  
                                           <!-- Button  -->
-                      <div class="form-group">
+                      <div class="form-group row">
                           <label class="col-md-3 control-label text-center"></label>
                           <div class="col-md-8"> 
                        	       <button id="submit-upload-form" type="submit" class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
