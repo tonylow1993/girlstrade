@@ -80,7 +80,7 @@
                     <div id="emailDiv" class="form-group required">
                       <label for="inputEmail3" class="col-md-4 control-label"> <?php echo $Email;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input name="email" type="email" value="<?php echo set_value('email'); ?>" class="form-control" id="inputEmail3" required="true" placeholder="Email">
+                        <input name="email" type="email" value="<?php echo set_value('email'); ?>" class="form-control" id="email" required="true" placeholder="Email">
                         <div id="emailAjaxLoad" class="center"></div>
                         <div id="emailError" hidden="true"></div>
                       </div>
@@ -122,7 +122,7 @@
                       <div class="col-md-8">
                         <div class="termbox mb10">
                           <label class="checkbox-inline" for="checkboxes-1">
-                            <input name="checkboxes" id="checkboxes-1" value="1" type="checkbox">
+                            <input name="checkboxes-1" id="checkboxes-1" value="1" type="checkbox">
                             I have read and agree to the <a href="terms-conditions.html">Terms & Conditions</a> </label>
                         </div>
                         <div style="clear:both"></div>

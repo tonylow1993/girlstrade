@@ -4,12 +4,17 @@ $config = array(
 				array(
 						'field' => 'username',
 						'label' => 'lang:Username',
-						'rules' => 'trim|required|min_length[5]|max_length[20]|xss_clean'
+						'rules' => 'trim|required|callback_username_check|min_length[5]|max_length[20]|xss_clean'
 				),
 				array(
 						'field' => 'email',
 						'label' => 'lang:Email',
-						'rules' => 'callback_email_check'
+						'rules' => 'trim|required|callback_email_check'
+				),
+				array(
+						'field' => 'checkboxes-1',
+						'label' => 'Agreement',
+						'rules' => 'callback_agree_check'
 				)
 			),
 		'newPost/createNewPost' => array(
