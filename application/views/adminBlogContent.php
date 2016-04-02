@@ -5,31 +5,44 @@
 				
 				<div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
 				<form id="newPost" action="<?php echo base_url(); echo MY_PATH;?>getAdmin/uploadBlogPhoto" method="post" enctype="multipart/form-data">
-					<div class="kv-avatar text-center" style="width:200px">
-						<label>Picture 1</label>
-						<input id="avatar1" name="avatar1" type="file" class="file-loading" accept="image/*">
-						<div id="uploadImgError1"></div>
-					</div>
-					<div class="kv-avatar text-center" style="width:200px">
+					<table>
+						<tr>
+							<td ><div class="kv-avatar text-center" style="width:200px;height:200px;">
+								<label>Picture 1</label>
+								<input id="avatar1" name="avatar1" type="file" class="file-loading" accept="image/*">
+								<div id="uploadImgError1"></div>
+							</div></td>
+							<td><br/><img style="width:200px;height:200px;" src="<?php echo $pic1;?>" ></td>
+						</tr>
+					<tr>
+						<td>
+						<div class="kv-avatar text-center" style="width:200px;height:200px;">
 						<label>Picture 2</label>
 						<input id="avatar2" name="avatar2" type="file" class="file-loading" accept="image/*">
-						<div id="uploadImgError2"></div>
-					</div>
-					<div class="kv-avatar text-center" style="width:200px">
-						<label>Picture 3</label>
-						<input id="avatar3" name="avatar3" type="file" class="file-loading" accept="image/*">
-						<div id="uploadImgError3"></div>
-					</div>
+						</div><div id="uploadImgError2"></div>
+						</td>
+						<td><br/><img src="<?php echo $pic2;?>" style="width:200px;height:200px;">
+						</td>
+					</tr>
+					<tr>
+						<td><div class="kv-avatar text-center" style="width:200px;height:200px;">
+							<label>Picture 3</label>
+							<input id="avatar3" name="avatar3" type="file" class="file-loading" accept="image/*">
+							</div><div id="uploadImgError3"></div>
+						</td>
+						<td><br/><img src="<?php echo $pic3;?>" style="width:200px;height:200px;"></td>
+					</tr>
+					</table>
 					<br>
 					<!-- include other inputs if needed and include a form submit (save) button -->
 					<div style="width:400px">
 						<label>Title</label>
-						<textarea class="form-control" id="titleTextarea" name="titleTextarea" rows="4"  ><?php echo set_value('titleTextarea', $title); ?></textarea>
+						<textarea class="form-control" id="titleTextarea" name="titleTextarea" rows="4"  ><?php echo set_value('titleTextarea', $titleTextarea); ?></textarea>
 	                </div>
 					<br>
 	                <div style="width:400px">
 						<label>Description</label>
-						<textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  ><?php echo set_value('descriptionTextarea', $description); ?></textarea>
+						<textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  ><?php echo set_value('descriptionTextarea', $descriptionTextarea); ?></textarea>
 	                </div>
 					<div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
 					<div class="modal-dialog">
