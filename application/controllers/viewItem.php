@@ -643,5 +643,43 @@
             return;
         }
         
+        public function validateBlogsCommentLength(){
+        	$blogscomment=$this->input->post("blogscomment");
+        	$blogscomment=nl2br(htmlentities($blogscomment, ENT_QUOTES, 'UTF-8'));
+        	if(!ExceedDescLength($blogscomment, DESCLENGTHINNEWPOST)){
+        		$data['status'] = 'A';
+        		$data['class'] = "has-success";
+        		$data['message'] = '';
+        		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i> Valid Description</span></em>';
+        		
+        		
+        	}else {
+        		$data['status'] = 'F';
+        	$data['class'] = "has-error";
+        	$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
+        	$data['icon'] = '<em><span style="color:red"></span></em>';
+        	}
+        	echo json_encode($data);
+        	
+        }
+        public function validateReplyBlogsCommentLength(){
+        	$blogscomment=$this->input->post("replyblogscomment");
+        	$blogscomment=nl2br(htmlentities($blogscomment, ENT_QUOTES, 'UTF-8'));
+        	if(!ExceedDescLength($blogscomment, DESCLENGTHINNEWPOST)){
+        		$data['status'] = 'A';
+        		$data['class'] = "has-success";
+        		$data['message'] = '';
+        		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i> Valid Description</span></em>';
+        
+        
+        	}else {
+        		$data['status'] = 'F';
+        		$data['class'] = "has-error";
+        		$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
+        		$data['icon'] = '<em><span style="color:red"></span></em>';
+        	}
+        	echo json_encode($data);
+        	 
+        }
     }
 ?>

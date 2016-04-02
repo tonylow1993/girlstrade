@@ -55,7 +55,7 @@ class itemComments  extends CI_Controller {
         
 	}
 	
-	public function insertItemComment(){
+	public function insertItemComment($isReply='N'){
 		
 		try {
 			$prevURL=base_url();
@@ -122,7 +122,11 @@ class itemComments  extends CI_Controller {
 			$postID=$this->input->post("postID");
 		//	$name=$this->input->post("author");
 		//	$email=$this->input->post("email");
-			$comment=$this->input->post("blogscomment");
+			$comment="";
+			if(strcmp($isReply,'Y')==0)
+				$comment=$this->input->post("replyblogscomment");
+			else 
+				$comment=$this->input->post("blogscomment");
 			$parentID=$this->input->post("parentID");
 			
 			$comment=nl2br(htmlentities($comment, ENT_QUOTES, 'UTF-8'));

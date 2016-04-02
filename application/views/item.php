@@ -501,9 +501,11 @@ input[type=checkbox]
 										<input type="hidden" name="postID"  value="<?php echo $postID;?>" >
 <!--                                     	<div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
 
-                                        <div class="form-group">
-                                            <textarea class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="Message" name="blogscomment"></textarea> </div>
-
+                                        <div class="form-group" id="blogscommentDiv">
+                                            <textarea class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="Message" name="blogscomment" id="blogscomment"></textarea> 
+											  	<div id="blogscommentAjaxLoad" class="center"></div>
+	                        					<div id="blogscommentError" hidden="true"></div>
+                         				</div>
                                         <button type="submit" class="btn-success btn btn-lg"> Submit </button>
 										<br>
 										</form>
@@ -1307,13 +1309,17 @@ input[type=checkbox]
       <div class="modal-body">
       <h3 class="blogs-comment-reply-title list-title">LEAVE A COMMENT</h3>
 
-                    <form class="blogs-comment-form" id="blogs-commentformPopup" method="post" action="<?php echo base_url().MY_PATH; ?>itemComments/insertItemComment?prevURL=<?php echo current_url();?>">         
+                    <form class="blogs-comment-form" id="blogs-commentformPopup" method="post" action="<?php echo base_url().MY_PATH; ?>itemComments/insertItemComment/Y?prevURL=<?php echo current_url();?>">         
 <!--                                         <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div> -->
 <!--                                         <div class="row form-group" ><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your email" aria-required="true" value="" name="email"></div><div class="col-md-6 text-left"><span>E-mail*</span></div></div> -->
 										<input type="hidden" name="postID"  value="<?php echo $postID;?>" ><!--                                     <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
 										<input type="hidden" name="parentID"  id="parentID" >
-                                        <div class="form-group">
-                                            <textarea class="form-control" maxlength="<?php echo DESCLENGTHINITEMPAGE;?>"  rows="5" columns="30"  placeholder="Message" name="blogscomment"></textarea> </div>
+                                        <div id="replyblogscommentDiv" class="form-group">
+                                            <textarea class="form-control" maxlength="<?php echo DESCLENGTHINITEMPAGE;?>"  rows="5" columns="30"  placeholder="Message" name="replyblogscomment" id="replyblogscomment"></textarea> 
+                                              	<div id="replyblogscommentAjaxLoad" class="center"></div>
+	                        					<div id="replyblogscommentError" hidden="true"></div>
+                         
+                                            </div>
 
 <!--                                         <button type="submit" class="btn-success btn btn-lg"> Submit </button> -->
 
@@ -1326,6 +1332,7 @@ input[type=checkbox]
       </div>
     </div>
   </div>
+ 
 </div>
 
 <!-- /.modal --> 
@@ -1355,6 +1362,38 @@ input[type=checkbox]
 <!-- Le javascript
 ================================================== --> 
 </div>
+ <script>
+  $( "#blogscomment" ).blur(function() {
+	$("#blogscommentAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url(); echo MY_PATH;?>viewItem/validateBlogsCommentLength",
+			data: { blogscomment: $( "#blogscomment" ).val() },
+			success: function(response){
+				var result = JSON.parse(response);
+		    	$("#error").html(result.message);
+		    	$("#blogscommentDiv").removeClass('has-success has-error').addClass(result.class);
+		    	$("#blogscommentAjaxLoad").html(result.icon);
+		    	$("#blogscommentError").html(result.err);
+		    	}
+		});
+	});
+  $( "#replyblogscomment" ).blur(function() {
+	$("#replyblogscommentAjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url(); echo MY_PATH;?>viewItem/validateReplyBlogsCommentLength",
+			data: { replyblogscomment: $( "#replyblogscomment" ).val() },
+			success: function(response){
+				var result = JSON.parse(response);
+		    	$("#error").html(result.message);
+		    	$("#replyblogscommentDiv").removeClass('has-success has-error').addClass(result.class);
+		    	$("#replyblogscommentAjaxLoad").html(result.icon);
+		    	$("#replyblogscommentError").html(result.err);
+		    	}
+		});
+	});
+  </script>
 <script>
 
 function passToModal() {
