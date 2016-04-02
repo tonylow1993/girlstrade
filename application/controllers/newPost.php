@@ -711,7 +711,12 @@ public function getChildCategory($parentID)
 		}
 		else
 		{
-			return TRUE;
+			if(intval($str)>=MINPRICERANGE and intval($str)<=MAXPRICERANGE)
+				return TRUE;
+			else{
+				$this->form_validation->set_message('price_check', 'The %s field is not in the price range value');
+				return FALSE;
+			}
 		}
     }
     

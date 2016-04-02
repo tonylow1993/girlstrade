@@ -96,6 +96,9 @@ define("UNLIMITEDTIMES", 9999);
 
 define("MAXDAYSACTIVATEUSEREXPIRYDAYS", 30);
 
+define("MINPRICERANGE", 20);
+define("MAXPRICERANGE", 2000);
+
 define("SMTP_PROTOCOL" , "smtp");
 define("SMTP_HOST", "ssl://a2plcpnl0127.prod.iad2.secureserver.net" );
 define("SMTP_PORT", "465");

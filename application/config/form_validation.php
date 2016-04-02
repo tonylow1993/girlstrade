@@ -43,11 +43,11 @@ $config = array(
 				),
 				array( 	'field' => 'weChatID',
 						'label' => 'weChatID',
-						'rules' => 'trim'
+						'rules' => 'trim|max_length[30]|xss_clean'
 				),
 				array( 	'field' => 'webSiteAddr',
 						'label' => 'webSiteAddr',
-						'rules' => 'trim'
+						'rules' => 'trim|max_length[300]|xss_clean'
 				)
 		)
 	);

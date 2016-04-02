@@ -103,7 +103,7 @@ input[type=checkbox]
 					  <div class="form-group">
                         <label for="Wechat" class="col-sm-3 control-label">Wechat ID</label>
                         <div class="col-sm-9">
-						  <input name="weChatID" type="text" pattern="\d*" class="form-control" id="weChatID" value="<?php echo set_value('weChatID', $weChatID); ?>" placeholder="<?php echo $weChatID;?>">
+						  <input name="weChatID" type="text" maxlength="30" pattern="\d*" class="form-control" id="weChatID" value="<?php echo set_value('weChatID', $weChatID); ?>" placeholder="<?php echo $weChatID;?>">
 						  <div class="checkbox">
 						  <label>
                             <input id="showWeChatID" name='showWeChatID' type="checkbox" <?php  if($showWeChatID==1) echo " checked "?>>
@@ -114,7 +114,7 @@ input[type=checkbox]
 					  <div class="form-group">
                         <label for="Website" class="col-sm-3 control-label">Website</label>
                         <div class="col-sm-9">
-						  <input name="webSiteAddr" type="text"  pattern="\d*" class="form-control" id="webSiteAddr" value="<?php echo set_value('webSiteAddr', $webSiteAddr); ?>" placeholder="<?php echo $webSiteAddr; ?>">
+						  <input name="webSiteAddr" type="text"  pattern="\d*" maxlength="300" class="form-control" id="webSiteAddr" value="<?php echo set_value('webSiteAddr', $webSiteAddr); ?>" placeholder="<?php echo $webSiteAddr; ?>">
 						  <div class="checkbox">
 						  <label>
                             <input id="showWebSite" name='showWebSite' type="checkbox" <?php  if($showWebSite==1) echo " checked "?>>
