@@ -59,7 +59,7 @@ input[type=checkbox]
       <div class="row">
         <div class="col-md-9 page-content">
           <div class="inner-box category-content">
-            <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> <?php echo $NewPost;?><br/> (<?php echo $YouHaveRemainPost;?>)</strong> </h2>
+            <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> <?php echo $NewPost;?><?php echo $YouHaveRemainPost;?></strong> </h2>
             <div class="row">
               <div class="col-sm-12">
                 <form id="newPost" class="form-horizontal" method="post" enctype="multipart/form-data"

@@ -239,13 +239,18 @@
             $data["DailyMaxTimes"]=0;
             $data["TotalMaxTimes"]=0;
             $data["YouHaveRemainItemPostTimes"]="";
+            $data["YouHaveRemainContactSellerTimes"]="";
             if(!empty($userInfo)){
             	$fUserID=$userInfo["userID"];
             	$NumOfPostTimes=$this->itemcomments_model->getNUMOFTIMESPOSTITEMCOMMENTS($fUserID);
                 $data["DailyMaxTimes"]=$this->messages_model->getMaxDailyTimesBuyerSendMsg($postId, $fUserID);
 	            $data["TotalMaxTimes"]=$this->messages_model->getMaxTotalTimesBuyerSendMsg($postId, $fUserID);
-	            $data["YouHaveRemainItemPostTimes"]=sprintf($this->lang->line("YouHaveRemainInsertItemComments"), NUMOFTIMESPOSTITEMCOMMENTS-$NumOfPostTimes);
-	            
+	            if(NUMOFTIMESPOSTITEMCOMMENTS-$NumOfPostTimes<MINCOUNTSHOWREMAINTIMES && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES)
+	            	$data["YouHaveRemainItemPostTimes"]=sprintf($this->lang->line("YouHaveRemainInsertItemComments"), NUMOFTIMESPOSTITEMCOMMENTS-$NumOfPostTimes);
+	            $DailyMaxTimes=$this->requestpost_model->getMaxDailyTimesBuyerDirectSend($postId, $loginUser["userID"]);
+	           	if(MAXTIMEDAILY_DRECTSENDFROMBUYER-$DailyMaxTimes<MINCOUNTSHOWREMAINTIMES && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES)
+	           		$data["YouHaveRemainContactSellerTimes"]=sprintf($this->lang->line("YouHaveRemainContactSellerTimes"), MAXTIMEDAILY_DRECTSENDFROMBUYER-$DailyMaxTimes);
+	           		
             }
             
             	if  ( (strcmp($var[0]->status,"U")!=0 &&  strcmp($var[0]->status,"R")!=0

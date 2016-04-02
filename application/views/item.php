@@ -79,6 +79,8 @@ input[type=checkbox]
   
   <div class="main-container">
     <div class="container">
+    <h5><strong><?php echo $YouHaveRemainContactSellerTimes;?></strong></h5>
+    
       <ol class="breadcrumb pull-left">
         <li><a href=<?php echo base_url();?>><i class="icon-home fa"></i></a></li>
         <li><a href=<?php echo base_url().MY_PATH."getCategory/getAll/1";?>>All Ads</a></li>
@@ -411,7 +413,7 @@ input[type=checkbox]
                             <div class="blogs-comments-area"></div>
                                 <h5 class="list-title">
                                 <strong><?php count($commentList);?> 
-                               Comments</strong></h5>
+                               Comments<?php echo $YouHaveRemainItemPostTimes;?></strong></h5>
                                
                                
                                
@@ -494,7 +496,7 @@ input[type=checkbox]
                                     <?php if($isloginedIn) {?>
              
                                     <h5 class="list-title">
-                                <strong>LEAVE A COMMENT<br/> (<?php echo $YouHaveRemainItemPostTimes;?>)</strong></h5>
+                                <strong>LEAVE A COMMENT</strong></h5>
                                     
 									   <form class="blogs-comment-form" id="blogs-commentform" method="post" action="<?php echo base_url().MY_PATH; ?>itemComments/insertItemComment?prevURL=<?php echo current_url();?>">         
 <!--                                         <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div> -->
