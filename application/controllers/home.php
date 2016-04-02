@@ -1124,8 +1124,8 @@ function generateRandomString($length = 8) {
 	
 	public function validateEmail(){
 		sleep(1);
-		$data['email'] = $this->input->post('inputEmail3');
-		if(empty($data['email'])){
+		$data['email'] = $this->input->post('email');
+		if(null==($data['email'])){
 			$data['status'] = 'F';
 			$data['class'] = "has-error";
 			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Email cannot empty!</div>';

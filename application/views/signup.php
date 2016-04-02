@@ -171,9 +171,9 @@ $("#inputEmail3").blur(function() {
 	}
 });
 */
-$( "#inputEmail3" ).blur(function() {
+$( "#email" ).blur(function() {
 
-	if(!validateEmail($("#inputEmail3").val())) {
+	if(!validateEmail($("#email").val())) {
    		$("#emailAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Email cannot be empty</span></em>');
 		return;
     }
@@ -182,7 +182,7 @@ $( "#inputEmail3" ).blur(function() {
 	$.ajax({
 		method: "POST",
 		url: "<?php echo base_url(); echo MY_PATH;?>home/validateEmail",
-		data: { inputEmail3: $( "#inputEmail3" ).val() },
+		data: { email: $( "#email" ).val() },
 		success: function(response){
 			var result = JSON.parse(response);
 	    	$("#error").html(result.message);
@@ -372,7 +372,7 @@ function setup()
 	   // 	   	$("#emailError").html(result.err);
 	   // 	   	}
 	//	});
-	if($("#inputEmail3").val().length < 3) {
+	if($("#email").val().length < 3) {
    		$("#emailAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Email cannot be empty</span></em>');
     	isValid= false;
     }
