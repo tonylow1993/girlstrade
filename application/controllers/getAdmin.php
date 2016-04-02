@@ -54,6 +54,8 @@ class getAdmin extends CI_Controller {
         $this->load->model('contact_model');
         $this->load->model('contacttype_model');
         $this->load->model('buyerfeedback_model');
+        $this->load->model('userstat_model');
+        $this->load->model('messages_model');
 	}
 	
 	public function index($Photo=0)
@@ -74,14 +76,19 @@ class getAdmin extends CI_Controller {
 	}
 	public function getAccountPage($activeNav=1, $pageNum=1){
 		   $data["pageNum"]=$pageNum;
-		   //----------setup the header menu----------
-			$data["menuMyAds"]="";
-			$data["menuInbox"]="";
-			$data["menuInboxNum"]="0";
-			$data["menuPendingRequest"]="";
-			$data["menuPendingRequestNumber"]="0";
-			//----------------------------
 			$loginUser=$this->nativesession->get("user");
+		   //----------setup the header menu----------
+        $data["menuMyAds"]="";
+        $data["menuInbox"]="class=\"active\"";
+        $data["menuInboxNum"]="0";
+        $data["menuPendingRequest"]="";
+        $data["menuPendingRequestNumber"]="0";
+        if(isset($loginUser)){
+        	$menuCount=$this->getHeaderCount($loginUser["userID"]);
+        	$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser["userID"]); //$menuCount["inboxMsgCount"]; //
+        	$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+        }
+        //----------------------------
 			if($loginUser!=null && isset($loginUser)){
 				if(strcmp($loginUser["username"],"admin")==0){
 					$data['activeNav']=$activeNav;
@@ -1320,6 +1327,59 @@ class getAdmin extends CI_Controller {
 	}
 	public function uploadBlogPhoto(){
 		
+	}
+	public function validateRejectDescLength(){
+		$blogscomment=$this->input->post("descTextarea");
+		$blogscomment=nl2br(htmlentities($blogscomment, ENT_QUOTES, 'UTF-8'));
+		if(!ExceedDescLength($blogscomment, DESCLENGTHINNEWPOST)){
+			$data['status'] = 'A';
+			$data['class'] = "has-success";
+			$data['message'] = '';
+			$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i> Valid Description</span></em>';
+		
+		
+		}else {
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
+			$data['icon'] = '<em><span style="color:red"></span></em>';
+		}
+		echo json_encode($data);
+	}
+	
+	public function getHeaderCount($userID){
+		$userStat=$this->userstat_model->getUserStat($userID);
+	
+		$data["inboxMsgCount"]=0;
+		$data["approveMsgCount"]=0;
+		$data["myAdsCount"]=0;
+		$data["savedAdsCount"]=0;
+		$data["pendingMsgCount"]=0;
+		$data["archivedAdsCount"]=0;
+		$data["visitCount"]=0;
+		$data["totalMyAdsCount"]=0;
+		$data["favoriteAdsCount"]=0;
+		$data["outgoingMsgCount"]=0;
+		$data["buyAdsCount"]=0;
+		$data["directsendhistCount"]=0;
+		$data["directsendhistCount1"]=0;
+		if(isset($userStat) && !empty($userStat)){
+			$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
+			$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
+			$data["myAdsCount"]=$userStat[0]->myAdsCount;
+			$data["savedAdsCount"]=$userStat[0]->savedAdsCount;
+			$data["pendingMsgCount"]=$userStat[0]->pendingMsgCount;
+			$data["archivedAdsCount"]=$userStat[0]->archivedAdsCount;
+			$data["visitCount"]=$userStat[0]->visitCount;
+			$data["totalMyAdsCount"]=$userStat[0]->totalMyAdsCount;
+			$data["favoriteAdsCount"]=$userStat[0]->favoriteAdsCount;
+			$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
+			$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
+			$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+			$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
+		}
+	
+		return $data;
 	}
 }
 ?>

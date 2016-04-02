@@ -63,6 +63,11 @@
                 $postIDCtrl="postID".$Num;
                 $rejectReason="rejectReason".$Num;
                 $rejectSpecifiedReason="rejectSpecifiedReason".$Num;
+                $rejectDiv="rejectDiv".$Num;
+                $rejectAjaxLoad="rejectAjaxLoad".$Num;
+                $rejectError="rejectError".$Num;
+                $loadingImg=base64_encode(base_url()."assets/img/loading.gif");
+                $validateRejectDescPath=base64_encode(base_url().MY_PATH."getAdmin/validateRejectDescLength");
                 echo "<input type='hidden' name='".$postIDCtrl."' value='".$id."' />";
 //                 echo "<input type='radio' style='font-size:20px;' name='".$actionType."' value='U' checked='true'><label style='font-size: 20px;'>Unverified  </label> </input>";
 //                 echo "<br/><input type='radio' style='font-size:20px;' name='".$actionType."' value='A'  ><label style='font-size: 20px;'>Approve  </label> </input>";
@@ -76,9 +81,30 @@
                 echo "<br/><select id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
                 echo "<option selected='selected' value='Reject Reason 1'>Reject Reason 1</option>";
                 echo "<option value='Reject Reason 2'>Reject Reason 2</option>";
-                echo "</select>";
-                echo "<br/><input type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='width:200px'></input>";
-                echo "</div></div>";
+                echo "</select><div id=\"$rejectDiv\">";
+                // $('#$rejectAjaxLoad').html('<img alt=\"loading...\" src='.$loadingImg.'  '); ";
+                echo "<input type='text' id='$rejectSpecifiedReason' name='$rejectSpecifiedReason' maxlength='100' style='width:200px' 
+						onblur=\"javscript:validateRejectDesc('$rejectSpecifiedReason','$loadingImg','$validateRejectDescPath', '$rejectDiv', '$rejectAjaxLoad' , '$rejectError');\" />";
+//                 	onblur=\"function() {  
+//  					 $.ajax({
+// 							method: 'POST',
+// 							url: '$validateRejectDescPath' ,
+// 							data: { descTextarea: $( '#$rejectSpecifiedReason' ).val() },
+// 							success: function(response){
+// 								var result = JSON.parse(response);
+// 						    	$('#error').html(result.message);
+// 						    	$('#$rejectDiv').removeClass('has-success has-error').addClass(result.class);
+// 						    	$('#$rejectAjaxLoad').html(result.icon);
+// 						    	$('#$rejectError').html(result.err);
+// 						    	}
+// 						});
+// 					}\"></input>";
+                echo "<div id='".$rejectAjaxLoad."' class=\"center\"></div>";
+                echo "<div id='".$rejectError."'></div>";
+                
+                		
+                echo "</div>";
+                 echo "</div></div>";
 				}
                
 				}else{
