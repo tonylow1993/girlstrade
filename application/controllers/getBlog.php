@@ -53,7 +53,42 @@
 			$this->load->model('contact_model');
 			$this->load->model('pagevisited_model');
 		}
+	
 		
+		public function getHeaderCount($userID){
+			$userStat=$this->userstat_model->getUserStat($userID);
+		
+			$data["inboxMsgCount"]=0;
+			$data["approveMsgCount"]=0;
+			$data["myAdsCount"]=0;
+			$data["savedAdsCount"]=0;
+			$data["pendingMsgCount"]=0;
+			$data["archivedAdsCount"]=0;
+			$data["visitCount"]=0;
+			$data["totalMyAdsCount"]=0;
+			$data["favoriteAdsCount"]=0;
+			$data["outgoingMsgCount"]=0;
+			$data["buyAdsCount"]=0;
+			$data["directsendhistCount"]=0;
+			$data["directsendhistCount1"]=0;
+			if(isset($userStat) && !empty($userStat)){
+				$data["inboxMsgCount"]=$userStat[0]->inboxMsgCount;
+				$data["approveMsgCount"]=$userStat[0]->approveMsgCount;
+				$data["myAdsCount"]=$userStat[0]->myAdsCount;
+				$data["savedAdsCount"]=$userStat[0]->savedAdsCount;
+				$data["pendingMsgCount"]=$userStat[0]->pendingMsgCount;
+				$data["archivedAdsCount"]=$userStat[0]->archivedAdsCount;
+				$data["visitCount"]=$userStat[0]->visitCount;
+				$data["totalMyAdsCount"]=$userStat[0]->totalMyAdsCount;
+				$data["favoriteAdsCount"]=$userStat[0]->favoriteAdsCount;
+				$data["outgoingMsgCount"]=$userStat[0]->outgoingMsgCount;
+				$data["buyAdsCount"]=$userStat[0]->buyAdsCount;
+				$data["directsendhistCount"]=$userStat[0]->directsendhistCount;
+				$data["directsendhistCount1"]=$userStat[0]->directsendhistCount;
+			}
+		
+			return $data;
+		}
 		public function viewBlog ()
 		{
 			$data["lang_label_text"] = $this->lang->line("lang_label_text");
