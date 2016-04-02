@@ -54,7 +54,7 @@ input[type=checkbox]
   <div id="wrapper">
    <div class="main-container">
     <div class="container">
-     <?php echo validation_errors('<div>', '</div>'); ?>
+     <?php echo validation_errors("<div style='color:red;'>","</div>"); ?>
    <?php $prevURLPATH=urlencode($prevURL); echo form_open('newPost/createNewPost/'.$userID.'/'.$username.'?prevURL='.$prevURLPATH); //'?prevURL='.urlencode($prevURL)); ?>
       <div class="row">
         <div class="col-md-9 page-content">

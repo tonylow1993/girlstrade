@@ -78,7 +78,7 @@ input[type=checkbox]
                 </div>
                 <div class="panel-collapse collapse in" id="collapseB1">
                   <div class="panel-body">
-                     <?php echo validation_errors('<div>', '</div>'); ?>
+                     <?php echo validation_errors("<div style='color:red;'>","</div>"); ?>
   
                   <form action="<?php echo base_url().MY_PATH.'home/updateProfile'?>" method="POST" >
      			      
