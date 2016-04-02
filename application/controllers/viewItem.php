@@ -238,10 +238,14 @@
             $fUserID=0;
             $data["DailyMaxTimes"]=0;
             $data["TotalMaxTimes"]=0;
+            $data["YouHaveRemainItemPostTimes"]="";
             if(!empty($userInfo)){
             	$fUserID=$userInfo["userID"];
-	            $data["DailyMaxTimes"]=$this->messages_model->getMaxDailyTimesBuyerSendMsg($postId, $fUserID);
+            	$NumOfPostTimes=$this->itemcomments_model->getNUMOFTIMESPOSTITEMCOMMENTS($fUserID);
+                $data["DailyMaxTimes"]=$this->messages_model->getMaxDailyTimesBuyerSendMsg($postId, $fUserID);
 	            $data["TotalMaxTimes"]=$this->messages_model->getMaxTotalTimesBuyerSendMsg($postId, $fUserID);
+	            $data["YouHaveRemainItemPostTimes"]=sprintf($this->lang->line("YouHaveRemainInsertItemComments"), NUMOFTIMESPOSTITEMCOMMENTS-$NumOfPostTimes);
+	            
             }
             
             	if  ( (strcmp($var[0]->status,"U")!=0 &&  strcmp($var[0]->status,"R")!=0
