@@ -413,6 +413,22 @@ class Home extends CI_Controller {
            
             $this->load->view('signup', $data);
 	}
+	
+	public function username_check($str){
+		if (!preg_match("/\p{Han}+/u", $str)){ //preg_match("^[0-9A-Za-z_]+$", $str)){
+			$validate = $this->user->isUserExist($str);
+			if($validate){
+				$this->form_validation->set_message('username_check', 'The %s username is used already.');
+				return FALSE;
+			}else{
+				return TRUE;
+			}
+		}else{
+			$this->form_validation->set_message('username_check', 'The %s username is invalid. Only digits or english');
+			return FALSE;
+		}
+	}
+	
 	public function email_check($str)
 	{
 		if ($str == 'test@test.com')
@@ -428,7 +444,11 @@ class Home extends CI_Controller {
 	public function signup(){
 		
             //-------------------------------captcha------------------------------
-                 $captcha;
+		if ($this->form_validation->run('home/signup') == FALSE)
+		{
+			$this->signupPage();
+		}else{       
+			$captcha;
                 if(isset($_POST['g-recaptcha-response'])){
                   $captcha=$_POST['g-recaptcha-response'];
                 }
@@ -531,10 +551,7 @@ class Home extends CI_Controller {
 		// $this->form_validation->set_rules('username', 'lang:Username', 'trim|required|min_length[5]|max_length[20]|xss_clean');
 		// $this->form_validation->set_rules('email', 'lang:Email', 'callback_email_check');
 		
-		if ($this->form_validation->run() == FALSE)
-		{
-			$this->signupPage();
-		}else{
+		
 		
 		$data['checkboxes'] = $this->input->post('checkboxes');
 		
