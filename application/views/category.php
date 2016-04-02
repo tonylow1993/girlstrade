@@ -378,23 +378,23 @@
                 <form role="form"  id="priceForm" class="form-inline "  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
                   <div class="margin-top-30">
 					  <div id="price-slider" class="price-slider"></div>
-                      <input type="number" placeholder="0" id="minPrice"
+                      <input type="number" placeholder="20" id="minPrice"
                       value=<?php if($minPrice>0) echo $minPrice;?>     
-                      name="minPrice"  min="0"  max="1000" class="form-control price">
+                      name="minPrice"  min="20" class="form-control price">
                       <span id="menubarTitle"> — </span>
-                      <input type="number" placeholder="200 " id="maxPrice"  
+                      <input type="number" placeholder="5000 " id="maxPrice"  
                       value=<?php if($maxPrice>0) echo $maxPrice;?>  
-                      name="maxPrice" min="0" max="1000"   class="form-control price">
+                      name="maxPrice" max="5000"   class="form-control price">
 					  
 					  <script type="text/javascript">
 						var html5Slider = document.getElementById('price-slider');
 
 						noUiSlider.create(html5Slider, {
-							start: [ <?php if($minPrice>0) echo $minPrice; else echo 0;?>, <?php if($maxPrice>0) echo $maxPrice; else echo 200;?> ],
+							start: [ <?php if($minPrice>0) echo $minPrice; else echo 20;?>, <?php if($maxPrice>0) echo $maxPrice; else echo 5000;?> ],
 							connect: true,
 							range: {
-								'min': 0,
-								'max': 1000
+								'min': 20,
+								'max': 5000
 							}
 						});
 						
@@ -1564,24 +1564,24 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
                <form role="form"  id="priceForm1" class="form-inline modalBody"  onSubmit="return priceSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
                   <div class="margin-top-20">
 					  <div id="price-slider1" class="price-slider"></div>
-                      <input type="number" placeholder="100" id="minPrice1"
+                      <input type="number" placeholder="20" id="minPrice1"
                       value=<?php  if($minPrice>0) echo $minPrice;?>     
-                      name="minPrice1"  min="0"  max="90000" class="form-control price">
+                      name="minPrice1"  min="20" class="form-control price">
                       <span id="menubarTitle"> — </span>
-                      <input type="number" placeholder="1000 " id="maxPrice1"  
+                      <input type="number" placeholder="5000 " id="maxPrice1"  
                       value=<?php if($maxPrice>0) echo $maxPrice;?>  
-                      name="maxPrice1" min="0" max="90000"   class="form-control price">
+                      name="maxPrice1" max="5000"   class="form-control price">
 					  <script type="text/javascript">
 						var html5Slider1 = document.getElementById('price-slider1');
 
 
 						noUiSlider.create(html5Slider1, {
-							start: [ <?php if($minPrice>0)echo $minPrice; else echo 0;?>, <?php if($minPrice>0)echo $maxPrice; else echo 200;?> ],
+							start: [ <?php if($minPrice>0)echo $minPrice; else echo 20;?>, <?php if($minPrice>0)echo $maxPrice; else echo 5000;?> ],
 
 							connect: true,
 							range: {
-								'min': 0,
-								'max': 1000
+								'min': 20,
+								'max': 5000
 							}
 						});
 						

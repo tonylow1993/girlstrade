@@ -173,8 +173,8 @@ input[type=checkbox]
 							<?php echo $Description;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <textarea class="form-control"  id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"><?php echo set_value('descriptionTextarea'); ?></textarea>
-	                          	<div id="descriptionTextareaAjaxLoad" class="center"></div>
-	                        	<div id="descriptionTextareaError" hidden="true"></div>
+	                          	<!--<div id="descriptionTextareaAjaxLoad" class="center"></div>
+	                        	<div id="descriptionTextareaError" hidden="true"></div>-->
                           </div>
                       </div>
                     
@@ -186,7 +186,7 @@ input[type=checkbox]
                           <label class="col-md-3 control-label text-center" for="Price"><i class="icon-money"></i> <?php  echo $HKDPrice;?> <font color="red">*</font></label>
                           <div class="col-md-4">
                               <div class="input-group"> <span class="input-group-addon">$</span>
-                                  <input id="price" name="price" value="<?php echo set_value('price'); ?>" class="form-control" required="true" type="int"  step="1"  min=1 >
+                                  <input id="price" name="price" value="<?php echo set_value('price'); ?>" class="form-control" required="true" type="int"  step="1"  min="20" max="5000">
                               </div>
                           </div>
                           <div class="col-md-4">
