@@ -248,12 +248,14 @@ class getAdmin extends CI_Controller {
 			foreach($input as $row)
 			{
 				$postID=$row->postID;
-				$usercommentID=$row->usercommentID;
-				$comments=$row->comments;
+				//$usercommentID=$row->usercommentID;
+				//$comments=$row->comments;
 				$createDate=$row->createDate;
-					
+				$commentID=$row->messageID;
+				$buyerID=$row->fUserID;
+				$comments=$row->content;
 				$postInfo=$this->post_model->getPostByPostID($postID);
-				$userarray=$this->users_model->get_user_by_id($usercommentID);
+				$userarray=$this->users_model->get_user_by_id($buyerID);
 				$userPost=$this->users_model->get_user_by_id($postInfo[0]->userID);
 				$to="";
 				$from="";
