@@ -6,19 +6,30 @@
 				<div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
 				<form id="newPost" action="<?php echo base_url(); echo MY_PATH;?>getAdmin/uploadBlogPhoto" method="post" enctype="multipart/form-data">
 					<div class="kv-avatar text-center" style="width:200px">
-						<input id="avatar" name="avatar" type="file" class="file-loading" accept="image/*">
-						<div id="uploadImgError"></div>
+						<label>Picture 1</label>
+						<input id="avatar1" name="avatar1" type="file" class="file-loading" accept="image/*">
+						<div id="uploadImgError1"></div>
+					</div>
+					<div class="kv-avatar text-center" style="width:200px">
+						<label>Picture 2</label>
+						<input id="avatar2" name="avatar2" type="file" class="file-loading" accept="image/*">
+						<div id="uploadImgError2"></div>
+					</div>
+					<div class="kv-avatar text-center" style="width:200px">
+						<label>Picture 3</label>
+						<input id="avatar3" name="avatar3" type="file" class="file-loading" accept="image/*">
+						<div id="uploadImgError3"></div>
 					</div>
 					<br>
 					<!-- include other inputs if needed and include a form submit (save) button -->
 					<div style="width:400px">
 						<label>Title</label>
-						<textarea class="form-control" id="titleTextarea" name="titleTextarea" rows="4"  ></textarea>
+						<textarea class="form-control" id="titleTextarea" name="titleTextarea" rows="4"  ><?php echo set_value('titleTextarea', $title); ?></textarea>
 	                </div>
 					<br>
 	                <div style="width:400px">
 						<label>Description</label>
-						<textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  ></textarea>
+						<textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  ><?php echo set_value('descriptionTextarea', $description); ?></textarea>
 	                </div>
 					<div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
 					<div class="modal-dialog">
@@ -67,7 +78,7 @@
 					'onclick="upload(); return false;">' +
 					'<i class="glyphicon glyphicon-upload"></i>' +
 					'</button>'; 
-				$("#avatar").fileinput({
+				$("#avatar1").fileinput({
 					overwriteInitial: true,
 					maxFileSize: 1500,
 					showClose: false,
@@ -83,22 +94,54 @@
 					layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
 					allowedFileExtensions: ["jpg", "png", "gif"]
 				});
-				
+				$("#avatar2").fileinput({
+					overwriteInitial: true,
+					maxFileSize: 1500,
+					showClose: false,
+					showCaption: false,
+					browseLabel: '',
+					removeLabel: '',
+					browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+					removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+					removeTitle: 'Cancel or reset changes',
+					elErrorContainer: '#kv-avatar-errors',
+					msgErrorClass: 'alert alert-block alert-danger',
+					defaultPreviewContent: '<img src="<?php echo base_url();?>images/upload.PNG" alt="Your Avatar" style="width:100px">',
+					layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
+					allowedFileExtensions: ["jpg", "png", "gif"]
+				});
+				$("#avatar3").fileinput({
+					overwriteInitial: true,
+					maxFileSize: 1500,
+					showClose: false,
+					showCaption: false,
+					browseLabel: '',
+					removeLabel: '',
+					browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+					removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+					removeTitle: 'Cancel or reset changes',
+					elErrorContainer: '#kv-avatar-errors',
+					msgErrorClass: 'alert alert-block alert-danger',
+					defaultPreviewContent: '<img src="<?php echo base_url();?>images/upload.PNG" alt="Your Avatar" style="width:100px">',
+					layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
+					allowedFileExtensions: ["jpg", "png", "gif"]
+				});
 				function upload()
 				{
 					var myform = document.getElementById("newPost");
 
-					var fileNo = document.getElementById('avatar').files.length;
+					//var fileNo1 = document.getElementById('avatar1').files.length;
+					//var fileNo2 = document.getElementById('avatar2').files.length;
+					//var fileNo3 = document.getElementById('avatar3').files.length;
 					
-					console.log(fileNo);
 					
-					if(fileNo == 0)
-					{
-					   $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
-					   return false; 
-					}
-					else //if(r == false)
-					{
+					//if(fileNo1 == 0)
+					//{
+					//   $("#uploadImgError1").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
+					//   return false; 
+					//}
+					//else //if(r == false)
+					//{
 						$('#pleaseWaitDialog').modal('show');
 
 						setForm(function(data)
@@ -135,7 +178,7 @@
 							return data;
 						});
 					}
-				}
+				//}
 				</script>
 				
        

@@ -252,8 +252,8 @@ class footer  extends CI_Controller {
 		$data["menuPendingRequestNumber"]="0";
 		
 		$data["result"]=$this->blog_model->getBlog();
-		$data["pic1"]=$data["result"][0]->picPath1.$data["result"][0]->picName1;
-		$data["pic2"]=$data["result"][0]->picPath2.$data["result"][0]->picName2;
+		$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
+		$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
 		$data["title"]=$data["result"][0]->title;
 		$data["description"]=$data["result"][0]->description;
 		

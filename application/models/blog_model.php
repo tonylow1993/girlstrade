@@ -24,7 +24,7 @@ class blog_model extends CI_Model {
 	{
 		try {
 			$this->db->trans_start();
-			$this->db->where('ID', 1);
+			$this->db->where('ID', 0);
 			$var=$this->db->update('blog', $data);
 			$this->db->trans_complete();
 			if($var>0)

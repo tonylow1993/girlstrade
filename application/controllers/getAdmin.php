@@ -10,6 +10,10 @@ class getAdmin extends CI_Controller {
 		$this->load->helper('language');
 		$this->load->helper('form');
 		$this->load->helpers('site');
+		$this->load->library('upload');
+		//$this->load->library('image_lib');
+		date_default_timezone_set("Asia/Hong_Kong");
+		 
 		if($this->nativesession->get("language")!=null)
 		{
 			$data["lang_label"] = $this->nativesession->get("language");
@@ -56,6 +60,7 @@ class getAdmin extends CI_Controller {
         $this->load->model('buyerfeedback_model');
         $this->load->model('userstat_model');
         $this->load->model('messages_model');
+        $this->load->model('blog_model');
 	}
 	
 	public function index($Photo=0)
@@ -137,6 +142,12 @@ class getAdmin extends CI_Controller {
 						$data['itemList']=$this->mapToFeedBack($this->buyerfeedback_model->getApproveFeedBackUnverifiedList($pageNum));
 						$this->load->view('adminApproveFeedBack.php', $data);
 					}else if($activeNav==12){
+						$data["result"]=$this->blog_model->getBlog();
+						$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
+						$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
+						$data["title"]=$data["result"][0]->title;
+						$data["description"]=$data["result"][0]->description;
+		
 						$this->load->view('adminBlogPage.php', $data);
 					}
 			}
@@ -1326,7 +1337,87 @@ class getAdmin extends CI_Controller {
 		//$this->getAccountPage(10);
 	}
 	public function uploadBlogPhoto(){
+		if(isset($_GET["prevURL"])){
+			$prevURL=$_GET["prevURL"];
+			$_SESSION["previousUrl"]=$prevURL;
+		}else if(isset($_SESSION["previousUrl"])){
+			$prevURL=$_SESSION["previousUrl"];
+		}
+		$loginUser=$this->nativesession->get("user");
 		
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		if(isset($loginUser)){
+			$menuCount=$this->getHeaderCount($loginUser["userID"]);
+			$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser["userID"]);
+			$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+		}
+		//----------------------------
+		
+		
+		$upload_dir= 'BLOG_PHOTO';
+		
+		if (!file_exists($upload_dir)) {
+			mkdir($upload_dir, 0777, true);
+		}
+		//$upload_dir_resize=$upload_dir.'/Resize';
+		//if(!file_exists($upload_dir_resize)){
+		//	mkdir($upload_dir_resize, 0777,true);
+		//}
+		$this->load->library('image_lib');
+		
+		for($i=1;$i<=3;$i++){
+		
+		$imgPath = $upload_dir.'/'.(new DateTime())->format('Y-m-d-H-i-s').'_'.$i.'.png';
+		//$thumb_fileName=(new DateTime())->format('Y-m-d-H-i-s').'_thumb_'.$i.'.png';
+		//$main_fileName=(new DateTime())->format('Y-m-d-H-i-s').'_main_'.$i.'.png';
+		$data["pic".$i]=basename($imgPath);	
+		$config['file_name'] = $data["pic".$i];
+		$config['upload_path'] = $upload_dir;
+		$config['allowed_types'] = 'gif|jpg|png|bmp|jpeg';
+			
+		$this->upload->initialize($config);
+		
+		//ChromePhp::log($upload_dir);
+			
+		if (!$this->upload->do_upload("avatar".$i))
+		{
+			if($this->upload->display_errors()<>'')
+			{
+				$hasImage=$this->input->post("avatar".$i);
+				if(!isset($hasImage) or empty($hasImage))
+					continue;
+					$error = $this->upload->display_errors();
+					$data=array('error'=> $error);
+					$data["prevURL"]=base_url();
+					$data['redirectToWhatPage']="Admin Blog Page";
+					$data['redirectToPHP']=base_url().MY_PATH."getAdmin/getAccountPage/12";
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
+					return;
+			}
+		}
+		else
+		{
+			//$imgInfo['userID'] = $userID;
+			$imgInfo['picPath1'] = $upload_dir.'/';
+			$imgInfo['picName1'] = $data["pic1"];
+			$imgInfo['picPath2'] = $upload_dir.'/';
+			$imgInfo['picName2'] = $data["pic2"];
+			$imgInfo['picPath3'] = $upload_dir.'/';
+			$imgInfo['picName3'] = $data["pic3"];
+			$imgInfo['description']=$this->input->post("descriptionTextarea");
+			$imgInfo['title']=$this->input->post("titleTextarea");
+			$this->blog_model->updateBlog($imgInfo);
+		}
+		}
+		$this->getAccountPage(12);
 	}
 	public function validateRejectDescLength(){
 		$blogscomment=$this->input->post("descTextarea");
