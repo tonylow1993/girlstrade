@@ -3356,6 +3356,10 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.padding-left-30{
+	padding-left: 30px;
+}
+
 .sort-group{
 	width: 100px;
     display: inline-block;

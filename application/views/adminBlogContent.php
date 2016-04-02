@@ -1,19 +1,21 @@
 
           <div class="row">
-            <div class="col-md-5 col-xs-4 col-xxs-12">
+            <div class="padding-left-30">
 				
 				
 				<div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
 				<form id="newPost" action="<?php echo base_url(); echo MY_PATH;?>getAdmin/uploadBlogPhoto" method="post" enctype="multipart/form-data">
-					<div class="kv-avatar center-block" style="width:200px">
+					<div class="kv-avatar text-center" style="width:200px">
 						<input id="avatar" name="avatar" type="file" class="file-loading" accept="image/*">
 						<div id="uploadImgError"></div>
 					</div>
+					<br>
 					<!-- include other inputs if needed and include a form submit (save) button -->
 					<div style="width:400px">
 						<label>Title</label>
 						<textarea class="form-control" id="titleTextarea" name="titleTextarea" rows="4"  ></textarea>
 	                </div>
+					<br>
 	                <div style="width:400px">
 						<label>Description</label>
 						<textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="4"  ></textarea>
@@ -36,7 +38,7 @@
 					</div>
 					</div>
 					<br/>
-				     <button type="submit"  onclick="setup(); return false;">Submit</button>
+				    <button class="btn btn-primary" type="submit"  onclick="setup(); return false;">Submit</button>
                 </form>
 				<style>
 				.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
@@ -77,7 +79,7 @@
 					removeTitle: 'Cancel or reset changes',
 					elErrorContainer: '#kv-avatar-errors',
 					msgErrorClass: 'alert alert-block alert-danger',
-					defaultPreviewContent: '<img src="<?php echo $userPhotoPath;?>" alt="Your Avatar" style="width:100px">',
+					defaultPreviewContent: '<img src="<?php echo base_url();?>images/upload.PNG" alt="Your Avatar" style="width:100px">',
 					layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
 					allowedFileExtensions: ["jpg", "png", "gif"]
 				});
