@@ -612,7 +612,7 @@ $basePath=base_url();
            	</div>
           <div class="form-group">
             <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(<?php echo DESCLENGTHINPROFILE;?>) </span>:</label>
-            <textarea class="form-control" required="true" id="message-text" name="message-text" rows="5" columns="30" maxlength="<?php echo DESCLENGTHINPROFILE;?>"   placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control" required="true" id="message-text" name="message-text" rows="5" columns="30" maxlength="<?php echo DESCLENGTHINPROFILE;?>"   placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
           <div class="form-group">
             <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>

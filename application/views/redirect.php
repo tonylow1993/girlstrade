@@ -113,7 +113,7 @@ function sendIt() {
           </div>
           <div class="form-group">
             <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(300) </span>:</label>
-            <textarea class="form-control" required="true" id="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control" required="true" id="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
           <div class="form-group">
             <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>

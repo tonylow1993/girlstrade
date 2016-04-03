@@ -109,7 +109,7 @@
                             <div class="form-group">
                             <div class="col-md-12">
                                 <textarea class="form-control" id="contactUsMessage" name="message" 
-                                placeholder="Enter your message here. We will get back to you within 2 business days." rows="7" maxlength="650"></textarea>
+                                style="vertical-align: top; horizontal-align: left; resize:none;" placeholder="Enter your message here. We will get back to you within 2 business days." rows="7" maxlength="650"></textarea>
 								<div id="contactUsMessageError" class="center"> </div>                            
                             </div> 
                         </div>
@@ -133,7 +133,7 @@
 								  </div>
 								  <div style="width: 250px; height: 80px; position: absolute; border-style: none;
 											  bottom: 21px; left: 25px; margin: 0px; padding: 0px; right: 25px;">
-									<textarea id="g-recaptcha-response" name="g-recaptcha-response"
+									<textarea style="vertical-align: top; horizontal-align: left; resize:none;" id="g-recaptcha-response" name="g-recaptcha-response"
 											  class="g-recaptcha-response"
 											  style="width: 250px; height: 80px; border: 1px solid #c1c1c1;
 													 margin: 0px; padding: 0px; resize: none;" value="">

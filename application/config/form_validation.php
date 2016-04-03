@@ -20,11 +20,11 @@ $config = array(
 		'newPost/createNewPost' => array(
 				array( 	'field' => 'Adtitle',
 						'label' => 'lang:title',
-						'rules' => 'trim|required|min_length[10]|max_length[100]|xss_clean'
+						'rules' => 'trim|required|min_length[10]|max_length[70]|xss_clean'
 				),
 				array( 	'field' => 'descriptionTextarea',
 						'label' => 'lang:Description',
-						'rules' => 'trim|required|min_length[10]|max_length[200]|xss_clean'
+						'rules' => 'trim|required|min_length[10]|max_length['.DESCLENGTHINNEWPOST.']|xss_clean'
 				),
 				array( 	'field' => 'category-group',
 						'label' => 'lang:Category',
@@ -39,7 +39,7 @@ $config = array(
 		'home/updateProfile' => array(
 				array( 	'field' => 'descriptionTextarea',
 						'label' => 'lang:Description',
-						'rules' => 'trim|required|min_length[10]|max_length[200]|xss_clean'
+						'rules' => 'trim|required|min_length[10]|max_length['.DESCLENGTHINNEWPOST.']|xss_clean'
 				),
 				array( 	'field' => 'weChatID',
 						'label' => 'weChatID',
@@ -47,7 +47,7 @@ $config = array(
 				),
 				array( 	'field' => 'webSiteAddr',
 						'label' => 'webSiteAddr',
-						'rules' => 'trim|max_length[300]|xss_clean'
+						'rules' => 'trim|max_length['.DESCLENGTHINNEWPOST.']|xss_clean'
 				)
 		)
 	);

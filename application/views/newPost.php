@@ -70,7 +70,7 @@ input[type=checkbox]
                       <div class="form-group row">
                           <label class="col-md-3 control-label text-center" for="Adtitle"><i class="icon-pencil"></i> <?php echo $TopicTitle;?> <font color="red">*</font></label>
                           <div class="col-md-8">
-                              <input id="Adtitle" name="Adtitle" class="form-control input-md" value="<?php echo set_value('Adtitle'); ?>" type="text" required="true"  maxlength="45"/>
+                              <input id="Adtitle" name="Adtitle" class="form-control input-md" value="<?php echo set_value('Adtitle'); ?>" type="text" required="true"  maxlength="70"/>
 <!--                        <span class="help-block">A great title needs at least 5 words </span> -->
                               <em>(A Great Title Needs At Least 5 Words) </em>
                           </div>
@@ -172,7 +172,7 @@ input[type=checkbox]
                           <i class="icon-clipboard"></i>
 							<?php echo $Description;?> <font color="red">*</font></label>
                           <div class="col-md-8">
-                              <textarea class="form-control"  id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"><?php echo set_value('descriptionTextarea'); ?></textarea>
+                              <textarea class="form-control" style="vertical-align: top; horizontal-align: left; resize:none;" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"><?php echo set_value('descriptionTextarea'); ?></textarea>
 	                          	<!--<div id="descriptionTextareaAjaxLoad" class="center"></div>
 	                        	<div id="descriptionTextareaError" hidden="true"></div>-->
                           </div>

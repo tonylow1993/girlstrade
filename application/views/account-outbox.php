@@ -150,7 +150,7 @@
         	</div>
         	 <div class="form-group">
             <label for="message-text" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINOUTBOX;?>) </span>:</label>
-            <textarea class="form-control"  id="message-text" name="message-text" maxlength="<?php echo DESCLENGTHINOUTBOX;?>"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control"  id="message-text" name="message-text" maxlength="<?php echo DESCLENGTHINOUTBOX;?>"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
          	
         </form>

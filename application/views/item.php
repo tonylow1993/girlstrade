@@ -505,7 +505,7 @@ input[type=checkbox]
 <!--                                     	<div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
 
                                         <div class="form-group" id="blogscommentDiv">
-                                            <textarea class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="Message" name="blogscomment" id="blogscomment"></textarea> 
+                                            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="Message" name="blogscomment" id="blogscomment"></textarea> 
 											  	<div id="blogscommentAjaxLoad" class="center"></div>
 	                        					<div id="blogscommentError" hidden="true"></div>
                          				</div>
@@ -902,7 +902,7 @@ input[type=checkbox]
         	</div>
         	 <div class="form-group">
             <label for="message-text" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINMYADS;?>) </span>:</label>
-            <textarea class="form-control"  id="message-text"  maxlength="<?php echo DESCLENGTHINMYADS;?>"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control"  id="message-text"  maxlength="<?php echo DESCLENGTHINMYADS;?>"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
          	
         </form>
@@ -967,7 +967,7 @@ input[type=checkbox]
         	
         	 <div class="form-group">
             <label for="message-text" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINMYADS;?>) </span>:</label>
-            <textarea class="form-control"  id="message-text"  maxlength="<?php echo DESCLENGTHINMYADS;?>"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control"  id="message-text"  maxlength="<?php echo DESCLENGTHINMYADS;?>"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
          	
         </form>
@@ -1033,7 +1033,7 @@ input[type=checkbox]
         	
         	 <div class="form-group">
             <label for="message-text" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINMYADS;?>) </span>:</label>
-            <textarea class="form-control"  id="message-text"  maxlength="<?php echo DESCLENGTHINMYADS;?>"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control"  id="message-text"  maxlength="<?php echo DESCLENGTHINMYADS;?>"  rows="5" columns="30"  name="message-text"  placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
          	
         </form>
@@ -1211,7 +1211,7 @@ input[type=checkbox]
           </div>
           <div class="form-group">
             <label for="messagetext2" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINITEMPAGE;?>) </span>:</label>
-            <textarea class="form-control"   maxlength="<?php echo DESCLENGTHINITEMPAGE;?>" id="messagetext2" name="messagetext2"></textarea>
+            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control"   maxlength="<?php echo DESCLENGTHINITEMPAGE;?>" id="messagetext2" name="messagetext2"></textarea>
           </div>
           <div class="form-group">
             <label for="recipientname1" class="control-label">Name: </label>
@@ -1281,7 +1281,7 @@ input[type=checkbox]
           <div class="form-group">
             <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(<?php echo DESCLENGTHINITEMPAGE;?>) </span>:</label>
             <textarea id="txtSendMessage" class="form-control"  maxlength="<?php echo DESCLENGTHINITEMPAGE;?>"  rows="5" columns="30" 
-            required="true" id="message-text" name="message-text"  
+            style="vertical-align: top; horizontal-align: left; resize:none;" required="true" id="message-text" name="message-text"  
             style="resize:none"
             placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
           </div>
@@ -1318,7 +1318,7 @@ input[type=checkbox]
 										<input type="hidden" name="postID"  value="<?php echo $postID;?>" ><!--                                     <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
 										<input type="hidden" name="parentID"  id="parentID" >
                                         <div id="replyblogscommentDiv" class="form-group">
-                                            <textarea class="form-control" maxlength="<?php echo DESCLENGTHINITEMPAGE;?>"  rows="5" columns="30"  placeholder="Message" name="replyblogscomment" id="replyblogscomment"></textarea> 
+                                            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control" maxlength="<?php echo DESCLENGTHINITEMPAGE;?>"  rows="5" columns="30"  placeholder="Message" name="replyblogscomment" id="replyblogscomment"></textarea> 
                                               	<div id="replyblogscommentAjaxLoad" class="center"></div>
 	                        					<div id="replyblogscommentError" hidden="true"></div>
                          
@@ -1351,7 +1351,7 @@ input[type=checkbox]
       <h2 id="copytext">
 			<?php // echo $shareLink;?>
 			</h2>
-		<textarea style="width: 100%; height: 100px;font-size:20" class="js-copytextarea" id="holdtext">
+		<textarea style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" class="js-copytextarea" id="holdtext">
 		<?php echo $shareLink;?>
 		</textarea>
 		 </div>

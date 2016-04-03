@@ -114,7 +114,7 @@ input[type=checkbox]
 					  <div class="form-group">
                         <label for="Website" class="col-sm-3 control-label">Website</label>
                         <div class="col-sm-9">
-						  <input name="webSiteAddr" type="text"  pattern="\d*" maxlength="300" class="form-control" id="webSiteAddr" value="<?php echo set_value('webSiteAddr', $webSiteAddr); ?>" placeholder="<?php echo $webSiteAddr; ?>">
+						  <input name="webSiteAddr" type="text"  pattern="\d*" maxlength="<?php echo DESCLENGTHINNEWPOST;?>" class="form-control" id="webSiteAddr" value="<?php echo set_value('webSiteAddr', $webSiteAddr); ?>" placeholder="<?php echo $webSiteAddr; ?>">
 						  <div class="checkbox">
 						  <label>
                             <input id="showWebSite" name='showWebSite' type="checkbox" <?php  if($showWebSite==1) echo " checked "?>>
@@ -125,7 +125,7 @@ input[type=checkbox]
                       <div class="form-group">
 	                        <label  class="col-sm-3 control-label"><?php echo $this->lang->line("MyIntroduction");?></label>
 	                        <div class="col-sm-9">
-	                            <textarea class="form-control" style="vertical-align: top; horizontal-align: left;" id="descriptionTextarea" name="descriptionTextarea" rows="4"   maxlength="900">
+	                            <textarea class="form-control" style="vertical-align: top; horizontal-align: left; resize:none;" id="descriptionTextarea" name="descriptionTextarea" rows="4"   maxlength="<?php echo DESCLENGTHINNEWPOST;?>">
 	                            <?php echo set_value('descriptionTextarea', $descriptionTextarea); ?>
 	                            </textarea>
                            </div>
