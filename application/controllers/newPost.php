@@ -706,7 +706,7 @@ public function getChildCategory($parentID)
     	if(strcmp(trim($str), '')==0){
     		$this->form_validation->set_message('price_check', 'The %s field cannot be empty');
     		return FALSE;
-    	}else if (!is_int(trim($str)))
+    	}else if (!is_int((int)trim($str)))
 		{
 			$this->form_validation->set_message('price_check', 'The %s field can only be number without decimal');
 			return FALSE;
