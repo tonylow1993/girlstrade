@@ -160,7 +160,7 @@ class newPost extends CI_Controller {
 			}
 			//----------------------------
 			$NumOfPostTimes=$this->post->getNUMOFTIMESPOST($data["userID"]);
-			if($NumOfPostTimes>NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
+			if($NumOfPostTimes>=NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
 			{
 				$errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
 				$data["error"]=$errorMsg;
@@ -193,7 +193,7 @@ class newPost extends CI_Controller {
             $data["lblAllLocations"]=$this->lang->line("lblAllLocations");
             $data["PleaseNotCloseBrowse"]=$this->lang->line("PleaseNotCloseBrowse");
             $data["YouHaveRemainPost"]="";
-            if(NUMOFTIMESPOST-$NumOfPostTimes<MINCOUNTSHOWREMAINTIMES && NUMOFTIMESPOST<UNLIMITEDTIMES)
+            if(NUMOFTIMESPOST-$NumOfPostTimes<=MINCOUNTSHOWREMAINTIMES && NUMOFTIMESPOST<UNLIMITEDTIMES)
             	$data["YouHaveRemainPost"]=sprintf($this->lang->line("YouHaveRemainPost"), NUMOFTIMESPOST-$NumOfPostTimes);
             
 			//-----------------Set user information -----------------
@@ -787,7 +787,7 @@ public function getChildCategory($parentID)
         $usertype="PREMIUMPOSTEXPIRYDAYS"; //$userInfo("usertype");
         
         $NumOfPostTimes=$this->post->getNUMOFTIMESPOST($userID);
-        if($NumOfPostTimes>NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
+        if($NumOfPostTimes>=NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
         {
     	    $errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
 				$data["error"]=$errorMsg;
@@ -834,7 +834,9 @@ public function getChildCategory($parentID)
         
         if(ExceedDescLength($content, DESCLENGTHINNEWPOST)){
 	        $errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-	        $data["error"]=$errorMsg;
+	        if(strlen(trim($content))==0)
+				$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+			$data["error"]=$errorMsg;
 	        $data["prevURL"]=$prevURL;
 	        $data['redirectToWhatPage']="New Post Page";
 	        $data['redirectToPHP']=base_url().MY_PATH."newPost";
@@ -1455,7 +1457,10 @@ public function getChildCategory($parentID)
 		}else{
 			$data['status'] = 'F';
 			$data['class'] = "has-error";
-			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed description length!</div>';
+			if(strlen(trim($content))==0)
+				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Zero description length!</div>';
+			else 
+				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed description length!</div>';
 			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Exceed description length</span></em>';
 		}
 		echo json_encode($data);

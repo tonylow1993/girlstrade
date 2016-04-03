@@ -245,10 +245,10 @@
             	$NumOfPostTimes=$this->itemcomments_model->getNUMOFTIMESPOSTITEMCOMMENTS($fUserID);
                 $data["DailyMaxTimes"]=$this->messages_model->getMaxDailyTimesBuyerSendMsg($postId, $fUserID);
 	            $data["TotalMaxTimes"]=$this->messages_model->getMaxTotalTimesBuyerSendMsg($postId, $fUserID);
-	            if(NUMOFTIMESPOSTITEMCOMMENTS-$NumOfPostTimes<MINCOUNTSHOWREMAINTIMES && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES)
+	            if(NUMOFTIMESPOSTITEMCOMMENTS-$NumOfPostTimes<=MINCOUNTSHOWREMAINTIMES && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES)
 	            	$data["YouHaveRemainItemPostTimes"]=sprintf($this->lang->line("YouHaveRemainInsertItemComments"), NUMOFTIMESPOSTITEMCOMMENTS-$NumOfPostTimes);
 	            $DailyMaxTimes=$this->requestpost_model->getMaxDailyTimesBuyerDirectSend($postId, $loginUser["userID"]);
-	           	if(MAXTIMEDAILY_DRECTSENDFROMBUYER-$DailyMaxTimes<MINCOUNTSHOWREMAINTIMES && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES)
+	           	if(MAXTIMEDAILY_DRECTSENDFROMBUYER-$DailyMaxTimes<= MINCOUNTSHOWREMAINTIMES && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES)
 	           		$data["YouHaveRemainContactSellerTimes"]=sprintf($this->lang->line("YouHaveRemainContactSellerTimes"), MAXTIMEDAILY_DRECTSENDFROMBUYER-$DailyMaxTimes);
 	           		
             }
@@ -664,9 +664,12 @@
         		
         	}else {
         		$data['status'] = 'F';
-        	$data['class'] = "has-error";
-        	$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
-        	$data['icon'] = '<em><span style="color:red"></span></em>';
+	        	$data['class'] = "has-error";
+	        	if(strlen(trim($blogscomment))==0)
+					$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Zero description length!</div>';
+				else 
+					$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
+	        	$data['icon'] = '<em><span style="color:red"></span></em>';
         	}
         	echo json_encode($data);
         	
@@ -684,7 +687,10 @@
         	}else {
         		$data['status'] = 'F';
         		$data['class'] = "has-error";
-        		$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
+        		if(strlen(trim($blogscomment))==0)
+					$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Zero description length!</div>';
+				else 
+					$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
         		$data['icon'] = '<em><span style="color:red"></span></em>';
         	}
         	echo json_encode($data);

@@ -2920,6 +2920,9 @@ function generateRandomString($length = 8) {
 			
 			if(ExceedDescLength($userInfo['introduction'], DESCLENGTHINNEWPOST)){
 				$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+				if(strlen(trim($userInfo['introduction']))==0)
+					$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+						
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
 				$data['redirectToWhatPage']="Edit Profile Page";
@@ -3483,6 +3486,8 @@ function generateRandomString($length = 8) {
 			
 		if(ExceedDescLength($content, DESCLENGTHINNEWPOST)){
 			$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+			if(strlen(trim($content))==0)
+					$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
 			$data["error"]=$errorMsg;
 			$data["prevURL"]=$prevURL;
 			$data['redirectToWhatPage']="Account Profile Page";

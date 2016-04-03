@@ -31,9 +31,9 @@
                       <label class="col-md-4 control-label" > <?php echo $Username;?> <font color="red">*</font></label>
                       <div class="col-md-6">
                         <input id="username" name="username" value="<?php echo set_value('username'); ?>" placeholder="At least 5 characters" class="form-control input-md" required="true" type="text"/>
-                        <div id="usernameAjaxLoad" class="center">
+                        <div id="usernameAjaxLoad" class="center"></div>
                         <div id="usernameError" hidden="true"></div>
-                        </div>
+                        
                       </div>
                       
                     </div>

@@ -1430,12 +1430,13 @@ class getAdmin extends CI_Controller {
 			$data['class'] = "has-success";
 			$data['message'] = '';
 			$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i> Valid Description</span></em>';
-		
-		
 		}else {
 			$data['status'] = 'F';
 			$data['class'] = "has-error";
-			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
+			if(strlen(trim($data['message']))==0)
+				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Zero Description Length</div>';
+			else
+				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
 			$data['icon'] = '<em><span style="color:red"></span></em>';
 		}
 		echo json_encode($data);

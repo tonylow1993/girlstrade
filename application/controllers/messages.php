@@ -173,7 +173,7 @@ function addDayswithdate($date,$days){
 				
 				$DailyMaxTimes=$this->requestpost_model->getMaxDailyTimesBuyerDirectSend($postID, $fUserID);
 				
-				if($DailyMaxTimes>MAXTIMEDAILY_DRECTSENDFROMBUYER && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES){
+				if($DailyMaxTimes>=MAXTIMEDAILY_DRECTSENDFROMBUYER && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMAXTIMEDAILY_DRECTSENDFROMBUYER");
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
@@ -329,6 +329,8 @@ function addDayswithdate($date,$days){
 			
 						if(ExceedDescLength($comment, DESCLENGTHINNEWPOST)){
 							$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+							if(strlen(trim($comment))==0)
+								$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
 							$data["error"]=$errorMsg;
 							$data["prevURL"]=$prevURL;
 							$data['redirectToWhatPage']="Previous Page";
@@ -483,6 +485,8 @@ function addDayswithdate($date,$days){
 				
 				if(ExceedDescLength($comment, DESCLENGTHINNEWPOST)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+					if(strlen(trim($comment))==0)
+						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
 					$data['redirectToWhatPage']="Previous Page";
@@ -715,7 +719,7 @@ function addDayswithdate($date,$days){
 				
 				$DailyMaxTimes=$this->messages_model->getMaxDailyTimesBuyerSendMsg($postID, $fUserID);
 				
-				if($DailyMaxTimes>MAXTIMEDAILY_SENDMSGFROMBUYER && MAXTIMEDAILY_SENDMSGFROMBUYER<UNLIMITEDTIMES){
+				if($DailyMaxTimes>=MAXTIMEDAILY_SENDMSGFROMBUYER && MAXTIMEDAILY_SENDMSGFROMBUYER<UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMAXTIMEDAILY_SENDMSGFROMBUYER");
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
@@ -738,7 +742,7 @@ function addDayswithdate($date,$days){
 				
 				$TotalMaxTimes=$this->messages_model->getMaxTotalTimesBuyerSendMsg($postID, $fUserID);
 				
-				if($TotalMaxTimes>MAXTIME_SENDMSGFROMBUYER && MAXTIME_SENDMSGFROMBUYER<UNLIMITEDTIMES){
+				if($TotalMaxTimes>=MAXTIME_SENDMSGFROMBUYER && MAXTIME_SENDMSGFROMBUYER<UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMAXTIME_SENDMSGFROMBUYER");
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
@@ -1048,7 +1052,7 @@ function addDayswithdate($date,$days){
 			
 			if($userID==$userInfo["userID"]){
 				$times=$this->messages_model->getMaxTimesSellerSend($userInfo["userID"]);
-				if($times>MAXTIMESDAILY_REPLYFROMSELLER && MAXTIMESDAILY_REPLYFROMSELLER< UNLIMITEDTIMES){
+				if($times>=MAXTIMESDAILY_REPLYFROMSELLER && MAXTIMESDAILY_REPLYFROMSELLER< UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailySellerReply");
 					$data["error"]=$errorMsg;
 					$data['redirectToWhatPage']="Previous Page";
@@ -1065,7 +1069,7 @@ function addDayswithdate($date,$days){
 				}
 			}else{
 				$times=$this->messages_model->getMaxTimesBuyerSend($userInfo["userID"]);
-				if($times>MAXTIMESDAILY_SENDFROMBUYER && MAXTIMESDAILY_SENDFROMBUYER<UNLIMITEDTIMES){
+				if($times>=MAXTIMESDAILY_SENDFROMBUYER && MAXTIMESDAILY_SENDFROMBUYER<UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailyBuyerReply");
 					$data["error"]=$errorMsg;
 					$data['redirectToWhatPage']="Previous Page";
@@ -1211,7 +1215,7 @@ function addDayswithdate($date,$days){
 			//----------------------------
 			
 			$times=$this->messages_model->getMaxTimesDeleteAds($userInfo["userID"]);
-			if($times> MAXTIMESDAILY_DELETEADS && MAXTIMESDAILY_DELETEADS<UNLIMITEDTIMES)
+			if($times>= MAXTIMESDAILY_DELETEADS && MAXTIMESDAILY_DELETEADS<UNLIMITEDTIMES)
 			{
 // 				$data['status'] = 'F';
 // 				$data['class'] = "has-error";
@@ -1452,7 +1456,7 @@ function addDayswithdate($date,$days){
 				
 				
 				$times=$this->tradecomments_model->getMaxTimesMarkSold($user["userID"]);
-				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST<UNLIMITEDTIMES)
+				if($times>= MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST<UNLIMITEDTIMES)
 				{
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailyMarkSoldPerPost");
 					$data["error"]=$errorMsg;
@@ -1538,7 +1542,7 @@ function addDayswithdate($date,$days){
 							return;
 				}
 				$times=$this->tradecomments_model->getMaxTimesMarkSold($user["userID"]);
-				if($times> MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST<UNLIMITEDTIMES)
+				if($times>= MAXTIMESDAILY_MARKSOLDPERPOST && MAXTIMESDAILY_MARKSOLDPERPOST<UNLIMITEDTIMES)
 				{
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailyMarkSoldPerPost");
 					$data["error"]=$errorMsg;
@@ -1635,6 +1639,8 @@ function addDayswithdate($date,$days){
 						
 						if(ExceedDescLength($buyerComment, DESCLENGTHINNEWPOST)){
 							$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+							if(strlen(trim($buyerComment))==0)
+								$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
 							$data["error"]=$errorMsg;
 							$data["prevURL"]=$prevURL;
 							$data['redirectToWhatPage']="Previous Page";
@@ -1941,10 +1947,12 @@ function addDayswithdate($date,$days){
 				
 				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+					if(strlen(trim($message))==0)
+						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
 					$data['redirectToWhatPage']="Previous Page";
-				if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
+					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
 							$data['redirectToPHP']=base_url();
@@ -2103,6 +2111,8 @@ function addDayswithdate($date,$days){
 				
 				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+					if(strlen(trim($message))==0)
+						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
 					$data['redirectToWhatPage']="Previous Page";
@@ -2262,6 +2272,8 @@ function addDayswithdate($date,$days){
 				
 				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+					if(strlen(trim($message))==0)
+						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
 					$data['redirectToWhatPage']="Previous Page";
