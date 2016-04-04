@@ -461,12 +461,15 @@ window.onload = function(){
             </div>
 			
         <div class="inner-box relative panel-bevel">
-                <h2 class="title-2"><span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">Interested</span> Items
+				
+                <h2 class="title-2">
+					<i class="fa fa-heart" style="color: #E2348C;"></i>
+					<span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">Interested</span> Items
             
-                <a id="nextItem1" class="link pull-right carousel-nav"> <i class="icon-right-open-big"></i></a>
-             <a id="prevItem1" class="link pull-right carousel-nav"> <i class="icon-left-open-big"></i> </a>
+					<a id="nextItem1" class="link pull-right carousel-nav"> <i class="icon-right-open-big"></i></a>
+					<a id="prevItem1" class="link pull-right carousel-nav"> <i class="icon-left-open-big"></i> </a>
 
-            </h2>
+				</h2>
 			
             <div class="row">
                     <div class="col-lg-12">
@@ -530,12 +533,12 @@ window.onload = function(){
         </div>
        
             <div class="inner-box relative panel-bevel">
-                <h2 class="title-2"><span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">Hot</span> Items
-            
-                          <a id="nextItem" class="link  pull-right carousel-nav"> <i class="icon-right-open-big"></i></a>
-             <a id="prevItem" class="link pull-right carousel-nav"> <i class="icon-left-open-big"></i> </a>
-
-            </h2>
+                <h2 class="title-2" style="border-bottom: 1px solid #E00000;">
+					<i class="fa fa-fire" style="color: #E00000;"></i>
+					<span style="font-family: MyCustomFont; font-weight: 700; color: #E00000;">Hot</span> Items
+					<a id="nextItem" class="link  pull-right carousel-nav" style="color: #E00000;"> <i class="icon-right-open-big"></i></a>
+					<a id="prevItem" class="link pull-right carousel-nav" > <i class="icon-left-open-big"></i> </a>
+				</h2>
             <div class="row">
                     <div class="col-lg-12">
                         <div class="no-margin item-carousel owl-carousel owl-theme">
@@ -572,7 +575,7 @@ window.onload = function(){
 						echo "<div class=\"item-right\">";
 						echo "<span class=\"item-name\"> $name </span>"; 
 						echo "<span class=\"item-desc\"> $desc </span>"; 
-						echo "<span class=\"item-prc\"> $ $price </span>"; 
+						echo "<span class=\"item-prc\" style=\"color: #E00000; border:1px solid #E00000;\"> $ $price </span>"; 
 						echo "</div>";
 						echo "<div class=\"item-left\">";
               			echo "<a href=\"$viewItemPath\">";
