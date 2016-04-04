@@ -3356,19 +3356,6 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
-
-@media (max-width: 480px) {
-	.sortByDiv{
-		height: 55px;
-		margin-top: 10px;
-	}
-	
-	.tab-filter {
-		position: relative;
-		margin-left: 10px;
-	}
-}
-
 .padding-left-30{
 	padding-left: 30px;
 }
@@ -3659,21 +3646,12 @@ span b{
     text-align: center !important;
 }
 
-#countryPopup {
+#countryPopup, #pricePopup {
 	color: white;
 }
 
-#pricePopup{
-	color: white;
-}
-
-#catRangeBtn1{
+#catRangeBtn1, #locRangeBtn1{
     margin-top: auto;
-    margin-left: 15px;
-}
-
-#locRangeBtn1{
-	margin-top: auto;
     margin-left: 15px;
 }
 
@@ -3722,14 +3700,9 @@ span b{
     padding-bottom: 15px;
 }
 
-.price-hide{
+.price-hide, .action-hide{
 	display: none;
 }
-
-.action-hide{
-	display: none;
-}
-
 
 @media screen and (max-width: 600px) {
 	.price-td{
@@ -3754,6 +3727,26 @@ span b{
     opacity: .8;
 }
 
+@media (max-width: 480px) {
+	.sortByDiv{
+		height: 55px;
+		margin-top: 10px;
+	}
+	
+	.tab-filter {
+		position: relative;
+		margin-left: 10px;
+	}
+	
+	#locForm1, #catForm1{
+		padding-left: 0px;
+	}
+	
+	#catRangeBtn1, #locRangeBtn1{
+		margin-top: 10px;
+		margin-left: 0px;
+	}
+}
 
 
 /* =============================================================== */
