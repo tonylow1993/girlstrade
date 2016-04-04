@@ -323,7 +323,7 @@ input[type=checkbox]
                       <div class="form-group row">
                           <label class="col-md-3 control-label text-center"></label>
                           <div class="col-md-8"> 
-                       	       <button id="submit-upload-form" type="submit" class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
+                       	       <button id="submit-upload-form"  class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
                               <button id="validate" hidden="true" type="submit"></button>
                           </div>
                        </div>
@@ -569,6 +569,8 @@ function setup()
 					break;
 				}
             }     
+
+            
         if((isServiceCat!=1) && ( fileList == null || fileList.length == 0))
         {
                $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
@@ -663,6 +665,8 @@ function isEmptyUploadFile(callback)
 					break;
 				}
             } 
+
+      
   if((isServiceCat!=1) && (fileList == null || fileList.length == 0))
 	    callback(true);
     else

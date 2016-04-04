@@ -5,7 +5,7 @@
     <div class="container">
     
     <?php echo validation_errors("<div style='color:red;'>","</div>") ?>
-	<?php echo form_open('home/signup'); ?>
+	<?php //echo form_open('home/signup'); ?>
 	
       <div class="row">
         <div class="col-md-8 page-content">

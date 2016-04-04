@@ -234,6 +234,7 @@ $lang["adminBlog"]="Blog";
 $lang["YouHaveRemainInsertItemComments"]="<br/>(You have remain %s times to post item comments today.)";
 $lang["YouHaveRemainContactSellerTimes"]="<br/>(You have remain %s times to contact different seller.)";
 $lang["ZeroDescLength"]="Message or description cannot empty";
+$lang["PostErrorNoImageFileSelected"]="At least one image file need to upload";
 
 
 

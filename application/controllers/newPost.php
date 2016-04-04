@@ -251,7 +251,7 @@ class newPost extends CI_Controller {
 		if($data["userID"]==0 || $postInfo[0]->userID!=$data["userID"])
 		{
 			$errorMsg=$this->lang->line("PostPleaseLoginFirst");
-			$data=array('error'=> $errorMsg);
+			$data['error']= $errorMsg;
 			$data["prevURL"]=$prevURL;
 			$data['redirectToWhatPage']="Login Page";
 			$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
@@ -765,7 +765,7 @@ public function getChildCategory($parentID)
     	if(empty($userInfo))
  	        {
  	        	$errorMsg=$this->lang->line("PostPleaseLoginFirst");	
- 	        	$data=array('error'=> $errorMsg);
+ 	        	$data['error']= $errorMsg;
  	    		$data["prevURL"]=$prevURL;
 				$data['redirectToWhatPage']="Login Page";
 				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";;
@@ -896,27 +896,80 @@ public function getChildCategory($parentID)
         'expriyDate' => $tempExpriyDate
     	);
         
-        $postID = $this->post->insert($postInfo);
         
-        if($postID==null or $postID==0)
-        {
-        	$errorMsg=$this->lang->line("PostErrorZeroPostID");
-        	$data=array('error'=> $errorMsg);
-        	$data["prevURL"]=$prevURL;
-			$data['redirectToWhatPage']="New Post Page";
-			$data['redirectToPHP']=base_url().MY_PATH."newPost";
-			$data["successTile"]=$this->lang->line("successTile");
-				$data["failedTitle"]=$this->lang->line("failedTitle");
-				$data["goToHomePage"]=$this->lang->line("goToHomePage");
-				$this->load->view('failedPage', $data);
-			return;
-        }
         //$this->post->updateStat();
+        $data['result']=null;
+        $data['query']=$this->cat->getParentCategory();
+        if (!is_null($data['query'])) {
+        	foreach($data['query'] as $row)
+        	{
+        		$result1=array($row->categoryID => array($row));
+        		$result2=$this->getChildCategory($row->categoryID);
+        		if(!is_null($result2))
+        			if(is_null($data['result']))
+        				$data['result']=$result1+$result2;
+        				else
+        					$data['result']=$data['result']+$result1+$result2;
+        					else
+        					{
+        						if(is_null($data['result']))
+        							$data['result']=$result1;
+        							else
+        								$data['result']=$data['result']+$result1;
+        					}
+        	}
+        }
+        $serviceCatList="";
+        foreach ($data['result'] as $id=>$value)
+        {
+        	if($value[0]->newPostNotRequiredImg==1){
+        		$serviceCatList=$serviceCatList.$id.",";
+        	}
+        }
+        $isServiceCat=false;
+        $fields=explode(',',$serviceCatList);
+        foreach ($fields as $value)
+        {	if(intval($value)==intval($cat)){
+        		$isServiceCat=true;
+        		break;
+        	}
+        }
+        
         if(isset($_FILES['filelist']) && !empty($_FILES['filelist'])){
 	        $this->load->library('image_lib');
 			$filelist=$_FILES['filelist'];
 		    $number_of_files = sizeof($_FILES['filelist']['tmp_name']);
-			ChromePhp::log($filelist);
+			if($number_of_files==0 && !$isServiceCat)
+			{
+				$errorMsg=$this->lang->line("PostErrorNoImageFileSelected");
+				$data['error'] = $errorMsg;
+				$data["prevURL"]=$prevURL;
+				$data['redirectToWhatPage']="New Post Page";
+				$data['redirectToPHP']=base_url().MY_PATH."newPost";
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+			}
+			$postID = $this->post->insert($postInfo);
+							
+			if($postID==null or $postID==0)
+			{
+				$errorMsg=$this->lang->line("PostErrorZeroPostID");
+				//$data['error']= $errorMsg;
+				$data['error'] = $errorMsg;
+				$data["prevURL"]=$prevURL;
+				$data['redirectToWhatPage']="New Post Page";
+				$data['redirectToPHP']=base_url().MY_PATH."newPost";
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+			}
+							
+		    ChromePhp::log($filelist);
 	        for ($i=0;$i<$number_of_files;$i++)
 	        {
 				$_FILES['image']['name'] = $filelist['name'][$i];
@@ -1014,7 +1067,6 @@ public function getChildCategory($parentID)
 						}
 						else
 						{
-						
 							$imgInfo['postID'] = $postID;
 							$imgInfo['userID'] = $userID;
 							$imgInfo['picturePath'] = $upload_dir_resize;
@@ -1028,7 +1080,40 @@ public function getChildCategory($parentID)
 				}
 	        }
         }
-        
+        else{
+        	if(!$isServiceCat)
+        	{
+        		$errorMsg=$this->lang->line("PostErrorNoImageFileSelected");
+        		$data['error'] = $errorMsg;
+				$data["prevURL"]=$prevURL;
+        		$data['redirectToWhatPage']="New Post Page";
+        		$data['redirectToPHP']=base_url().MY_PATH."newPost";
+        		$data["successTile"]=$this->lang->line("successTile");
+        		$data["failedTitle"]=$this->lang->line("failedTitle");
+        		$data["goToHomePage"]=$this->lang->line("goToHomePage");
+        		$this->load->view('failedPage', $data);
+        		return;
+        	
+	        }
+	        else{
+        	$postID = $this->post->insert($postInfo);
+        		
+	        	if($postID==null or $postID==0)
+	        	{
+	        		$errorMsg=$this->lang->line("PostErrorZeroPostID");
+	        		$data['error'] = $errorMsg;
+					$data["prevURL"]=$prevURL;
+	        		$data['redirectToWhatPage']="New Post Page";
+	        		$data['redirectToPHP']=base_url().MY_PATH."newPost";
+	        		$data["successTile"]=$this->lang->line("successTile");
+	        		$data["failedTitle"]=$this->lang->line("failedTitle");
+	        		$data["goToHomePage"]=$this->lang->line("goToHomePage");
+	        		$this->load->view('failedPage', $data);
+	        		return;
+	        	}
+        		
+       	 	}
+        }
 //         if($tags != null && $tags !== '')
 //         {
 //             $myTags = explode(',', $tags);
@@ -1111,7 +1196,7 @@ public function getChildCategory($parentID)
     	if(empty($userInfo))
     	{
     		$errorMsg=$this->lang->line("PostPleaseLoginFirst");
-    		$data=array('error'=> $errorMsg);
+    		$data['error']= $errorMsg;
     		$data["prevURL"]=$prevURL;
     		$data['redirectToWhatPage']="Login Page";
     		$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";
@@ -1130,7 +1215,7 @@ public function getChildCategory($parentID)
     	if($postInfo[0]->userID!=$userID)
     	{
     		$errorMsg=$this->lang->line("PostPleaseLoginFirst");
-    		$data=array('error'=> $errorMsg);
+    		$data['error']= $errorMsg;
     		$data["prevURL"]=$prevURL;
     		$data['redirectToWhatPage']="Previous Page";
     		$data['redirectToPHP']=$prevURL;
@@ -1228,7 +1313,7 @@ public function getChildCategory($parentID)
     	if($row<=0 or $postID==null or $postID==0)
     	{
     		$errorMsg=$this->lang->line("PostErrorZeroPostID");
-    		$data=array('error'=> $errorMsg);
+    		$data['error']= $errorMsg;
     		$data["prevURL"]=$prevURL;
     		$data['redirectToWhatPage']="New Post Page";
     		$data['redirectToPHP']=base_url().MY_PATH."newPost";

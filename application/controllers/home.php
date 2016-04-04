@@ -3058,7 +3058,7 @@ function generateRandomString($length = 8) {
 			
 			
 			$errorMsg="Password Changed Successfully";
-			$data=array('error'=> $errorMsg);
+			$data['error']= $errorMsg;
 			$data['redirectToWhatPage']="Home Page";
 			$data['redirectToPHP']=base_url();
 			
@@ -3099,8 +3099,8 @@ function generateRandomString($length = 8) {
 						
 		}else{
 			$errorMsg="Incorrect Current Password";
-			$data=array('error'=> $errorMsg);
 			
+			$data['error']= $errorMsg;
 			$data["lang_label_text"] = $this->lang->line("lang_label_text");
 			$data["lang_label"] = $this->nativesession->get("language");
 			$data["Home"] = $this->lang->line("Home");
