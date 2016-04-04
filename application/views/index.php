@@ -758,7 +758,7 @@ window.onload = function(){
             
             <div class="inner-box no-padding panel-bevel"> <img class="img-responsive" src="<?php echo base_url();?>images/site/add2.jpg" alt=""> </div>
           	<div class="inner-box has-aff relative">
-              <a class="dummy-aff-img" href="category.html"><img src="<?php echo base_url();?>images/site/aff2.jpg" class="img-responsive" alt=" aff"> </a>
+              <a class="dummy-aff-img" href="category.html"><img src="<?php echo base_url();?>images/site/aff2.png" class="img-responsive" alt=" aff"> </a>
 
           </div>
           </aside>
