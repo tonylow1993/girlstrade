@@ -3356,6 +3356,19 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+
+@media (max-width: 480px) {
+	.sortByDiv{
+		height: 55px;
+		margin-top: 10px;
+	}
+	
+	.tab-filter {
+		position: relative;
+		margin-left: 10px;
+	}
+}
+
 .padding-left-30{
 	padding-left: 30px;
 }
