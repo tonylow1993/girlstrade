@@ -78,11 +78,11 @@ function sendIt() {
 	                ?></span>
 	                <?php }?></a></li>
               </ul>
-              <form action="<?php $basePath=base_url();
+              <form style="margin-top: 5px;" action="<?php $basePath=base_url();
     			$path=$basePath.MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url())."&prevViewFeedBack_Url=".urlencode(current_url());
     			echo $path;
                ?>"  method="POST" id="sortfrm" class="tab-filter" role="form"> 
-               <div  style="width:150px">
+               <div  style="width:150px; display:inline-block">
                		<select class="form-control selecter "   name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortTypeID,"0")==0 or $sortTypeID==0) echo " selected='selected' ";?> >Sort type by...</option>
 					  <option value="1" <?php if(strcmp($sortTypeID,"1")==0)  echo " selected='selected' ";?>>Date</option>
@@ -109,7 +109,7 @@ function sendIt() {
 			</form>
               
               </div>
-            <div class="adds-wrapper">
+            <div class="adds-wrapper inner-box">
             <div class="tab-content">
                <div class="tab-pane fade <?php if(strcmp($activeTab, "allAds")==0) echo "in active"; ?>" id="allAds">
                
@@ -334,10 +334,10 @@ $( document ).ready(function() {
     var sortType=document.getElementById('selectSortType').value;
     if(sortType=="2"){
  	   document.getElementById('sortByDateDiv').style.display = 'none';
- 	   document.getElementById('sortByTypeDiv').style.display = 'block';
+ 	   document.getElementById('sortByTypeDiv').style.display = 'inline-block';
  	  }
  	  else if(sortType=="1"){
- 		  document.getElementById('sortByDateDiv').style.display = 'block';
+ 		  document.getElementById('sortByDateDiv').style.display = 'inline-block';
  	   document.getElementById('sortByTypeDiv').style.display = 'none';
  		  
  	  }else
@@ -350,10 +350,10 @@ $( document ).ready(function() {
 $('#selectSortType').change(function() {
 	  if($(this).val()=="2"){
 	   document.getElementById('sortByDateDiv').style.display = 'none';
-	   document.getElementById('sortByTypeDiv').style.display = 'block';
+	   document.getElementById('sortByTypeDiv').style.display = 'inline-block';
 	  }
 	  else if($(this).val()=="1"){
-		  document.getElementById('sortByDateDiv').style.display = 'block';
+		  document.getElementById('sortByDateDiv').style.display = 'inline-block';
 	   document.getElementById('sortByTypeDiv').style.display = 'none';
 		  
 	  }else
