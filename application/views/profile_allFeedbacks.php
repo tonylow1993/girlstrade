@@ -309,15 +309,7 @@ function sendIt() {
     </div>
   </div>
   </div>
-  
-
-
-  
-  <!-- /.main-container -->
-  
-  <?php include "footer1.php"; ?>
-</div>
-<script>
+  <script>
 
 function beginSort(){
 	var selectSortType=document.getElementById("selectSortType").value;
@@ -364,6 +356,14 @@ $('#selectSortType').change(function() {
 });
 
 </script>
+
+
+  
+  <!-- /.main-container -->
+  
+  <?php include "footer1.php"; ?>
+</div>
+
 
     <?php include "footer2.php"; ?>
 
