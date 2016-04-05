@@ -25,7 +25,6 @@ function sendIt() {
         <div class="col-sm-9 page-content col-thin-left">
           <div class="category-list">
            <div class="tab-box "> 
-                 <div class="pull-right backtolist margin-right-10"><a href=<?php echo $prevViewFeedBack_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
                 <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds"  role="tab" data-toggle="tab">
@@ -78,6 +77,7 @@ function sendIt() {
 	                ?></span>
 	                <?php }?></a></li>
               </ul>
+              	 <div class="sortByDiv">
               <form style="margin-top: 5px;" action="<?php $basePath=base_url();
     			$path=$basePath.MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url())."&prevViewFeedBack_Url=".urlencode(current_url());
     			echo $path;
@@ -106,10 +106,13 @@ function sendIt() {
 				</div> 
 					<noscript><input type="submit" value="Submit"></noscript>
 			
-			</form>
-              
+			</form></div>
+                  <div class="pull-right backtolist margin-right-10"><a href=<?php echo $prevViewFeedBack_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
+            
               </div>
-            <div class="adds-wrapper inner-box">
+              
+            <div class="adds-wrapper">
+             
             <div class="tab-content">
                <div class="tab-pane fade <?php if(strcmp($activeTab, "allAds")==0) echo "in active"; ?>" id="allAds">
                
