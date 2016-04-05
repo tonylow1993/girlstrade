@@ -136,7 +136,7 @@
 		}
 		
 		public function getMaxDailyTimesBuyerSendMsg($postID, $fUserID){
-			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where a.status in ('OC', 'Op') and a.fUserID=$fUserID and b.postID=$postID and a.createDate>=curdate() ";
+			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where a.status in ('OC', 'Op') and a.fUserID=$fUserID  and a.createDate>=curdate() ";
 			$query2 = $this->db->query($strQuery);
 			$var2=$query2->result_array();
 			$NoOfItemCount=$var2[0]["NoOfCount"];
@@ -145,7 +145,7 @@
 		}
 		
 		public function getMaxTotalTimesBuyerSendMsg($postID, $fUserID){
-			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where a.status in ('OC', 'Op') and a.fUserID=$fUserID and b.postID=$postID ";
+			$strQuery="select count(distinct a.messageID) as NoOfCount from message a inner join post b on a.postID=b.postID where a.status in ('OC', 'Op') and a.fUserID=$fUserID  ";
 			$query2 = $this->db->query($strQuery);
 			$var2=$query2->result_array();
 			$NoOfItemCount=$var2[0]["NoOfCount"];

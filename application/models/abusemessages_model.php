@@ -66,7 +66,7 @@ class abusemessages_model extends CI_Model {
 	}
 	
 	public function getAbuseMessagesListByPostID($postID, $pageNum){
-{
+
 			$ulimit=ITEMS_PER_PAGE;
 			$olimit=0;
 			if ($pageNum>1)
@@ -125,5 +125,5 @@ class abusemessages_model extends CI_Model {
 			return;
 		}
 	}
-	}
+	
 }
