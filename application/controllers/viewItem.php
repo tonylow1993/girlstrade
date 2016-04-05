@@ -247,7 +247,7 @@
 	            $data["TotalMaxTimes"]=$this->messages_model->getMaxTotalTimesBuyerSendMsg($postId, $fUserID);
 	            if(NUMOFTIMESPOSTITEMCOMMENTS-$NumOfPostTimes<=MINCOUNTSHOWREMAINTIMES && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES)
 	            	$data["YouHaveRemainItemPostTimes"]=sprintf($this->lang->line("YouHaveRemainInsertItemComments"), NUMOFTIMESPOSTITEMCOMMENTS-$NumOfPostTimes);
-	            $DailyMaxTimes=$this->requestpost_model->getMaxDailyTimesBuyerDirectSend($postId, $loginUser["userID"]);
+	            $DailyMaxTimes=$this->requestpost_model->getMaxDailyTimesBuyerDirectSend($postId, $fUserID);
 	           	if(MAXTIMEDAILY_DRECTSENDFROMBUYER-$DailyMaxTimes<= MINCOUNTSHOWREMAINTIMES && MAXTIMEDAILY_DRECTSENDFROMBUYER<UNLIMITEDTIMES)
 	           		$data["YouHaveRemainContactSellerTimes"]=sprintf($this->lang->line("YouHaveRemainContactSellerTimes"), MAXTIMEDAILY_DRECTSENDFROMBUYER-$DailyMaxTimes);
 	           		

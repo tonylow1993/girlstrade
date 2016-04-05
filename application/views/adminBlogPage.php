@@ -63,8 +63,8 @@ input[type=checkbox]
             <h2 class="title-2"><i class="icon-star-circled"></i> <?php echo $this->lang->line("adminBlog"); ?> </h2>
              
              	<?php include("adminBlogContent.php");?>
-
-        </div>
+				<?php include("adminBlogContentHistory.php");?>
+        	</div>
         </div>
         <!--/.page-content--> 
       </div>
@@ -76,6 +76,37 @@ input[type=checkbox]
   
   <?php include "footer1.php"; ?>
   <!--/.footer--> 
+  <div class="modal fade" id="deleteBlogPopup" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h2 id="modal-title-del" class="modal-title"><?php echo $this->lang->line("popupTitleDeleteAds");?></h2>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds">
+           <div class="form-group">
+           		<input type="hidden" id="blogID" name="blogID" >   	
+           		<input id="blogTitle" name="blogTitle"/>
+           		<br/><input id="blogDescription" name="blogDescription" />	
+           	</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
+      	<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button id="submit-btn" type="button" class="btn btn-success pull-right"   onclick="setupDeleteBlog(); return false;">Submit</button>
+        	<button id="validate" hidden="true" type="submit"></button>
+  
+     	 </div>
+    </div>
+  </div>
+</div>
+  
+  
+  
+  
   <script src="<?php echo base_url();?>assets/js/script.js"></script>
 <link href="<?php echo base_url();?>assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
 <script src="<?php echo base_url();?>assets/js/fileinput.min.js" type="text/javascript"></script>
@@ -190,9 +221,44 @@ function isEmptyUploadFile(callback)
         callback(false);
 
 }
+function passToModal() {
+    $('#deleteBlogPopup').on('show.bs.modal', function(event) {
+        $("#blogID").val($(event.relatedTarget).data('id'));
+        $("#blogTitle").val($(event.relatedTarget).data('title'));
+        $("#blogDescription").val($(event.relatedTarget).data('description'));
+    });
 
-   
+}
+$(document).ready(passToModal());
+
+function setupDeleteBlog()
+{
+	$("#modal-title-del").html("Processing...");
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>getAdmin/deleteBlogByID",
+		data: { 
+			blogID: $("#blogID").val(),
+		},
+		success: function(response){
+			$("#modal-title-del").html("Your blog has been deleted.");
+			$('#fwd-btn').css("display", "block");
+			$('#fwd-btn').css("margin", "auto");
+			$('#cancel-btn').css("display", "none");
+			$('#submit-btn').css("display", "none");
+			
+			console.log("success");
+		}
+	});
+
+
+     //var myform = document.getElementById("itemDelete");
+	  	//document.getElementById("itemDelete").submit();
+    return false;
+}
 </script>
+
+
 </div>
 
 

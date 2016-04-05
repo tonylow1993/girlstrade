@@ -1476,5 +1476,9 @@ class getAdmin extends CI_Controller {
 	
 		return $data;
 	}
+	
+	public function deleteBlogByID(){
+		
+	}
 }
 ?>

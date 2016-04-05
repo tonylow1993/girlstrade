@@ -475,7 +475,7 @@ $("#image").fileinput({
 
 function setup()
 {
-    var myform = document.getElementById("newPost");
+	var myform = document.getElementById("newPost");
 	//check whether browser fully supports all File API
 	if (window.File && window.FileReader && window.FileList && window.Blob)
 	{
