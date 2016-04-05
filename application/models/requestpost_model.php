@@ -36,7 +36,7 @@ class requestpost_model extends CI_Model {
 	    }
 	    
 	    public function getMaxDailyTimesBuyerDirectSend($postID, $fUserID){
-	    	$strQuery="select count(*) as NoOfCount from requestpost a inner join post b on a.postID=b.postID where a.status in ('U', 'A') and a.userID=$fUserID and b.postID=$postID and a.createDate>=curdate() ";
+	    	$strQuery="select count(*) as NoOfCount from requestpost a inner join post b on a.postID=b.postID where a.status in ('U', 'A') and a.userID=$fUserID  and a.createDate>=curdate() ";
 	    	$query2 = $this->db->query($strQuery);
 	    	$var2=$query2->result_array();
 	    	$NoOfItemCount=$var2[0]["NoOfCount"];
