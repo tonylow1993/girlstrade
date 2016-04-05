@@ -413,7 +413,7 @@ input[type=checkbox]
                             <div class="blogs-comments-area"></div>
                                 <h5 class="list-title">
                                 <strong><?php count($commentList);?> 
-                               Comments<?php echo $YouHaveRemainItemPostTimes;?></strong></h5>
+                               Comments</strong></h5>
                                
                                
                                
@@ -505,9 +505,9 @@ input[type=checkbox]
 <!--                                     	<div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" value="" placeholder="Enter your website" name="url"></div><div class="col-md-6 text-left"><span>Website*</span></div></div> -->
 
                                         <div class="form-group" id="blogscommentDiv">
-                                            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="Message" name="blogscomment" id="blogscomment"></textarea> 
-											  	<div id="blogscommentAjaxLoad" class="center"></div>
-	                        					<div id="blogscommentError" hidden="true"></div>
+                                            <textarea style="vertical-align: top; horizontal-align: left; resize:none;font-size: 15px;" class="form-control" maxlength="300"  rows="5" columns="30"  placeholder="<?php echo $YouHaveRemainItemPostTimes;?>" name="blogscomment" id="blogscomment"></textarea> 
+											  	<!--<div id="blogscommentAjaxLoad" class="center"></div>
+	                        					<div id="blogscommentError" hidden="true"></div>-->
                          				</div>
                                         <button type="submit" class="btn-success btn btn-lg"> Submit </button>
 										<br>

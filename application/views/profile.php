@@ -28,7 +28,7 @@ function sendIt() {
 	               <li><span class="count"><p>&nbsp;(Normal User)</p></span> </li>
                 </ul>
                               
-                <table class="userProfileTable">
+                <!--<table class="userProfileTable">
                 <tr>
                 <td>
                 <p class="userRating">
@@ -36,7 +36,7 @@ function sendIt() {
                 </td><td>
                 <div id="userStar"></div>
                 </td></tr>
-                </table>
+                </table>-->
               </div>
               <!--/.categories-list-->
               
@@ -143,7 +143,7 @@ function sendIt() {
 	                ?></span>
 	                <?php }?></a></li>
               </ul>
-         		 <form role="form" method="POST" action="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/0/0?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());?>"
+         		 <div class="sortByDiv"><form role="form" method="POST" action="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/0/0?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());?>"
          	     id="sortfrm" class="tab-filter"> 
 			   <div class="form-group sort-group" style="width:150px;">
 				  <select class="form-control sort-select selecter" name="selectSortType"   id="selectSortType" data-width="auto">
@@ -208,7 +208,7 @@ function sendIt() {
     			
 				</div>-->
 				<noscript><input type="submit" value="Submit"></noscript>
-			</form>
+			</form></div>
             <!--/.tab-box-->
                <div class="pull-right backtolist margin-right-10"><a href=<?php echo $prevProfile_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
  
