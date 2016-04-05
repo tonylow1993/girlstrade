@@ -2142,6 +2142,8 @@ function addDayswithdate($date,$days){
 				);
 				$messageResult=$this->buyermessage_model->insert($messageArray);
 				if($messageResult){
+					$this->admin_model->updateStatByUserID($userID);
+					$this->admin_model->updateStatByUserID($fromUserID);
 					$errorMsg="Success in adding your message!";
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;

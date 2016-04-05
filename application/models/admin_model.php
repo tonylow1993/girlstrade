@@ -257,6 +257,95 @@ if (is_array($array) || is_object($array))
 			}
 		}
 		
+		function updateStatByUserID($userId){
+			try{
+				$deleteStr="DELETE FROM userstat where userID=$userId";
+			
+			
+				$str="INSERT INTO userstat ";
+				$str=$str." SELECT userID, SUM(inboxMsgCount), SUM(approveMsgCount), SUM(myAdsCount),";
+				$str=$str." SUM(savedAdsCount), SUM(pendingMsgCount), SUM(archivedAdsCount), ";
+				$str=$str." SUM(visitCount), SUM(adsCount), SUM(favoriteAdsCount),";
+				$str=$str." SUM(outGoingMsgCount), SUM(BuyAdsCount), SUM(directsendhistCount), SUM(directsendhistCountAsSeller) ";
+				$str=$str." FROM ( ";
+				$str=$str." SELECT userID, COUNT(*) AS inboxMsgCount, 0 AS approveMsgCount,0  AS myAdsCount, ";
+				$str=$str." 0  AS savedAdsCount,0 AS pendingMsgCount,0 AS archivedAdsCount,0 AS visitCount,";
+				$str=$str." 0 AS adsCount,0 AS favoriteAdsCount , 0 as outGoingMsgCount,";
+				$str=$str." 0 as BuyAdsCount, 0 as directsendhistCount, 0 as directsendhistCountAsSeller ";
+				$str=$str." FROM buyermessage ";
+				$str=$str." where userID=$userId ";
+				$str=$str." UNION ALL ";
+				$str=$str." SELECT b.userID, 0, COUNT(*) AS approveMsgCount, 0,0,0,0,0,0,0,0,0,0,0 ";
+				$str=$str." FROM requestpost a INNER JOIN post b ";
+				$str=$str." ON a.postID=b.postID ";
+				$str=$str." WHERE a.status='U' ";
+				$str=$str." and b.userID=$userId ";
+				$str=$str." UNION ALL ";
+				$str=$str." SELECT userID, 0,0,COUNT(*) AS myAdsCount, 0,0,0,0,0,0 ,0,0,0,0";
+				$str=$str." FROM post ";
+				$str=$str." where (status='A' or status='R' or status='U') ";
+				$str=$str." and userID=$userId ";
+				$str=$str." UNION ALL ";
+				$str=$str." SELECT userID,0,0,0, COUNT(*) AS savedAdsCount,0,0,0,0,0 ,0,0,0,0";
+				$str=$str." FROM savedAds ";
+				$str=$str." WHERE STATUS='U' ";
+				$str=$str." and userID =$userId ";
+				$str=$str." UNION ALL ";
+				$str=$str." SELECT userID,0,0,0,0, COUNT(*) AS pendingMsgCount,0,0,0,0,0,0,0,0";
+				$str=$str." FROM requestpost ";
+				$str=$str." WHERE STATUS='U' ";
+				$str=$str." and userID =$userId ";
+				$str=$str." UNION ALL ";
+				$str=$str." SELECT userID, 0,0,0, 0,0,COUNT(*) AS archivedAdsCount,0,0,0 ,0,0,0,0";
+				$str=$str." FROM post ";
+				$str=$str." where status = 'C' ";
+				$str=$str." and userID=$userId ";
+				$str=$str." UNION ALL ";
+				$str=$str." SELECT a.userID, 0,0,0, 0,0,0,COUNT(*) AS visitCount,0,0 ,0,0,0,0";
+				$str=$str." FROM post a INNER JOIN postviewhistory b ";
+				$str=$str." ON a.postID = b.postID ";
+				$str=$str." where a.userID=$userId ";
+				$str=$str." UNION ALL ";
+				$str=$str." SELECT userID, 0,0,0, 0,0,0,0,COUNT(*) AS adsCount,0 ,0,0,0,0";
+				$str=$str." FROM post ";
+				$str=$str." where userID=$userId ";
+				$str=$str." UNION ALL ";
+				$str=$str." SELECT userID, 0,0,0, 0,0,0,0,0,COUNT(*) AS favoriteAdsCount ,0,0,0,0";
+				$str=$str." FROM post ";
+				$str=$str." WHERE typeAds='featuredAds' ";
+				$str=$str." and userID=$userId ";
+				$str=$str." Union all";
+				$str=$str." select fromUserID as userID, 0,0,0, 0,0,0,0,0,0,count(*),0,0,0";
+				$str=$str." from buyermessage ";
+				$str=$str." where fromUserID=$userId ";
+				$str=$str." Union all";
+				$str=$str." select soldToUserID as userID, 0,0,0, 0,0,0,0,0,0,0,count(*),0,0";
+				$str=$str." from tradecomments";
+				$str=$str." where soldToUserID !=0";
+				$str=$str." and soldToUserID=$userId ";
+				$str=$str." Union all";
+				$str=$str." select userID, 0,0,0, 0,0,0,0,0,0,0,0,count(*),0";
+				$str=$str." from requestpost";
+				$str=$str." where status in ('A', 'R')";
+				$str=$str." and userID=$userId ";
+				$str=$str." Union all";
+				$str=$str." select b.userID, 0,0,0, 0,0,0,0,0,0,0,0,0,count(*)";
+				$str=$str." from requestpost a inner join post b on a.postID=b.postID ";
+				$str=$str." where a.status in ('A', 'R')";
+				$str=$str." and  b.userID= $userId ";
+				$str=$str." ) total group by userID";
+				$this->db->trans_start();
+				$this->db->query($deleteStr);
+				$this->db->query($str);
+				
+				$this->db->trans_complete();
+				}catch(Exception $ex)
+				{
+					echo $ex->getMessage();
+					return;
+				}
+		}
+		
 		function getMessageStatByUserID($userID){
 			try{
 				$str="update userstat ,   ";
