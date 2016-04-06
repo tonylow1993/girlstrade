@@ -78,9 +78,7 @@ input[type=checkbox]
   <!-- /.header -->
   
   <div class="main-container">
-    <div class="container">
-    <h5><strong><?php echo $YouHaveRemainContactSellerTimes;?></strong></h5>
-    
+    <div class="container">  
       <ol class="breadcrumb pull-left">
         <li><a href=<?php echo base_url();?>><i class="icon-home fa"></i></a></li>
         <li><a href=<?php echo base_url().MY_PATH."getCategory/getAll/1";?>>All Ads</a></li>
@@ -95,11 +93,11 @@ input[type=checkbox]
           <div class="inner inner-box ads-details-wrapper panel-bevel">
             <h2 class="itemName"> <?php echo $itemName;?> </h2>
 			<h1 class="pricetag"> <?php echo "\$".$price." (".$currency.")";?></h1>
-			<?php 
+			
+            <span class="info-row"> <span class="seller"><?php 
 				$imgRatingPath=base_url()."images/".$userRating;
-				echo "<h4><img src=\"$imgRatingPath\" class=\"ratingIcon\"><a href=".base_url().MY_PATH."viewProfile/index/".$postID.'/1?prevURL='.urlencode($previousCurrent_url).">$username</a></h4>";
-			?>
-            <span class="info-row"> <span class="date"><i class=" icon-clock"> </i> <?php echo $createDate;?> </span> - <span class="category"><?php echo $ParentCatName;?> </span>- <span class="item-location"><i class="fa fa-map-marker"></i> <?php echo $LocationName;?> </span> </span>
+				echo "<img src=\"$imgRatingPath\" class=\"ratingIcon-xs\"><a href=".base_url().MY_PATH."viewProfile/index/".$postID.'/1?prevURL='.urlencode($previousCurrent_url).">$username</a>";
+			?></span> - <span class="date"><i class=" icon-clock"> </i> <?php echo $createDate;?> </span> - <span class="category"><?php echo $ParentCatName;?> </span>- <span class="item-location"><i class="fa fa-map-marker"></i> <?php echo $LocationName;?> </span> </span>
             <div class="ads-image">
               <ul class="bxslider">
                 <?php 
@@ -1708,7 +1706,7 @@ $('#directSendButton').on('click', function () {
 		url: "<?php echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url)?>",
 		type: 'POST',
 		success:function(msg){
-			$("#modal-text").html("You have send a direct request to the seller.");
+			$("#modal-text").html("You have send a direct request to the seller.<br>You have remain <?php echo $YouHaveRemainContactSellerTimes;?> times to contact different seller.");
 			setTimeout(function(msg){location.reload();}, 2500);
 		}
 	});

@@ -536,8 +536,8 @@ window.onload = function(){
                 <h2 class="title-2" style="border-bottom: 1px solid #E00000;">
 					<i class="fa fa-fire" style="color: #E00000;"></i>
 					<span style="font-family: MyCustomFont; font-weight: 700; color: #E00000;">Hot</span> Items
-					<a id="nextItem" class="link  pull-right carousel-nav" style="color: #E00000;"> <i class="icon-right-open-big"></i></a>
-					<a id="prevItem" class="link pull-right carousel-nav" > <i class="icon-left-open-big"></i> </a>
+					<a id="nextItem" class="link pull-right carousel-nav" style="color: #E00000;"> <i class="icon-right-open-big"></i></a>
+					<a id="prevItem" class="link pull-right carousel-nav" style="color: #E00000;"> <i class="icon-left-open-big"></i> </a>
 				</h2>
             <div class="row">
                     <div class="col-lg-12">
