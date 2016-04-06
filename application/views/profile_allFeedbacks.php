@@ -111,7 +111,7 @@ function sendIt() {
             
               </div>
               
-            <div class="adds-wrapper">
+            <div class="adds-wrapper inner-box">
              
             <div class="tab-content">
                <div class="tab-pane fade <?php if(strcmp($activeTab, "allAds")==0) echo "in active"; ?>" id="allAds">

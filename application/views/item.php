@@ -1706,7 +1706,7 @@ $('#directSendButton').on('click', function () {
 		url: "<?php echo base_url().MY_PATH."messages/directSend/".$postID."?prevURL=".urlencode(current_url())."&prevprevURL=".urlencode($previousCurrent_url)?>",
 		type: 'POST',
 		success:function(msg){
-			$("#modal-text").html("You have send a direct request to the seller.<br>You have remain <?php echo $YouHaveRemainContactSellerTimes;?> times to contact different seller.");
+			$("#modal-text").html("You have send a direct request to the seller.<?php echo $YouHaveRemainContactSellerTimes;?>");
 			setTimeout(function(msg){location.reload();}, 2500);
 		}
 	});

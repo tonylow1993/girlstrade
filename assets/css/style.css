@@ -2780,6 +2780,7 @@ li.divider {
 
 .welcome-msg {
   margin-bottom: 30px;
+  display: inline-block;
 }
 
 .collapse-box {
@@ -3355,6 +3356,11 @@ td.ads-details-td {
 /* =============================================================== */
 /* ADDED BY TONY
 /* =============================================================== */
+
+#sortfrm{
+	display: inline-block;
+	float: right;
+}
 
 .padding-left-30{
 	padding-left: 30px;
