@@ -214,119 +214,11 @@ input[type=checkbox]
                                     <div id="uploadImgError">
                                     </div>
                               </div>
-                              <!--<div class="mb10">
-                                  <input id="image2" name="image2" class="file" type="file" accept="image/*">
-                              		<div id="uploadImgError2">
-                                    </div>
-                              </div>
-                              <div class="mb10">
-                                  <input id="image3" name="image3" class="file" type="file" accept="image/*">
-                              		<div id="uploadImgError3">
-                                    </div>
-                              </div>
-                              <div class="mb10">
-                                  <input id="image4" name="image4" class="file" type="file" accept="image/*">
-                              		<div id="uploadImgError4">
-                                    </div>
-                              </div>
-                              <div class="mb10">
-                                  <input id="image5" name="image5" class="file" type="file" accept="image/*">
-                              		<div id="uploadImgError5">
-                                    </div>
-                              </div>-->
                                   <p class="help-block">Add up to 5 photos. Use a better image of your product, not catalogs.</p>   
                           
                           </div>
                       </div>
-					  
-					  
-					  
-					  
-					  
-					  
-					  
-					  
-					  
-					  <!-- <div class="form-group">
-					  <label class="col-md-3 control-label text-center" for="textarea">Search Tag</label>
-					  <div class="col-md-8">
-								 <!-- Textarea -->
-                               <!-- <input class="form-control" data-role="tagsinput" id="tagsInput" name="tagsInput" />
-                              <em>(Maximum: Five Tags Allowed)</em>
-                     <script>
-                            $('input').on('beforeItemAdd', function(event) {
-                                var elt = $('#tagsInput');
-                                //console.log("Input: " +event.item);
-                                // event.item: contains the item
-                                // event.cancel: set to true to prevent the item getting added
-                                                    var $keywords = $("#tagsInput").siblings(".tagsinput").children(".tag");  
-                                                    var tags = [];  
-                                                    //console.log($keywords.length);
-                                                    for (var i = $keywords.length; i--;) {  
-                                                        tags.push($($keywords[i]).text().trim());  
-                                                    }  
-                                                    //console.log(tags);
-                              });
-                              $('input').on('itemAdded', function(event) {
-                              //    var str =  $( this ).serialize() 
-                              //    console.log(str);
-
-                             //document.write($( this ).serialize());
-                              });
-                              $('input').on('beforeItemRemove', function(event) {
-                                //document.write($( this ).serialize());
-                                });
-                      </script>
-					  </div>
-					  </div>
-                     
-					  
-					  
-					  
-					  
-					  
-					  <div class="form-group">
-					  <label class="col-md-3 control-label text-center" for="textarea">Location</label>
-					  <div class="col-md-8">
-				          <select class="form-control" name="locID2" id="locID2" >
-				            <option selected="selected" value=""><?php /*echo $lblAllLocations;*/?> </option>
-				            <?php 
-				            /*foreach ($resLoc as $id=>$value)
-				            {
-				            	if(!isset($lang_label))
-					            		$lang_label="";
-				            	$name=$value[0]->name;
-				            	if($lang_label<>"english")
-				            		$name=$value[0]->nameCN;
-				            	if($value[0]->level==1)
-				            		echo "<option value=\"$id\" style=\"background-color:#E9E9E9;font-weight:bold;\">$name</option>";
-				            	else if($value[0]->level==2)
-				            		echo "<option value=\"$id\" style=\"background-color:#E9E9E9;\">--$name</option>";
-				            	else if($value[0]->level==3)
-				            		echo "<option value=\"$id\">----$name</option>";
-				            	}
-				            */?>
-				          </select>
-					  </div>
-					  </div>
-					  
-					  
-					  
-					  
-					  
-					  
-					  
-					  
-					  
-					  
-                                          <!-- Button  -->
-                      <div class="form-group row">
-                          <label class="col-md-3 control-label text-center"></label>
-                          <div class="col-md-8"> 
-                       	       <button id="submit-upload-form"  class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
-                              <button id="validate" hidden="true" type="submit"></button>
-                          </div>
-                       </div>
+					    
                   </fieldset>
                     
           		  
@@ -350,6 +242,14 @@ input[type=checkbox]
         
         
                 </form>
+                <div class="form-group row">
+                          <label class="col-md-3 control-label text-center"></label>
+                          <div class="col-md-8"> 
+                       	       <button id="submit-upload-form"  class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
+                              <button id="validate" hidden="true" type="submit"></button>
+                          </div>
+                       </div>
+                
               </div>
             </div>
           </div>
@@ -426,15 +326,19 @@ var fileList = null;
 function priceCheckValidate() {
  	if(!isInt($("#price").val())){
     	$("#priceAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Invalid price</span></em>');
-	}else if($("#price").val().trim().length==0) {
+		return false;
+    }else if($("#price").val().trim().length==0) {
         $("#priceAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Price cannot be empty</span></em>');
-	}else if(parseInt($("#price").val())<<?php echo MINPRICERANGE;?> || parseInt($("#price").val())><?php echo MAXPRICERANGE;?>){
+        return false;
+    }else if(parseInt($("#price").val())<<?php echo MINPRICERANGE;?> || parseInt($("#price").val())><?php echo MAXPRICERANGE;?>){
     	$("#priceAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Invalid price range</span></em>');
-	}else
+    	return false;
+    }else
 	{
 		$("#priceAjaxLoad").html('');
+		return true;
 	}
-	return;
+	
 };
 
 function isInt(value) {
@@ -539,13 +443,17 @@ function setup()
 		 return false; 
 	}
 	
-	if(!myform.checkValidity())
-	{
+// 	if(!myform.checkValidity())
+// 	{
 		
-	        document.getElementById("validate").click();
-	        return false;
+// 	        document.getElementById("validate").click();
+// 	        return false;
+// 	}
+	if(!priceCheckValidate()){
+		location.href = "#priceAjaxLoad";                 //Go to the target element.
+		 return false; 
 	}
-    isEmptyUploadFile(function(r)
+	isEmptyUploadFile(function(r)
     {
         var up = document.getElementById('image').value;
         img=up;
@@ -570,7 +478,6 @@ function setup()
 				}
             }     
 
-            
         if((isServiceCat!=1) && ( fileList == null || fileList.length == 0))
         {
                $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');

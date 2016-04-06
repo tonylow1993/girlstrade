@@ -95,7 +95,7 @@ class searchresult_model extends CI_Model {
 	return $NoOfItemCount;
 	
 	}
-function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $sortByID="0", $minPrice=0, $maxPrice=0, $allAds='allAds')
+function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $sortByID="0", $minPrice=0, $maxPrice=0, $allAds='allAds', $sortByType, $sortByPrice, $sortByDate)
 {
 	if($catID==0 or $catID==null)
 		$catID=0;
@@ -139,15 +139,20 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	if ($pageNum>1)
 		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
 	$sortStr="";
-	if($sortByID<>"0")
-	{
-		if($sortByID=="1")
-			$sortStr=" order by itemPrice asc ";
-		else if($sortByID="2")
-			$sortStr=" order by itemPrice desc ";
-	}
-	else 
-		$sortStr=" order by createDate desc ";
+		if(strcmp($sortByType,"1")==0){
+    		if(strcmp($sortByPrice,"1")==0){
+    			$sortStr=" order by itemPrice asc ";
+    		}else if(strcmp($sortByPrice,"2")==0){
+    			$sortStr=" order by itemPrice desc ";
+    		}
+    	}
+    	if(strcmp($sortByType,"2")==0){
+    		if(strcmp($sortByDate,"1")==0){
+    			$sortStr=" order by createDate desc ";
+    		}else if(strcmp($sortByDate,"2")==0){
+    			$sortStr=" order by createDate asc ";
+    		}
+    	}
 	
 	$strLocQuery="";
 	if(strcmp($locID, "0")!=0 && $this->isParentlocID($locID))

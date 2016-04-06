@@ -28,7 +28,7 @@
   <br/>
   <div class="search-row-wrapper">
     <div class="container ">
-      <form  id="myForm"  onSubmit="return setup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_.'/'.$minPrice.'/'.$maxPrice.'/'.$activeTab;?>" method="POST">
+      <form  id="myForm"  onSubmit="return setup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">
             <div class="col-lg-3 col-sm-3 search-col relative"> <i class="icon-docs icon-append"></i>
                 <input type="text" name="ads"  id="ads" class="form-control has-icon" placeholder="Keywords" value="<?php if($keywords<>'0') echo trim($keywords);?>">
               	<input type="hidden" name="paneActiveTab" id="paneActiveTab" value="<?php echo $activeTab;?>" >
@@ -108,16 +108,9 @@
              ?>
            </select>
            </div>
-          <!-- <div class="col-sm-3">
-              <select class="form-control selecter"  id="sortByPrice" name="sortByPrice"  >
-                  <option value="0"   <?php if(strcmp($sortByID_,"0")==0 or $sortByID_==0 or $sortByID_=='') echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
-                  <option value="1"   <?php if(strcmp($sortByID_,"1")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceLowToHigh;?></option>
-                  <option value="2"   <?php if(strcmp($sortByID_,"2")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceHighToLow;?></option>
-                </select>
-            </div>-->
+       
            <div class="col-sm-3">
             	<button class="btn btn-primary btn-block btn-pink"> <i class="fa fa-search"></i> Search</button>  	
-<!--            	        	 <button class="btn btn-block btn-primary  "> <i class="fa fa-search"></i> </button> -->
            	</div>
             
             <!--/.tab-box-->
@@ -375,7 +368,7 @@
               <!--/.locations-list-->
               <div class="locations-list  list-filter margin-top-30">
                 <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-money"></i><?php echo $lblPriceRange;?></a></strong></h5>
-                <form role="form"  id="priceForm" class="form-inline "  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
+                <form role="form"  id="priceForm" class="form-inline "  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">  
                   <div class="margin-top-30">
 					  <div id="price-slider" class="price-slider"></div>
                       <input type="number" placeholder="20" id="minPrice"
@@ -585,20 +578,36 @@
 				$ Price Range
               </a>
               </div>
-              <div class="tab-filter">
-              <select class="selectpicker" data-style="btn-select" data-width="auto" id="sortByPrice" name="sortByPrice"  onchange="setup();">
-                  <option value="0"   <?php if(strcmp($sortByID_,"0")==0 or $sortByID_==0 or $sortByID_=='') echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
-                  <option value="1"   <?php if(strcmp($sortByID_,"1")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceLowToHigh;?></option>
-                  <option value="2"   <?php if(strcmp($sortByID_,"2")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceHighToLow;?></option>
-                </select>
-             <!--    <select class="selectpicker" data-style="btn-select" data-width="auto">
-                  <option>Relevance</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                  <option>Newest</option>
-                </select> -->
-              </div>
-           </div>
+              <div class="sortByDiv">
+              <form role="form" method="POST" action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>"
+         	     id="sortfrm" class="tab-filter"> 
+			   <div class="form-group sort-group" style="width:150px;">
+				  <select class="form-control sort-select selecter" name="selectSortType"   id="selectSortType" data-width="auto">
+					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort by...</option>
+					  <option value="1" <?php if(strcmp($sortByType,"1")==0)  echo " selected='selected' ";?>>Price</option>
+					  <option value="2" <?php if(strcmp($sortByType,"2")==0)  echo " selected='selected' ";?>>Date</option>
+					</select>
+			    </div>
+			   
+			   	<div id="sortByPriceDiv" style="display:none;width:150px">
+					<select class="form-control selecter "   name="sortByPrice"   id="sortByPrice" data-width="auto"  onchange="beginSort();">
+					  <option value="0" <?php if(strcmp($sortByPrice,"0")==0 or $sortByPrice==0) echo " selected='selected' ";?> >Sort by...</option>
+					  <option value="1" <?php if(strcmp($sortByPrice,"1")==0)  echo " selected='selected' ";?>>Low to High</option>
+					  <option value="2" <?php if(strcmp($sortByPrice,"2")==0)  echo " selected='selected' ";?>>High to Low</option>
+					</select>
+				</div>
+				
+				<div id="sortByDateDiv" style="display:none;width:150px">
+					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
+					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
+					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>>Most Recent</option>
+					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>>Oldest</option>
+					</select>
+				</div> 
+				
+				<noscript><input type="submit" value="Submit"></noscript>
+			</form></div>
+          
            <!--/.tab-box-->
           
           
@@ -997,19 +1006,19 @@
             	if($NoOfItemCount>0)
             	{
             		if($pageNum<>1)
-	            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$catID_/$locID_/$keywords/$sortByID_\">Previous</a></li>";
+	            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$catID_/$locID_/$keywords/0/$minPrice/$maxPrice/$activeTab/$sortByType/$sortByPrice/$sortByDate\">Previous</a></li>";
 	            	if($NoOfItemCount > 0)
-	              		echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$catID_/$locID_/$keywords/$sortByID_\">$pageNum</a></li>";
+	              		echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$catID_/$locID_/$keywords/0/$minPrice/$maxPrice/$activeTab/$sortByType/$sortByPrice/$sortByDate\">$pageNum</a></li>";
 	            	if($NoOfItemCount > ($pageNum*$itemPerPage))
-	              		echo "<li><a href=\"$url_path/$pageNum2/$catID_/$locID_/$keywords/$sortByID_\">$pageNum2</a></li>";
+	              		echo "<li><a href=\"$url_path/$pageNum2/$catID_/$locID_/$keywords/0/$minPrice/$maxPrice/$activeTab/$sortByType/$sortByPrice/$sortByDate\">$pageNum2</a></li>";
 	              	if($NoOfItemCount > ($pageNum2*$itemPerPage))
-	              		echo "<li><a href=\"$url_path/$pageNum3/$catID_/$locID_/$keywords/$sortByID_\">$pageNum3</a></li>";
+	              		echo "<li><a href=\"$url_path/$pageNum3/$catID_/$locID_/$keywords/0/$minPrice/$maxPrice/$activeTab/$sortByType/$sortByPrice/$sortByDate\">$pageNum3</a></li>";
 	              	if($NoOfItemCount > ($pageNum3*$itemPerPage))
-	              		echo "<li><a href=\"$url_path/$pageNum4/$catID_/$locID_/$keywords/$sortByID_\">$pageNum4</a></li>";
+	              		echo "<li><a href=\"$url_path/$pageNum4/$catID_/$locID_/$keywords/0/$minPrice/$maxPrice/$activeTab/$sortByType/$sortByPrice/$sortByDate\">$pageNum4</a></li>";
 	              	if($NoOfItemCount > ($pageNum4*$itemPerPage))
-	              		echo "<li><a href=\"$url_path/$pageNum5/$catID_/$locID_/$keywords/$sortByID_\">$pageNum5</a></li>";
+	              		echo "<li><a href=\"$url_path/$pageNum5/$catID_/$locID_/$keywords/0/$minPrice/$maxPrice/$activeTab/$sortByType/$sortByPrice/$sortByDate\">$pageNum5</a></li>";
 	             	if($NoOfItemCount > ($pageNum5*$itemPerPage))
-	              		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$catID_/$locID_/$keywords/$sortByID_\">Next</a></li>";
+	              		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$catID_/$locID_/$keywords/0/$minPrice/$maxPrice/$activeTab/$sortByType/$sortByPrice/$sortByDate\">Next</a></li>";
             	}
              ?>
                 </ul>
@@ -1039,13 +1048,65 @@ $('#newAds1').click(function(){
 $('#usedAds1').click(function(){
 	$('.nav-tabs a[href="#usedAds"]').tab('show')
 	})	
+$( document ).ready(function() {
+	    var sortType=document.getElementById('selectSortType').value;
+	    if(sortType=="2"){
+	  		  document.getElementById('sortByDateDiv').style.display = 'inline-block';
+	  		   document.getElementById('sortByPriceDiv').style.display = 'none';
+	  		  }
+	  	  else if(sortType=="1"){
+	  		  document.getElementById('sortByDateDiv').style.display = 'none';
+	  		   document.getElementById('sortByPriceDiv').style.display = 'inline-block';
+	  		  }else{
+	  		  document.getElementById('sortByDateDiv').style.display = 'none';			  
+	  		  document.getElementById('sortByPriceDiv').style.display = 'none';
+	  		  
+	  	  }
+	});
+  $('#selectSortType').change(function() {
+	  if($(this).val()=="2"){
+		  document.getElementById('sortByDateDiv').style.display = 'inline-block';
+		   document.getElementById('sortByPriceDiv').style.display = 'none';
+		  }
+	  else if($(this).val()=="1"){
+		  document.getElementById('sortByDateDiv').style.display = 'none';
+		   document.getElementById('sortByPriceDiv').style.display = 'inline-block';
+		  }else{
+		  document.getElementById('sortByDateDiv').style.display = 'none';			  
+		  document.getElementById('sortByPriceDiv').style.display = 'none';
+		  
+	  }
+});	
+	
+function beginSort(){
+	  var catID=document.getElementById("search-category").value;
+	 	var locID=document.getElementById("id-location").value;
+		var sortByType=document.getElementById("selectSortType").value;
+	var sortByPrice=document.getElementById("sortByPrice").value;
+	var sortByDate=document.getElementById("sortByDate").value;
+	var keywords=document.getElementById("ads").value;
+		   if(keywords.trim()=='')
+			   keywords='0';
+		   var minPrice=document.getElementById("minPrice").value;
+		   if(minPrice.trim()=='')
+			   minPrice=0;
+		   var maxPrice=document.getElementById("maxPrice").value;
+		   if(maxPrice.trim()=='')
+			   maxPrice=0;
+		
+
+		document.getElementById("sortfrm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/0/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
+		document.getElementById("sortfrm").submit();
+	}
 	
   function setupTab(activeTab, activeCtrl){
 		var catID=document.getElementById("search-category").value;
 	 	var locID=document.getElementById("id-location").value;
 		//var locID=0;
-		var sortByID=document.getElementById("sortByPrice").value;
-		var keywords=document.getElementById("ads").value;
+		var sortByType=document.getElementById("selectSortType").value;
+	var sortByPrice=document.getElementById("sortByPrice").value;
+	var sortByDate=document.getElementById("sortByDate").value;
+	var keywords=document.getElementById("ads").value;
 		   if(keywords.trim()=='')
 			   keywords='0';
 		   var minPrice=document.getElementById("minPrice").value;
@@ -1091,7 +1152,7 @@ $('#usedAds1').click(function(){
 //                return data;
 //            });
 			
-		document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab);
+		document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 		document.getElementById("myForm").submit();
 	}
   function setForm(callback)
@@ -1103,7 +1164,9 @@ function setup(){
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;
 	//var locID=0;
-	var sortByID=document.getElementById("sortByPrice").value;
+	var sortByType=document.getElementById("selectSortType").value;
+	var sortByPrice=document.getElementById("sortByPrice").value;
+	var sortByDate=document.getElementById("sortByDate").value;
 	var keywords=document.getElementById("ads").value;
 	   if(keywords.trim()=='')
 		   keywords='0';
@@ -1146,7 +1209,7 @@ function setup(){
 //             return data;
 //         });
 		
-	document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab);
+	document.getElementById("myForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/0/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 	document.getElementById("myForm").submit();
 }
 function isNumber(n) {
@@ -1157,12 +1220,15 @@ function priceSetup(){
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;
 	//var locID=0;
-	var sortByID=document.getElementById("sortByPrice").value;
+	var sortByType=document.getElementById("selectSortType").value;
+	var sortByPrice=document.getElementById("sortByPrice").value;
+	var sortByDate=document.getElementById("sortByDate").value;
 	var keywords=document.getElementById("ads").value;
 	   if(keywords.trim()=='')
 		   keywords='0';
 	   var minPrice=(document.getElementById("minPrice").value);
 	   var maxPrice=(document.getElementById("maxPrice").value);
+	   var activeTab=document.getElementById("paneActiveTab").value;
 
 	   
  	if(!isNumber(minPrice) || !isNumber(maxPrice)){
@@ -1172,7 +1238,7 @@ function priceSetup(){
 		alert("<?php echo $this->lang->line('invalidpricerange'); ?>");
  		returnvalue=false;
  	}else {
-		document.getElementById("priceForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+		document.getElementById("priceForm").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
  		document.getElementById("priceForm").submit();
  	}
  	return returnvalue;
@@ -1183,12 +1249,15 @@ function priceSetup1(){
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;
 //var locID=0;
-	var sortByID=document.getElementById("sortByPrice").value;
+	var sortByType=document.getElementById("sortByType").value;
+	var sortByPrice=document.getElementById("selectSortType").value;
+	var sortByDate=document.getElementById("sortByDate").value;
 	var keywords=document.getElementById("ads").value;
 	   if(keywords.trim()=='')
 		   keywords='0';
 	   var minPrice=(document.getElementById("minPrice1").value);
 	   var maxPrice=(document.getElementById("maxPrice1").value);
+	   var activeTab=document.getElementById("paneActiveTab").value;
 	   
  	  if(!isNumber(minPrice) || !isNumber(maxPrice)){
 			alert("<?php echo $this->lang->line('invalidpriceformat'); ?>");
@@ -1197,7 +1266,7 @@ function priceSetup1(){
 			alert("<?php echo $this->lang->line('invalidpricerange'); ?>");
  			returnvalue=false;
 		}else {
-		   document.getElementById("priceForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+		   document.getElementById("priceForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 			document.getElementById("priceForm1").submit();
 			
 	   } 
@@ -1207,26 +1276,34 @@ function locSetup1(){
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("region-state").value;
 //var locID=0;
-	var sortByID=document.getElementById("sortByPrice").value;
+	var sortByType=document.getElementById("selectSortType").value;
+	var sortByPrice=document.getElementById("sortByPrice").value;
+	var sortByDate=document.getElementById("sortByDate").value;
 	var keywords=document.getElementById("ads").value;
 	   if(keywords.trim()=='')
 		   keywords='0';
+	   var activeTab=document.getElementById("paneActiveTab").value;
+	   
 	   var minPrice=document.getElementById("minPrice1").value;
 	   var maxPrice=document.getElementById("maxPrice1").value;
-	document.getElementById("locForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	document.getElementById("locForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 	document.getElementById("locForm1").submit();
 }
 function catSetup1(){
 	var catID=document.getElementById("parent-category").value;
  	var locID=document.getElementById("id-location").value;
 //var locID=0;
-	var sortByID=document.getElementById("sortByPrice").value;
+	var sortByType=document.getElementById("selectSortType").value;
+	var sortByPrice=document.getElementById("sortByPrice").value;
+	var sortByDate=document.getElementById("sortByDate").value;
 	var keywords=document.getElementById("ads").value;
 	   if(keywords.trim()=='')
 		   keywords='0';
+	   var activeTab=document.getElementById("paneActiveTab").value;
+	   
 	   var minPrice=document.getElementById("minPrice1").value;
 	   var maxPrice=document.getElementById("maxPrice1").value;
-	document.getElementById("catForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice);
+	document.getElementById("catForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 	document.getElementById("catForm1").submit();
 }
 function savedAds(ctrlValue, ctrlName, clickLink) {

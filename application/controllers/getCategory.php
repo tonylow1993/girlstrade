@@ -73,7 +73,7 @@ class getCategory extends CI_Controller {
 			echo json_encode($data);
 	}
 	
-	public function getAll($pageNum, $catID="0", $locID="0", $keywords='0', $sortByID="0", $minPrice="0", $maxPrice="0", $allAds='allAds')
+	public function getAll($pageNum, $catID="0", $locID="0", $keywords='0', $sortByID="0", $minPrice="0", $maxPrice="0", $allAds='allAds', $sortByType="0", $sortByPrice="", $sortByDate="0")
 	{
 		try{
 			
@@ -103,24 +103,38 @@ class getCategory extends CI_Controller {
 			$keywords=($this->input->post("ads"));
 		if( $this->input->post("category")<>'' && $this->input->post("category")<>0)
 			$catID=$this->input->post("category");
-		//$_POST["category"];
-		//if(!isset($this->input->post("location")) or empty($this->input->post("location")) )
-		//	$locID="";
-		//else 
 		if( $this->input->post("location")<>'' && $this->input->post("location")<>0)
 			$locID=$this->input->post("location");
-		if( $this->input->post("sortByPrice")<>'' && $this->input->post("sortByPrice")<>'0')
-			$sortByID=$this->input->post("sortByPrice");
 		if( $this->input->post("allAds")<>'' && $this->input->post("allAds")<>'allAds')
-				$allAds=$this->input->post("allAds");
+			$allAds=$this->input->post("allAds");
+		$data["sortByType"]="0";
+		$data["sortByPrice"]="0";
+		$data["sortByDate"]="0";
+		$tempSortByID=$this->input->post("sortByPrice");
+		if(!empty($tempSortByID))
+			$data["sortByPrice"]=$this->input->post("sortByPrice");
+		else
+			$data["sortByPrice"]=$sortByPrice;
+		$tempSortByID=$this->input->post("selectSortType");
+		if(!empty($tempSortByID))
+			$data["sortByType"]=$this->input->post("selectSortType");
+		else
+			$data["sortByType"]=$sortByType;
+							
+		$tempSortByID=$this->input->post("sortByDate");
+		if(!empty($tempSortByID))
+			$data["sortByDate"]=$this->input->post("sortByDate");
+		else
+			$data["sortByDate"]=$sortByDate;
 			
-		$data["sortByID_"]=$sortByID;
-		//$catID=$this->input->post('search-category');
-		//$locID=$this->input->post('id-location');
-// 		echo $keywords;
-// 		echo $catID;
-// 		echo $locID;
-// 		var_dump($_POST);
+		if(strcmp($data["sortByType"],"1")==0){
+			$data["sortByDate"]="0";
+		}else if(strcmp($data["sortByType"],"2")==0){
+			$data["sortByPrice"]="0";
+		}else{
+			$data["sortByDate"]="0";
+			$data["sortByPrice"]="0";
+		}
 		
 		$searchhistory['keyword']=$keywords;
 		$searchhistory['catID']=$catID;
@@ -239,7 +253,7 @@ class getCategory extends CI_Controller {
 		
 		
 		
-		$data['itemList']=$this->mapToSearchResult($this->searchresult_model->getItemList($pageNum,0, $catID, $locID, $keywords, $sortByID, $minPrice, $maxPrice, $allAds));
+		$data['itemList']=$this->mapToSearchResult($this->searchresult_model->getItemList($pageNum,0, $catID, $locID, $keywords, $sortByID, $minPrice, $maxPrice, $allAds, $sortByType, $sortByPrice, $sortByDate));
 		$NoOfItemCount=$this->searchresult_model->getNoOfItemCount(0, $catID, $locID, $keywords, $minPrice, $maxPrice, $allAds);
 	 	$data["NoOfItemCount"]=$NoOfItemCount;
 					
