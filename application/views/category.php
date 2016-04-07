@@ -1173,8 +1173,13 @@ function setup(){
 	   if(keywords.trim()=='')
 		   keywords='0';
 	   var minPrice=document.getElementById("minPrice").value;
+	   if(minPrice.trim()=='')
+		   minPrice=0;
 	   var maxPrice=document.getElementById("maxPrice").value;
+	   if(maxPrice.trim()=='')
+		   maxPrice=0;
 	   var activeTab=document.getElementById("paneActiveTab").value;
+		   
 
 // 	   $('#pleaseWaitDialog').modal('show');
 
