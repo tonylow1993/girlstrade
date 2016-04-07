@@ -605,7 +605,7 @@
 					</select>
 				</div> 
 				
-				<noscript><input type="submit" value="Submit"></noscript>
+				<noscript><button value="Submit"></button></noscript>
 			</form></div>
           
            <!--/.tab-box-->
@@ -1087,6 +1087,8 @@ function beginSort(){
 	var keywords=document.getElementById("ads").value;
 		   if(keywords.trim()=='')
 			   keywords='0';
+		   var activeTab=document.getElementById("paneActiveTab").value;
+		   
 		   var minPrice=document.getElementById("minPrice").value;
 		   if(minPrice.trim()=='')
 			   minPrice=0;
