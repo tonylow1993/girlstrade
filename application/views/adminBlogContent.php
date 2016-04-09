@@ -12,7 +12,7 @@
 								<input id="avatar1" name="avatar1" type="file" class="file-loading" accept="image/*">
 								<div id="uploadImgError1"></div>
 							</div></td>
-							<td><br/><img style="width:200px;height:200px;" src="<?php echo $pic1;?>" ></td>
+						<!-- 	<td><br/><img style="width:200px;height:200px;" src="<?php echo $pic1;?>" ></td> -->
 						</tr>
 					<tr>
 						<td>
@@ -21,8 +21,6 @@
 						<input id="avatar2" name="avatar2" type="file" class="file-loading" accept="image/*">
 						</div><div id="uploadImgError2"></div>
 						</td>
-						<td><br/><img src="<?php echo $pic2;?>" style="width:200px;height:200px;">
-						</td>
 					</tr>
 					<tr>
 						<td><div class="kv-avatar text-center" style="width:200px;height:200px;">
@@ -30,7 +28,6 @@
 							<input id="avatar3" name="avatar3" type="file" class="file-loading" accept="image/*">
 							</div><div id="uploadImgError3"></div>
 						</td>
-						<td><br/><img src="<?php echo $pic3;?>" style="width:200px;height:200px;"></td>
 					</tr>
 					</table>
 					<br>

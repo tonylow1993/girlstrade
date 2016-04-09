@@ -10,6 +10,7 @@ class blog_model extends CI_Model {
 	var $picName3;
 	var $title;
 	var $description;
+	var $createDate;
 	
 	function __construct()
 	{
@@ -40,6 +41,45 @@ class blog_model extends CI_Model {
 			}
 		
 			return 0;
+	}
+	function insertBlog($data)
+	{
+		try {
+			$this->db->trans_start();
+			$var=$this->db->insert('blog', $data);
+			$this->db->trans_complete();
+			if($var>0)
+				return $var;
+				else
+					throw new Exception(ZeroUpdateRecordError);
+		}catch(Exception $ex)
+		{
+			echo $ex->getMessage();
+			log_message('error', "[Class]: ".$this->router->fetch_class()."[Method:] ".
+					$this->router->fetch_method().
+					"[Line]: ".$ex->getLine()."[Error]: ".$ex->getMessage());
+		}
+	
+		return 0;
+	}
+	function deleteBlogByID($ID){
+		try {
+			$this->db->trans_start();
+			$var=$this->db->delete('blog', array("ID"=>$ID));
+			$this->db->trans_complete();
+			if($var>0)
+				return $var;
+				else
+					throw new Exception(ZeroUpdateRecordError);
+		}catch(Exception $ex)
+		{
+			echo $ex->getMessage();
+			log_message('error', "[Class]: ".$this->router->fetch_class()."[Method:] ".
+					$this->router->fetch_method().
+					"[Line]: ".$ex->getLine()."[Error]: ".$ex->getMessage());
+		}
+		
+		return 0;
 	}
 	
 }

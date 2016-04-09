@@ -54,7 +54,7 @@
 			$this->load->model('pagevisited_model');
 		}
 		
-		public function viewBlog ()
+		public function viewBlog ($ID=0)
 		{
 			$data["lang_label_text"] = $this->lang->line("lang_label_text");
 			$data["Home"] = $this->lang->line("Home");

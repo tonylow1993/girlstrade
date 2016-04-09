@@ -254,6 +254,7 @@ class footer  extends CI_Controller {
 		$data["result"]=$this->blog_model->getBlog();
 		$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
 		$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
+		$data["pic3"]=base_url().$data["result"][0]->picPath3.$data["result"][0]->picName3;
 		$data["title"]=$data["result"][0]->title;
 		$data["description"]=$data["result"][0]->description;
 		

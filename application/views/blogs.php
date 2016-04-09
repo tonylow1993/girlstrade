@@ -45,37 +45,44 @@
 
 
                     <!--blog image-->
-                    <div class="blog-post-img" >
+                    
+                    <?php 
+                    if($result!=null && sizeof($result)>0){
+                    	foreach($result as $ID=>$value){
+                    		$pic1=base_url().$value->picPath1.$value->picName1;
+                    		$pic2=base_url().$value->picPath2.$value->picName2;
+                    		$pic3=base_url().$value->picPath3.$value->picName3;
+                    		
+                    		echo "<div class=\"blog-post-img\" > ";
+		
+		                        echo "<a href=".base_url()."getBlog/viewBlog/".$value->ID." > ";
+		                        echo " <figure > ";
+		                           echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic1 > ";
+		                         echo "   </figure>";
+		                        echo "</a>";
+                    		echo "</div>";
 
-                        <a href="<?php echo base_url();?>getBlog/viewBlog" >
-                            <figure >
-                                <img class="img-responsive" alt="blog-post image" src=<?php echo $pic1;?> >
-                            </figure>
-                        </a>
-                    </div>
-
-                    <!--blog content-->
-
-                        <div class="blog-post-content-desc">
-
-
-                            <span class="info-row blog-post-meta"> 
-								<span class="date"><i class=" icon-clock"> </i> 6 Mar 7:04 pm </span>  -
-                                <span class="author"> <i class="fa fa-user"></i>  <a rel="author" title="Posts by Jhon Doe" href="#">W.C</a> </span>
-							</span>
-
-
-                            <div class="blog-post-content">
-                            <h2><a href="<?php echo base_url();?>getBlog/viewBlog">品味教主</a></h2>
-                            <p><?php echo $description; ?></p>
-                            <div class="row">
-                                <div class="col-md-12 clearfix blog-post-bottom">
-                                    <a class="btn btn-primary  pull-left" href="<?php echo base_url();?>getBlog/viewBlog">More info</a>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-
+                    		echo "<div class=\"blog-post-content-desc\">";
+	
+	
+	                        echo   " <span class=\"info-row blog-post-meta\"> ";
+							echo	"	<span class=\"date\"><i class=\" icon-clock\"> </i> ".$value->createDate ."</span> ";
+	                        echo 	"</span>";
+	
+	
+	                         echo  " <div class=\"blog-post-content\">";
+	                         echo  "    <h2><a href=".base_url()."getBlog/viewBlog/".$value->ID.">".$value->title."</a></h2>";
+	                         echo  "    <p> ".$value->description."</p>";
+	                         echo  "    <div class=\"row\">";
+	                         echo  "        <div class=\"col-md-12 clearfix blog-post-bottom\">";
+	                         echo  "            <a class=\"btn btn-primary  pull-left\" href=".base_url()."getBlog/viewBlog/".$value->ID.">More info</a>";
+	                          echo  "       </div>";
+	                          echo  "   </div>";
+	                         echo  "    </div>";
+	                       echo  "  </div>";
+							}
+						}
+					?>
 
                     </div>
                 </article>

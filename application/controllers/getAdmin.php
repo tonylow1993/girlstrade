@@ -143,12 +143,13 @@ class getAdmin extends CI_Controller {
 						$this->load->view('adminApproveFeedBack.php', $data);
 					}else if($activeNav==12){
 						$data["result"]=$this->blog_model->getBlog();
-						$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
-						$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
-						$data["pic3"]=base_url().$data["result"][0]->picPath3.$data["result"][0]->picName3;
-						$data["titleTextarea"]=$data["result"][0]->title;
-						$data["descriptionTextarea"]=$data["result"][0]->description;
-		
+						//$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
+						//$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
+						//$data["pic3"]=base_url().$data["result"][0]->picPath3.$data["result"][0]->picName3;
+						//$data["titleTextarea"]=$data["result"][0]->title;
+						//$data["descriptionTextarea"]=$data["result"][0]->description;
+						$data["titleTextarea"]="";
+						$data["descriptionTextarea"]="";
 						$this->load->view('adminBlogPage.php', $data);
 					}
 			}
@@ -1391,6 +1392,7 @@ class getAdmin extends CI_Controller {
 		{
 			if($this->upload->display_errors()<>'')
 			{
+				$data["pic".$i]="";
 				$hasImage=$this->input->post("avatar".$i);
 				if(!isset($hasImage) or empty($hasImage))
 					continue;
@@ -1406,7 +1408,10 @@ class getAdmin extends CI_Controller {
 					return;
 			}
 		}
-		else
+		}
+		if(($data["pic1"]!=null && strcmp($data["pic1"],"")!=0)
+			|| 	($data["pic2"]!=null && strcmp($data["pic2"],"")!=0)
+			|| ($data["pic3"]!=null && strcmp($data["pic3"],"")!=0))
 		{
 			//$imgInfo['userID'] = $userID;
 			$imgInfo['picPath1'] = $upload_dir.'/';
@@ -1415,11 +1420,13 @@ class getAdmin extends CI_Controller {
 			$imgInfo['picName2'] = $data["pic2"];
 			$imgInfo['picPath3'] = $upload_dir.'/';
 			$imgInfo['picName3'] = $data["pic3"];
+			$imgInfo['createDate'] = date('Y/m/d H:i:s');
+				
 			$imgInfo['description']=$this->input->post("descriptionTextarea");
 			$imgInfo['title']=$this->input->post("titleTextarea");
-			$this->blog_model->updateBlog($imgInfo);
+			$this->blog_model->insertBlog($imgInfo);
 		}
-		}
+		
 		$this->getAccountPage(12);
 	}
 	public function validateRejectDescLength(){
@@ -1478,7 +1485,15 @@ class getAdmin extends CI_Controller {
 	}
 	
 	public function deleteBlogByID(){
-		
+		$ID=$this->input->post("blogID");
+		$this->blog_model->deleteBlogByID($ID);
+		$data['status'] = 'A';
+		$data['class'] = "has-success";
+		$data['message'] = '';
+		$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i>Saved</span></em>';
+		echo json_encode($data);
+			
+		//$this->getAccountPage(12, 1);
 	}
 }
 ?>
