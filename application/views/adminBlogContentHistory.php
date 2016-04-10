@@ -9,8 +9,8 @@
             	?>	
             	
                     <tr>
-                    <th data-sort-ignore="true"> <?php echo $this->lang->line("Preview");?>  </th>
-                    <th> <?php echo $this->lang->line("Action");?>  </th>
+                     <th> <?php echo $this->lang->line("Action");?>  </th>
+                   <th data-sort-ignore="true"> <?php echo $this->lang->line("Preview");?>  </th>
                    </tr>
                 <?php }?>
                 </thead>
@@ -27,8 +27,8 @@
                   		$description=$row->description;
                   		$clickLink="deleteBlog".$Num;
                 		echo "<tr>";
-                		echo "<td style=\"width:10%\" class=\"action-td\"><div>";
-                		echo "<a class=\"btn btn-danger btn-xs btn-120\"  href=\"#deleteBlogPopup\" data-toggle=\"modal\" id='$clickLink' data-id=\"$row->ID\" data-title=\"$title\" data-description=\"$description\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></p>";
+                		echo "<td style=\"width:20%;height:150px;padding:0px; margin: 0px; border: none;\"  class=\"add-image\">";
+                		echo "<div class=\"user-ads-action\"><a class=\"btn btn-danger btn-xs btn-120\" href=\"#deleteBlogPopup\" data-toggle=\"modal\" id='$clickLink' data-id=\"$row->ID\" data-title=\"$title\" data-description=\"$description\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></p>";
                 		 
                 		echo "</div>";
                 		echo "</td>";
