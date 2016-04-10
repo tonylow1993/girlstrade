@@ -76,7 +76,7 @@
                     	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                        echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
-                          echo "<br/>".$preview."<br/>".$reportReason."<br/>Posted On: ". $createDate."</h5>";
+                          echo "<br/>".$preview."<br/>Posted On: ". $createDate."</h5>";
                       	 	echo "</div></td>";
                    			echo "</tr>";
 				}
