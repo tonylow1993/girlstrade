@@ -2447,6 +2447,13 @@ div.login-box .panel-footer label {
 /* POST ADS
 /* =============================================================== */
 
+.overflow-hidden-6{
+	text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
 .content-subheading {
   border-bottom: 1px solid #ddd;
