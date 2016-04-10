@@ -3386,6 +3386,14 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.margin-5{
+	margin: 5px;
+}
+
+.no-shadow{
+  box-shadow: 0 0 0 !important;
+}
+
 .not-active {
    pointer-events: none;
    cursor: default;
