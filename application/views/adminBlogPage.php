@@ -85,7 +85,7 @@ input[type=checkbox]
         <h2 id="modal-title-del" class="modal-title"><?php echo $this->lang->line("popupTitleDeleteAds");?></h2>
       </div>
       <div class="modal-body">
-        <form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds">
+        <form role="form" id="itemDelete" method="post" >
            <div class="form-group">
            		<input type="hidden" id="blogID" name="blogID" >   	
            		<input id="blogTitle" name="blogTitle"/>
@@ -94,7 +94,7 @@ input[type=checkbox]
         </form>
       </div>
       <div class="modal-footer">
-		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
+		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="closePopupAndRefresh()" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
       	<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <button id="submit-btn" type="button" class="btn btn-success pull-right"   onclick="setupDeleteBlog(); return false;">Submit</button>
         	<button id="validate" hidden="true" type="submit"></button>
@@ -131,41 +131,41 @@ function setup()
 		
         if (window.File && window.FileReader && window.FileList && window.Blob)
         {
-        	for(i=1;i<=1;i++)
-    		{
-	            //get the file size and file type from file input field
-	            try {
-	            var fsize = $('#image'+i)[0].files[0].size;
-	            var ftype = $('#image'+i)[0].files[0].type;
-	            var fname = $('#image'+i)[0].files[0].name;
-	            } catch(err)
-	            {
-// 	            	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Error!</span></em>');
-// 	                 location.href = "#uploadImgError"+i;                 //Go to the target element.
-// 	                 return false;
-			     }
+//         	for(i=1;i<=3;i++)
+//     		{
+// 	            //get the file size and file type from file input field
+// 	            try {
+// 	            var fsize = $('#image'+i)[0].files[0].size;
+// 	            var ftype = $('#image'+i)[0].files[0].type;
+// 	            var fname = $('#image'+i)[0].files[0].name;
+// 	            } catch(err)
+// 	            {
+// // 	            	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Error!</span></em>');
+// // 	                 location.href = "#uploadImgError"+i;                 //Go to the target element.
+// // 	                 return false;
+// 			     }
 	            
-	            if(fsize>8048576) //do something if file size more than 1 mb (1048576)
-	            {
-	            	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Exceed File Size Limit!</span></em>');
-	                 location.href = "#uploadImgError"+i;                 //Go to the target element.
-	                 return false; 
-	            }
-                   switch(ftype)
-                    {
-                        case 'image/png':
-                        case 'image/gif':
-                        case 'image/bmp':
-                        case 'image/jpeg':
-                        case 'image/jpg':
-                            break;
-                        default:
-                        	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Unsupported File Type Images!</span></em>');
-                       		location.href = "#uploadImgError"+i;                 //Go to the target element.
-                        	return false; 
-                    }
+// // 	            if(fsize>8048576) //do something if file size more than 1 mb (1048576)
+// // 	            {
+// // 	            	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Exceed File Size Limit!</span></em>');
+// // 	                 location.href = "#uploadImgError"+i;                 //Go to the target element.
+// // 	                 return false; 
+// // 	            }
+//                    switch(ftype)
+//                     {
+//                         case 'image/png':
+//                         case 'image/gif':
+//                         case 'image/bmp':
+//                         case 'image/jpeg':
+//                         case 'image/jpg':
+//                             break;
+//                         default:
+//                         	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Unsupported File Type Images!</span></em>');
+//                        		location.href = "#uploadImgError"+i;                 //Go to the target element.
+//                         	return false; 
+//                     }
     		
-    		}
+//     		}
         } else{
 
         	 $("#uploadImgError1").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please upgrade your browser, because your current browser lacks some new features we need!</span></em>');
@@ -173,16 +173,10 @@ function setup()
              return false; 
         }
 	
-	if(!myform.checkValidity())
-	{
-		
-	        document.getElementById("validate").click();
-	        return false;
-	}
-    isEmptyUploadFile(function(r)
+	isEmptyUploadFile(function(r)
     {
-        var up1 = document.getElementById('image1').value;
-         img1=up1;
+         var up1 = document.getElementById('image1').value;
+                   img1=up1;
             
         if(up1 == "" )
         {
@@ -190,13 +184,13 @@ function setup()
            location.href = "#uploadImgError1";                 //Go to the target element.
            return false; 
         }
-        else //if(r == false)
-        {
-            $('#pleaseWaitDialog').modal('show');
+		if(r == false)
+         {
+           $('#pleaseWaitDialog').modal('show');
 
             setForm(function(data)
             {
-                console.log(data);
+                alert(data);
                 if(data == true)
                 {
                     document.getElementById("newPost").submit();
@@ -230,6 +224,11 @@ function passToModal() {
 
 }
 $(document).ready(passToModal());
+
+function closePopupAndRefresh(){
+	location.href="<?php echo base_url(); echo MY_PATH;?>getAdmin/getAccountPage/12";
+}
+
 
 function setupDeleteBlog()
 {

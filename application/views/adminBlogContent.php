@@ -4,7 +4,7 @@
 				
 				
 				<div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
-				<form id="newPost" action="<?php echo base_url(); echo MY_PATH;?>getAdmin/uploadBlogPhoto" method="post" enctype="multipart/form-data">
+				<form id="newPost" >
 					<table>
 						<tr>
 							<td ><div class="kv-avatar text-center" style="width:200px;height:200px;">
@@ -59,7 +59,7 @@
 					</div>
 					</div>
 					<br/>
-				    <button class="btn btn-primary" type="submit"  onclick="setup(); return false;">Submit</button>
+				    <button class="btn btn-primary" onclick="upload(); return false;">Submit</button>
                 </form>
 				<style>
 				.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
