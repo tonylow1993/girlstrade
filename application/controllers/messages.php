@@ -198,6 +198,9 @@ function addDayswithdate($date,$days){
 				$result=$this->requestpost_model->insert($messageArray);
 				if($result)
 				{
+					$this->admin_model->updateStatByUserID($fUserID);
+					$this->admin_model->updateStatByUserID($userID);
+						
 					$usernameArr=$this->users_model->get_user_by_id($userID);
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
@@ -856,6 +859,10 @@ function addDayswithdate($date,$days){
 					
 			$messageResult=$this->requestpost_model->update($messageArray,$where);
 			if($messageResult){
+				$this->admin_model->updateStatByUserID($fUserID);
+				$this->admin_model->updateStatByUserID($userID);
+					
+				
 				$usernameArr=$this->users_model->get_user_by_id($userID);
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);

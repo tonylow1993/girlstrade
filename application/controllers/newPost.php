@@ -23,6 +23,7 @@ class newPost extends CI_Controller {
                 $this->load->model('location_model');
                 $this->load->model('userstat_model');
                 $this->load->model('messages_model');
+                $this->load->model('admin_model');
                 $this->load->helper('language');
                 date_default_timezone_set("Asia/Hong_Kong");
                 if($this->nativesession->get("language")!=null)
@@ -1143,7 +1144,8 @@ public function getChildCategory($parentID)
 		$data["successTile"]=$this->lang->line("successTile");
 		$data["failedTitle"]=$this->lang->line("failedTitle");
 		$data["goToHomePage"]=$this->lang->line("goToHomePage");
-		
+		$this->admin_model->updateStatByUserID($userID);
+			
 		$msg['status'] = 'A';
 		$msg['class'] = "has-success";
 		$data['remainCount'] = 4;
