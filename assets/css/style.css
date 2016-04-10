@@ -3357,6 +3357,11 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.not-active {
+   pointer-events: none;
+   cursor: default;
+}
+
 #sortfrm{
 	display: inline-block;
 	float: right;
