@@ -20,7 +20,7 @@
                     <i class="fa fa-eye ln-shadow shape-8"></i> </div>
                   <div class="mcol-right"> 
                     <!-- Number of visitors -->
-                    <p><a><?php echo $visitCount; ?></a> <em>Visits</em></p>
+                    <p><a class="not-active"><?php echo $visitCount; ?></a> <em>Visits</em></p>
                   </div>
                   <div class="clearfix"></div>
                 </div>
@@ -32,7 +32,7 @@
                     <i class="fa fa-pencil ln-shadow shape-4"></i> </div>
                   <div class="mcol-right"> 
                     <!-- Number of visitors -->
-                    <p><a><?php echo $totalMyAdsCount;?></a><em>Ads</em></p>
+                    <p><a class="not-active"><?php echo $totalMyAdsCount;?></a><em>Ads</em></p>
                   </div>
                   <div class="clearfix"></div>
                 </div>
@@ -44,7 +44,7 @@
                     <i class="fa fa-heart ln-shadow shape-5"></i> </div>
                   <div class="mcol-right"> 
                     <!-- Number of visitors -->
-                     <p><a><?php echo $favoriteAdsCount;?></a> <em>Favorites </em></p>
+                     <p><a class="not-active"><?php echo $favoriteAdsCount;?></a> <em>Favorites </em></p>
                  </div>
                   <div class="clearfix"></div>
                 </div>

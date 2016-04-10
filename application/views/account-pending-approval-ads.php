@@ -67,15 +67,16 @@
                   				$userPath=base_url().MY_PATH."viewProfile/viewByUserID/".$replyUserID."/1?prevURL=".urlencode(current_url());
                   				echo "<tr>";
                   				echo "<td style=\"width:20%\" class=\"add-image\"><a href=$userPath>$reply</a>";
-                  				if(is_file_exists($imagePath))
+								echo "<p class=\"price-td\">";
+                  				/*if(is_file_exists($imagePath))
                   				{
                   					echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                   				}else {
                   					$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
                   					echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                  				}
+                  				}*/
                   				if(strcmp($statusRP, 'A')==0)
-                  					echo "<p class=\"price-td\"><br/>Seller email: $sellerEmail";
+                  					echo "<br/>Seller email: $sellerEmail";
                   					echo "<br/>Status: $status";
                   					echo "</td></p>";
                   					echo "<td style=\"width:55%\" class=\"ads-details-td\">";
@@ -103,14 +104,14 @@
                 		
                 		echo "<tr>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">$reply";
-                    	if(is_file_exists($checkImgFile)){
+                    	/*if(is_file_exists($checkImgFile)){
                       		echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                   		}else
                   		{
                   			$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
                   			echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                  		}
-                      	echo "<p class=\"price-td\"><br/>$NoOfDaysPending";
+                  		}*/
+                      	echo "<p class=\"price-td\"><br/>Pending Day: $NoOfDaysPending";
                     	$cancelPath=base_url().MY_PATH."messages\cancelPendingApproval\$messageID";
                     	$rowCount=$rowCount+1;
                     	$ctrlName1="AjaxLoad".$rowCount;
@@ -123,7 +124,7 @@
                     	echo "</div></td>";
                     	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
-                         echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
+                         echo "<h5><div class=\"add-title-girlstrade\"><a href=$viewItemPath>".$this->lang->line("lblTitle").$previewTitle."</a></div><a href=$viewItemPath>".$previewDesc."</a>";
                           echo "<br/>Posted On: ". $createDate."</h5>";
                    	 	echo "</div></td>";
                       	
