@@ -43,11 +43,17 @@
                  	    $editprofile1=base_url().MY_PATH."home/getAccountPage/4";
 		             	 $accountinbox=base_url().MY_PATH."home/getAccountPage/1";
 		             	 $outgoingMsg=base_url().MY_PATH."home/getAccountPage/10";
+		             	 $sendEmailconfig=base_url().MY_PATH."home/getAccountPage/12";
+		             	 
               			 if($activeNav==4)
               					echo "<li><a  class=\"active\" href=$editprofile1><i class=\"icon-pencil-2\"></i> $EditProfile <span class=\"badge\"></span></a></li>";
          	     		 else 
          	     		 	echo "<li><a href=$editprofile1><i class=\"icon-user\"></i> $EditProfile <span class=\"badge\"></span></a></li>";
-         	     		 	 
+         	     		 if($activeNav==12)
+         	     		 	echo "<li><a  class=\"active\" href=$sendEmailconfig><i class=\"icon-pencil-2\"></i>". $this->lang->line("updateSendEmailConfig")." <span class=\"badge\"></span></a></li>";
+         	     		 else
+         	     			echo "<li><a href=$sendEmailconfig><i class=\"icon-user\"></i>". $this->lang->line("updateSendEmailConfig")." <span class=\"badge\"></span></a></li>";
+         	     		 	
          	     		 if($activeNav==1)
               					echo "<li><a  class=\"active\" href=$accountinbox><i class=\"icon-pencil-2\"></i> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
          	     		 else 

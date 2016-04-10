@@ -1882,6 +1882,10 @@ function generateRandomString($length = 8) {
 			$this->load->view("account-statements", $data);
 		}else if($activeNav==9){
 			$this->load->view("account-close", $data);
+		}else if($activeNav==12){
+			$data["userID"]=$userID;
+			$data["result"]=$this->userInfoSendEmail_model->getSendEmailConfigByUserID($userID);
+			$this->load->view('adminSendEmailConfig.php', $data);
 		}
 	}
 	public function mapInBoxByPostUserIdToView($inbox, $type="Inbox"){
@@ -3586,6 +3590,28 @@ function generateRandomString($length = 8) {
 			$_session['timeout']=time();
 		}
 		*/
+	}
+	
+	public function updateSendEmailConfig(){
+		$userID=$this->input->post("userID",true);
+		$result=$this->userInfoSendEmail_model->getSendEmailConfigByUserID($userID);
+		$data=array();
+		foreach($result as $id=>$value){
+			$temp;
+			if(strcmp($value["type"],"userID")!=0){
+				if($this->input->post($value["type"], true))
+					$value["typeValue"]=1;
+				else
+					$value["typeValue"]=0;
+				$temp=array($value["type"]=>$value["typeValue"]);
+			}else{
+				$temp=array("userID"=>$value["typeValue"]);
+			}
+			$data=$data+$temp;			
+		}
+		$this->userInfoSendEmail_model->updateSendEmailConfig($data);
+		$this->getAccountPage(12);
+		
 	}
 }
 

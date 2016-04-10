@@ -76,12 +76,12 @@
               	  	else
               	  		echo "<li><a href=$sendEmailPath>".$this->lang->line('sendEmail') ." <span class=\"badge\"></span></a></li>";
               	  	
-              	  		if($activeNav==12)
-              	  			echo "<li><a  class=\"active\" href=$blogAdminPath>".$this->lang->line('adminBlog') ." <span class=\"badge\"></span></a></li>";
-              	  			else
-              	  				echo "<li><a href=$blogAdminPath>".$this->lang->line('adminBlog') ." <span class=\"badge\"></span></a></li>";
+              	  	if($activeNav==12)
+              	  		echo "<li><a  class=\"active\" href=$blogAdminPath>".$this->lang->line('adminBlog') ." <span class=\"badge\"></span></a></li>";
+              	  	else
+              	  		echo "<li><a href=$blogAdminPath>".$this->lang->line('adminBlog') ." <span class=\"badge\"></span></a></li>";
               	  				 
-              	  		
+              	  						 
           		 	echo "</ul>";
                   	echo "</div>";
                 echo "</div>";

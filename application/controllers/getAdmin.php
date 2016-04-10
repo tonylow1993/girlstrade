@@ -1500,5 +1500,7 @@ class getAdmin extends CI_Controller {
 			
 		//$this->getAccountPage(12, 1);
 	}
+	
+	
 }
 ?>
