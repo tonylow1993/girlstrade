@@ -2269,15 +2269,29 @@ h1.pricetag span, h1.trtri span {
 
 .backtolist {
   padding: 8px 0;
-  background-color: #828282;
-  border-radius: .25em;
-  padding: .2em .6em .3em;
 }
 
-.backtolist a{
-  color: white;
-  text-decoration: none;
+@media (min-width: 768px){
+	.backtolist {
+	  border-radius: .25em;
+	  border: 2px solid #E2348C;
+	  padding: .2em .6em .3em;
+	}
+
+	.backtolist:hover a, .backtolist:active a{
+	   color: white;
+	}
+
+	.backtolist a{
+	  text-decoration: none !important;
+	}
+
+	.backtolist:hover, .backtolist:active {
+		background-color: #E2348C;
+	}
 }
+
+
 
 .page-sidebar-right {
   padding-left: 10px;
