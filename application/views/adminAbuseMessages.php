@@ -18,11 +18,9 @@
              <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                     <tr>
-                    <th data-type="numeric" data-sort-initial="true"> </th>
-                    <th> <?php echo $this->lang->line("From");?> </th>
-                    <th data-sort-ignore="true"> <?php echo $this->lang->line("Preview");?>  </th>
                     <th> <?php echo $this->lang->line("Action");?>  </th>
-                   </tr>
+                    <th data-sort-ignore="true"> <?php echo $this->lang->line("Preview");?>  </th>
+                    </tr>
                 </thead>
                 <tbody>
                 <?php 
@@ -32,65 +30,61 @@
             	{
             		foreach($itemList as $id=>$row)
                   	{
-//                   		$Num=$Num+1;
-//                   		$from=$row['from'];
-//                   		$to=$row["to"];
-//                   		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
-//                   		$imagePath=$row['imagePath'];
-//                   		$previewTitle=$row['previewTitle'];
-//                   		$preview=trim($row["preview"]);
+                  		$Num=$Num+1;
+                  		$from=$row['from'];
+                  		$to=$row["to"];
+                  		$viewItemPath=$row['viewItemPath']."?prevURL=".urlencode(current_url());
+                  		$imagePath=$row['imagePath'];
+                  		$previewTitle=$row['previewTitle'];
+                  		$preview=trim($row["preview"]);
                   		
-//                   		$preview=trimLongText($preview);
+                  		$preview=trimLongText($preview);
                   		
-//                   		$previewDesc=trim($row["previewDesc"]);
-//                   		$createDate=$row['createDate'];
-//                   		$itemStatus=$row['itemStatus'];
-//                   		//$status=$row['status'];
-//                   		$commentID=$row['messageID'];
-//                   		//$NoOfDaysPending=$row['NoOfDaysPending'];
-// 						//$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
-// 						$price=$row['price'];
-// 						$postID=$row['postID'];
-// 						$reportReason=$row["reportReason"];
-//                 		echo "<tr>";
-//                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
-//                         echo "<label>";
-//                         echo "  <input type=\"checkbox\">";
-//                         echo "</label>";
-//                       	echo "</div></td>";
-//                     	echo "<td style=\"width:20%\">user: $from, postman: $to</td>";
-//                     	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
-//                     	echo "<div class=\"ads-details\">";
-//                        echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
-//                           echo "<br/>".$preview."<br/>".$reportReason."<br/>Posted On: ". $createDate."</h5>";
-//                       	 	echo "</div></td>";
-//                       	 	echo "<td style=\"width:10%\" class=\"action-td\"><div>";
-//                       	 	 $actionType="actionType".$Num;
-//                 $postIDCtrl="postID".$Num;
-//                 $commentIDCtrl="commentID".$Num;
-//                 $rejectReason="rejectReason".$Num;
-//                 $rejectSpecifiedReason="rejectSpecifiedReason".$Num;
-//                 echo "<input type='hidden' name='".$postIDCtrl."' value='".$postID."' />";
-//                 echo "<input type='hidden' name='".$commentIDCtrl."' value='".$commentID."' />";
-                 
-//                 echo "<select id='".$actionType."' name='".$actionType."'   style='font-size:1.3em'>";
-//                 echo "<option selected='selected' value='A'>Approve</option>";
-//                 echo "<option value='R'>Reject</option>";
-//                 echo "<option value='U'>Unverified</option>";
-//                 echo "</select>";
-//                 echo "<br/><select id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
-//                 echo "<option selected='selected' value='Reject Reason 1'>Reject Reason 1</option>";
-//                 echo "<option value='Reject Reason 2'>Reject Reason 2</option>";
-//                 echo "</select>";
-//                 echo "<br/><input type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='width:200px'></input>";
-//                 echo "</div></div>";
-//                   echo "</td></tr>";
+                  		$previewDesc=trim($row["previewDesc"]);
+                  		$createDate=$row['createDate'];
+                  		$itemStatus=$row['itemStatus'];
+                  		//$status=$row['status'];
+                  		$commentID=$row['commentID'];
+                  		//$NoOfDaysPending=$row['NoOfDaysPending'];
+						//$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
+						$price=$row['price'];
+						$postID=$row['postID'];
+						$reportReason=$row["preview"];
+                		echo "<tr>";
+                    	echo "<td style=\"width:20%\">user: $from, postman: $to";
+                    	$actionType="actionType".$Num;
+                    	$postIDCtrl="postID".$Num;
+                    	$commentIDCtrl="commentID".$Num;
+                    	$rejectReason="rejectReason".$Num;
+                    	$rejectSpecifiedReason="rejectSpecifiedReason".$Num;
+                    	echo "<input type='hidden' name='".$postIDCtrl."' value='".$postID."' />";
+                    	echo "<input type='hidden' name='".$commentIDCtrl."' value='".$commentID."' />";
+                    	 
+                    	echo "<select id='".$actionType."' name='".$actionType."'   style='font-size:1.3em'>";
+                    	echo "<option selected='selected' value='A'>Approve</option>";
+                    	echo "<option value='R'>Reject</option>";
+                    	echo "<option value='U'>Unverified</option>";
+                    	echo "</select>";
+                    	echo "<br/><select id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
+                    	echo "<option selected='selected' value='Reject Reason 1'>Reject Reason 1</option>";
+                    	echo "<option value='Reject Reason 2'>Reject Reason 2</option>";
+                    	echo "</select>";
+                    	echo "<br/><input type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='width:200px'></input>";
+                    	//echo "</div></div>";
+                    	echo "</td> ";
+                    	
+                    	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
+                    	echo "<div class=\"ads-details\">";
+                       echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
+                          echo "<br/>".$preview."<br/>".$reportReason."<br/>Posted On: ". $createDate."</h5>";
+                      	 	echo "</div></td>";
+                   			echo "</tr>";
 				}
                
             	}else{
               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
               }
-// 				echo "<br/><input type='hidden' name='NumRec' value='".$Num."' ></input>";
+ 				echo "<br/><input type='hidden' name='NumRec' value='".$Num."' ></input>";
               ?>  
 <!--                    <div class="pagination-bar text-center"> -->
 <!--             <ul class="pagination"> -->
@@ -129,7 +123,7 @@
              	
            
             </div>
-             <br/><button  type="submit" value="Submit" >Submit</button>
+             <br/><button  hidden="true" type="submit" value="Submit" >Submit</button>
              </form>   
         </div>
         </div>

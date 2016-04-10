@@ -2303,76 +2303,76 @@ function generateRandomString($length = 8) {
 			$soldUserList=$this->messages_model->getSoldUserList($postID);
 			$postInfo=$this->post_model->getPostByPostID($postID);
 			$postUserID=$postInfo[0]->userID;
-			$commentInfo=$this->tradecomments_model->getTradeCommentsbyPostID($postID);	
+			//$commentInfo=$this->tradecomments_model->getTradeCommentsbyPostID($postID);	
 			$preview="";
-			if($commentInfo<>null && count($commentInfo)>0)
-			{
-				foreach($commentInfo as $comment){
+// 			if($commentInfo<>null && count($commentInfo)>0)
+// 			{
+// 				foreach($commentInfo as $comment){
 				
-					$soldToUserID=$comment->soldToUserID;
-					$soldToUser=$this->users_model->get_user_by_id($soldToUserID);
-					$seller=$this->users_model->get_user_by_id($postInfo[0]->userID);
-					if($soldToUser!=null && count($soldToUser)>0)
-					$soldToUserName=$soldToUser[0]->username;
-					if(strcmp($preview, "")==0)
-						$preview=$preview."Sold to: ".$soldToUserName;
-					else
-							$preview=$preview."<br/><br/>Sold to: ".$soldToUserName;
-					//$preview=$preview."<br/>Seller: ".$seller[0]->username;
-						if($comment->sellerRating!=0 && (strcmp($comment->status,"A")==0 || strcmp($comment->status,"C")==0)){
-						$preview=$preview."<br/>  Seller Comment:  (". $this->getRating($comment->sellerRating).")";
-						$preview=$preview." ".$comment->sellerComment;
-						}
-						if($comment->buyerRating!=0 && (strcmp($comment->status,"A")==0 || strcmp($comment->status,"C")==0)){
-							$preview=$preview."<br/>  Buyer Comment: (".$this-> getRating($comment->buyerRating).")";
-							$preview=$preview." ".$comment->buyerComment;
-						}
-						//$enableMarkSoldBtn=$comment->sellerRating==0;
-						$visibleBuyerComment=$comment->sellerRating!=0 &&
-						($comment->buyerRating==null ||$comment->buyerRating==0) ;
-				}
-			}else{
-				// set enable mark sold if it has records in messages from buyer
+// 					$soldToUserID=$comment->soldToUserID;
+// 					$soldToUser=$this->users_model->get_user_by_id($soldToUserID);
+// 					$seller=$this->users_model->get_user_by_id($postInfo[0]->userID);
+// 					if($soldToUser!=null && count($soldToUser)>0)
+// 					$soldToUserName=$soldToUser[0]->username;
+// 					if(strcmp($preview, "")==0)
+// 						$preview=$preview."Sold to: ".$soldToUserName;
+// 					else
+// 							$preview=$preview."<br/><br/>Sold to: ".$soldToUserName;
+// 					//$preview=$preview."<br/>Seller: ".$seller[0]->username;
+// 						if($comment->sellerRating!=0 && (strcmp($comment->status,"A")==0 || strcmp($comment->status,"C")==0)){
+// 						$preview=$preview."<br/>  Seller Comment:  (". $this->getRating($comment->sellerRating).")";
+// 						$preview=$preview." ".$comment->sellerComment;
+// 						}
+// 						if($comment->buyerRating!=0 && (strcmp($comment->status,"A")==0 || strcmp($comment->status,"C")==0)){
+// 							$preview=$preview."<br/>  Buyer Comment: (".$this-> getRating($comment->buyerRating).")";
+// 							$preview=$preview." ".$comment->buyerComment;
+// 						}
+// 						//$enableMarkSoldBtn=$comment->sellerRating==0;
+// 						$visibleBuyerComment=$comment->sellerRating!=0 &&
+// 						($comment->buyerRating==null ||$comment->buyerRating==0) ;
+// 				}
+// 			}else{
+// 				// set enable mark sold if it has records in messages from buyer
 				
-			}
+// 			}
 			
-			$itemComments=$this->itemcomments_model->getItemCommentsbyPostID($postID);
-			if($itemComments<> null && count($itemComments)>0){
-				foreach($itemComments as $comment){
-					$buyerInfo=$this->users_model->get_user_by_id($comment->usercommentID);
-					if($buyerInfo!=null && count($buyerInfo)>0){
-						$buyerUserName=$buyerInfo[0]->username;
-						if(strcmp($preview, "")==0)
-							$preview=$preview."Comment user: ".$buyerUserName;
-						else
-							$preview=$preview."<br/><br/>Comment user: ".$buyerUserName;
+// 			$itemComments=$this->itemcomments_model->getItemCommentsbyPostID($postID);
+// 			if($itemComments<> null && count($itemComments)>0){
+// 				foreach($itemComments as $comment){
+// 					$buyerInfo=$this->users_model->get_user_by_id($comment->usercommentID);
+// 					if($buyerInfo!=null && count($buyerInfo)>0){
+// 						$buyerUserName=$buyerInfo[0]->username;
+// 						if(strcmp($preview, "")==0)
+// 							$preview=$preview."Comment user: ".$buyerUserName;
+// 						else
+// 							$preview=$preview."<br/><br/>Comment user: ".$buyerUserName;
 						
-						$preview=$preview."<br/>".$comment->comments;
+// 						$preview=$preview."<br/>".$comment->comments;
 						
-						$itemChildComments=$this->itemcomments_model->getItemCommentsbyPostIDParentID($postID, $comment->ID);
-						if($itemChildComments<> null && count($itemChildComments)>0){
-							foreach($itemChildComments as $childComment){
-								$buyerChildInfo=$this->users_model->get_user_by_id($childComment->usercommentID);
-								if($buyerChildInfo!=null && count($buyerChildInfo)>0){
-									$buyerUserName=$buyerChildInfo[0]->username;
-									if(strcmp($preview, "")==0)
-										$preview=$preview."--Reply Comment user: ".$buyerUserName;
-									else
-										$preview=$preview."<br/><br/>--Reply Comment user: ".$buyerUserName;
+// 						$itemChildComments=$this->itemcomments_model->getItemCommentsbyPostIDParentID($postID, $comment->ID);
+// 						if($itemChildComments<> null && count($itemChildComments)>0){
+// 							foreach($itemChildComments as $childComment){
+// 								$buyerChildInfo=$this->users_model->get_user_by_id($childComment->usercommentID);
+// 								if($buyerChildInfo!=null && count($buyerChildInfo)>0){
+// 									$buyerUserName=$buyerChildInfo[0]->username;
+// 									if(strcmp($preview, "")==0)
+// 										$preview=$preview."--Reply Comment user: ".$buyerUserName;
+// 									else
+// 										$preview=$preview."<br/><br/>--Reply Comment user: ".$buyerUserName;
 								
-									$preview=$preview."<br/>----".$childComment->comments;
-							}
-						}
+// 									$preview=$preview."<br/>----".$childComment->comments;
+// 							}
+// 						}
 						
 						
 						
-					}
-				}
-			}
-				if(strcmp($preview, "")!=0)
-					$preview=$preview."<br/>";
+// 					}
+// 				}
+// 			}
+// 				if(strcmp($preview, "")!=0)
+// 					$preview=$preview."<br/>";
 						
-			}
+// 			}
 			
 			if($soldUserList<>null && count($soldUserList)>0  && $postInfo[0]->remainQty>0)
 				$enableMarkSoldBtn=true;
