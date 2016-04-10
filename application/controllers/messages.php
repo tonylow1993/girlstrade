@@ -31,7 +31,7 @@ class messages extends CI_Controller {
             $this->load->model('sellerfeedback_model');
             $this->load->model('buyerfeedback_model');
             $this->load->model('buyermessage_model');
-            
+            $this->load->model('userInfoSendEmail_model');
             date_default_timezone_set("Asia/Hong_Kong");
             if($this->nativesession->get("language")!=null)
             {
@@ -206,7 +206,7 @@ function addDayswithdate($date,$days){
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."/home/loginPage";
 					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendToSeller( $username, $path);
-					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendToSeller());
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendToSeller(), DIRECTSENDEMAIL);
 					
 					$this->admin_model->getDirectSendStatByUserID($fUserID);
 					
@@ -373,7 +373,7 @@ function addDayswithdate($date,$days){
 							$email=$this->useremail_model->getUserEmailByUserID($fUserID);
 							$email["email"]=HOST_EMAIL;
 							$msg=$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg();
-							$this->sendAuthenticationEmail($email, $msg,$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg() );
+							$this->sendAuthenticationEmail($email, $msg,$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg(), DELETEABUSEMESSAGESENDEMAIL );
 							$errorMsg=$this->lang->line("MessagesSendError");
 							$data["lang_label"]=$this->nativesession->get("language");
 							$data["PrevURL"]=$prevURL;
@@ -529,7 +529,7 @@ function addDayswithdate($date,$days){
 						$email=$this->useremail_model->getUserEmailByUserID($fUserID);
 						$email["email"]=HOST_EMAIL;
 						$msg=$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg();
-						$this->sendAuthenticationEmail($email, $msg,$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg() );
+						$this->sendAuthenticationEmail($email, $msg,$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg() , INSERTABUSEMESSAGESENDEMAIL);
 						$errorMsg=$this->lang->line("MessagesSendError");
 						$data["lang_label"]=$this->nativesession->get("language");
 						$data["PrevURL"]=$prevURL;
@@ -775,7 +775,7 @@ function addDayswithdate($date,$days){
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
 					$msg=$this->mailtemplate_model->SendEmailMsgForSeller( $username, $path );
-					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller());
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller(), INSERTMESSAGESENDEMAIL);
 					
 					$this->admin_model->getMessageStatByUserID($fUserID);
 					
@@ -868,7 +868,7 @@ function addDayswithdate($date,$days){
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
 					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendApproveOrRejectToSeller($username, $path );
-					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendApproveOrRejectToSeller());
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendApproveOrRejectToSeller(), APPROVEDIRECTSEND);
 					
 				
 				$data['status'] = 'A';
@@ -904,7 +904,7 @@ function addDayswithdate($date,$days){
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
 					$msg=$this->mailtemplate_model->SendEmailMsgForSeller( $username, $path );
-					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller());
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller(), sendEmailForApproveReject);
 						
 		}
 		public function rejectSavedAds()
@@ -940,7 +940,7 @@ function addDayswithdate($date,$days){
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
 					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendApproveOrRejectToSeller($username, $path );
-					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendApproveOrRejectToSeller());
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendApproveOrRejectToSeller(), REJECTDIRECTSEND);
 					
 					$data['status'] = 'A';
 				$data['class'] = "has-success";
@@ -1158,7 +1158,7 @@ function addDayswithdate($date,$days){
 					$email=$this->useremail_model->getUserEmailByUserID($fUserID);
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=$this->mailtemplate_model->SendEmailReplyMsgForSelleOrBuyerr( $username, $path );
-						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForReplyMsgForSellerOrBuyer());
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForReplyMsgForSellerOrBuyer(), REPLYMESSAGESENDEMAIL);
 						
 						$this->admin_model->getMessageStatByUserID($userID);
 						
@@ -1690,8 +1690,12 @@ function addDayswithdate($date,$days){
 					
 			}
 		}
-		private function sendAuthenticationEmail($userEmail, $msg, $title){
+		private function sendAuthenticationEmail($userEmail, $msg, $title, $type=""){
 		
+			$allow=$this->userInfoSendEmail_model->getAlowSendEmailByType($userEmail["userID"], $type);
+			if(!$allow)
+				return;			
+			
 			$config['protocol'] = SMTP_PROTOCOL;
 			$config['smtp_host'] = SMTP_HOST;
 			$config['smtp_port'] = SMTP_PORT;

@@ -218,7 +218,13 @@ input[type=checkbox]
                           
                           </div>
                       </div>
-					    
+					    <div class="form-group row">
+                          <label class="col-md-3 control-label text-center"></label>
+                          <div class="col-md-8"> 
+                       	       <button id="submit-upload-form"  class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
+                              <button id="validate" hidden="true" type="submit"></button>
+                          </div>
+                       </div>
                   </fieldset>
                     
           		  
@@ -242,13 +248,7 @@ input[type=checkbox]
         
         
                 </form>
-                <div class="form-group row">
-                          <label class="col-md-3 control-label text-center"></label>
-                          <div class="col-md-8"> 
-                       	       <button id="submit-upload-form"  class="btn btn-primary btn-tw" onclick="setup(); return false;"><i class="glyphicon glyphicon-upload"></i>Submit</button>
-                              <button id="validate" hidden="true" type="submit"></button>
-                          </div>
-                       </div>
+                
                 
               </div>
             </div>

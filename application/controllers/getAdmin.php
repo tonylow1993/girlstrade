@@ -61,6 +61,7 @@ class getAdmin extends CI_Controller {
         $this->load->model('userstat_model');
         $this->load->model('messages_model');
         $this->load->model('blog_model');
+        $this->load->model('userInfoSendEmail_model');
 	}
 	
 	public function index($Photo=0)
@@ -604,12 +605,12 @@ class getAdmin extends CI_Controller {
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=$this->mailtemplate_model->SendEmailApprovePost( $username);
-						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle());
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle(), APPROVETRADECOMMENT);
 							
 					}
 					else if($status=='R')
 					{
-						$temp=array('commentID'=>$commentID ,'rejectReason'=> $rejectReason, 'rejectSpecifiedReason'=>$rejectSpecifiedReason);
+						$temp=array('commentID'=>$commentID ,'rejectReason'=> $rejectReason, 'rejectSpecifiedReason'=>$rejectSpecifiedReason, APPROVETRADECOMMENT);
 						// 						if($r==0)
 							// 							$rejectlist=$temp;
 							// 						else
@@ -621,7 +622,7 @@ class getAdmin extends CI_Controller {
 								$username=$usernameArr[0]->username;
 								$path=base_url().MY_PATH."home/loginPage";
 								$msg=$this->mailtemplate_mdoel->SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason );
-								$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle());
+								$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle(), REJECTTRADECOMMENT);
 									
 					}
 	
@@ -676,7 +677,7 @@ class getAdmin extends CI_Controller {
 							$username=$usernameArr[0]->username;
 							$path=base_url().MY_PATH."home/loginPage";
 							$msg=$this->mailtemplate_model->SendEmailApproveFeedBack( $username);
-							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApproveFeedBackTitle());
+							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApproveFeedBackTitle(), APPROVEFEEDBACK);
 								
 						}
 						else if($status=='R')
@@ -693,7 +694,7 @@ class getAdmin extends CI_Controller {
 							$username=$usernameArr[0]->username;
 							$path=base_url().MY_PATH."home/loginPage";
 							$msg=$this->mailtemplate_model->SendEmailRejectFeedBack( $username, $rejectReason ,$rejectSpecifiedReason );
-							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectFeedBackTitle());
+							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectFeedBackTitle(), REJECTFEEDBACK);
 								
 						}
 		
@@ -749,7 +750,7 @@ class getAdmin extends CI_Controller {
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=$this->mailtemplate_model->SendEmailApprovePost( $username);
-						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle());
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle(), APPROVEITEMCOMMENT);
 							
 					}
 					else if($status=='R')
@@ -766,7 +767,7 @@ class getAdmin extends CI_Controller {
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=$this->mailtemplate_model->SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason );
-						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle());
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle(), REJECTITEMCOMMENT);
 							
 					}
 	
@@ -824,7 +825,7 @@ class getAdmin extends CI_Controller {
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=$this->mailtemplate_model->SendEmailApprovePost( $username);
-						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle());
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle(), APPROVEABUSE);
 							
 					}
 					else if($status=='R')
@@ -841,7 +842,7 @@ class getAdmin extends CI_Controller {
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=$this->mailtemplate_model->SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason );
-						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle());
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle(), REJECTABUSE);
 							
 					}
 	
@@ -898,7 +899,7 @@ class getAdmin extends CI_Controller {
 							$username=$usernameArr[0]->username;
 							$path=base_url().MY_PATH."home/loginPage";
 							$msg=$this->mailtemplate_model->SendEmailApprovePost( $username);
-							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle());
+							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle(), APPROVEPOST);
 							
 					}
 					else if($status=='R')
@@ -915,7 +916,7 @@ class getAdmin extends CI_Controller {
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=$this->mailtemplate_model->SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason );
-						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle());
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle(), REJECTPOST);
 							
 					}
 						
@@ -969,7 +970,7 @@ class getAdmin extends CI_Controller {
 							$username=$usernameArr[0]->username;
 							$path=base_url().MY_PATH."home/loginPage";
 							$msg=$this->mailtemplate_model->SendEmailApprovePhoto( $username);
-							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePhotoTitle());
+							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePhotoTitle(), APPROVEUSERPHOTO);
 							
 					}
 					else if($status=='R')
@@ -982,7 +983,7 @@ class getAdmin extends CI_Controller {
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=$this->mailtemplate_model->SendEmailRejectPhoto( $username, $rejectReason ,$rejectSpecifiedReason );
-						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPhotoTitle());
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPhotoTitle(), REJECTUSERPHOTO);
 							
 					}
 						
@@ -1000,8 +1001,12 @@ class getAdmin extends CI_Controller {
 		}
 		$this->getAccountPage(2);
 	}
-	private function sendAuthenticationEmail($userEmail, $msg, $title){
+	private function sendAuthenticationEmail($userEmail, $msg, $title, $type=""){
 	
+		$allow=$this->userInfoSendEmail_model->getAlowSendEmailByType($userEmail["userID"], $type);
+		if(!$allow)
+			return;
+		
 		$config['protocol'] = SMTP_PROTOCOL;
 		$config['smtp_host'] = SMTP_HOST;
 		$config['smtp_port'] = SMTP_PORT;

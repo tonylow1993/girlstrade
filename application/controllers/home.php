@@ -69,6 +69,7 @@ class Home extends CI_Controller {
         	    $this->load->model('mailtemplate_model');
         	    $this->load->model('pagevisited_model');
         	    $this->load->model('buyermessage_model');
+        	    $this->load->model('userInfoSendEmail_model');
 	}
 	public function index($errorMsg='', $successMsg='')
 	{
@@ -628,7 +629,7 @@ class Home extends CI_Controller {
 		$title=$this->mailtemplate_model->SendEmailTitleForSignupActivate();
 		$message=$this->mailtemplate_model->SendEmailMsgForSignupActivate( $data['username'],  $path, $data['email']);
 		
-		$this->sendAuthenticationEmail($userEmail, $message, $title);
+		$this->sendAuthenticationEmail($userEmail, $message, $title, "SIGNUPSENDEMAIL");
 		log_message('debug', 'retrieve userid  '.$data['userID']);
 		$thread["userID"]=$data['userID'];
 		$thread["visit_time"]=date("Y-m-d H:i:s");;
@@ -956,7 +957,7 @@ function generateRandomString($length = 8) {
 			$message=$this->mailtemplate_model->SendEmailMsgForResetPassword(
 					$path);
 				$title=$this->mailtemplate_model->SendEmailTitleForResetPassword();
-			$this->sendAuthenticationEmail($userEmail, $message, $title);
+			$this->sendAuthenticationEmail($userEmail, $message, $title, FORGETPASSWORDSENDEMAIL);
 			
 		$data["lang_label_text"] = $this->lang->line("lang_label_text");
 		$data["Home"] = $this->lang->line("Home");
@@ -1047,7 +1048,7 @@ function generateRandomString($length = 8) {
 					$userAfter['username'], $password, $userAfter['username'],
 					$path);
 			$title=$this->mailtemplate_model->SendEmailTitleForForgotPassword();
-			$this->sendAuthenticationEmail($userEmail, $message, $title);
+			$this->sendAuthenticationEmail($userEmail, $message, $title, RESETPASSWORDSENDEMAIL);
 				
 			$data["lang_label_text"] = $this->lang->line("lang_label_text");
 			$data["Home"] = $this->lang->line("Home");
@@ -1473,8 +1474,12 @@ function generateRandomString($length = 8) {
 	}
 	
 	
-	private function sendAuthenticationEmail($userEmail, $msg, $title){
+	private function sendAuthenticationEmail($userEmail, $msg, $title, $type=""){
 
+		$allow=$this->userInfoSendEmail_model->getAlowSendEmailByType($userEmail["userID"], $type);
+		if(!$allow)
+			return;
+		
 		$config['protocol'] = SMTP_PROTOCOL;
 				$config['smtp_host'] = SMTP_HOST;
 				$config['smtp_port'] = SMTP_PORT;
@@ -1520,7 +1525,7 @@ function generateRandomString($length = 8) {
 		$this->userPassword->changePassword($input);
 		$email=$this->userEmail->getUserEmailByUserID($userID);
 		$msg=$this->mailtemplate_model->SendEmailMsgForChangePassword();
-		$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForChangePassword());
+		$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForChangePassword(), CHANGEPASSWORDSENDEMAIL);
 		
 		
 		
@@ -3073,7 +3078,7 @@ function generateRandomString($length = 8) {
 			
 			$email=$this->userEmail->getUserEmailByUserID($user["userID"]);
 			$msg=$this->mailtemplate_model->SendEmailMsgForChangePassword();
-			$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForChangePassword());
+			$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForChangePassword(), "UPDATEPASSWORDSENDEMAIL");
 			
 			
 			$errorMsg="Password Changed Successfully";
