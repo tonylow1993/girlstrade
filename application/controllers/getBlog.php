@@ -52,6 +52,7 @@
 			$this->load->model('contacttype_model');
 			$this->load->model('contact_model');
 			$this->load->model('pagevisited_model');
+			$this->load->model('blog_model');
 		}
 		
 		public function viewBlog ($ID=0)
@@ -87,6 +88,20 @@
 				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($loginUser['userID']); //$menuCount["inboxMsgCount"]; //
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
+			$data["result"]=$this->blog_model->getBlogByID($ID);
+			$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
+			if(strcmp($data["result"][0]->picName2,"")!=0)
+				$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
+			else 
+				$data["pic2"]="";
+			if(strcmp($data["result"][0]->picName3,"")!=0)
+				$data["pic3"]=base_url().$data["result"][0]->picPath3.$data["result"][0]->picName3;
+			else 
+				$data["pic3"]="";
+			
+			$data["title"]=$data["result"][0]->title;
+			$data["description"]=$data["result"][0]->description;
+			$data["createDate"]=$data["result"][0]->createDate;
 				
 			$this->load->view('blog-details', $data);
 		}

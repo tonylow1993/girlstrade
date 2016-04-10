@@ -21,6 +21,12 @@ class blog_model extends CI_Model {
 			$var=$query->result();
 			return $var;
 	}
+	function getBlogByID($ID){
+		$this->db->where('ID', $ID);
+		$query = $this->db->from('blog')->get();
+		$var=$query->result();
+		return $var;
+	}
 	function updateBlog($data)
 	{
 		try {
