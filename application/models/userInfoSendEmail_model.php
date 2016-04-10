@@ -88,3 +88,4 @@ class userInfoSendEmail_model extends CI_Model{
 			return false;
 	}
 }
+?>
