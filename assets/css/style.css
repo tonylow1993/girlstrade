@@ -2269,6 +2269,14 @@ h1.pricetag span, h1.trtri span {
 
 .backtolist {
   padding: 8px 0;
+  background-color: #828282;
+  border-radius: .25em;
+  padding: .2em .6em .3em;
+}
+
+.backtolist a{
+  color: white;
+  text-decoration: none;
 }
 
 .page-sidebar-right {
