@@ -131,7 +131,7 @@
               
               <div class="locations-list  list-filter">
                 <h5 class="list-title"><strong>
-                <a href="javascript:void(0);">
+                <a class="not-active">
                 <i class="icon-location-circled"></i><?php echo trim($lblLocation);?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
                 
@@ -367,7 +367,7 @@
         		</div>
               <!--/.locations-list-->
               <div class="locations-list  list-filter margin-top-30">
-                <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-money"></i><?php echo $lblPriceRange;?></a></strong></h5>
+                <h5 class="list-title"><strong><a class="not-active"><i class="icon-money"></i><?php echo $lblPriceRange;?></a></strong></h5>
                 <form role="form"  id="priceForm" class="form-inline "  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">  
                   <div class="margin-top-30">
 					  <div id="price-slider" class="price-slider"></div>
@@ -429,7 +429,7 @@
               
                
               <div class="locations-list list-filter margin-top-30">
-                <h5 class="list-title"><strong><a href="javascript:void(0);"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
+                <h5 class="list-title"><strong><a class="not-active"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
                  <li> <a id="allAds1" href="#allAds" ><?php echo $lblConditionAll;?>
              <!--     <li> <a id="searchCriteria" href="#allAds" onclick="return setupTab('allAds', 'allAds1');" ><?php echo $lblConditionAll;?>

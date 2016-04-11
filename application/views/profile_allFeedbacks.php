@@ -107,11 +107,11 @@ function sendIt() {
 					<noscript><input type="submit" value="Submit"></noscript>
 			
 			</form></div>
-                  <div class="pull-right backtolist margin-right-10"><a href=<?php echo $prevViewFeedBack_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
+                  <div class="pull-right backtolist margin-5"><a href=<?php echo $prevViewFeedBack_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
             
               </div>
               
-            <div class="adds-wrapper inner-box">
+            <div class="adds-wrapper inner-box no-shadow">
              
             <div class="tab-content">
                <div class="tab-pane fade <?php if(strcmp($activeTab, "allAds")==0) echo "in active"; ?>" id="allAds">

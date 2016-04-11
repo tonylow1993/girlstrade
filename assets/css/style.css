@@ -2447,6 +2447,13 @@ div.login-box .panel-footer label {
 /* POST ADS
 /* =============================================================== */
 
+.overflow-hidden-6{
+	text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
 .content-subheading {
   border-bottom: 1px solid #ddd;
@@ -3378,6 +3385,14 @@ td.ads-details-td {
 /* =============================================================== */
 /* ADDED BY TONY
 /* =============================================================== */
+
+.margin-5{
+	margin: 5px;
+}
+
+.no-shadow{
+  box-shadow: 0 0 0 !important;
+}
 
 .not-active {
    pointer-events: none;
