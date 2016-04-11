@@ -500,7 +500,7 @@
        </div>
         <!--/.page-side-bar-->
         
-        <div class="col-sm-12 col-md-9 page-content col-thin-left">
+        <div class="col-sm-12 col-md-9 page-content col-thin-left" style="margin-bottom: 30px;">
           <div class="category-list">
           <div class="tab-box "> 
               <!-- Nav tabs -->
