@@ -477,7 +477,7 @@ function setup()
 					break;
 				}
             }     
-
+         
         if((isServiceCat!=1) && ( fileList == null || fileList.length == 0))
         {
                $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
