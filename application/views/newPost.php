@@ -55,15 +55,15 @@ input[type=checkbox]
    <div class="main-container">
     <div class="container">
      <?php echo validation_errors("<div style='color:red;'>","</div>"); ?>
-   <?php $prevURLPATH=urlencode($prevURL); echo form_open('newPost/createNewPost/'.$userID.'/'.$username.'?prevURL='.$prevURLPATH); //'?prevURL='.urlencode($prevURL)); ?>
+   <?php //$prevURLPATH=urlencode($prevURL); echo form_open('newPost/createNewPost/'.$userID.'/'.$username.'?prevURL='.$prevURLPATH); //'?prevURL='.urlencode($prevURL)); ?>
       <div class="row">
         <div class="col-md-9 page-content">
           <div class="inner-box category-content">
             <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> <?php echo $NewPost;?><?php echo $YouHaveRemainPost;?></strong> </h2>
             <div class="row">
               <div class="col-sm-12">
-                <form id="newPost" class="form-horizontal" method="post" enctype="multipart/form-data"
-                      action="<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>">
+                 <form id="newPost" class="form-horizontal" method="post" enctype="multipart/form-data" 
+                      action="<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>"> 
                   <fieldset>
                       
                       <!-- Text input-->
