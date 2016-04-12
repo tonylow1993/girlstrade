@@ -144,12 +144,27 @@ span.badge.openCat
 	padding-top: 1px;
 }
 .pricetag{
-	border: 2px solid #E2348C;
-	font-size: 20px;
-	margin-top:7px;
-	padding-top:1px;
-	padding-bottom:0px;
+	background: none repeat scroll 0 0 #E2348C;
+    border-radius: 3px 0 0 3px;
+    color: #fff;
+    font-size: 26px;
+    min-width: 100px;
+    padding: 5px 15px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 220px;
+    z-index: 100;
 }
+
+@media(max-width:480px) {
+  .pricetag {
+    font-size: 22px;
+    line-height: 35px;
+    top: 170px;
+  }
+}
+
 .itemInfo strong
 {
 	font-weight: bold;

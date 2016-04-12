@@ -2187,10 +2187,6 @@ li:first-child {
 	width: 250px;
 }
 
-.pricetag:before {
-    border-top: 10px solid transparent;
-}
-
 .icon-index{
 	left: 8px;
     top: 14px;

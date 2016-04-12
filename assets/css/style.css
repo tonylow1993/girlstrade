@@ -2093,33 +2093,7 @@ hr.thin {
 }
 
 .pricetag {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border-radius: 3px;
-    color: #E2348C;
-    font-size: 25px;
-    min-width: 250px;
-    padding: 5px 15px;
-//    position: absolute;
-    right: 30;
-    text-align: center;
-    top: 13px;
-    z-index: 100;
     line-height: 40px;
-    border: 1px solid #E2348C;
-	width: 40%;
-    margin-bottom: 20px;
-    margin-left: 10px;
-}
-
-@media(max-width:480px) {
-  .pricetag {
-    font-size: 18px;
-    line-height: 35px;
-    min-width: 250px;
-    top: 13px;
-    right: 30;
-	
-  }
 }
 
 h1.pricetag span, h1.trtri span {
@@ -2136,7 +2110,7 @@ h1.pricetag span, h1.trtri span {
 .pricetag:before {
   top: 100%;
   right: 0px;
-  border-top: 10px solid #007286;
+  border-top: 10px solid #7E0040;
   border-right: 10px solid transparent;
 }
 
@@ -2268,27 +2242,21 @@ h1.pricetag span, h1.trtri span {
 }
 
 .backtolist {
-  padding: 8px 0;
+  border-radius: .25em;
+  border: 2px solid #E2348C;
+  padding: .2em .6em .3em;
 }
 
-@media (min-width: 768px){
-	.backtolist {
-	  border-radius: .25em;
-	  border: 2px solid #E2348C;
-	  padding: .2em .6em .3em;
-	}
+.backtolist:hover a, .backtolist:active a{
+   color: white;
+}
 
-	.backtolist:hover a, .backtolist:active a{
-	   color: white;
-	}
+.backtolist a{
+  text-decoration: none !important;
+}
 
-	.backtolist a{
-	  text-decoration: none !important;
-	}
-
-	.backtolist:hover, .backtolist:active {
-		background-color: #E2348C;
-	}
+.backtolist:hover, .backtolist:active {
+	background-color: #E2348C;
 }
 
 
@@ -2318,7 +2286,7 @@ h1.pricetag span, h1.trtri span {
   .backtolist {
     float: none !important;
     margin: 0 auto;
-    padding: 0 0 10px;
+    margin-bottom: 10px;
     text-align: center;
   }
 }
@@ -3401,7 +3369,6 @@ td.ads-details-td {
 
 #sortfrm{
 	display: inline-block;
-	float: right;
 }
 
 .padding-left-30{
