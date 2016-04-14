@@ -1202,7 +1202,7 @@ function setup(){
 // 							}, false);
 // 							return xhr;
 // 						},
-						url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat(sortByID).concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
+						url: "<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/0/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab),
 // 						//data: formData,
 // 						processData: false,
 // 						contentType: false,
@@ -1429,7 +1429,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
             Districts of <strong>Hong Kong</strong>
             </div>
             </p>
-<form role="form"  id="locForm1" class="form-inline modalBody margin-top-20"  onSubmit="return locSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
+<form role="form"  id="locForm1" class="form-inline modalBody margin-top-20"  onSubmit="return locSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0';?>" method="POST">  
              
 <div style="clear:both"></div>            
             <div class="col-sm-6 no-padding">
@@ -1645,7 +1645,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 				</div>
                 </div>
                 </h5>
-               <form role="form"  id="priceForm1" class="form-inline modalBody"  onSubmit="return priceSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
+               <form role="form"  id="priceForm1" class="form-inline modalBody"  onSubmit="return priceSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0';?>" method="POST">  
                   <div class="margin-top-20">
 					  <div id="price-slider1" class="price-slider"></div>
                       <input type="number" placeholder="20" id="minPrice1"
@@ -1730,7 +1730,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
             <strong><i class="icon-th"></i>Category</strong>
             </div>
             </p>
-		<form role="form"  id="catForm1" class="form-inline modalBody margin-top-20"  onSubmit="return catSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/'.$sortByID_;?>" method="POST">  
+		<form role="form"  id="catForm1" class="form-inline modalBody margin-top-20"  onSubmit="return catSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0';?>" method="POST">  
              
                   
 			<div style="clear:both"></div>            
