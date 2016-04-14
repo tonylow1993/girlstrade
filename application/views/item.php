@@ -425,7 +425,7 @@ input[type=checkbox]
 										{
 											//var_dump($value);
 											$userPhotoPath=$value['userPhotoPath'];
-											$username=$value['username'];
+											$username1=$value['username'];
 											$strElapsedTime=$value['strElapsedTime'];
 											$comments=$value['comments'];
 											$id=$value["commentID"];
@@ -439,7 +439,7 @@ input[type=checkbox]
 											echo "</div>";
 											echo "<div class=\"blogs-comment-details\">";
 											echo "<div class=\"blogs-comment-name\">";
-											echo "<a href=\"$userProfilePath\">$username </a> ";
+											echo "<a href=\"$userProfilePath\">$username1 </a> ";
 											echo  "<span class=\"blogs-comment-date\">$strElapsedTime</span>";
 											echo "</div>";
 											echo "<div class=\"blogs-comment-description\">";
@@ -455,7 +455,7 @@ input[type=checkbox]
 												{
 													//var_dump($value);
 													$userPhotoPath1=$value1['userPhotoPath'];
-													$username1=$value1['username'];
+													$username2=$value1['username'];
 													$strElapsedTime1=$value1['strElapsedTime'];
 													$comments1=$value1['comments'];
 													$userProfilePath1=base_url().MY_PATH."viewProfile/viewByUserID/".$value1['usercommentID'].'/1?prevURL='.urlencode($previousCurrent_url).'&prevProfile_Url='.urlencode(current_url());
@@ -470,7 +470,7 @@ input[type=checkbox]
 													echo "</div>";
 													echo "<div class=\"blogs-comment-details\">";
 													echo "<div class=\"blogs-comment-name\">";
-													echo "<a href=\"$userProfilePath1\">$username1 </a> ";
+													echo "<a href=\"$userProfilePath1\">$username2 </a> ";
 													echo  "<span class=\"blogs-comment-date\">$strElapsedTime1</span>";
 													echo "</div>";
 													echo "<div class=\"blogs-comment-description\">";
