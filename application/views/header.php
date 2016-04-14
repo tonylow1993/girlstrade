@@ -189,7 +189,7 @@ echo json_encode($usr);;
           
           <?php $usr = $this->nativesession->get('user');
 				//or !isset($this->session->userdata["userID"])
-          if(empty($usr)){ 
+          if(!isset($usr) || empty($usr) || $usr["username"]==null){ 
             ?>  
           <ul class="nav navbar-nav navbar-right">
             <li><a href="<?php echo base_url().MY_PATH; ?>home/loginPage?prevURL=<?php echo urlencode(current_url());?>">
