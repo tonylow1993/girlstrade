@@ -829,7 +829,7 @@ public function getChildCategory($parentID)
         
         if ($this->form_validation->run('newPost/createNewPost') == FALSE)
         {
-        	$this->index($userID, $userName);
+        	$this->index($userID, $userName, '0', $prevURL);
         	return;
         }else{
         
@@ -947,7 +947,7 @@ public function getChildCategory($parentID)
 				$data['error'] = $errorMsg;
 				$data["prevURL"]=$prevURL;
 				$data['redirectToWhatPage']="New Post Page";
-				$data['redirectToPHP']=base_url().MY_PATH."newPost";
+				$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -963,7 +963,7 @@ public function getChildCategory($parentID)
 				$data['error'] = $errorMsg;
 				$data["prevURL"]=$prevURL;
 				$data['redirectToWhatPage']="New Post Page";
-				$data['redirectToPHP']=base_url().MY_PATH."newPost";
+				$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -1000,7 +1000,7 @@ public function getChildCategory($parentID)
 						$data=array('error'=> $error);
 						$data["prevURL"]=$prevURL;
 						$data['redirectToWhatPage']="New Post Page";
-						$data['redirectToPHP']=base_url().MY_PATH."newPost";
+						$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
 						$data["successTile"]=$this->lang->line("successTile");
 					$data["failedTitle"]=$this->lang->line("failedTitle");
 					$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -1029,7 +1029,7 @@ public function getChildCategory($parentID)
 							$data=array('error'=> $error);
 							$data["prevURL"]=$prevURL;
 							$data['redirectToWhatPage']="New Post Page";
-							$data['redirectToPHP']=base_url().MY_PATH."newPost";
+							$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
 							$data["successTile"]=$this->lang->line("successTile");
 					$data["failedTitle"]=$this->lang->line("failedTitle");
 					$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -1059,7 +1059,7 @@ public function getChildCategory($parentID)
 								$data=array('error'=> $error);
 								$data["prevURL"]=$prevURL;
 								$data['redirectToWhatPage']="New Post Page";
-								$data['redirectToPHP']=base_url().MY_PATH."newPost";
+								$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
 								$this->load->view('failedPage', $data);
 							$data["successTile"]=$this->lang->line("successTile");
 					$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1089,7 +1089,7 @@ public function getChildCategory($parentID)
         		$data['error'] = $errorMsg;
 				$data["prevURL"]=$prevURL;
         		$data['redirectToWhatPage']="New Post Page";
-        		$data['redirectToPHP']=base_url().MY_PATH."newPost";
+        		$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
         		$data["successTile"]=$this->lang->line("successTile");
         		$data["failedTitle"]=$this->lang->line("failedTitle");
         		$data["goToHomePage"]=$this->lang->line("goToHomePage");
@@ -1106,7 +1106,7 @@ public function getChildCategory($parentID)
 	        		$data['error'] = $errorMsg;
 					$data["prevURL"]=$prevURL;
 	        		$data['redirectToWhatPage']="New Post Page";
-	        		$data['redirectToPHP']=base_url().MY_PATH."newPost";
+	        		$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
 	        		$data["successTile"]=$this->lang->line("successTile");
 	        		$data["failedTitle"]=$this->lang->line("failedTitle");
 	        		$data["goToHomePage"]=$this->lang->line("goToHomePage");
