@@ -829,7 +829,8 @@ public function getChildCategory($parentID)
         
         if ($this->form_validation->run('newPost/createNewPost') == FALSE)
         {
-        	$this->index($loginID, $loginUser);
+        	$this->index($userID, $userName);
+        	return;
         }else{
         
         
@@ -970,7 +971,7 @@ public function getChildCategory($parentID)
 				return;
 			}
 							
-		    ChromePhp::log($filelist);
+		   // ChromePhp::log($filelist);
 	        for ($i=0;$i<$number_of_files;$i++)
 	        {
 				$_FILES['image']['name'] = $filelist['name'][$i];
