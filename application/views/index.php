@@ -594,17 +594,32 @@ window.onload = function(){
         </div>
 		
 		<div class="inner-box relative panel-bevel">
-		  <h2 class="title-2" style="border-bottom: 1px solid #9A01CC;">
-							<i class="fa fa-bookmark" style="color: #9A01CC;"></i>
-							<span style="font-family: MyCustomFont;font-weight: 700;color: #9A01CC;">Highlight</span> Blog</h2>
+			<h2 class="title-2" style="border-bottom: 1px solid #9A01CC;">
+				<i class="fa fa-bookmark" style="color: #9A01CC;"></i>
+				<span style="font-family: MyCustomFont;font-weight: 700;color: #9A01CC;">Highlight</span> Blog
+				<a id="nextItem2" class="link pull-right carousel-nav" style="color: #9A01CC;"> <i class="icon-right-open-big"></i></a>
+				<a id="prevItem2" class="link pull-right carousel-nav" style="color: #9A01CC;"> <i class="icon-left-open-big"></i> </a>
+			</h2>
 			<div class="row">
-			  <div class="col-md-5">
-				<div class="blog-post-img">  <figure>  <img class="img-responsive" alt="blog-post image" src="http://www.girlstrade.com/images/blog/1.png">    </figure></div>
-			  </div>
-			  <div class="col-md-7 ">
-				<div class="blog-post-content">    <h2>Girls' Trading Platform</h2>    <p class="overflow-hidden-6"> 今日唔記得帶隱形眼鏡，對於得百幾度近視既我，都不太重要， 眼濛濛有時都幾好吖，有時眼看不清，心反而可以看得清，大家有同感嗎？今日地鐵沿線交貨日，我會睇得清大家嗎@.@，哈哈，大家如果見到有個十下十下紫頭短鬆妹，不妨可以主動見下我，然後友善地問係咪交收紅菜頭護膚品呀，哈哈~友善亦係靚既美德之一，雖然現在這城市比較少，但總要有人踏出第一步，可以是你們嗎?今早在地鐵不停聽到某些女仔在品評另一位女仔的衣著品味及樣貌，再作比較，我心想，靚的定義是什麼是誰定的呢? 品味係獨特的，每人有自己風格，這就是屬於自己的品味，獨一無二的，根本就沒有一個準則及答案，不是嗎?本人覺得做屬於自己，靚自然會從心而發，每個人都可以做教主~最怕是好多想靚既女仔，但又要懶，唔付出，想靚都要對準自己所欠缺的是什麼，這才是靚的智者。</p>    </div>
-				
-			  </div>
+				<?php 
+                  if($result!=null && sizeof($result)>0){
+						$value = $result[0];
+						$pic1=base_url().$value->picPath1.$value->picName1;
+						$content=$value->description;
+	              		echo "<div class=\"col-md-5\">";
+						echo "<div class=\"blog-post-img\"><a href=".base_url()."getBlog/viewBlog/".$value->ID."><figure>";
+						echo "<img class=\"img-responsive\" alt=\"blog-post image\" src=$pic1>";
+						echo "</figure></a></div></div>"; 
+						
+						echo "<div class=\"col-md-7\">";
+						echo "<div class=\"blog-post-content\">";
+						echo "<h2><a style=\"color:black\" href=".base_url()."getBlog/viewBlog/".$value->ID.">$title</a></h2>";
+						echo "<span style=\"color:#6B6B6B\" class=\"date\"><i class=\" icon-clock\"> </i> ".$value->createDate ."</span> ";
+						echo "<p class=\"overflow-hidden-6\"><a style=\"color:#6B6B6B\" href=".base_url()."getBlog/viewBlog/".$value->ID.">$content</a></p>";
+						echo "</div></div>";
+                  	
+                  }
+               ?>
 			</div>
 		  </div>
 		
