@@ -56,8 +56,7 @@ input[type=checkbox]
     <div class="container">
      <?php echo validation_errors("<div style='color:red;'>","</div>"); ?>
    <?php 
-   
-   $attributes = array('id' => 'myform');
+   $attributes = array('id' => 'myform', 'enctype'=>"multipart/form-data");
    $prevURLPATH = urlencode($prevURL); echo form_open('newPost/createNewPost/'.$userID.'/'.$username.'?prevURL='.$prevURLPATH, $attributes); //'?prevURL='.urlencode($prevURL)); ?>
       <div class="row">
         <div class="col-md-9 page-content">
@@ -210,10 +209,9 @@ input[type=checkbox]
                       <div class="form-group row">
                       	<label class="col-md-3 control-label text-center" for="textarea"> 
                               <i class="icon-camera-1"></i><abbr title="Min. 1 picture required.&#013;Max. 5 pictures allowed.&#013;Max. picture file size 4MB per each.&#013;First Picture is the default that will show to customer first."><?php echo $Picture;?></abbr><font color="red">*</font></label>
-                          </label>
                            <div class="col-md-8">
                               <div class="mb10">
-                                  <input id="image" name="images[]" class="file" type="file" accept="image/*" multiple>
+                                  <input id="image" name="images[]" class="file" type="file" accept="image/*" multiple="multiple">
                                     <div id="uploadImgError">
                                     </div>
                               </div>

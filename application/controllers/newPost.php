@@ -733,6 +733,7 @@ public function getChildCategory($parentID)
     	}else if(isset($_SESSION["previousUrl"])){
     		$prevURL=$_SESSION["previousUrl"];
     	}
+    	$data["prevURL"]=$prevURL;
     	$data["lang_label_text"] = $this->lang->line("lang_label_text");
     	$data["Home"] = $this->lang->line("Home");
     	$data["About_us"] = $this->lang->line("About_us");
@@ -937,10 +938,10 @@ public function getChildCategory($parentID)
         	}
         }
         
-        if(isset($_FILES['filelist']) && !empty($_FILES['filelist'])){
+        if(isset($_FILES['images']) && !empty($_FILES['images'])){
 	        $this->load->library('image_lib');
-			$filelist=$_FILES['filelist'];
-		    $number_of_files = sizeof($_FILES['filelist']['tmp_name']);
+			$filelist=$_FILES['images'];
+		    $number_of_files = count($_FILES['images']['tmp_name']);
 			if($number_of_files==0 && !$isServiceCat)
 			{
 				$errorMsg=$this->lang->line("PostErrorNoImageFileSelected");
