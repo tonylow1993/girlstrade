@@ -239,31 +239,31 @@ $lang["updateSendEmailConfig"]="Send Email Configuration";
 
 
 // GETADMIN
-$lang["APPROVETRADECOMMENT"]="APPROVETRADECOMMENT";
-$lang["REJECTTRADECOMMENT"]="REJECTTRADECOMMENT";
-$lang["APPROVEFEEDBACK"]="APPROVEFEEDBACK";
-$lang["REJECTFEEDBACK"]="REJECTFEEDBACK";
-$lang["REJECTITEMCOMMENT"]="REJECTITEMCOMMENT";
-$lang["APPROVEITEMCOMMENT"]="APPROVEITEMCOMMENT";
+$lang["APPROVETRADECOMMENT"]="When your comment is approved, you will receive email";
+$lang["REJECTTRADECOMMENT"]="When your comment is rejected, you will receive email";
+$lang["APPROVEFEEDBACK"]="When your feedback is approved, you will receive email";
+$lang["REJECTFEEDBACK"]="When your feedback is rejected, you will receive email";
+$lang["REJECTITEMCOMMENT"]="When you leave item comment and rejected, you will receive email";
+$lang["APPROVEITEMCOMMENT"]="When you leave item comment and approved, you will receive email";
 $lang["APPROVEABUSE"]="APPROVEABUSE";
 $lang["REJECTABUSE"]="REJECTABUSE";
-$lang["APPROVEPOST"]="APPROVEPOST";
-$lang["REJECTPOST"]="REJECTPOST";
-$lang["APPROVEUSERPHOTO"]="APPROVEUSERPHOTO";
-$lang["REJECTUSERPHOTO"]="REJECTUSERPHOTO";
+$lang["APPROVEPOST"]="When your post is approved, you will receive email";
+$lang["REJECTPOST"]="When your post is rejected, you will receive email";
+$lang["APPROVEUSERPHOTO"]="When your user profile photo are approved, you will receive email";
+$lang["REJECTUSERPHOTO"]="When your user profile photo are rejected, you will receive email";
 // HOME
-$lang["SIGNUPSENDEMAIL"]="SIGNUPSENDEMAIL";
-$lang["FORGETPASSWORDSENDEMAIL"]="FORGETPASSWORDSENDEMAIL";
-$lang["RESETPASSWORDSENDEMAIL"]="RESETPASSWORDSENDEMAIL";
-$lang["CHANGEPASSWORDSENDEMAIL"]="CHANGEPASSWORDSENDEMAIL";
-$lang["UPDATEPASSWORDSENDEMAIL"]="UPDATEPASSWORDSENDEMAIL";
+$lang["SIGNUPSENDEMAIL"]="Sign up and then send email to you";
+$lang["FORGETPASSWORDSENDEMAIL"]="Forget password and then send email to you";
+$lang["RESETPASSWORDSENDEMAIL"]="Reset password and then send email to you";
+$lang["CHANGEPASSWORDSENDEMAIL"]="Change password and then send email to you";
+$lang["UPDATEPASSWORDSENDEMAIL"]="Update password and then send email to you";
 
 // MESSAGES
-$lang["DIRECTSENDEMAIL"]="DIRECTSENDEMAIL";
-$lang["DELETEABUSEMESSAGESENDEMAIL"]="DELETEABUSEMESSAGESENDEMAIL";
-$lang["INSERTABUSEMESSAGESENDEMAIL"]="INSERTABUSEMESSAGESENDEMAIL";
-$lang["INSERTMESSAGESENDEMAIL"]="INSERTMESSAGESENDEMAIL";
-$lang["APPROVEDIRECTSEND"]="APPROVEDIRECTSEND";
-$lang["REJECTDIRECTSEND"]="REJECTDIRECTSEND";
-$lang["REPLYMESSAGESENDEMAIL"]="REPLYMESSAGESENDEMAIL";
+$lang["DIRECTSENDEMAIL"]="After being contact seller as you, you will receive email from buyer";
+$lang["DELETEABUSEMESSAGESENDEMAIL"]="When your abused post are being removed, you will receive email";
+$lang["INSERTABUSEMESSAGESENDEMAIL"]="When your post are being abused, you will receive email";
+$lang["INSERTMESSAGESENDEMAIL"]="When buyer send message to you, you will receive email";
+$lang["APPROVEDIRECTSEND"]="When your request contact seller and are being approved, you will receve email";
+$lang["REJECTDIRECTSEND"]="When your request contact seller and are being rejceted, you will receve email";
+$lang["REPLYMESSAGESENDEMAIL"]="When your message are being replied, you will receive email";
 $lang["sendEmailForApproveReject"]="sendEmailForApproveReject";
