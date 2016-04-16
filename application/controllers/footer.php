@@ -224,44 +224,6 @@ class footer  extends CI_Controller {
 	
 	}
 	
-	public function getBlogs()
-	{
-		$data["Home"] = $this->lang->line("Home");
-		$data["lang_label_text"] = $this->lang->line("lang_label_text");
-		$data["About_us"] = $this->lang->line("About_us");
-		$data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
-		$data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
-		$data["Contact_us"] = $this->lang->line("Contact_us");
-		//log_message('debug', 'Contact Us words is: '.$data["Contact_us"]);
-		$data["FAQ"] = $this->lang->line("FAQ");
-		$data["Index_Footer1"] = $this->lang->line("Index_Footer1");
-		$data["Call_Now"] = $this->lang->line("Call_Now");
-		$data["Tel"] = $this->lang->line("Tel");
-	
-		$data["Login"]=$this->lang->line("Login");;
-		$data["Signup"]=$this->lang->line("Signup");
-		$data["Profile"]=$this->lang->line("Profile");
-		$data["Logout"]=$this->lang->line("Logout");
-		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
-		$data["lang_label"]=$this->nativesession->get("language");
-		//----------setup the header menu----------
-		$data["menuMyAds"]="";
-		$data["menuInbox"]="";
-		$data["menuInboxNum"]="0";
-		$data["menuPendingRequest"]="";
-		$data["menuPendingRequestNumber"]="0";
-		
-		$data["result"]=$this->blog_model->getBlog();
-		$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
-		$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
-		$data["pic3"]=base_url().$data["result"][0]->picPath3.$data["result"][0]->picName3;
-		$data["title"]=$data["result"][0]->title;
-		$data["description"]=$data["result"][0]->description;
-		
-		$this->load->view('blogs', $data);
-	
-	}
-	
 	public function testSuccess(){
             	
    		$data["lang_label"]=$this->nativesession->get("language");

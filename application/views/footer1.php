@@ -8,7 +8,7 @@
             <a href="<?php echo base_url().MY_PATH.'footer/getPrivacy';?>"> <?php if (!isset($Privacy_Policy)) $Privacy_Policy = 'Privacy Policy'; echo $Privacy_Policy;?> </a> 
             <a href="<?php echo base_url().MY_PATH.'footer/getContactUS';?>"> <?php if (!isset($Contact_us)) $Contact_us = 'Contact us'; echo $Contact_us;?> </a> 
             <a href="<?php echo base_url().MY_PATH.'footer/getFQA';?>"> <?php if (!isset($FAQ)) $FAQ = 'FAQ'; echo $FAQ;?></a>
-			<a href="<?php echo base_url().MY_PATH.'footer/getBlogs';?>"> <?php if (!isset($Blog)) $Blog = 'Blog'; echo $Blog;?></a>
+			<a href="<?php echo base_url().MY_PATH.'getBlog/viewAllBlog';?>"> <?php if (!isset($Blog)) $Blog = 'Blog'; echo $Blog;?></a>
             <?php /*
             <a id="lang" href=<?php 
             	   $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
