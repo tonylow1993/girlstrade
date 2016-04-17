@@ -32,7 +32,7 @@
 					{
 						$imageIcon=$value[0]->iconImage;
 						if($value[0]->childCount<>0){
-							echo "<div class=\"col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category\">";
+							echo "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-4 f-category\">";
 							echo "<a href='$path'><img src=/$imageIcon class=\"img-responsive\" alt=\"img\"> <h6> $name  </h6> </a>";
 							echo "</div>";
 						}
@@ -49,7 +49,7 @@
     <!-- /.container --> 
   </div>
 
-
+<?php include "footer1.php"; ?>
 <?php include "footer2.php"; ?>
   <!--/.footer--> 
 </div>
