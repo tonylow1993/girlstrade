@@ -292,7 +292,7 @@ echo json_encode($usr);;
             </a>    	
             </li>
             
-            <li class="postadd"><a class="btn btn-border btn-danger" href="<?php echo base_url(); echo MY_PATH;?>newPost/index?prevURL=<?php echo urlencode((current_url()));?>"><?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?><i class="icon-pencil-2"></i></a></li>
+            <li class="postadd"><a class="btn btn-border btn-danger" href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>"><?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?><i class="icon-pencil-2"></i></a></li>
           </ul>
           <?php }?>       
         </div>

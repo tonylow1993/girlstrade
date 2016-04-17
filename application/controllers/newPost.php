@@ -16,68 +16,100 @@ class newPost extends CI_Controller {
 		$this->load->library('upload');
 		$this->load->library('image_lib');
 		//$this->load->model('users_model');
-                $this->load->model('post_model', 'post');
-                $this->load->model('picture_model', 'picture');
-                $this->load->model('category_model', 'cat');
-                $this->load->model('tag_model', 'tag');
-                $this->load->model('location_model');
-                $this->load->model('userstat_model');
-                $this->load->model('messages_model');
-                $this->load->model('admin_model');
-                $this->load->helper('language');
-                date_default_timezone_set("Asia/Hong_Kong");
-                if($this->nativesession->get("language")!=null)
-                {
-                	$data["lang_label"] = $this->nativesession->get("language");
-                	$this->lang->load("message", $data["lang_label"]);
-                }
-                else
-                {
-                	$data["lang_label"]="chinese";
-                	$this->lang->load("message", $data["lang_label"]);
-                	$this->nativesession->set("language",$data["lang_label"]);
-                }
+		$this->load->model('post_model', 'post');
+		$this->load->model('picture_model', 'picture');
+		$this->load->model('category_model', 'cat');
+		$this->load->model('tag_model', 'tag');
+		$this->load->model('location_model');
+		$this->load->model('userstat_model');
+		$this->load->model('messages_model');
+		$this->load->model('category_model');
+		$this->load->model('admin_model');
+		$this->load->helper('language');
+		date_default_timezone_set("Asia/Hong_Kong");
+		if($this->nativesession->get("language")!=null)
+		{
+			$data["lang_label"] = $this->nativesession->get("language");
+			$this->lang->load("message", $data["lang_label"]);
+		}
+		else
+		{
+			$data["lang_label"]="chinese";
+			$this->lang->load("message", $data["lang_label"]);
+			$this->nativesession->set("language",$data["lang_label"]);
+		}
 	}
-        
+    
+	function getAllCategory()
+	{
+		$data['result']=null;
+		$data['query']=$this->category_model->getParentCategory();
+		if (!is_null($data['query'])) {
+			foreach($data['query'] as $row)
+			{
+				$result1=array($row->categoryID => array($row));
+				$result2=$this->getChildCategory($row->categoryID);
+				if(!is_null($result2))
+						if(is_null($data['result']))
+							$data['result']=$result1+$result2;
+						else
+							$data['result']=$data['result']+$result1+$result2;
+					else 
+					{
+						if(is_null($data['result']))
+							$data['result']=$result1;
+						else
+							$data['result']=$data['result']+$result1;
+					}
+			}
+		}
+		return $data['result'];
+	}
+	
     public function index($userID=0, $username='', $errorMsg='')
 	{
 		$prevURL=base_url();
 		
-	if(isset($_GET["prevURL"])){
+		if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
 			$_SESSION["previousUrl"]=$prevURL;
 		}else if(isset($_SESSION["previousUrl"])){
 			$prevURL=$_SESSION["previousUrl"];
 		}
- 	      $data["lang_label_text"] = $this->lang->line("lang_label_text");
-		  $data["Home"] = $this->lang->line("Home");
-            $data["About_us"] = $this->lang->line("About_us");
-            $data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
-            $data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
-            $data["Contact_us"] = $this->lang->line("Contact_us");
-            $data["FAQ"] = $this->lang->line("FAQ");
-            $data["Index_Footer1"] = $this->lang->line("Index_Footer1");
-            $data["Call_Now"] = $this->lang->line("Call_Now");
-            $data["Tel"] = $this->lang->line("Tel");
-          
-			$data["Login"]=$this->lang->line("Login");;
-			$data["Signup"]=$this->lang->line("Signup");
-			$data["Profile"]=$this->lang->line("Profile");
-			$data["Logout"]=$this->lang->line("Logout");
-			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
-		  
- 	        $userInfo=$this->nativesession->get("user");
- 	        if($userID==0 & !empty($userInfo))
- 	        	$data["userID"]=$userInfo["userID"];
- 	        else 
- 	        	$data["userID"]=$userID;
- 	        if($username=='' & !empty($userInfo))
- 	        	$data["username"]=$userInfo["username"];
-            else 
-            	$data["username"]=$username;
- 	        $data["lang_label"]=$this->nativesession->get("language");
-          $data['result']=null;
-             $data['query']=$this->cat->getParentCategory();
+		
+		if(isset($_GET["category"])){
+			$data["categoryID"]=$_GET["category"];
+		}
+		
+		$data["lang_label_text"] = $this->lang->line("lang_label_text");
+		$data["Home"] = $this->lang->line("Home");
+		$data["About_us"] = $this->lang->line("About_us");
+		$data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
+		$data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
+		$data["Contact_us"] = $this->lang->line("Contact_us");
+		$data["FAQ"] = $this->lang->line("FAQ");
+		$data["Index_Footer1"] = $this->lang->line("Index_Footer1");
+		$data["Call_Now"] = $this->lang->line("Call_Now");
+		$data["Tel"] = $this->lang->line("Tel");
+	  
+		$data["Login"]=$this->lang->line("Login");;
+		$data["Signup"]=$this->lang->line("Signup");
+		$data["Profile"]=$this->lang->line("Profile");
+		$data["Logout"]=$this->lang->line("Logout");
+		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
+	  
+		$userInfo=$this->nativesession->get("user");
+		if($userID==0 & !empty($userInfo))
+			$data["userID"]=$userInfo["userID"];
+		else 
+			$data["userID"]=$userID;
+		if($username=='' & !empty($userInfo))
+			$data["username"]=$userInfo["username"];
+		else 
+			$data["username"]=$username;
+		$data["lang_label"]=$this->nativesession->get("language");
+		$data['result']=null;
+		$data['query']=$this->cat->getParentCategory();
 		if (!is_null($data['query'])) {
 			foreach($data['query'] as $row)
 			{
@@ -206,6 +238,177 @@ class newPost extends CI_Controller {
 			$data['remainCount'] = 4;
 			
             $this->load->view('newPost', $data);
+		}
+	}
+	
+	public function selectCategory ($userID=0, $username='', $errorMsg='')
+	{
+		$prevURL=base_url();
+		
+		if(isset($_GET["prevURL"])){
+			$prevURL=$_GET["prevURL"];
+			$_SESSION["previousUrl"]=$prevURL;
+		}else if(isset($_SESSION["previousUrl"])){
+			$prevURL=$_SESSION["previousUrl"];
+		}
+ 	      $data["lang_label_text"] = $this->lang->line("lang_label_text");
+		  $data["Home"] = $this->lang->line("Home");
+            $data["About_us"] = $this->lang->line("About_us");
+            $data["Terms_and_Conditions"] = $this->lang->line("Terms_and_Conditions");
+            $data["Privacy_Policy"] = $this->lang->line("Privacy_Policy");
+            $data["Contact_us"] = $this->lang->line("Contact_us");
+            $data["FAQ"] = $this->lang->line("FAQ");
+            $data["Index_Footer1"] = $this->lang->line("Index_Footer1");
+            $data["Call_Now"] = $this->lang->line("Call_Now");
+            $data["Tel"] = $this->lang->line("Tel");
+          
+			$data["Login"]=$this->lang->line("Login");;
+			$data["Signup"]=$this->lang->line("Signup");
+			$data["Profile"]=$this->lang->line("Profile");
+			$data["Logout"]=$this->lang->line("Logout");
+			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
+			$data["AllCategory"]=$this->getAllCategory();
+		  
+ 	        $userInfo=$this->nativesession->get("user");
+ 	        if($userID==0 & !empty($userInfo))
+ 	        	$data["userID"]=$userInfo["userID"];
+ 	        else 
+ 	        	$data["userID"]=$userID;
+ 	        if($username=='' & !empty($userInfo))
+ 	        	$data["username"]=$userInfo["username"];
+            else 
+            	$data["username"]=$username;
+ 	        $data["lang_label"]=$this->nativesession->get("language");
+			$data['result']=null;
+            $data['query']=$this->cat->getParentCategory();
+		if (!is_null($data['query'])) {
+			foreach($data['query'] as $row)
+			{
+				$result1=array($row->categoryID => array($row));
+				$result2=$this->getChildCategory($row->categoryID);
+				if(!is_null($result2))
+						if(is_null($data['result']))
+							$data['result']=$result1+$result2;
+						else
+							$data['result']=$data['result']+$result1+$result2;
+					else 
+					{
+						if(is_null($data['result']))
+							$data['result']=$result1;
+						else
+							$data['result']=$data['result']+$result1;
+					}
+			}
+		} 
+            
+            if($this->nativesession->get('language') && $data["lang_label"] <>"english")
+            {
+                $data["captchaJS"] = "<script src='https://www.google.com/recaptcha/api.js?hl=zh-TW'></script>";
+                $data["fileinputLang"] = "language: \"ch\",";
+                //$data["fileinputLang"] = "<script src=\"".base_url()."assets/js/fileinput_locale_ch.js\" type=\"text/javascript\"></script>";      
+                // log_message('debug', '!!!!!!!!!!!!!'.$data["fileinputLang"]);
+                
+            }else
+            {
+                $data["captchaJS"] = "<script src='https://www.google.com/recaptcha/api.js?hl=en'></script>";
+                $data["fileinputLang"] = "";
+                
+            }
+
+            //print_r($data);
+		$data['resLoc']=null;
+		$data['queryLoc']=$this->location_model->getParentLocation();
+		if (!is_null($data['queryLoc'])) {
+			foreach($data['queryLoc'] as $row)
+			{
+				$resLoc1=array($row->locationID => array($row));
+				$resLoc2=$this->getChildLocation($row->locationID);
+				if(!is_null($resLoc2))
+						if(is_null($data['resLoc']))
+							$data['resLoc']=$resLoc1+$resLoc2;
+						else
+							$data['resLoc']=$data['resLoc']+$resLoc1+$resLoc2;
+					else 
+					{
+						if(is_null($data['resLoc']))
+							$data['resLoc']=$resLoc1;
+						else
+							$data['resLoc']=$data['resLoc']+$resLoc1;
+					}
+			}
+		
+            $this->nativesession->set("lastPageVisited","newPost");
+			if(empty($userInfo))
+			{
+				$errorMsg=$this->lang->line("PostPleaseLoginFirst");
+				$data["error"]=$errorMsg;
+				$data["prevURL"]=$prevURL;
+				$data['redirectToWhatPage']="Login in Page";
+				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+			}
+			//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			if(isset($userInfo)){
+				$menuCount=$this->getHeaderCount($userInfo["userID"]);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userInfo["userID"]); //$menuCount["inboxMsgCount"]; // //$this->messages_model->getUnReadInboxMessage($user[0]->userID);
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
+			//----------------------------
+			$NumOfPostTimes=$this->post->getNUMOFTIMESPOST($data["userID"]);
+			if($NumOfPostTimes>=NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
+			{
+				$errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
+				$data["error"]=$errorMsg;
+				$data["prevURL"]=$prevURL;
+				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToPHP']=$prevURL;
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				$this->load->view('failedPage', $data);
+				return;
+			}
+			
+			
+            $data["error"]= ($errorMsg);
+            $data["prevURL"]=$prevURL;
+            
+            $data["NewPost"]=$this->lang->line("NewPost");
+            $data["TopicTitle"]=$this->lang->line("TopicTitle");
+            $data["Category"]=$this->lang->line("Category");
+            $data["ItemQuality"]=$this->lang->line("ItemQuality");
+            $data["Description"]=$this->lang->line("Description");
+            $data["HKDPrice"]=$this->lang->line("HKDPrice");
+            $data["Negotiable"]=$this->lang->line("Negotiable");
+            $data["Picture"]=$this->lang->line("Picture");
+            $data["Extra"]=$this->lang->line("Extra");
+            $data["ExtraInfo"]=$this->lang->line("ExtraInfo");
+            $data["SearchTags"]=$this->lang->line("SearchTags");
+            $data["lblLocation"]=$this->lang->line("lblLocation");
+            $data["lblAllLocations"]=$this->lang->line("lblAllLocations");
+            $data["PleaseNotCloseBrowse"]=$this->lang->line("PleaseNotCloseBrowse");
+            $data["YouHaveRemainPost"]="";
+            if(NUMOFTIMESPOST-$NumOfPostTimes<=MINCOUNTSHOWREMAINTIMES && NUMOFTIMESPOST<UNLIMITEDTIMES)
+            	$data["YouHaveRemainPost"]=sprintf($this->lang->line("YouHaveRemainPost"), NUMOFTIMESPOST-$NumOfPostTimes);
+            
+			//-----------------Set user information -----------------
+			$user1=$this->nativesession->get("user");
+			if(isset($user1)){
+				$data["userName"]=$user1["username"];
+			
+			}
+			$data['remainCount'] = 4;
+			
+            $this->load->view('newPost_1', $data);
 		}
 	}
 	

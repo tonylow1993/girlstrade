@@ -87,17 +87,22 @@ input[type=checkbox]
                               <select name="category-group" id="category-group" class="form-control" required="true">
                                   <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select One Category - </option>
                                   <?php 
-						            foreach ($result as $id=>$value)
-						            {
-						            	if(!isset($lang_label))
-							            		$lang_label="";
-						            	$name=$value[0]->name;
-						            	if($lang_label<>"english")
-						            		$name=$value[0]->nameCH;
-						            	if($value[0]->level==1)
-						            		echo "<option value=\"$id\" ".set_select('category-group', $id, ((null!=(set_select('category-group', $id)) )   ? TRUE : FALSE ))." style=\"background-color:#E9E9E9;font-weight:bold;\" > - $name - </option>";
-						            	else 
-						            		echo "<option value=\"$id\" ".set_select('category-group', $id, ((null!=(set_select('category-group', $id)) )   ? TRUE : FALSE ))."> $name </option>";
+										foreach ($result as $id=>$value)
+										{
+											if(!isset($lang_label))
+													$lang_label="";
+											$name=$value[0]->name;
+											if($lang_label<>"english")
+												$name=$value[0]->nameCH;
+											
+											if($value[0]->level==1){
+												if($id==$categoryID)
+													echo "<option value=\"$id\" ".set_select('category-group', $id, ((null!=(set_select('category-group', $id)) )   ? TRUE : FALSE ))." style=\"background-color:#E9E9E9;font-weight:bold;\" selected> - $name - </option>";
+												else
+													echo "<option value=\"$id\" ".set_select('category-group', $id, ((null!=(set_select('category-group', $id)) )   ? TRUE : FALSE ))." style=\"background-color:#E9E9E9;font-weight:bold;\" > - $name - </option>";									
+											}
+											else 
+												echo "<option value=\"$id\" ".set_select('category-group', $id, ((null!=(set_select('category-group', $id)) )   ? TRUE : FALSE ))."> $name </option>";
 						            	}
 						            ?>
                               </select>
