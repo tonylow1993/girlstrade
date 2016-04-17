@@ -10,7 +10,7 @@
 		<div class="col-lg-12 content-box " id="summaryCategoryList" name="summaryCategoryList" style="display:block;">
 			<div class="row row-featured row-featured-category">
 				<div class="col-lg-12  box-title no-border">
-				   <div class="inner"><h2> Which category does your item belong to?</h2>
+				   <div class="inner"><h2 style="color:#5CB2DD; font-size:22px"> Which category does your item belong to?</h2>
 				   </div>
 				</div>
 				<?php 

@@ -4554,15 +4554,14 @@ nav.slider-nav a.next {
 }
 #userRatingTitleIndexFooter
 {
-	font-family: fantasy;
-    letter-spacing: 1px;
+	font-family: MyCustomFont, serif;
     margin-bottom: 15px;
     margin-left: 20px;
    	padding-top: 10px;
-   	font-size: 15px;
+   	font-size: 22px;
     line-height: 35px;
-    color:#1464FF;
-    font-weight: bold;
+    color:#E3E3E3;
+    font-weight: normal;
 }
 .page-info.userRatingTitleIndexFooterLine
 {

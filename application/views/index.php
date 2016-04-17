@@ -806,81 +806,77 @@ window.onload = function(){
 
 	<div class="page-info userRatingTitleIndexFooterLine" style="background: url(<?php echo base_url();?>images/footerIndex.jpg); 
 	background-size:cover">
-	<div id="userRatingTitleIndexFooter">
-		What type of GirlsTrade user are you?
-	</div>
-    <div class="container text-center section-promo"> 
-    	<div class="row">
-        	
-            
-            <div class="col-md-4">
-            	<div class="iconbox-wrap">
-                          <div class="iconbox">
-                            <div class="iconbox-wrap-icon">
-                            <img class="icon ratingIcon" src="<?php echo base_url()."images/girlstrade_ratings_lq_bad.png"; ?>"/>
-                            
-                            </div>
-                            <div class="iconbox-wrap-content">
-                              <h5><i class="icon  icon-user-female"></i> </h5>
-                              <div  class="iconbox-wrap-text">
-                              <span id="indexFooterTitle" style="color: red;">
-                  				Bad User
-                  				<span id="indexFooterTitleDes" style="color: red;">
-                  				- poorly rated
-                  				</span>
-                  				</span>
-                  				</div>
-                            </div>
-                          </div>
-  							
-                     </div>
-            </div>
-            
-            <div class="col-md-4">
-            	<div class="iconbox-wrap">
-                          <div class="iconbox">
-                            <div class="iconbox-wrap-icon">
-                             <img class="icon ratingIcon" src="<?php echo base_url()."images/girlstrade_ratings_lq_normal.png"; ?>"/>
-                            </div>
-                           <div class="iconbox-wrap-content">
-                              <h5><i class="icon  icon-user-female"></i> </h5>
-                              <div  class="iconbox-wrap-text">
-                              <span id="indexFooterTitle" style="color: yellow;">
-                  				Normal User
-                  				<span id="indexFooterTitleDes" style="color: yellow;">
-                  				- standard
-                  				</span>
-                  				</span>
-                  				</div>
-                            </div>
-                          </div>
-  							
-                     </div>
-            </div>
-            
-            <div class="col-md-4">
-            	<div class="iconbox-wrap">
-                          <div class="iconbox">
-                            <div class="iconbox-wrap-icon">
-                             <img class="icon ratingIcon" src="<?php echo base_url()."images/girlstrade_ratings_lq_good.png"; ?>"/>
-                            </div>
-                            <div class="iconbox-wrap-content">
-                              <h5><i class="icon  icon-user-female"></i> </h5>
-                              <div  class="iconbox-wrap-text">
-                              <span id="indexFooterTitle" style="color: #1EDE1E;">
-                  				Good User
-                  				<span id="indexFooterTitleDes" style="color: #1EDE1E;">
-                  				- top notch
-                  				</span>
-                  				</span>
-                  				</div>
-                            </div>
-                          </div>
-  							
-                     </div>
-            </div>
-            
-        </div>
+	<div id="userRatingTitleIndexFooter">How Girlstrade Works?</div>
+    
+			<div style="border: 0px; background: rgba(0, 0, 0, 0);" class="col-md-3 col-xs-3 col-sm-3 f-category">
+				<div class="graph">
+					<div class="graph_inner">
+						
+						<div class="large_num styler_color">
+						<i class="icon-login"></i></div>
+						<div class="progress_bars_with_image_title styler_color">
+						Login
+						</div>
+					</div>
+				</div>
+				<div class="desc styler_bg_color">
+					<i class="styler_border_color"></i>
+					<div class="name">1. Sign up/ Login</div>
+					<div class="text">Obtain a girlstrade account and login.</div>
+				</div>
+			</div>
+			
+			<div style="border: 0px; background: rgba(0, 0, 0, 0);" class="col-md-3 col-xs-3 col-sm-3 f-category">
+				<div class="graph">
+					<div class="graph_inner">
+						
+						<div class="large_num styler_color">
+						<i class="icon-pencil-circled"></i></div>
+						<div class="progress_bars_with_image_title styler_color">
+						Post
+						</div>
+						<!--<div class="progress_bars horizontal style1 styler_infograph" data-width="220" 
+						data-height="15" data-color="#0eae9b" data-title="inner" data-value="50%"></div>-->
+					</div>
+				</div>
+				<div class="desc styler_bg_color">
+					<i class="styler_border_color"></i>
+					<div class="name">2. Post your item</div>
+					<div class="text">Create a new post to tell the world what you are selling!</div> 
+				</div>
+			</div>
+			
+			<div style="border: 0px; background: rgba(0, 0, 0, 0);" class="col-md-3 col-xs-3 col-sm-3 f-category">
+				<div class="graph">
+					<div class="graph_inner">
+						<div class="progress_bars_with_image styler_infograph visible" data-number="7" data-value="5" data-icon="fa fa-female" data-height="40" data-color="#F171DA" style="font-size: 40px; line-height: 40px; letter-spacing: 0em;"><div class="item fa fa-female active" style="color: rgb(241, 113, 218);"></div><div class="item fa fa-female active" style="color: rgb(241, 113, 218);"></div><div class="item fa fa-female active" style="color: rgb(241, 113, 218);"></div><div class="item fa fa-female active" style="color: rgb(241, 113, 218);"></div><div class="item fa fa-female active" style="color: rgb(241, 113, 218);"></div><div class="item fa fa-female"></div><div class="item fa fa-female"></div></div>
+						<div class="progress_bars_with_image_title styler_color">Stay Put</div>
+					</div>
+				</div>
+				<div class="desc styler_bg_color">
+					<i class="styler_border_color"></i>
+					<div class="name">3. Buyer will contact you</div>
+					<div class="text">Wait for buyers to contact you in Girlstrade</div>
+				</div>
+			</div>
+			<div style="border: 0px; background: rgba(0, 0, 0, 0);" class="col-md-3 col-xs-3 col-sm-3 f-category">
+				<div class="graph">
+					<div class="graph_inner">
+					<div class="large_num styler_color">
+					<i class="fa fa-exchange"></i></div>
+					<div class="progress_bars_with_image_title styler_color">
+					Deal
+					</div>
+					</div>
+				</div>
+				<div class="desc styler_bg_color">
+					<i class="styler_border_color"></i>
+					<div class="name">4. Meetup</div>
+					<div class="text">Buyer and Seller will meetup and deal in person.</div>
+				</div>
+			</div>
+			<div class="container text-center section-promo" style=""> 
+    	
     
     </div>
   </div>
