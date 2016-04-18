@@ -54,18 +54,18 @@ input[type=checkbox]
   <div id="wrapper">
    <div class="main-container">
     <div class="container">
-     <?php echo validation_errors("<div style='color:red;'>","</div>"); ?>
+     <?php //echo validation_errors("<div style='color:red;'>","</div>"); ?>
    <?php 
-   $attributes = array('id' => 'myform', 'enctype'=>"multipart/form-data");
-   $prevURLPATH = urlencode($prevURL); echo form_open('newPost/createNewPost/'.$userID.'/'.$username.'?prevURL='.$prevURLPATH, $attributes); //'?prevURL='.urlencode($prevURL)); ?>
+   //$attributes = array('id' => 'myform', 'enctype'=>"multipart/form-data");
+   //$prevURLPATH = urlencode($prevURL); echo form_open('newPost/createNewPost/'.$userID.'/'.$username.'?prevURL='.$prevURLPATH, $attributes); //'?prevURL='.urlencode($prevURL)); ?>
       <div class="row">
         <div class="col-md-9 page-content">
           <div class="inner-box category-content">
             <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> <?php echo $NewPost;?><?php echo $YouHaveRemainPost;?></strong> </h2>
             <div class="row">
               <div class="col-sm-12">
-                  <!--  <form id="newPost" class="form-horizontal" method="post" enctype="multipart/form-data"  
-                      action="<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>"> -->
+                    <form id="newPost" class="form-horizontal" method="post" 
+                      action="<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>"> 
                   <fieldset>
                       
                       <!-- Text input-->
@@ -228,7 +228,7 @@ input[type=checkbox]
                           <label class="col-md-3 control-label text-center"></label>
                           <div class="col-md-8"> 
                            
-                       	       <button id="submit-upload-form" onclick="setup();return false;" type="submit" class="btn btn-primary btn-tw" ><i class="glyphicon glyphicon-upload"></i>Submit</button>
+                       	       <button id="submit-upload-form" onclick="setup();return false;" class="btn btn-primary btn-tw" ><i class="glyphicon glyphicon-upload"></i>Submit</button>
                               <button id="validate" hidden="true" type="submit"></button>
                           </div>
                        </div>
@@ -254,7 +254,7 @@ input[type=checkbox]
                     </div>
         
         
-              <!--   </form> -->
+                 </form> 
                 
                 
               </div>
@@ -483,71 +483,71 @@ function setup()
 					isServiceCat=1;
 					break;
 				}
-            }     
+            }  
         if((isServiceCat!=1) && ( fileList == null || fileList.length == 0))
         {
                $("#uploadImgError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
 	           location.href = "#uploadImgError";                 //Go to the target element.
 	           return false;
         }
-        else //if(r == false)
+        else if(r == false)
         { 
-        	myform.submit();
-//             $('#pleaseWaitDialog').modal('show');
+            //myform.submit();
+            $('#pleaseWaitDialog').modal('show');
 
-//             setForm(function(data)
-//             {
-//                 if(data == true)
-//                 {
-// 					var formData = new FormData(myform);
-// 					for (var i=0; i<fileList.length; i++){
-// 						formData.append('filelist[]', fileList[i]); 
-// 					}
-// 					$('#image').fileinput('clear');
-// 					$('#image').fileinput('disable');
-// 					$('#Adtitle').attr('disabled', 'disabled');
-// 					$('#soldqty').attr('disabled', 'disabled');
-// 					$('#descriptionTextarea').attr('disabled', 'disabled');
-// 					$('#tagsInput').attr('disabled', 'disabled');
-// 					$('#submit-upload-form').attr('disabled', 'disabled');
-// 					$('#price').attr('disabled', 'disabled');
-// 					//console.log (formData.get('image'));
-// 					$.ajax({
-// 						xhr: function()
-// 						{
-// 							var xhr = new window.XMLHttpRequest();
-// 							//Upload progress
-// 							xhr.upload.addEventListener("progress", function(evt){
-// 							  if (evt.lengthComputable) {
-// 								var percentComplete = evt.loaded / evt.total*100;
-// 								//Do something with upload progress
-// 								$("#upload-progress-bar").width(percentComplete+"%");
-// 								console.log(percentComplete);
-// 							  }
-// 							}, false);
-// 							return xhr;
-// 						},
-	//					url: "<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>",
-// 						data: formData,
-// 						processData: false,
-// 						contentType: false,
-// 						type: 'POST',
-// 						success:function(msg){
-// 							$("#modal-text").html("Your post has been successfully uploaded.");
-// 							setTimeout(function(){
-// 								//if($remainCount<=5)
-// 								//	$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours. You have remain ".concat($remainCount).concat(" times of post"));
-// 								//else
-// 									$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours.");
-// 								$('#fwd-btn').css("display", "block");
-// 								$('#fwd-btn').css("margin", "auto");
-// 								$('#progress-bar').css("display", "none");
-// 							}, 2000);
-// 						}
-// 					});
-               // }
-                //return data;
-            //});
+            setForm(function(data)
+            {
+                if(data == true)
+                {
+					var formData = new FormData(myform);
+					for (var i=0; i<fileList.length; i++){
+						formData.append('filelist[]', fileList[i]); 
+					}
+					$('#image').fileinput('clear');
+					$('#image').fileinput('disable');
+					$('#Adtitle').attr('disabled', 'disabled');
+					$('#soldqty').attr('disabled', 'disabled');
+					$('#descriptionTextarea').attr('disabled', 'disabled');
+					$('#tagsInput').attr('disabled', 'disabled');
+					$('#submit-upload-form').attr('disabled', 'disabled');
+					$('#price').attr('disabled', 'disabled');
+					//console.log (formData.get('image'));
+					$.ajax({
+						xhr: function()
+						{
+							var xhr = new window.XMLHttpRequest();
+							//Upload progress
+							xhr.upload.addEventListener("progress", function(evt){
+							  if (evt.lengthComputable) {
+								var percentComplete = evt.loaded / evt.total*100;
+								//Do something with upload progress
+								$("#upload-progress-bar").width(percentComplete+"%");
+								console.log(percentComplete);
+							  }
+							}, false);
+							return xhr;
+						},
+						url: "<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>",
+						data: formData,
+						processData: false,
+						contentType: false,
+						type: 'POST',
+						success:function(msg){
+							$("#modal-text").html("Your post has been successfully uploaded.");
+							setTimeout(function(){
+								//if($remainCount<=5)
+								//	$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours. You have remain ".concat($remainCount).concat(" times of post"));
+								//else
+									$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours.");
+								$('#fwd-btn').css("display", "block");
+								$('#fwd-btn').css("margin", "auto");
+								$('#progress-bar').css("display", "none");
+							}, 2000);
+						}
+					});
+                }
+                return data;
+            });
         }
     });
 }

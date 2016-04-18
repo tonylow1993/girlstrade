@@ -1031,11 +1031,11 @@ public function getChildCategory($parentID)
         $des = $this->input->post('descriptionTextarea',true); 
         $content=nl2br(htmlentities($des, ENT_QUOTES, 'UTF-8'));
         
-        if ($this->form_validation->run('newPost/createNewPost') == FALSE)
-        {
-        	$this->index($userID, $userName, '0', $prevURL);
-        	return;
-        }else{
+//         if ($this->form_validation->run('newPost/createNewPost') == FALSE)
+//         {
+//         	$this->index($userID, $userName, '0', $prevURL);
+//         	return;
+//         }else{
         
         
         if(ExceedDescLength($content, DESCLENGTHINNEWPOST)){
@@ -1141,10 +1141,10 @@ public function getChildCategory($parentID)
         	}
         }
         
-        if(isset($_FILES['images']) && !empty($_FILES['images'])){
+        if(isset($_FILES['filelist']) && !empty($_FILES['filelist'])){
 	        $this->load->library('image_lib');
-			$filelist=$_FILES['images'];
-		    $number_of_files = count($_FILES['images']['tmp_name']);
+			$filelist=$_FILES['filelist'];
+		    $number_of_files = count($_FILES['filelist']['tmp_name']);
 			if($number_of_files==0 && !$isServiceCat)
 			{
 				$errorMsg=$this->lang->line("PostErrorNoImageFileSelected");
@@ -1357,7 +1357,7 @@ public function getChildCategory($parentID)
 		//echo json_encode($msg);
 		$this->load->view('successPage', $data);
 		 //}
-        }
+        
     }
 	
     public function editPost($postID)
