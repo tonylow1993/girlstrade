@@ -64,7 +64,7 @@ input[type=checkbox]
             <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> <?php echo $NewPost;?><?php echo $YouHaveRemainPost;?></strong> </h2>
             <div class="row">
               <div class="col-sm-12">
-                    <form id="newPost" class="form-horizontal" method="post" 
+                    <form id="newPost" class="form-horizontal" method="post"  enctype="multipart/form-data"
                       action="<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>"> 
                   <fieldset>
                       
@@ -228,7 +228,7 @@ input[type=checkbox]
                           <label class="col-md-3 control-label text-center"></label>
                           <div class="col-md-8"> 
                            
-                       	       <button id="submit-upload-form" onclick="setup();return false;" class="btn btn-primary btn-tw" ><i class="glyphicon glyphicon-upload"></i>Submit</button>
+                       	       <button id="submit-upload-form" onclick="setup();return false;" type="submit" class="btn btn-primary btn-tw" ><i class="glyphicon glyphicon-upload"></i>Submit</button>
                               <button id="validate" hidden="true" type="submit"></button>
                           </div>
                        </div>
@@ -386,7 +386,7 @@ $("#image").fileinput({
 
 function setup()
 {
-	var myform = document.getElementById("myform");
+	var myform = document.getElementById("newPost");
 	//check whether browser fully supports all File API
 	if (window.File && window.FileReader && window.FileList && window.Blob)
 	{
