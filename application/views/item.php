@@ -260,9 +260,9 @@ input[type=checkbox]
               		$shareLink=base_url().MY_PATH."viewItem/index/".$postID;
                      echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 	if($getDisableSavedAds)
-                     echo "<li><a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save ad </a> </li>";
+                     echo "<li><a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Saved </a> </li>";
                    else 
-                   	echo "<li><a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save this item </a> </li>";
+                   	echo "<li><a href=\"javascript:savedAds('$ctrlValue', '$ctrlName','$clickLink')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save this item </a> </li>";
                    	
                 	echo "<li><a href=\"#shareAds\" data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-share-alt\"></i> Share this item </a></li>";
                       ?>
@@ -1712,7 +1712,7 @@ $('#directSendButton').on('click', function () {
 </script>
 <script>
 
-function savedAds(ctrlValue, ctrlName) {
+function savedAds(ctrlValue, ctrlName, clickLink) {
 	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
 	$.ajax({
 		method: "POST",
@@ -1722,7 +1722,8 @@ function savedAds(ctrlValue, ctrlName) {
 			var result = JSON.parse(response);
 	    	$("#".concat(ctrlName)).html(result.icon);
 	    	$("#Err".concat(ctrlName)).html(result.message);
-	    	}
+	    	$("#".concat(clickLink)).attr("style", "pointer-events: none; cursor: default;color:black;");
+		    }
 	});
 };
 </script>
