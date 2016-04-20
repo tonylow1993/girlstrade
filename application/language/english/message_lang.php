@@ -268,3 +268,12 @@ $lang["APPROVEDIRECTSEND"]="When your request contact seller and are being appro
 $lang["REJECTDIRECTSEND"]="When your request contact seller and are being rejceted, you will receve email";
 $lang["REPLYMESSAGESENDEMAIL"]="When your message are being replied, you will receive email";
 $lang["sendEmailForApproveReject"]="sendEmailForApproveReject";
+$lang["ExceedMaxDescOrTitleLengthInNewPost"]="Description or Title exceed the maximum length.";
+$lang["ZeroTitleLength"]="Ttile cannot be empty.";
+$lang["EmptyCategory"]="Need to choose category for your post.";
+$lang["InvalidPriceRange"]="The %s field is not in the price range value";
+$lang["InvalidPriceFormat"]="The %s field can only be number without decimal";
+$lang["EmptyPrice"]="The price field cannot be empty";
+
+
+

@@ -1030,30 +1030,59 @@ public function getChildCategory($parentID)
         $tags = $this->input->post('tagsInput',true); 
         $des = $this->input->post('descriptionTextarea',true); 
         $content=nl2br(htmlentities($des, ENT_QUOTES, 'UTF-8'));
+        $price = $this->input->post('price',true);
         
 //         if ($this->form_validation->run('newPost/createNewPost') == FALSE)
 //         {
 //         	$this->index($userID, $userName, '0', $prevURL);
 //         	return;
 //         }else{
-        
-        
-        if(ExceedDescLength($content, DESCLENGTHINNEWPOST)){
-	        $errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+		$errorMsg="";
+		if(strcmp(trim($price), '')==0){
+			$errorMsg=$errorMsg." ".sprintf($this->lang->line("EmptyPrice"));	
+		}else if (!is_int((int)trim($price)))
+		{
+			$errorMsg=$errorMsg." ".sprintf($this->lang->line("InvalidPriceFormat"), $price);
+		}
+		else
+		{
+			if(intval($price)>=MINPRICERANGE and intval($price)<=MAXPRICERANGE)
+			{
+			}else{
+					$errorMsg=$errorMsg." ".sprintf($this->lang->line("InvalidPriceRange"), $price);
+					}
+		}		
+
+
+        if(ExceedDescLength($content, DESCLENGTHINNEWPOST) ||
+        	ExceedDescLength($title, 70) ||
+        		empty($cat) || $cat==0 || strcmp($cat, "0")==0
+        		){
+	        if(ExceedDescLength($content, DESCLENGTHINNEWPOST) ||
+        	ExceedDescLength($title, 70))
+        		$errorMsg=$errorMsg." ".sprintf($this->lang->line("ExceedMaxDescOrTitleLengthInNewPost"));
 	        if(strlen(trim($content))==0)
-				$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
-			$data["error"]=$errorMsg;
-	        $data["prevURL"]=$prevURL;
-	        $data['redirectToWhatPage']="New Post Page";
-	        $data['redirectToPHP']=base_url().MY_PATH."newPost";
-	        $data["successTile"]=$this->lang->line("successTile");
-	        $data["failedTitle"]=$this->lang->line("failedTitle");
-	        $data["goToHomePage"]=$this->lang->line("goToHomePage");
-	        $this->load->view('failedPage', $data);
-	        return;
+				$errorMsg=$errorMsg." ".sprintf($this->lang->line("ZeroDescLength"));
+			if(strlen(trim($title))==0)
+				$errorMsg=$errorMsg." ".sprintf($this->lang->line("ZeroTitleLength"));
+			if(empty($cat) || $cat==0 || strcmp($cat, "0")==0)
+				$errorMsg=$errorMsg." ".sprintf($this->lang->line("EmptyCategory"));
+			
         }
         
-        $price = $this->input->post('price',true); 
+        if(!empty($errorMsg)){
+
+        	$data["error"]=$errorMsg;
+        	$data["prevURL"]=$prevURL;
+        	$data['redirectToWhatPage']="New Post Page";
+        	$data['redirectToPHP']=base_url().MY_PATH."newPost";
+        	$data["successTile"]=$this->lang->line("successTile");
+        	$data["failedTitle"]=$this->lang->line("failedTitle");
+        	$data["goToHomePage"]=$this->lang->line("goToHomePage");
+        	$this->load->view('failedPage', $data);
+        	return;
+        }
+        
         $recaptcha = $this->input->post('g-recaptcha-response',true); 
         $negotiable = $this->input->post('negotiable'); 
         $soldqty=1;
