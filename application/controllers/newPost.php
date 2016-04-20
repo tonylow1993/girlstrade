@@ -1070,7 +1070,7 @@ public function getChildCategory($parentID)
 			
         }
         
-        if(!empty($errorMsg)){
+        if(!empty($errorMsg) || strcmp($errorMsg, "")!=0){
 
         	$data["error"]=$errorMsg;
         	$data["prevURL"]=$prevURL;
