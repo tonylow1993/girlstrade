@@ -194,10 +194,11 @@ input[type=checkbox]
                           <div class="col-md-4">
                               <div class="input-group"> <span class="input-group-addon">$</span>
                                   <input id="price" name="price" value="<?php echo set_value('price'); ?>" class="form-control" onblur="priceCheckValidate();" required type="number"  step="1"  min="<?php echo MINPRICERANGE;?>" max="<?php echo MAXPRICERANGE;?>" />
+                              	</div>	
                               		<div id="priceAjaxLoad" class="center"></div>
                         			<div id="priceError" hidden="true"></div>
                         
-                              </div>
+                              
                           </div>
                           <div class="col-md-4">
                               <div class="checkbox">
