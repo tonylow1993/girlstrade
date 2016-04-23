@@ -21,7 +21,7 @@
   background: red;
 }
 .panel-heading {
-    cursor: pointer;
+    //cursor: pointer;
 }
 
 /* CSS Method for adding Font Awesome Chevron Icons */
