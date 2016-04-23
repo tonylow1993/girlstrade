@@ -340,15 +340,13 @@ class newPost extends CI_Controller {
             $this->nativesession->set("lastPageVisited","newPost");
 			if(empty($userInfo))
 			{
-				$errorMsg=$this->lang->line("PostPleaseLoginFirst");
-				$data["error"]=$errorMsg;
-				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="Login in Page";
-				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";
-				$data["successTile"]=$this->lang->line("successTile");
-				$data["failedTitle"]=$this->lang->line("failedTitle");
-				$data["goToHomePage"]=$this->lang->line("goToHomePage");
-				$this->load->view('failedPage', $data);
+				$data["PrevURL"]=$prevURL;
+				$data["Username"]=$this->lang->line("Username");
+				$data["Password"]=$this->lang->line("Password");
+				$data["SignUp"]=$this->lang->line("SignUp");
+				$data["LostYourPassword"]=$this->lang->line("LostYourPassword");
+				
+				$this->load->view('login', $data);
 				return;
 			}
 			//----------setup the header menu----------
