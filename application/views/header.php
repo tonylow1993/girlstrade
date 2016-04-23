@@ -207,7 +207,7 @@ echo json_encode($usr);;
             <li><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
             <i  id="menubarTitle" class="icon-search-2"></i>
             <span id="menubarTitle" >
-            Search Post
+            Search
             </span>
             </a></li> 
             
@@ -270,7 +270,7 @@ echo json_encode($usr);;
             <li><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
             <i  id="menubarTitle" class="icon-search-2"></i>
             <span id="menubarTitle" >
-            Search Post
+            Search
             </span>
             </a></li> 
             <li>
