@@ -676,7 +676,7 @@ class Home extends CI_Controller {
 	}
 	
 	public function loginUser(){
-	$prevURL="";
+		$prevURL="";
 		if(isset($_GET["prevURL"])){
 			$prevURL=$_GET["prevURL"];
 			$_SESSION["previousUrl"]=$prevURL;
@@ -797,7 +797,8 @@ class Home extends CI_Controller {
                 	$data["failedTitle"]=$this->lang->line("failedTitle");
                 	$data["goToHomePage"]=$this->lang->line("goToHomePage");
                 	
-                	$this->load->view('failedPage', $data);
+                	//$this->load->view('failedPage', $data);
+					echo "Invalid Username";
 				return;
 			}
 			else 
@@ -824,8 +825,8 @@ class Home extends CI_Controller {
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
-				$this->load->view('failedPage', $data);
-				 
+				//$this->load->view('failedPage', $data);
+				echo "Unactivated User";
 				return;
 		}
 		
@@ -858,7 +859,8 @@ class Home extends CI_Controller {
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
 				 
-				$this->load->view('failedPage', $data);
+				//$this->load->view('failedPage', $data);
+				echo "Invalid Password";
 				return;
 			}
 		}else{
@@ -877,7 +879,8 @@ class Home extends CI_Controller {
 					"status"=>"F", "loginTime"=>  date("Y-m-d H:i:s"), "userID"=>$data["userID"]);
 			$this->userloginhistory_model->insert($loginhist);
 			
-			$this->load->view('failedPage', $data);
+			//$this->load->view('failedPage', $data);
+			echo "Unknown Error";
 			return;
 			//redirect($back2LoginPage."/".($errorMsg));
 			//print_r($user);
@@ -918,21 +921,19 @@ class Home extends CI_Controller {
 			}
 			//----------------------------
 			//$this->load->view('successPage', $data);
-			if(strpos(((String)$_SESSION["previousUrl"]),'signupPage') !== false)
-				redirect(base_url());
-			else
-				redirect($prevURL);
+			echo "Success";
+			
 	}	
 	
-function generateRandomString($length = 8) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
+	function generateRandomString($length = 8) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
+	}
 	
 	public function forgetPassword()
 	{

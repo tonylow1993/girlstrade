@@ -18,7 +18,7 @@ window.onload = function(){
                 </span>
             </div>
             <div class="panel-body">
-              <form role="form" name="myForm" action="<?php echo base_url().MY_PATH; ?>home/loginUser?prevURL=<?php echo $PrevURL; ?>"  method="post">
+              <form id="loginform" role="form" name="myForm" action="<?php echo base_url().MY_PATH; ?>home/loginUser?prevURL=<?php echo $PrevURL; ?>" method="post">
                 <div id="error">
                     </div>
                 <div class="form-group">
@@ -45,7 +45,6 @@ window.onload = function(){
    
             </div>
             <div class="panel-footer">
-              
               <p class="text-center pull-left"> <a href="<?php echo base_url(); echo MY_PATH;?>home/forgetPasswordPage"> <?php echo $LostYourPassword;?> </a> </p>
               <div style=" clear:both"></div>
             </div>
@@ -74,6 +73,33 @@ $( "#user-pass" ).blur(function() {
 	}
 });
 
+$("#loginform").on("submit",function() {
+	$("#passwordAjax").html('<em><span style="color:red"> <i class="fa fa-refresh fa-spin"></i> Loading</span></em>');
+	$.ajax({
+		url : "<?php echo base_url().MY_PATH; ?>home/loginUser?prevURL=<?php echo $PrevURL; ?>",
+		type : "POST",
+		data : {username : $("#sender-email").val(), password : $("#user-pass").val()},	
+		success : function(output){
+			if (output == "Success"){
+				$("#passwordAjax").html('<em><span style="color:green"> <i class="icon-check fa"></i>Success</span></em>');
+				if ("<?php echo $PrevURL; ?>" == "")
+					window.location.href = "http://www.girlstrade.com/";
+				else
+					window.location.href = "<?php echo $PrevURL; ?>";
+			}
+			else
+				$("#passwordAjax").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> '+ output + '</span></em>');
+			
+			console.log(output);
+			
+		},
+		error : function(){
+			alert("Error");
+		}
+	})
+	return false;
+});
+</script>
 
 </script>
 <?php include "footer2.php"; ?>
