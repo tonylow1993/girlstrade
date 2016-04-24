@@ -3354,6 +3354,10 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.checkbox{
+	margin-left: 10px;
+}
+
 .margin-5{
 	margin: 5px;
 }
