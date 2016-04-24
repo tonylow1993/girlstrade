@@ -14,7 +14,7 @@
             <h2 class="title-2"><i class="icon-star-circled"></i> <?php echo $this->lang->line("viewAbuseMessages"); ?> </h2>
             <form name="myForm" action="<?php echo base_url().MY_PATH;?>getAdmin/updateAbuseMessages" method="POST">
              
-             <div class="table-responsive">
+             <div>
              <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                     <tr>
@@ -60,16 +60,16 @@
                     	echo "<input type='hidden' name='".$postIDCtrl."' value='".$postID."' />";
                     	echo "<input type='hidden' name='".$commentIDCtrl."' value='".$commentID."' />";
                     	 
-                    	echo "<select id='".$actionType."' name='".$actionType."'   style='font-size:1.3em'>";
+                    	echo "<select class='form-control' id='".$actionType."' name='".$actionType."'   style='font-size:1.3em'>";
                     	echo "<option selected='selected' value='A'>Approve</option>";
                     	echo "<option value='R'>Reject</option>";
                     	echo "<option value='U'>Unverified</option>";
                     	echo "</select>";
-                    	echo "<br/><select id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
+                    	echo "<br/><select class='form-control' id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
                     	echo "<option selected='selected' value='Reject Reason 1'>Reject Reason 1</option>";
                     	echo "<option value='Reject Reason 2'>Reject Reason 2</option>";
                     	echo "</select>";
-                    	echo "<br/><input type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='width:200px'></input>";
+                    	echo "<br/><textarea class='form-control' type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='width:200px'></textarea>";
                     	//echo "</div></div>";
                     	echo "</td> ";
                     	
@@ -123,7 +123,7 @@
              	
            
             </div>
-             <br/><button  hidden="true" type="submit" value="Submit" >Submit</button>
+             <br/><div class="form-group"><label class="col-md-3 control-label"></label><div class="col-md-8"> <button class="btn-success btn btn-lg" type="submit" value="Submit">Submit</button></div></div>
              </form>   
         </div>
         </div>

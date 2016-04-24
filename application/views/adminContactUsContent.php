@@ -2,7 +2,7 @@
 
 	<form name="myForm" action="<?php echo base_url().MY_PATH;?>getAdmin/updateContactUs" method="POST">
              
-             <div class="table-responsive">
+             <div>
              <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                 <?php if($itemList<>null && count($itemList)>0)
@@ -74,6 +74,6 @@
              	
            
             </div>
-             <br/><button  type="submit" value="Submit" >Submit</button>
+             <br/><div class="form-group"><label class="col-md-3 control-label"></label><div class="col-md-8"> <button class="btn-success btn btn-lg" type="submit" value="Submit">Submit</button></div></div>
              </form>   
    

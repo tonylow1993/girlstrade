@@ -38,7 +38,7 @@
   
   
   
-   <form name="myForm" action="<?php echo base_url().MY_PATH;?>getAdmin/deleteUserAdmin" method="POST">
+   <form name="myForm" class="form-horizontal" action="<?php echo base_url().MY_PATH;?>getAdmin/deleteUserAdmin" method="POST">
                 	
                 <div  class="form-group">
                 	<label class="col-md-3 control-label" >Select username:</label>
@@ -48,5 +48,5 @@
                 <?php echo form_dropdown('user_id', $itemList, '#', 'class="form-control" style="font-size:1.3em" id="userID" name="userID"'); ?>
                 </div></div>
  			   
-  					<button  type="submit" value="Submit" >Submit</button>
+				<div class="form-group"><label class="col-md-3 control-label"></label><div class="col-md-8"> <button class="btn-success btn btn-lg" type="submit" value="Submit">Submit</button></div></div>
              </form>

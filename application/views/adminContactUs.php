@@ -12,13 +12,13 @@
         <div class="col-sm-9 page-content">
            <div class="inner-box">
             <h2 class="title-2"><i class="icon-star-circled"></i> <?php echo $this->lang->line("adminContactUs"); ?> </h2>
-             <div class="table-responsive">
+             <div>
              
              
 
 	<form name="myForm" action="<?php echo base_url().MY_PATH;?>getAdmin/updateContactUs" method="POST">
              
-             <div class="table-responsive">
+             <div>
              <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                     <tr>
@@ -66,16 +66,16 @@
                        echo "<h5>".$message."<br/>Posted On: ". $createDate."</h5>";
                       	 	echo "</div></td>";
                       	 	echo "<td style=\"width:10%\" class=\"action-td\"><div>";
-                      	 		echo "<a class=\"btn btn-primary btn-xs\" href=\"#contactAdvertiser\" data-toggle=\"modal\"  id='$contactID' 
+                      	 		echo "<a class=\"btn btn-primary btn-xs btn-80\" href=\"#contactAdvertiser\" data-toggle=\"modal\"  id='$contactID' 
 						  			email='$email' phone='$phone'   name='$name'> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
                       	 		$ctrlName1="AjaxLoad".$Num;
                       	 		$errorctrlName1="ErrAjaxLoad".$Num;
                       	 		$ctrlValue1="contactID".$Num;
                       	 		$clickLink="clickLink".$Num;
                       	 		
-                      	 		echo "<br/> <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
+                      	 		echo "<br/><div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
                       	 		echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$contactID' />";
-                      	 		echo "<a class=\"btn btn-primary btn-xs\" href=\"javascript:markresponsed('$ctrlValue1', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-reply\"></i> ".$this->lang->line('Approve')." </a>";
+                      	 		echo "<a class=\"btn btn-success btn-xs btn-80\" href=\"javascript:markresponsed('$ctrlValue1', '$ctrlName1', '$errorctrlName1')\" id='$clickLink'> <i class=\"fa fa-check\"></i> ".$this->lang->line('Approve')." </a>";
                       	 		
                 echo "</div>";
                   echo "</td></tr>";
@@ -91,7 +91,7 @@
              	
            
             </div>
-             <br/><button  type="submit" value="Submit" >Submit</button>
+             <br/><div class="form-group"><label class="col-md-3 control-label"></label><div class="col-md-8"> <button class="btn-success btn btn-lg" type="submit" value="Submit">Submit</button></div></div>
              </form>   
    
            

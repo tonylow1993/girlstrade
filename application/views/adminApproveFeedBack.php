@@ -14,7 +14,7 @@
             <h2 class="title-2"><i class="icon-star-circled"></i> <?php echo $this->lang->line("adminApproveFeedBack"); ?> </h2>
             <form name="myForm" action="<?php echo base_url().MY_PATH;?>getAdmin/updateFeedBack" method="POST">
              
-             <div class="table-responsive">
+             <div>
              <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                  <?php if($itemList<>null && count($itemList)>0)

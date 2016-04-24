@@ -12,9 +12,8 @@
         <div class="col-sm-9 page-content">
            <div class="inner-box">
             <h2 class="title-2"><i class="icon-star-circled"></i> <?php echo $this->lang->line("approveitemComment"); ?> </h2>
-            <form name="myForm" action="<?php echo base_url().MY_PATH;?>getAdmin/sendEmail" method="POST">
+            <form name="myForm" class="form-horizontal" action="<?php echo base_url().MY_PATH;?>getAdmin/sendEmail" method="POST">
              
-             <div class="table-responsive">
              <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                    <div  class="form-group">
@@ -41,10 +40,7 @@
                 </tbody>
               </table>
               
-             	
-           
-            </div>
-             <br/><button  type="submit" value="Submit" >Submit</button>
+			 <div class="form-group"><label class="col-md-3 control-label"></label><div class="col-md-8"> <button class="btn-success btn btn-lg" type="submit" value="Submit">Submit</button></div></div>
              </form>   
         </div>
         </div>

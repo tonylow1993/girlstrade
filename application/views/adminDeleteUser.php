@@ -12,7 +12,7 @@
         <div class="col-sm-9 page-content">
            <div class="inner-box">
             <h2 class="title-2"><i class="icon-star-circled"></i> <?php echo $this->lang->line("updatePost"); ?> </h2>
-             <div class="table-responsive">
+             <div>
              
              	<?php include("adminDeleteUserContent.php");?>
            
