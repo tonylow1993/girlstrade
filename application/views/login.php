@@ -36,6 +36,7 @@ window.onload = function(){
                     <input type="password"  class="form-control" required="true" name="password" id="user-pass">
                   </div>
 				  <div id="passwordAjax"></div>
+				  <div id="loginAjax"></div>
                 </div>
                 <div class="form-group">
 <!--                   <a  href="account-home.html" class="btn btn-primary  btn-block">Submit</a> -->
@@ -74,21 +75,22 @@ $( "#user-pass" ).blur(function() {
 });
 
 $("#loginform").on("submit",function() {
-	$("#passwordAjax").html('<em><span style="color:red"> <i class="fa fa-refresh fa-spin"></i> Loading</span></em>');
+	$("#passwordAjax").html('');
+	$("#loginAjax").html('<em><span> <i class="fa fa-refresh fa-spin"></i> Loading</span></em>');
 	$.ajax({
 		url : "<?php echo base_url().MY_PATH; ?>home/loginUser?prevURL=<?php echo $PrevURL; ?>",
 		type : "POST",
 		data : {username : $("#sender-email").val(), password : $("#user-pass").val()},	
 		success : function(output){
 			if (output == "Success"){
-				$("#passwordAjax").html('<em><span style="color:green"> <i class="icon-check fa"></i>Success</span></em>');
+				$("#loginAjax").html('<em><span style="color:green"> <i class="icon-check fa"></i>Success</span></em>');
 				if ("<?php echo $PrevURL; ?>" == "")
 					window.location.href = "http://www.girlstrade.com/";
 				else
 					window.location.href = "<?php echo $PrevURL; ?>";
 			}
 			else
-				$("#passwordAjax").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> '+ output + '</span></em>');
+				$("#loginAjax").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> '+ output + '</span></em>');
 			
 			console.log(output);
 			
