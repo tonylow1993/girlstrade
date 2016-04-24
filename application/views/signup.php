@@ -123,7 +123,7 @@
                         <div class="termbox mb10">
                           <label class="checkbox-inline" for="checkboxes-1">
                             <input name="checkboxes-1" id="checkboxes-1" value="1" type="checkbox">
-                            I have read and agree to the <a href="terms-conditions.html">Terms & Conditions</a> </label>
+                            I have read and agree to the <a href="<?php echo base_url().MY_PATH.'footer/getTerms';?>">Terms & Conditions</a> </label>
                         </div>
                         <div style="clear:both"></div>
                         <!-- <input type="submit" id="register" class="btn btn-primary btn-pink" value="Register" disabled="true"/></div> -->
