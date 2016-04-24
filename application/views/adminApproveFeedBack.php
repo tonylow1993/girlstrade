@@ -48,12 +48,12 @@
                   		$buyername=$row['buyername'];
                   		
                   		echo "<tr>";
-                    	echo "<td style=\"width:20%\">type: $type<br/>seller: $sellername<br/>buyer: $buyername</td>";
-                    	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
+                    	echo "<td style=\"width:30%\">type: $type<br/>seller: $sellername<br/>buyer: $buyername</td>";
+                    	echo "<td style=\"width:40%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                        echo "<h5><div class=\"add-title-girlstrade\">rating: ".$rating."<br/>feedback: $content</div></h5>";
                       	 	echo "</div></td>";
-                      	 	echo "<td style=\"width:10%\" class=\"action-td\"><div>";
+                      	 	echo "<td style=\"width:30%\" class=\"action-td\"><div>";
                       	 	 $actionType="actionType".$Num;
                  $postIDCtrl="postID".$Num;
                  $typeCtrl="type".$Num;
@@ -67,16 +67,16 @@
                 else 
                 	echo "<input type='hidden' name='".$userIDCtrl."' value='".$buyerID."' />";
                 	
-                echo "<select id='".$actionType."' name='".$actionType."'   style='font-size:1.3em'>";
+                echo "<select class='form-control' id='".$actionType."' name='".$actionType."'   style='font-size:1.3em'>";
                 echo "<option selected='selected' value='A'>Approve</option>";
                 echo "<option value='R'>Reject</option>";
                 echo "<option value='U'>Unverified</option>";
                 echo "</select>";
-                echo "<br/><select id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
+                echo "<br/><select class='form-control' id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
                 echo "<option selected='selected' value='Reject Reason 1'>Reject Reason 1</option>";
                 echo "<option value='Reject Reason 2'>Reject Reason 2</option>";
                 echo "</select>";
-                echo "<br/><input type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='width:200px'></input>";
+                echo "<br/><textarea class='form-control' type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='width:200px'></textarea>";
                 echo "</div></div>";
                   echo "</td></tr>";
 				}

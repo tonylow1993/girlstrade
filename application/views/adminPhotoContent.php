@@ -13,7 +13,7 @@
 					$post=NULL;
 						
 					echo  "<div class=\"item-list\"> ";
-              		echo  "<div class=\"col-sm-2 no-padding photobox\">";
+              		echo  "<div class=\"col-sm-3 no-padding photobox\">";
               		$picture=$basePath.$item->picturePath.'/'.$item->pictureName;
               		//
 								$thumbnail=$basePath.$item->thumbnailPath.'/'.$item->thumbnailName;
@@ -33,16 +33,16 @@
                 $rejectSpecifiedReason="rejectSpecifiedReason".$Num;
 //                  echo "<div class=\"col-sm-3 text-right  price-box\">";
                echo "<input type='hidden' id='".$postIDCtrl."' name='".$postIDCtrl."' value='".$item->userID."' />";
-			 	echo "<br/><select id='".$actionType."' name='".$actionType."' style='font-size:1.3em' >";
+			 	echo "<br/><select class='form-control' id='".$actionType."' name='".$actionType."' style='font-size:1.3em' >";
 			 	echo "<option selected='selected' value='A'>Approve</option>";
 			 	echo "<option value='R'>Reject</option>";
 			 	echo "<option value='U'>Unverified</option>";
 			 	echo "</select>";
-				echo "<br/><select id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
+				echo "<br/><select class='form-control'id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
                 echo "<option selected='selected' value='Reject Reason 1'>Reject Reason 1</option>";
                 echo "<option value='Reject Reason 2'>Reject Reason 2111111111111111111111111</option>";
                 echo "</select>";
-                echo "<br/><input   type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='width:200px;font-size:1.3em;padding: 0px,0px;'></input>";
+                echo "<br/><textarea class='form-control'  type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='font-size:1.3em;padding: 0px,0px;'></textarea>";
                 echo "</div></div></div>";
 			 	
 				}
@@ -55,7 +55,7 @@
 				
 				
               ?>  
-              <br/><button  type="submit" value="Submit" >Submit</button>
+              <br/><button class="btn-success btn btn-lg" type="submit" value="Submit" >Submit</button>
              </form>   
                 
                 
