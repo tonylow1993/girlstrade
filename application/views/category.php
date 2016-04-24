@@ -724,7 +724,7 @@
                 if(!$isloginedIn and $isSameUser==false){
                 	$imgRatingPath=base_url()."images/".$userRating;
                 
-                	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                	echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
                 
                 }
                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
@@ -835,7 +835,7 @@
                 if(!$isloginedIn and $isSameUser==false){
                 	$imgRatingPath=base_url()."images/".$userRating;
                 
-                	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                	echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
                 
                 }
                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
@@ -948,7 +948,7 @@
                 if(!$isloginedIn and $isSameUser==false){
                 	$imgRatingPath=base_url()."images/".$userRating;
                 
-                	echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                	echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
                 
                 }
                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
@@ -1376,7 +1376,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 <!-- /.wrapper --> 
 
 
-<div class="modal fade" id="loginPopup" tabindex="-1" role="dialog">
+<!--<div class="modal fade" id="loginPopup" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">
     <div class="modal-content">
