@@ -30,7 +30,7 @@
 // 							$popupform=$child;
 					}
 					echo  "<div class=\"item-list\"> ";
-              		echo  "<div class=\"col-sm-2 no-padding photobox\">";
+              		echo  "<div class=\"col-sm-3 no-padding photobox\">";
 					foreach($item as $pic=>$picObj)
               		{	
               			if($pic=='pic')
@@ -68,16 +68,16 @@
 //                 echo "<br/><input type='radio' style='font-size:20px;' name='".$actionType."' value='A'  ><label style='font-size: 20px;'>Approve  </label> </input>";
 //                 echo "<br/><input type='radio' style='font-size:20px;' name='".$actionType."' value='R'><label style='font-size: 20px;'>Reject  </label></input>";
                 
-                echo "<select id='".$actionType."' name='".$actionType."'   style='font-size:1.3em'>";
+                echo "<select id='".$actionType."' name='".$actionType."' class=\"form-control\"  style='font-size:1.3em'>";
                 echo "<option selected='selected' value='A'>Approve</option>";
                 echo "<option value='R'>Reject</option>";
                 echo "<option value='U'>Unverified</option>";
                 echo "</select>";
-                echo "<br/><select id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
+                echo "<br/><select id='".$rejectReason."' name='".$rejectReason."' class=\"form-control\" style='font-size:1.3em' >";
                 echo "<option selected='selected' value='Reject Reason 1'>Reject Reason 1</option>";
                 echo "<option value='Reject Reason 2'>Reject Reason 2</option>";
                 echo "</select>";
-                echo "<br/><input type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='width:200px'></input>";
+                echo "<br/><textarea class=\"form-control\" type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='width:200px'></textarea>";
                 echo "</div></div>";
 				}
                
@@ -89,7 +89,7 @@
 				
 				
               ?>  
-              <br/><button  type="submit" value="Submit" >Submit</button>
+              <br/><button class="btn-success btn btn-lg" type="submit" value="Submit" >Submit</button>
              </form>   
                 
                 
