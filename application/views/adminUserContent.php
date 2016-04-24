@@ -1,4 +1,4 @@
-   <form name="myForm" action="<?php echo base_url().MY_PATH;?>getAdmin/updateUserAdmin" method="POST">
+   <form class="form-horizontal" name="myForm" action="<?php echo base_url().MY_PATH;?>getAdmin/updateUserAdmin" method="POST">
                 	<?php
                 	
                 	if($itemList<>null)
@@ -28,11 +28,11 @@
                 		echo "<label class=\"col-md-3 control-label\" >Enter Block Date:</label>";
                 			echo "<div class=\"col-md-8\">";
                 			echo " <div id='$ctrlName2' name='$ctrlName2' class='center'></div><div id='$errorctrlName2' name='$errorctrlName2' class='center'></div>";
-                			echo "<input  id='blockDate' class=\"form-control\"  name='blockDate' onblur=\"checkDate(this.value,'$ctrlName2','$errorctrlName2')\">( e.g. 2015/09/08)";
+                			echo "<input id='blockDate' class=\"form-control\"  name='blockDate' onblur=\"checkDate(this.value,'$ctrlName2','$errorctrlName2')\">( e.g. 2015/09/08)";
                 		 echo "</div></div>";
                 		 
                 	}
                 	
                 	?>
-  					<button  type="submit" value="Submit" >Submit</button>
+					<div class="form-group"><label class="col-md-3 control-label"></label><div class="col-md-8"> <button class="btn-success btn btn-lg" type="submit" value="Submit">Submit</button></div></div>
              </form>
