@@ -740,7 +740,7 @@
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
-                	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
+                	echo "<a onclick=\"return false;\" style=\"color:black;\" class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
                 	echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
                 }
                                   

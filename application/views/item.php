@@ -320,7 +320,9 @@ input[type=checkbox]
 					//{
 						if($isSameUser==true && $hasRequestContact==true) 
 							echo "<a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\"  data-pagenum=\"$pageNum\" class=\"btn btn-default  directSendButton\"> <i class=\"fa fa-check\"></i> Approve Request </a>";
-						
+						else if($isSameUser==true)
+							echo "<a href=\"\" style=\"color: black;\" data-toggle=\"modal\" onclick=\"return false;\"  class=\"btn btn-default  directSendButton\"> <i class=\"fa fa-check\"></i> No Approve Request </a>";
+							
 					//}
 					?>
 					<?php
@@ -583,6 +585,8 @@ input[type=checkbox]
 					//{
 					if($isSameUser==true && $hasRequestContact==true)
 						echo "<div class=\"user-ads-action\"><a  href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum\"  class=\"btn btn-default btn-block directSendButton\"> <i class=\"fa fa-check\"></i> Approve Request </a></div>";
+					else if($isSameUser==true)
+							echo "<div class=\"user-ads-action\"><a  href=\"\" style=\"color: black;\" data-toggle=\"modal\"   class=\"btn btn-default btn-block directSendButton\"> <i class=\"fa fa-check\"></i> No Approve Request </a></div>";
 						
 					//}
 					?>

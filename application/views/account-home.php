@@ -197,7 +197,7 @@ input[type=checkbox]
 				</div>
                   </div>
               </div>
-              <div class="panel panel-default">
+              <!--  <div class="panel panel-default">
                 <div class="panel-heading" data-toggle="collapse" href="#collapseB3">
                   <h4 class="panel-title"> 
 					<a href="#collapseB3"  data-toggle="collapse"> <?php echo $this->lang->line("Preferences");?> </a> 
@@ -242,8 +242,8 @@ input[type=checkbox]
                     </form>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div>-
+            </div>-->
             <!--/.row-box End--> 
             
           </div>
