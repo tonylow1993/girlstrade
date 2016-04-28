@@ -148,28 +148,7 @@ function sendIt() {
                   	}
             	}
                   ?>
-                   <div class="pagination-bar text-center">
-            <ul class="pagination">
-            <?php 
-            	$url_path=base_url().MY_PATH."home/viewAllFeedback/$userID";
-            	$pageNumPrev=$pageNum-1;
-            	$pageNum2=$pageNum+1;
-            	$pageNum3=$pageNum+2;
-            	$pageNum4=$pageNum+3;
-            	$pageNum5=$pageNum+4;
-            	$pageNumNext=$pageNum+5;
-            	if($pageNum<>1)
-            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
-            	echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
-              
-               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Next</a></li>";
-            ?>
-                </ul>
-          </div>
+               
                 </tbody>
               </table>
             
@@ -209,28 +188,8 @@ function sendIt() {
                   	}
             	}
                   ?>
-                   <div class="pagination-bar text-center">
-            <ul class="pagination">
-            <?php 
-            	$url_path=base_url().MY_PATH."home/viewAllFeedback/$userID";
-            	$pageNumPrev=$pageNum-1;
-            	$pageNum2=$pageNum+1;
-            	$pageNum3=$pageNum+2;
-            	$pageNum4=$pageNum+3;
-            	$pageNum5=$pageNum+4;
-            	$pageNumNext=$pageNum+5;
-            	if($pageNum<>1)
-            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
-            	echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
-              
-               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Next</a></li>";
-            ?>
-                </ul>
-          </div>
+            
+                   
                 </tbody>
               </table>
                
@@ -269,28 +228,7 @@ function sendIt() {
                   	}
             	}
                   ?>
-                   <div class="pagination-bar text-center">
-            <ul class="pagination">
-            <?php 
-            	$url_path=base_url().MY_PATH."home/viewAllFeedback/$userID";
-            	$pageNumPrev=$pageNum-1;
-            	$pageNum2=$pageNum+1;
-            	$pageNum3=$pageNum+2;
-            	$pageNum4=$pageNum+3;
-            	$pageNum5=$pageNum+4;
-            	$pageNumNext=$pageNum+5;
-            	if($pageNum<>1)
-            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
-            	echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
-              
-               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Next</a></li>";
-            ?>
-                </ul>
-          </div>
+                
                 </tbody>
               </table>
               
@@ -304,7 +242,39 @@ function sendIt() {
             
          	  </div>
        		</div>
-       		
+       		<div class="pagination-bar text-center">
+            <ul class="pagination">
+            <?php 
+            	$encodeCurrentURL=urlencode(current_url());
+            	$url_path=base_url().MY_PATH."home/viewAllFeedback/$userID";
+            	$pageNumPrev=$pageNum-1;
+            	$pageNum2=$pageNum+1;
+            	$pageNum3=$pageNum+2;
+            	$pageNum4=$pageNum+3;
+            	$pageNum5=$pageNum+4;
+            	$pageNumNext=$pageNum+5;
+            	$itemPerPage=ITEMS_PER_PAGE;
+            	 
+            	if($NoOfItemCount>0)
+            	{
+            		if($pageNum<>1)
+            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Previous</a></li>";
+            		if($NoOfItemCount > 0)
+            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
+            		if($NoOfItemCount > ($pageNum*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
+              		if($NoOfItemCount > ($pageNum2*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
+              		if($NoOfItemCount > ($pageNum3*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
+              		if($NoOfItemCount > ($pageNum4*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
+              		if($NoOfItemCount > ($pageNum5*$itemPerPage))
+            	 	   echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Next</a></li>";
+           		}
+             ?>
+                </ul>
+          </div>
        		
           
       
