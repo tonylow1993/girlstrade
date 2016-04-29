@@ -91,13 +91,25 @@
                           <div class="categories-list  list-filter">
                               <h5 class="list-title uppercase"><strong><a href="#"> Categories</a></strong></h5>
                               <ul class=" list-unstyled">
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/1"><span class="title">Dresses</span></a> </li>
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/2"><span class="title">Tops </span></a> </li>
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/3"><span class="title">Property </span></a> </li>
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/4"><span class="title">Outerwear </span></a> </li>
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/5"><span class="title">Rompers </span></a> </li>
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/6"><span class="title">Hat </span></a> </li>
-                              </ul>
+                              	<?php 
+			                  if($popularMakes1<>null)
+			                  {
+			                  	foreach ($popularMakes1 as $id=>$value)
+			                  	{
+			                  		if(!isset($lang_label))
+			                  			$lang_label="";
+			                  		$name=$value->name;
+			                  		$postCount="(".$value->postCount.")";
+			                  		if(SHOW_BRACKETS_INDEX_PAGE==0)
+			                  			$postCount="";
+			                  		if($lang_label<>"english")
+			                  			$name=$value->nameCH;
+			                  		$path=base_url().MY_PATH."getCategory/getAll/1/$value->categoryID";
+			                  		echo "<li> <a href='$path'><span class=\"title\"><h4>$name $postCount</span></h4></a></li>";
+			                  	}
+			                  }
+			                  ?>
+			                  </ul>
                           </div>
                           <!--/.categories-list-->
                           <div class="categories-list  list-filter">
@@ -107,63 +119,30 @@
 
 
                               <div class="blog-popular-content">
-                                  <div class="item-list">
-
-
-                                      <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/17?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src="http://www.girlstrade.com/USER_IMG/gttest1/Resize/gttest1_2016-03-06-00-08-39_thumb_0.png" alt="img"></a> </div>
-                                      </div>
-                                      <!--/.photobox-->
-                                      <div class="col-sm-8 col-xs-8 add-desc-box">
-                                          <div class="add-details">
-                                              <h5 class="add-title"> <a href="http://www.girlstrade.com/viewItem/index/17?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1">Shiseido Maquillage cheek colors blush </a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i>  2016-03-06 00:08:39 </span> </span> </div>
-                                      </div>
-                                      <!--/.add-desc-box-->
-
-
-                                  </div>
-
-                                  <div class="item-list">
-
-
-                                      <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/15?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src="http://www.girlstrade.com/USER_IMG/rchiu3hk/Resize/rchiu3hk_2016-03-05-12-17-43_thumb_0.png" alt="img"></a> </div>
-                                      </div>
-                                      <!--/.photobox-->
-                                      <div class="col-sm-8 col-xs-8 add-desc-box">
-                                          <div class="add-details">
-                                              <h5 class="add-title"> <a href="http://www.girlstrade.com/viewItem/index/15?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1">Kung Fu Panada  </a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i>  2016-03-05 12:17:43  </span> </span> </div>
-                                      </div>
-                                      <!--/.add-desc-box-->
-
-
-                                  </div>
-
-                                  <div class="item-list">
-
-
-                                      <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/3?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src="http://www.girlstrade.com/USER_IMG/tonylow123/Resize/tonylow123_2016-02-07-14-43-12_thumb_0.png" alt="img"></a> </div>
-                                      </div>
-                                      <!--/.photobox-->
-                                      <div class="col-sm-8 col-xs-8 add-desc-box">
-                                          <div class="add-details">
-                                              <h5 class="add-title"> <a href="http://www.girlstrade.com/viewItem/index/3?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1">Taylor Big Baby Taylor-e Acoustic-Electric Gu </a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i> 2016-02-07 14:43:12 </span> </span> </div>
-                                      </div>
-                                      <!--/.add-desc-box-->
-
-
-                                  </div>
-
-
-
-
+                                  
+                                  <?php 
+                                  
+                                  if($blogList!=null){
+                                  	foreach($blogList as $ID=>$value){
+                                  		 
+                                	  	$urlPath=base_url()."getBlog/viewBlog/".$value->ID."?prevURL=".urlencode(current_url());
+		                                  $imgPath=base_url().$value->picPath1.$value->picName1;
+		                                  $createDate=$value->createDate;
+		                                  $title=$value->title;
+		                                  echo "<div class=\"item-list\">";
+		                                   echo " <div class=\"col-sm-4 col-xs-4 no-padding photobox\"> ";
+		                                     echo  "    <div class=\"add-image\">  <a href=$urlPath><img class=\"no-margin\" src=$imgPath alt=\"img\"></a> </div> ";
+		                                    echo " </div>";
+		                                     echo " <div class=\"col-sm-8 col-xs-8 add-desc-box\">";
+		                                     echo "     <div class=\"add-details\">";
+		                                     echo "         <h5 class=\"add-title\"> <a href=$urlPath>  $title </a> </h5> ";
+		                                     echo "         <span class=\"info-row\">  <span class=\"date\"><i class=\" icon-clock\"> </i>  $createDate </span> </span> </div> ";
+		                                     echo " </div>";
+		                                     echo " </div>";
+                               		   	}
+                                  }
+									?>
                               </div>
-
-
 
 
                               <div style="clear:both"></div>

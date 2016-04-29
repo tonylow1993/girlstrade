@@ -55,7 +55,7 @@
                     		
                     		echo "<div class=\"blog-post-img\" > ";
 		
-		                        echo "<a href=".base_url()."getBlog/viewBlog/".$value->ID." > ";
+		                        echo "<a href=".base_url()."getBlog/viewBlog/".$value->ID."?prevURL=".urlencode(current_url())." > ";
 		                        echo " <figure > ";
 		                           echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic1 > ";
 		                         echo "   </figure>";
@@ -71,11 +71,11 @@
 	
 	
 	                         echo  " <div class=\"blog-post-content\">";
-	                         echo  "    <h2><a href=".base_url()."getBlog/viewBlog/".$value->ID.">".$value->title."</a></h2>";
+	                         echo  "    <h2><a href=".base_url()."getBlog/viewBlog/".$value->ID."?prevURL=".urlencode(current_url()).">".$value->title."</a></h2>";
 	                         echo  "    <p> ".$value->description."</p>";
 	                         echo  "    <div class=\"row\">";
 	                         echo  "        <div class=\"col-md-12 clearfix blog-post-bottom\">";
-	                         echo  "            <a class=\"btn btn-primary  pull-left\" href=".base_url()."getBlog/viewBlog/".$value->ID.">More info</a>";
+	                         echo  "            <a class=\"btn btn-primary  pull-left\" href=".base_url()."getBlog/viewBlog/".$value->ID."?prevURL=".urlencode(current_url()).">More info</a>";
 	                          echo  "       </div>";
 	                          echo  "   </div>";
 	                         echo  "    </div>";
@@ -86,10 +86,10 @@
 
                     </div>
                 </article>
-				
 			<div class="pagination-bar text-center">
             <ul class="pagination">
             <?php 
+            	$encodeCurrentURL=urlencode(current_url());
             	$url_path=base_url().MY_PATH."getBlog/viewAllBlog";
             	$pageNumPrev=$pageNum-1;
             	$pageNum2=$pageNum+1;
@@ -97,18 +97,29 @@
             	$pageNum4=$pageNum+3;
             	$pageNum5=$pageNum+4;
             	$pageNumNext=$pageNum+5;
-            	if($pageNum<>1)
-            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev?prevURL=$previousCurrent_url;\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
-            	echo "<li><a href=\"$url_path/$pageNum2?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum3?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum4?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum5?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
-              
-               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext?prevURL=$previousCurrent_url;\">Next</a></li>";
-            ?>
+            	$itemPerPage=ITEMS_PER_PAGE;
+            	 
+            	if($NoOfItemCount>0)
+            	{
+            		if($pageNum<>1)
+            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev?prevURL=$previousCurrent_url;\">Previous</a></li>";
+            		if($NoOfItemCount > 0)
+            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
+            		if($NoOfItemCount > ($pageNum*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum2?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
+              		if($NoOfItemCount > ($pageNum2*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum3?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
+              		if($NoOfItemCount > ($pageNum3*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum4?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
+              		if($NoOfItemCount > ($pageNum4*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum5?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
+              		if($NoOfItemCount > ($pageNum5*$itemPerPage))
+            	 	   echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext?prevURL=$previousCurrent_url;\">Next</a></li>";
+           		}
+             ?>
                 </ul>
-            </div>
+          </div>	
+			
 		  
             </div> <!--/.blog-post-wrapper-->
              </div><!--blogLeft-->
@@ -120,13 +131,25 @@
                           <div class="categories-list  list-filter">
                               <h5 class="list-title uppercase"><strong><a href="#"> Categories</a></strong></h5>
                               <ul class=" list-unstyled list-border ">
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/1"><span class="title">Dresses</span></a> </li>
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/2"><span class="title">Tops </span></a> </li>
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/3"><span class="title">Property </span></a> </li>
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/4"><span class="title">Outerwear </span></a> </li>
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/5"><span class="title">Rompers </span></a> </li>
-                                  <li><a href="http://www.girlstrade.com/getCategory/getAll/1/6"><span class="title">Hat </span></a> </li>
-                              </ul>
+                              	<?php 
+			                  if($popularMakes1<>null)
+			                  {
+			                  	foreach ($popularMakes1 as $id=>$value)
+			                  	{
+			                  		if(!isset($lang_label))
+			                  			$lang_label="";
+			                  		$name=$value->name;
+			                  		$postCount="(".$value->postCount.")";
+			                  		if(SHOW_BRACKETS_INDEX_PAGE==0)
+			                  			$postCount="";
+			                  		if($lang_label<>"english")
+			                  			$name=$value->nameCH;
+			                  		$path=base_url().MY_PATH."getCategory/getAll/1/$value->categoryID";
+			                  		echo "<li> <a href='$path'><span class=\"title\"><h4>$name $postCount</span></h4></a></li>";
+			                  	}
+			                  }
+			                  ?>
+                         </ul>
                           </div>
                           <!--/.categories-list-->
                           <div class="categories-list  list-filter">
@@ -136,56 +159,38 @@
 
 
                               <div class="blog-popular-content">
-                                  <div class="item-list">
+                                 <?php 
+                                  
+                                  if($HotProduct!=null){
+                                  	foreach($HotProduct as $ID=>$value){
+                                  		 
+                                  		foreach($value as $pic=>$picObj)
+                                  		{
+                                  			if($pic=='post'){
+                                  				$postID=$picObj->postID;
+                                  				$urlPath=base_url().MY_PATH."viewItem/index/$postID?prevURL=".urlencode(current_url());
+                                  				$createDate=$picObj->createDate;
+                                  				$title=$picObj->itemName;
+                                  			}if($pic=='pic' && count($picObj)>0)
+                                  				$imgPath=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
+                                  				
+                                  		}
+                                  		 
+		                                  echo "<div class=\"item-list\">";
+		                                   echo " <div class=\"col-sm-4 col-xs-4 no-padding photobox\"> ";
+		                                     echo  "    <div class=\"add-image\">  <a href=$urlPath><img class=\"no-margin\" src=$imgPath alt=\"img\"></a> </div> ";
+		                                    echo " </div>";
+		                                     echo " <div class=\"col-sm-8 col-xs-8 add-desc-box\">";
+		                                     echo "     <div class=\"add-details\">";
+		                                     echo "         <h5 class=\"add-title\"> <a href=$urlPath>  $title </a> </h5> ";
+		                                     echo "         <span class=\"info-row\">  <span class=\"date\"><i class=\" icon-clock\"> </i>  $createDate </span> </span> </div> ";
+		                                     echo " </div>";
+		                                     echo " </div>";
+                               		   	}
+                                  }
+									?>
 
-
-                                      <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/17?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src=<?php echo $pic2;?> alt="img"></a> </div>
-                                      </div>
-                                      <!--/.photobox-->
-                                      <div class="col-sm-8 col-xs-8 add-desc-box">
-                                          <div class="add-details">
-                                              <h5 class="add-title"> <a href="http://www.girlstrade.com/viewItem/index/17?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1">Shiseido Maquillage cheek colors blush </a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i>  2016-03-06 00:08:39 </span> </span> </div>
-                                      </div>
-                                      <!--/.add-desc-box-->
-
-
-                                  </div>
-
-                                  <div class="item-list">
-
-
-                                      <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/15?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src="http://www.girlstrade.com/USER_IMG/rchiu3hk/Resize/rchiu3hk_2016-03-05-12-17-43_thumb_0.png" alt="img"></a> </div>
-                                      </div>
-                                      <!--/.photobox-->
-                                      <div class="col-sm-8 col-xs-8 add-desc-box">
-                                          <div class="add-details">
-                                              <h5 class="add-title"> <a href="http://www.girlstrade.com/viewItem/index/15?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1">Kung Fu Panada  </a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i>  2016-03-05 12:17:43  </span> </span> </div>
-                                      </div>
-                                      <!--/.add-desc-box-->
-
-
-                                  </div>
-
-                                  <div class="item-list">
-
-
-                                      <div class="col-sm-4 col-xs-4 no-padding photobox">
-                                          <div class="add-image">  <a href="http://www.girlstrade.com/viewItem/index/3?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1"><img class="no-margin" src="http://www.girlstrade.com/USER_IMG/tonylow123/Resize/tonylow123_2016-02-07-14-43-12_thumb_0.png" alt="img"></a> </div>
-                                      </div>
-                                      <!--/.photobox-->
-                                      <div class="col-sm-8 col-xs-8 add-desc-box">
-                                          <div class="add-details">
-                                              <h5 class="add-title"> <a href="http://www.girlstrade.com/viewItem/index/3?prevURL=http%3A%2F%2Fwww.girlstrade.com%2Findex.php%2FgetCategory%2FgetAll%2F1">Taylor Big Baby Taylor-e Acoustic-Electric Gu </a> </h5>
-                                              <span class="info-row">  <span class="date"><i class=" icon-clock"> </i> 2016-02-07 14:43:12 </span> </span> </div>
-                                      </div>
-                                      <!--/.add-desc-box-->
-
-
-                                  </div>
+                                  
 
                               </div>
 

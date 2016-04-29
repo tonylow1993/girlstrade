@@ -53,6 +53,7 @@
 			$this->load->model('contact_model');
 			$this->load->model('pagevisited_model');
 			$this->load->model('blog_model');
+			$this->load->model('category_model');
 		}
 		
 		public function viewBlog ($ID=0)
@@ -103,7 +104,10 @@
 			$data["title"]=$data["result"][0]->title;
 			$data["description"]=$data["result"][0]->description;
 			$data["createDate"]=$data["result"][0]->createDate;
-				
+			
+			$data["blogList"]=$this->blog_model->getBlog();
+			$data["popularMakes1"]=$this->getPopularCategory(2, 0);
+			 
 			$this->load->view('blog-details', $data);
 		}
 		
@@ -180,13 +184,27 @@
 			$data["lang_label"]=$this->nativesession->get("language");
 				
 			$data["result"]=$this->blog_model->getBlog();
+			if($data["result"]!=null)
+				$data["NoOfItemCount"]=count($data["result"]);
+			else 
+				$data["NoOfItemCount"]=0;
 			$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
 			$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
 			$data["pic3"]=base_url().$data["result"][0]->picPath3.$data["result"][0]->picName3;
 			$data["title"]=$data["result"][0]->title;
 			$data["description"]=$data["result"][0]->description;
-			
+			$data["HotProduct"]=$this->getHotProduct();
+			$data["popularMakes1"]=$this->getPopularCategory(2, 0);
+			 
 			$this->load->view("blogs", $data);
 		}
+		function getPopularCategory($first, $second)
+		{
+			return $this->category_model->getPopularCategory($first, $second);
+		}
+	    function getHotProduct()
+	    {
+	    	return $this->post_model->getHotProduct();
+	    }
     }
 ?>
