@@ -530,8 +530,25 @@
 	    {	
 	    	$query = $this->db->from('picture')->where('postID', $postID)->get();
 	    	
-	        return $query->result();
+	        $result=$query->result();
+	        if($result==null || count($result)==0){
+	        	$this->getNew($postID);
+	        }
+	        else 
+	        	return $result;
 	    }
+	    
+	    function getNew($postID){
+	    	$result=array();
+	    	$result['postID']=$postID;
+	    	$result['picturePath']="";
+	    	$result['pictureName']="";
+	    	$result['thumbnailPath']="";
+	    	$result['thumbnailName']="";
+	    
+	    	return $result;
+	    }
+	    
             function get_category_by_categoryID($catID)
 	    {	
 	    	$query = $this->db->from('category')->where('categoryID', $catID)->limit(1)->get();

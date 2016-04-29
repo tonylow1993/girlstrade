@@ -17,11 +17,26 @@
 	        parent::__construct();
 	    }
 	    
+	    function getNew($postID){
+	    	$result=array();
+	    	$result['postID']=$postID;
+	    	$result['picturePath']="";
+	    	$result['pictureName']="";
+	    	$result['thumbnailPath']="";
+	    	$result['thumbnailName']="";
+	    	
+	    	return $result;
+	    }
+	    
 	    function get_picture_by_postID($postID)
 	    {	
 	    	$query = $this->db->from('picture')->where('postID', $postID)->limit(1)->get();
-	    	
-	        return $query->result();
+	    	$result=$query->result();
+	    	if($result==null || count($result)==0){
+	    		$this->getNew($postID);
+	    	}
+	    	else
+	    		return $result;
 	    }
 	   
 	    function insert($data)
