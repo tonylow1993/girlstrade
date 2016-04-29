@@ -96,13 +96,13 @@
              		$str="";
              		if($locID_==$id)
              			$str=" selected='selected' ";
-             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;'>&nbsp;&nbsp;".$name.$postCount." </option>";
+             		echo "<option ".$str." value='".$id."' style='background-color:#E9E9E9;'>".LOCATIONLEVELSEPARATOR.LOCATIONLEVELSEPARATOR.$name.$postCount." </option>";
              	}else if($value[0]->level==3)
              	{
              		$str="";
              		if($locID_==$id)
              			$str=" selected='selected' ";
-             		echo "<option ".$str." value='".$id."'>&nbsp;&nbsp;&nbsp;&nbsp".$name.$postCount." </option>";
+             		echo "<option ".$str." value='".$id."'>".LOCATIONLEVELSEPARATOR.LOCATIONLEVELSEPARATOR.LOCATIONLEVELSEPARATOR.LOCATIONLEVELSEPARATOR.$name.$postCount." </option>";
              	}
              }
              ?>

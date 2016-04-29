@@ -47,6 +47,8 @@ define("DESCLENGTHININBOX",300);
 define("DESCLENGTHINOUTBOX",300);
 define("DESCLENGTHINMYADS",300);
 define("DESCLENGTHINARCHIVEADS",300);
+define('LOCATIONLEVELSEPARATOR', '&nbsp;');
+
 
 define("ZeroUpdateRecordError", "No record updated");
 define("THUMBNAILSIZEWIDTH", 300);
