@@ -163,7 +163,7 @@
                                   
                                   if($HotProduct!=null){
                                   	foreach($HotProduct as $ID=>$value){
-                                  		 
+                                  		$imgPath="";
                                   		foreach($value as $pic=>$picObj)
                                   		{
                                   			if($pic=='post'){
