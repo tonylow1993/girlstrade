@@ -86,9 +86,10 @@
                   	}
             	}
                   ?>
-             <div class="pagination-bar text-center">
+                  <div class="pagination-bar text-center">
             <ul class="pagination">
             <?php 
+            	$encodeCurrentURL=urlencode(current_url());
             	$url_path=base_url().MY_PATH."home/getAccountPage/".$activeNav;
             	$pageNumPrev=$pageNum-1;
             	$pageNum2=$pageNum+1;
@@ -96,18 +97,32 @@
             	$pageNum4=$pageNum+3;
             	$pageNum5=$pageNum+4;
             	$pageNumNext=$pageNum+5;
-            	if($pageNum<>1)
+            	$itemPerPage=ITEMS_PER_PAGE;
+            	 
+            	if($NoOfItemCount>0)
+            	{
+            		
+            		if($pageNum<>1)
             		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a href=\"$url_path/$pageNum\">$pageNum</a></li>";
-            	echo "<li><a href=\"$url_path/$pageNum2\">$pageNum2</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum3\">$pageNum3</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum4\">$pageNum4</a></li>";
-              	echo "<li><a href=\"$url_path/$pageNum5\">$pageNum5</a></li>";
-              
-               echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext\">Next</a></li>";
-            ?>
+            		if($NoOfItemCount > 0)
+            		echo "<li  class=\"active\"><a href=\"$url_path/$pageNum\">$pageNum</a></li>";
+            		if($NoOfItemCount > ($pageNum*$itemPerPage))
+            		echo "<li><a href=\"$url_path/$pageNum2\">$pageNum2</a></li>";
+            		if($NoOfItemCount > ($pageNum2*$itemPerPage))
+            		echo "<li><a href=\"$url_path/$pageNum3\">$pageNum3</a></li>";
+            		if($NoOfItemCount > ($pageNum3*$itemPerPage))
+            		echo "<li><a href=\"$url_path/$pageNum4\">$pageNum4</a></li>";
+            		if($NoOfItemCount > ($pageNum4*$itemPerPage))
+            		echo "<li><a href=\"$url_path/$pageNum5\">$pageNum5</a></li>";
+            		
+            		if($NoOfItemCount > ($pageNum5*$itemPerPage))
+            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext\">Next</a></li>";
+            		
+            	}
+             ?>
                 </ul>
           </div>
+             
             	 </tbody>
               </table>
             </div>
