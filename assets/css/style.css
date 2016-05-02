@@ -3354,6 +3354,19 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.table{
+	display: table;
+}
+
+.cell-center{
+	display: table-cell;
+    vertical-align: middle;
+}
+
+.inline{
+	display: inline-block;
+}
+
 .progress-bar[aria-valuenow="1"],
 .progress-bar[aria-valuenow="2"] {
   min-width: 3%;

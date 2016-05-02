@@ -44,23 +44,23 @@
 							if(!isset($lang_label))
 									$lang_label="";
 							$name=$value[0]->name;
-							$postCount="(".$value[0]->postCount.")";
-							if(SHOW_BRACKETS_INDEX_PAGE==0)
-								$postCount="";
 							if($lang_label<>"english")
 								$name=$value[0]->nameCH;
-							$path=base_url().MY_PATH."newPost/index?prevURL=".current_url()."&category=".$id;
 							
 							if($value[0]->level==1)
 							{
+								$total++;
+								if($total<>1) echo "</ul></div></div>";
 								$imageIcon=$value[0]->iconImage;
-								if($value[0]->childCount<>0){
-									echo "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-4 f-category\"><ul class='wizard list-unstyled'><li class='next'>";
-									echo "<a href='#' onclick='chooseCat($id)'><img src=/$imageIcon class=\"img-responsive\" alt=\"img\"> <h6> $name  </h6> </a>";
-									echo "</li></ul></div>";
-								}
+								echo "<div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 f-category\"><div class=\"col-md-6\"><ul class='wizard list-unstyled'><li class='next'>";
+								echo "<a href='#' onclick='chooseCat($id)'><img src=/$imageIcon class=\"img-responsive\" alt=\"img\"> <h6> $name  </h6> </a>";
+								echo "</li></ul></div>";
+								echo "<div class=\"col-md-6\"><ul class=\"wizard\">";
+							}else{
+								echo  "<li class='next'> <a href='#' onclick='chooseCat($id)'><h5>$name</h5></a></li>";
 							}
 						}
+						if($total<>0) echo "</ul></div></div>";
 						?>
 
 						</div>
@@ -109,14 +109,13 @@
 									echo "<div class=\"cat-list\">";
 									echo "<h3 ><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;\" href='#' onclick='chooseLoc($id)'>$name</a>";
 									
-									echo "<span data-target=\".cat-id-$total\"  >  </span>";
+									echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\">   <span class=\" icon-down-open-big\"></span> </span>";
 									echo "</h3>";
-									echo "<ul class='wizard'>";
+									echo "<ul class='cat-collapse collapse in cat-id-$total wizard'>";
 										
 								}else if($value[0]->level==3)
 								{
 									echo  "<li class='next'> <a href='#' onclick='chooseLoc($id)'><h4>$name</h4></a></li>";
-								   
 								}
 							}
 							if($total<>0) echo "</ul></div></div></div>";
