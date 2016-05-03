@@ -104,6 +104,7 @@
 <script src="<?php echo base_url();?>assets/js/pace.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/gen_validatorv4.js"></script>
 <script src="<?php echo base_url();?>assets/js/bootstrap-carousel-page-merger.js"></script>
+<script src="<?php echo base_url();?>assets/js/custom.js"></script>
 
 </head>
 <body>

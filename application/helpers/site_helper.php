@@ -70,3 +70,4 @@ function is_file_exists($filePath)
 	return is_file($filePath) && file_exists($filePath);
 }
 }
+
