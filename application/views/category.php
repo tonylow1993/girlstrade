@@ -614,9 +614,31 @@
            <div class="listing-filter">
            	  <div class="pull-left col-xs-6">
                 <div class="breadcrumb-list"> 
-                <a href="#" class="current"> 
-                <span>All ads</span> </a>
-                 in Hong Kong
+                <b class="current"> 
+                <span>All ads</span> </b>
+                 in <?php 
+					$str="";
+					if($locID_==null or $locID_=="" or $locID_=='0')
+					{
+						$str="Hong Kong";
+						if($lang_label<>"english")
+							$str="香港";		
+					}
+					else 
+					{	
+						foreach ($resLoc as $id=>$value)
+						{
+							if(!isset($lang_label))
+								$lang_label="";
+								$name=$value[0]->name;
+								if($lang_label<>"english")
+									$name=$value[0]->nameCN;
+									if(strcmp($locID_, $id)==0)
+										$str=$name;
+						}
+					}
+					echo $str;
+					?>
                 <a href="#selectLocation" id="dropdownMenu1"  data-toggle="modal"> 
                 <span class="caret"></span> </a> </div>
               </div>
@@ -1426,7 +1448,8 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
             <p>
             <div class="searchCat2">
             <i class="icon-location-circled"></i>
-            Districts of <strong>Hong Kong</strong>
+            Districts of <strong>
+            Hong Kong</strong>
             </div>
             </p>
 <form role="form"  id="locForm1" class="form-inline modalBody margin-top-20"  onSubmit="return locSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0';?>" method="POST">  
