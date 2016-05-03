@@ -571,7 +571,7 @@
 				Category 
               </a>
               <a class="btn btn-sm btn-searchCat2" href="#selectLocation" data-toggle="modal"> 
-				<i class="icon-compass"> </i> 
+				<i class="icon-location-3"> </i> 
 				Location 
               </a>
               <a class="btn btn-sm btn-searchCat3" href="#selectPriceRange" data-toggle="modal"> 
@@ -1439,7 +1439,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 		$str="";
 		if($locID_==null or $locID_=="" or $locID_=='0')
 			$str=" selected='selected' ";
-		echo "<option ".$str." value=\"\">All Districts</option>";
+		echo "<option ".$str." value=\"\">All Locations</option>";
 		foreach ($resLoc as $id=>$value)
 		{
 			if(!isset($lang_label))
