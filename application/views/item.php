@@ -273,7 +273,7 @@ input[type=checkbox]
                       <li><a href="#reportDeleteAbuseComplaint" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> Delete abuse </a> </li>
                     	
                       <?php }else if($isReportAbuseAlready){?>
-                      <li><a href="" onclick="return false;" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> Reported abuse already </a> </li>
+                      <li><a href="" style="color: black;" onclick="return false;" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> Reported abuse already </a> </li>
                     	<?php }else {?>
                     	 <li><a href="#reportAdvertiser" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> Report abuse </a> </li>
                     	<?php }?>
