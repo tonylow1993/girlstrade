@@ -1358,7 +1358,8 @@ input[type=checkbox]
       <h2 id="copytext">
 			<?php // echo $shareLink;?>
 			</h2>
-		<textarea style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" class="js-copytextarea" id="holdtext">Find "<?php echo $itemName;?>" in GirlsTrade - <?php echo $shareLink;?></textarea>
+		<textarea style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" >Find "<?php echo $itemName;?>" in GirlsTrade - <?php echo $shareLink;?></textarea>
+		<textarea hidden="true" style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" class="js-copytextarea" id="holdtext"><?php echo $shareLink;?></textarea>
 		 </div>
       <div class="modal-footer">
       	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
