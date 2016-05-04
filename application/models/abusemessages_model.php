@@ -78,6 +78,18 @@ class abusemessages_model extends CI_Model {
 				return $var;
 	}
 	
+	public function getAbuseMessagesByPostIDUserID($postID, $userID){
+	
+			$wherearr=array('postID'=>$postID, 'fUserID'=>$userID);
+			$query = $this->db->from('abusemessages')->where($wherearr)->get(); //->limit($ulimit, $olimit)
+			$var=$query->result();
+			if(isset($var) && !empty($var) && count($var)>0)
+				return true;
+			else 
+				return false;
+			
+	}
+	
 	function updateApprovePost($array)
 	{
 		try {

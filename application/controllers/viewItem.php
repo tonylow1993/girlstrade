@@ -186,6 +186,7 @@
                 $isPendingRequest=false;
                 $isBuyerApproveThisPost=false;
                 $isLoggedIn=false;
+                $isReportAbuseAlready=false;
               	if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
                 {
                 	if($loginUser["userID"]==$user[0]->userID)
@@ -193,8 +194,10 @@
                 	$isPostAlready=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "A");
                 	$isBuyerApproveThisPost=$isPostAlready; // need to do later
                 	$isLoggedIn=true;
+                	$isReportAbuseAlready=$this->abusemessages_model->getAbuseMessagesByPostIDUserID($var[0]->postID, $loginUser["userID"]);
                 	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
                 }
+                $data["isReportAbuseAlready"]=$isReportAbuseAlready;
                 $data["isloginedIn"]=$isLoggedIn;
                 $data["isBuyerApproveThisPost"]=$isBuyerApproveThisPost;
                 $data["isSameUser"]=$isSameUser;
