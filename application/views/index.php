@@ -579,7 +579,7 @@ window.onload = function(){
 	              			{
 	              				$checkImgFile=$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
 	              				$imagePath1=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
-	              				if(!is_file_exists($imagePath1))
+	              				if(!is_file_exists($checkImgFile))
 	              					$imagePath1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
 	              			
               				}else{
