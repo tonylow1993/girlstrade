@@ -196,7 +196,7 @@
 			$data["pic3"]=base_url().$data["result"][0]->picPath3.$data["result"][0]->picName3;
 			$data["title"]=$data["result"][0]->title;
 			$data["description"]=$data["result"][0]->description;
-			$data["HotProduct"]=$this->getHotProduct();
+			$data["HotProduct"]=$this->getRecentProduct();
 			$data["popularMakes1"]=$this->getPopularCategory(5, 0);
 			 
 			$this->load->view("blogs", $data);
@@ -205,9 +205,9 @@
 		{
 			return $this->category_model->getPopularCategory($first, $second);
 		}
-	    function getHotProduct()
+	    function getRecentProduct()
 	    {
-	    	return $this->post_model->getHotProduct();
+	    	return $this->post_model->getRecentProduct();
 	    }
     }
 ?>

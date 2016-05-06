@@ -277,6 +277,28 @@
 	    	return $result;
 	    	 
 	    }
+	    
+	    function getRecentProduct()
+	    {
+	    	$query = $this->db->from('post')->where('status', 'A')->order_by('createDate', 'desc')->limit(6)->get();
+	    	$var=$query->result();
+	    	$result=null;
+	    	foreach($var as $post)
+	    	{
+	    		$pic=$this->get_picture_by_postID($post->postID);
+	    		$temp=array('post'=> $post, 'pic'=> $pic);
+	    	  
+	    		if(is_null($result))
+	    		{
+	    			$result=array($post->postID => $temp);
+	    		}else
+	    		{	$result=$result + array($post->postID => $temp);
+	    	  
+	    		}
+	    	}
+	    	return $result;
+	    	 
+	    }
 	    function getPostByPostID($postID)
 	    {
 	    	$query = $this->db->from('post')->where('postID', $postID)->get();
