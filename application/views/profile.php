@@ -310,15 +310,19 @@ function sendIt() {
                   echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
 				  echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
 				  
-					if(isset($usr) && !empty($usr) && $usr["username"]!=null){
+				if(isset($usr) && !empty($usr) && $usr["username"]!=null){
 					 if($post->userID!=$usr["userID"]){
 					 	 if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
 					 	{
-					 		echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+					 		echo "<a  href=";
+					 		echo base_url().MY_PATH."messages/directSend/".$postID2."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                			echo " data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
 					 	}else if($item["isPendingRequest"] == true){
 					 		echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
 					 	}
 					 }
+					}else{
+						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
 					}
                   /* if($getDisableSavedAds)
                   	echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
@@ -423,16 +427,20 @@ function sendIt() {
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
                 
-                if(isset($usr) && !empty($usr) && $usr["username"]!=null){
-                	if($post->userID!=$usr["userID"]){
-                		if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
-                		{
-                			echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
-                		}else if($item["isPendingRequest"] == true){
-                			echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
-                		}
-                	}
-                }
+				if(isset($usr) && !empty($usr) && $usr["username"]!=null){
+					 if($post->userID!=$usr["userID"]){
+					 	 if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
+					 	{
+					 		echo "<a  href=";
+					 		echo base_url().MY_PATH."messages/directSend/".$postID2."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                			echo " data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+					 	}else if($item["isPendingRequest"] == true){
+					 		echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+					 	}
+					 }
+					}else{
+						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+					}
                 /*
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
@@ -540,16 +548,20 @@ $basePath=base_url();
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
                 
-                if(isset($usr) && !empty($usr) && $usr["username"]!=null){
-                	if($post->userID!=$usr["userID"]){
-                		if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
-                		{
-                			echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
-                		}else if($item["isPendingRequest"] == true){
-                			echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
-                		}
-                	}
-                }
+				if(isset($usr) && !empty($usr) && $usr["username"]!=null){
+					 if($post->userID!=$usr["userID"]){
+					 	 if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
+					 	{
+					 		echo "<a  href=";
+					 		echo base_url().MY_PATH."messages/directSend/".$postID2."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                			echo " data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+					 	}else if($item["isPendingRequest"] == true){
+					 		echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+					 	}
+					 }
+					}else{
+						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+					}
                 
                echo "</div></div>";
 				}
@@ -611,6 +623,26 @@ $basePath=base_url();
   
   <?php include "footer1.php"; ?>
 </div>
+
+
+<div class="modal fade" id="loginPopup" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Please login</h4>
+      	</div>
+      	<div class="modal-body">
+      	   <h2 class="center-text">Please login to continue the process</h2>
+      	   <br>
+      	   <a class="btn btn-primary btn-40 center-obj" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;Login</a></p>
+                    	
+      	</div>
+    	
+    </div>
+ </div>
+</div>
 <div class="modal fade" id="contactAdvertiser1" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">
@@ -655,6 +687,7 @@ $basePath=base_url();
 </div>
 
   <script>
+  
   $( document ).ready(function() {
 	    var sortType=document.getElementById('selectSortType').value;
 	    if(sortType=="3"){
