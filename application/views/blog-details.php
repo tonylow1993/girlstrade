@@ -38,12 +38,13 @@
                         <!--blog image-->
                     
                     <?php 
-                    		
+                    if(strcmp($pic1,"")!=0){
                     		echo "<div class=\"blog-post-img\" > ";
 		                        echo " <figure > ";
 		                           echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic1 > ";
 		                         echo "   </figure>";
 		            		echo "</div>";
+                    }
 							if(strcmp($pic2,"")!=0){
 			            		echo "<div class=\"blog-post-img\" > ";
 			            		echo " <figure > ";

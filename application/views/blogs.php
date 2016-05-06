@@ -57,6 +57,7 @@
 		
 		                        echo "<a href=".base_url()."getBlog/viewBlog/".$value->ID."?prevURL=".urlencode(current_url())." > ";
 		                        echo " <figure > ";
+		                        if(strcmp($value->picName1,"")!=0)
 		                           echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic1 > ";
 		                         echo "   </figure>";
 		                        echo "</a>";

@@ -311,8 +311,14 @@ function sendIt() {
 				  echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
 				  
 					if(isset($usr) && !empty($usr) && $usr["username"]!=null){
-					 if($post->userID!=$usr["userID"])
-				  		echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+					 if($post->userID!=$usr["userID"]){
+					 	 if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
+					 	{
+					 		echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+					 	}else if($item["isPendingRequest"] == true){
+					 		echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+					 	}
+					 }
 					}
                   /* if($getDisableSavedAds)
                   	echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";

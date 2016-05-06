@@ -179,7 +179,7 @@ class viewProfile extends getCategory {
 			}
 				
 			$NoOfItemCount=0;
-			$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $data["catID"], $locID, $keywords, $data["sortByType"]);
+			$data["itemList"]=$this->mapToViewProfileItemList($this->post_model->getItemList($pageNum, $data["userID"], $data["catID"], $locID, $keywords, $data["sortByType"]), $loginUser["userID"]);
 			$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
 	      	$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
 	      	$data["userRating"]=$this->users_model->getUserRating($data["userID"]);
@@ -319,6 +319,8 @@ class viewProfile extends getCategory {
 	
 	
 		$data["userName"]=$userInfo[0]->username;
+	 
+		
 		$createDate=(new DateTime($userInfo[0]->createDate))->format('Y-M-d');
 		$data["createDate"]=$createDate;
 		$data["prevURL"]=$previousUrl;
@@ -364,7 +366,7 @@ class viewProfile extends getCategory {
 				$data["catID"]="0";
 			}
 		$NoOfItemCount=0;
-		$data["itemList"]=$this->post_model->getItemList($pageNum, $data["userID"], $data["catID"], $locID, $keywords,0, 0,0,$data["sortByType"],$data["sortByPrice"], $data["sortByDate"]);
+		$data["itemList"]=$this->mapToViewProfileItemList($this->post_model->getItemList($pageNum, $data["userID"], $data["catID"], $locID, $keywords,0, 0,0,$data["sortByType"],$data["sortByPrice"], $data["sortByDate"]),$loginUser["userID"]);
 		$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
 		$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
 		$data["userRating"]=$this->users_model->getUserRating($data["userID"]);
@@ -442,5 +444,26 @@ class viewProfile extends getCategory {
 	
 		return $data;
 	}
-	
+	public function mapToViewProfileItemList($itemList, $loginUserID){
+		
+		$result=null;
+		if($itemList!=null && count($itemList)>0){
+			foreach($itemList as $id=>$item)
+			{
+				$temp=$item;
+				$temp["isPostAlready"]=$this->requestpost_model->getfUserIDAndPostID($id, $loginUserID, "A");
+				$temp["isPendingRequest"]=$this->requestpost_model->getfUserIDAndPostID($id, $loginUserID, "U");
+		
+				if(is_null($result))
+				{
+					$result=array($id => $temp);
+				}else
+				{	$result=$result + array($id => $temp);
+				
+				}
+			}
+		}
+		return $result;
+		
+	}
 }
