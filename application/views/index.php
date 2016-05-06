@@ -500,8 +500,10 @@ window.onload = function(){
 			            foreach($item as $pic=>$picObj)
 	              		{	
 	              			if($pic=='pic' && $picObj!=null && count($picObj)>0)
-	              			{$imagePath1=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
-	              				if(!is_file_exists($imagePath1))
+	              			{
+	              				$checkImgFile=$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
+	              				$imagePath1=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
+	              				if(!is_file_exists($checkImgFile))
 	              					$imagePath1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
 	              				
 	              			}
@@ -574,13 +576,15 @@ window.onload = function(){
 			            foreach($item as $pic=>$picObj)
 	              		{	
 	              			if($pic=='pic' && $picObj!=null && count($picObj)>0)
-	              			{$imagePath1=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
-	              			if(!is_file_exists($imagePath1))
-	              				$imagePath1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+	              			{
+	              				$checkImgFile=$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
+	              				$imagePath1=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
+	              				if(!is_file_exists($imagePath1))
+	              					$imagePath1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
 	              			
-	              			}else{
-	              				$imagePath1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
-	              			}
+              				}else{
+              					$imagePath1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+              				}
 	              		}
 	              		echo "<div class=\"item\">";
 						echo "<div class=\"item-right\">";

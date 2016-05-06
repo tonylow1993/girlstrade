@@ -175,8 +175,8 @@
                                   			}
                                   			if($pic=='pic' && count($picObj)>0){
                                   				$imgPath=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
-                                  				if(!is_file_exists($imgPath))
-                                  					$imgPath="";
+//                                   				if(!is_file_exists($imgPath))
+//                                   					$imgPath="";
                                   			}
                                   		}
                                   		 
