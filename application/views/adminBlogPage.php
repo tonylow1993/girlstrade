@@ -175,15 +175,15 @@ function setup()
 	
 	isEmptyUploadFile(function(r)
     {
-         var up1 = document.getElementById('image1').value;
-                   img1=up1;
+//          var up1 = document.getElementById('image1').value;
+//                    img1=up1;
             
-        if(up1 == "" )
-        {
-           $("#uploadImgError1").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
-           location.href = "#uploadImgError1";                 //Go to the target element.
-           return false; 
-        }
+//         if(up1 == "" )
+//         {
+//            $("#uploadImgError1").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Please Upload at least one image!</span></em>');
+//            location.href = "#uploadImgError1";                 //Go to the target element.
+//            return false; 
+//         }
 		if(r == false)
          {
            $('#pleaseWaitDialog').modal('show');

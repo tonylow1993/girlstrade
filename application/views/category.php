@@ -35,7 +35,7 @@
               </div>
             
             <div class="col-sm-3">
-          <select class="form-control selecter" name="category" id="search-category" >
+          <select class="form-control" name="category" id="search-category" >
         	<?php 
         	$str="";
         	if($catID_==null or $catID_=="" or $catID_==0)
@@ -69,7 +69,7 @@
           </select>
         </div>
         <div class="col-sm-3"> 
-          <select class="form-control selecter" name="location" id="id-location"> 
+          <select class="form-control" name="location" id="id-location"> 
             <?php 
              $str="";
              if($locID_==null or $locID_=="" or $locID_=='0')
@@ -582,7 +582,7 @@
               <form role="form" method="POST" action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>"
          	     id="sortfrm" class="tab-filter"> 
 			   <div class="form-group sort-group" style="width:150px;">
-				  <select class="form-control sort-select selecter" name="selectSortType"   id="selectSortType" data-width="auto">
+				  <select class="form-control sort-select" name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByType,"1")==0)  echo " selected='selected' ";?>>Price</option>
 					  <option value="2" <?php if(strcmp($sortByType,"2")==0)  echo " selected='selected' ";?>>Date</option>
@@ -590,7 +590,7 @@
 			    </div>
 			   
 			   	<div id="sortByPriceDiv" style="display:none;width:150px">
-					<select class="form-control selecter "   name="sortByPrice"   id="sortByPrice" data-width="auto"  onchange="beginSort();">
+					<select class="form-control  "   name="sortByPrice"   id="sortByPrice" data-width="auto"  onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByPrice,"0")==0 or $sortByPrice==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByPrice,"1")==0)  echo " selected='selected' ";?>>Low to High</option>
 					  <option value="2" <?php if(strcmp($sortByPrice,"2")==0)  echo " selected='selected' ";?>>High to Low</option>
@@ -598,7 +598,7 @@
 				</div>
 				
 				<div id="sortByDateDiv" style="display:none;width:150px">
-					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
+					<select class="form-control "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>>Most Recent</option>
 					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>>Oldest</option>

@@ -91,7 +91,10 @@
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			$data["result"]=$this->blog_model->getBlogByID($ID);
-			$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
+			if(strcmp($data["result"][0]->picName1,"")!=0)
+				$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
+				else
+					$data["pic1"]="";
 			if(strcmp($data["result"][0]->picName2,"")!=0)
 				$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
 			else 

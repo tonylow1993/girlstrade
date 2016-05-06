@@ -146,7 +146,7 @@ function sendIt() {
          		 <div class="sortByDiv"><form role="form" method="POST" action="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/0/0?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());?>"
          	     id="sortfrm" class="tab-filter"> 
 			   <div class="form-group sort-group" style="width:150px;">
-				  <select class="form-control sort-select selecter" name="selectSortType"   id="selectSortType" data-width="auto">
+				  <select class="form-control sort-select" name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByType,"1")==0)  echo " selected='selected' ";?>>Price</option>
 					  <option value="2" <?php if(strcmp($sortByType,"2")==0)  echo " selected='selected' ";?>>Date</option>
@@ -155,7 +155,7 @@ function sendIt() {
 			    </div>
 			   
 			   	<div id="sortByPriceDiv" style="display:none;width:150px">
-					<select class="form-control selecter "   name="sortByPrice"   id="sortByPrice" data-width="auto"  onchange="beginSort();">
+					<select class="form-control "   name="sortByPrice"   id="sortByPrice" data-width="auto"  onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByPrice,"0")==0 or $sortByPrice==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByPrice,"1")==0)  echo " selected='selected' ";?>>Low to High</option>
 					  <option value="2" <?php if(strcmp($sortByPrice,"2")==0)  echo " selected='selected' ";?>>High to Low</option>
@@ -163,14 +163,14 @@ function sendIt() {
 				</div>
 				
 				<div id="sortByDateDiv" style="display:none;width:150px">
-					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
+					<select class="form-control "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>>Most Recent</option>
 					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>>Oldest</option>
 					</select>
 				</div> 
 				<div id="filterByCategoryDiv" style="display:none;width:150px;">
-				<select class="form-control selecter" name="search-category" id="search-category" onchange="beginSort();">
+				<select class="form-control " name="search-category" id="search-category" onchange="beginSort();">
         	<?php 
         	$str="";
         	if($catID==null or $catID=="" or $catID==0)
@@ -421,10 +421,18 @@ function sendIt() {
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
-                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
+                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
                 
-                
+                if(isset($usr) && !empty($usr) && $usr["username"]!=null){
+                	if($post->userID!=$usr["userID"]){
+                		if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
+                		{
+                			echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                		}else if($item["isPendingRequest"] == true){
+                			echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+                		}
+                	}
+                }
                 /*
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
                 echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
@@ -436,7 +444,7 @@ function sendIt() {
                   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
                   	echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
                */
-                  	echo "</div>";
+                  	echo "</div></div>";
 				}
                
 				}
@@ -531,8 +539,17 @@ $basePath=base_url();
                 echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
-                echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
                 
+                if(isset($usr) && !empty($usr) && $usr["username"]!=null){
+                	if($post->userID!=$usr["userID"]){
+                		if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
+                		{
+                			echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                		}else if($item["isPendingRequest"] == true){
+                			echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+                		}
+                	}
+                }
                 
                echo "</div></div>";
 				}

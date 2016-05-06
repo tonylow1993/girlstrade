@@ -1,4 +1,7 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (! defined ( 'BASEPATH' ))
+	exit ( 'No direct script access allowed' );
 
 class getAdmin extends CI_Controller {
 	var $data;
@@ -1414,10 +1417,10 @@ class getAdmin extends CI_Controller {
 			}
 		}
 		}
-		if(($data["pic1"]!=null && strcmp($data["pic1"],"")!=0)
-			|| 	($data["pic2"]!=null && strcmp($data["pic2"],"")!=0)
-			|| ($data["pic3"]!=null && strcmp($data["pic3"],"")!=0))
-		{
+// 		if(($data["pic1"]!=null && strcmp($data["pic1"],"")!=0)
+// 			|| 	($data["pic2"]!=null && strcmp($data["pic2"],"")!=0)
+// 			|| ($data["pic3"]!=null && strcmp($data["pic3"],"")!=0))
+// 		{
 			//$imgInfo['userID'] = $userID;
 			$imgInfo['picPath1'] = $upload_dir.'/';
 			$imgInfo['picName1'] = $data["pic1"];
@@ -1430,7 +1433,7 @@ class getAdmin extends CI_Controller {
 			$imgInfo['description']=$this->input->post("descriptionTextarea");
 			$imgInfo['title']=$this->input->post("titleTextarea");
 			$this->blog_model->insertBlog($imgInfo);
-		}
+// 		}
 		
 		$this->getAccountPage(12);
 	}
