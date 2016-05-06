@@ -762,8 +762,7 @@
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
-                	echo "<a onclick=\"return false;\" style=\"color:black;\" class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
+                	echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
                 }
                                   
                 
