@@ -57,7 +57,7 @@
 		
 		                        echo "<a href=".base_url()."getBlog/viewBlog/".$value->ID."?prevURL=".urlencode(current_url())." > ";
 		                        echo " <figure > ";
-		                        if(strcmp($value->picName1,"")!=0)
+		                        if(strcmp($value->picName1,"")!=0 && is_file_exists($pic1))
 		                           echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic1 > ";
 		                         echo "   </figure>";
 		                        echo "</a>";
@@ -172,14 +172,18 @@
                                   				$urlPath=base_url().MY_PATH."viewItem/index/$postID?prevURL=".urlencode(current_url());
                                   				$createDate=$picObj->createDate;
                                   				$title=$picObj->itemName;
-                                  			}if($pic=='pic' && count($picObj)>0)
+                                  			}
+                                  			if($pic=='pic' && count($picObj)>0){
                                   				$imgPath=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
-                                  				
+                                  				if(!is_file_exists($imgPath))
+                                  					$imgPath="";
+                                  			}
                                   		}
                                   		 
 		                                  echo "<div class=\"item-list\">";
 		                                   echo " <div class=\"col-sm-4 col-xs-4 no-padding photobox\"> ";
-		                                     echo  "    <div class=\"add-image\">  <a href=$urlPath><img class=\"no-margin\" src=$imgPath alt=\"img\"></a> </div> ";
+		                                   if(strcmp($imgPath,"")!=0)  
+		                                   	echo  "    <div class=\"add-image\">  <a href=$urlPath><img class=\"no-margin\" src=$imgPath alt=\"img\"></a> </div> ";
 		                                    echo " </div>";
 		                                     echo " <div class=\"col-sm-8 col-xs-8 add-desc-box\">";
 		                                     echo "     <div class=\"add-details\">";

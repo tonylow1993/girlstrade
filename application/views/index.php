@@ -499,8 +499,14 @@ window.onload = function(){
 	              		}
 			            foreach($item as $pic=>$picObj)
 	              		{	
-	              			if($pic=='pic')
+	              			if($pic=='pic' && $picObj!=null && count($picObj)>0)
 	              			{$imagePath1=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
+	              				if(!is_file_exists($imagePath1))
+	              					$imagePath1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+	              				
+	              			}
+	              			else{
+	              				$imagePath1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
 	              			}
 	              		}
 	              		echo "<div class=\"item\">";
@@ -569,6 +575,11 @@ window.onload = function(){
 	              		{	
 	              			if($pic=='pic' && $picObj!=null && count($picObj)>0)
 	              			{$imagePath1=base_url().$picObj[0]->thumbnailPath.'/'.$picObj[0]->thumbnailName;
+	              			if(!is_file_exists($imagePath1))
+	              				$imagePath1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+	              			
+	              			}else{
+	              				$imagePath1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
 	              			}
 	              		}
 	              		echo "<div class=\"item\">";
@@ -605,7 +616,9 @@ window.onload = function(){
                   if($result!=null && sizeof($result)>0){
 						$value = $result[sizeof($result)-1];
 						$pic1=base_url().$value->picPath1.$value->picName1;
-						$content=$value->description;
+						if(!is_file_exists($pic1))
+	              			$pic1 = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+	              		$content=$value->description;
 	              		echo "<div class=\"col-md-5\">";
 						echo "<div class=\"blog-post-img\"><a href=".base_url()."getBlog/viewBlog/".$value->ID."><figure>";
 						echo "<img class=\"img-responsive\" alt=\"blog-post image\" src=$pic1>";

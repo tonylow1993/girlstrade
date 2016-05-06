@@ -38,21 +38,21 @@
                         <!--blog image-->
                     
                     <?php 
-                    if(strcmp($pic1,"")!=0){
-                    		echo "<div class=\"blog-post-img\" > ";
-		                        echo " <figure > ";
-		                           echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic1 > ";
-		                         echo "   </figure>";
-		            		echo "</div>";
-                    }
-							if(strcmp($pic2,"")!=0){
+		                    if(strcmp($pic1,"")!=0 && is_file_exists($pic1)){
+		                    		echo "<div class=\"blog-post-img\" > ";
+				                        echo " <figure > ";
+				                           echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic1 > ";
+				                         echo "   </figure>";
+				            		echo "</div>";
+		                    }
+							if(strcmp($pic2,"")!=0 && is_file_exists($pic2)){
 			            		echo "<div class=\"blog-post-img\" > ";
 			            		echo " <figure > ";
 			            		echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic2 > ";
 			            		echo "   </figure>";
 			            		echo "</div>";
 							}
-							if(strcmp($pic3,"")!=0){
+							if(strcmp($pic3,"")!=0 && is_file_exists($pic3)){
 			            		echo "<div class=\"blog-post-img\" > ";
 			            		echo " <figure > ";
 			            		echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic3 > ";
@@ -132,7 +132,8 @@
 		                                  $title=$value->title;
 		                                  echo "<div class=\"item-list\">";
 		                                   echo " <div class=\"col-sm-4 col-xs-4 no-padding photobox\"> ";
-		                                     echo  "    <div class=\"add-image\">  <a href=$urlPath><img class=\"no-margin\" src=$imgPath alt=\"img\"></a> </div> ";
+		                                   if(strcmp($value->picName1,"")!=0 && is_file_exists($imgPath))
+		                        			echo  "    <div class=\"add-image\">  <a href=$urlPath><img class=\"no-margin\" src=$imgPath alt=\"img\"></a> </div> ";
 		                                    echo " </div>";
 		                                     echo " <div class=\"col-sm-8 col-xs-8 add-desc-box\">";
 		                                     echo "     <div class=\"add-details\">";

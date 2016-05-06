@@ -114,7 +114,10 @@ input[type=checkbox]
 	                  		{
 	                  		$imagePath='';
 	                  		$imagePath=base_url().$picObj->picturePath.'/'.$picObj->pictureName;
-	                  	echo "<li><img src=$imagePath alt=\"img\"  /></li>";
+// 	                  		if(!is_file_exists($imagePath))
+// 	                  			$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+	                  			 
+	                  		echo "<li><img src=$imagePath alt=\"img\"  /></li>";
 	                  		}
                   		}
                   	}
@@ -136,7 +139,9 @@ input[type=checkbox]
 	                  		{
 	                  		$imagePath='';
 	                  		$imagePath=base_url().$picObj->thumbnailPath.'/'.$picObj->thumbnailName;
-		              		echo "<a class=\"thumb-item-link\" data-slide-index=$imgID ><img src=$imagePath alt=\"img\" /></a>";
+// 		              		if(!is_file_exists($imagePath))
+// 	                  			$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+	                  		echo "<a class=\"thumb-item-link\" data-slide-index=$imgID ><img src=$imagePath alt=\"img\" /></a>";
 	                  		$imgID=$imgID+1;
 	                  		}
                   		}
