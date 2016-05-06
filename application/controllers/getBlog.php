@@ -109,7 +109,7 @@
 			$data["createDate"]=$data["result"][0]->createDate;
 			
 			$data["blogList"]=$this->blog_model->getBlog();
-			$data["popularMakes1"]=$this->getPopularCategory(2, 0);
+			$data["popularMakes1"]=$this->getPopularCategory(5, 0);
 			 
 			$this->load->view('blog-details', $data);
 		}
@@ -197,7 +197,7 @@
 			$data["title"]=$data["result"][0]->title;
 			$data["description"]=$data["result"][0]->description;
 			$data["HotProduct"]=$this->getHotProduct();
-			$data["popularMakes1"]=$this->getPopularCategory(2, 0);
+			$data["popularMakes1"]=$this->getPopularCategory(5, 0);
 			 
 			$this->load->view("blogs", $data);
 		}
