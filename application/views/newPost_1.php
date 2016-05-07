@@ -107,7 +107,7 @@
 										echo "<div class=\"col-md-4 col-sm-4\">";
 									}
 									echo "<div class=\"cat-list\">";
-									echo "<h3 ><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;\" href='#' onclick='chooseLoc($id)'>$name</a>";
+									echo "<h3><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;\" href='#' onclick='chooseLoc($id)'><ul class='wizard'><li class='next'>$name</li></ul></a>";
 									
 									echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\">   <span class=\" icon-down-open-big\"></span> </span>";
 									echo "</h3>";
