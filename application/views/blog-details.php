@@ -127,15 +127,24 @@
                                   	foreach($blogList as $ID=>$value){
                                   		 
                                 	  	$urlPath=base_url()."getBlog/viewBlog/".$value->ID."?prevURL=".urlencode(current_url());
-		                                  $imgPath=base_url().$value->picPath1.$value->picName1;
+		                                  $imgPath1=base_url().$value->picPath1.$value->picName1;
+		                                  $imgPath2=base_url().$value->picPath2.$value->picName2;
+		                                  $imgPath3=base_url().$value->picPath3.$value->picName3;
 		                                  $createDate=$value->createDate;
 		                                  $title=$value->title;
-		                                  $checkImage=$value->picPath1.$value->picName1;
+		                                  $checkImage1=$value->picPath1.$value->picName1;
+		                                  $checkImage2=$value->picPath2.$value->picName2;
+		                                  $checkImage3=$value->picPath3.$value->picName3;
 		                                  echo "<div class=\"item-list\">";
 		                                   echo " <div class=\"col-sm-4 col-xs-4 no-padding photobox\"> ";
-		                                   if(strcmp($value->picName1,"")!=0 && is_file_exists($checkImage))
-		                        			echo  "    <div class=\"add-image\">  <a href=$urlPath><img class=\"no-margin\" src=$imgPath alt=\"img\"></a> </div> ";
-		                                    echo " </div>";
+		                                   if(strcmp($value->picName1,"")!=0 && is_file_exists($checkImage1))
+		                        			echo  "    <div class=\"add-image\">  <a href=$urlPath><img class=\"no-margin\" src=$imgPath1 alt=\"img\"></a> </div> ";
+		                                    else if(strcmp($value->picName2,"")!=0 && is_file_exists($checkImage2))
+		                        			echo  "    <div class=\"add-image\">  <a href=$urlPath><img class=\"no-margin\" src=$imgPath2 alt=\"img\"></a> </div> ";
+		                                   else if(strcmp($value->picName3,"")!=0 && is_file_exists($checkImage3))
+		                        			echo  "    <div class=\"add-image\">  <a href=$urlPath><img class=\"no-margin\" src=$imgPath3 alt=\"img\"></a> </div> ";
+		                                   
+		                        			echo " </div>";
 		                                     echo " <div class=\"col-sm-8 col-xs-8 add-desc-box\">";
 		                                     echo "     <div class=\"add-details\">";
 		                                     echo "         <h5 class=\"add-title\"> <a href=$urlPath>  $title </a> </h5> ";

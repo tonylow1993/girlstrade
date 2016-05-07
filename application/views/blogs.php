@@ -52,14 +52,21 @@
                     		$pic1=base_url().$value->picPath1.$value->picName1;
                     		$pic2=base_url().$value->picPath2.$value->picName2;
                     		$pic3=base_url().$value->picPath3.$value->picName3;
-                    		$checkImage=$value->picPath1.$value->picName1;
+                    		$checkImage1=$value->picPath1.$value->picName1;
+                    		$checkImage2=$value->picPath2.$value->picName2;
+                    		$checkImage3=$value->picPath3.$value->picName3;
                     		echo "<div class=\"blog-post-img\" > ";
 		
 		                        echo "<a href=".base_url()."getBlog/viewBlog/".$value->ID."?prevURL=".urlencode(current_url())." > ";
 		                        echo " <figure > ";
-		                        if(strcmp($value->picName1,"")!=0 && is_file_exists($checkImage))
+		                        if(strcmp($value->picName1,"")!=0 && is_file_exists($checkImage1))
 		                           echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic1 > ";
-		                         echo "   </figure>";
+		                        else if(strcmp($value->picName2,"")!=0 && is_file_exists($checkImage2))
+		                        	echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic2 > ";
+		                       	else if(strcmp($value->picName3,"")!=0 && is_file_exists($checkImage3))
+		                       		echo   " <img class=\"img-responsive\" alt=\"blog-post image\" src=$pic3 > ";
+		                       		 
+		                           echo "   </figure>";
 		                        echo "</a>";
                     		echo "</div>";
 
