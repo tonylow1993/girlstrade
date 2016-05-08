@@ -85,7 +85,13 @@
 								if($lang_label<>"english")
 									$name=$value[0]->nameCN;
 								
-								
+								if($value[0]->locationID==1){
+									$color = "green";
+								}else if($value[0]->locationID==2){
+									$color = "blue";
+								}else if($value[0]->locationID==3){
+									$color = "red";
+								}
 								if($value[0]->level==2)
 								{
 									$total++;
@@ -107,7 +113,7 @@
 										echo "<div class=\"col-md-4 col-sm-4\">";
 									}
 									echo "<div class=\"cat-list\">";
-									echo "<h3 ><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;\" href='#' onclick='chooseLoc($id)'>$name</a>";
+									echo "<h3><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;\" href='#' onclick='chooseLoc($id)'><ul class='wizard'><li class='next' style='color: $color'>$name</li></ul></a>";
 									
 									echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\">   <span class=\" icon-down-open-big\"></span> </span>";
 									echo "</h3>";

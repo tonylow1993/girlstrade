@@ -1070,20 +1070,18 @@ input[type=checkbox]
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h2 id="modal-title-del" class="modal-title"><?php echo $this->lang->line("popupTitleDeleteAds");?></h2>
       </div>
-      <div class="modal-body">
-        <form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds?prevURL=<?php echo urlencode($previousCurrent_url);?>">
+      <div class="modal-footer">
+		<form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds?prevURL=<?php echo urlencode($previousCurrent_url);?>">
            <div class="form-group">
            		<input type="hidden" id="messageID" name="messageID" >   	
            		<input type="hidden" id="userID" name="userID" >   
            	</div>		
-            <button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-           	<button id="submit-btn" type="submit" >Delete</button>
+            
         </form>
-      </div>
-      <div class="modal-footer">
 		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
-      		
-     	 </div>
+      	<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		<button id="submit-btn" type="submit" class="btn btn-primary">Delete</button>
+	  </div>
     </div>
   </div>
 </div>
