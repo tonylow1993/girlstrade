@@ -41,10 +41,11 @@
                   		$fromEmail=$row["fromEmail"];
                   		$content=$row["content"];
                   		$readflag="";
-						if(strcmp($row["readflag"],"N")==0)
-							$readflag="bgcolor='".UnReadInBoxBgColor."' onclick=\"editData($id, $pageNum)\"";
-						
-                		echo "<tr ".$readflag." >";
+						$rowCount=$rowCount+1;
+						$trId="trId_".$rowCount;
+                		if(strcmp($row["readflag"],"N")==0)
+							$readflag="bgcolor='".UnReadInBoxBgColor."' onclick=\"editData($id, $pageNum, '$trId')\"";
+						echo "<tr id=".$trId." name=".$trId." ".$readflag." >";
                     	echo "<td style=\"width:20%\" class=\"text-center\"><p class=\"inbox-username\">$fromusername";
                     	echo "</p>";
                     	echo "<a class=\"btn btn-primary btn-xs btn-120\" href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
@@ -153,16 +154,18 @@
 <!-- /.wrapper --> 
 
 <script>
-function editData(id, pageNo)
+function editData(id, pageNo, trId)
 {
  	$.ajax({
 		method: "POST",
 		url: "<?php echo base_url().MY_PATH;?>home/updateReadInboxBuyerMessage",
 		data: { messageID: id , pageNum: pageNo},
 		success: function(response){
-			location.href="<?php echo base_url().MY_PATH;?>home/getAccountPage/1/".concat(pageNo);
-			//var result = JSON.parse(response);
-	    	//$("#".concat(ctrlName)).html(result.icon);
+			//location.href="<?php echo base_url().MY_PATH;?>home/getAccountPage/1/".concat(pageNo);
+			var result = JSON.parse(response);
+	    	$("#".concat(trId)).attr("bgcolor", "");
+	    	$("#".concat(trId)).on("click", function(event) { return false;});
+	    	
 	    //	$("#".concat(ctrlErrName)).html(result.message);
 	    	}
 	});
