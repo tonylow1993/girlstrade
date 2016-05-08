@@ -418,7 +418,19 @@ class Home extends CI_Controller {
             $data["VerifyCaptcha"]=$this->lang->line("VerifyCaptcha");
             $data["Username"]=$this->lang->line("Username");
             $data["Password"]=$this->lang->line("Password");
-           
+            //----------setup the header menu----------
+            $user1=$this->nativesession->get("user");
+			$data["menuMyAds"]="";
+            $data["menuInbox"]="class=\"active\"";
+            $data["menuInboxNum"]="0";
+            $data["menuPendingRequest"]="";
+            $data["menuPendingRequestNumber"]="0";
+            if(isset($user1) && !empty($user1)){
+            	$menuCount=$this->getHeaderCount($user1["userID"]);
+            	$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user1["userID"]); //$menuCount["inboxMsgCount"]; //
+            	$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+            }
+            //----------------------------
             $this->load->view('signup', $data);
 	}
 	
@@ -902,9 +914,12 @@ class Home extends CI_Controller {
 				$data['redirectToPHP']=base_url();
 			else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
 				$data['redirectToPHP']=base_url();
+			else if(strpos(((String)$_SESSION["previousUrl"]),'signupPage') !== false)
+				$data['redirectToPHP']=base_url();
  			else 
  				$data['redirectToPHP']=$_SESSION["previousUrl"];
-			$data["successTile"]=$this->lang->line("successTile");
+ 			$data["PrevURL"]=$data['redirectToPHP'];
+ 			$data["successTile"]=$this->lang->line("successTile");
 			$data["failedTitle"]=$this->lang->line("failedTitle");
 			$data["goToHomePage"]=$this->lang->line("goToHomePage");
 			$loginhist=array("username"=> $username, "logMsg"=>"SUCCESSLOGIN",
@@ -926,7 +941,7 @@ class Home extends CI_Controller {
 			//----------------------------
 			//$this->load->view('successPage', $data);
 			echo "Success";
-			
+			//return;
 	}	
 	
 	function generateRandomString($length = 8) {

@@ -85,19 +85,23 @@ $("#loginform").on("submit",function() {
 			if (output == "Success"){
 				$("#loginAjax").html('<em><span style="color:green"> <i class="icon-check fa"></i>Success</span></em>');
 				if ("<?php echo $PrevURL; ?>" == "")
-					window.location.href = "http://www.girlstrade.com/";
-				else
-					window.location.href = "<?php echo $PrevURL; ?>";
+					window.location.href = "<?php echo base_url();?>";
+				else if("<?php echo $PrevURL; ?>".indexOf('loginPage')>=0)
+					window.location.href = "<?php echo base_url();?>";
+				else if("<?php echo $PrevURL; ?>".indexOf('signupPage')>=0)
+					window.location.href = "<?php echo base_url();?>";
+				else window.location.href = "<?php echo $PrevURL; ?>";
 			}
 			else
 				$("#loginAjax").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> '+ output + '</span></em>');
 			
 			console.log(output);
 			
-		},
-		error : function(){
-			alert("Error");
 		}
+// 		,
+// 		error : function(){
+// 			alert("Error");
+// 		}
 	})
 	return false;
 });
