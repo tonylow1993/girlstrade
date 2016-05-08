@@ -1,10 +1,11 @@
-<div class="welcome-msg">
+<span class="welcome-msg">
               <h3 class="page-sub-header2 clearfix no-padding">Hello <?php echo $userName;?> </h3>
-              <span class="page-sub-header-sub small">You last logged in at: <?php echo $lastLoginTime; ?></span> </div>
+              <span class="page-sub-header-sub small">You last logged in at: <?php echo $lastLoginTime; ?></span> </span>
           	<form role="form" method="POST" action="<?php echo base_url().MY_PATH.'home/getAccountPage/'.$activeNav.'/'.$pageNum.'/0/'.$sortByDate.'?prevURL='.urlencode(current_url());?>"
          	     id="sortfrm" > 
 <!-- 			  class="tab-filter" -->
-          		<div id="sortByDateDiv" style="<?php if(strcmp($activeNav,"4")==0) echo "display:none"; else echo "display:block"; ?>;width:150px">
+          		<div id="sortByDateDiv" 
+          		style="<?php if(strcmp($activeNav,"4")==0) echo "display:none"; else echo "display:block"; ?>;width:150px;margin-left:auto; margin-right:0;">
 					<select class="form-control"   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>>Most Recent</option>

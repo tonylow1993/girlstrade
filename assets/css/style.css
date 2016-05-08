@@ -2777,7 +2777,7 @@ li.divider {
 
 .welcome-msg {
   margin-bottom: 30px;
-  display: inline-block;
+  display: grid;
 }
 
 .collapse-box {
@@ -3495,7 +3495,8 @@ input[type=checkbox]
 }
 
 #sortfrm{
-	display: inline-block;
+	//display: inline-block;
+	display: -webkit-box;
 }
 
 .padding-left-30{
