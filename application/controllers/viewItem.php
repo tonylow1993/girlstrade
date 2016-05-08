@@ -668,9 +668,11 @@
         	}else {
         		$data['status'] = 'F';
 	        	$data['class'] = "has-error";
-	        	if(strlen(trim($blogscomment))==0)
+	        	if(empty($blogscomment) || strlen(trim($blogscomment))==0)
 					$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Zero description length!</div>';
-				else 
+				else if(ShortDescLength($blogscomment, DESCMINLENGTHINNEWPOST))
+	        		$data['message'] ='<div class="alert alert-danger"><strong>Warning!</strong> '.$this->lang->line("MinDescLength").'</div>';
+	       		else 
 					$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
 	        	$data['icon'] = '<em><span style="color:red"></span></em>';
         	}
@@ -692,7 +694,9 @@
         		$data['class'] = "has-error";
         		if(strlen(trim($blogscomment))==0)
 					$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Zero description length!</div>';
-				else 
+				else if(ShortDescLength($blogscomment, DESCMINLENGTHINNEWPOST))
+	        		$data['message'] ='<div class="alert alert-danger"><strong>Warning!</strong> '.$this->lang->line("MinDescLength").'</div>';
+	       		else 
 					$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed Max Length</div>';
         		$data['icon'] = '<em><span style="color:red"></span></em>';
         	}

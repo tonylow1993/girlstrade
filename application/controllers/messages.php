@@ -332,8 +332,10 @@ function addDayswithdate($date,$days){
 			
 						if(ExceedDescLength($comment, DESCLENGTHINNEWPOST)){
 							$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-							if(strlen(trim($comment))==0)
+							if(empty($comment) || strlen(trim($comment))==0)
 								$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+							if(ShortDescLength($comment, DESCMINLENGTHINNEWPOST))
+								$errorMsg=sprintf($this->lang->line("MinDescLength"));
 							$data["error"]=$errorMsg;
 							$data["prevURL"]=$prevURL;
 							$data['redirectToWhatPage']="Previous Page";
@@ -488,8 +490,10 @@ function addDayswithdate($date,$days){
 				
 				if(ExceedDescLength($comment, DESCLENGTHINNEWPOST)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-					if(strlen(trim($comment))==0)
+					if(empty($comment) || strlen(trim($comment))==0)
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+					if(ShortDescLength($comment, DESCMINLENGTHINNEWPOST))
+						$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
 					$data['redirectToWhatPage']="Previous Page";
@@ -656,6 +660,12 @@ function addDayswithdate($date,$days){
 			
 			if(ExceedDescLength($content, $maxLengthDesc)){
 				$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+				if(empty($content) || strlen(trim($content))==0)
+					$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+				if(ShortDescLength($content, DESCMINLENGTHINNEWPOST))
+					$errorMsg=sprintf($this->lang->line("MinDescLength"));
+							
+				
 				$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
@@ -1109,6 +1119,10 @@ function addDayswithdate($date,$days){
 			
 			if(ExceedDescLength($content, $maxLengthDesc)){
 				$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
+				if(empty($content) || strlen(trim($content))==0)
+					$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+				if(ShortDescLength($content, DESCMINLENGTHINNEWPOST))
+					$errorMsg=sprintf($this->lang->line("MinDescLength"));
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["PrevURL"]=$prevURL;
 				$data["error"]=$errorMsg;
@@ -1646,8 +1660,10 @@ function addDayswithdate($date,$days){
 						
 						if(ExceedDescLength($buyerComment, DESCLENGTHINNEWPOST)){
 							$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-							if(strlen(trim($buyerComment))==0)
+							if(empty($buyerComment) || strlen(trim($buyerComment))==0)
 								$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+							if(ShortDescLength($buyerComment, DESCMINLENGTHINNEWPOST))
+								$errorMsg=sprintf($this->lang->line("MinDescLength"));
 							$data["error"]=$errorMsg;
 							$data["prevURL"]=$prevURL;
 							$data['redirectToWhatPage']="Previous Page";
@@ -1960,6 +1976,8 @@ function addDayswithdate($date,$days){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 					if(empty($message) || strlen(trim($message))==0)   
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+					if(ShortDescLength($message, DESCMINLENGTHINNEWPOST))
+						$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
 					$data['redirectToWhatPage']="Previous Page";
@@ -2124,6 +2142,8 @@ function addDayswithdate($date,$days){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 					if(empty($message) || strlen(trim($message))==0)   
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+					if(ShortDescLength($message, DESCMINLENGTHINNEWPOST))
+						$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
 					$data['redirectToWhatPage']="Previous Page";
@@ -2287,6 +2307,8 @@ function addDayswithdate($date,$days){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 					if(empty($message) || strlen(trim($message))==0)   
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+					if(ShortDescLength($message, DESCMINLENGTHINNEWPOST))
+						$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
 					$data['redirectToWhatPage']="Previous Page";

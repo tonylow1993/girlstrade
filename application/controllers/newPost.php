@@ -1054,14 +1054,17 @@ public function getChildCategory($parentID)
 
         if(ExceedDescLength($content, DESCLENGTHINNEWPOST) ||
         	ExceedDescLength($title, 70) ||
+        		ShortDescLength($content, DESCMINLENGTHINNEWPOST) || 
         		empty($cat) || $cat==0 || strcmp($cat, "0")==0
         		){
 	        if(ExceedDescLength($content, DESCLENGTHINNEWPOST) ||
         	ExceedDescLength($title, 70))
         		$errorMsg=$errorMsg." ".sprintf($this->lang->line("ExceedMaxDescOrTitleLengthInNewPost"));
-	        if(strlen(trim($content))==0)
+	        if(ShortDescLength($content, DESCMINLENGTHINNEWPOST))
+	        	$errorMsg=$errorMsg." ".sprintf($this->lang->line("MinDescLength"));
+	       if(empty($content) || strlen(trim($content))==0)
 				$errorMsg=$errorMsg." ".sprintf($this->lang->line("ZeroDescLength"));
-			if(strlen(trim($title))==0)
+			if(empty($title) || strlen(trim($title))==0)
 				$errorMsg=$errorMsg." ".sprintf($this->lang->line("ZeroTitleLength"));
 			if(empty($cat) || $cat==0 || strcmp($cat, "0")==0)
 				$errorMsg=$errorMsg." ".sprintf($this->lang->line("EmptyCategory"));
@@ -1778,7 +1781,9 @@ public function getChildCategory($parentID)
 			$data['class'] = "has-error";
 			if(strlen(trim($content))==0)
 				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Zero description length!</div>';
-			else 
+			else if(ShortDescLength($content, DESCMINLENGTHINNEWPOST))
+	        	$data['message'] ='<div class="alert alert-danger"><strong>Warning!</strong> '.$this->lang->line("MinDescLength").'</div>';
+	       	else 
 				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed description length!</div>';
 			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Exceed description length</span></em>';
 		}

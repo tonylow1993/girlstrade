@@ -363,8 +363,10 @@ class footer  extends CI_Controller {
 		
 		if(ExceedDescLength($data['message'], DESCLENGTHINNEWPOST)){
 			$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-			if(strlen(trim($data['message']))==0)
+			if(empty($data['message']) || strlen(trim($data['message']))==0)
 				$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+			if(ShortDescLength($data['message'], DESCMINLENGTHINNEWPOST))		
+				$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					
 			$data["error"]=$errorMsg;
 			$data["prevURL"]=$prevURL;

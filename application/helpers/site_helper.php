@@ -11,6 +11,22 @@ if ( ! function_exists('ExceedDescLength'))
 			return true;
 		if(mb_strlen($message, 'utf-8')>$len)
 			return true;
+		if(mb_strlen($message, 'utf-8')<DESCMINLENGTHINNEWPOST)
+			return true;
+		return false;
+	}
+
+}
+
+if ( ! function_exists('ShortDescLength'))
+{
+	function ShortDescLength($message, $len)
+	{
+		$message=trim($message);
+		if(empty($message) || strlen($message)==0)
+			return true;
+		if(mb_strlen($message, 'utf-8')<$len)
+			return true;
 		return false;
 	}
 

@@ -133,8 +133,10 @@ class itemComments  extends CI_Controller {
 				
 			if(ExceedDescLength($comment, DESCLENGTHINNEWPOST)){
 				$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-				if(strlen(trim($comment))==0)
+				if(empty($content) || strlen(trim($comment))==0)
 					$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+				if(ShortDescLength($content, DESCMINLENGTHINNEWPOST))
+					$errorMsg=sprintf($this->lang->line("MinDescLength"));
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
 				$data['redirectToWhatPage']="Previous Page";

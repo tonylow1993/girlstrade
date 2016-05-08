@@ -273,4 +273,4 @@ $lang["EmptyCategory"]="Need to choose category for your post.";
 $lang["InvalidPriceRange"]="The %s field is not in the price range value";
 $lang["InvalidPriceFormat"]="The %s field can only be number without decimal";
 $lang["EmptyPrice"]="The price field cannot be empty";
-
+$lang["MinDescLength"]="The Description length cannot be shorter than ".DESCMINLENGTHINNEWPOST;

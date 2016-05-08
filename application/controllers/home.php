@@ -2967,9 +2967,11 @@ class Home extends CI_Controller {
 			
 			if(ExceedDescLength($userInfo['introduction'], DESCLENGTHINNEWPOST)){
 				$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-				if(strlen(trim($userInfo['introduction']))==0)
+				if(empty($userInfo['introduction']) || strlen(trim($userInfo['introduction']))==0)
 					$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
-						
+				if(ShortDescLength($userInfo['introduction'], DESCMINLENGTHINNEWPOST))
+					$errorMsg=sprintf($this->lang->line("MinDescLength"));
+							
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
 				$data['redirectToWhatPage']="Edit Profile Page";
@@ -3533,8 +3535,10 @@ class Home extends CI_Controller {
 			
 		if(ExceedDescLength($content, DESCLENGTHINNEWPOST)){
 			$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-			if(strlen(trim($content))==0)
+			if(empty($content) || strlen(trim($content))==0)
 					$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
+			if(ShortDescLength($content, DESCMINLENGTHINNEWPOST))
+					$errorMsg=sprintf($this->lang->line("MinDescLength"));
 			$data["error"]=$errorMsg;
 			$data["prevURL"]=$prevURL;
 			$data['redirectToWhatPage']="Account Profile Page";

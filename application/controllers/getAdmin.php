@@ -1445,6 +1445,11 @@ class getAdmin extends CI_Controller {
 			$data['class'] = "has-success";
 			$data['message'] = '';
 			$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i> Valid Description</span></em>';
+		}else if(ShortDescLength($data['message'], DESCMINLENGTHINNEWPOST)){
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> '.$this->lang->line("MinDescLength").'</div>';
+			$data['icon'] = '<em><span style="color:red"></span></em>';
 		}else {
 			$data['status'] = 'F';
 			$data['class'] = "has-error";
