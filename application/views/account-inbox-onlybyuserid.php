@@ -42,7 +42,7 @@
                   		$content=$row["content"];
                   		$readflag="";
 						if(strcmp($row["readflag"],"N")==0)
-							$readflag="bgcolor=\"#FF0000\" onclick=\"editData($id, $pageNum)\"";
+							$readflag="bgcolor='".UnReadInBoxBgColor."' onclick=\"editData($id, $pageNum)\"";
 						
                 		echo "<tr ".$readflag." >";
                     	echo "<td style=\"width:20%\" class=\"text-center\"><p class=\"inbox-username\">$fromusername";
