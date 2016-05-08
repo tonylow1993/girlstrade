@@ -71,6 +71,7 @@ class Home extends CI_Controller {
         	    $this->load->model('buyermessage_model');
         	    $this->load->model('userInfoSendEmail_model');
 				$this->load->model('blog_model');
+				$this->load->model('admin_model');
 	}
 	public function index($errorMsg='', $successMsg='')
 	{
@@ -3577,6 +3578,8 @@ class Home extends CI_Controller {
 		$data["createDate"]=date("Y-m-d H:i:s");
 		$data["readflag"]="N";
 		$this->buyermessage_model->insert($data);
+		$this->admin_model->getMessageStatByUserID($fromUserID);
+		$this->admin_model->getMessageStatByUserID($userID);
 		
 		if(strcmp($type,"Inbox")==0)
 			$this->getAccountPage("1", $pageNum);

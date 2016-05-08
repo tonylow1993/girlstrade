@@ -788,7 +788,8 @@ function addDayswithdate($date,$days){
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller(), INSERTMESSAGESENDEMAIL);
 					
 					$this->admin_model->getMessageStatByUserID($fUserID);
-					
+					$this->admin_model->getMessageStatByUserID($userID);
+						
 					$errorMsg=$this->lang->line("MessagesSendError");
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
