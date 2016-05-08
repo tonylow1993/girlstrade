@@ -3578,8 +3578,8 @@ class Home extends CI_Controller {
 		$data["createDate"]=date("Y-m-d H:i:s");
 		$data["readflag"]="N";
 		$this->buyermessage_model->insert($data);
-		$this->admin_model->getMessageStatByUserID($fromUserID);
-		$this->admin_model->getMessageStatByUserID($userID);
+		$this->admin_model->updateStatByUserID($fromUserID);
+		$this->admin_model->updateStatByUserID($userID);
 		
 		if(strcmp($type,"Inbox")==0)
 			$this->getAccountPage("1", $pageNum);
