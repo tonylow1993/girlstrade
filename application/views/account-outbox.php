@@ -141,7 +141,7 @@
           
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
-         		 <select required="true" class="form-control selecter" name="rating" id="rating">
+         		 <select required="true" class="form-control    " name="rating" id="rating">
         				<option value='1'  style='background-color:#E9E9E9;font-weight:bold;' > Good</option>
         				<option value='2'  style='background-color:#E9E9E9;font-weight:bold;' > Bad </option>
         				<option value='3'  style='background-color:#E9E9E9;font-weight:bold;' > Average </option>

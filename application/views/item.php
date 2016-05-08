@@ -359,7 +359,7 @@ input[type=checkbox]
 					//}
 					?>
 					<?php
-					$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+					$soldUsersstr="  <select required=\"true\" class=\"form-control    \" name=\"soldUser\" id=\"soldUser\">  ";
 					if($soldUsers!=null){
 						$NoOfSoldUsers=count($soldUsers);
 						foreach($soldUsers as $row){
@@ -387,7 +387,7 @@ input[type=checkbox]
 // 						echo "<a  href=\"javascript:marksold('$postID', '$ctrlName1', '$errorctrlName1')\" class=\"btn btn-inverse \"> <i class=\"fa fa-thumb-tack\"></i> Mark Sold </a>";
 // 						echo " <div id='$ctrlName1' name='$ctrlName1' class='center'></div><div id='$errorctrlName1' name='$errorctrlName1' class='center'></div>";
 						
-// 						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+// 						$soldUsersstr="  <select required=\"true\" class=\"form-control    \" name=\"soldUser\" id=\"soldUser\">  ";
 // 						if($soldUsers!=null){
 // 							$NoOfSoldUsers=count($soldUsers);
 // 							foreach($soldUsers as $row){
@@ -626,7 +626,7 @@ input[type=checkbox]
 					//}
 					?>
 					<?php
-					$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+					$soldUsersstr="  <select required=\"true\" class=\"form-control    \" name=\"soldUser\" id=\"soldUser\">  ";
 					if($soldUsers!=null){
 						$NoOfSoldUsers=count($soldUsers);
 						foreach($soldUsers as $row){
@@ -905,7 +905,7 @@ input[type=checkbox]
           
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
-         		 <select required="true" class="form-control selecter" name="rating" id="rating">
+         		 <select required="true" class="form-control    " name="rating" id="rating">
         			<?php 
         			foreach(getRatingArray() as $rateID=>$rateName){
          		 		echo "<option value='$rateID'  style='background-color:#E9E9E9;font-weight:bold;' > $rateName</option>";
@@ -968,7 +968,7 @@ input[type=checkbox]
            </div>
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
-         		 <select required="true" class="form-control selecter" name="rating" id="rating">
+         		 <select required="true" class="form-control    " name="rating" id="rating">
         		<?php 
         			foreach(getRatingArray() as $rateID=>$rateName){
          		 		echo "<option value='$rateID'  style='background-color:#E9E9E9;font-weight:bold;' > $rateName</option>";
@@ -1019,7 +1019,7 @@ input[type=checkbox]
            </div>
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
-         		 <select required="true" class="form-control selecter" name="rating" id="rating">
+         		 <select required="true" class="form-control    " name="rating" id="rating">
          		 	<?php 
         			foreach(getRatingArray() as $rateID=>$rateName){
          		 		echo "<option value='$rateID'  style='background-color:#E9E9E9;font-weight:bold;' > $rateName</option>";
@@ -1036,7 +1036,7 @@ input[type=checkbox]
         	</div>
         	<div class="form-group">
              	<label  for="soldqty" class="control-label">Quantity<font color="red">*</font></label>
-         		<select required="true" class="form-control selecter" name="soldqty" id="soldqty">
+         		<select required="true" class="form-control    " name="soldqty" id="soldqty">
         				<?php 
         				  	for ($x = 1; $x <= MAXSOLDQTY; $x++)
         				  		echo "<option value=$x> $x </option>";

@@ -5,7 +5,7 @@
          	     id="sortfrm" > 
 <!-- 			  class="tab-filter" -->
           		<div id="sortByDateDiv" style="<?php if(strcmp($activeNav,"4")==0) echo "display:none"; else echo "display:block"; ?>;width:150px">
-					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
+					<select class="form-control"   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>>Most Recent</option>
 					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>>Oldest</option>

@@ -153,7 +153,7 @@
            	</div>
              <div class="form-group">
              	<label  for="rating" class="control-label">Rating<font color="red">*</font></label>
-         		 <select required="true" class="form-control selecter" name="rating" id="rating">
+         		 <select required="true" class="form-control    " name="rating" id="rating">
         		<?php 
         			foreach(getRatingArray() as $rateID=>$rateName){
          		 		echo "<option value='$rateID'  style='background-color:#E9E9E9;font-weight:bold;' > $rateName</option>";

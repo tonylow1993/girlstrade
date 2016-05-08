@@ -1455,7 +1455,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
              
 <div style="clear:both"></div>            
             <div class="col-sm-6 no-padding">
-        <select  class="form-control selecter  " id="region-state" name="region-state">
+        <select  class="form-control      " id="region-state" name="region-state">
 		
 		<?php 
 		$str="";
@@ -1757,7 +1757,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
                   
 			<div style="clear:both"></div>            
             <div class="col-sm-6 no-padding">
-        <select  class="form-control selecter  " id="parent-category" name="parent-category">
+        <select  class="form-control      " id="parent-category" name="parent-category">
 		
 		<?php 
 		

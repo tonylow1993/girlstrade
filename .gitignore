@@ -67,3 +67,5 @@ USER_IMG/rchiu5hk/Resize/rchiu5hk_2016-02-02-23-17-12_main_0.png
 USER_IMG/rchiu5hk/Resize/rchiu5hk_2016-02-02-23-17-12_thumb_0.png
 
 application/config/config.php
+
+application/views/posting-success.php

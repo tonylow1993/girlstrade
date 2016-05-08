@@ -14,7 +14,7 @@
               </div>
             
             <div class="col-sm-3">
-          <select class="form-control selecter" name="category" id="search-category" >
+          <select class="form-control    " name="category" id="search-category" >
         	<?php 
         	$str="";
         	if($catID_==null or $catID_=="" or $catID_==0)
@@ -46,7 +46,7 @@
           </select>
         </div>
 <!--         <div class="col-sm-3"> -->
-<!--           <select class="form-control selecter" name="location" id="id-location"> -->
+<!--           <select class="form-control    " name="location" id="id-location"> -->
             <?php 
 //             $str="";
 //             if($locID_==null or $locID_=="" or $locID_=='0')
@@ -74,7 +74,7 @@
 <!--           </select> -->
 <!--           </div> -->
           <div class="col-sm-3">
-              <select class="form-control selecter"  id="sortByPrice" name="sortByPrice"  >
+              <select class="form-control    "  id="sortByPrice" name="sortByPrice"  >
                   <option value="0"   <?php if(strcmp($sortByID_,"0")==0 or $sortByID_==0 or $sortByID_=='') echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
                   <option value="1"   <?php if(strcmp($sortByID_,"1")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceLowToHigh;?></option>
                   <option value="2"   <?php if(strcmp($sortByID_,"2")==0)  echo " selected='selected' ";?> > <?php echo $lblPriceHighToLow;?></option>

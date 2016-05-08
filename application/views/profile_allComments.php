@@ -117,7 +117,7 @@ function sendIt() {
 						$NoOfSoldUsers=0;
 						$enableMarkSoldBtn= $row["enableMarkSoldBtn"];
                   		$soldUsers=$row["soldUsers"];
-						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+						$soldUsersstr="  <select required=\"true\" class=\"form-control    \" name=\"soldUser\" id=\"soldUser\">  ";
 						if($soldUsers!=null){
 							$NoOfSoldUsers=count($soldUsers);
 							foreach($soldUsers as $row){
@@ -250,7 +250,7 @@ function sendIt() {
 						$NoOfSoldUsers=0;
 						$enableMarkSoldBtn= $row["enableMarkSoldBtn"];
                   		$soldUsers=$row["soldUsers"];
-						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+						$soldUsersstr="  <select required=\"true\" class=\"form-control    \" name=\"soldUser\" id=\"soldUser\">  ";
 						if($soldUsers!=null){
 							$NoOfSoldUsers=count($soldUsers);
 							foreach($soldUsers as $row){
@@ -392,7 +392,7 @@ function sendIt() {
 						$NoOfSoldUsers=0;
 						$enableMarkSoldBtn= $row["enableMarkSoldBtn"];
                   		$soldUsers=$row["soldUsers"];
-						$soldUsersstr="  <select required=\"true\" class=\"form-control selecter\" name=\"soldUser\" id=\"soldUser\">  ";
+						$soldUsersstr="  <select required=\"true\" class=\"form-control    \" name=\"soldUser\" id=\"soldUser\">  ";
 						if($soldUsers!=null){
 							$NoOfSoldUsers=count($soldUsers);
 							foreach($soldUsers as $row){

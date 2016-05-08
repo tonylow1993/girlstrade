@@ -52,9 +52,9 @@
 <!-- include jquery list shorting plugin plugin  --> 
 <script src="<?php echo base_url();?>assets/js/hideMaxListItem.js"></script> 
 
-<!-- include jquery.fs plugin for custom scroller and selecter  --> 
+<!-- include jquery.fs plugin for custom scroller and      --> 
 <script src="<?php echo base_url();?>assets/plugins/jquery.fs.scroller/jquery.fs.scroller.js"></script>
-<script src="<?php echo base_url();?>assets/plugins/jquery.fs.selecter/jquery.fs.selecter.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/jquery.fs.   /jquery.fs.   .js"></script>
 
 
 <!-- include custom script for site  --> 

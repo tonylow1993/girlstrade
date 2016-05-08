@@ -83,21 +83,21 @@ function sendIt() {
     			echo $path;
                ?>"  method="POST" id="sortfrm" class="tab-filter" role="form"> 
                <div  style="width:150px; display:inline-block">
-               		<select class="form-control selecter "   name="selectSortType"   id="selectSortType" data-width="auto">
+               		<select class="form-control     "   name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortTypeID,"0")==0 or $sortTypeID==0) echo " selected='selected' ";?> >Sort type by...</option>
 					  <option value="1" <?php if(strcmp($sortTypeID,"1")==0)  echo " selected='selected' ";?>>Date</option>
 					  <option value="2" <?php if(strcmp($sortTypeID,"2")==0)  echo " selected='selected' ";?>>Type</option>
 					</select>
                 </div> 
             	<div id="sortByDateDiv" style="width:150px;display:none;">
-					<select class="form-control selecter "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
+					<select class="form-control     "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
 					  <option value="3" <?php  if(strcmp($sortByDate,"3")==0)   echo " selected='selected' ";?>>Date: Most Recent</option>
 					  <option value="4" <?php  if(strcmp($sortByDate,"4")==0)   echo " selected='selected' ";?>>Date: Oldest</option>
 					</select>
 				</div> 
 				<div id="sortByTypeDiv" style="width:150px;display:none;">
-					<select class="form-control selecter "   name="sortByType"   id="sortByType" data-width="auto" onchange="beginSort();">
+					<select class="form-control     "   name="sortByType"   id="sortByType" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort type by...</option>
 					  <option value="1" <?php  if(strcmp($sortByType,"1")==0)   echo " selected='selected' ";?>>Good</option>
 					  <option value="2" <?php  if(strcmp($sortByType,"2")==0)   echo " selected='selected' ";?>>Bad</option>
