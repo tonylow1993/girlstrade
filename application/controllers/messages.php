@@ -1958,7 +1958,7 @@ function addDayswithdate($date,$days){
 				
 				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-					if(strlen(trim($message))==0)
+					if(empty($message) || strlen(trim($message))==0)   
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
@@ -2122,7 +2122,7 @@ function addDayswithdate($date,$days){
 				
 				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-					if(strlen(trim($message))==0)
+					if(empty($message) || strlen(trim($message))==0)   
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
@@ -2285,7 +2285,7 @@ function addDayswithdate($date,$days){
 				
 				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-					if(strlen(trim($message))==0)
+					if(empty($message) || strlen(trim($message))==0)   
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
