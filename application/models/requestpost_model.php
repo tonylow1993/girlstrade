@@ -20,7 +20,10 @@ class requestpost_model extends CI_Model {
 	    	if ($pageNum>1)
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
 	    	$arr=array("status"=>"U", "userID"=>$userId);
-	    	$query = $this->db->from('requestpost')->where($arr)->limit($ulimit, $olimit)->get();
+	    	if($pageNum==0)
+	    		$query = $this->db->from('requestpost')->where($arr)->get();
+	    	else	
+	    		$query = $this->db->from('requestpost')->where($arr)->limit($ulimit, $olimit)->get();
 	    
 	    	return $query->result();
 	    }
@@ -29,7 +32,10 @@ class requestpost_model extends CI_Model {
 	    	$olimit=0;
 	    	if ($pageNum>1)
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
-	    	$strQuery="select a.*  from requestpost a inner join post b on a.postID=b.postID where a.status in ('A', 'R') and (b.userID=?)  limit $olimit, $ulimit";
+	    	if($pageNum==0)
+	    		$strQuery="select a.*  from requestpost a inner join post b on a.postID=b.postID where a.status in ('A', 'R') and (b.userID=?) ";
+	    	else 
+	    		$strQuery="select a.*  from requestpost a inner join post b on a.postID=b.postID where a.status in ('A', 'R') and (b.userID=?)  limit $olimit, $ulimit";
 	    	$query2 = $this->db->query($strQuery,array($userId));
 	    	$var2=$query2->result_array();
 	    	return $var2;
@@ -62,7 +68,10 @@ class requestpost_model extends CI_Model {
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
 	    	$arr=array("userID"=>$userId);
 	    	$statusIn=array('R', 'A' );
-	    	$query = $this->db->from('requestpost')->where($arr)->where_in("status", $statusIn)->limit($ulimit, $olimit)->get();
+	    	if($pageNum==0)
+	    		$query = $this->db->from('requestpost')->where($arr)->where_in("status", $statusIn)->get();
+	    	else 
+    			$query = $this->db->from('requestpost')->where($arr)->where_in("status", $statusIn)->limit($ulimit, $olimit)->get();
 	    	 
 	    	return $query->result();
 	    }

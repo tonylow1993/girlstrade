@@ -1850,15 +1850,27 @@ class Home extends CI_Controller {
 		else if($activeNav==2)
 		{
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInApproveAndReject($userID);
-			$myList=$this->requestpost_model->getApproveAndReject($userID, $pageNum);
+			$myList=$this->requestpost_model->getApproveAndReject($userID, 0);
 			$data["result"]=$this->mapReqeustPostToView($myList, 'seller', "ApproveAndReject");
 			$data["NoOfItemCount"]= $data["NoOfItemCount"] + $this->requestpost_model->getNoOfItemCountInDirectSendHistoryAsSeller($userID);
-			$myList=$this->requestpost_model->getDirectSendHistoryAsSeller($userID, $pageNum);
+			$myList=$this->requestpost_model->getDirectSendHistoryAsSeller($userID, 0);
 			//var_dump($myList);
 			if(isset($data["result"]) && $data["result"]!=null && count($data["result"])>0)
 				$data["result"]=array_merge($data["result"], $this->mapReqeustPostToViewOfArray($myList, "seller"));
 			else 
 				$data["result"]=$this->mapReqeustPostToViewOfArray($myList, "seller");
+			if($sortByDate==2)
+				usort($data["result"], array($this, "cmp2"));
+			else
+				usort($data["result"], array($this, "cmp1"));
+			
+				$ulimit=ITEMS_PER_PAGE;
+				$olimit=0;
+				if ($pageNum>1)
+					$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+				$data["result"]=array_slice($data["result"],$olimit , $ulimit);
+				
+				
 			$data["DirectSendType"]="Seller";
 			$this->load->view("account-approve-request-ads", $data);
 		}
@@ -1882,15 +1894,25 @@ class Home extends CI_Controller {
 		else if($activeNav==6)
 		{
 			$data["NoOfItemCount"]=$this->requestpost_model->getNoOfItemCountInPendingApproval($userID);
-			$myList=$this->requestpost_model->getPendingApproval($userID, $pageNum);
+			$myList=$this->requestpost_model->getPendingApproval($userID,0);
 			$data["result"]=$this->mapReqeustPostToView($myList, "buyer", "PendingApproval");
 			$data["NoOfItemCount"]=$data["NoOfItemCount"]+$this->requestpost_model->getNoOfItemCountInDirectSendHistory($userID);
-			$myList=$this->requestpost_model->getDirectSendHistory($userID, $pageNum);
+			$myList=$this->requestpost_model->getDirectSendHistory($userID, 0);
 			if($data["result"]!=null && count($data["result"])>0)
 				$data["result"]=array_merge($data["result"],$this->mapReqeustPostToView($myList, "buyer"));
 			else
 				$data["result"]=$this->mapReqeustPostToView($myList, "buyer");
-					
+			if($sortByDate==2)
+				usort($data["result"], array($this, "cmp2"));
+			else
+				usort($data["result"], array($this, "cmp1"));
+			
+				$ulimit=ITEMS_PER_PAGE;
+				$olimit=0;
+				if ($pageNum>1)
+					$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+					$data["result"]=array_slice($data["result"],$olimit , $ulimit);
+				
 			$data["DirectSendType"]="Buyer";
 			$this->load->view("account-pending-approval-ads", $data);
 		}
@@ -1972,6 +1994,21 @@ class Home extends CI_Controller {
 			}
 		}
 		return $result;
+	}
+	
+	function cmp1($a, $b)
+	{
+		if($a["createDate"] > $b["createDate"])
+			return -1;
+		else 
+			return 1;
+	}
+	function cmp2($a, $b)
+	{
+		if($a["createDate"] > $b["createDate"])
+			return 1;
+		else 
+			return -1;
 	}
 	public function mapReqeustPostToView($inbox, $type="buyer", $type2="DirectSend")
 	{
