@@ -61,7 +61,13 @@
           <div class="inner-box category-content">
             <div class="row">
               <div class="col-lg-12">
-                <div class="alert alert-danger pgray  alert-lg" role="alert">
+                <div class="alert alert-danger pgray  alert-lg" style="text-align: center;" role="alert">
+					<i class="icon-cancel-circled" style="
+						color: white;
+						font-size: 200px;
+						line-height: 200px;
+					"></i>
+					<br/>
 					<h2 class="no-margin no-padding">&#10008; <?php echo $failedTitle; ?> <?php echo $error;?></h2>
 					<br/>
 					<h2>Redirecting In <span id="countdown">5</span> to <?php echo $redirectToWhatPage;?></h2>

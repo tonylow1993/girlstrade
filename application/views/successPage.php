@@ -57,7 +57,13 @@
           <div class="inner-box category-content">
             <div class="row">
               <div class="col-lg-12">
-               <div class="alert alert-success pgray  alert-lg" role="alert">
+               <div class="alert alert-success pgray  alert-lg" style="text-align: center;" role="alert">
+					<i class="fa fa-check-circle" style="
+						color: white;
+						font-size: 200px;
+						line-height: 200px;
+					"></i>
+					<br/>
                  	<h2 class="no-margin no-padding">&#10004; <?php echo $successTile;?> <?php echo $error;?></h2>
 					<br/>
 					<h2>Redirecting In <span id="countdown">5</span> to <?php echo $redirectToWhatPage;?></h2>
