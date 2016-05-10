@@ -19,8 +19,8 @@
 					<div class="container">
 						<ul>
 							<li><a href="#tab1" data-toggle="tab">Step 1: Choose Category</a></li>
-							<li><a href="#tab2" data-toggle="tab">Step 2: Choose District</a></li>
-							<li><a href="#tab3" data-toggle="tab">Step 3: Post Your Ads</a></li>
+							<li><a href="#tab2" data-toggle="tab">Step 2: Trade Location</a></li>
+							<li><a href="#tab3" data-toggle="tab">Step 3: Post</a></li>
 						</ul>
 					</div>
 				</div>
@@ -70,13 +70,14 @@
 					<div class="col-lg-12 content-box " id="summaryCategoryList" name="summaryCategoryList" style="display:block;">
 						<div class="row row-featured row-featured-category">
 							<div class="col-lg-12  box-title no-border" style="margin-bottom: 25px;">
-							   <div class="inner"><h2 style="color:#5CB2DD; font-size:22px"> Where do you live?</h2>
+							   <div class="inner"><h2 style="color:#5CB2DD; font-size:22px"> Where do you want to trade?</h2>
 							   </div>
 							</div>
 							<?php 
 							$count=0;
 							$total=0;
 							$lastCol=0;
+							$firstTime=0;
 							foreach ($resLoc as $id=>$value)
 							{
 								if(!isset($lang_label))
@@ -85,14 +86,14 @@
 								if($lang_label<>"english")
 									$name=$value[0]->nameCN;
 								
-								if($value[0]->locationID==1){
+								if($value[0]->locationID==2){
 									$color = "green";
-								}else if($value[0]->locationID==2){
+								}else if($value[0]->locationID==1){
 									$color = "blue";
 								}else if($value[0]->locationID==3){
 									$color = "red";
 								}
-								if($value[0]->level==2)
+								if($value[0]->level==1)
 								{
 									$total++;
 									$count++;
@@ -112,6 +113,18 @@
 										else
 										echo "<div class=\"col-md-4 col-sm-4\">";
 									}
+									if($firstTime==0)
+									{
+										$all_loc_name="All Location";
+										$all_loc_id="";
+										$all_loc_color = "pink";
+										echo "<div class=\"cat-list\">";
+										echo "<h3><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;line-height:0px;\" href='#' 
+										onclick='chooseLoc($all_loc_id)'>
+										<ul class='wizard'><li class='next' style='color: $all_loc_color'>$all_loc_name</li></ul></a>";
+										echo "</h3></div>";
+										$firstTime++;
+									}
 									echo "<div class=\"cat-list\">";
 									echo "<h3><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;line-height:0px;\" href='#' onclick='chooseLoc($id)'><ul class='wizard'><li class='next' style='color: $color'>$name</li></ul></a>";
 									
@@ -119,7 +132,7 @@
 									echo "</h3>";
 									echo "<ul class='cat-collapse collapse in cat-id-$total wizard'>";
 										
-								}else if($value[0]->level==3)
+								}else if($value[0]->level==2)
 								{
 									echo  "<li class='next'> <a href='#' onclick='chooseLoc($id)'><h4>$name</h4></a></li>";
 								}
