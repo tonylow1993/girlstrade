@@ -827,7 +827,7 @@ class Home extends CI_Controller {
 			}
 		}
 		else if(count($user)>0 and $user["accountStatus"] == 'U'){
-			
+			$userID=$user["userID"];
 			$loginhist=array("username"=> $username, "logMsg"=>ACTIVATEUSERNAME,
 					"status"=>"F", "loginTime"=>  date("Y-m-d H:i:s"), "userID"=>$userID);
 			$this->userloginhistory_model->insert($loginhist);
