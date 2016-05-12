@@ -135,12 +135,20 @@ class Home extends CI_Controller {
             $data["FeatureProduct"]=$this->getFeatureProduct();
             $data["InterestedProduct"]=$this->getInterestedProduct();
             $data["HotProduct"]=$this->getHotProduct();
-// 			$data["result"]=$this->blog_model->getBlog();
-// 			$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
-// 			$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
-// 			$data["pic3"]=base_url().$data["result"][0]->picPath3.$data["result"][0]->picName3;
-// 			$data["title"]=$data["result"][0]->title;
-// 			$data["description"]=$data["result"][0]->description;
+			$data["result"]=$this->blog_model->getBlog();
+			if($data["result"]!=null && count($data["result"])>0){
+				$data["pic1"]=base_url().$data["result"][0]->picPath1.$data["result"][0]->picName1;
+				$data["pic2"]=base_url().$data["result"][0]->picPath2.$data["result"][0]->picName2;
+				$data["pic3"]=base_url().$data["result"][0]->picPath3.$data["result"][0]->picName3;
+				$data["title"]=$data["result"][0]->title;
+				$data["description"]=$data["result"][0]->description;
+			}else{
+				$data["pic1"]="";
+				$data["pic2"]="";
+				$data["pic3"]="";
+				$data["title"]="";
+				$data["description"]="";
+			}
             $data["popularLocation1"]=$this->getPopularLocation(3, 0);
             $data["popularLocation2"]=$this->getPopularLocation(3, 3);
             $data["popularMakes1"]=$this->getPopularCategory(2, 0);
