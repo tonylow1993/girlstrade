@@ -149,6 +149,5 @@ define("INSERTMESSAGESENDEMAIL","INSERTMESSAGESENDEMAIL");
 define("APPROVEDIRECTSEND", "APPROVEDIRECTSEND");
 define("REJECTDIRECTSEND", "REJECTDIRECTSEND");
 define("REPLYMESSAGESENDEMAIL", "REPLYMESSAGESENDEMAIL");
-define("sendEmailForApproveReject", "sendEmailForApproveReject");
-		
+define("sendEmailForApproveReject", "sendEmailForApproveReject");		
 
