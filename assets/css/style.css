@@ -3863,6 +3863,10 @@ span b{
 	.action-hide{
 		display: block;
 	}
+	
+	.inside-a{
+		display: none;
+	}
 }
 
 .close {
