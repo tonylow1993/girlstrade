@@ -128,7 +128,7 @@
 									echo "<div class=\"cat-list\">";
 									echo "<h3><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;line-height:0px;\" href='#' onclick='chooseLoc($id)'><ul class='wizard'><li class='next' style='color: $color'>$name</li></ul></a>";
 									
-									echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\">   <span class=\" icon-down-open-big\"></span> </span>";
+									echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\"></span>";
 									echo "</h3>";
 									echo "<ul class='cat-collapse collapse in cat-id-$total wizard'>";
 										
@@ -268,7 +268,15 @@
                           </div>
                       </div>
                     
-                    
+                    <!-- Input -->
+                      <div id="contactInputDiv" class="form-group row">
+                          <label class="col-md-3 control-label text-center" for="textarea"> 
+                          <i class="icon-mobile-phone"></i>
+							<?php echo "Contact";?> <font color="red">*</font></label>
+                          <div class="col-md-8">
+                              <input class="form-control" style="vertical-align: top; horizontal-align: left; resize:none;" id="telNo" name="telNo" required="true" value="<?php if (isset($telNo)) echo $telNo?>"></input>
+                          </div>
+                      </div>
                     
                     
                       <!-- Prepended text-->

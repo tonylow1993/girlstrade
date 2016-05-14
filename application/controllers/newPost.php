@@ -16,6 +16,7 @@ class newPost extends CI_Controller {
 		$this->load->library('upload');
 		$this->load->library('image_lib');
 		//$this->load->model('users_model');
+		$this->load->model('userinfo_model', 'userInfo');
 		$this->load->model('post_model', 'post');
 		$this->load->model('picture_model', 'picture');
 		$this->load->model('category_model', 'cat');
@@ -349,6 +350,15 @@ class newPost extends CI_Controller {
 				$this->load->view('login', $data);
 				return;
 			}
+			
+			
+			$info=$this->userInfo->getUserInfoByUserID($data["userID"] );
+			if(isset($info))
+			{
+				$data["phoneNo"]=$info["phoneNo"];
+				$data["telNo"]=$info["telNo"];
+			}
+			
 			//----------setup the header menu----------
 			$data["menuMyAds"]="";
 			$data["menuInbox"]="";
