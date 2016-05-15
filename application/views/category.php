@@ -365,7 +365,12 @@
         		</div> 
                </ul>
         		</div>
-              <!--/.locations-list-->
+
+              
+              
+              <div style="clear:both"></div>
+            </div>
+                          <!--/.locations-list-->
               <div class="locations-list  list-filter margin-top-30">
                 <h5 class="list-title"><strong><a class="not-active"><i class="icon-money"></i><?php echo $lblPriceRange;?></a></strong></h5>
                 <form role="form"  id="priceForm" class="form-inline "  onSubmit="return priceSetup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">  
@@ -490,11 +495,6 @@
 			                </a></li>
                 </ul>
               </div>
-              
-              
-              <div style="clear:both"></div>
-            </div>
-            
             <!--/.categories-list--> 
           </aside>
        </div>
