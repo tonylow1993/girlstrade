@@ -460,7 +460,7 @@ window.onload = function(){
 
             </div>
 			
-        <div class="inner-box relative panel-bevel">
+        <!--<div class="inner-box relative panel-bevel">
 				
                 <h2 class="title-2">
 					<i class="fa fa-heart" style="color: #E2348C;"></i>
@@ -476,7 +476,7 @@ window.onload = function(){
                         <div class="no-margin item1-carousel owl-carousel owl-theme">
 
                             <?php 
-                  if($InterestedProduct<>null)
+                  /*if($InterestedProduct<>null)
                   {
                   	foreach($InterestedProduct as $id=>$item)
                   	{
@@ -526,7 +526,7 @@ window.onload = function(){
                   		echo "</div>";
 						echo "</div>";
                   	}
-                  }
+                  }*/
                   ?>
 
 
@@ -538,7 +538,7 @@ window.onload = function(){
 
             </div>
 
-        </div>
+        </div>-->
        
             <div class="inner-box relative panel-bevel">
                 <h2 class="title-2" style="border-bottom: 1px solid #E00000;">
