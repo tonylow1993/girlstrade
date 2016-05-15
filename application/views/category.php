@@ -568,14 +568,28 @@
               
               <a class="btn btn-sm btn-searchCat" href="#selectCategory" data-toggle="modal"> 
 				<i class="icon-book-open"> </i> 
-				Category 
+				<?php 
+					if($catID_==null or $catID_=="" or $catID_=='0') 
+						echo "Category"; 
+					else{ 
+						$value = $result[(int)$catID_];
+						echo $value[0]->name;
+					}
+				?>
               </a>
               <a class="btn btn-sm btn-searchCat2" href="#selectLocation" data-toggle="modal"> 
 				<i class="icon-location-3"> </i> 
-				Location 
+				<?php 
+					if($locID_==null or $locID_=="" or $locID_=='0') 
+						echo "Location"; 
+					else{ 
+						$value = $resLoc[(int)$locID_];
+						echo $value[0]->name;
+					}
+				?>
               </a>
               <a class="btn btn-sm btn-searchCat3" href="#selectPriceRange" data-toggle="modal"> 
-				$ Price Range
+				<?php if ( $minPrice > 0 && $maxPrice > 0) echo "$".$minPrice." - $ ".$maxPrice; else echo "$ Price Range";?>
               </a>
               </div>
               <div class="sortByDiv">
