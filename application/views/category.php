@@ -1291,14 +1291,15 @@ function priceSetup1(){
 	var catID=document.getElementById("search-category").value;
  	var locID=document.getElementById("id-location").value;
 //var locID=0;
-	var sortByType=document.getElementById("sortByType").value;
-	var sortByPrice=document.getElementById("selectSortType").value;
+	var sortByType=document.getElementById("selectSortType").value;
+	var sortByPrice=document.getElementById("sortByPrice").value;
 	var sortByDate=document.getElementById("sortByDate").value;
 	var keywords=document.getElementById("ads").value;
 	   if(keywords.trim()=='')
 		   keywords='0';
-	   var minPrice=(document.getElementById("minPrice1").value);
-	   var maxPrice=(document.getElementById("maxPrice1").value);
+	   var minPrice=document.getElementById("minPrice1").value;
+	   var maxPrice=document.getElementById("maxPrice1").value;
+	   console.log(minPrice);
 	   var activeTab=document.getElementById("paneActiveTab").value;
 	   
  	  if(!isNumber(minPrice) || !isNumber(maxPrice)){
@@ -1681,15 +1682,15 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 				</div>
                 </div>
                 </h5>
-               <form role="form"  id="priceForm1" class="form-inline modalBody"  onSubmit="return priceSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0';?>" method="POST">  
+               <form role="form"  id="priceForm1" class="form-inline modalBody"  onSubmit="return priceSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST"> 
                   <div class="margin-top-20">
 					  <div id="price-slider1" class="price-slider"></div>
                       <input type="number" placeholder="20" id="minPrice1"
-                      value=<?php  if($minPrice>0) echo $minPrice;?>     
+                      value="<?php  if($minPrice>0) echo $minPrice;?>"     
                       name="minPrice1"  min="20" class="form-control price">
                       <span id="menubarTitle"> — </span>
                       <input type="number" placeholder="5000 " id="maxPrice1"  
-                      value=<?php if($maxPrice>0) echo $maxPrice;?>  
+                      value="<?php if($maxPrice>0) echo $maxPrice;?>" 
                       name="maxPrice1" max="5000"   class="form-control price">
 					  <script type="text/javascript">
 						var html5Slider1 = document.getElementById('price-slider1');
