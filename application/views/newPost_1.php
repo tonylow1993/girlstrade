@@ -117,7 +117,7 @@
 									{
 										$all_loc_name="All Location";
 										$all_loc_id="";
-										$all_loc_color = "pink";
+										$all_loc_color = "rgba(255, 94, 122, 0.85);";
 										echo "<div class=\"cat-list\">";
 										echo "<h3><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;line-height:0px;\" href='#' 
 										onclick='chooseLoc($all_loc_id)'>
@@ -262,21 +262,14 @@
                           <i class="icon-clipboard"></i>
 							<?php echo $Description;?> <font color="red">*</font></label>
                           <div class="col-md-8">
-                              <textarea class="form-control" style="vertical-align: top; horizontal-align: left; resize:none;" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"><?php echo set_value('descriptionTextarea'); ?></textarea>
+                              <textarea class="form-control" style="vertical-align: top; horizontal-align: left; 
+                              resize:none;" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"><?php echo set_value('descriptionTextarea'); ?></textarea>
 	                          	<!--<div id="descriptionTextareaAjaxLoad" class="center"></div>
 	                        	<div id="descriptionTextareaError" hidden="true"></div>-->
                           </div>
                       </div>
                     
-                    <!-- Input -->
-                      <div id="contactInputDiv" class="form-group row">
-                          <label class="col-md-3 control-label text-center" for="textarea"> 
-                          <i class="icon-mobile-phone"></i>
-							<?php echo "Contact";?> <font color="red">*</font></label>
-                          <div class="col-md-8">
-                              <input class="form-control" style="vertical-align: top; horizontal-align: left; resize:none;" id="telNo" name="telNo" required="true" value="<?php if (isset($telNo)) echo $telNo?>"></input>
-                          </div>
-                      </div>
+                    
                     
                     
                       <!-- Prepended text-->
@@ -312,10 +305,25 @@
                                     <div id="uploadImgError">
                                     </div>
                               </div>
-                                  <p class="help-block">Add up to 5 photos. Use a better image of your product, not catalogs.</p>   
+                                  <p id="helper">Add up to 5 photos. Use real images, not catalogs.</p>   
                           
                           </div>
                       </div>
+                      
+                      <!-- Contact Info -->
+                      <div id="contactInputDiv" class="form-group row">
+                          <label class="col-md-3 control-label text-center" for="textarea"> 
+                          <i class="icon-mobile"></i>
+							<?php echo "Contact Info";?> <font color="red">*</font></label>
+                          <div class="col-md-8">
+                              <textarea class="form-control" style="vertical-align: top; horizontal-align: left; resize:none;" id="telNo" name="telNo" 
+                              required="true" value="<?php if (isset($telNo)) echo $telNo?>" rows="2" maxlength="120"><?php if (isset($telNo)) echo $telNo?></textarea>
+                          	<em id="helper">Contact Info will only display to <b>potential buyers</b>. You may edit this message in Edit Profile.</em>
+                          </div>   
+                      </div>
+                      
+                      
+                      
 					    <div class="form-group row">
                           <label class="col-md-3 control-label text-center"></label>
                           <div class="col-md-8"> 

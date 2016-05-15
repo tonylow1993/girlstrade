@@ -4295,13 +4295,14 @@ span b{
 }
 
 .f-category h6 {
-  color: #333;
+  color: #4E1414;
   font-family: MyCustomFont, serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: 0;
   margin: 10px 0;
   padding-bottom: 0;
+  text-decoration: underline;
   transition: all 0.25s cubic-bezier(0.4, 0, 1, 1) 0.1s;
   -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 1, 1) 0.1s;
 }
@@ -4315,7 +4316,11 @@ span b{
   color: #9a9a9a;
   font-size: 12px;
 }
-
+#helper
+{
+	color:#5B5C92;
+	font-size: 12px;
+}
 .box-title h2 {
     margin: 15px 0;
     padding: 0;
