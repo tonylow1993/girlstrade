@@ -174,7 +174,7 @@ echo json_encode($usr);;
     <nav class="navbar   navbar-site navbar-default" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <!--<button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>-->
           
           <a href="<?php echo base_url();?>"  class="navbar-brand logo logo-title"> 
           <!-- Original Logo will be placed here  class="navbar-brand logo logo-title"--> 
@@ -186,7 +186,7 @@ echo json_encode($usr);;
           Girls<span style="color: #5e5e5e">trade </span> 
           </b></span></a> </div>
           
-        <div class="navbar-collapse collapse">
+        <div class="">
           
           <?php $usr = $this->nativesession->get('user');
 				//or !isset($this->session->userdata["userID"])
@@ -199,20 +199,20 @@ echo json_encode($usr);;
             <?php if (!isset($Login)) $Login = 'Login'; echo $Login;?>
             </span>
             </a></li>
-            <li><a href="<?php echo base_url(); echo MY_PATH;?>home/signupPage">
+            <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>home/signupPage">
             <i  id="menubarTitle" class="icon-doc-text-1"></i>
             <span id="menubarTitle" >
             <?php if (!isset($Signup)) $Signup = 'Signup'; echo $Signup;?>
             </span>
             </a></li>  
-            <li><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
+            <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
             <i  id="menubarTitle" class="icon-search-2"></i>
             <span id="menubarTitle" >
             Search
             </span>
             </a></li> 
             
-            <li>
+            <!--<li>
             <a id="lang" href=<?php $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
             echo base_url().MY_PATH."switchLang/changeLang_R1?prevURL=".urlencode(current_url());    
             	?>>
@@ -229,8 +229,15 @@ echo json_encode($usr);;
                 	?>
             </span>
             </a>    	
-            </li>
-            <li class="postadd"><a class="btn btn-block   btn-border btn-post btn-tw" href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>">
+            </li>-->
+			<li id="smpostaddnav" class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>">
+            <i  id="menubarTitle" class="icon-pencil-2"></i>
+            <span id="menubarTitle" >
+            New Ads
+            </span>
+            </a></li> 
+			
+			<li id="postaddbtn" class="postadd"><a class="btn btn-block   btn-border btn-post btn-tw" href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>">
             <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?>
             <i class="icon-pencil-2"></i></a>
             
@@ -238,7 +245,7 @@ echo json_encode($usr);;
           </ul>
          <?php }else{?>
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
+            <!--<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" type="button" href="#">
 					<i id="menubarTitle" class="icon-user-woman"></i>
 					<span id="menubarTitle" >
@@ -263,18 +270,25 @@ echo json_encode($usr);;
 					
 					</li>
 				</ul>     
-            </li>
-            <li><a href="<?php echo base_url(); echo MY_PATH;?>home/logout"><i id="menubarTitle" class="icon-logout"></i>
+            </li>-->
+			
+			<li <?php echo $menuMyAds?>><a id="menuDropDownItem" href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/3";?>">
+					
+				<i id="menuDropDownItem" class="icon-th-thumb"></i> My Ads </a>
+			
+			</li>
+			
+            <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>home/logout"><i id="menubarTitle" class="icon-logout"></i>
             <span id="menubarTitle">
          	<?php if (!isset($Logout)) $Logout = 'Logout'; echo $Logout;?></a></li>
             </span>
-            <li><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
+            <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
             <i  id="menubarTitle" class="icon-search-2"></i>
             <span id="menubarTitle" >
             Search
             </span>
             </a></li> 
-            <li>
+            <!--<li>
             <a id="lang" href=<?php $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
             echo base_url().MY_PATH."switchLang/changeLang_R1?prevURL=".urlencode(current_url());    
             	?>>
@@ -291,9 +305,16 @@ echo json_encode($usr);;
                 	?>
             </span>
             </a>    	
-            </li>
+            </li>-->
             
-            <li class="postadd"><a class="btn btn-border btn-danger" href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>"><?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?><i class="icon-pencil-2"></i></a></li>
+			<li id="smpostaddnav" class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>">
+            <i  id="menubarTitle" class="icon-pencil-2"></i>
+            <span id="menubarTitle" >
+            New Ads
+            </span>
+            </a></li> 
+			
+            <li id="postaddbtn" class="postadd"><a class="btn btn-border btn-danger" href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>"><?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post New'; echo $Post_New_Ads;?><i class="icon-pencil-2"></i></a></li>
           </ul>
           <?php }?>       
         </div>

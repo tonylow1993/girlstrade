@@ -594,6 +594,11 @@ btn-post:hover, .btn-post:focus, .btn-post:active, .btn-post.active, .open .drop
     max-height: 90px;
 }
 
+.nav>li {
+	width: 24%;
+    display: inline-block;
+}
+
 @media (min-width: 768px) {
   .logo {
     height: 80px;
@@ -3353,6 +3358,40 @@ td.ads-details-td {
 /* =============================================================== */
 /* ADDED BY TONY
 /* =============================================================== */
+
+.nav>li {
+    text-align: center;
+}
+
+@media (max-width: 500px) {
+	#postaddbtn{
+		display: none;
+	}
+	
+	#smpostaddnav{
+		display: inline-block;
+	}
+	
+	.smborder-left
+	{
+		border-left: solid 1px #ddd;
+	}
+}
+
+@media (min-width: 500px) {
+	#postaddbtn{
+		display: inline-block;
+	}
+	
+	#smpostaddnav{
+		display: none;
+	}
+	
+	.smborder-left
+	{
+		border-left: none;
+	}
+}
 
 .table{
 	display: table;
