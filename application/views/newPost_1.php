@@ -19,8 +19,8 @@
 					<div class="container">
 						<ul>
 							<li><a href="#tab1" data-toggle="tab">Step 1<span class="inside-a">: Choose Category</span></a></li>
-							<li><a href="#tab2" data-toggle="tab">Step 2<span class="inside-a">: Trade Location</span></a></li>
-							<li><a href="#tab3" data-toggle="tab">Step 3<span class="inside-a">: Post</p></span></li>
+							<!--<li><a href="#tab2" data-toggle="tab">Step 2<span class="inside-a">: Trade Location</span></a></li>-->
+							<li><a href="#tab3" data-toggle="tab">Step 2<span class="inside-a">: Post Ads</p></span></li>
 						</ul>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane" id="tab2">
+				<!--<div class="tab-pane" id="tab2">
 					<div class="col-lg-12 content-box " id="summaryCategoryList" name="summaryCategoryList" style="display:block;">
 						<div class="row row-featured row-featured-category">
 							<div class="col-lg-12  box-title no-border" style="margin-bottom: 25px;">
@@ -140,7 +140,7 @@
 							if($total<>0) echo "</ul></div></div></div>";
 							?>
 					</div>
-				</div>
+				</div>-->
 				<div class="tab-pane" id="tab3">
 					<div class="col-md-9 page-content">
 					<div class="inner-box category-content">
@@ -192,36 +192,6 @@
                           </div>
                       </div>
                        
-                       <div id="generalLoc" class="form-group row">
-                          <label class="col-md-3 control-label text-center" >
-                          <i class=" icon-location-2"></i>
-                           <?php echo $lblLocation;?> </label>
-                          <div class="col-md-8">
-                              <select name="locID2" id="locID2"  class="form-control" >
-                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - All Locations - </option>
-                                  <?php 
-						            foreach ($resLoc as $id=>$value)
-						            {
-							            if(!isset($lang_label))
-						 	            		$lang_label="";
-						             	$name=$value[0]->name;
-						             	if($lang_label<>"english")
-						             		$name=$value[0]->nameCN;
-						             	if($value[0]->level==1){
-						             		echo "<option  value='".$id."' ".set_select('locID2', $id, (null!=(set_select('locID2', $id))  ? TRUE : FALSE ))." style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
-						             	}else if($value[0]->level==2)
-						             	{
-						            		echo "<option  value='".$id."' ".set_select('locID2', $id, (null!=(set_select('locID2', $id))  ? TRUE : FALSE ))." style='background-color:#E9E9E9;'>--".$name." </option>";
-						             	}else if($value[0]->level==3)
-						             	{
-						              		echo "<option  value='".$id."' ".set_select('locID2', $id, ((null!=(set_select('locID2', $id)) )   ? TRUE : FALSE )).">----".$name." </option>";
-						             	}
-             						}
-						            ?>
-                              </select>
-                          </div>
-                      </div>    
-                      
                       <!-- Select Basic -->
                       <div id="itemQuality" class="form-group row">
                           <label class="col-md-3 control-label text-center" > 
@@ -284,14 +254,14 @@
                         
                               
                           </div>
-                          <div class="col-md-4">
+                          <!--<div class="col-md-4">
                               <div class="checkbox">
                                   <label>
                                       <input type="checkbox" value="<?php echo set_value('negotiable'); ?>" id="negotiable" name="negotiable">
                                       <?php echo $Negotiable;?> 
                                   </label>
                               </div>
-                          </div>
+                          </div>-->
                       </div>
 
 
@@ -321,6 +291,36 @@
                           	<em id="helper">Contact Info will only display to <b>potential buyers</b>. You may edit this message in Edit Profile.</em>
                           </div>   
                       </div>
+                      
+					                         <div id="generalLoc" class="form-group row">
+                          <label class="col-md-3 control-label text-center" >
+                          <i class=" icon-location-2"></i>
+                           <?php echo $lblLocation;?> </label>
+                          <div class="col-md-8">
+                              <select name="locID2" id="locID2"  class="form-control" >
+                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - All Locations - </option>
+                                  <?php 
+						            foreach ($resLoc as $id=>$value)
+						            {
+							            if(!isset($lang_label))
+						 	            		$lang_label="";
+						             	$name=$value[0]->name;
+						             	if($lang_label<>"english")
+						             		$name=$value[0]->nameCN;
+						             	if($value[0]->level==1){
+						             		echo "<option  value='".$id."' ".set_select('locID2', $id, (null!=(set_select('locID2', $id))  ? TRUE : FALSE ))." style='background-color:#E9E9E9;font-weight:bold;'>".$name."</option>";
+						             	}else if($value[0]->level==2)
+						             	{
+						            		echo "<option  value='".$id."' ".set_select('locID2', $id, (null!=(set_select('locID2', $id))  ? TRUE : FALSE ))." style='background-color:#E9E9E9;'>--".$name." </option>";
+						             	}else if($value[0]->level==3)
+						             	{
+						              		echo "<option  value='".$id."' ".set_select('locID2', $id, ((null!=(set_select('locID2', $id)) )   ? TRUE : FALSE )).">----".$name." </option>";
+						             	}
+             						}
+						            ?>
+                              </select>
+                          </div>
+                      </div>    
                       
                       
                       
