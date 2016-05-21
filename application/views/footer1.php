@@ -9,6 +9,7 @@
             <a href="<?php echo base_url().MY_PATH.'footer/getContactUS';?>"> <?php if (!isset($Contact_us)) $Contact_us = 'Contact us'; echo $Contact_us;?> </a> 
             <a href="<?php echo base_url().MY_PATH.'footer/getFQA';?>"> <?php if (!isset($FAQ)) $FAQ = 'FAQ'; echo $FAQ;?></a>
 			<a href="<?php echo base_url().MY_PATH.'getBlog/viewAllBlog';?>"> <?php if (!isset($Blog)) $Blog = 'Blog'; echo $Blog;?></a>
+			<a href="<?php echo base_url().MY_PATH."switchLang/changeLang_R1?prevURL=".urlencode(current_url());?>"><?php echo $this->lang->line("lang_label_text");?></a>
             <?php /*
             <a id="lang" href=<?php 
             	   $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
