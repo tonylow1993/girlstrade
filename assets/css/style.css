@@ -3359,7 +3359,81 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.inbox-title-span{
+	margin-top: 10px;
+    font-size: 15px;
+    text-align: center;
+}
 
+.inbox-title{
+	background-color: #E74C3C;
+    height: 40px;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    margin-bottom: 5px;
+}
+
+.msg-box{
+	background: #fff;
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
+    font-size: 18px;
+    margin: 0 0 8px;
+    padding: 20px 0;
+}
+
+.msg-box:hover{
+	background: #fcfcfc;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.from-span{
+	display: inline-block;
+	width: 22%;
+}
+
+.date-span{
+	display: inline-block;
+	width: 22%;
+}
+
+.msg-span{
+	display: inline-block;
+	width: 53%;
+}
+
+.box-from{
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    text-overflow: ellipsis;
+	margin-left: 10px;
+	font-size: 20px;
+	font-weight: 500;
+	color: #000;
+}
+
+
+.box-date{
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    text-overflow: ellipsis;
+	margin-left: 10px;
+}
+
+.box-msg{
+	margin: 0;
+    overflow: hidden;
+    position: relative;
+    text-overflow: ellipsis;
+	font-weight: 300;
+	margin-left: 10px;
+	font-size: 20px;
+	margin-top: 10px;
+	color: #000;
+}
 
 .navbar-nav>li>a{
     text-align: center;
@@ -3588,10 +3662,11 @@ input[type=checkbox]
 }
 
 .inbox-msg{
-	color: black;
+	font-weight: 300;
+	margin-left: 10px;
 	font-size: 20px;
-	//font-weight: 500;
-	margin-top: 30px;
+	margin-top: 10px;
+	color: #000;
 }
 
 .inbox-username{

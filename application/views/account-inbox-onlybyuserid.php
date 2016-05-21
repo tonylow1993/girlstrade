@@ -15,17 +15,15 @@
           <div class="inner-box">
           	  <?php include("profile_visit.php");?>
             <h2 class="title-2"><i class="icon-mail"></i> <?php echo $this->lang->line("Inbox");?> </h2>
-            <div class="table-responsive">
+            <div>
 
 		<!-- table-striped -->	
-              <table id="addManageTable" class="table  table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
-                <thead>
-                  <tr>
-                    <th> <?php echo $this->lang->line("From");?> </th>
-                    <th data-sort-ignore="true"> <?php echo $this->lang->line("Preview");?>  </th>
-                   </tr>
-                </thead>
-                <tbody>
+              <div id="addManageTable" class="table  table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
+                <div class="inbox-title">
+                    <span class="from-span inbox-title-span"> <?php echo $this->lang->line("From");?> </span>
+                    <span class="msg-span inbox-title-span" data-sort-ignore="true"> <?php echo $this->lang->line("Preview");?>  </span>
+					<span class="date-span inbox-title-span" data-sort-ignore="true"> Date  </span>
+                </div>
                 <?php 
                 if($result<>null)
             	{
@@ -45,22 +43,24 @@
 						$trId="trId_".$rowCount;
                 		if(strcmp($row["readflag"],"N")==0)
 							$readflag="bgcolor='".UnReadInBoxBgColor."' onclick=\"editData($id, $pageNum, '$trId')\"";
-						echo "<tr id=".$trId." name=".$trId." ".$readflag." >";
-                    	echo "<td style=\"width:20%\" class=\"text-center\"><p class=\"inbox-username\">$fromusername";
+						echo "<div class=\"msg-box\" id=".$trId." name=".$trId." ".$readflag." >";
+                    	echo "<span class=\"from-span\"><p class=\"box-from\">$fromusername";
                     	echo "</p>";
-                    	echo "<a class=\"btn btn-primary btn-xs btn-120\" href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
-                    	echo "</td>";
+                    	//echo "<a class=\"btn btn-primary btn-xs btn-120\" href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
+                    	echo "</span>";
                     	
                     	
                     	
                     	
-                    	echo "<td style=\"width:60%\" class=\"ads-details-td\">";
-                    	echo "<div class=\"ads-details\">";
-                       echo "<h5><div class=\"add-title-girlstrade\"><p class=\"inbox-msg\">".$content;
-                          echo "</p><p class=\"post-time\">Posted On: ". $createDate."</p></h5>";
-                      	 	echo "</div></td>";
+                    	echo "<span class=\"msg-span\">";
+                        echo "<p class=\"box-msg\">".$content;
+                      	echo "</p></span>";
+							
+                      	echo "<span class=\"date-span\">";
+                        echo "<p class=\"box-date\">". $createDate."</p>";
+                      	echo "</span>";
                       	
-                  		echo "</tr>";
+                  		echo "</div>";
                   	}
             	}
                   ?>
@@ -95,8 +95,7 @@
               ?>
                 </ul>
           </div>
-                </tbody>
-              </table>
+              </div>
             </div>
             <!--/.row-box End--> 
         
