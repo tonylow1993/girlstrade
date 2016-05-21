@@ -29,12 +29,12 @@
   <div class="search-row-wrapper">
     <div class="container ">
       <form  id="myForm"  onSubmit="return setup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">
-            <div class="col-lg-3 col-sm-3 search-col relative"> <i class="icon-docs icon-append"></i>
+            <div class="col-lg-3 col-sm-3 search-col relative search-input"> <i class="icon-docs icon-append"></i>
                 <input type="text" name="ads"  id="ads" class="form-control has-icon" placeholder="Keywords" value="<?php if($keywords<>'0') echo trim($keywords);?>">
               	<input type="hidden" name="paneActiveTab" id="paneActiveTab" value="<?php echo $activeTab;?>" >
               </div>
             
-            <div class="col-sm-3">
+            <div class="col-sm-3 search-cat">
           <select class="form-control" name="category" id="search-category" >
         	<?php 
         	$str="";
@@ -68,7 +68,7 @@
             ?>
           </select>
         </div>
-        <div class="col-sm-3"> 
+        <div class="col-sm-3 search-loc"> 
           <select class="form-control" name="location" id="id-location"> 
             <?php 
              $str="";
@@ -109,7 +109,7 @@
            </select>
            </div>
        
-           <div class="col-sm-3">
+           <div class="col-sm-3 search-btn">
             	<button class="btn btn-primary btn-block btn-pink"> <i class="fa fa-search"></i> Search</button>  	
            	</div>
             

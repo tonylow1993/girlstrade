@@ -272,16 +272,15 @@ echo json_encode($usr);;
 				</ul>     
             </li>-->
 			
-			<li <?php echo $menuMyAds?>><a id="menuDropDownItem" href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/3";?>">
-					
-				<i id="menuDropDownItem" class="icon-th-thumb"></i> My Ads </a>
-			
-			</li>
+			<li <?php echo $menuMyAds?>><a href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/4";?>"><i id="menubarTitle" class="icon-th-thumb"></i>
+			<span id="menubarTitle">
+				Profile
+			</span></a></li>
 			
             <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>home/logout"><i id="menubarTitle" class="icon-logout"></i>
             <span id="menubarTitle">
-         	<?php if (!isset($Logout)) $Logout = 'Logout'; echo $Logout;?></a></li>
-            </span>
+         	<?php if (!isset($Logout)) $Logout = 'Logout'; echo $Logout;?></span></a></li>
+            
             <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
             <i  id="menubarTitle" class="icon-search-2"></i>
             <span id="menubarTitle" >

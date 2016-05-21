@@ -3359,6 +3359,8 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+
+
 .navbar-nav>li>a{
     text-align: center;
 }
@@ -3370,6 +3372,28 @@ td.ads-details-td {
 }
 
 @media (max-width: 768px) {
+	
+	.icon-append {
+		left: 8px;
+	}
+	
+	.search-btn{
+		display: inline-block;
+		width: 28%;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	
+	.search-input{
+		display: inline-block;
+		width: 70%;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	
+	.search-cat, .search-loc{
+		display: none;
+	}
 	
 	.logo-title {
 		padding-top: 10px;
