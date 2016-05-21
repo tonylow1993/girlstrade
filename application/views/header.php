@@ -233,7 +233,7 @@ echo json_encode($usr);;
 			<li id="smpostaddnav" class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>">
             <i  id="menubarTitle" class="icon-pencil-2"></i>
             <span id="menubarTitle" >
-            New Ads
+            Post
             </span>
             </a></li> 
 			
@@ -310,7 +310,7 @@ echo json_encode($usr);;
 			<li id="smpostaddnav" class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>">
             <i  id="menubarTitle" class="icon-pencil-2"></i>
             <span id="menubarTitle" >
-            New Ads
+            Post
             </span>
             </a></li> 
 			

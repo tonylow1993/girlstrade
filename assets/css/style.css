@@ -581,7 +581,7 @@ btn-post:hover, .btn-post:focus, .btn-post:active, .btn-post.active, .open .drop
   }
 
   .navbar-header {
-    min-height: 80px;
+    min-height: 60px;
     border-bottom: 1px solid #ddd;
   }
 
@@ -3359,11 +3359,22 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
-.nav>li {
+.navbar-nav>li>a{
     text-align: center;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 385px) {
+	#menubarTitle {
+		display: block;
+	}
+}
+
+@media (max-width: 768px) {
+	
+	.logo-title {
+		padding-top: 10px;
+	}
+	
 	#postaddbtn{
 		display: none;
 	}
@@ -3378,7 +3389,7 @@ td.ads-details-td {
 	}
 }
 
-@media (min-width: 500px) {
+@media (min-width: 768px) {
 	#postaddbtn{
 		display: inline-block;
 	}
