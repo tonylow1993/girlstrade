@@ -14,7 +14,7 @@
          <?php include("profile_header.php");?>
           <div class="inner-box">
           	  <?php include("profile_visit.php");?>
-            <h2 class="title-2"><i class="icon-mail"></i> <?php echo $this->lang->line("Inbox");?> </h2>
+            <div style="position:relative;"><h2 class="title-2"><i class="icon-mail"></i> <?php echo $this->lang->line("Inbox");?> <?php include("sort-dropdown.php");?></h2></div>
             <div>
 
 		<!-- table-striped -->	
@@ -43,7 +43,7 @@
 						$trId="trId_".$rowCount;
                 		if(strcmp($row["readflag"],"N")==0)
 							$readflag="bgcolor='".UnReadInBoxBgColor."' onclick=\"editData($id, $pageNum, '$trId')\"";
-						echo "<div class=\"msg-box\" id=".$trId." name=".$trId." ".$readflag." >";
+						echo "<div class=\"msg-box\" id=".$trId." name=".$trId." ".$readflag." href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\">";
                     	echo "<span class=\"from-span\"><p class=\"box-from\">$fromusername";
                     	echo "</p>";
                     	//echo "<a class=\"btn btn-primary btn-xs btn-120\" href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
