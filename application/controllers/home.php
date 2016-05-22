@@ -1253,6 +1253,8 @@ class Home extends CI_Controller {
 			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Username: '. $data['username'] .' has been used already.</div>';
 			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Username</span></em>';
 			$data['usernameError']='Error';
+			echo json_encode($data);
+			return;
 		}
 		if (strpos(strtolower($data['username']), 'fuck') !== false) {
 			$data['status'] = 'F';
