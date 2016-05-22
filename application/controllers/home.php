@@ -1953,6 +1953,8 @@ class Home extends CI_Controller {
 			$data["userID"]=$userID;
 			$data["result"]=$this->userInfoSendEmail_model->getSendEmailConfigByUserID($userID);
 			$this->load->view('adminSendEmailConfig.php', $data);
+		}else if ($activeNav==13){
+			$this->load->view('account-chat', $data);
 		}
 	}
 	public function mapInBoxByPostUserIdToView($inbox, $type="Inbox"){
