@@ -20,7 +20,7 @@
 						<ul>
 							<li><a href="#tab1" data-toggle="tab">Step 1<span class="inside-a">: Choose Category</span></a></li>
 							<!--<li><a href="#tab2" data-toggle="tab">Step 2<span class="inside-a">: Trade Location</span></a></li>-->
-							<li><a href="#tab3" data-toggle="tab">Step 2<span class="inside-a">: Post Ads</p></span></li>
+							<li><a href="#tab3" data-toggle="tab">Step 2<span class="inside-a">: Post Ads</span></li>
 						</ul>
 					</div>
 				</div>
