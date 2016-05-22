@@ -456,6 +456,9 @@ class Home extends CI_Controller {
 				}else
 					return TRUE;
 			}
+		}else if(filter_var($str, FILTER_VALIDATE_EMAIL)) {
+			$this->form_validation->set_message('username_check', 'The %s cannot be meail.');
+			return FALSE;
 		}else{
 			$this->form_validation->set_message('username_check', 'The %s is invalid. Only digits or english');
 			return FALSE;
@@ -1179,6 +1182,12 @@ class Home extends CI_Controller {
 			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Email: '. $data['email'] .' has been used already.</div>';
 			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Email</span></em>';
 			$data['emailError']='Error';
+		}else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Email: '. $data['email'] .' is invalid email.</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Email</span></em>';
+			$data['emailError']='Error';
 		}else{
 			$data['status'] = 'A';
 			$data['class'] = "has-success";
@@ -1255,6 +1264,16 @@ class Home extends CI_Controller {
 			$data['usernameError']='Error';
 			echo json_encode($data);
 			return;
+		}
+		if (filter_var($data['username'], FILTER_VALIDATE_EMAIL)) {
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Username: '. $data['username'] .' cannot be email.</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Username</span></em>';
+			$data['usernameError']='Error';
+			echo json_encode($data);
+			return;
+			
 		}
 		if (strpos(strtolower($data['username']), 'fuck') !== false) {
 			$data['status'] = 'F';
