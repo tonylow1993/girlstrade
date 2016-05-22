@@ -829,8 +829,7 @@ class Home extends CI_Controller {
 			else 
 			{
 				$userID=$this->userEmail->getUserIDByEmail($username);
-				$user = $this->user->getUserByUserID($user["userID"]);
-				$username=$user['username'];
+				$user = $this->user->getUserByUserID($userID);
 				echo "Invalid Username";
 				return;
 			}
