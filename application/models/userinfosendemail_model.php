@@ -77,6 +77,28 @@ class userInfoSendEmail_model extends CI_Model{
 		return 0;
 	}
 	
+	function insertNewSendEmailConfig($userID){
+		try {
+			$this->db->trans_start();
+			$data=array("userID"=>$userID, "APPROVETRADECOMMENT" => 1, "REJECTTRADECOMMENT" => 1, "APPROVEFEEDBACK" => 1, "REJECTFEEDBACK" => 1, "REJECTITEMCOMMENT" => 1, "APPROVEITEMCOMMENT" => 1, "APPROVEABUSE" => 1, "REJECTABUSE" => 1, "APPROVEPOST" => 1, "REJECTPOST" => 1, "APPROVEUSERPHOTO" => 1, "REJECTUSERPHOTO" => 1, "SIGNUPSENDEMAIL" => 1, "FORGETPASSWORDSENDEMAIL" => 1, "RESETPASSWORDSENDEMAIL" => 1, "CHANGEPASSWORDSENDEMAIL" => 1, "UPDATEPASSWORDSENDEMAIL" => 1, "DIRECTSENDEMAIL" => 1, "DELETEABUSEMESSAGESENDEMAIL" => 1, "INSERTABUSEMESSAGESENDEMAIL" => 1, "INSERTMESSAGESENDEMAIL" => 1, "APPROVEDIRECTSEND" => 1, "REJECTDIRECTSEND" => 1, "REPLYMESSAGESENDEMAIL" => 1, "sendEmailForApproveReject"=>1 );
+			$var=$this->db->insert('userAllowSendEmailConfig', $data);
+			$this->db->trans_complete();
+			if($var>0)
+				return $var;
+				else
+					throw new Exception(ZeroUpdateRecordError);
+		}catch(Exception $ex)
+		{
+			echo $ex->getMessage();
+			log_message('error', "[Class]: ".$this->router->fetch_class()."[Method:] ".
+					$this->router->fetch_method().
+					"[Line]: ".$ex->getLine()."[Error]: ".$ex->getMessage());
+		}
+	
+		return 0;
+	}
+	
+	
 	function getAlowSendEmailByType($userID, $type)
 	{
 		$where=array("userID"=>$userID);

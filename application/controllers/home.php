@@ -72,6 +72,7 @@ class Home extends CI_Controller {
         	    $this->load->model('userInfoSendEmail_model');
 				$this->load->model('blog_model');
 				$this->load->model('admin_model');
+				$this->load->model('userinfosendemail_model');
 	}
 	public function index($errorMsg='', $successMsg='')
 	{
@@ -645,6 +646,8 @@ class Home extends CI_Controller {
 		
 		$data['userID'] = $this->user->insert($user);
 			
+		$this->userinfosendemail_model->insertNewSendEmailConfig($data['userID']);
+		
 		$userInfo['userID'] = $data['userID'];
 			
 		$data['userInfo'] = $this->userInfo->insert($userInfo);
