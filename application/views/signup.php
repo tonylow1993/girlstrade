@@ -30,7 +30,7 @@
                     <div id="usernameDiv" class="form-group required">
                       <label class="col-md-4 control-label" > <?php echo $Username;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input id="username" name="username" value="<?php echo set_value('username'); ?>" placeholder="At least 5 characters" class="form-control input-md" required="true" type="text"/>
+                        <input id="username" maxlength="40" name="username" value="<?php echo set_value('username'); ?>" placeholder="At least 5 characters" class="form-control input-md" required="true" type="text"/>
                         <div id="usernameAjaxLoad" class="center"></div>
                         <div id="usernameError" hidden="true"></div>
                         
@@ -80,7 +80,7 @@
                     <div id="emailDiv" class="form-group required">
                       <label for="inputEmail3" class="col-md-4 control-label"> <?php echo $Email;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input name="email" type="email" value="<?php echo set_value('email'); ?>" class="form-control" id="email" required="true" placeholder="Email">
+                        <input name="email" maxlength="90" type="email" value="<?php echo set_value('email'); ?>" class="form-control" id="email" required="true" placeholder="Email">
                         <div id="emailAjaxLoad" class="center"></div>
                         <div id="emailError" hidden="true"></div>
                       </div>
