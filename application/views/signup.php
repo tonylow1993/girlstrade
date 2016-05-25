@@ -30,7 +30,7 @@
                     <div id="usernameDiv" class="form-group required">
                       <label class="col-md-4 control-label" > <?php echo $Username;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input id="username" maxlength="40" name="username" value="<?php echo set_value('username'); ?>" placeholder="At least 5 characters" class="form-control input-md" required="true" type="text"/>
+                        <input id="username" maxlength="20" name="username" value="<?php echo set_value('username'); ?>" placeholder="At least 5 characters" class="form-control input-md" required="true" type="text"/>
                         <div id="usernameAjaxLoad" class="center"></div>
                         <div id="usernameError" hidden="true"></div>
                         

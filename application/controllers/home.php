@@ -1278,6 +1278,17 @@ class Home extends CI_Controller {
 			return;
 			
 		}
+		
+		if(strlen($data['username'])> MAXLENGTHUSERNAME){
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Username: '. $data['username'] .' too long.</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Username</span></em>';
+			$data['usernameError']='Error';
+			echo json_encode($data);
+			return;
+		}
+		
 		if (strpos(strtolower($data['username']), 'fuck') !== false) {
 			$data['status'] = 'F';
 			$data['class'] = "has-error";

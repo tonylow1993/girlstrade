@@ -50,7 +50,7 @@ define("DESCLENGTHINARCHIVEADS",300);
 define('LOCATIONLEVELSEPARATOR', '&nbsp;');
 define('DESCMINLENGTHINNEWPOST', 5);
 define('UnReadInBoxBgColor', '#9BCBFF');
-
+define("MAXLENGTHUSERNAME", 20);
 
 define("ZeroUpdateRecordError", "No record updated");
 define("THUMBNAILSIZEWIDTH", 300);
