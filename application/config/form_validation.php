@@ -4,12 +4,12 @@ $config = array(
 				array(
 						'field' => 'username',
 						'label' => 'lang:Username',
-						'rules' => 'trim|required|callback_username_check|min_length[5]|max_length[20]|xss_clean'
+						'rules' => 'trim|required|callback_username_check|min_length[5]|max_length['.MAXLENGTHUSERNAME.']|xss_clean'
 				),
 				array(
 						'field' => 'email',
 						'label' => 'lang:Email',
-						'rules' => 'trim|required|callback_email_check'
+						'rules' => 'trim|required|callback_email_check|min_length[5]|max_length['.MAXLENGTHEMAIL.']'
 				),
 				array(
 						'field' => 'checkboxes-1',

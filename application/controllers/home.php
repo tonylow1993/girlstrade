@@ -1191,6 +1191,12 @@ class Home extends CI_Controller {
 			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Email: '. $data['email'] .' is invalid email.</div>';
 			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Email</span></em>';
 			$data['emailError']='Error';
+		} if(strlen($data['email'])> MAXLENGTHEMAIL){
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Email: '. $data['email'] .' is too long.</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Email</span></em>';
+			$data['emailError']='Error';
 		}else{
 			$data['status'] = 'A';
 			$data['class'] = "has-success";
