@@ -71,14 +71,15 @@
 	
 	    function update($data)
 	    {
-	        $this->userID = $data['userID'];
-	        $this->password = do_hash($data['password']);
+	    	$temp=array();
+	        $temp["userID"] = $data['userID'];
+	        $temp["password"] = do_hash($data['password']);
 	        //$this->sequence = $data['sequence'];
-	        $this->createDate = '2015-05-17';
-	        $this->expriyDate = '2015-08-17';//current date + 90 days
-	        $this->status = 'U';
+	        $temp["createDate"] = date("Y-m-d H:i:s");
+	        //$this->expriyDate = '2015-08-17';//current date + 90 days
+	        //$this->status = 'U';
 	        $this->db->trans_start();
-	        $this->db->update('userpassword', $this, array('userID' => $data['userID']));
+	        $this->db->update('userpassword', $temp, array('userID' => $data['userID']));
 	        $this->db->trans_complete();
 	    }
 	

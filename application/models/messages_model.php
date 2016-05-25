@@ -200,6 +200,8 @@
 		}
 		
 		public function getUnReadInboxMessage($userId){
+			
+			try{
 			//$strQuery="select count(distinct messageID) as NoOfCount from message where ((status in ('Op', 'OC') and userID=$userId) or (status in ('R', 'C') and fUserID=$userId )) and readflag='N' ";
 			$strQuery="select count(distinct ID) as NoOfCount from buyermessage where userID=$userId and readflag='N' ";
 			$NoOfItemCount=0;
@@ -209,6 +211,7 @@
 			$NoOfItemCount=$var2[0]["NoOfCount"];
 				
 			return $NoOfItemCount;
+			}catch(Exception $ex){ return 0;}
 		}
 		
 		public function getNoOfItemCountInInbox($userId){
