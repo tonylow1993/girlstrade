@@ -1652,26 +1652,26 @@ class Home extends CI_Controller {
 						$result3=1;
 					}else{
 						if(strcmp($user['accountStatus'],"A")==0)
-							$errorMsg=$errorMsg."activation has been done before!<br/>";
+							$errorMsg=$errorMsg."Activation has been done before!<br/>";
 						else
-							$errorMsg=$errorMsg."activation failed!<br/>";
+							$errorMsg=$errorMsg."Activation failed!<br/>";
 					}
 				}else{
-					$errorMsg=$errorMsg."your activation period has expired!<br/>";
+					$errorMsg=$errorMsg."Your activation period has expired!<br/>";
 				}
 			}
 		}else{
-			$errorMsg=$errorMsg."activation failed due to your activation period has expired and account deleted!<br/>";
+			$errorMsg=$errorMsg."Activation failed due to your activation period has expired and account deleted!<br/>";
 		}
 		if($result == 1){
-			$errorMsg=$errorMsg."activate the user account successfully!<br/>";
+			$errorMsg=$errorMsg."Your account has been successfully activated!<br/>";
 		}else{
-			$errorMsg=$errorMsg.'activate the user account unsuccessfully!<br/>';
+			$errorMsg=$errorMsg.'Your account cannot be created at this time. Please contact admin for more information.<br/>';
 		}
 		if($result2 == 1){
-			$errorMsg=$errorMsg. 'activate the user email successfully!';
+			$errorMsg=$errorMsg. 'Email address verified!';
 		}else{
-			$errorMsg=$errorMsg. 'activate the user email unsuccessfully!';
+			$errorMsg=$errorMsg. 'Unable to verify your email address.';
 		}
 		
 		$data["error"]=$errorMsg;
