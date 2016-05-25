@@ -174,7 +174,7 @@ $("#inputEmail3").blur(function() {
 $( "#email" ).blur(function() {
 
 	if(!validateEmail($("#email").val())) {
-   		$("#emailAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Email cannot be empty</span></em>');
+   		$("#emailAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Error: Invalid Email</span></em>');
 		return;
     }
     
