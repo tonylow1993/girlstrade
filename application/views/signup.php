@@ -46,6 +46,7 @@
                         <!--<em class="help-block">At least 6 characters</em>-->
 						<div id="pwd1V"></div>
                       	<div id="password3AjaxLoad" class="center"></div>
+                      	<div id="password3Error" hidden="true"></div>
                        </div>
                     </div>
                     
@@ -263,6 +264,21 @@ $( "#inputPassword3" ).blur(function() {
 	{
 		$("#pwd1V").html('');
 	}
+
+	$("#password3AjaxLoad").html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
+	$.ajax({
+		method: "POST",
+		url: "<?php echo base_url(); echo MY_PATH;?>home/validatePassword_signup",
+		data: { password3: $( "#inputPassword3" ).val() },
+		success: function(response){
+			var result = JSON.parse(response);
+        	$("#error").html(result.message);
+        	$("#pwd1V").removeClass('has-success has-error').addClass(result.class);
+        	$("#password3AjaxLoad").html(result.icon);
+        	$("#password3Error").html(result.err);
+        	}
+    });
+	return false;
 });
 
 $( "#inputPassword4" ).blur(function() {

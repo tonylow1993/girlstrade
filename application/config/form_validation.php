@@ -12,6 +12,11 @@ $config = array(
 						'rules' => 'trim|required|callback_email_check|min_length[5]|max_length['.MAXLENGTHEMAIL.']'
 				),
 				array(
+						'field' => 'inputPassword3',
+						'label' => 'lang:Password',
+						'rules' => 'callback_password_check'
+				),
+				array(
 						'field' => 'checkboxes-1',
 						'label' => 'Agreement',
 						'rules' => 'callback_agree_check'

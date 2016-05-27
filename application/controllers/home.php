@@ -445,6 +445,11 @@ class Home extends CI_Controller {
 	}
 	
 	public function username_check($str){
+		if(filter_var($str, FILTER_VALIDATE_EMAIL)) {
+			$this->form_validation->set_message('username_check', 'The %s cannot be meail.');
+			return FALSE;
+		}
+		
 		if (!preg_match("/\p{Han}+/u", $str)){ //preg_match("^[0-9A-Za-z_]+$", $str)){
 			$validate = $this->user->isUserExist($str);
 			if($validate){
@@ -457,9 +462,6 @@ class Home extends CI_Controller {
 				}else
 					return TRUE;
 			}
-		}else if(filter_var($str, FILTER_VALIDATE_EMAIL)) {
-			$this->form_validation->set_message('username_check', 'The %s cannot be meail.');
-			return FALSE;
 		}else{
 			$this->form_validation->set_message('username_check', 'The %s is invalid. Only digits or english');
 			return FALSE;
@@ -482,6 +484,25 @@ class Home extends CI_Controller {
 			}else{
 				return TRUE;
 			}
+		}
+	}
+	
+	public function password_check($str)
+	{
+		if(strlen($str)> MAXLENGTHPASSWORD){
+			$this->form_validation->set_message('password_check', 'The %s is too long');
+			return FALSE;
+		}
+		
+		if (!preg_match("/\p{Han}+/u", $str)){ //preg_match("^[0-9A-Za-z_]+$", $str)){
+				if (strpos(strtolower($str), ' ') !== false) {
+					$this->form_validation->set_message('password_check', 'The %s contains empty space.');
+					return FALSE;
+				}else
+					return TRUE;
+		}else{
+			$this->form_validation->set_message('password_check', 'The %s is invalid. Only digits or english');
+			return FALSE;
 		}
 	}
 	
@@ -1310,6 +1331,57 @@ class Home extends CI_Controller {
                         $data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i> Valid Username</span></em>';
                         $data['usernameError']='';
 		}
+		echo json_encode($data);
+	}
+	
+	public function validatePassword_signup(){
+		sleep(1);
+		$password = $this->input->post('password3');
+		if(empty($password)){
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Password cannot empty!</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Empty Password</span></em>';
+			$data['passwordError']='Error';
+			echo json_encode($data);
+			return;
+		}
+		$validate=preg_match("/\p{Han}+/u", $password);
+		if($validate){
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Password: ('. $password .') should not contain chinese word.</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Password</span></em>';
+			$data['passwordError']='Error';
+			echo json_encode($data);
+			return;
+		}
+		if(strlen($password)> MAXLENGTHPASSWORD){
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Password: '. $password.' too long.</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Password</span></em>';
+			$data['passwordError']='Error';
+			echo json_encode($data);
+			return;
+		}
+	
+		if (strpos(strtolower($password), ' ') !== false) {
+			$data['status'] = 'F';
+			$data['class'] = "has-error";
+			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> password: '. $password .' contains empty space.</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Password</span></em>';
+			$data['passwordError']='Error';
+			echo json_encode($data);
+			return;
+		}
+			$data['status'] = 'A';
+			$data['class'] = "has-success";
+			$data['message'] = '';
+			//$data['icon'] = '<i class="girl-icon  icon-ok-circled ln-shadow shape-2"></i>';
+			$data['icon'] = '<em><span style="color:green"> <i class="icon-ok-1 fa"></i> Valid Password</span></em>';
+			$data['passwordError']='';
+		
 		echo json_encode($data);
 	}
 	public function viewAllFeedback($userID, $pageNum=1, $sortTypeID="0", $sortByDate="0", $sortByType="0"){
