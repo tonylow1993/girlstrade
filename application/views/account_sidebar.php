@@ -59,10 +59,10 @@
          	     		 else 
          	     		 	echo "<li><a href=$accountinbox><i class=\"icon-mail\"></i> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
          	     		 	 
-         	     		 if($activeNav==10)
-              					echo "<li><a  class=\"active\" href=$outgoingMsg><i class=\"icon-reply\"></i> $OutgoingMsgTitle <span class=\"badge\">$outgoingMsgCount</span> </a></li>";
-         	     			else 
-         	     				echo "<li><a href=$outgoingMsg><i class=\"icon-reply\"></i> $OutgoingMsgTitle <span class=\"badge\">$outgoingMsgCount</span> </a></li>";
+//          	     		 if($activeNav==10)
+//               					echo "<li><a  class=\"active\" href=$outgoingMsg><i class=\"icon-reply\"></i> $OutgoingMsgTitle <span class=\"badge\">$outgoingMsgCount</span> </a></li>";
+//          	     			else 
+//          	     				echo "<li><a href=$outgoingMsg><i class=\"icon-reply\"></i> $OutgoingMsgTitle <span class=\"badge\">$outgoingMsgCount</span> </a></li>";
          	     				
          	     		 ?>
                       </ul>
