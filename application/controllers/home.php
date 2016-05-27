@@ -3068,10 +3068,15 @@ class Home extends CI_Controller {
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 			//----------------------------
-		$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInInbox($userID);
-			$myList=$this->messages_model->getInBoxByPostUserId($userID, $pageNum);
-			$data["result"]=$this->mapInBoxToView($myList, "Inbox");
-			$this->load->view("account-inbox", $data);
+// 		$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInInbox($userID);
+// 			$myList=$this->messages_model->getInBoxByPostUserId($userID, $pageNum);
+// 			$data["result"]=$this->mapInBoxToView($myList, "Inbox");
+// 			$this->load->view("account-inbox", $data);
+			
+			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Summary", 0);
+			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Summary", 0);
+			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All", "Summary");
+			$this->load->view('account-message-onlybyuserid', $data);
 			//log_message('debug', 'nothing happen.');
 	}
 	public function updateCheckBox(){

@@ -41,7 +41,7 @@
                     <ul class="acc-list">
                     	<?php
                  	    $editprofile1=base_url().MY_PATH."home/getAccountPage/4";
-		             	 $accountinbox=base_url().MY_PATH."home/getAccountPage/1";
+		             	 $accountinbox=base_url().MY_PATH."home/getAccountPage/13";
 		             	 $outgoingMsg=base_url().MY_PATH."home/getAccountPage/10";
 		             	 $sendEmailconfig=base_url().MY_PATH."home/getAccountPage/12";
 		             	 
@@ -54,7 +54,7 @@
          	     		 else
          	     			echo "<li><a href=$sendEmailconfig><i class=\"icon-user\"></i>". $this->lang->line("updateSendEmailConfig")." <span class=\"badge\"></span></a></li>";
          	     		 	
-         	     		 if($activeNav==1)
+         	     		 if($activeNav==13)
               					echo "<li><a  class=\"active\" href=$accountinbox><i class=\"icon-pencil-2\"></i> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
          	     		 else 
          	     		 	echo "<li><a href=$accountinbox><i class=\"icon-mail\"></i> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
