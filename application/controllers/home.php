@@ -2069,7 +2069,7 @@ class Home extends CI_Controller {
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Summary", 0);
 			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Summary", 0);
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All", "Summary");
-			$this->load->view('account-inbox-onlybyuserid', $data);
+			$this->load->view('account-message-onlybyuserid', $data);
 		}else if ($activeNav==14){
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Detail", $fromUserID);
 			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Detail", $fromUserID);
