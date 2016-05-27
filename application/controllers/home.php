@@ -2071,6 +2071,10 @@ class Home extends CI_Controller {
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All", "Summary");
 			$this->load->view('account-message-onlybyuserid', $data);
 		}else if ($activeNav==14){
+			
+			$fromUserID=$_POST["fromUserID"];
+			$data["sendToUserID"]=$fromUserID;
+			$data["prevURL"]=$prevURL;
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Detail", $fromUserID);
 			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Detail", $fromUserID);
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
@@ -2091,7 +2095,6 @@ class Home extends CI_Controller {
 					$unreadCount=$row->unreadcount;
 				
 				if(strcmp($type, "All")==0){
-					$type=$row->msgType;
 					if(strcmp($row->msgType, "Inbox")==0){
 						$userID=$row->userID;
 						$fromUserID=$row->fromUserID;
@@ -2123,6 +2126,7 @@ class Home extends CI_Controller {
 					$fromEmail=$email["email"];
 				$readFlag=$row->readflag;
 				$ID=$row->ID;
+					
 					$arrayMessage=array($ID => array("userID"=>$userID,
 								"fromUserID"=>$fromUserID,
 								"username" => $username,
@@ -2133,7 +2137,7 @@ class Home extends CI_Controller {
 								"content"=>$content,
 								"readflag"=>$readFlag,
 								"unreadCount"=>$unreadCount,
-								"type"=>$type));
+								"type"=>$row->msgType));
 						if($result==null)
 							$result=$arrayMessage;
 							else
@@ -3766,7 +3770,7 @@ class Home extends CI_Controller {
 		$this->admin_model->updateStatByUserID($userID);
 		
 		if(strcmp($type,"Inbox")==0)
-			$this->getAccountPage("1", $pageNum);
+			$this->getAccountPage("13", $pageNum);
 		else 
 			$this->getAccountPage("10", $pageNum);
 	}
