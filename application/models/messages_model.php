@@ -464,6 +464,65 @@
     	
     		return $query2->result();
 	    }
+	    
+	    public function getBuyerMessageByUserID($userID, $pageNum, $sortByDate, $reportType, $fromUserID){
+	    	$ulimit=ITEMS_PER_PAGE;
+	    	$olimit=0;
+	    	if ($pageNum>1)
+	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+	    		$sortByDateString="";
+	    		if(strcmp($sortByDate,"1")==0){
+	    			$sortByDateString=" order by c.createDate desc";
+	    		}else if(strcmp($sortByDate,"2")==0){
+	    			$sortByDateString=" order by c.createDate asc";
+	    		}
+	    		$strQuery="";
+	    		if(strcmp($reportType, "Summary")==0){
+	    			$strQuery="select c.*, b.msgType, b.unreadcount from
+						(select a.user1, a.user2, max(a.ID) as maxID,
+						case when a.user1=$userID then 'Inbox' else 'Outbox' end as msgType,
+						sum(case when a.readflag = 'Y' then 1 else 0 end) as unreadcount
+						 from (			
+						    select userID as user1, fromUserID as user2, ID, readflag from buyermessage where  userID=$userID Union all 
+						    select fromUserID as user1, userID as user2, ID, readflag from buyermessage where fromUserID=$userID ) a
+						group by a.user1, a.user2 ) b inner join buyermessage c on b.maxID=c.ID
+	    					$sortByDateString limit $olimit, $ulimit";
+	    		}else{
+	    			$strQuery="select c.* from (
+	    			select *, 'Inbox' as msgType from buyermessage where fromUserID=$fromUserID and userID=$userID Union all
+	    			select *, 'Outbox' as msgType from buyermessage where fromUserID=$userID and userID=$fromUserID) c
+	    			$sortByDateString limit $olimit, $ulimit";
+	    		}
+	    		$query2 = $this->db->query($strQuery);
+	    		 
+	    		return $query2->result();
+	    }
+	    
+	    public function getNoOfItemCountInBuyerMessageByUserID($userID, $reportType, $fromUserID){
+	    	$strQuery="";
+	    	if(strcmp($reportType, "Summary")==0){
+		    	$strQuery="select count(*) as NoOfCount from 
+	    		(select a.user1, a.user2, max(a.ID) as maxID,
+						case when a.user1=$userID then 'Inbox' else 'Outbox' end as msgType,
+						sum(case when a.readflag = 'Y' then 1 else 0 end) as unreadcount
+						 from (			
+						    select userID as user1, fromUserID as user2, ID, readflag from buyermessage where  userID=$userID Union all 
+						    select fromUserID as user1, userID as user2, ID, readflag from buyermessage where fromUserID=$userID ) a
+						group by a.user1, a.user2 ) b inner join buyermessage c on b.maxID=c.ID";
+	    	}else{
+	    		$strQuery="select count(*) as NoOfCount from (
+	    		select *, 'Inbox' as msgType from buyermessage where  userID=$userID and fromUserID=$fromUserID Union all
+	    		select *, 'Outbox' as msgType from buyermessage where fromUserID=$userID and userID=$fromUserID ) a";
+	    		
+	    	}
+    		$NoOfItemCount=0;
+	    	$query2 = $this->db->query($strQuery);
+	    	$var2=$query2->result_array();
+	    	$NoOfItemCount=$var2[0]["NoOfCount"];
+	    	
+	    	return $NoOfItemCount;
+	    }
+	    
 	}
 	
 ?>

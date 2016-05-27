@@ -2066,10 +2066,18 @@ class Home extends CI_Controller {
 			$data["result"]=$this->userInfoSendEmail_model->getSendEmailConfigByUserID($userID);
 			$this->load->view('adminSendEmailConfig.php', $data);
 		}else if ($activeNav==13){
+			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Summary", 0);
+			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Summary", 0);
+			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All", "Summary");
+			$this->load->view('account-inbox-onlybyuserid', $data);
+		}else if ($activeNav==14){
+			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Detail", $fromUserID);
+			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Detail", $fromUserID);
+			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
 			$this->load->view('account-chat', $data);
 		}
 	}
-	public function mapInBoxByPostUserIdToView($inbox, $type="Inbox"){
+	public function mapInBoxByPostUserIdToView($inbox, $type="Inbox", $reportType="Detail"){
 
 		$result=array();
 		$lang_label=$this->nativesession->get("language");
@@ -2078,7 +2086,21 @@ class Home extends CI_Controller {
 			{
 				$userID=0;
 				$fromUserID=0;
-				if(strcmp($type, "Inbox")==0){
+				$unreadCount=0;
+				if(strcmp($reportType, "Summary")==0)
+					$unreadCount=$row->unreadcount;
+				
+				if(strcmp($type, "All")==0){
+					$type=$row->msgType;
+					if(strcmp($row->msgType, "Inbox")==0){
+						$userID=$row->userID;
+						$fromUserID=$row->fromUserID;
+					}else {
+						$userID=$row->fromUserID;
+						$fromUserID=$row->userID;
+					}
+				
+				} else if(strcmp($type, "Inbox")==0){
 					$userID=$row->userID;
 					$fromUserID=$row->fromUserID;
 				}else {
@@ -2110,6 +2132,7 @@ class Home extends CI_Controller {
 								"status" =>$status,
 								"content"=>$content,
 								"readflag"=>$readFlag,
+								"unreadCount"=>$unreadCount,
 								"type"=>$type));
 						if($result==null)
 							$result=$arrayMessage;
