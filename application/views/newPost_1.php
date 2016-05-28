@@ -280,7 +280,7 @@
                           </div>
                       </div>
                       
-                      <!-- Contact Info -->
+                      <!-- Contact Info 
                       <div id="contactInputDiv" class="form-group row">
                           <label class="col-md-3 control-label text-center" for="textarea"> 
                           <i class="icon-mobile"></i>
@@ -290,7 +290,7 @@
                               required="true" value="<?php if (isset($telNo)) echo $telNo?>" rows="2" maxlength="120"><?php if (isset($telNo)) echo $telNo?></textarea>
                           	<em id="helper">Contact Info will only display to <b>potential buyers</b>. You may edit this message in Edit Profile.</em>
                           </div>   
-                      </div>
+                      </div>-->
                       
 					                         <div id="generalLoc" class="form-group row">
                           <label class="col-md-3 control-label text-center" >
