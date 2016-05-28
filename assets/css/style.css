@@ -3359,6 +3359,13 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.msg-box-badge{
+	position: absolute;
+    background-color: #E74C3C;
+    left: 10px;
+    top: 10px;
+}
+
 .inbox-title-span{
 	margin-top: 10px;
     font-size: 15px;
@@ -3375,6 +3382,7 @@ td.ads-details-td {
 }
 
 .msg-box{
+	position: relative;
 	background: #fff;
     box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
     font-size: 18px;
@@ -3386,6 +3394,10 @@ td.ads-details-td {
 	background: #fcfcfc;
     box-shadow: 0 3px 6px rgba(0,0,0,0.2);
     cursor: pointer;
+}
+
+.msg-box:active{
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
 }
 
 .from-span{
@@ -3404,6 +3416,7 @@ td.ads-details-td {
 }
 
 .box-from{
+	text-align: center;
     margin: 0;
     overflow: hidden;
     position: relative;
