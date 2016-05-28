@@ -3359,6 +3359,42 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.profile-panel{
+	color: white !important;
+	font-size: 150px;
+	text-align: center;
+}
+
+.profile-panel:hover{
+	box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.white-icon{
+	color: white !important;
+}
+
+.myads-panel{
+	background-color: #2a6496;
+}
+
+.inbox-panel{
+	background-color: #F85D2C;
+}
+
+.buyer-panel{
+	background-color: #F89C2C;
+}
+
+.setting-panel{
+	background-color: #777777;
+}
+
+.panel-title{
+	color: white;
+	font-size: 25px;
+}
+
 .msg-box-badge{
 	position: absolute;
     background-color: #E74C3C;

@@ -2079,6 +2079,8 @@ class Home extends CI_Controller {
 			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Detail", $fromUserID);
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
 			$this->load->view('account-chat', $data);
+		}else if ($activeNav==15){
+			$this->load->view('account-profile', $data);
 		}
 	}
 	public function mapInBoxByPostUserIdToView($inbox, $type="Inbox", $reportType="Detail"){
