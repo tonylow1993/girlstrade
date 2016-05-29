@@ -60,7 +60,7 @@
 						//echo "<div class=\"msg-box\" id=".$trId." name=".$trId." ".$readflag." onClick=\"document.forms['msg-box-".$trId."'].submit();\">";
                     	if($row["unreadCount"] >0)
                     		echo "<span class=\"badge msg-box-badge\">$unreadCount</span>";
-						echo "<span class=\"from-span\"><p class=\"box-from\">$fromusername";
+						//echo "<span class=\"from-span\"><p class=\"box-from\">$fromusername";
                     	echo "</p>";
                     	//echo "<a class=\"btn btn-primary btn-xs btn-120\" href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
 
