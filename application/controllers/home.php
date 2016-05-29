@@ -1681,7 +1681,7 @@ class Home extends CI_Controller {
 		
 		$this->userPassword->changePassword($input);
 		$email=$this->userEmail->getUserEmailByUserID($userID);
-		$msg=$this->mailtemplate_model->SendEmailMsgForChangePassword();
+		$msg=$this->mailtemplate_model->SendEmailMsgForChangePassword($userInfo['username']);
 		$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForChangePassword(), CHANGEPASSWORDSENDEMAIL);
 		
 		
@@ -3313,7 +3313,7 @@ class Home extends CI_Controller {
 			$this->userPassword->update($userPassword);
 			
 			$email=$this->userEmail->getUserEmailByUserID($user["userID"]);
-			$msg=$this->mailtemplate_model->SendEmailMsgForChangePassword();
+			$msg=$this->mailtemplate_model->SendEmailMsgForChangePassword($user["username"]);
 			$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForChangePassword(), "UPDATEPASSWORDSENDEMAIL");
 			
 			

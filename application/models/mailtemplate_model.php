@@ -1,5 +1,5 @@
 <?php 
-	class mailtemplate_model  extends CI_Model {
+ class mailtemplate_model  extends CI_Model {
 		
 		var $header='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -161,16 +161,18 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                   Dear '.$username.',<br />
-				  
-                  <br />
-				  You have requested that your password be reset. 
 				  <br />
-				  Click the link below: <br />
-                  <strong><a href="" target="_blank" style="color:#1f4f82; text-decoration:underline; font-family:Arial, Helvetica, sans-serif; font-size:13px; text-align:left">www.girlstrade.com/changePassword/xxxxxxxxxxxxxxxxxxx </a></strong> 
-                  <br />
-				  (You will be taken to an Girlstrade web page where you can change your password.)
+				  You have requested that your password have been chnaged. If you have not requested, please check your account now. 
+				  </td>
+              </tr>
+              <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  您好 '.$username.',<br />
+				  <br />
+				  剛才你是否更改girlstrade帳户密碼，如果否，誦檢查你的girlstrade帳户。
                   </td>
               </tr>
+                  		
             </table></td>
         </tr>'.$this->footer;
 		}
@@ -349,4 +351,4 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 // 			return "Send email when you update your password";
 // 		}
 	}
-		
+?>
