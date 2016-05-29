@@ -182,7 +182,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		}
 		
 		public function SendEmailTitleForForgotPassword(){
-			return "Reset Your Girlstrade Account Password";
+			return "Reset Your GirlsTrade Password";
 		}
 		
 		public function SendEmailMsgForUpdatePassword($username, $password, $username1,
@@ -194,8 +194,8 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                   Dear '.$username.',<br />
 					You have requested that your password be reset.
-					<br/>Your password is '.$password.'.
 					<br/>Your username is '.$username1.'
+					<br/>Your password is '.$password.'.
 					<br/>Please click the <a href="www.girlstrade.com" >girlstrade home page </a> to login and then change your prefered passwoed in account profile.";
                   </td>
               </tr>
@@ -214,7 +214,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		}
 		
 		public function SendEmailTitleForSignupActivate(){
-			return "Verify your GirlsTrade email address";
+			return "Activate your GirlsTrade account";
 		}
 		public function SendEmailMsgForSignupActivate($username,  $path, $email){
 			return $this->header.'
