@@ -272,21 +272,22 @@ echo json_encode($usr);;
 				</ul>     
             </li>-->
 			
-			<li <?php echo $menuMyAds?>><a href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/15";?>"><i id="menubarTitle" class="icon-th-thumb"></i>
+			<li <?php echo $menuMyAds?>><a href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/15";?>">
 			<span id="menubarTitle">
+				<i id="menubarTitle" class="icon-th-thumb"></i>
 				Profile
 			</span></a></li>
 			
-            <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>home/logout"><i id="menubarTitle" class="icon-logout"></i>
+            <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>home/logout">
             <span id="menubarTitle">
+            <i id="menubarTitle" class="icon-logout"></i>
          	<?php if (!isset($Logout)) $Logout = 'Logout'; echo $Logout;?></span></a></li>
             
             <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
-            <i  id="menubarTitle" class="icon-search-2"></i>
             <span id="menubarTitle" >
+            <i  id="menubarTitle" class="icon-search-2"></i>
             Search
-            </span>
-            </a></li> 
+            </span></a></li> 
             <!--<li>
             <a id="lang" href=<?php $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
             echo base_url().MY_PATH."switchLang/changeLang_R1?prevURL=".urlencode(current_url());    
@@ -307,8 +308,9 @@ echo json_encode($usr);;
             </li>-->
             
 			<li id="smpostaddnav" class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>">
-            <i  id="menubarTitle" class="icon-pencil-2"></i>
+            
             <span id="menubarTitle" >
+            <i  id="menubarTitle" class="icon-pencil-2"></i>
             Post
             </span>
             </a></li> 

@@ -340,6 +340,8 @@ div.panel-heading.seller-heading
 #menubarTitle:hover
 {
 	//color: #F13434;;
+	font-weight: bold;
+    color: #AD3838;
 }
 #menusubTitle
 {
