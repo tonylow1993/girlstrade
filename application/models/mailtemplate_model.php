@@ -193,13 +193,21 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                   Dear '.$username.',<br />
-				  
-                You have requested that your password be reset.
-<br/>Your password is '.$password.'.
-<br/>Your username is '.$username1.'
-<br/>Please <a href='.$path.'>click here</a> to activate your account.";
+					You have requested that your password be reset.
+					<br/>Your password is '.$password.'.
+					<br/>Your username is '.$username1.'
+					<br/>Please click the <a href="www.girlstrade.com" >girlstrade home page </a> to login and then change your prefered passwoed in account profile.";
                   </td>
               </tr>
+				<tr>
+	                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+	                  您好 '.$username.',<br />
+						你剛才重罝你的密碼. 新資料是
+						<br/>你的密碼是 '.$password.'.
+						<br/>你的用户名是 '.$username1.'
+						<br/>請按 <a href="www.girlstrade.com" >girlstrade 綱址 </a> 去登入去更改你要的新密碼。";
+	                  </td>
+	              </tr>
             </table></td>
         </tr>'.$this->footer;
 			
