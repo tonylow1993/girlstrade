@@ -656,6 +656,20 @@ btn-post:hover, .btn-post:focus, .btn-post:active, .btn-post.active, .open .drop
     padding: 12px 35px;
     text-transform: uppercase;
     width: 170px;
+    background-color:#4A45D0;
+  }
+    .navbar-nav > li.postadd a:focus,
+    .navbar-nav > li.postadd a:hover {
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 13px;
+    height: 40px;
+    line-height: normal;
+    padding: 12px 35px;
+    text-transform: uppercase;
+    width: 170px;
+    background-color:#625DD4;
   }
 
 /* usermenu */
