@@ -128,7 +128,7 @@
 									echo "<div class=\"cat-list\">";
 									echo "<h3><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;line-height:0px;\" href='#' onclick='chooseLoc($id)'><ul class='wizard'><li class='next' style='color: $color'>$name</li></ul></a>";
 									
-									echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\"></span>";
+									echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\">   <span class=\" icon-down-open-big\"></span> </span>";
 									echo "</h3>";
 									echo "<ul class='cat-collapse collapse in cat-id-$total wizard'>";
 										
@@ -280,7 +280,7 @@
                           </div>
                       </div>
                       
-                      <!-- Contact Info -->
+                      <!-- Contact Info 
                       <div id="contactInputDiv" class="form-group row">
                           <label class="col-md-3 control-label text-center" for="textarea"> 
                           <i class="icon-mobile"></i>
@@ -290,7 +290,7 @@
                               required="true" value="<?php if (isset($telNo)) echo $telNo?>" rows="2" maxlength="120"><?php if (isset($telNo)) echo $telNo?></textarea>
                           	<em id="helper">Contact Info will only display to <b>potential buyers</b>. You may edit this message in Edit Profile.</em>
                           </div>   
-                      </div>
+                      </div>-->
                       
 					                         <div id="generalLoc" class="form-group row">
                           <label class="col-md-3 control-label text-center" >

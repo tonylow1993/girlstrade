@@ -272,7 +272,7 @@ echo json_encode($usr);;
 				</ul>     
             </li>-->
 			
-			<li <?php echo $menuMyAds?>><a href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/4";?>"><i id="menubarTitle" class="icon-th-thumb"></i>
+			<li <?php echo $menuMyAds?>><a href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/15";?>"><i id="menubarTitle" class="icon-th-thumb"></i>
 			<span id="menubarTitle">
 				Profile
 			</span></a></li>
