@@ -445,11 +445,11 @@ window.onload = function(){
 						if($value[0]->level==1)
 						{
 							$imageIcon=$value[0]->iconImage;
-							if($value[0]->childCount<>0){
-								echo "<div class=\"col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category\">";
+							//if($value[0]->childCount<>0){
+								echo "<div name='$count' class=\"col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category\">";
 								echo "<a href='$path'><img src=$imageIcon class=\"img-responsive\" alt=\"img\"> <h6> $name  </h6> </a>";
 								echo "</div>";
-							}
+							//}
 						}
 					}
 					?>
