@@ -491,7 +491,7 @@
 	    			$strQuery="select c.* from (
 	    			select *, 'Inbox' as msgType from buyermessage where fromUserID=$fromUserID and userID=$userID Union all
 	    			select *, 'Outbox' as msgType from buyermessage where fromUserID=$userID and userID=$fromUserID) c
-	    			$sortByDateString limit $olimit, $ulimit";
+	    			$sortByDateString"; // limit $olimit, $ulimit";
 	    		}
 	    		$query2 = $this->db->query($strQuery);
 	    		 

@@ -64,7 +64,7 @@
 						
 					</ul>
 				</div>
-				<form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>home/insertBuyerMessage/Inbox">
+				<form role="form" class="form-horizontal" id="item" method="post" enctype="multipart/form-data" action="<?php echo base_url(); echo MY_PATH;?>home/insertBuyerMessage/Inbox">
 					<div class="form-group">
 	          		<input type="hidden" id="userID_1" name="userID_1" value="<?php echo $sendToUserID;?>"/>
 	          		<input type="hidden" id="pageNum_1" name="pageNum_1" value="<?php echo $pageNum;?>"/>

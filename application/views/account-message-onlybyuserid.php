@@ -50,20 +50,20 @@
 						$unreadCount=$row["unreadCount"];
                 		if(strcmp($row["readflag"],"N")==0)
 							$readflag="bgcolor='".UnReadInBoxBgColor."' onclick=\"editData($id, $pageNum, '$trId')\"";
-						$urlPath=base_url().MY_PATH."home/getAccountPage/14?prevURL=".urlencode(current_url()); 
-						echo "<form class=\"form-horizontal\" method=\"post\"  enctype=\"multipart/form-data\" action=\"$urlPath\"> "; 
+						$urlPath=base_url().MY_PATH."home/getAccountPage/14/1/0/1/$fromUserID?prevURL=".urlencode(current_url()); 
+						//echo "<form class=\"form-horizontal\" method=\"post\"  enctype=\"multipart/form-data\" action=\"$urlPath\"> "; 
 						//echo "<div class=\"msg-box\" id=".$trId." name=".$trId." ".$readflag." href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\">";
 						 
 						echo "<div class=\"msg-box\" id=".$trId." name=".$trId." ".$readflag." >";
-                    	echo "<span class=\"from-span\"><p class=\"box-from\">$fromusername";
+                    	echo "<span class=\"from-span\"><p class=\"box-from\"><a href=$urlPath >$fromusername</a><br/>$username";
                     	if($row["unreadCount"] >0)
                     		echo "<span class=\"badge\">$unreadCount</span>";
                     	echo "</p>";
                     	//echo "<a class=\"btn btn-primary btn-xs btn-120\" href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Reply')." </a>";
-                    	echo "<input type='hidden' id='fromUserID' name='fromUserID' value=$fromUserID />";
-                    	echo "<input type='hidden' id='userID' name='userID' value=$userID />";
-                    	echo "<input type='submit' />"; 
-                    	echo "</form>";
+                    	//echo "<input type='hidden' id='fromUserID' name='fromUserID' value=$fromUserID />";
+                    	//echo "<input type='hidden' id='userID' name='userID' value=$userID />";
+                    	//echo "<input type='submit' />"; 
+                    	//echo "</form>";
                     	echo "</span>";
                     	 
                     	

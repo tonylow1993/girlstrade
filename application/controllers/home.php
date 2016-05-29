@@ -1773,7 +1773,7 @@ class Home extends CI_Controller {
 		else 
 			$this->load->view('failedPage', $data);
 	}
-	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='', $sortByDate="1")
+	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='', $sortByDate="1", $fromUserIDInMessage=0)
 	{
 		
 		
@@ -2072,7 +2072,7 @@ class Home extends CI_Controller {
 			$this->load->view('account-message-onlybyuserid', $data);
 		}else if ($activeNav==14){
 			
-			$fromUserID=$_POST["fromUserID"];
+			$fromUserID=$fromUserIDInMessage; // $_POST["fromUserID"];
 			$data["sendToUserID"]=$fromUserID;
 			$data["prevURL"]=$prevURL;
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Detail", $fromUserID);
@@ -3775,7 +3775,7 @@ class Home extends CI_Controller {
 		$this->admin_model->updateStatByUserID($userID);
 		
 		if(strcmp($type,"Inbox")==0)
-			$this->getAccountPage("13", $pageNum);
+			$this->getAccountPage("14", $pageNum, "0", 1, $userID);
 		else 
 			$this->getAccountPage("10", $pageNum);
 	}
