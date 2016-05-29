@@ -169,7 +169,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                   您好 '.$username.',<br />
 				  <br />
-				  剛才你是否更改girlstrade帳户密碼，如果否，誦檢查你的girlstrade帳户。
+				  剛才你是否更改girlstrade帳户密碼，如果否，請檢查你的girlstrade帳户。
                   </td>
               </tr>
                   		
@@ -324,8 +324,14 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                   Dear Sir/Madam,<br /><br />
-			"Please click the link <a href='.$path.'>here</a> to send new password to your email";
-                  		</td>
+					Please click the link <a href='.$path.'>here</a> to send new password to your email;
+                  </td>
+              </tr>
+			 <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  您好 ,<br /><br />
+					請按這連結<a href='.$path.'>這裡</a> 要求傳送新密碼到的電郵;
+                  </td>
               </tr>
             </table></td>
         </tr>'.$this->footer;
