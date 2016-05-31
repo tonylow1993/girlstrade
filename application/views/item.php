@@ -292,7 +292,7 @@ input[type=checkbox]
               
             </div>
             
-			<div class="content-footer" > 
+			<!--<div class="content-footer" > 
 				<?php 
 				
 				if(!$isloginedIn and $isSameUser==false){
@@ -1218,14 +1218,11 @@ input[type=checkbox]
               <option value="other">Other</option>
             </select>
           </div>
-          <div class="form-group">
+          <!--<div class="form-group">
             <label for="recipientemail" class="control-label">Your E-mail:</label>
             <input type="text"  name="recipientemail" maxlength="60" class="form-control" id="recipientemail">
           </div>
-          <div class="form-group">
-            <label for="messagetext2" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINITEMPAGE;?>) </span>:</label>
-            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control"   maxlength="<?php echo DESCLENGTHINITEMPAGE;?>" id="messagetext2" name="messagetext2"></textarea>
-          </div>
+          
           <div class="form-group">
             <label for="recipientname1" class="control-label">Name: </label>
             <input  id="recipientname1" name="recipientname1" type="text"  maxlength="60" class="form-control" >
@@ -1233,8 +1230,11 @@ input[type=checkbox]
           <div class="form-group">
             <label for="recipientPhoneNumber1"  class="control-label">Phone Number:</label>
             <input type="text"  maxlength="30" class="form-control" name="recipientPhoneNumber1" id="recipientPhoneNumber1">
+          </div>-->
+          <div class="form-group">
+            <label for="messagetext2" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINITEMPAGE;?>) </span>:</label>
+            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control"  rows="5" maxlength="<?php echo DESCLENGTHINITEMPAGE;?>" id="messagetext2" name="messagetext2"></textarea>
           </div>
-          
         </form>
       </div>
       <div class="modal-footer">

@@ -4287,6 +4287,8 @@ span b{
 }
 
 .blogs-comment-wrapper {
+	word-wrap:break-word;
+	table-layout: fixed;
     display: table;
     margin: 0;
     width: 100%;

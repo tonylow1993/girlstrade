@@ -760,7 +760,7 @@
                 if(!$isloginedIn and $isSameUser==false){
                 	$imgRatingPath=base_url()."images/".$userRating;
                 
-                	echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                	//echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
                 
                 }
                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
@@ -768,10 +768,10 @@
                 	if($isPostAlready == false and $isSameUser ==false ){
                 		
                 		$imgRatingPath=base_url()."images/".$userRating;
-                		echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
-                		echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
-                		echo " data-toggle=\"modal\" >";
-                		echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
+                		//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+                		//echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                		//echo " data-toggle=\"modal\" >";
+                		//echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
                 	}
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
@@ -870,7 +870,7 @@
                 if(!$isloginedIn and $isSameUser==false){
                 	$imgRatingPath=base_url()."images/".$userRating;
                 
-                	echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                	//echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
                 
                 }
                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
@@ -878,10 +878,10 @@
                 	if($isPostAlready == false and $isSameUser ==false ){
                 		
                 		$imgRatingPath=base_url()."images/".$userRating;
-                		echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
-                		echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
-                		echo " data-toggle=\"modal\" >";
-                		echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
+                		//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+                		//echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                		//echo " data-toggle=\"modal\" >";
+                		//echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
                 	}
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
@@ -983,7 +983,7 @@
                 if(!$isloginedIn and $isSameUser==false){
                 	$imgRatingPath=base_url()."images/".$userRating;
                 
-                	echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                	//echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
                 
                 }
                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
@@ -991,10 +991,10 @@
                 	if($isPostAlready == false and $isSameUser ==false ){
                 		
                 		$imgRatingPath=base_url()."images/".$userRating;
-                		echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
-                		echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
-                		echo " data-toggle=\"modal\" >";
-                		echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
+                		//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+                		//echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+                		//echo " data-toggle=\"modal\" >";
+                		//echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
                 	}
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
