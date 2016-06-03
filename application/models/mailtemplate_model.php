@@ -182,7 +182,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		}
 		
 		public function SendEmailTitleForForgotPassword(){
-			return "Reset Your GirlsTrade Password";
+			return "Reset Your Girlstrade Account Password";
 		}
 		
 		public function SendEmailMsgForUpdatePassword($username, $password, $username1,
@@ -193,19 +193,19 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                   Dear '.$username.',<br />
-					You have requested that your password be reset.
-					<br/>Your username is '.$username1.'
+					You have requested that your password be reset. 
 					<br/>Your password is '.$password.'.
-					<br/>Please click the <a href="www.girlstrade.com" >girlstrade home page </a> to login and then change your prefered passwoed in account profile.";
+					<br/>Please click the link below to login and change your password.
+					<br/><a href="http://www.girlstrade.com/home/loginPage">login</a>
                   </td>
               </tr>
 				<tr>
 	                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
 	                  您好 '.$username.',<br />
-						你剛才重罝你的密碼. 新資料是
-						<br/>你的密碼是 '.$password.'.
-						<br/>你的用户名是 '.$username1.'
-						<br/>請按 <a href="www.girlstrade.com" >girlstrade 綱址 </a> 去登入去更改你要的新密碼。";
+						你剛才重罝了你的密碼.
+						<br/>你的新密碼是 '.$password.'.
+						<br/>請按以下網址去登入和更改密碼:
+						<br/><a href="http://www.girlstrade.com/home/loginPage">登入</a>
 	                  </td>
 	              </tr>
             </table></td>
@@ -317,20 +317,26 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		public function SendEmailApprovePhotoTitle(){
 			return "Approve your photo";
 		}
-		public function SendEmailMsgForResetPassword($path){
+		public function SendEmailMsgForResetPassword($path, $username){
 			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
-                  Dear Sir/Madam,<br /><br />
-					Please click the link <a href='.$path.'>here</a> to send new password to your email;
-                  </td>
+                  Dear '.$username.',<br /><br />
+					Someone recently asked to reset your GirlsTrade password.
+					Please click the link <a href='.$path.'>here</a> to proceed to change your password.
+							</br>
+						If you have not requested, please ignore this email.
+				 </td>
               </tr>
 			 <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
-                  您好 ,<br /><br />
-					請按這連結<a href='.$path.'>這裡</a> 要求傳送新密碼到的電郵;
+                  您好 '.$username.',<br /><br />
+						最近, 有人要求更改你的GirlsTrade密碼.
+						請按這<a href='.$path.'>連結</a>這裡要求傳送新密碼到的電郵; 
+						<br/>假如你沒有要求更改你的密碼，請忽略此電郵。
+						
                   </td>
               </tr>
             </table></td>
@@ -340,7 +346,7 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 			
 		}
 		public function SendEmailTitleForResetPassword(){
-			return "Email alert for your reset password";
+			return "Somebody requested a new password for your GirlsTrade account";
 		}
 		public function SendEmailRejectFeedBack(){
 			

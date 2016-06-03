@@ -1016,10 +1016,10 @@ class Home extends CI_Controller {
 		
 			$userEmail=$this->userEmail->getUserEmailByEmail($emailAddress);
 			$userAfter = $this->user->getUserByUserID($userEmail['userID']);
-				
+			$user=$this->user->getUserByUserID($userEmail['userID']);
 			$path=base_url().MY_PATH."home/resetPassword/".$userAfter["userID"]."/".md5($userAfter["createDate"]);
 			$message=$this->mailtemplate_model->SendEmailMsgForResetPassword(
-					$path);
+					$path, $user["username"]);
 				$title=$this->mailtemplate_model->SendEmailTitleForResetPassword();
 			$this->sendAuthenticationEmail($userEmail, $message, $title, FORGETPASSWORDSENDEMAIL);
 			
