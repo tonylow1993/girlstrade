@@ -1207,18 +1207,24 @@ class Home extends CI_Controller {
 			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Email: '. $data['email'] .' has been used already.</div>';
 			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Email</span></em>';
 			$data['emailError']='Error';
+			echo json_encode($data);
+			return;
 		}else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
 			$data['status'] = 'F';
 			$data['class'] = "has-error";
 			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Email: '. $data['email'] .' is invalid email.</div>';
 			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Email</span></em>';
 			$data['emailError']='Error';
+			echo json_encode($data);
+			return;
 		} if(strlen($data['email'])> MAXLENGTHEMAIL){
 			$data['status'] = 'F';
 			$data['class'] = "has-error";
 			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Email: '. $data['email'] .' is too long.</div>';
 			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Email</span></em>';
 			$data['emailError']='Error';
+			echo json_encode($data);
+			return;
 		}else{
 			$data['status'] = 'A';
 			$data['class'] = "has-success";
@@ -1251,6 +1257,8 @@ class Home extends CI_Controller {
 			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> phone number is digits only.</div>';
 			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid phone number</span></em>';
 			$data['telError']='Error';
+			echo json_encode($data);
+			return;
 		}else{
 			$data['status'] = 'A';
 			$data['class'] = "has-success";
@@ -1323,6 +1331,8 @@ class Home extends CI_Controller {
 			$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Username: '. $data['username'] .' contains invalid words.</div>';
 			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid Username</span></em>';
 			$data['usernameError']='Error';
+			echo json_encode($data);
+			return;
 		}else{
 			$data['status'] = 'A';
 			$data['class'] = "has-success";
