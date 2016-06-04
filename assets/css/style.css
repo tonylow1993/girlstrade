@@ -3373,6 +3373,23 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.badge-profile{
+	background-color: #FFF;
+	color: #F85D2C !important;
+	border-radius: 15px;
+}
+
+.back-btn{
+	border-radius: .25em;
+    border: 2px solid #E2348C;
+    padding: .2em .6em .3em;
+}
+
+.back-btn:hover{
+	background-color: #E2348C;
+	color: white;
+}
+
 .profile-panel{
 	color: white !important;
 	font-size: 150px;
@@ -3414,6 +3431,7 @@ td.ads-details-td {
     background-color: #E74C3C;
     left: 10px;
     top: 10px;
+	z-index: 10;
 }
 
 .inbox-title-span{
@@ -3475,6 +3493,7 @@ td.ads-details-td {
 	font-size: 20px;
 	font-weight: 500;
 	color: #000;
+	word-wrap: break-word;
 }
 
 

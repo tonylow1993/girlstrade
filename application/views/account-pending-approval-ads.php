@@ -15,7 +15,7 @@
           	  <?php include("profile_visit.php");?>
             <h2 class="title-2"><i class="icon-hourglass"></i><?php  echo $this->lang->line("Pending_Approval");?></h2>
             <div class="table-responsive">
-              <div class="table-action">
+              <!--<div class="table-action">
                 <label for="checkAll">
                   <input type="checkbox" onclick="checkAll(this)" id="checkAll">
                   Select: All | <a href="#" class="btn btn-xs btn-danger">Cancel <i class="glyphicon glyphicon-remove "></i></a> </label>
@@ -24,7 +24,7 @@
                     
                   </div>
                 </div>
-              </div>
+              </div>-->
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr>

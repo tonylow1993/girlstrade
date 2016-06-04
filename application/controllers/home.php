@@ -2071,8 +2071,12 @@ class Home extends CI_Controller {
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All", "Summary");
 			$this->load->view('account-message-onlybyuserid', $data);
 		}else if ($activeNav==14){
-			
 			$fromUserID=$fromUserIDInMessage; // $_POST["fromUserID"];
+			$fromUser=$this->user->getUserByUserID($fromUserID);
+			if(strcmp($fromUser["photostatus"],"A")==0)
+				$data["fromUserPhotoPath"]=base_url().$user1['thumbnailPath'].'/'.$user1['thumbnailName'];
+			else
+				$data["fromUserPhotoPath"]=base_url()."images/user.jpg";
 			$data["sendToUserID"]=$fromUserID;
 			$data["prevURL"]=$prevURL;
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Detail", $fromUserID);
@@ -2080,6 +2084,8 @@ class Home extends CI_Controller {
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
 			$this->load->view('account-chat', $data);
 		}else if ($activeNav==15){
+			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Summary", 0);
+			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
 			$this->load->view('account-profile', $data);
 		}
 	}
