@@ -873,13 +873,15 @@ function addDayswithdate($date,$days){
 				$this->admin_model->updateStatByUserID($fUserID);
 				$this->admin_model->updateStatByUserID($userID);
 					
+				$postInfo=$this->post->getPostByPostID($postID);
+				$title=$postInfo[0]->itemName;
 				
 				$usernameArr=$this->users_model->get_user_by_id($userID);
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
-					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendApproveOrRejectToSeller($username, $path );
-					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendApproveOrRejectToSeller(), APPROVEDIRECTSEND);
+					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendApproveFromSeller($username, $path, $title );
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendApproveFromSeller($title), APPROVEDIRECTSEND);
 					
 				
 				$data['status'] = 'A';
@@ -946,12 +948,15 @@ function addDayswithdate($date,$days){
 			
 			$messageResult=$this->requestpost_model->update($messageArray,$where);
 			if($messageResult){
+				$postInfo=$this->post->getPostByPostID($postID);
+				$title=$postInfo[0]->itemName;
+				
 			$usernameArr=$this->users_model->get_user_by_id($userID);
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
-					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendApproveOrRejectToSeller($username, $path );
-					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendApproveOrRejectToSeller(), REJECTDIRECTSEND);
+					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendRejectFromSeller($username, $path, $title );
+					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendRejectFromSeller($title), REJECTDIRECTSEND);
 					
 					$data['status'] = 'A';
 				$data['class'] = "has-success";

@@ -901,8 +901,8 @@ class getAdmin extends CI_Controller {
 							$usernameArr=$this->users_model->get_user_by_id($postInfo[0]->userID);
 							$username=$usernameArr[0]->username;
 							$path=base_url().MY_PATH."home/loginPage";
-							$msg=$this->mailtemplate_model->SendEmailApprovePost( $username);
-							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle(), APPROVEPOST);
+							$msg=$this->mailtemplate_model->SendEmailApprovePost( $username, $postInfo[0]->itemName);
+							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle($postInfo[0]->itemName), APPROVEPOST);
 							
 					}
 					else if($status=='R')
@@ -918,8 +918,8 @@ class getAdmin extends CI_Controller {
 						$usernameArr=$this->users_model->get_user_by_id($postInfo[0]->userID);
 						$username=$usernameArr[0]->username;
 						$path=base_url().MY_PATH."home/loginPage";
-						$msg=$this->mailtemplate_model->SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason );
-						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle(), REJECTPOST);
+						$msg=$this->mailtemplate_model->SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason , $postInfo[0]->itemName);
+						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectPostTitle($postInfo[0]->itemName), REJECTPOST);
 							
 					}
 						

@@ -100,6 +100,60 @@ If you experience any difficulties accessing the link, simply access your profil
 
 		}
 		
+		public function SendEmailTitleForDirectSendApproveFromSeller($title){
+			return "Contact info for: ( ".$title. " ) ";
+		}
+		
+		public function SendEmailMsgForDirectSendApproveFromSeller($username, $path, $title){
+			return $this->header.'
+        <tr>
+          <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  Dear '.$username.',<br />
+		
+              The owner of the post ( '.$title.' ) would like to share his/her \'s contact information with you.
+				You may view seller\'s contact information using the link below:
+				( '.$path.' )
+				<br/>
+				If you experience any difficulties accessing the link, simply access your profile to view your messages.  
+				**To disable this email notification, please go to your profile page.
+
+                  </td>
+              </tr>
+            </table></td>
+        </tr> '.$this->footer;
+				
+		
+		}
+		
+		public function SendEmailTitleForDirectSendRejectFromSeller($title){
+			return "Your contact seller request of post (".$title.") has been rejected";
+		}
+		
+		public function SendEmailMsgForDirectSendRejectFromSeller($username, $path, $title){
+			return $this->header.'
+        <tr>
+          <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  Dear '.$username.',<br />
+		
+				Unfortunately, the owner of the post ( '.$title.' ) has refused to give you his/her contact information.
+				<br/>
+
+If you experience any difficulties accessing the link, simply access your profile to view your messages.  
+**To disable this email notification, please go to your profile page.
+
+                  		
+                  </td>
+              </tr>
+            </table></td>
+        </tr> '.$this->footer;
+				
+		
+		}
+		
 		public function SendEmailReplyMsgForSelleOrBuyerr( $username, $path){
 			return $this->header.'
         <tr>
@@ -268,7 +322,7 @@ If you experience any difficulties accessing the link, simply access your profil
         </tr>'.$this->footer;
 		}
 		
-		public function SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason){
+		public function SendEmailRejectPost( $username, $rejectReason ,$rejectSpecifiedReason, $title){
 			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -276,36 +330,49 @@ If you experience any difficulties accessing the link, simply access your profil
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                   Dear '.$username.',<br /><br />
 				  		
-<br/>Your post is rejected due to '.$rejectReason.' with '.$rejectSpecifiedReason.'.
-<br/>Thank you!";  </td>
+<br/>
+Unfortunately, You post ('.$title.') has been rejected!
+You may view the reason of your rejected ad using the following link:
+(Link to approve or reject page)
+<br/>
+If you experience any difficulties accessing the link, simply access your profile to view your messages.  
+**To disable this email notification, please go to your profile page.
+                  		</td>
               </tr>
             </table></td>
         </tr>'.$this->footer;
 
 		}
 		
-		public function SendEmailRejectPostTitle(){
-			return "Reject your post";
+		public function SendEmailRejectPostTitle($title){
+			return "Your Ad (".$title.") has been rejected.";
 		}
 		
-		public function SendEmailApprovePost($username){
+		public function SendEmailApprovePost($username, $title){
 			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                   Dear '.$username.',<br /><br />
-				  		
-<br/>Your post is approved.
-<br/>Thank you!";</td>
+You post ('.$title.') has been approved!
+You may view your item using the following link:
+(Link to approve or reject page)
+                  		
+<br/>
+If you experience any difficulties accessing the link, simply access your profile to view your messages.  
+**To disable this email notification, please go to your profile page.
+
+
+                  		</td>
               </tr>
             </table></td>
         </tr>'.$this->footer;
 
 		}
 		
-		public function SendEmailApprovePostTitle(){
-			return "Approve your post";
+		public function SendEmailApprovePostTitle($title){
+			return "( ".$title." ) has been approved!";
 		}
 		
 		public function SendEmailRejectPhoto($username, $rejectReason ,$rejectSpecifiedReason){
