@@ -3425,6 +3425,7 @@ td.ads-details-td {
     background-color: #E74C3C;
     left: 10px;
     top: 10px;
+	z-index: 10;
 }
 
 .inbox-title-span{
