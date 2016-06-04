@@ -12,9 +12,8 @@
         
         <div class="col-sm-9 page-content">
 			<?php include("profile_header.php");?>
-			<div class="pull-right backtolist">
-		      <a href=<?php  echo $prevURL;?>> 
-		      <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
+			<a class="pull-right back-btn margin-5" href=<?php  echo $prevURL;?>> 
+			<i class="fa fa-angle-double-left"></i> Back to Results</a>
      
 			<div class="col-md-12 bg-white panel-bevel">
 				<div class="chat-message">
@@ -46,11 +45,11 @@
 		                  		$msgType=$row["type"];
 		                  		if(strcmp($msgType, "Inbox")==0){
 		                  			echo "<li class=\"right clearfix\"> <span class=\"chat-img pull-right\"> 
-									<img src=\"http://bootdey.com/img/Content/user_3.jpg\" alt=\"User Avatar\"> 
+									<img src=$fromUserPhotoPath alt=\"User Avatar\"> 
 									</span><div class=\"chat-body clearfix\"><div class=\"header\"> <strong class=\"primary-font\">$fromusername </strong>  <small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i> $createDate</small></div><p> $content</p></div></li>";
 		                  		}else{
 		                  			echo "<li class=\"left clearfix\"> <span class=\"chat-img pull-left\"> 
-									<img src=\"http://bootdey.com/img/Content/user_3.jpg\" alt=\"User Avatar\"> 
+									<img src=$userPhotoPath alt=\"User Avatar\"> 
 									</span><div class=\"chat-body clearfix\"><div class=\"header\">  <strong class=\"primary-font\">$username </strong><small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i> $createDate</small></div><p> $content</p></div></li>";
 		                  		}
 		                  		
