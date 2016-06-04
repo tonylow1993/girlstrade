@@ -1328,8 +1328,8 @@ function locSetup1(){
 		   keywords='0';
 	   var activeTab=document.getElementById("paneActiveTab").value;
 	   
-	   var minPrice=document.getElementById("minPrice1").value;
-	   var maxPrice=document.getElementById("maxPrice1").value;
+	   var minPrice=document.getElementById("minPrice").value;
+	   var maxPrice=document.getElementById("maxPrice").value;
 	document.getElementById("locForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 	document.getElementById("locForm1").submit();
 }
@@ -1345,8 +1345,8 @@ function catSetup1(){
 		   keywords='0';
 	   var activeTab=document.getElementById("paneActiveTab").value;
 	   
-	   var minPrice=document.getElementById("minPrice1").value;
-	   var maxPrice=document.getElementById("maxPrice1").value;
+	   var minPrice=document.getElementById("minPrice").value;
+	   var maxPrice=document.getElementById("maxPrice").value;
 	document.getElementById("catForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 	document.getElementById("catForm1").submit();
 }
@@ -1467,7 +1467,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
             Hong Kong</strong>
             </div>
             </p>
-<form role="form"  id="locForm1" class="form-inline modalBody margin-top-20"  onSubmit="return locSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0';?>" method="POST">  
+<form role="form"  id="locForm1" class="form-inline modalBody margin-top-20"  onSubmit="return locSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">  
              
 <div style="clear:both"></div>            
             <div class="col-sm-6 no-padding">
@@ -1768,12 +1768,12 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
             <strong><i class="icon-th"></i>Category</strong>
             </div>
             </p>
-		<form role="form"  id="catForm1" class="form-inline modalBody margin-top-20"  onSubmit="return catSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0';?>" method="POST">  
+		<form role="form"  id="catForm1" class="form-inline modalBody margin-top-20"  onSubmit="return catSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">  
              
                   
 			<div style="clear:both"></div>            
             <div class="col-sm-6 no-padding">
-        <select  class="form-control      " id="parent-category" name="parent-category">
+        <select  class="form-control" id="parent-category" name="parent-category">
 		
 		<?php 
 		
@@ -1823,70 +1823,70 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
           </div>
           
           <?php 
-    	     $count=0;
-    	     $total=0;
-    	     $lastCol=0;
-            foreach ($result as $id=>$value)
-            {
-            	if(!isset($lang_label))
-	            		$lang_label="";
-            	$name=$value[0]->name;
-            	$postCount="(".$value[0]->postCount.")";
-            	if(SHOW_BRACKETS_SEARCH_PAGE==0)
-            		$postCount="";
-            	if($lang_label<>"english")
-            		$name=$value[0]->nameCH;
-            	$path=base_url().MY_PATH."getCategory/getAll/1/".$value[0]->categoryID;
+//     	     $count=0;
+//     	     $total=0;
+//     	     $lastCol=0;
+//             foreach ($result as $id=>$value)
+//             {
+//             	if(!isset($lang_label))
+// 	            		$lang_label="";
+//             	$name=$value[0]->name;
+//             	$postCount="(".$value[0]->postCount.")";
+//             	if(SHOW_BRACKETS_SEARCH_PAGE==0)
+//             		$postCount="";
+//             	if($lang_label<>"english")
+//             		$name=$value[0]->nameCH;
+//             	$path=base_url().MY_PATH."getCategory/getAll/1/".$value[0]->categoryID;
             	
-            	if($value[0]->level==1)
-            	{
-            		$total++;
-            		$count++;
-            		if($count==7)
-            		{
-            			$lastCol++;
-            			$count=1;
-            		}
-            		if($total<>1)
-            			echo "</ul>";
-            			//echo "</ul></div>";
-            		if($count==1)
-            		{
-            			if($total<>1)
-            				echo "</div>";
-            			if($lastCol==2)
-            				echo "<div class=\"col-md-4 col-sm-4 last-column\">";
-            			else
-            			echo "<div class=\"col-md-4 col-sm-4\">";
-            		}
-            		$imageIcon=$value[0]->iconImage;
-            		if($value[0]->childCount<>0){
-            		//echo "<div class=\"cat-list\">";
-            		echo "<h5 class=\"cat-title\"><a class=\"title-font\"  style=\"margin:0px; padding:0px;padding-left:3px;\"  href='$path'>$name $postCount</a>";
+//             	if($value[0]->level==1)
+//             	{
+//             		$total++;
+//             		$count++;
+//             		if($count==7)
+//             		{
+//             			$lastCol++;
+//             			$count=1;
+//             		}
+//             		if($total<>1)
+//             			echo "</ul>";
+//             			//echo "</ul></div>";
+//             		if($count==1)
+//             		{
+//             			if($total<>1)
+//             				echo "</div>";
+//             			if($lastCol==2)
+//             				echo "<div class=\"col-md-4 col-sm-4 last-column\">";
+//             			else
+//             			echo "<div class=\"col-md-4 col-sm-4\">";
+//             		}
+//             		$imageIcon=$value[0]->iconImage;
+//             		if($value[0]->childCount<>0){
+//             		//echo "<div class=\"cat-list\">";
+//             		echo "<h5 class=\"cat-title\"><a class=\"title-font\"  style=\"margin:0px; padding:0px;padding-left:3px;\"  href='$path'>$name $postCount</a>";
             		
-            		//echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\">   <span class=\" icon-down-open-big\"></span> </span>";
-            		//echo "<span class=\" icon-down-open-big\"></span>";
-            		echo "</h5>";
+//             		//echo "<span data-target=\".cat-id-$total\"  data-toggle=\"collapse\"  class=\"btn-cat-collapsed collapsed\">   <span class=\" icon-down-open-big\"></span> </span>";
+//             		//echo "<span class=\" icon-down-open-big\"></span>";
+//             		echo "</h5>";
             	 
-            		//echo "<ul class=\"cat-collapse collapse in cat-id-$total\">";
-            		echo "<ul>";
-            		} else {
-            			//echo "<div class=\"cat-list\">";
-            			echo "<h5 ><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;\" href='$path'>$name $postCount</a>";
+//             		//echo "<ul class=\"cat-collapse collapse in cat-id-$total\">";
+//             		echo "<ul>";
+//             		} else {
+//             			//echo "<div class=\"cat-list\">";
+//             			echo "<h5 ><a class=\"title-font\" style=\"margin:0px; padding:0px;padding-left:3px;\" href='$path'>$name $postCount</a>";
             			
-            			//echo "<span data-target=\".cat-id-$total\"  >  </span>";
-            			echo "</h5>";
-            			echo "<ul>";
+//             			//echo "<span data-target=\".cat-id-$total\"  >  </span>";
+//             			echo "</h5>";
+//             			echo "<ul>";
             			
-            		}
-            	}else 
-            	{
-            		echo  "<li> <a href='$path'><h6>$name $postCount</h6></a></li>";
+//             		}
+//             	}else 
+//             	{
+//             		echo  "<li> <a href='$path'><h6>$name $postCount</h6></a></li>";
                    
-            	}
-            }
-            if($total<>0)
-            	echo "</ul></div></div></div>";
+//             	}
+//             }
+//             if($total<>0)
+//             	echo "</ul></div></div></div>";
             ?>
           
           

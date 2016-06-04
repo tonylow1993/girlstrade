@@ -56,9 +56,9 @@ class userInfoSendEmail_model extends CI_Model{
 						strcmp($field, "INSERTMESSAGESENDEMAIL")==0 ||
 						strcmp($field, "APPROVEDIRECTSEND")==0 ||
 						strcmp($field, "REJECTDIRECTSEND")==0 ||
-						strcmp($field, "REPLYMESSAGESENDEMAIL")==0 ||
-						strcmp($field, "APPROVEFEEDBACK")==0 ||
-						strcmp($field, "REJECTFEEDBACK")==0 ){
+						strcmp($field, "REPLYMESSAGESENDEMAIL")==0){
+						//strcmp($field, "APPROVEFEEDBACK")==0 ||
+						//strcmp($field, "REJECTFEEDBACK")==0 ){
 						//|| strcmp($field, "sendEmailForApproveReject")==0){
 				$temp = array("type"=>$field, "typeValue"=>$var[0]->$field);
 				array_push($data, $temp);
