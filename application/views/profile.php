@@ -210,7 +210,7 @@ function sendIt() {
 				<noscript><input type="submit" value="Submit"></noscript>
 			</form></div>
             <!--/.tab-box-->
-               <div class="pull-right backtolist margin-5"><a href=<?php echo $prevProfile_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
+               <a class="pull-right margin-5 back-btn" href=<?php echo $prevProfile_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a>
  
            </div>
                

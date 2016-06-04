@@ -3373,6 +3373,17 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.back-btn{
+	border-radius: .25em;
+    border: 2px solid #E2348C;
+    padding: .2em .6em .3em;
+}
+
+.back-btn:hover{
+	background-color: #E2348C;
+	color: white;
+}
+
 .profile-panel{
 	color: white !important;
 	font-size: 150px;
