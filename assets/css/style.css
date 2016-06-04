@@ -3373,6 +3373,11 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.ads-details h5{
+	word-break: break-all;
+    word-wrap: break-word;
+}
+
 .badge-profile{
 	background-color: #FFF;
 	color: #F85D2C !important;
