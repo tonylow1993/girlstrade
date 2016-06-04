@@ -205,7 +205,7 @@ function addDayswithdate($date,$days){
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."/home/loginPage";
-					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendToSeller( $username, $path);
+					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendToSeller( $username, $path, $postInfo[0]->itemName);
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendToSeller(), DIRECTSENDEMAIL);
 					
 					$this->admin_model->getDirectSendStatByUserID($fUserID);

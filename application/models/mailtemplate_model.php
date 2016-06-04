@@ -44,22 +44,33 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
 		}
 		
 		public function SendEmailTitleForDirectSendToSeller(){
-			return "You have got the direct send msg from buyer";
+			return "A new buyer is interested in your post";
 		}
-		public function SendEmailMsgForDirectSendToSeller($username, $path){
+		public function SendEmailMsgForDirectSendToSeller($username, $path, $title){
 			return  $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                   Dear '.$username.',<br />
-				  
-                 <br/>You have received a message from a Girlstrade seller which has been delivered to your Girlstrade inbox
-<br/>To access your message, please click <a href='.$path.'>here</a> to login and view your message.
-<br/>If you experience any difficulty using the link, simply access your profile to view your messages.
-<br/>You will be notified each time you have a new message.
+				  You have received a buyer request on your item ( '.$title.' ). <br/>
+You may approve or reject the request by clicking on "Buyer List" under following link:
+( <a href='.$path.'> Approve or Reject</a> ) <br/>
+Once approved, this buyer will be able to view your contact information and contact you directly.
+<br/>
+If you experience any difficulties accessing the link, simply access your profile to view your messages.  
+**To disable this email notification, please go to your profile page.<br/>
+                  		
+                
                   </td>
               </tr>
+ 				<tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  您好 '.$username.',<br />
+                  		
+                  		
+				</td>
+                 </tr>
             </table></td>
         </tr> '.$this->footer;
 		}
@@ -225,14 +236,34 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
                   Dear '.$username.',<br /><br />
 				  You have registered for GirlsTrade using the e-mail address: '.$email.'<br />
                   <br /><br />
-				  In order to get you fully signed up as a member, we need to confirm your e-mail address.
-				  <br />
-				  Please click 
-                  <strong><a href="'.$path.'" target="_blank" style="color:#1f4f82; text-decoration:underline; font-family:Arial, Helvetica, sans-serif; font-size:13px; text-align:left"><h1>here</h1></a></strong> to activate your account. <br>
-                  <br /> <br />
-                  If you are still unable to verify your email address. <br />Please contact us and we will get back to you within the next 24 hours.
-                  </td>
+					Please click the link below and verify that the email address you registered belongs to you.
+				  	<br />
+				  <strong><a href="'.$path.'" target="_blank" style="color:#1f4f82; text-decoration:underline; font-family:Arial, Helvetica, sans-serif; font-size:13px; text-align:left"><h1>Verify</h1></a></strong> <br>
+                  <br />
+				  *If the link above does not work, copy and paste the address below into a new browser window.	
+				  		<br />'.$path.'
+                 If you are still unable to verify your email address. 
+				Please contact us and we will get back to you within the next 24 hours. 
+				  				</td>
               </tr>
+				<tr>
+				  <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+               		您好 '.$username.',<br /><br />
+				  
+				  				你使用了這個電郵地址註冊GirlsTrade帳戶:'.$email.'<br>
+				  				請按以下網址確認你的電郵.<br/>
+				  				<strong><a href="'.$path.'" target="_blank" style="color:#1f4f82; text-decoration:underline; font-family:Arial, Helvetica, sans-serif; font-size:13px; text-align:left"><h1>核實賬戶</h1></a></strong> <br>
+				  					
+				  						*如果以上網址有問題,請複製以下網址到瀏覽器:<br>'.$path.'
+									
+									<br/>	假如你的核實賬戶過程有任何問題,
+									<br/>	請聯繫我們(一天之內答覆)
+				  </td>
+				 </tr>
+				  				
+				  				
+				  				
+				  				
             </table></td>
         </tr>'.$this->footer;
 		}
