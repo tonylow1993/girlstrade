@@ -154,9 +154,7 @@
                			$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
                			if($value[0]->level==1){
                				
-               				if($level==2){
-               				
-               				}else if($level==3){
+               				if($level==2 or $level==3){
                					echo "</ul></div></ul>
                					</div>";
                					if($value[0]->locationID==2){
