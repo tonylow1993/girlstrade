@@ -128,7 +128,7 @@
             <div class="inner-box panel-bevel">
               
               <!--/.categories-list-->
-              
+              <form id="myFormsearchloc" name="myFormsearchloc" onSubmit="return searchloc(<?php echo $locID_; ?>)"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">
               <div class="locations-list  list-filter">
                 <h5 class="list-title"><strong>
                 <a class="not-active">
@@ -149,6 +149,7 @@
                		if(SHOW_BRACKETS_SEARCH_PAGE==0)
                			$postCount="";
                		$name=$value[0]->name.$postCount;
+               		$locPlusID=$value[0]->locationID;
                		if($lang_label<>"english")
                			$name=$value[0]->nameCN.$postCount;
                			$path=base_url().MY_PATH."getCategory/getAll/1/0/".$value[0]->locationID;
@@ -165,7 +166,7 @@
                						<i class=\"glyphicon glyphicon-plus\"></i>
                						</span>
                						</a>
-               						<a id=\"searchCriteria\" style=\"color: green;\" class=\"listForOpenCat\" href=\"$path\">$name</a>
+               						<a id=\"searchCriteria\" style=\"color: green;\" class=\"listForOpenCat\" onclick=\"searchloc($locPlusID)\" >$name</a>
                						</li>
                						
                						<div id=\"hongkongDist\" class=\"panel-collapse collapse\">
@@ -186,7 +187,7 @@
                								<i class=\"glyphicon glyphicon-plus\"></i>
                								</span>
                								</a>
-               								<a id=\"searchCriteria\" style=\"color: red;\" class=\"listForOpenCat\" href=\"$path\">
+               								<a id=\"searchCriteria\" style=\"color: red;\" class=\"listForOpenCat\" onclick=\"searchloc($locPlusID)\" >
                								$name</a>
                								</li>
                						
@@ -210,7 +211,7 @@
 	               						<i class=\"glyphicon glyphicon-plus\"></i>
 	               						</span>
 	               						</a>
-	               						<a id=\"searchCriteria\" style=\"color: blue;\" class=\"listForOpenCat\" href=\"$path\">
+	               						<a id=\"searchCriteria\" style=\"color: blue;\" class=\"listForOpenCat\" onclick=\"searchloc($locPlusID)\" >
 	               						$name
 	               						</a>
 	               						</li>
@@ -232,7 +233,7 @@
                					
                					
                					if($locationID==1){
-               						echo "<a id=\"searchCriteria\" style=\"color:blue;\" class=\"listForOpenCat\" href=\"$path\">
+               						echo "<a id=\"searchCriteria\" style=\"color:blue;\" class=\"listForOpenCat\" onclick=\"searchloc($locPlusID)\" >
                						$name
                						</a>
                						</li>";
@@ -241,14 +242,14 @@
 	               					
                					}
                					else if($locationID==2){
-               						echo "<a id=\"searchCriteria\" style=\"color:green;\" class=\"listForOpenCat\" href=\"$path\">
+               						echo "<a id=\"searchCriteria\" style=\"color:green;\" class=\"listForOpenCat\" onclick=\"searchloc($locPlusID)\" >
                						$name
                						</a>
                						</li>";
                						echo "<div id=\"hkArea\" class=\"panel-collapse collapse\">
                					<ul class=\" list-unstyled long-list\">";
                					}else if($locationID==3){
-               						echo "<a id=\"searchCriteria\" style=\"color:red;\" class=\"listForOpenCat\" href=\"$path\">
+               						echo "<a id=\"searchCriteria\" style=\"color:red;\" class=\"listForOpenCat\" onclick=\"searchloc($locPlusID)\" >
                						$name
                						</a>
                						</li>";
@@ -283,7 +284,7 @@
 	               					</span>
 	               					</a>
                					
-               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" href=\"$path\">
+               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" onclick=\"searchloc($locPlusID)\">
                					$name
                					</a>
                					</li><div id=\"$areaID\" class=\"panel-collapse collapse\">
@@ -313,7 +314,7 @@
 	               					<i class=\"glyphicon glyphicon-plus\"></i>
 	               					</span>
 	               					</a>
-               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" href=\"$path\">
+               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" onclick=\"searchloc($locPlusID)\" >
                					$name
                					</a>
                					</li><div id=\"$areaID\" class=\"panel-collapse collapse\">
@@ -336,14 +337,14 @@
                				
                				if($level==2){
                					echo "<li>
-               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" href=\"$path\">
+               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" onclick=\"searchloc($locPlusID)\" >
                					$name
                					</a>
                					</li>";
                					
                				}else if($level==3){
                					echo "<li>
-               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" href=\"$path\">
+               					<a id=\"searchCriteria\" $style class=\"listForOpenCat\" onclick=\"searchloc($locPlusID)\" >
                					$name
                					</a>
                					</li>";
@@ -359,11 +360,9 @@
                 ?>
                  </ul>
         		</div>
-              </ul>
-        		</div> 
-               </ul>
-        		</div>
-
+        		</form>
+             
+			
               
               
               <div style="clear:both"></div>
@@ -1347,6 +1346,23 @@ function catSetup1(){
 	   var maxPrice=document.getElementById("maxPrice").value;
 	document.getElementById("catForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 	document.getElementById("catForm1").submit();
+}
+function searchloc($id){
+	var catID=document.getElementById("search-category").value;
+ 	var locID=$id;
+//var locID=0;
+	var sortByType=document.getElementById("selectSortType").value;
+	var sortByPrice=document.getElementById("sortByPrice").value;
+	var sortByDate=document.getElementById("sortByDate").value;
+	var keywords=document.getElementById("ads").value;
+	   if(keywords.trim()=='')
+		   keywords='0';
+	   var activeTab=document.getElementById("paneActiveTab").value;
+	   
+	   var minPrice=document.getElementById("minPrice").value;
+	   var maxPrice=document.getElementById("maxPrice").value;
+	document.getElementById("myFormsearchloc").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
+	document.getElementById("myFormsearchloc").submit();
 }
 function savedAds(ctrlValue, ctrlName, clickLink) {
 	$("#".concat(ctrlName)).html('<img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif">');
