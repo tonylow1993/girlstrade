@@ -259,10 +259,10 @@ $lang["CHANGEPASSWORDSENDEMAIL"]="Change password and then send email to you";
 $lang["UPDATEPASSWORDSENDEMAIL"]="Update password and then send email to you";
 
 // MESSAGES
-$lang["DIRECTSENDEMAIL"]="After being contact seller as you, you will receive email from buyer";
+$lang["DIRECTSENDEMAIL"]="Received a 'contact seller' request from a buyer";
 $lang["DELETEABUSEMESSAGESENDEMAIL"]="When your abused post are being removed, you will receive email";
 $lang["INSERTABUSEMESSAGESENDEMAIL"]="When your post are being abused, you will receive email";
-$lang["INSERTMESSAGESENDEMAIL"]="When buyer send message to you, you will receive email";
+$lang["INSERTMESSAGESENDEMAIL"]="Received a new inbox message from another user";
 $lang["APPROVEDIRECTSEND"]="When your request contact seller and are being approved, you will receve email";
 $lang["REJECTDIRECTSEND"]="When your request contact seller and are being rejceted, you will receve email";
 $lang["REPLYMESSAGESENDEMAIL"]="When your message are being replied, you will receive email";
