@@ -2084,6 +2084,8 @@ class Home extends CI_Controller {
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
 			$this->load->view('account-chat', $data);
 		}else if ($activeNav==15){
+			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Summary", 0);
+			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
 			$this->load->view('account-profile', $data);
 		}
 	}

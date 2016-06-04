@@ -14,7 +14,7 @@
       <div class="row">
         <?php include("account_sidebar.php");?>
         <!--/.page-sidebar-->
-        
+		
         <div class="col-sm-4 page-content">
 			<div class="inner-box profile-panel setting-panel panel-bevel">
 				<a href="http://www.girlstrade.com/home/getAccountPage/4" class="row white-icon">
@@ -26,7 +26,11 @@
 			<div class="inner-box profile-panel inbox-panel panel-bevel">
 				<a href="http://www.girlstrade.com/home/getAccountPage/13" class="row white-icon">
 					<i class="fa fa-inbox fa-5"></i><br>
-					<p class="panel-title">INBOX</p>
+					<p class="panel-title">INBOX
+					<?php
+						echo "<span class=\"badge badge-profile\">$inboxMsgCount</span>";
+					?>
+					</p>
 				</a>
 			</div>
         </div>
