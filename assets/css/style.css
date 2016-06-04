@@ -3475,6 +3475,7 @@ td.ads-details-td {
 	font-size: 20px;
 	font-weight: 500;
 	color: #000;
+	word-wrap: break-word;
 }
 
 
