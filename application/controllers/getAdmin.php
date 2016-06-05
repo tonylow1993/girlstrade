@@ -900,7 +900,7 @@ class getAdmin extends CI_Controller {
 							array_push($approvelist ,strval($postID));
 							$usernameArr=$this->users_model->get_user_by_id($postInfo[0]->userID);
 							$username=$usernameArr[0]->username;
-							$itemPath=base_url().MY_PATH."viewItem/".$postID;
+							$itemPath=base_url().MY_PATH."viewItem/index/".$postID;
 							$path=base_url().MY_PATH."home/loginPage";
 							$msg=$this->mailtemplate_model->SendEmailApprovePost( $username, $postInfo[0]->itemName, $itemPath);
 							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApprovePostTitle($postInfo[0]->itemName), APPROVEPOST);
