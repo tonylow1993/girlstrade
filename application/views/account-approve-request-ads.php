@@ -14,7 +14,7 @@
           <div class="inner-box">
           	  <?php include("profile_visit.php");?>
             <h2 class="title-2"><i class="icon-star-circled"></i> <?php echo $this->lang->line("ApproveReject"); ?> </h2>
-             <div class="table-responsive">
+             <div>
 <!--               <div class="table-action"> -->
 <!--                 <label for="checkAll"> -->
  <!--                  <input type="checkbox" onclick="checkAll(this)" id="checkAll"> -->
@@ -31,7 +31,7 @@
                 <thead>
                   <tr>
                     <th> <?php echo $this->lang->line("From");?> </th>
-                    <th data-sort-ignore="true"> <?php echo $this->lang->line("Ads_Detail");?></th>
+                    <th data-sort-ignore="true" class="small-table-right"> <?php echo $this->lang->line("Ads_Detail");?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,7 +81,7 @@
                   					echo "<br/>Buyer email: $sellerEmail";
                   				echo "<br/>Status: $status</p>";
                   				echo "</td>";
-                  				echo "<td style=\"width:55%\" class=\"ads-details-td\">";
+                  				echo "<td style=\"width:55%\" class=\"ads-details-td small-table-right\">";
                   				echo "<div class=\"ads-details\">";
                   				echo "<h5><div class=\"add-title-girlstrade\"><a href=$viewItemPath>".$this->lang->line("lblTitle").$previewTitle."</a></div><a href=$viewItemPath>".$previewDesc."</a>";
                   				echo "<br/>Posted On: ". $createDate."</h5>";
@@ -105,6 +105,13 @@
                 		echo "<tr>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">$from";
                     	echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+						
+						echo "<div class=\"ads-details small-table-left margin-10\">";
+						echo "<h5><div class=\"add-title-girlstrade\"><a href=$viewItemPath>".$this->lang->line("lblTitle").$previewTitle."</a></div>";
+						echo "Posted On: ". $createDate."</h5>";
+						echo "</div>";
+						
+						
                     	echo "<p class=\"price-td\">".$this->lang->line("DaysExpiry")." :".$NoOfDaysb4ExpiryContact;
                     	$approvePath=base_url().MY_PATH."messages\approveSavedAds\$messageID\$userID";
                     	$rejectPath=base_url().MY_PATH."messages\rejectSavedAds\$messageID\$userID";
@@ -126,11 +133,11 @@
                     	echo "</div>";
                     	
                     	echo "</td>";
-                      	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
+                      	echo "<td style=\"width:55%\" class=\"ads-details-td small-table-right\">";
                     	echo "<div class=\"ads-details\">";
 						echo "<h5><div class=\"add-title-girlstrade\"><a href=$viewItemPath>".$this->lang->line("lblTitle").$previewTitle."</a></div><a href=$viewItemPath>".$previewDesc."</a>";
-                          echo "<br/>Posted On: ". $createDate."</h5>";
-                    		echo "</div></td>";
+						echo "<br/>Posted On: ". $createDate."</h5>";
+						echo "</div></td>";
                   		echo "</tr>";
                   		}
                   	}

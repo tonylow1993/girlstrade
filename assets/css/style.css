@@ -3720,6 +3720,10 @@ input[type=checkbox]
 	margin: 5px;
 }
 
+.margin-10{
+	margin: 10px;
+}
+
 .no-shadow{
   box-shadow: 0 0 0 !important;
 }
@@ -4110,7 +4114,19 @@ span b{
     opacity: .8;
 }
 
+.small-table-left{
+	display: none;
+}
+
 @media (max-width: 480px) {
+	.small-table-left{
+		display: block;
+	}
+	
+	.small-table-right{
+		display:none;
+	}
+	
 	.sortByDiv{
 		height: 55px;
 		margin-top: 10px;
