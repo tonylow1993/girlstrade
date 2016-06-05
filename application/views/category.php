@@ -773,7 +773,7 @@
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
-                	echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+                	//echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
                 }
                                   
                 
@@ -883,8 +883,8 @@
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
-                	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
+                	//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
+                	//echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
                 }
                                   
                 
@@ -996,8 +996,8 @@
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
-                	echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
+                	//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
+                	//echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
                 }
                                   
                 //echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
