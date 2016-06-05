@@ -52,12 +52,12 @@ To get help, simply visit our Contact Page by clicking “Contact Us” at the b
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
-                  Dear '.$username.',<br />
+                  Dear '.$username.',<br /><br/>
 				  You have received a buyer request on your item ( '.$title.' ). <br/>
 You may approve or reject the request by clicking on "Buyer List" under following link:
 ( <a href='.$path.'> Approve or Reject</a> ) <br/>
 Once approved, this buyer will be able to view your contact information and contact you directly.
-<br/>
+<br/><br/>
 If you experience any difficulties accessing the link, simply access your profile to view your messages.  
 **To disable this email notification, please go to your profile page.<br/>
                   		
@@ -110,12 +110,12 @@ If you experience any difficulties accessing the link, simply access your profil
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
-                  Dear '.$username.',<br />
+                  Dear '.$username.',<br /><br/>
 		
               The owner of the post ( '.$title.' ) would like to share his/her \'s contact information with you.
 				You may view seller\'s contact information using the link below:
 				( '.$path.' )
-				<br/>
+				<br/><br/>
 				If you experience any difficulties accessing the link, simply access your profile to view your messages.  
 				**To disable this email notification, please go to your profile page.
 
@@ -137,10 +137,10 @@ If you experience any difficulties accessing the link, simply access your profil
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
-                  Dear '.$username.',<br />
+                  Dear '.$username.',<br /><br/>
 		
 				Unfortunately, the owner of the post ( '.$title.' ) has refused to give you his/her contact information.
-				<br/>
+				<br/><br/>
 
 If you experience any difficulties accessing the link, simply access your profile to view your messages.  
 **To disable this email notification, please go to your profile page.
@@ -257,18 +257,19 @@ If you experience any difficulties accessing the link, simply access your profil
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
-                  Dear '.$username.',<br />
+                  Dear '.$username.',<br /><br/>
 					You have requested that your password be reset. 
-					<br/>Your password is '.$password.'.
+					<br/><br/>Your password is '.$password.'.
 					<br/>Please click the link below to login and change your password.
 					<br/><a href="http://www.girlstrade.com/home/loginPage">login</a>
+							<br/>
                   </td>
               </tr>
 				<tr>
 	                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
-	                  您好 '.$username.',<br />
+	                  您好 '.$username.',<br /><br/>
 						你剛才重罝了你的密碼.
-						<br/>你的新密碼是 '.$password.'.
+						<br/><br/>你的新密碼是 '.$password.'.
 						<br/>請按以下網址去登入和更改密碼:
 						<br/><a href="http://www.girlstrade.com/home/loginPage">登入</a>
 	                  </td>
@@ -293,9 +294,9 @@ If you experience any difficulties accessing the link, simply access your profil
 					Please click the link below and verify that the email address you registered belongs to you.
 				  	<br />
 				  <strong><a href="'.$path.'" target="_blank" style="color:#1f4f82; text-decoration:underline; font-family:Arial, Helvetica, sans-serif; font-size:13px; text-align:left"><h1>Verify</h1></a></strong> <br>
-                  <br />
+                  <br /><br/>
 				  *If the link above does not work, copy and paste the address below into a new browser window.	
-				  		<br />'.$path.'
+				  		<br />'.$path.'<br/><br/>
                  If you are still unable to verify your email address. 
 				Please contact us and we will get back to you within the next 24 hours. 
 				  				</td>
@@ -304,11 +305,11 @@ If you experience any difficulties accessing the link, simply access your profil
 				  <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                		您好 '.$username.',<br /><br />
 				  
-				  				你使用了這個電郵地址註冊GirlsTrade帳戶:'.$email.'<br>
+				  				你使用了這個電郵地址註冊GirlsTrade帳戶:'.$email.'<br><br/>
 				  				請按以下網址確認你的電郵.<br/>
 				  				<strong><a href="'.$path.'" target="_blank" style="color:#1f4f82; text-decoration:underline; font-family:Arial, Helvetica, sans-serif; font-size:13px; text-align:left"><h1>核實賬戶</h1></a></strong> <br>
 				  					
-				  						*如果以上網址有問題,請複製以下網址到瀏覽器:<br>'.$path.'
+				  						<br/>*如果以上網址有問題,請複製以下網址到瀏覽器:<br>'.$path.'
 									
 									<br/>	假如你的核實賬戶過程有任何問題,
 									<br/>	請聯繫我們(一天之內答覆)
@@ -333,8 +334,9 @@ If you experience any difficulties accessing the link, simply access your profil
 <br/>
 Unfortunately, You post ('.$title.') has been rejected!
 You may view the reason of your rejected ad using the following link:
-(Link to approve or reject page)
-<br/>
+		<br/>
+(<a href="http://www.girlstrade.com/home/loginPage">Login</a>)
+<br/><br/>
 If you experience any difficulties accessing the link, simply access your profile to view your messages.  
 **To disable this email notification, please go to your profile page.
                   		</td>
@@ -348,18 +350,18 @@ If you experience any difficulties accessing the link, simply access your profil
 			return "Your Ad (".$title.") has been rejected.";
 		}
 		
-		public function SendEmailApprovePost($username, $title){
+		public function SendEmailApprovePost($username, $title, $itempath){
 			return $this->header.'
         <tr>
           <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
                   Dear '.$username.',<br /><br />
-You post ('.$title.') has been approved!
-You may view your item using the following link:
-(Link to approve or reject page)
+Your post ('.$title.') has been approved!
+You may view your item using the following link:<br/>
+(<a href='.$itempath.'>Your post</a>)
                   		
-<br/>
+<br/><br/>
 If you experience any difficulties accessing the link, simply access your profile to view your messages.  
 **To disable this email notification, please go to your profile page.
 
