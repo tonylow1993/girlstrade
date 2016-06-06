@@ -485,6 +485,13 @@ class getAdmin extends CI_Controller {
 	public function loginUser()
 	{
 		$username="";
+		//----------setup the header menu----------
+		$data["menuMyAds"]="";
+		$data["menuInbox"]="";
+		$data["menuInboxNum"]="0";
+		$data["menuPendingRequest"]="";
+		$data["menuPendingRequestNumber"]="0";
+		//----------------------------
 		if(!($this->input->post("username")))
 			$username = $this->input->post("username");
 		else if(is_array($_POST))
@@ -555,7 +562,13 @@ class getAdmin extends CI_Controller {
 				if(strcmp($loginUser["username"],"admin")==0){
 					$data['activeNav']=1;
 					$data["lang_label"]=$this->nativesession->get("language");
-						
+					//----------setup the header menu----------
+					$data["menuMyAds"]="";
+					$data["menuInbox"]="";
+					$data["menuInboxNum"]="0";
+					$data["menuPendingRequest"]="";
+					$data["menuPendingRequestNumber"]="0";
+					//----------------------------
 					$data['itemList']=$this->post_model->getUItemList();
 					$this->load->view('adminPost.php', $data);
 				}
