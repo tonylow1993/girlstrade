@@ -114,7 +114,7 @@ If you experience any difficulties accessing the link, simply access your profil
 		
               The owner of the post ( '.$title.' ) would like to share his/her \'s contact information with you.
 				You may view seller\'s contact information using the link below:
-				( '.$path.' )
+				( <a href='.$path.'> Approved Post to see seller contact </a> )
 				<br/><br/>
 				If you experience any difficulties accessing the link, simply access your profile to view your messages.  
 				**To disable this email notification, please go to your profile page.
