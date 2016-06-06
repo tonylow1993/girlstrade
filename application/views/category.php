@@ -747,7 +747,7 @@
                    echo "<span class=\"info-row\"> <span class=\"user\"><img class=\"ratingIcon-xs\" src=$imgRatingPath> $username </span> - <span class=\"date\"><i class=\"icon-clock\"> </i> $postCreateDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span></span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
-                echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
+                echo "<h4 class=\"item-price\">$</h4> <h1 class=\"item-price\"> $postItemPrice</h1>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 //if(!$item["getDisableSavedAds"])
                	//	 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
