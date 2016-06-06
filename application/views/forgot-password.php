@@ -6,9 +6,12 @@
         <div class="col-sm-5 login-box">
           <div class="panel panel-default">
             <div class="panel-intro text-center">
-              <h2 class="logo-title"> 
+              <h2 class="inner-logo-title"> 
                 <!-- Original Logo will be placed here  --> 
-                <span class="logo-icon"><i class="icon icon-hammer ln-shadow-logo shape-0"></i> </span> Girls Trade </h2>
+                <img width="50px" height="50px" src="<?php echo base_url();?>images/site/girlstrade_logo.png">
+                <span id="login_signupTitle">
+                Forget Password
+                </span>
             </div>
             <div class="panel-body">
               <form role="form" name="myForm" action="<?php echo base_url().MY_PATH; ?>home/forgetPassword"  method="post">
