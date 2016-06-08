@@ -2005,12 +2005,12 @@ function addDayswithdate($date,$days){
 				
 				
 				$postInfo=$this->post->getPostByPostID($postID);
-				$userID=$postInfo[0]->userID;
+				$buyerID=$postInfo[0]->userID;
 					
 		
 					$messageArray=array(
 							'buyerID'=>$buyerID,
-							'sellerID'=>$userID,
+							'sellerID'=>$fUserID,
 							'postID'=>$postID,
 							'status'=>'U',
 							'content'=>$message,
@@ -2019,6 +2019,17 @@ function addDayswithdate($date,$days){
 							);
 					$messageResult=$this->sellerfeedback_model->insert($messageArray);
 					if($messageResult){
+						$path=base_url().MY_PATH."";
+						$buyerInfo=$this->users_model->get_user_by_id($buyerID);
+						$buyerEmail=$this->useremail_model->getUserEmailByUserID($buyerID);
+						$email=$buyerEmail["email"];
+						$title=$postInfo[0]->itemName;
+						$buyerUsername=$buyerInfo[0]->username;
+						$sellerUsername=$username;
+						$msg=$this->mailtemplate_model->SendEmailFeedbackFromSeller( $buyerUsername, $sellerUsername, $path, $title );
+						$this->sendAuthenticationEmail($buyerEmail, $msg, $this->mailtemplate_model->SendEmailFeedbackFromSellerTitle(), SELLERFEEDBACKSENDEMAIL);
+							
+						
 						$errorMsg="Success in adding your feedback!";
 						$data["lang_label"]=$this->nativesession->get("language");
 						$data["PrevURL"]=$prevURL;
@@ -2345,6 +2356,16 @@ function addDayswithdate($date,$days){
 				);
 				$messageResult=$this->buyerfeedback_model->insert($messageArray);
 				if($messageResult){
+					$path=base_url().MY_PATH."";
+					$sellerInfo=$this->users_model->get_user_by_id($userID);
+					$sellerEmail=$this->useremail_model->getUserEmailByUserID($userID);
+					$email=$sellerEmail["email"];
+					$title=$postInfo[0]->itemName;
+					$buyerUsername=$username;
+					$sellerUsername=$sellerInfo[0]->username;
+					$msg=$this->mailtemplate_model->SendEmailFeedbackFromBuyer( $buyerUsername, $sellerUsername, $path, $title );
+					$this->sendAuthenticationEmail($sellerEmail, $msg, $this->mailtemplate_model->SendEmailFeedbackFromBuyerTitle(), BUYERFEEDBACKSENDEMAIL);
+					
 					$errorMsg="Success in adding your feedback!";
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;

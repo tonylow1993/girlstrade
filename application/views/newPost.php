@@ -408,6 +408,7 @@ function setup()
 // 	            alert(fheight);
 			} catch(err)
 			{
+				alert(err);
 // 	            	 $("#uploadImgError"+i).html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Error!</span></em>');
 // 	                 location.href = "#uploadImgError"+i;                 //Go to the target element.
 // 	                 return false;

@@ -448,6 +448,58 @@ If you experience any difficulties accessing the link, simply access your profil
 		public function SendEmailTitleForResetPassword(){
 			return "Somebody requested a new password for your GirlsTrade account";
 		}
+		
+		public function SendEmailFeedbackFromBuyerTitle(){
+			return "One of Buyer send you feedback";
+		}
+		public function SendEmailFeedbackFromSellerTitle(){
+			return "One of Seller send you feedback";
+		}
+		public function SendEmailFeedbackFromBuyer($buyerUsername, $sellerUsername, $path, $title){
+			return $this->header.'
+        <tr>
+          <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  Dear '.$sellerUsername.',<br /><br />
+					One of buyer '.$buyerUsername.' send you feedback of your post titled '.$title.'. 
+					Please click the link <a href='.$path.'>here</a> to view the feedback.
+							</br>
+				</td>
+              </tr>
+			 <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  您好 '.$sellerUsername.',<br /><br />
+						
+						
+                  </td>
+              </tr>
+            </table></td>
+        </tr>'.$this->footer;
+		}
+		public function SendEmailFeedbackFromSeller($buyerUsername, $sellerUsername, $path, $title){
+			return $this->header.'
+        <tr>
+          <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  Dear '.$buyerUsername.',<br /><br />
+					One of seller '.$sellerUsername.' send you feedback of his/her post titled '.$title.'.
+					Please click the link <a href='.$path.'>here</a> to view the feedback.
+							</br>
+				</td>
+              </tr>
+			 <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  您好 '.$buyerUsername.',<br /><br />
+		
+		
+                  </td>
+              </tr>
+            </table></td>
+        </tr>'.$this->footer;
+		}
+		
 		public function SendEmailRejectFeedBack(){
 			
 		}

@@ -1220,16 +1220,16 @@ public function getChildCategory($parentID)
 				
 				$config['file_name'] = basename($imgPath);
 				$config['upload_path'] = $upload_dir;  
-				$config['allowed_types'] = 'gif|jpg|png|bmp|jpeg';
+				$config['allowed_types'] = '*'; //gif|jpg|png|bmp|jpeg';
 				
 				$this->upload->initialize($config);
 				if ( ! $this->upload->do_upload('image'))
 				{
 					if($this->upload->display_errors()<>'')
 					{
-						$hasImage=$this->input->post('image');
-						if(!isset($hasImage) or empty($hasImage))
-							continue;	        		
+						//$hasImage=$this->input->post('image');
+						//if(!isset($hasImage) or empty($hasImage))
+						//	continue;	        		
 						$error = $this->upload->display_errors();
 						$data=array('error'=> $error);
 						$data["prevURL"]=$prevURL;
