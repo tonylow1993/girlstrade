@@ -675,11 +675,12 @@ class getAdmin extends CI_Controller {
 					for($i=1;$i<=$Num1;$i++)
 					{
 						$commentID=$this->input->post("postID".$i);
+						$postID=$this->input->post("realpostID".$i);
 						$type=$this->input->post("type".$i);
 						$userID=$this->input->post("userID".$i);
 						$email=$this->useremail_model->getUserEmailByUserID($userID);
 						$userEmailAddress=$email['email'];
-						$postInfo=$this->post_model->getPostByID($commentID);
+						$postInfo=$this->post_model->getPostByID($postID);
 						$title=$postInfo[0]->itemName;
 						//print_r($email);
 						//echo $userEmailAddress;

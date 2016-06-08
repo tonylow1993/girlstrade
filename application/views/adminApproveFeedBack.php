@@ -56,11 +56,13 @@
                       	 	echo "<td style=\"width:30%\" class=\"action-td\"><div>";
                       	 	 $actionType="actionType".$Num;
                  $postIDCtrl="postID".$Num;
+                 $realpostIDCtrl="realpostID".$Num;
                  $typeCtrl="type".$Num;
                  $userIDCtrl="userID".$Num;
                 $rejectReason="rejectReason".$Num;
                 $rejectSpecifiedReason="rejectSpecifiedReason".$Num;
                 echo "<input type='hidden' name='".$postIDCtrl."' value='".$id."' />";
+                echo "<input type='hidden' name='".$realpostIDCtrl."' value='".$postID."' />";
                 echo "<input type='hidden' name='".$typeCtrl."' value='".$type."' />";
                 if(strcmp($type,"buyer")==0)
                 	echo "<input type='hidden' name='".$userIDCtrl."' value='".$sellerID."' />";
