@@ -257,6 +257,8 @@ $lang["FORGETPASSWORDSENDEMAIL"]="Forget password and then send email to you";
 $lang["RESETPASSWORDSENDEMAIL"]="Reset password and then send email to you";
 $lang["CHANGEPASSWORDSENDEMAIL"]="Change password and then send email to you";
 $lang["UPDATEPASSWORDSENDEMAIL"]="Update password and then send email to you";
+$lang["SELLERFEEDBACKSENDEMAIL"]="Send email to alert you that seller send you feedback";
+$lang["BUYERFEEDBACKSENDEMAIL"]="Send email to alert you that buyer send you feedback";
 
 // MESSAGES
 $lang["DIRECTSENDEMAIL"]="Received a 'contact seller' request from a buyer";
