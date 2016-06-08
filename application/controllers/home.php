@@ -3861,6 +3861,7 @@ class Home extends CI_Controller {
 			}
 			$data=$data+$temp;			
 		}
+		$data["userID"]=$userID;
 		$this->userInfoSendEmail_model->updateSendEmailConfig($data);
 		$this->getAccountPage(12);
 		
