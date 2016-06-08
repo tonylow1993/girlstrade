@@ -2005,7 +2005,7 @@ function addDayswithdate($date,$days){
 				
 				
 				$postInfo=$this->post->getPostByPostID($postID);
-				$buyerID=$postInfo[0]->userID;
+				//$buyerID=$postInfo[0]->userID;
 					
 		
 					$messageArray=array(
