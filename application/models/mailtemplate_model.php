@@ -500,17 +500,53 @@ If you experience any difficulties accessing the link, simply access your profil
         </tr>'.$this->footer;
 		}
 		
-		public function SendEmailRejectFeedBack(){
+		public function SendEmailRejectFeedBack($username, $title, $rejectReason ,$rejectSpecifiedReason){
+			return $this->header.'
+        <tr>
+          <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  Dear '.$username.',<br /><br />
+					your feedback of the post titled '.$title.' has been rejected.
+							</br>
+				</td>
+              </tr>
+			 <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  您好 '.$username.',<br /><br />
 			
+			
+                  </td>
+              </tr>
+            </table></td>
+        </tr>'.$this->footer;
 		}
 		public function SendEmailRejectFeedBackTitle(){
-				
-		}
-		public function SendEmailApproveFeedBack(){
-				
+				return "Your feedback has been rejected";
 		}
 		public function SendEmailApproveFeedBackTitle(){
-				
+				return "Your feedback has been approved";
+		}
+		public function SendEmailApproveFeedBack($username, $title){
+			return $this->header.'
+        <tr>
+          <td valign="top" align="left" style="padding-left:25px; padding-right:25px; padding-bottom:25px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  Dear '.$username.',<br /><br />
+					your feedback of the post titled '.$title.' has been approved.
+							</br>
+				</td>
+              </tr>
+			 <tr>
+                <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; padding-right:25px; padding-top:20px;" valign="top" align="left" >
+                  您好 '.$username.',<br /><br />
+		
+		
+                  </td>
+              </tr>
+            </table></td>
+        </tr>'.$this->footer;
 		}
 // 		public function ApproveOrRejectSendEmail(){
 // 			return "Send email when approve or reject direct send request";

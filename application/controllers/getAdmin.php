@@ -679,6 +679,8 @@ class getAdmin extends CI_Controller {
 						$userID=$this->input->post("userID".$i);
 						$email=$this->useremail_model->getUserEmailByUserID($userID);
 						$userEmailAddress=$email['email'];
+						$postInfo=$this->post_model->getPostByID($commentID);
+						$title=$postInfo[0]->itemName;
 						//print_r($email);
 						//echo $userEmailAddress;
 						$status=$this->input->post("actionType".$i);
@@ -692,7 +694,7 @@ class getAdmin extends CI_Controller {
 							$usernameArr=$this->users_model->get_user_by_id($userID);
 							$username=$usernameArr[0]->username;
 							$path=base_url().MY_PATH."home/loginPage";
-							$msg=$this->mailtemplate_model->SendEmailApproveFeedBack( $username);
+							$msg=$this->mailtemplate_model->SendEmailApproveFeedBack( $username, $title);
 							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailApproveFeedBackTitle(), APPROVEFEEDBACK);
 								
 						}
@@ -709,7 +711,7 @@ class getAdmin extends CI_Controller {
 							$usernameArr=$this->users_model->get_user_by_id($userID);
 							$username=$usernameArr[0]->username;
 							$path=base_url().MY_PATH."home/loginPage";
-							$msg=$this->mailtemplate_model->SendEmailRejectFeedBack( $username, $rejectReason ,$rejectSpecifiedReason );
+							$msg=$this->mailtemplate_model->SendEmailRejectFeedBack( $username, $title, $rejectReason ,$rejectSpecifiedReason );
 							$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailRejectFeedBackTitle(), REJECTFEEDBACK);
 								
 						}
