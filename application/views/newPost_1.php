@@ -649,17 +649,30 @@ function setup()
 						processData: false,
 						contentType: false,
 						type: 'POST',
-						success:function(msg){
-							$("#modal-text").html("Your post has been successfully uploaded.");
-							setTimeout(function(){
-								//if($remainCount<=5)
-								//	$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours. You have remain ".concat($remainCount).concat(" times of post"));
-								//else
+						success:function(data){
+							var msg = jQuery.parseJSON(data);
+							if(msg.status == 'success'){
+								$("#modal-text").html("Your post has been successfully uploaded.");
+								setTimeout(function(){
+									//if($remainCount<=5)
+									//	$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours. You have remain ".concat($remainCount).concat(" times of post"));
+									//else
 									$("#modal-text").html("Your post will be reviewed and go on live within the next 24 hours.");
-								$('#fwd-btn').css("display", "block");
-								$('#fwd-btn').css("margin", "auto");
-								$('#progress-bar').css("display", "none");
-							}, 2000);
+									$('#fwd-btn').css("display", "block");
+									$('#fwd-btn').css("margin", "auto");
+									$('#progress-bar').css("display", "none");
+								}, 2000);
+						    }else if(msg.status == 'error'){
+							    $("#modal-text").html(msg.errmsg);
+								setTimeout(function(){
+									$("#modal-text").html("Please retry!");
+									$('#fwd-btn').css("display", "block");
+									$('#fwd-btn').css("margin", "auto");
+									$('#progress-bar').css("display", "none");
+								}, 2000);
+						    }
+							
+							
 						}
 					});
                 }

@@ -926,6 +926,8 @@ public function getChildCategory($parentID)
     
     public function createNewPost($loginID, $loginUser, $prevURL='')
     {
+    	//header('Content-type: application/json');
+    	$response_array=array();
     	$prevURL=base_url();
     	
     	if(isset($_GET["prevURL"])){
@@ -968,14 +970,18 @@ public function getChildCategory($parentID)
     	if(empty($userInfo))
  	        {
  	        	$errorMsg=$this->lang->line("PostPleaseLoginFirst");	
- 	        	$data['error']= $errorMsg;
- 	    		$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="Login Page";
-				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";;
-				$data["successTile"]=$this->lang->line("successTile");
-				$data["failedTitle"]=$this->lang->line("failedTitle");
-				$data["goToHomePage"]=$this->lang->line("goToHomePage");
-				$this->load->view('failedPage', $data);
+//  	        	$data['error']= $errorMsg;
+//  	    		$data["prevURL"]=$prevURL;
+// 				$data['redirectToWhatPage']="Login Page";
+// 				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";;
+// 				$data["successTile"]=$this->lang->line("successTile");
+// 				$data["failedTitle"]=$this->lang->line("failedTitle");
+// 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+// 				$this->load->view('failedPage', $data);
+// 				return;
+				$response_array['status'] = 'error';
+				$response_array['errmsg']=$errorMsg;
+				echo json_encode($response_array);
 				return;
  	        }
     	
@@ -993,14 +999,18 @@ public function getChildCategory($parentID)
         if($NumOfPostTimes>=NUMOFTIMESPOST && NUMOFTIMESPOST<UNLIMITEDTIMES)
         {
     	    $errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
-				$data["error"]=$errorMsg;
-        	$data["prevURL"]=$prevURL;
-        	$data['redirectToWhatPage']="Previous Page";
-        	$data['redirectToPHP']=$prevURL;
-        	$data["successTile"]=$this->lang->line("successTile");
-        	$data["failedTitle"]=$this->lang->line("failedTitle");
-        	$data["goToHomePage"]=$this->lang->line("goToHomePage");
-        	$this->load->view('failedPage', $data);
+// 				$data["error"]=$errorMsg;
+//         	$data["prevURL"]=$prevURL;
+//         	$data['redirectToWhatPage']="Previous Page";
+//         	$data['redirectToPHP']=$prevURL;
+//         	$data["successTile"]=$this->lang->line("successTile");
+//         	$data["failedTitle"]=$this->lang->line("failedTitle");
+//         	$data["goToHomePage"]=$this->lang->line("goToHomePage");
+//         	$this->load->view('failedPage', $data);
+//         	return;
+        	$response_array['status'] = 'error';
+        	$response_array['errmsg']=$errorMsg;
+        	echo json_encode($response_array);
         	return;
         }
         
@@ -1073,15 +1083,20 @@ public function getChildCategory($parentID)
         
         if(!empty($errorMsg) || strcmp($errorMsg, "")!=0){
 
-        	$data["error"]=$errorMsg;
-        	$data["prevURL"]=$prevURL;
-        	$data['redirectToWhatPage']="New Post Page";
-        	$data['redirectToPHP']=base_url().MY_PATH."newPost";
-        	$data["successTile"]=$this->lang->line("successTile");
-        	$data["failedTitle"]=$this->lang->line("failedTitle");
-        	$data["goToHomePage"]=$this->lang->line("goToHomePage");
-        	$this->load->view('failedPage', $data);
+//         	$data["error"]=$errorMsg;
+//         	$data["prevURL"]=$prevURL;
+//         	$data['redirectToWhatPage']="New Post Page";
+//         	$data['redirectToPHP']=base_url().MY_PATH."newPost";
+//         	$data["successTile"]=$this->lang->line("successTile");
+//         	$data["failedTitle"]=$this->lang->line("failedTitle");
+//         	$data["goToHomePage"]=$this->lang->line("goToHomePage");
+//         	$this->load->view('failedPage', $data);
+//         	return;
+        	$response_array['status'] = 'error';
+        	$response_array['errmsg']=$errorMsg;
+        	echo json_encode($response_array);
         	return;
+        	
         }
         
         $recaptcha = $this->input->post('g-recaptcha-response',true); 
@@ -1181,14 +1196,18 @@ public function getChildCategory($parentID)
 			if($number_of_files==0 && !$isServiceCat)
 			{
 				$errorMsg=$this->lang->line("PostErrorNoImageFileSelected");
-				$data['error'] = $errorMsg;
-				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="New Post Page";
-				$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
-				$data["successTile"]=$this->lang->line("successTile");
-				$data["failedTitle"]=$this->lang->line("failedTitle");
-				$data["goToHomePage"]=$this->lang->line("goToHomePage");
-				$this->load->view('failedPage', $data);
+// 				$data['error'] = $errorMsg;
+// 				$data["prevURL"]=$prevURL;
+// 				$data['redirectToWhatPage']="New Post Page";
+// 				$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
+// 				$data["successTile"]=$this->lang->line("successTile");
+// 				$data["failedTitle"]=$this->lang->line("failedTitle");
+// 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+// 				$this->load->view('failedPage', $data);
+// 				return;
+				$response_array['status'] = 'error';
+				$response_array['errmsg']=$errorMsg;
+				echo json_encode($response_array);
 				return;
 			}
 			
@@ -1219,14 +1238,18 @@ public function getChildCategory($parentID)
 						//if(!isset($hasImage) or empty($hasImage))
 						//	continue;	        		
 						$error = $this->upload->display_errors();
-						$data=array('error'=> $error);
-						$data["prevURL"]=$prevURL;
-						$data['redirectToWhatPage']="New Post Page";
-						$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
-						$data["successTile"]=$this->lang->line("successTile");
-					$data["failedTitle"]=$this->lang->line("failedTitle");
-					$data["goToHomePage"]=$this->lang->line("goToHomePage");
-					$this->load->view('failedPage', $data);
+// 						$data=array('error'=> $error);
+// 						$data["prevURL"]=$prevURL;
+// 						$data['redirectToWhatPage']="New Post Page";
+// 						$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
+// 						$data["successTile"]=$this->lang->line("successTile");
+// 						$data["failedTitle"]=$this->lang->line("failedTitle");
+// 						$data["goToHomePage"]=$this->lang->line("goToHomePage");
+// 						$this->load->view('failedPage', $data);
+// 						return;
+						$response_array['status'] = 'error';
+						$response_array['errmsg']=$error;
+						echo json_encode($response_array);
 						return;
 					}
 				}
@@ -1248,14 +1271,18 @@ public function getChildCategory($parentID)
 						if($this->image_lib->display_errors()<>'')
 						{
 							$error = $this->image_lib->display_errors();
-							$data=array('error'=> $error);
-							$data["prevURL"]=$prevURL;
-							$data['redirectToWhatPage']="New Post Page";
-							$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
-							$data["successTile"]=$this->lang->line("successTile");
-					$data["failedTitle"]=$this->lang->line("failedTitle");
-					$data["goToHomePage"]=$this->lang->line("goToHomePage");
-					$this->load->view('failedPage', $data);
+// 							$data=array('error'=> $error);
+// 							$data["prevURL"]=$prevURL;
+// 							$data['redirectToWhatPage']="New Post Page";
+// 							$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
+// 							$data["successTile"]=$this->lang->line("successTile");
+// 							$data["failedTitle"]=$this->lang->line("failedTitle");
+// 							$data["goToHomePage"]=$this->lang->line("goToHomePage");
+// 							$this->load->view('failedPage', $data);
+// 							return;
+							$response_array['status'] = 'error';
+							$response_array['errmsg']=$error;
+							echo json_encode($response_array);
 							return;
 						}
 					}
@@ -1278,15 +1305,20 @@ public function getChildCategory($parentID)
 							if($this->image_lib->display_errors()<>'')
 							{
 								$error = $this->image_lib->display_errors();
-								$data=array('error'=> $error);
-								$data["prevURL"]=$prevURL;
-								$data['redirectToWhatPage']="New Post Page";
-								$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
-								$this->load->view('failedPage', $data);
-							$data["successTile"]=$this->lang->line("successTile");
-					$data["failedTitle"]=$this->lang->line("failedTitle");
-					$data["goToHomePage"]=$this->lang->line("goToHomePage");
-						return;
+// 								$data=array('error'=> $error);
+// 								$data["prevURL"]=$prevURL;
+// 								$data['redirectToWhatPage']="New Post Page";
+// 								$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
+// 								$this->load->view('failedPage', $data);
+// 								$data["successTile"]=$this->lang->line("successTile");
+// 								$data["failedTitle"]=$this->lang->line("failedTitle");
+// 								$data["goToHomePage"]=$this->lang->line("goToHomePage");
+// 								return;
+								
+								$response_array['status'] = 'error';
+								$response_array['errmsg']=$error;
+								echo json_encode($response_array);
+								return;
 							}
 						}
 						else
@@ -1310,16 +1342,19 @@ public function getChildCategory($parentID)
         	if(!$isServiceCat)
         	{
         		$errorMsg=$this->lang->line("PostErrorNoImageFileSelected");
-        		$data['error'] = $errorMsg;
-				$data["prevURL"]=$prevURL;
-        		$data['redirectToWhatPage']="New Post Page";
-        		$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
-        		$data["successTile"]=$this->lang->line("successTile");
-        		$data["failedTitle"]=$this->lang->line("failedTitle");
-        		$data["goToHomePage"]=$this->lang->line("goToHomePage");
-        		$this->load->view('failedPage', $data);
+//         		$data['error'] = $errorMsg;
+// 				$data["prevURL"]=$prevURL;
+//         		$data['redirectToWhatPage']="New Post Page";
+//         		$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
+//         		$data["successTile"]=$this->lang->line("successTile");
+//         		$data["failedTitle"]=$this->lang->line("failedTitle");
+//         		$data["goToHomePage"]=$this->lang->line("goToHomePage");
+//         		$this->load->view('failedPage', $data);
+//         		return;
+        		$response_array['status'] = 'error';
+        		$response_array['errmsg']=$errorMsg;
+        		echo json_encode($response_array);
         		return;
-        	
 	        }
 	        else{
 //         	$postID = $this->post->insert($postInfo);
@@ -1347,14 +1382,19 @@ public function getChildCategory($parentID)
         {
         	$errorMsg=$this->lang->line("PostErrorZeroPostID");
         	//$data['error']= $errorMsg;
-        	$data['error'] = $errorMsg;
-        	$data["prevURL"]=$prevURL;
-        	$data['redirectToWhatPage']="New Post Page";
-        	$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
-        	$data["successTile"]=$this->lang->line("successTile");
-        	$data["failedTitle"]=$this->lang->line("failedTitle");
-        	$data["goToHomePage"]=$this->lang->line("goToHomePage");
-        	$this->load->view('failedPage', $data);
+//         	$data['error'] = $errorMsg;
+//         	$data["prevURL"]=$prevURL;
+//         	$data['redirectToWhatPage']="New Post Page";
+//         	$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
+//         	$data["successTile"]=$this->lang->line("successTile");
+//         	$data["failedTitle"]=$this->lang->line("failedTitle");
+//         	$data["goToHomePage"]=$this->lang->line("goToHomePage");
+//         	$this->load->view('failedPage', $data);
+//         	return;
+        	
+        	$response_array['status'] = 'error';
+        	$response_array['errmsg']=$errorMsg;
+        	echo json_encode($response_array);
         	return;
         }
         
@@ -1398,9 +1438,10 @@ public function getChildCategory($parentID)
 		$msg['class'] = "has-success";
 		$data['remainCount'] = 4;
 		//echo json_encode($msg);
-		$this->load->view('successPage', $data);
+		//$this->load->view('successPage', $data);
 		 //}
-        
+        $response_array['status'] = 'success';
+        echo json_encode($response_array);
     }
 	
     public function editPost($postID)
