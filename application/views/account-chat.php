@@ -17,6 +17,22 @@
      
 			<div class="col-md-12 bg-white panel-bevel">
 				<div class="chat-message">
+				<ul style="text-align: center;"><h2 style="font-weight: 500;color:#1c688e;">
+				<?php 
+						if($result<>null)
+		            	{
+		            		$rowCount=0;
+		                  	foreach($result as $id=>$row)
+		                  	{
+		                  		$fromusername=$row["fromusername"];
+		                  		echo $fromusername;
+								break;
+		                  	}
+		                  	
+		            	}	
+						?>
+				
+				</h2></ul>
 					<ul class="chat">
 <!-- 						<li class="left clearfix">  -->
 <!-- 							<span class="chat-img pull-left">  -->
