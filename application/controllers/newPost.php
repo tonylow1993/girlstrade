@@ -1171,6 +1171,9 @@ public function getChildCategory($parentID)
         	}
         }
         
+        
+        $imgInfoList=array();
+        
         if(isset($_FILES['filelist']) && !empty($_FILES['filelist'])){
 	        $this->load->library('image_lib');
 			$filelist=$_FILES['filelist'];
@@ -1188,22 +1191,7 @@ public function getChildCategory($parentID)
 				$this->load->view('failedPage', $data);
 				return;
 			}
-			$postID = $this->post->insert($postInfo);
-							
-			if($postID==null or $postID==0)
-			{
-				$errorMsg=$this->lang->line("PostErrorZeroPostID");
-				//$data['error']= $errorMsg;
-				$data['error'] = $errorMsg;
-				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="New Post Page";
-				$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
-				$data["successTile"]=$this->lang->line("successTile");
-				$data["failedTitle"]=$this->lang->line("failedTitle");
-				$data["goToHomePage"]=$this->lang->line("goToHomePage");
-				$this->load->view('failedPage', $data);
-				return;
-			}
+			
 							
 		   // ChromePhp::log($filelist);
 	        for ($i=0;$i<$number_of_files;$i++)
@@ -1220,7 +1208,7 @@ public function getChildCategory($parentID)
 				
 				$config['file_name'] = basename($imgPath);
 				$config['upload_path'] = $upload_dir;  
-				$config['allowed_types'] = '*'; //gif|jpg|png|bmp|jpeg';
+				$config['allowed_types'] = 'gif|jpg|png|bmp|jpeg';
 				
 				$this->upload->initialize($config);
 				if ( ! $this->upload->do_upload('image'))
@@ -1303,14 +1291,16 @@ public function getChildCategory($parentID)
 						}
 						else
 						{
-							$imgInfo['postID'] = $postID;
+							$imgInfo=array();
+							$imgInfo['postID'] = 0;
 							$imgInfo['userID'] = $userID;
 							$imgInfo['picturePath'] = $upload_dir_resize;
 							$imgInfo['pictureName'] = $main_fileName;
 							$imgInfo['status'] = 'U';
 							$imgInfo['thumbnailPath'] = $upload_dir_resize;
 							$imgInfo['thumbnailName']  =$thumb_fileName;
-							$data['returnValue'] = $this->picture->insert($imgInfo);
+							array_push($imgInfoList ,$imgInfo);
+							//$data['returnValue'] = $this->picture->insert($imgInfo);
 						}
 					}
 				}
@@ -1332,23 +1322,46 @@ public function getChildCategory($parentID)
         	
 	        }
 	        else{
-        	$postID = $this->post->insert($postInfo);
+//         	$postID = $this->post->insert($postInfo);
         		
-	        	if($postID==null or $postID==0)
-	        	{
-	        		$errorMsg=$this->lang->line("PostErrorZeroPostID");
-	        		$data['error'] = $errorMsg;
-					$data["prevURL"]=$prevURL;
-	        		$data['redirectToWhatPage']="New Post Page";
-	        		$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
-	        		$data["successTile"]=$this->lang->line("successTile");
-	        		$data["failedTitle"]=$this->lang->line("failedTitle");
-	        		$data["goToHomePage"]=$this->lang->line("goToHomePage");
-	        		$this->load->view('failedPage', $data);
-	        		return;
-	        	}
+// 	        	if($postID==null or $postID==0)
+// 	        	{
+// 	        		$errorMsg=$this->lang->line("PostErrorZeroPostID");
+// 	        		$data['error'] = $errorMsg;
+// 					$data["prevURL"]=$prevURL;
+// 	        		$data['redirectToWhatPage']="New Post Page";
+// 	        		$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
+// 	        		$data["successTile"]=$this->lang->line("successTile");
+// 	        		$data["failedTitle"]=$this->lang->line("failedTitle");
+// 	        		$data["goToHomePage"]=$this->lang->line("goToHomePage");
+// 	        		$this->load->view('failedPage', $data);
+// 	        		return;
+// 	        	}
         		
        	 	}
+        }
+        
+        $postID = $this->post->insert($postInfo);
+        	
+        if($postID==null or $postID==0)
+        {
+        	$errorMsg=$this->lang->line("PostErrorZeroPostID");
+        	//$data['error']= $errorMsg;
+        	$data['error'] = $errorMsg;
+        	$data["prevURL"]=$prevURL;
+        	$data['redirectToWhatPage']="New Post Page";
+        	$data['redirectToPHP']=base_url().MY_PATH."newPost/index/".$userID."/".$userName."?prevURL=".$prevURL;
+        	$data["successTile"]=$this->lang->line("successTile");
+        	$data["failedTitle"]=$this->lang->line("failedTitle");
+        	$data["goToHomePage"]=$this->lang->line("goToHomePage");
+        	$this->load->view('failedPage', $data);
+        	return;
+        }
+        
+        foreach($imgInfoList as $id=> $imgInfo)
+        {
+        	$imgInfo['postID'] = $postID;
+        	$data['returnValue'] = $this->picture->insert($imgInfo);
         }
 //         if($tags != null && $tags !== '')
 //         {
