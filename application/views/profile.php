@@ -306,9 +306,9 @@ function sendIt() {
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
-                echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
+                echo "<h4 class=\"item-price\">$</h4><h1 class=\"item-price\">$post->itemPrice</h1>";
                   echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-				  echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
+				  /*echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
 				  
 				if(isset($usr) && !empty($usr) && $usr["username"]!=null){
 					 if($post->userID!=$usr["userID"]){
@@ -423,9 +423,9 @@ function sendIt() {
                 echo "</div>";
                 
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
-                echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
+                echo "<h4 class=\"item-price\">$</h4><h1 class=\"item-price\">$post->itemPrice</h1>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
+                /*echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
                 
 				if(isset($usr) && !empty($usr) && $usr["username"]!=null){
 					 if($post->userID!=$usr["userID"]){
@@ -544,9 +544,9 @@ $basePath=base_url();
                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
-                echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
+                echo "<h4 class=\"item-price\">$</h4><h1 class=\"item-price\">$post->itemPrice</h1>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
+                /*echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
                 
 				if(isset($usr) && !empty($usr) && $usr["username"]!=null){
 					 if($post->userID!=$usr["userID"]){
@@ -561,7 +561,7 @@ $basePath=base_url();
 					 }
 					}else{
 						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
-					}
+					}*/
                 
                echo "</div></div>";
 				}
