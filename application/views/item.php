@@ -271,7 +271,7 @@ input[type=checkbox]
               		$shareLink=base_url().MY_PATH."viewItem/index/".$postID;
                      echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
                 	if($getDisableSavedAds)
-                     echo "<li><a style=\"pointer-events: none;color:black; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Saved </a> </li>";
+                     echo "<li><a style=\"pointer-events: none;color:black; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Saved this item</a> </li>";
                    else 
                    	echo "<li><a href=\"javascript:savedAds('$ctrlValue', '$ctrlName','$clickLink')\" id='$clickLink'><i class=\" fa fa-heart\"></i> Save this item </a> </li>";
                    	
