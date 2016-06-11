@@ -79,7 +79,7 @@
                       	echo "</p></span>";
 							
                       	echo "<span class=\"date-span\">";
-                        echo "<p class=\"box-date\">". $createDate."</p>";
+                        echo "<p class=\"box-date\">". date('Y-m-d h:i A', strtotime($createDate))."</p>";
                       	echo "</span>";
                       	
                   		echo "</div>";

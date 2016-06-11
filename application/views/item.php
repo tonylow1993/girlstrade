@@ -101,7 +101,7 @@ input[type=checkbox]
             <span class="info-row"> <span class="seller"><?php 
 				$imgRatingPath=base_url()."images/".$userRating;
 				echo "<img src=\"$imgRatingPath\" class=\"ratingIcon-xs\"><a href=".base_url().MY_PATH."viewProfile/index/".$postID.'/1?prevURL='.urlencode($previousCurrent_url).">$username</a>";
-			?></span> - <span class="date"><i class=" icon-clock"> </i> <?php echo $createDate;?> </span> - <span class="category"><?php echo $ParentCatName;?> </span>- <span class="item-location"><i class="fa fa-map-marker"></i> <?php echo $LocationName;?> </span> </span>
+			?></span> - <span class="date"><i class=" icon-clock"> </i> <?php echo date('Y-m-d h:i A', strtotime($createDate));?> </span> - <span class="category"><?php echo $ParentCatName;?> </span>- <span class="item-location"><i class="fa fa-map-marker"></i> <?php echo $LocationName;?> </span> </span>
             <div class="ads-image">
               <ul class="bxslider">
                 <?php 
@@ -779,7 +779,7 @@ input[type=checkbox]
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                       echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
-                          echo "<br/>Posted On: ". $createDate."</h5>";
+                          echo "<br/>Posted On: ". date('Y-m-d h:i A', strtotime($createDate))."</h5>";
                     		echo "</div></td>";
                       		
                       	
@@ -1154,7 +1154,7 @@ input[type=checkbox]
                       	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                       echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$reportreason."</div>".$content;
-                          echo "<br/>Posted On: ". $createDate."</h5>";
+                          echo "<br/>Posted On: ". date('Y-m-d h:i A', strtotime($createDate))."</h5>";
                     		echo "</div></td>";
                       		
                       	

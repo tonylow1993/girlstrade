@@ -62,11 +62,11 @@
 		                  		if(strcmp($msgType, "Inbox")==0){
 		                  			echo "<li class=\"right clearfix\"> <span class=\"chat-img pull-right\"> 
 									<img src=$fromUserPhotoPath alt=\"User Avatar\"> 
-									</span><div class=\"chat-body clearfix\"><div class=\"header\"> <strong class=\"primary-font\">$fromusername </strong>  <small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i> $createDate</small></div><p> $content</p></div></li>";
+									</span><div class=\"chat-body clearfix\"><div class=\"header\"> <strong class=\"primary-font\">$fromusername </strong>  <small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i>".date('Y-m-d h:i A', strtotime($createDate))."</small></div><p> $content</p></div></li>";
 		                  		}else{
 		                  			echo "<li class=\"left clearfix\"> <span class=\"chat-img pull-left\"> 
 									<img src=$userPhotoPath alt=\"User Avatar\"> 
-									</span><div class=\"chat-body clearfix\"><div class=\"header\">  <strong class=\"primary-font\">$username </strong><small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i> $createDate</small></div><p> $content</p></div></li>";
+									</span><div class=\"chat-body clearfix\"><div class=\"header\">  <strong class=\"primary-font\">$username </strong><small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i>".date('Y-m-d h:i A', strtotime($createDate))."</small></div><p> $content</p></div></li>";
 		                  		}
 		                  		
 		                  	}
