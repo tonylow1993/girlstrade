@@ -353,7 +353,7 @@
 	    	$query2 = $this->db->query($strQuery);
 	   		return $query2->result();
 	    }
-	    public function getAllFeedbacks($userID, $pageNum, $sortType, $sortByDate, $sortByType){
+	    public function getAllFeedbacks($userID, $pageNum, $sortType, $sortByDate, $sortByType, $activeTab){
 	    	$ulimit=ITEMS_PER_PAGE;
 	    	$olimit=0;
 	    	if ($pageNum>1)
@@ -379,17 +379,24 @@
 	    		
 	    		
 	    	$strQuery="select b.* from (select a.* from ( ";
-	    	if(strcmp(SHOWBUYERINFORMATION,"Y")==0){
-		    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ".$filterStr;
-		    	$strQuery=$strQuery." union all ";
+	    	if(strcmp($activeTab, "allAds")==0){
+		    	if(strcmp(SHOWBUYERINFORMATION,"Y")==0){
+			    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ".$filterStr;
+			    	$strQuery=$strQuery." union all ";
+		    	}
+		    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ".$filterStr;
+	    	}else if(strcmp($activeTab, "sellerAds")==0){
+	    		$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ".$filterStr;
+	    	}else if(strcmp($activeTab, "buyerAds")==0){
+	    		$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ".$filterStr;
 	    	}
-	    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ".$filterStr;
+	    	
 	    	$strQuery=$strQuery." ) a  ".$sortStr." ) b limit $olimit, $ulimit";
 	    	//log_message('error', $strQuery.": param:fuserID: ".$fuserID." userID: ".$userID);;
 	    	$query2 = $this->db->query($strQuery);
 	    	return $query2->result();
 	    }
-	    public function getNoOfItemCountInAllFeedbacks($userID, $sortType, $sortByDate, $sortByType){
+	    public function getNoOfItemCountInAllFeedbacks($userID, $sortType, $sortByDate, $sortByType, $activeTab){
 	    	$filterStr="";
 	    	if(strcmp($sortType,"2")==0){
 	    		if(strcmp($sortByType,"1")==0){
@@ -401,9 +408,15 @@
 	    		}
 	    	}
 	    	$strQuery="select count(*) as NoOfCount from ( ";
-	    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ".$filterStr;
-	    	$strQuery=$strQuery." union all ";
-	    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ".$filterStr;
+	    	if(strcmp($activeTab, "allAds")==0){
+		    	$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ".$filterStr;
+		    	$strQuery=$strQuery." union all ";
+		    	$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ".$filterStr;
+	    	}else if(strcmp($activeTab, "buyerAds")==0){
+	    		$strQuery=$strQuery." select *, 'buyer' as type from sellerfeedback where status='A' and buyerID=$userID ".$filterStr;
+	    	}else if(strcmp($activeTab, "sellerAds")==0){
+	    		$strQuery=$strQuery." select *, 'seller' as type  from buyerfeedback where status='A' and sellerID=$userID ".$filterStr;
+	    	}
 	    	$strQuery=$strQuery." ) a ";
 	    	$NoOfItemCount=0;
 	    	$query2 = $this->db->query($strQuery);

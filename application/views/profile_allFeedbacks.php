@@ -27,7 +27,7 @@ function sendIt() {
            <div class="tab-box "> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/allAds?prevURL='.$previousCurrent_url;?>" role="tab" data-toggle="tab">
                 <?php echo $lblConditionAll;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -40,7 +40,7 @@ function sendIt() {
                 echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "sellerAds")==0) echo "class=\"active\""; ?>><a href="#sellerAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "sellerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/sellerAds?prevURL='.$previousCurrent_url;?>" role="tab" data-toggle="tab">
                 <?php echo $lblSellerInfo;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -51,14 +51,14 @@ function sendIt() {
                 if($result<>null && sizeof($result)>0)
 						foreach($result as $id=>$item)
 					{
-						if(strcmp($item["typeID"], "buyer")==0)
+						if(strcmp($item["typeID"], "seller")==0)
 							continue;
 						$rowCount=$rowCount+1;
 					}
                 	echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "buyerAds")==0) echo "class=\"active\""; ?>><a href="#buyerAds"  role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "buyerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/buyerAds?prevURL='.$previousCurrent_url;?>"   role="tab" data-toggle="tab">
                 <?php echo $lblBuyerInfo;?> 
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -151,7 +151,40 @@ function sendIt() {
                
                 </tbody>
               </table>
-            
+            <div class="pagination-bar text-center">
+            <ul class="pagination">
+            <?php 
+            	$encodeCurrentURL=urlencode(current_url());
+            	$url_path=base_url().MY_PATH."home/viewAllFeedback/$userID";
+            	$pageNumPrev=$pageNum-1;
+            	$pageNum2=$pageNum+1;
+            	$pageNum3=$pageNum+2;
+            	$pageNum4=$pageNum+3;
+            	$pageNum5=$pageNum+4;
+            	$pageNumNext=$pageNum+5;
+            	$itemPerPage=ITEMS_PER_PAGE;
+            	 $activeTabpage1="allAds";
+            	if($NoOfItemCount>0)
+            	{
+            		if($pageNum<>1)
+            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">Previous</a></li>";
+            		if($NoOfItemCount > 0)
+            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
+            		if($NoOfItemCount > ($pageNum*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
+              		if($NoOfItemCount > ($pageNum2*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
+              		if($NoOfItemCount > ($pageNum3*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
+              		if($NoOfItemCount > ($pageNum4*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
+              		if($NoOfItemCount > ($pageNum5*$itemPerPage))
+            	 	   echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">Next</a></li>";
+           		}
+             ?>
+                </ul>
+          </div>
+       		
             </div>
             
             <div class="tab-pane <?php if(strcmp($activeTab, "sellerAds")==0) echo "active"; ?>" id="sellerAds">
@@ -192,6 +225,41 @@ function sendIt() {
                    
                 </tbody>
               </table>
+              <div class="pagination-bar text-center">
+            <ul class="pagination">
+            <?php 
+            	$encodeCurrentURL=urlencode(current_url());
+            	$url_path=base_url().MY_PATH."home/viewAllFeedback/$userID";
+            	$pageNumPrev=$pageNum-1;
+            	$pageNum2=$pageNum+1;
+            	$pageNum3=$pageNum+2;
+            	$pageNum4=$pageNum+3;
+            	$pageNum5=$pageNum+4;
+            	$pageNumNext=$pageNum+5;
+            	$itemPerPage=ITEMS_PER_PAGE;
+            	$activeTabpage2="sellerAds";
+            	 
+            	if($NoOfItemCount>0)
+            	{
+            		if($pageNum<>1)
+            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">Previous</a></li>";
+            		if($NoOfItemCount > 0)
+            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
+            		if($NoOfItemCount > ($pageNum*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
+              		if($NoOfItemCount > ($pageNum2*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
+              		if($NoOfItemCount > ($pageNum3*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
+              		if($NoOfItemCount > ($pageNum4*$itemPerPage))
+            			echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
+              		if($NoOfItemCount > ($pageNum5*$itemPerPage))
+            	 	   echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">Next</a></li>";
+           		}
+             ?>
+                </ul>
+          </div>
+       		
                
                </div>
                <div class="tab-pane <?php if(strcmp($activeTab, "buyerAds")==0) echo "active"; ?>" id="buyerAds">
@@ -208,7 +276,7 @@ function sendIt() {
             	{
             		foreach($result as $id=>$row)
                   	{
-                  		if(strcmp($row["typeID"], "buyer")<>0)
+                  		if(strcmp($row["typeID"], "seller")==0)
                   			continue;
                   		$type=$row["type"];
                   		$fromUser=$row["fromUser"];
@@ -231,18 +299,7 @@ function sendIt() {
                 
                 </tbody>
               </table>
-              
-               </div>
-            
-            
-            </div>
-            
-            
-            
-            
-         	  </div>
-       		</div>
-       		<div class="pagination-bar text-center">
+              <div class="pagination-bar text-center">
             <ul class="pagination">
             <?php 
             	$encodeCurrentURL=urlencode(current_url());
@@ -254,27 +311,39 @@ function sendIt() {
             	$pageNum5=$pageNum+4;
             	$pageNumNext=$pageNum+5;
             	$itemPerPage=ITEMS_PER_PAGE;
+            	$activeTabpage3="buyerAds";
             	 
             	if($NoOfItemCount>0)
             	{
             		if($pageNum<>1)
-            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Previous</a></li>";
+            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType/$activeTabpage3?prevURL=$previousCurrent_url;\">Previous</a></li>";
             		if($NoOfItemCount > 0)
-            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
+            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType/$activeTabpage3?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
             		if($NoOfItemCount > ($pageNum*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
+            			echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType/$activeTabpage3?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
               		if($NoOfItemCount > ($pageNum2*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
+            			echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType/$activeTabpage3?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
               		if($NoOfItemCount > ($pageNum3*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
+            			echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType/$activeTabpage3?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
               		if($NoOfItemCount > ($pageNum4*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
+            			echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType/$activeTabpage3?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
               		if($NoOfItemCount > ($pageNum5*$itemPerPage))
-            	 	   echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType?prevURL=$previousCurrent_url;\">Next</a></li>";
+            	 	   echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType/$activeTabpage3?prevURL=$previousCurrent_url;\">Next</a></li>";
            		}
              ?>
                 </ul>
           </div>
+       		
+               </div>
+            
+            
+            </div>
+            
+            
+            
+            
+         	  </div>
+       		</div>
        		
           
       

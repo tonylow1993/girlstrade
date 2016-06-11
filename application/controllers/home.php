@@ -1394,7 +1394,7 @@ class Home extends CI_Controller {
 		
 		echo json_encode($data);
 	}
-	public function viewAllFeedback($userID, $pageNum=1, $sortTypeID="0", $sortByDate="0", $sortByType="0"){
+	public function viewAllFeedback($userID, $pageNum=1, $sortTypeID="0", $sortByDate="0", $sortByType="0", $activeTab="allAds"){
 	
 		$prevViewFeedBack_Url=base_url();
 		if(isset($_GET["prevViewFeedBack_Url"]))
@@ -1459,7 +1459,7 @@ class Home extends CI_Controller {
 					$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($userID); //$menuCount["inboxMsgCount"]; //
 					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 				}
-				$data["activeTab"]="allAds";
+				$data["activeTab"]=$activeTab;
 				$data["lblSellerInfo"]="Feedbacks from buyer";
 				$data["lblBuyerInfo"]="Feedbacks from seller";
 				$data["lblConditionAll"]="All feedbacks";
@@ -1491,9 +1491,37 @@ class Home extends CI_Controller {
 					$data["sortByDate"]="0";
 				}
 					
-				$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInAllFeedbacks($userID, $data["sortTypeID"], $data["sortByDate"], $data["sortByType"]);
-				$myList=$this->messages_model->getAllFeedbacks($userID, $pageNum, $data["sortTypeID"], $data["sortByDate"], $data["sortByType"]);
+				$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInAllFeedbacks($userID, $data["sortTypeID"], $data["sortByDate"], $data["sortByType"], $activeTab);
+				$myList=$this->messages_model->getAllFeedbacks($userID, $pageNum, $data["sortTypeID"], $data["sortByDate"], $data["sortByType"], $activeTab);
 				$data["result"]=$this->mapFeedbackToView($myList);
+				
+// 				if(strcmp($activeTab, "sellerAds")==0){
+// 					$count=0;
+// 					if($data["result"]!=null){
+// 						foreach($data["result"] as $id=>$row)
+// 						{
+// 							if(strcmp($row["typeID"], "buyer")==0)
+// 								continue;
+// 							$count=$count+1;
+// 						}
+// 					}
+// 					$data["NoOfItemCount"]=$count;
+// 				}
+// 				if(strcmp($activeTab, "buyerAds")==0){
+// 					$count=0;
+// 					if($data["result"]!=null){
+// 						foreach($data["result"] as $id=>$row)
+// 						{
+// 							if(strcmp($row["typeID"], "seller")==0)
+// 								continue;
+// 							$count=$count+1;
+// 						}
+// 					}
+// 					$data["NoOfItemCount"]=$count;
+// 				}
+				
+				
+				
 				$data["lang_label_text"] = $this->lang->line("lang_label_text");
 				$data["lang_label"] = $this->nativesession->get("language");
 				$data["Home"] = $this->lang->line("Home");
