@@ -21,13 +21,12 @@ function sendIt() {
   <div class="main-container">
     <div class="container">   
       <div class="row">
-        
         <div class="col-sm-9 page-content col-thin-left">
           <div class="category-list">
            <div class="tab-box "> 
               <!-- Nav tabs -->
-              <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/allAds?prevURL='.$previousCurrent_url;?>" role="tab" data-toggle="tab">
+              <ul class="nav nav-tabs add-tabs">
+                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/allAds?prevURL='.$previousCurrent_url;?>" id="allFb" name="allFb">
                 <?php echo $lblConditionAll;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -40,7 +39,7 @@ function sendIt() {
                 echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "sellerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/sellerAds?prevURL='.$previousCurrent_url;?>" role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "sellerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/sellerAds?prevURL='.$previousCurrent_url;?>" id="sellerFb" name="sellerFb">
                 <?php echo $lblSellerInfo;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -58,7 +57,7 @@ function sendIt() {
                 	echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "buyerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/buyerAds?prevURL='.$previousCurrent_url;?>"   role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "buyerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/buyerAds?prevURL='.$previousCurrent_url;?>" id="buyerFb" name="buyerFb">
                 <?php echo $lblBuyerInfo;?> 
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -76,6 +75,7 @@ function sendIt() {
 	                	echo $rowCount;
 	                ?></span>
 	                <?php }?></a></li>
+					
               </ul>
               	 <div class="sortByDiv">
               <form style="margin-top: 5px;" action="<?php $basePath=base_url();
@@ -110,7 +110,6 @@ function sendIt() {
                   <div class="pull-right backtolist margin-5"><a href=<?php echo $prevViewFeedBack_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
             
               </div>
-              
             <div class="adds-wrapper inner-box no-shadow">
              
             <div class="tab-content">
