@@ -246,7 +246,7 @@ class viewProfile extends getCategory {
 		return $data['result'];
 	}
     
-	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByType="0", $sortByPrice="0", $sortByDate="0")
+	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByType="0", $sortByPrice="0", $sortByDate="0",$activeTab="allAds")
 	{
 		$prevProfile_Url=base_url();
 		if(isset($_GET["prevProfile_Url"]))
@@ -366,11 +366,11 @@ class viewProfile extends getCategory {
 				$data["catID"]="0";
 			}
 		$NoOfItemCount=0;
-		$data["itemList"]=$this->mapToViewProfileItemList($this->post_model->getItemList($pageNum, $data["userID"], $data["catID"], $locID, $keywords,0, 0,0,$data["sortByType"],$data["sortByPrice"], $data["sortByDate"]),$loginUser["userID"]);
-		$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords);
+		$data["itemList"]=$this->mapToViewProfileItemList($this->post_model->getItemList($pageNum, $data["userID"], $data["catID"], $locID, $keywords,0, 0,0,$data["sortByType"],$data["sortByPrice"], $data["sortByDate"]),$loginUser["userID"], $activeTab);
+		$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords, $activeTab);
 		$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
 		$data["userRating"]=$this->users_model->getUserRating($data["userID"]);
-			
+		$data["activeTab"]=$activeTab;	
 		
 		$data["NoOfItemCount"]=$NoOfItemCount;
 		$data["lang_label_text"] = $this->lang->line("lang_label_text");
@@ -391,7 +391,6 @@ class viewProfile extends getCategory {
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$this->nativesession->set("lastPageVisited","newPost");
-		$data["activeTab"]="allAds";
 		$data["lblCondition"]=$this->lang->line("lblCondition");
 		$data["lblConditionNew"]=$this->lang->line("lblConditionNew");
 		$data["lblConditionUsed"]=$this->lang->line("lblConditionUsed");

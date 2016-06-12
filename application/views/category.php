@@ -433,7 +433,7 @@
               <div class="locations-list list-filter margin-top-30">
                 <h5 class="list-title"><strong><a class="not-active"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
-                 <li> <a id="allAds1" href="#allAds" ><?php echo $lblConditionAll;?>
+                 <li> <a id="allAds1" href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/allAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" ><?php echo $lblConditionAll;?>
              <!--     <li> <a id="searchCriteria" href="#allAds" onclick="return setupTab('allAds', 'allAds1');" ><?php echo $lblConditionAll;?>
                   -->
                   		<?php 
@@ -451,7 +451,7 @@
                   		<?php }?>
                   		
                   		</a></li>
-                  <li> <a id="newAds1" name="newAds1"  href="#newAds" ><?php echo $lblConditionNew;?>
+                  <li> <a id="newAds1" name="newAds1"  href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/newAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" ><?php echo $lblConditionNew;?>
                   
                   <?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
@@ -472,7 +472,7 @@
                   		</span>
                   		<?php }?>
                   		</a></li>
-                  <li> <a id="usedAds1" name="usedAds1" href="#usedAds" ><?php echo $lblConditionUsed;?>
+                  <li> <a id="usedAds1" name="usedAds1" href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/usedAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" ><?php echo $lblConditionUsed;?>
                   		<?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
                   			
@@ -504,7 +504,7 @@
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
                 <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\"";?>>
                 <!-- <a href="#allAds"  id="allAds2" name="allAds2"  role="tab" data-toggle="tab" onclick="return setupTab('allAds', 'allAds2');"> -->
-                <a href="#allAds"  id="allAds2" name="allAds2"  role="tab" data-toggle="tab">
+                <a href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/allAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>"  id="allAds2" name="allAds2" >
                 <?php echo $lblConditionAny;?>
                 <?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
@@ -520,7 +520,7 @@
                 </a></li>
                 <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>>
                 <!-- <a href="#newAds" id="newAds2" name="newAds2"  role="tab" data-toggle="tab" onclick="return setupTab('newAds', 'newAds2');"> -->
-                <a href="#newAds" id="newAds2" name="newAds2"  role="tab" data-toggle="tab">
+                <a href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/newAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" id="newAds2" name="newAds2" >
                 <?php echo $lblConditionNew;?>
                 <?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
@@ -541,7 +541,7 @@
                 </a></li>
                 <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>>
                 <!-- <a href="#usedAds" id="usedAds2" name="usedAds2"  role="tab" data-toggle="tab" onclick="return setupTab('usedAds', 'usedAds2');"> -->
-                <a href="#usedAds" id="usedAds2" name="usedAds2"  role="tab" data-toggle="tab" >
+                <a href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/usedAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" id="usedAds2" name="usedAds2"  >
                 <?php echo $lblConditionUsed;?> 
                 	<?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){

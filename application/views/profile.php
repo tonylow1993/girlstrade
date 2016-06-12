@@ -93,7 +93,7 @@ function sendIt() {
  			<div class="tab-box "> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds" id="allAds1" name="allAds1" role="tab" data-toggle="tab">
+              <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo 	base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/allAds?prevURL='.$previousCurrent_url;?>" id="allAds1" name="allAds1" >
                 <?php echo $lblConditionAny;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -106,7 +106,8 @@ function sendIt() {
                 echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="#newAds" id="newAds1" name="newAds1" role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="<?php echo 	base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/newAds?prevURL='.$previousCurrent_url;
+             ?>" id="newAds1" name="newAds1" >
                 <?php echo $lblConditionNew;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -124,7 +125,7 @@ function sendIt() {
                 	echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="#usedAds" id="usedAds1" name="usedAds1" role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/usedAds?prevURL='.$previousCurrent_url;?>" id="usedAds1" name="usedAds1" >
                 <?php echo $lblConditionUsed;?> 
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -145,6 +146,8 @@ function sendIt() {
               </ul>
          		 <div class="sortByDiv"><form role="form" method="POST" action="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/0/0?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());?>"
          	     id="sortfrm" class="tab-filter"> 
+         	      	<input type="hidden" name="paneActiveTab" id="paneActiveTab" value="<?php echo $activeTab;?>" >
+             
 			   <div class="form-group sort-group" style="width:150px;">
 				  <select class="form-control sort-select" name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort by...</option>
@@ -582,6 +585,7 @@ $basePath=base_url();
             <?php 
             	$encodeCurrentURL=urlencode(current_url());
             	$url_path=base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID;
+            	
             	$pageNumPrev=$pageNum-1;
             	$pageNum2=$pageNum+1;
             	$pageNum3=$pageNum+2;
@@ -593,19 +597,19 @@ $basePath=base_url();
             	if($NoOfItemCount>0)
             	{
             		if($pageNum<>1)
-            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/0/0/0/0/0/0/$sortByType/$sortByPrice/$sortByDate.'?prevURL='.$previousCurrent_url;\">Previous</a></li>";
+            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab.'?prevURL='.$previousCurrent_url;\">Previous</a></li>";
             		if($NoOfItemCount > 0)
-            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/0/0/0/0/0/0/$sortByType/$sortByPrice/$sortByDate.'?prevURL='.$previousCurrent_url;\">$pageNum</a></li>";
+            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab.'?prevURL='.$previousCurrent_url;\">$pageNum</a></li>";
             		if($NoOfItemCount > ($pageNum*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum2/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate\">$pageNum2</a></li>";
+            			echo "<li><a href=\"$url_path/$pageNum2/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab\">$pageNum2</a></li>";
             		if($NoOfItemCount > ($pageNum2*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum3/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate\">$pageNum3</a></li>";
+            			echo "<li><a href=\"$url_path/$pageNum3/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab\">$pageNum3</a></li>";
             		if($NoOfItemCount > ($pageNum3*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum4/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate\">$pageNum4</a></li>";
+            			echo "<li><a href=\"$url_path/$pageNum4/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab\">$pageNum4</a></li>";
             		if($NoOfItemCount > ($pageNum4*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum5/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate\">$pageNum5</a></li>";
+            			echo "<li><a href=\"$url_path/$pageNum5/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab\">$pageNum5</a></li>";
             		if($NoOfItemCount > ($pageNum5*$itemPerPage))
-            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate\">Next</a></li>";
+            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab\">Next</a></li>";
             	}
              ?>
                 </ul>
@@ -748,7 +752,8 @@ function beginSort(){
 	var sortByType=document.getElementById("selectSortType").value;
 	var sortByPrice=document.getElementById("sortByPrice").value;
 	var sortByDate=document.getElementById("sortByDate").value;
-	var actionpath="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/';?>".concat(catID).concat("<?php echo '/0/0';?>").concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat('/').concat(sortByDate).concat("<?php echo '?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());?>");
+	 var activeTab=document.getElementById("paneActiveTab").value;
+	var actionpath="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/';?>".concat(catID).concat("<?php echo '/0/0';?>").concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat('/').concat(sortByDate).concat('/').concat(activeTab).concat("<?php echo '?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());?>");
 		document.getElementById("sortfrm").action=actionpath;
 		document.getElementById("sortfrm").submit();
 	

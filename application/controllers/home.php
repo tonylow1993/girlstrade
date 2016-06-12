@@ -1541,7 +1541,7 @@ class Home extends CI_Controller {
 				$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 				
 				$data["lang_label"]=$this->nativesession->get("language");
-					
+				$data["activeTab"]=$activeTab;	
 				
 				$this->load->view("profile_allFeedbacks", $data);
 	}
@@ -3879,10 +3879,14 @@ class Home extends CI_Controller {
 		foreach($result as $id=>$value){
 			$temp;
 			if(strcmp($value["type"],"userID")!=0){
-				if($this->input->post($value["type"], true))
-					$value["typeValue"]=1;
-				else
+				try{
+					if($this->input->post($value["type"], true))
+						$value["typeValue"]=1;
+					else
+						$value["typeValue"]=0;
+				}catch(Exception $ex){
 					$value["typeValue"]=0;
+				}
 				$temp=array($value["type"]=>$value["typeValue"]);
 			}else{
 				$temp=array("userID"=>$value["typeValue"]);

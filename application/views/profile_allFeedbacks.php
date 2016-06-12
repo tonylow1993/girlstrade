@@ -25,8 +25,14 @@ function sendIt() {
           <div class="category-list">
            <div class="tab-box "> 
               <!-- Nav tabs -->
+<<<<<<< HEAD
               <ul class="nav nav-tabs add-tabs">
                 <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/allAds?prevURL='.$previousCurrent_url;?>" id="allFb" name="allFb">
+=======
+              <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
+              <?php echo $activeTab;?>
+                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/allAds?prevURL='.$previousCurrent_url;?>" >
+>>>>>>> origin/master
                 <?php echo $lblConditionAll;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -39,7 +45,11 @@ function sendIt() {
                 echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
+<<<<<<< HEAD
                 <li <?php if(strcmp($activeTab, "sellerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/sellerAds?prevURL='.$previousCurrent_url;?>" id="sellerFb" name="sellerFb">
+=======
+                <li <?php if(strcmp($activeTab, "sellerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/sellerAds?prevURL='.$previousCurrent_url;?>" >
+>>>>>>> origin/master
                 <?php echo $lblSellerInfo;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -57,7 +67,11 @@ function sendIt() {
                 	echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
+<<<<<<< HEAD
                 <li <?php if(strcmp($activeTab, "buyerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/buyerAds?prevURL='.$previousCurrent_url;?>" id="buyerFb" name="buyerFb">
+=======
+                <li <?php if(strcmp($activeTab, "buyerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/buyerAds?prevURL='.$previousCurrent_url;?>"  >
+>>>>>>> origin/master
                 <?php echo $lblBuyerInfo;?> 
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -82,6 +96,8 @@ function sendIt() {
     			$path=$basePath.MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url())."&prevViewFeedBack_Url=".urlencode(current_url());
     			echo $path;
                ?>"  method="POST" id="sortfrm" class="tab-filter" role="form"> 
+                    	<input type="hidden" name="paneActiveTab" id="paneActiveTab" value="<?php echo $activeTab;?>" >
+             
                <div  style="width:150px; display:inline-block">
                		<select class="form-control     "   name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortTypeID,"0")==0 or $sortTypeID==0) echo " selected='selected' ";?> >Sort type by...</option>
@@ -150,40 +166,6 @@ function sendIt() {
                
                 </tbody>
               </table>
-            <div class="pagination-bar text-center">
-            <ul class="pagination">
-            <?php 
-            	$encodeCurrentURL=urlencode(current_url());
-            	$url_path=base_url().MY_PATH."home/viewAllFeedback/$userID";
-            	$pageNumPrev=$pageNum-1;
-            	$pageNum2=$pageNum+1;
-            	$pageNum3=$pageNum+2;
-            	$pageNum4=$pageNum+3;
-            	$pageNum5=$pageNum+4;
-            	$pageNumNext=$pageNum+5;
-            	$itemPerPage=ITEMS_PER_PAGE;
-            	 $activeTabpage1="allAds";
-            	if($NoOfItemCount>0)
-            	{
-            		if($pageNum<>1)
-            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">Previous</a></li>";
-            		if($NoOfItemCount > 0)
-            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
-            		if($NoOfItemCount > ($pageNum*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
-              		if($NoOfItemCount > ($pageNum2*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
-              		if($NoOfItemCount > ($pageNum3*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
-              		if($NoOfItemCount > ($pageNum4*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
-              		if($NoOfItemCount > ($pageNum5*$itemPerPage))
-            	 	   echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType/$activeTabpage1?prevURL=$previousCurrent_url;\">Next</a></li>";
-           		}
-             ?>
-                </ul>
-          </div>
-       		
             </div>
             
             <div class="tab-pane <?php if(strcmp($activeTab, "sellerAds")==0) echo "active"; ?>" id="sellerAds">
@@ -224,41 +206,6 @@ function sendIt() {
                    
                 </tbody>
               </table>
-              <div class="pagination-bar text-center">
-            <ul class="pagination">
-            <?php 
-            	$encodeCurrentURL=urlencode(current_url());
-            	$url_path=base_url().MY_PATH."home/viewAllFeedback/$userID";
-            	$pageNumPrev=$pageNum-1;
-            	$pageNum2=$pageNum+1;
-            	$pageNum3=$pageNum+2;
-            	$pageNum4=$pageNum+3;
-            	$pageNum5=$pageNum+4;
-            	$pageNumNext=$pageNum+5;
-            	$itemPerPage=ITEMS_PER_PAGE;
-            	$activeTabpage2="sellerAds";
-            	 
-            	if($NoOfItemCount>0)
-            	{
-            		if($pageNum<>1)
-            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">Previous</a></li>";
-            		if($NoOfItemCount > 0)
-            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">$pageNum</a></li>";
-            		if($NoOfItemCount > ($pageNum*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum2/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">$pageNum2</a></li>";
-              		if($NoOfItemCount > ($pageNum2*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum3/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">$pageNum3</a></li>";
-              		if($NoOfItemCount > ($pageNum3*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum4/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">$pageNum4</a></li>";
-              		if($NoOfItemCount > ($pageNum4*$itemPerPage))
-            			echo "<li><a href=\"$url_path/$pageNum5/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">$pageNum5</a></li>";
-              		if($NoOfItemCount > ($pageNum5*$itemPerPage))
-            	 	   echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/$sortTypeID/$sortByDate/$sortByType/$activeTabpage2?prevURL=$previousCurrent_url;\">Next</a></li>";
-           		}
-             ?>
-                </ul>
-          </div>
-       		
                
                </div>
                <div class="tab-pane <?php if(strcmp($activeTab, "buyerAds")==0) echo "active"; ?>" id="buyerAds">
@@ -298,7 +245,10 @@ function sendIt() {
                 
                 </tbody>
               </table>
-              <div class="pagination-bar text-center">
+              
+       		
+               </div>
+            	<div class="pagination-bar text-center">
             <ul class="pagination">
             <?php 
             	$encodeCurrentURL=urlencode(current_url());
@@ -310,7 +260,7 @@ function sendIt() {
             	$pageNum5=$pageNum+4;
             	$pageNumNext=$pageNum+5;
             	$itemPerPage=ITEMS_PER_PAGE;
-            	$activeTabpage3="buyerAds";
+            	$activeTabpage3=$activeTab;
             	 
             	if($NoOfItemCount>0)
             	{
@@ -332,9 +282,6 @@ function sendIt() {
              ?>
                 </ul>
           </div>
-       		
-               </div>
-            
             
             </div>
             
@@ -356,7 +303,10 @@ function beginSort(){
 	var selectSortType=document.getElementById("selectSortType").value;
 	var sortByType=document.getElementById("sortByType").value;
 	var sortByDate=document.getElementById("sortByDate").value;
-	var actionpath="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1';?>".concat("/").concat(selectSortType).concat("/").concat(sortByDate).concat("/").concat(sortByType).concat("<?php echo '?prevURL='.urlencode(current_url()).'&prevViewFeedBack_Url='.urlencode(current_url());?>");
+	var sortByDate=document.getElementById("sortByDate").value;
+	 var activeTab=document.getElementById("paneActiveTab").value;
+		
+	var actionpath="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1';?>".concat("/").concat(selectSortType).concat("/").concat(sortByDate).concat("/").concat(sortByType).concat("/").concat(activeTab).concat("<?php echo '?prevURL='.urlencode(current_url()).'&prevViewFeedBack_Url='.urlencode(current_url());?>");
 	
 		document.getElementById("sortfrm").action=actionpath;
 		document.getElementById("sortfrm").submit();
