@@ -4491,7 +4491,7 @@ span b{
     }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 300px) {
     .blogs-comment-avatar {
         width: 50px;
         display: block;
