@@ -344,7 +344,7 @@
 	    	return $result;
 	    }
 	    
-	    function getNoOfItemCount($userID=0 , $catID=0, $locID=0 , $keywords='', $minPrice=0, $maxPrice=0)
+	    function getNoOfItemCount($userID=0 , $catID=0, $locID=0 , $keywords='', $minPrice=0, $maxPrice=0, $activeTab="allAds")
 	    {if($catID==0 or $catID==null)
 	    	$catID=0;
 	    else
@@ -376,6 +376,11 @@
 	    	$filterMore=$this->getFilterMoreString($keywords);
 	    }
 	    // -----------------end of keywrods search -----------------------//
+	    $strnewUsed="";
+	    if(strcmp($activeTab, 'newAds')==0)
+	    	$strnewUsed=" and newUsed='N' ";
+    	else if(strcmp($activeTab, 'usedAds')==0)
+    		$strnewUsed=" and newUsed='U' ";
 	    
 	    $strQuery="";
 	    if(strcmp($catID, "0")!=0 && $this->isParentCatID($catID)){
@@ -388,7 +393,7 @@
 	    		$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore." ) ";
 	    	else
 	    		$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ) ";
-	    	$strQuery=$strQuery.$priceStr;
+	    	$strQuery=$strQuery.$strnewUsed.$priceStr;
 	    	 
 	    }else{
 	    	$strQuery="select count(distinct postID) as NoOfCount from post where status not in ('R', 'U', 'D')  and (userID=$userID or $userID=0) ";
@@ -400,7 +405,7 @@
 	    		$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore." ) ";
 	    	else
 	    		$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ) ";
-	    	$strQuery=$strQuery.$priceStr;
+	    	$strQuery=$strQuery.$strnewUsed.$priceStr;
 	    }//echo $strQuery;
 	    $NoOfItemCount=0;
 	    $query2 = $this->db->query($strQuery);
@@ -411,7 +416,7 @@
 	    return $NoOfItemCount;
 	    
 	    }
-	    function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $sortByID="0", $minPrice=0, $maxPrice=0, $sortByType="0", $sortByPrice="0", $sortByDate="0")
+	    function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $sortByID="0", $minPrice=0, $maxPrice=0, $sortByType="0", $sortByPrice="0", $sortByDate="0", $activeTab="allAds")
 	    {
 	    	if($catID==0 or $catID==null)
 	    		$catID=0;
@@ -475,7 +480,11 @@
 	    			$sortStr=" order by createDate asc ";
 	    		}
 	    	}
-	    	
+	    	$strnewUsed="";
+	    	if(strcmp($activeTab, 'newAds')==0)
+	    		$strnewUsed=" and newUsed='N' ";
+	    		else if(strcmp($activeTab, 'usedAds')==0)
+	    			$strnewUsed=" and newUsed='U' ";
 	    	$strQuery="";
 	    	if(strcmp($catID, "0")!=0 && $this->isParentCatID($catID)){
 	    		$strQuery="select * from post where status not in ('R', 'U', 'D') and (userID=$userID or $userID=0) ";
@@ -487,7 +496,7 @@
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore." ) ";
 	    		else 
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ) ";
-	    		$strQuery=$strQuery.$priceStr.$sortStr." limit ".$olimit.",".$ulimit;
+	    		$strQuery=$strQuery.$strnewUsed.$priceStr.$sortStr." limit ".$olimit.",".$ulimit;
 	    		
 	    	}else{
 	    	$strQuery="select * from post where status not in ('R', 'U' ,'D') and (userID=$userID or $userID=0) ";
@@ -499,7 +508,7 @@
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore." ) ";
 	    		else 
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ) ";
-	       		$strQuery=$strQuery.$priceStr.$sortStr." limit ".$olimit.",".$ulimit;
+	       		$strQuery=$strQuery.$strnewUsed.$priceStr.$sortStr." limit ".$olimit.",".$ulimit;
 	    	}
 	    	try {
 	    	echo $strQuery;
