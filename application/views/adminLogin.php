@@ -8,7 +8,11 @@
             <div class="panel-intro text-center">
               <h2 class="logo-title"> 
                 <!-- Original Logo will be placed here  --> 
-                <span class="logo-icon"><i class="icon icon-hammer ln-shadow-logo shape-0"></i> </span> Girls<span>Trade </span> </h2>
+                <img width="50px" height="50px" src="<?php echo base_url();?>images/site/girlstrade_logo.png">
+                <span id="login_signupTitle">
+                Login
+                </span>
+<!--                 <span class="logo-icon"><i class="icon icon-hammer ln-shadow-logo shape-0"></i> </span> Girls<span>Trade </span> </h2> -->
             </div>
             <div class="panel-body">
               <form role="form" action="<?php echo base_url().MY_PATH; ?>getAdmin/loginUser"  method="post">

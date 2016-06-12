@@ -234,8 +234,8 @@
                           <div class="col-md-8">
                               <textarea class="form-control" style="vertical-align: top; horizontal-align: left; 
                               resize:none;" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"><?php echo set_value('descriptionTextarea'); ?></textarea>
-	                          	<!--<div id="descriptionTextareaAjaxLoad" class="center"></div>
-	                        	<div id="descriptionTextareaError" hidden="true"></div>-->
+	                          	<div id="descriptionTextareaAjaxLoad" class="center"></div>
+	                        	<div id="descriptionTextareaError" hidden="true"></div>
                           </div>
                       </div>
                     
@@ -465,6 +465,17 @@ function priceCheckValidate() {
 	
 };
 
+function descCheckValidate() {
+ 	if($("#descriptionTextareaError").text() != "" || 
+ 		 	$("#descriptionTextareaAjaxLoad").text() == ""){
+ 	 	return false;
+    }else if($("#descriptionTextarea").val().trim().length==0) {
+        return false;
+    }else
+	{	return true;
+	}
+	
+};
 function isInt(value) {
 	  var x;
 	  if (isNaN(value)) {
@@ -486,7 +497,7 @@ $( "#descriptionTextarea" ).blur(function() {
 	    	$("#error").html(result.message);
 	    	$("#descriptionTextareaDiv").removeClass('has-success has-error').addClass(result.class);
 	    	$("#descriptionTextareaAjaxLoad").html(result.icon);
-	    	$("#descriptionTextareaError").html(result.err);
+	    	$("#descriptionTextareaError").html(result.message);
 	    	}
 	});
 });
@@ -575,6 +586,10 @@ function setup()
 // 	}
 	if(!priceCheckValidate()){
 		location.href = "#priceAjaxLoad";                 //Go to the target element.
+		 return false; 
+	}
+	if(!descCheckValidate()){
+		location.href = "#descriptionTextareaAjaxLoad";                 //Go to the target element.
 		 return false; 
 	}
 	isEmptyUploadFile(function(r)
