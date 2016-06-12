@@ -433,7 +433,7 @@
               <div class="locations-list list-filter margin-top-30">
                 <h5 class="list-title"><strong><a class="not-active"><i class="icon-bag"></i><?php echo $lblCondition;?></a></strong></h5>
                 <ul class="browse-list list-unstyled long-list">
-                 <li> <a id="allAds1" href="#allAds" ><?php echo $lblConditionAll;?>
+                 <li> <a id="allAds1" href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/allAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" ><?php echo $lblConditionAll;?>
              <!--     <li> <a id="searchCriteria" href="#allAds" onclick="return setupTab('allAds', 'allAds1');" ><?php echo $lblConditionAll;?>
                   -->
                   		<?php 
@@ -451,7 +451,7 @@
                   		<?php }?>
                   		
                   		</a></li>
-                  <li> <a id="newAds1" name="newAds1"  href="#newAds" ><?php echo $lblConditionNew;?>
+                  <li> <a id="newAds1" name="newAds1"  href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/newAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" ><?php echo $lblConditionNew;?>
                   
                   <?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
@@ -472,7 +472,7 @@
                   		</span>
                   		<?php }?>
                   		</a></li>
-                  <li> <a id="usedAds1" name="usedAds1" href="#usedAds" ><?php echo $lblConditionUsed;?>
+                  <li> <a id="usedAds1" name="usedAds1" href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/usedAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" ><?php echo $lblConditionUsed;?>
                   		<?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
                   			
