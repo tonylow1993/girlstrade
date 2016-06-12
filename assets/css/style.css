@@ -3373,6 +3373,16 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.panel-title a{
+	color: black;
+	font-size: 18px;
+}
+
+.panel-title a:hover{
+	color: black;
+	text-decoration: none;
+}
+
 .item-price{
 	display: inline-block;
 }
@@ -3433,6 +3443,7 @@ td.ads-details-td {
 .panel-title{
 	color: white;
 	font-size: 25px;
+	cursor: pointer;
 }
 
 .msg-box-badge{
