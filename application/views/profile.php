@@ -93,7 +93,7 @@ function sendIt() {
  			<div class="tab-box "> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="#allAds" id="allAds1" name="allAds1" role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo 	base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/allAds?prevURL='.$previousCurrent_url;?>" id="allAds1" name="allAds1" role="tab" data-toggle="tab">
                 <?php echo $lblConditionAny;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -106,7 +106,8 @@ function sendIt() {
                 echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="#newAds" id="newAds1" name="newAds1" role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="<?php echo 	base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/newAds?prevURL='.$previousCurrent_url;
+             ?>" id="newAds1" name="newAds1" role="tab" data-toggle="tab">
                 <?php echo $lblConditionNew;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -124,7 +125,7 @@ function sendIt() {
                 	echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="#usedAds" id="usedAds1" name="usedAds1" role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/usedAds?prevURL='.$previousCurrent_url;?>" id="usedAds1" name="usedAds1" role="tab" data-toggle="tab">
                 <?php echo $lblConditionUsed;?> 
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -584,6 +585,7 @@ $basePath=base_url();
             <?php 
             	$encodeCurrentURL=urlencode(current_url());
             	$url_path=base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID;
+            	
             	$pageNumPrev=$pageNum-1;
             	$pageNum2=$pageNum+1;
             	$pageNum3=$pageNum+2;

@@ -246,7 +246,7 @@ class viewProfile extends getCategory {
 		return $data['result'];
 	}
     
-	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByType="0", $sortByPrice="0", $sortByDate="0",$activeNav='allAds')
+	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByType="0", $sortByPrice="0", $sortByDate="0",$activeTab='allAds')
 	{
 		$prevProfile_Url=base_url();
 		if(isset($_GET["prevProfile_Url"]))
@@ -370,7 +370,7 @@ class viewProfile extends getCategory {
 		$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords, $activeTab);
 		$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
 		$data["userRating"]=$this->users_model->getUserRating($data["userID"]);
-			
+		$data["activeTab"]=$activeTab;	
 		
 		$data["NoOfItemCount"]=$NoOfItemCount;
 		$data["lang_label_text"] = $this->lang->line("lang_label_text");
