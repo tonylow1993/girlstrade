@@ -127,8 +127,8 @@
                     	echo "<div class=\"user-ads-action\"><a class=\"btn btn-danger btn-xs btn-120\"  href=\"#deleteAdsPopup\" data-toggle=\"modal\" id='$clickLink' data-id=\"$messageID\" data-userID=\"$userID\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></div></p>";
                     	
                         //echo "<a class=\"btn btn-danger btn-xs\"  href=\"javascript:deleteAds('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1)'\" id='$clickLink'> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></p>";
-                     	if($enableMarkSoldBtn)
-                        	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-inverse btn-xs btn-120\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$messageID\"  data-soldusers=\"$soldUsersstr\"> <i class=\"fa fa-thumb-tack\"></i> ".$this->lang->line('MarkSold')." </a></div></p>";
+                     	//if($enableMarkSoldBtn)
+                        //	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-inverse btn-xs btn-120\"  data-toggle=\"modal\"   href=\"#markSoldAds\"  data-id=\"$messageID\"  data-soldusers=\"$soldUsersstr\"> <i class=\"fa fa-thumb-tack\"></i> ".$this->lang->line('MarkSold')." </a></div></p>";
                         if($enableRepostBtn)
                         	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-inverse btn-xs btn-120\"  data-toggle=\"modal\"   href=\"#confirmRepost\"  data-id=\"$messageID\" data-nextexpirydate=\"$nextexpirydate\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-repeat\"></i> Repost</a></div></p>";
                         	
