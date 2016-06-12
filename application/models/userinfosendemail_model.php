@@ -49,8 +49,12 @@ class userInfoSendEmail_model extends CI_Model{
 		if(isset($var) && !empty($var) && sizeof($var)>0){
 			foreach($result as $field)
 			{
-				//if(strcmp($field,"userID")==0)
-				//	continue;
+				if(strcmp($field,"userID")==0){
+					$temp = array("type"=>$field, "typeValue"=>$var[0]->$field);
+					array_push($data, $temp);
+					continue;
+				}
+					
 				
 				if(strcmp($field, "APPROVEPOST")==0 || 
 						strcmp($field, "REJECTPOST")==0 ||
