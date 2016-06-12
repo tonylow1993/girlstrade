@@ -246,7 +246,7 @@ class viewProfile extends getCategory {
 		return $data['result'];
 	}
     
-	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByType="0", $sortByPrice="0", $sortByDate="0",$activeTab='allAds')
+	public function viewByUserID($userID,$pageNum=1, $catID='', $locID='',$keywords='',$sortByType="0", $sortByPrice="0", $sortByDate="0",$activeTab="allAds")
 	{
 		$prevProfile_Url=base_url();
 		if(isset($_GET["prevProfile_Url"]))
@@ -391,7 +391,6 @@ class viewProfile extends getCategory {
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$this->nativesession->set("lastPageVisited","newPost");
-		$data["activeTab"]="allAds";
 		$data["lblCondition"]=$this->lang->line("lblCondition");
 		$data["lblConditionNew"]=$this->lang->line("lblConditionNew");
 		$data["lblConditionUsed"]=$this->lang->line("lblConditionUsed");

@@ -1541,7 +1541,7 @@ class Home extends CI_Controller {
 				$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 				
 				$data["lang_label"]=$this->nativesession->get("language");
-					
+				$data["activeTab"]=$activeTab;	
 				
 				$this->load->view("profile_allFeedbacks", $data);
 	}

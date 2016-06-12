@@ -27,7 +27,8 @@ function sendIt() {
            <div class="tab-box "> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/allAds?prevURL='.$previousCurrent_url;?>" role="tab" data-toggle="tab">
+              <?php echo $activeTab;?>
+                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/allAds?prevURL='.$previousCurrent_url;?>" >
                 <?php echo $lblConditionAll;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -40,7 +41,7 @@ function sendIt() {
                 echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "sellerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/sellerAds?prevURL='.$previousCurrent_url;?>" role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "sellerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/sellerAds?prevURL='.$previousCurrent_url;?>" >
                 <?php echo $lblSellerInfo;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -58,7 +59,7 @@ function sendIt() {
                 	echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "buyerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/buyerAds?prevURL='.$previousCurrent_url;?>"   role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "buyerAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1/'.$sortTypeID.'/'.$sortByDate.'/'.$sortByType.'/buyerAds?prevURL='.$previousCurrent_url;?>"  >
                 <?php echo $lblBuyerInfo;?> 
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -82,6 +83,8 @@ function sendIt() {
     			$path=$basePath.MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url())."&prevViewFeedBack_Url=".urlencode(current_url());
     			echo $path;
                ?>"  method="POST" id="sortfrm" class="tab-filter" role="form"> 
+                    	<input type="hidden" name="paneActiveTab" id="paneActiveTab" value="<?php echo $activeTab;?>" >
+             
                <div  style="width:150px; display:inline-block">
                		<select class="form-control     "   name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortTypeID,"0")==0 or $sortTypeID==0) echo " selected='selected' ";?> >Sort type by...</option>
@@ -288,7 +291,10 @@ function beginSort(){
 	var selectSortType=document.getElementById("selectSortType").value;
 	var sortByType=document.getElementById("sortByType").value;
 	var sortByDate=document.getElementById("sortByDate").value;
-	var actionpath="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1';?>".concat("/").concat(selectSortType).concat("/").concat(sortByDate).concat("/").concat(sortByType).concat("<?php echo '?prevURL='.urlencode(current_url()).'&prevViewFeedBack_Url='.urlencode(current_url());?>");
+	var sortByDate=document.getElementById("sortByDate").value;
+	 var activeTab=document.getElementById("paneActiveTab").value;
+		
+	var actionpath="<?php echo base_url().MY_PATH.'home/viewAllFeedback/'.$userID.'/1';?>".concat("/").concat(selectSortType).concat("/").concat(sortByDate).concat("/").concat(sortByType).concat("/").concat(activeTab).concat("<?php echo '?prevURL='.urlencode(current_url()).'&prevViewFeedBack_Url='.urlencode(current_url());?>");
 	
 		document.getElementById("sortfrm").action=actionpath;
 		document.getElementById("sortfrm").submit();

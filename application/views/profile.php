@@ -93,7 +93,7 @@ function sendIt() {
  			<div class="tab-box "> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-                <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo 	base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/allAds?prevURL='.$previousCurrent_url;?>" id="allAds1" name="allAds1" role="tab" data-toggle="tab">
+              <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo 	base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/allAds?prevURL='.$previousCurrent_url;?>" id="allAds1" name="allAds1" >
                 <?php echo $lblConditionAny;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -106,8 +106,8 @@ function sendIt() {
                 echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="<?php echo 	base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/newAds?prevURL='.$previousCurrent_url;
-             ?>" id="newAds1" name="newAds1" role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>><a href="<?php echo 	base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/newAds?prevURL='.$previousCurrent_url;
+             ?>" id="newAds1" name="newAds1" >
                 <?php echo $lblConditionNew;?>
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -125,7 +125,7 @@ function sendIt() {
                 	echo $rowCount;
                 ?></span>
                 <?php }?></a></li>
-                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/usedAds?prevURL='.$previousCurrent_url;?>" id="usedAds1" name="usedAds1" role="tab" data-toggle="tab">
+                <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>><a href="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/usedAds?prevURL='.$previousCurrent_url;?>" id="usedAds1" name="usedAds1" >
                 <?php echo $lblConditionUsed;?> 
                 <?php 
                   		if(SHOW_BRACKETS_PROFILE_PAGE==1){
@@ -597,9 +597,9 @@ $basePath=base_url();
             	if($NoOfItemCount>0)
             	{
             		if($pageNum<>1)
-            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/0/0/0/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab.'?prevURL='.$previousCurrent_url;\">Previous</a></li>";
+            			echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab.'?prevURL='.$previousCurrent_url;\">Previous</a></li>";
             		if($NoOfItemCount > 0)
-            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/0/0/0/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab.'?prevURL='.$previousCurrent_url;\">$pageNum</a></li>";
+            			echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab.'?prevURL='.$previousCurrent_url;\">$pageNum</a></li>";
             		if($NoOfItemCount > ($pageNum*$itemPerPage))
             			echo "<li><a href=\"$url_path/$pageNum2/$catID/$locID/$keywords/0/0/0/$sortByType/$sortByPrice/$sortByDate/$activeTab\">$pageNum2</a></li>";
             		if($NoOfItemCount > ($pageNum2*$itemPerPage))
