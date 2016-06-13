@@ -2007,19 +2007,22 @@ function addDayswithdate($date,$days){
 				$postInfo=$this->post->getPostByPostID($postID);
 				//$buyerID=$postInfo[0]->userID;
 					
-		
+					$feedbackStatus="U";
+					if(strcmp(NONEEDVERIFYFEEDBACK,"Y")==0)
+						$feedbackStatus="A";
+					
 					$messageArray=array(
 							'buyerID'=>$buyerID,
 							'sellerID'=>$fUserID,
 							'postID'=>$postID,
-							'status'=>'U',
+							'status'=>$feedbackStatus,
 							'content'=>$message,
 							'rating'=>$rating,
 							'createDate'=>date("Y-m-d H:i:s"),
 							);
 					$messageResult=$this->sellerfeedback_model->insert($messageArray);
 					if($messageResult){
-						$path=base_url().MY_PATH."";
+						$path=base_url().MY_PATH."home/viewAllFeedback/$buyerID/1";
 						$buyerInfo=$this->users_model->get_user_by_id($buyerID);
 						$buyerEmail=$this->useremail_model->getUserEmailByUserID($buyerID);
 						$email=$buyerEmail["email"];
@@ -2345,18 +2348,22 @@ function addDayswithdate($date,$days){
 							return;
 				}
 		
+				$feedbackStatus="U";
+				if(strcmp(NONEEDVERIFYFEEDBACK,"Y")==0)
+					$feedbackStatus="A";
+						
 				$messageArray=array(
 						'buyerID'=>$buyerID,
 						'sellerID'=>$userID,
 						'postID'=>$postID,
-						'status'=>'U',
+						'status'=>$feedbackStatus,
 						'content'=>$message,
 						'rating'=>$rating,
 						'createDate'=>date("Y-m-d H:i:s"),
 				);
 				$messageResult=$this->buyerfeedback_model->insert($messageArray);
 				if($messageResult){
-					$path=base_url().MY_PATH."";
+					$path=base_url().MY_PATH."home/viewAllFeedback/$userID/1";
 					$sellerInfo=$this->users_model->get_user_by_id($userID);
 					$sellerEmail=$this->useremail_model->getUserEmailByUserID($userID);
 					$email=$sellerEmail["email"];
