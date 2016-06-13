@@ -58,7 +58,16 @@
                       </div>
                       </div>  
                     </div>-->
-					
+					 
+					 <div id="emailDiv" class="form-group required">
+                      <label for="inputEmail3" class="col-md-4 control-label"> <?php echo $Email;?> <font color="red">*</font></label>
+                      <div class="col-md-6">
+                        <input name="email" maxlength="<?php echo MAXLENGTHEMAIL;?>" type="email" value="<?php echo set_value('email'); ?>" class="form-control" id="email" required="true" placeholder="Email">
+                        <div id="emailAjaxLoad" class="center"></div>
+                        <div id="emailError" hidden="true"></div>
+                      </div>
+                    </div>
+                    
                     <!-- Text input-->
                     <div id="telDov"  class="form-group required">
                       <label class="col-md-4 control-label" > 
@@ -76,17 +85,7 @@
 								<div id="telError" hidden="true"></div>
                       </div>
                     </div>
-                    
-                  
-                    <div id="emailDiv" class="form-group required">
-                      <label for="inputEmail3" class="col-md-4 control-label"> <?php echo $Email;?> <font color="red">*</font></label>
-                      <div class="col-md-6">
-                        <input name="email" maxlength="<?php echo MAXLENGTHEMAIL;?>" type="email" value="<?php echo set_value('email'); ?>" class="form-control" id="email" required="true" placeholder="Email">
-                        <div id="emailAjaxLoad" class="center"></div>
-                        <div id="emailError" hidden="true"></div>
-                      </div>
-                    </div>
-
+                   
                     <div id="retypeDiv" class="form-group required">
                       <label for="inputPassword4" class="col-md-4 control-label"> <?php echo $VerifyCaptcha;?></label>
                       <div class="col-md-6">
