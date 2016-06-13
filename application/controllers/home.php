@@ -2102,6 +2102,7 @@ class Home extends CI_Controller {
 		}else if($activeNav==12){
 			$data["userID"]=$userID;
 			$data["result"]=$this->userInfoSendEmail_model->getSendEmailConfigByUserID($userID);
+			$data["mandatory"]=$this->userInfoSendEmail_model->getMandatorySendEmailConfigByUserID($userID);
 			$this->load->view('adminSendEmailConfig.php', $data);
 		}else if ($activeNav==13){
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Summary", 0);

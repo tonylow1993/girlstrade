@@ -12,6 +12,28 @@
         <div class="col-sm-9 page-content">
            <div class="inner-box">
             <h2 class="title-2"><i class="icon-star-circled"></i> <?php echo $this->lang->line("updateSendEmailConfig"); ?> </h2>
+            	<?php if($mandatory!=null) { 
+             			foreach($mandatory as $id=>$value){
+             				if(strcmp($value["type"],"userID")==0)
+             				{
+             					continue;
+             				}
+             			?>
+             		
+             		<div class="form-group">
+                        <div class="col-sm-9">
+						  <div class="checkbox">
+						  <label>
+                            <input id="<?php echo $value["type"];?>" disabled name='<?php echo $value["type"];?>' type="checkbox" <?php  if($value["typeValue"]==1) echo " checked "?>>
+                            <small> &nbsp;&nbsp;&nbsp;&nbsp;Show <?php echo $this->lang->line($value["type"]);?></small> </label>
+                          </div>
+					  </div>
+					 </div>
+            
+             		<?php 	
+             			}
+             		}?>
+            
             <form name="myForm" action="<?php echo base_url().MY_PATH;?>home/updateSendEmailConfig" method="POST">
              		<?php if($result!=null) { 
              			foreach($result as $id=>$value){

@@ -63,6 +63,8 @@ class userInfoSendEmail_model extends CI_Model{
 						strcmp($field, "APPROVEDIRECTSEND")==0 ||
 						strcmp($field, "REJECTDIRECTSEND")==0 ||
 						strcmp($field, "REPLYMESSAGESENDEMAIL")==0 ||
+						strcmp($field, "APPROVEUSERPHOTO")==0 ||
+						strcmp($field, "REJECTUSERPHOTO")==0 ||
 						(strcmp(NONEEDVERIFYFEEDBACK,"Y")!=0) && (
 						strcmp($field, "SELLERFEEDBACKSENDEMAIL")==0 ||
 						strcmp($field, "BUYERFEEDBACKSENDEMAIL")==0 ) 
@@ -72,6 +74,38 @@ class userInfoSendEmail_model extends CI_Model{
 						//|| strcmp($field, "sendEmailForApproveReject")==0){
 				$temp = array("type"=>$field, "typeValue"=>$var[0]->$field);
 				array_push($data, $temp);
+				}
+			}
+		}
+		return $data;
+	}
+	
+	function getMandatorySendEmailConfigByUserID($userID)
+	{
+		$result = $this->db->list_fields('userAllowSendEmailConfig');
+		$where=array("userID"=>$userID);
+		$query = $this->db->from('userAllowSendEmailConfig')->where($where)->limit(1)->get();
+		$var=$query->result();
+		$data=array();
+		if(isset($var) && !empty($var) && sizeof($var)>0){
+			foreach($result as $field)
+			{
+				if(strcmp($field,"userID")==0){
+					$temp = array("type"=>$field, "typeValue"=>$var[0]->$field);
+					array_push($data, $temp);
+					continue;
+				}
+					
+				if(strcmp($field, "SIGNUPSENDEMAIL")==0 ||
+						strcmp($field, "FORGETPASSWORDSENDEMAIL")==0 ||
+						strcmp($field, "RESETPASSWORDSENDEMAIL")==0 ||
+						strcmp($field, "CHANGEPASSWORDSENDEMAIL")==0 
+						){
+							//strcmp($field, "APPROVEFEEDBACK")==0 ||
+							//strcmp($field, "REJECTFEEDBACK")==0 ){
+							//|| strcmp($field, "sendEmailForApproveReject")==0){
+							$temp = array("type"=>$field, "typeValue"=>$var[0]->$field);
+							array_push($data, $temp);
 				}
 			}
 		}
