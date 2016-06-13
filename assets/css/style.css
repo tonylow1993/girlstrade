@@ -2875,6 +2875,7 @@ table.add-manage-table > tbody > tr > td, table.add-manage-table > tbody > tr > 
   font-size: 16px;
   font-weight: 300;
   margin: 10px;
+  word-break: break-word;
 }
 
 .action-td .btn {
@@ -3373,6 +3374,16 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.panel-title a{
+	color: black;
+	font-size: 18px;
+}
+
+.panel-title a:hover{
+	color: black;
+	text-decoration: none;
+}
+
 .item-price{
 	display: inline-block;
 }
@@ -3433,6 +3444,7 @@ td.ads-details-td {
 .panel-title{
 	color: white;
 	font-size: 25px;
+	cursor: pointer;
 }
 
 .msg-box-badge{
@@ -4480,7 +4492,7 @@ span b{
     }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 300px) {
     .blogs-comment-avatar {
         width: 50px;
         display: block;

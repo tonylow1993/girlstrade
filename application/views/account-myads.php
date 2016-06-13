@@ -272,7 +272,7 @@
            		<input type="hidden" id="pageNum" name="pageNum" >   	
            	</div>
            	<div class="form-group">
-           		<input id="nextExpiryDate" name="nextExpiryDate" >
+           		<p id="nextExpiryDate" name="nextExpiryDate" ></p>
            	</div>
          </form>
       </div>
@@ -402,7 +402,7 @@ function passToModal() {
     $('#confirmRepost').on('show.bs.modal', function(event) {
         $("#postID").val($(event.relatedTarget).data('id'));
         $("#pageNum").val($(event.relatedTarget).data('pagenum'));
-         $("#nextExpiryDate").val($(event.relatedTarget).data('nextexpirydate'));
+         $("#nextExpiryDate").html($(event.relatedTarget).data('nextexpirydate'));
     });
     $('#deleteAdsPopup').on('show.bs.modal', function(event) {
         $("#messageID").val($(event.relatedTarget).data('id'));
