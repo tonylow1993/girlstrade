@@ -351,21 +351,21 @@ class footer  extends CI_Controller {
             }
             //-------------------------end of checking captcha
 		
-		
-		$data['name'] = $this->input->post('name');
-		log_message('error', '...'.$data['name']);
-		$data['phone'] = $this->input->post('phone');
-		$data['email'] = $this->input->post('email');
-		$data['message'] = $this->input->post('message');
+		$result=array();
+		$result['name'] = $this->input->post('name');
+		log_message('error', '...'.$result['name']);
+		$result['phone'] = $this->input->post('phone');
+		$result['email'] = $this->input->post('email');
+		$result['message'] = $this->input->post('message');
 		
 
-		$data['message']=nl2br(htmlentities($data['message'], ENT_QUOTES, 'UTF-8'));
+		$result['message']=nl2br(htmlentities($result['message'], ENT_QUOTES, 'UTF-8'));
 		
-		if(ExceedDescLength($data['message'], DESCLENGTHINCONTACTPAGE)){
+		if(ExceedDescLength($result['message'], DESCLENGTHINCONTACTPAGE)){
 			$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
-			if(empty($data['message']) || strlen(trim($data['message']))==0)
+			if(empty($result['message']) || strlen(trim($result['message']))==0)
 				$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
-			if(ShortDescLength($data['message'], DESCMINLENGTHINNEWPOST))		
+			if(ShortDescLength($result['message'], DESCMINLENGTHINNEWPOST))		
 				$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					
 			$data["error"]=$errorMsg;
@@ -393,11 +393,11 @@ class footer  extends CI_Controller {
 		
 		
 		
-		$data["contactTypeID"]=$this->input->post('contactTypeID');
-		$data['createDate']=date("Y-m-d H:i:s"); 
-		$data['updateDate']=date("Y-m-d H:i:s"); 
-		$data['status'] = "U";
-		$row=$this->contact_model->addContactModel($data);
+		$result["contactTypeID"]=$this->input->post('contactTypeID');
+		$result['createDate']=date("Y-m-d H:i:s"); 
+		$result['updateDate']=date("Y-m-d H:i:s"); 
+		$result['status'] = "U";
+		$row=$this->contact_model->addContactModel($result);
 		log_message('error', 'ADDING');
 		$loginUser=$this->nativesession->get("user");
 		if(isset($loginUser))

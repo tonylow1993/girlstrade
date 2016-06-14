@@ -200,8 +200,7 @@
 	        if (newLines != null) {
 	            addition = newLines.length;
 	        }
-
-	        $('#length').html(x.length + addition);
+		 	$('#length').html(x.replace(/(\r\n|\n|\r)/g, "<br />").length);
 	    })
 	})
 
