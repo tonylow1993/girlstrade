@@ -653,7 +653,7 @@ btn-post:hover, .btn-post:focus, .btn-post:active, .btn-post.active, .open .drop
     font-size: 12px;
     height: 40px;
     line-height: normal;
-    padding: 12px 35px;
+    padding: 12px 50px 12px 35px;
     text-transform: uppercase;
     width: 170px;
     background-color:#4A45D0;
@@ -666,7 +666,8 @@ btn-post:hover, .btn-post:focus, .btn-post:active, .btn-post.active, .open .drop
     font-size: 13px;
     height: 40px;
     line-height: normal;
-    padding: 12px 35px;
+    //padding: 12px 35px;
+    padding: 12px 50px 12px 35px;
     text-transform: uppercase;
     width: 170px;
     background-color:#625DD4;
