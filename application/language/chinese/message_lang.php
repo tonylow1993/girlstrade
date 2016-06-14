@@ -27,7 +27,7 @@ $lang["Login"]="登入";
 $lang["Signup"]="登記";
 $lang["Profile"]="你的帳户";
 $lang["Logout"]="登出";
-$lang["Post_New_Ads"]="賣野";
+$lang["Post_New_Ads"]="刊登";
 
 $lang["Trusted_Seller"]="信心賣家";
 $lang["Categories"]="類別";
