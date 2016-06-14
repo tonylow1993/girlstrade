@@ -361,7 +361,7 @@ class footer  extends CI_Controller {
 
 		$data['message']=nl2br(htmlentities($data['message'], ENT_QUOTES, 'UTF-8'));
 		
-		if(ExceedDescLength($data['message'], DESCLENGTHINNEWPOST)){
+		if(ExceedDescLength($data['message'], DESCLENGTHINCONTACTPAGE)){
 			$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 			if(empty($data['message']) || strlen(trim($data['message']))==0)
 				$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
@@ -369,22 +369,22 @@ class footer  extends CI_Controller {
 				$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					
 			$data["error"]=$errorMsg;
-			$data["prevURL"]=$prevURL;
-			$data['redirectToWhatPage']="Previous Page";
+			$data["prevURL"]=base_url();;
+			$data['redirectToWhatPage']="Home Page";
 			if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 				$data['redirectToPHP']=base_url();
-				else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
-					$data['redirectToPHP']=base_url();
-					else {
-						$data['redirectToPHP']=$_SESSION["previousUrl"];
-						if(strcmp($prevprevURL,"")<>0)
-							$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
-					}
-					$data["successTile"]=$this->lang->line("successTile");
-					$data["failedTitle"]=$this->lang->line("failedTitle");
-					$data["goToHomePage"]=$this->lang->line("goToHomePage");
-					$this->load->view('failedPage', $data);
-					return;
+			else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+				$data['redirectToPHP']=base_url();
+			else {
+				$data['redirectToPHP']=$_SESSION["previousUrl"];
+				if(isset($prevprevURL) && strcmp($prevprevURL,"")<>0)
+					$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+			}
+			$data["successTile"]=$this->lang->line("successTile");
+			$data["failedTitle"]=$this->lang->line("failedTitle");
+			$data["goToHomePage"]=$this->lang->line("goToHomePage");
+			$this->load->view('failedPage', $data);
+			return;
 		}
 		
 		

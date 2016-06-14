@@ -109,7 +109,7 @@
                             <div class="form-group">
                             <div class="col-md-12">
                                 <textarea class="form-control" id="contactUsMessage" name="message" 
-                                style="vertical-align: top; horizontal-align: left; resize:none;" placeholder="Enter your message here. We will get back to you within 2 business days." rows="7" maxlength="650"></textarea>
+                                style="vertical-align: top; horizontal-align: left; resize:none;" placeholder="Enter your message here. We will get back to you within 2 business days." rows="7" maxlength="<?php echo DESCLENGTHINCONTACTPAGE;?>"></textarea>
 								<div id="contactUsMessageError" class="center"> </div>                            
                             </div> 
                         </div>
@@ -190,6 +190,23 @@
   <?php include "footer1.php"; ?>
   </div>
   <script type="text/javascript">
+
+  $(function () {
+	    $('#contactUsMessage').keyup(function () {
+	        var x = $('#contactUsMessage').val();
+
+	        var newLines = x.match(/(\r\n|\n|\r)/g);
+	        var addition = 0;
+	        if (newLines != null) {
+	            addition = newLines.length;
+	        }
+
+	        $('#length').html(x.length + addition);
+	    })
+	})
+
+
+  
   function contactAction()
   {
 	  var $contactForm = $('#contactForm');
