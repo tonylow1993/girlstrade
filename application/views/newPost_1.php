@@ -236,6 +236,7 @@
                               resize:none;" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"><?php echo set_value('descriptionTextarea'); ?></textarea>
 	                          	<div id="descriptionTextareaAjaxLoad" class="center"></div>
 	                        	<div id="descriptionTextareaError" hidden="true"></div>
+								<div id="charNum"></div>
                           </div>
                       </div>
                     
@@ -423,6 +424,19 @@ function chooseLoc(id) {
 }
 
 $(document).ready(function() {
+	 var text_max = 450;
+	$('#descriptionTextarea').keyup(function() {
+		var x = $('#descriptionTextarea').val();
+
+        var newLines = x.match(/(\r\n|\n|\r)/g);
+        var addition = 0;
+        if (newLines != null) {
+            addition = newLines.length;
+        }
+        var text_remaining = text_max - x.length - addition;
+        $('#charNum').html(text_remaining + ' characters remaining');
+    });
+
   	$('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
 			if(index==1) {
 				
