@@ -1096,16 +1096,18 @@ input[type=checkbox]
         <h2 id="modal-title-del" class="modal-title">Seller Contact Information</h2>
       </div>
       <div class="modal-body">
+      	<table>
       <?php if(!$hidetelno){?>
-        <input id="sellerphone" name="sellerphone">
+        <tr><td>Phone: </td><td style="width:300px;"><input  id="sellerphone" name="sellerphone"></td></tr>
         <?php }?>
-        <input id="selleremail" name="selleremail">
+       <tr><td>Email: </td><td> <input id="selleremail" name="selleremail"></td></tr>
         <?php if($showWeChatID){?>
-        <input id="weChatID" name="weChatID" value="<?php echo $weChatID;?>">
+        <tr><td>We Chat ID: </td><td><input id="weChatID" name="weChatID" value="<?php echo $weChatID;?>"></td></tr>
         <?php }?>
         <?php if($showWebSite){?>
-        <input id="webSiteAddr" name="webSiteAddr" value="<?php echo $webSiteAddr;?>">
+        <tr><td>Web Site: </td><td><input id="webSiteAddr" name="webSiteAddr" value="<?php echo $webSiteAddr;?>"></td></tr>
         <?php }?>
+        </table>
       </div>
       <div class="modal-footer">
 		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
