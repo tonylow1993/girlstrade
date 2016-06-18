@@ -1037,7 +1037,7 @@ public function getChildCategory($parentID)
         $cat = $this->input->post('category-group',true); 
         $tags = $this->input->post('tagsInput',true); 
         $des = $this->input->post('descriptionTextarea',true); 
-        $content=nl2br(htmlentities($des, ENT_QUOTES, 'UTF-8'));
+        $content=htmlentities($des, ENT_QUOTES, 'UTF-8');
         $price = $this->input->post('price',true);
         
 //         if ($this->form_validation->run('newPost/createNewPost') == FALSE)
