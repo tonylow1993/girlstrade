@@ -2258,10 +2258,29 @@ class Home extends CI_Controller {
 				$from=$reply;
 			}
 			$email="";
-			if(strcmp($type,"buyer")==0)
+			$userInfo;
+			if(strcmp($type,"buyer")==0){
 				$email=$this->userEmail->getUserEmailByUserID($userID);
-			else 
+				$userInfo=$this->userInfo->getUserInfoByUserID($userID);
+			}
+			else {
 				$email=$this->userEmail->getUserEmailByUserID($fuserID);
+				$userInfo=$this->userInfo->getUserInfoByUserID($fuserID);
+			}
+			$hidetelno=true;
+			$telno="";
+			$showWeChatID=false;
+			$weChatID="";
+			$showWebSite=false;
+			$webSiteAddr="";
+			if($userInfo<>null){
+				$hidetelno=$userInfo["hidetelno"];
+				$telno=$userInfo["telNo"];
+				$showWeChatID=$userInfo['showWeChatID'];
+				$weChatID=$userInfo['weChatID'];
+				$showWebSite=$userInfo['showWebSite'];
+				$webSiteAddr=$userInfo['webSiteAddr'];
+			}
 			if($email<>null){
 				$sellerEmail=$email["email"];
 			}
@@ -2310,7 +2329,13 @@ class Home extends CI_Controller {
 					"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
 					"sellerEmail" => $sellerEmail,
 					"replyUserID"=>$userID,
-					"picCount"=>$picCount));
+					"picCount"=>$picCount,
+					"hidetelno"=>$hidetelno,
+					"telno"=>$telno,
+					"showWeChatID"=>$showWeChatID,
+					"weChatID"=>$weChatID,
+					"showWebSite"=>$showWebSite,
+					"webSiteAddr" =>$webSiteAddr));
 			if($result==null)
 				$result=$arrayMessage;
 			else
@@ -2370,10 +2395,29 @@ class Home extends CI_Controller {
 					$from=$reply;
 				}
 				$email="";
-				if(strcmp($type,"buyer")==0)
+				$userInfo;
+				if(strcmp($type,"buyer")==0){
 					$email=$this->userEmail->getUserEmailByUserID($userID);
-				else
+					$userInfo=$this->userInfo->getUserInfoByUserID($userID);
+				}
+				else{
 					$email=$this->userEmail->getUserEmailByUserID($fuserID);
+					$userInfo=$this->userInfo->getUserInfoByUserID($fuserID);
+				}
+				$hidetelno=true;
+				$telno="";
+				$showWeChatID=false;
+				$weChatID="";
+				$showWebSite=false;
+				$webSiteAddr="";
+				if($userInfo<>null){
+					$hidetelno=$userInfo["hidetelno"];
+					$telno=$userInfo["telNo"];
+					$showWeChatID=$userInfo['showWeChatID'];
+					$weChatID=$userInfo['weChatID'];
+					$showWebSite=$userInfo['showWebSite'];
+					$webSiteAddr=$userInfo['webSiteAddr'];
+				}
 				if($email<>null){
 					$sellerEmail=$email["email"];
 				}
@@ -2422,7 +2466,13 @@ class Home extends CI_Controller {
 						"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
 						"sellerEmail" => $sellerEmail,
 						"replyUserID"=>$userID,
-						"picCount"=>$picCount));
+						"picCount"=>$picCount,
+						"hidetelno"=>$hidetelno,
+						"telno"=>$telno,
+						"showWeChatID"=>$showWeChatID,
+						"weChatID"=>$weChatID,
+						"showWebSite"=>$showWebSite,
+						"webSiteAddr" =>$webSiteAddr));
 				
 				if($result==null)
 					$result=$arrayMessage;

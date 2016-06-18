@@ -42,6 +42,13 @@
                   	foreach($result as $id=>$row)
                   	{
                   		if(strcmp($row['recordType'],"DirectSend")==0){
+                  			
+                  			$hidetelno=$row["hidetelno"];
+                  			$telno=$row["telno"];
+                  			$showWeChatID=$row['showWeChatID'];
+                  			$weChatID=$row['weChatID'];
+                  			$showWebSite=$row['showWebSite'];
+                  			$webSiteAddr=$row['webSiteAddr'];
                   			$from=$row['from'];
                   			$reply=$row['reply'];
                   			$replyUserID=$row["replyUserID"];
@@ -77,8 +84,15 @@
                   					$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
                   					echo "<p class=\"price-td\"><br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                   				}*/
-                  				if(strcmp($statusRP, 'A')==0)
+								if(strcmp($statusRP, 'A')==0){
                   					echo "<br/><i class=\"fa fa-envelope\"></i> Buyer email: $sellerEmail";
+                  				if(!$hidetelno)
+                  						echo "<br/>Phone: $telNo";
+                  					if($showWeChatID)
+                  						echo "<br/>WeChatID: $weChatID";
+                  					if($showWebSite)
+                  						echo "<br/>WebSite: $webSiteAddr";
+								}
                   				echo "<br/><i class=\"fa fa-signal\"></i> Status: $status</p>";
                   				echo "</td>";
                   				echo "<td style=\"width:55%\" class=\"ads-details-td small-table-right\">";

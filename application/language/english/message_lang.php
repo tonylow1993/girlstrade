@@ -292,5 +292,12 @@ $lang["lblItemNoApproveRequest"]="No Approve Request";
 $lang["lblItemFeedback"]="Feedback";
 $lang["lblItemLeaveComment"]="LEAVE A COMMENT";
 
+$lang["lblPleaseLogin"]="Please login";
+$lang["lblClose"]="Close";
+$lang["lblLoginToContinue"]="Please login to continue the process";
+$lang["lblLogin"]="Login";
+$lang["lblItemApproveRejectRequestContact"]="Approve or reject to request contact";
+
+
 
 
