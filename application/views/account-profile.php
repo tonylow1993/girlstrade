@@ -44,7 +44,7 @@
 					<div class="col-sm-6 page-content">
 						<div class="inner-box profile-panel myads-panel panel-bevel">
 							<a href="http://www.girlstrade.com/home/getAccountPage/12" class="row white-icon">
-								<i class="fa fa-buysellads fa-5"></i><br>
+								<i class="fa fa-envelope-o fa-5"></i><br>
 								<p class="panel-title">Email Config.</p>
 							</a>
 						</div>
@@ -52,18 +52,18 @@
 				</div>
 				<div class="tab-pane" id="tab2">
 				  <div class="col-sm-6 page-content">
-						<div class="inner-box profile-panel setting-panel panel-bevel">
+						<div class="inner-box profile-panel setting-panel panel-bevel" style="background-color: #8c3988">
 							<a href="http://www.girlstrade.com/home/getAccountPage/6" class="row white-icon">
-								<i class="fa fa-user fa-5"></i><br>
+								<i class="fa fa-compress fa-5"></i><br>
 								<p class="panel-title">SELLER CONTACT</p>
 							</a>
 						</div>
 					</div>
 				
 					<div class="col-sm-6 page-content">
-						<div class="inner-box profile-panel buyer-panel panel-bevel">
+						<div class="inner-box profile-panel buyer-panel panel-bevel" style="background-color: #ff5f5f">
 							<a href="http://www.girlstrade.com/home/getAccountPage/5" class="row white-icon">
-								<i class="fa fa-shopping-cart fa-5"></i><br>
+								<i class="fa fa-heart fa-5"></i><br>
 								<p class="panel-title">FAV. ITEMS</p>
 							</a>
 						</div>
