@@ -232,8 +232,7 @@
                           <i class="icon-clipboard"></i>
 							<?php echo $Description;?> <font color="red">*</font></label>
                           <div class="col-md-8">
-                              <textarea class="form-control" style="vertical-align: top; horizontal-align: left; 
-                              resize:none;" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"><?php echo set_value('descriptionTextarea'); ?></textarea>
+                              <textarea class="form-control" style="vertical-align: top; horizontal-align: left;resize:none;white-space: pre-line;" id="descriptionTextarea" name="descriptionTextarea" rows="4"  required="true" style="white-space: pre-line"  maxlength="<?php echo DESCLENGTHINNEWPOST;?>"><?php echo set_value('descriptionTextarea'); ?></textarea>
 	                          	<div id="descriptionTextareaAjaxLoad" class="center"></div>
 	                        	<div id="descriptionTextareaError" hidden="true"></div>
 								<div id="charNum"></div>
@@ -436,7 +435,12 @@ $(document).ready(function() {
         var text_remaining = text_max - x.length - addition;
         $('#charNum').html(text_remaining + ' characters remaining');
     });
-
+	
+	function nl2br (str, is_xhtml) {   
+		var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+		return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+	}
+	
   	$('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
 			if(index==1) {
 				

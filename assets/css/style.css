@@ -3375,6 +3375,15 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+.nav-pills{
+	margin-bottom: 15px;
+	margin-left: 15px;
+}
+
+.nav-pills li{
+	width: 32%;
+}
+
 .panel-title a{
 	color: black;
 	font-size: 18px;
