@@ -7,7 +7,9 @@
 				<form id="newPost" class="text-center" action="<?php echo base_url(); echo MY_PATH;?>home/uploadPhoto/<?php echo $userID.'/'.$userName; ?>" method="post" enctype="multipart/form-data">
 					<div class="kv-avatar center-block" style="width:200px">
 						<h3><?php echo $userName; ?> </h3>
+						
 						<input id="avatar" name="avatar" type="file" class="file-loading" accept="image/*">
+						<h3>It is noted that your previous photo will be deleted and your new photos will be approved within 24 hours. During thie time, your new photo will not be active until approved.</h3>
 						<div id="uploadImgError"></div>
 					</div>
 					<!-- include other inputs if needed and include a form submit (save) button -->
@@ -117,8 +119,10 @@
 									contentType: false,
 									type: 'POST',
 									success:function(msg){
-										$("#modal-text").html("Your avatar has been successfully uploaded.");
-										setTimeout(function(){location.reload();}, 2000);
+// 										$("#modal-text").html("Your avatar has been successfully uploaded.");
+										$("#modal-text").html("Your photo will be reviewed and go on live within the next 24 hours.");
+										setTimeout(function(){
+											location.reload();}, 2000);
 									}
 								});
 							}
