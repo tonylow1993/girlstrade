@@ -275,3 +275,17 @@ $lang["InvalidPriceRange"]="這個 %s 超過了金錢的上限";
 $lang["InvalidPriceFormat"]="這個 %s 不能有小數";
 $lang["EmptyPrice"]="價錢不能留空";
 $lang["MinDescLength"]="描述字數不能小於 ".DESCMINLENGTHINNEWPOST;
+
+$lang["lblItemSaved"]="Item saved";
+$lang["lblItemSave"]="Save the item";
+$lang["lblShareItem"]="Share the item";
+$lang["lblDeleteAbuse"]="Delete abuse";
+$lang["lblReportAbuseAlready"]="Report abuse";
+$lang["lblReportAbuse"]="Abuse reported already";
+$lang["lblContactSeller"]="Contact Seller";
+$lang["lblPendingForSellerApproval"] ="Pending for Seller's Approval";
+$lang["lblViewSellerInfo"] = "View Seller Contact Information";
+$lang["lblItemApproveRequest"]="Approve Request";
+$lang["lblItemNoApproveRequest"]="No Approve Request";
+$lang["lblItemFeedback"]="Feedback";
+$lang["lblItemLeaveComment"]="LEAVE A COMMENT";
