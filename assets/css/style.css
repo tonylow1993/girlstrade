@@ -3375,6 +3375,14 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+@media (max-width: 768px) {
+	 .sidebar{
+		  display: none;
+	 }
+}
+
+
+
 .nav-pills{
 	margin-bottom: 15px;
 	margin-left: 15px;
