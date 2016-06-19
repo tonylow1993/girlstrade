@@ -10,7 +10,9 @@
   <div class="main-container">
     <div class="container">
       <div class="row">
-        <?php include("account_sidebar.php");?>
+		<div class="sidebar">
+			<?php include("account_sidebar.php");?>
+		</div>
         <!--/.page-sidebar-->
 		
 		<div id="rootwizard" class="col-sm-9">
