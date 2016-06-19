@@ -118,7 +118,7 @@
 						$price=$row['price'];
                 		echo "<tr>";
                     	echo "<td style=\"width:20%\" class=\"add-image\">$from";
-                    	echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
+                    	//echo "<br/><a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
 						
 						echo "<div class=\"ads-details small-table-left margin-10\">";
 						echo "<h5><div class=\"add-title-girlstrade\"><a href=$viewItemPath>".$this->lang->line("lblTitle").$previewTitle."</a></div>";
