@@ -74,6 +74,8 @@ $lang["TerminateAccount"]="Terminate Account";
 $lang["CloseAccount"]="Close Account";
 $lang["OutgoingMsgTitle"]="Outbox";
 $lang["AccountTabName"]="Account";
+$lang["SellerTabName"]="Seller";
+$lang["BuyerTabName"]="Buyer";
 $lang["directsend_history"]="Contact Info Requested";
 // Category.php
 $lang["lblAllCategories"]="All Categories";  //index.php

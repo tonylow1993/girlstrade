@@ -17,9 +17,9 @@
 		
 		<div id="rootwizard" class="col-sm-9">
 			<ul class="nav nav-pills">
-				<li class="active"><a href="#tab1" data-toggle="tab">General</a></li>
-				<li><a href="#tab2" data-toggle="tab">Buyer</a></li>
-				<li><a href="#tab3" data-toggle="tab">Seller</a></li>
+				<li class="active"><a href="#tab1" data-toggle="tab"><?php echo $this->lang->line("AccountTabName");?></a></li>
+				<li><a href="#tab2" data-toggle="tab"><?php echo $this->lang->line("SellerTabName");?></a></li>
+				<li><a href="#tab3" data-toggle="tab"><?php echo $this->lang->line("BuyerTabName");?></a></li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active" id="tab1">

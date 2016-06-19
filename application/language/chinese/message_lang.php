@@ -74,6 +74,8 @@ $lang["TerminateAccount"]="終止帳戶";
 $lang["CloseAccount"]="關閉帳戶";
 $lang["OutgoingMsgTitle"]="發件箱";
 $lang["AccountTabName"]="帳戶";
+$lang["SellerTabName"]="賣家";
+$lang["BuyerTabName"]="買家";
 $lang["directsend_history"]="買方的詢問";
 // Category.php
 $lang["lblAllCategories"]="所有類別";  //index.php
