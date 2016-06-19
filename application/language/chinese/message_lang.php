@@ -236,6 +236,7 @@ $lang["YouHaveRemainContactSellerTimes"]="(今天,你還可以聯繫 %s 次不�
 $lang["ZeroDescLength"]="描述不能留空";
 $lang["PostErrorNoImageFileSelected"]="至少需要上傳一張圖片";
 $lang["updateSendEmailConfig"]="電郵發送設定";
+$lang["RemainChar"]="個剩餘字元";
 
 
 // GETADMIN

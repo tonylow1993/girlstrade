@@ -394,6 +394,7 @@ class newPost extends CI_Controller {
             $data["lblLocation"]=$this->lang->line("lblLocation");
             $data["lblAllLocations"]=$this->lang->line("lblAllLocations");
             $data["PleaseNotCloseBrowse"]=$this->lang->line("PleaseNotCloseBrowse");
+			$data["RemainChar"]=$this->lang->line("RemainChar");
             $data["YouHaveRemainPost"]="";
             if(NUMOFTIMESPOST-$NumOfPostTimes<=MINCOUNTSHOWREMAINTIMES && NUMOFTIMESPOST<UNLIMITEDTIMES)
             	$data["YouHaveRemainPost"]=sprintf($this->lang->line("YouHaveRemainPost"), NUMOFTIMESPOST-$NumOfPostTimes);
@@ -948,7 +949,7 @@ public function getChildCategory($parentID)
     	$data["Call_Now"] = $this->lang->line("Call_Now");
     	$data["Tel"] = $this->lang->line("Tel");
     	
-    	$data["Login"]=$this->lang->line("Login");;
+    	$data["Login"]=$this->lang->line("Login");
     	$data["Signup"]=$this->lang->line("Signup");
     	$data["Profile"]=$this->lang->line("Profile");
     	$data["Logout"]=$this->lang->line("Logout");
