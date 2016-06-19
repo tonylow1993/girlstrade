@@ -95,6 +95,7 @@ class newPost extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 	  
@@ -265,6 +266,7 @@ class newPost extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 			$data["AllCategory"]=$this->getAllCategory();
@@ -435,6 +437,7 @@ class newPost extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 	
@@ -952,6 +955,7 @@ public function getChildCategory($parentID)
     	$data["Login"]=$this->lang->line("Login");
     	$data["Signup"]=$this->lang->line("Signup");
     	$data["Profile"]=$this->lang->line("Profile");
+    	$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
     	$data["Logout"]=$this->lang->line("Logout");
     	$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
     	
@@ -1469,6 +1473,7 @@ public function getChildCategory($parentID)
     	$data["Login"]=$this->lang->line("Login");;
     	$data["Signup"]=$this->lang->line("Signup");
     	$data["Profile"]=$this->lang->line("Profile");
+    	$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
     	$data["Logout"]=$this->lang->line("Logout");
     	$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
     	 

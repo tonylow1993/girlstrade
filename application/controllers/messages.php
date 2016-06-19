@@ -66,6 +66,7 @@ class messages extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
              $data["lang_label"]=$this->nativesession->get("language");

@@ -25,9 +25,10 @@ $lang["Hot_Listings"]="Hot Items";
 
 $lang["Login"]="Login";
 $lang["Signup"]="Signup";
+$lang["HeaderSearch"]="Search";
 $lang["Profile"]="Profile";
 $lang["Logout"]="Logout";
-$lang["Post_New_Ads"]="Post Now";
+$lang["Post_New_Ads"]="Post";
 
 $lang["Trusted_Seller"]="Trusted Seller";
 $lang["Categories"]="Categories";

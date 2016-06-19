@@ -103,6 +103,7 @@ class Home extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		
@@ -218,6 +219,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 	
@@ -362,6 +364,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
           $data["lang_label"]=$this->nativesession->get("language");
@@ -408,6 +411,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");  
 		 $data["lang_label"]=$this->nativesession->get("language");
@@ -608,6 +612,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data['optionsRadios'] = "I"; // $this->input->post('optionsRadios');
@@ -759,6 +764,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		
@@ -1038,6 +1044,7 @@ class Home extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		
@@ -1129,6 +1136,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 	
@@ -1169,6 +1177,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 			
@@ -1537,6 +1546,7 @@ class Home extends CI_Controller {
 				$data["Login"]=$this->lang->line("Login");;
 				$data["Signup"]=$this->lang->line("Signup");
 				$data["Profile"]=$this->lang->line("Profile");
+				$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 				$data["Logout"]=$this->lang->line("Logout");
 				$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 				
@@ -1864,6 +1874,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$user1=$this->nativesession->get("user");
@@ -3054,6 +3065,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$user1=$this->nativesession->get("user");
@@ -3432,6 +3444,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 			$data["successTile"]=$this->lang->line("successTile");
@@ -3471,6 +3484,7 @@ class Home extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 			

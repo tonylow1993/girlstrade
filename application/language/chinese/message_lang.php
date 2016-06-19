@@ -24,8 +24,9 @@ $lang["Tel"]="(852) 8888-8888";
 $lang["Hot_Listings"]="熱賣物品搜尋";
 
 $lang["Login"]="登入";
+$lang["HeaderSearch"]="搜尋";
 $lang["Signup"]="登記";
-$lang["Profile"]="你的帳户";
+$lang["Profile"]="資料";
 $lang["Logout"]="登出";
 $lang["Post_New_Ads"]="刊登";
 
