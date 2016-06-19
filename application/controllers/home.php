@@ -1821,7 +1821,7 @@ class Home extends CI_Controller {
 		else 
 			$this->load->view('failedPage', $data);
 	}
-	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='', $sortByDate="1", $fromUserIDInMessage=0)
+	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='', $sortByDate="2", $fromUserIDInMessage=0)
 	{
 		
 		
