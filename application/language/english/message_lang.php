@@ -292,7 +292,7 @@ $lang["lblViewSellerInfo"] = "Seller Contact Information";
 $lang["lblItemApproveRequest"]="Approve Request";
 $lang["lblItemNoApproveRequest"]="No Approve Request";
 $lang["lblItemFeedback"]="Feedback";
-$lang["lblItemLeaveComment"]="LEAVE A COMMENT";
+$lang["lblItemLeaveComment"]="Leave a comment";
 
 $lang["lblPleaseLogin"]="Please login";
 $lang["lblClose"]="Close";

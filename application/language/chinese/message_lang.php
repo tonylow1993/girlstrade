@@ -292,7 +292,7 @@ $lang["lblViewSellerInfo"] = "賣家聯絡資料";
 $lang["lblItemApproveRequest"]="交換聯絡資料";
 $lang["lblItemNoApproveRequest"]="沒有任何查詢";
 $lang["lblItemFeedback"]="評價";
-$lang["lblItemLeaveComment"]="發表意見";
+$lang["lblItemLeaveComment"]="發表留言";
 
 $lang["lblPleaseLogin"]="請先登入";
 $lang["lblClose"]="關閉";
