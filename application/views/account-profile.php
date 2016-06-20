@@ -17,9 +17,9 @@
 		
 		<div id="rootwizard" class="col-sm-9">
 			<ul class="nav nav-pills">
-				<li class="active"><a href="#tab1" data-toggle="tab">General</a></li>
-				<li><a href="#tab2" data-toggle="tab">Buyer</a></li>
-				<li><a href="#tab3" data-toggle="tab">Seller</a></li>
+				<li class="active"><a href="#tab1" data-toggle="tab"><?php echo $this->lang->line("AccountTabName");?></a></li>
+				<li><a href="#tab2" data-toggle="tab"><?php echo $this->lang->line("SellerTabName");?></a></li>
+				<li><a href="#tab3" data-toggle="tab"><?php echo $this->lang->line("BuyerTabName");?></a></li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active" id="tab1">
@@ -54,25 +54,6 @@
 				</div>
 				<div class="tab-pane" id="tab2">
 				  <div class="col-sm-6 page-content">
-						<div class="inner-box profile-panel setting-panel panel-bevel" style="background-color: #8c3988">
-							<a href="http://www.girlstrade.com/home/getAccountPage/6" class="row white-icon">
-								<i class="fa fa-compress fa-5"></i><br>
-								<p class="panel-title">SELLER CONTACT</p>
-							</a>
-						</div>
-					</div>
-				
-					<div class="col-sm-6 page-content">
-						<div class="inner-box profile-panel buyer-panel panel-bevel" style="background-color: #ff5f5f">
-							<a href="http://www.girlstrade.com/home/getAccountPage/5" class="row white-icon">
-								<i class="fa fa-heart fa-5"></i><br>
-								<p class="panel-title">FAV. ITEMS</p>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane" id="tab3">
-					<div class="col-sm-6 page-content">
 						<div class="inner-box profile-panel setting-panel panel-bevel">
 							<a href="http://www.girlstrade.com/home/getAccountPage/6" class="row white-icon">
 								<i class="fa fa-user fa-5"></i><br>
@@ -86,6 +67,25 @@
 							<a href="http://www.girlstrade.com/home/getAccountPage/2" class="row white-icon">
 								<i class="fa fa-shopping-cart fa-5"></i><br>
 								<p class="panel-title">BUYER LIST</p>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="tab3">
+					<div class="col-sm-6 page-content">
+						<div class="inner-box profile-panel setting-panel panel-bevel" style="background-color: #8c3988">
+							<a href="http://www.girlstrade.com/home/getAccountPage/6" class="row white-icon">
+								<i class="fa fa-compress fa-5"></i><br>
+								<p class="panel-title">SELLER LIST</p>
+							</a>
+						</div>
+					</div>
+				
+					<div class="col-sm-6 page-content">
+						<div class="inner-box profile-panel buyer-panel panel-bevel" style="background-color: #ff5f5f">
+							<a href="http://www.girlstrade.com/home/getAccountPage/5" class="row white-icon">
+								<i class="fa fa-heart fa-5"></i><br>
+								<p class="panel-title">FAV. ITEMS</p>
 							</a>
 						</div>
 					</div>

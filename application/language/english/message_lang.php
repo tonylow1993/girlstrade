@@ -25,9 +25,10 @@ $lang["Hot_Listings"]="Hot Items";
 
 $lang["Login"]="Login";
 $lang["Signup"]="Signup";
+$lang["HeaderSearch"]="Search";
 $lang["Profile"]="Profile";
 $lang["Logout"]="Logout";
-$lang["Post_New_Ads"]="Post Now";
+$lang["Post_New_Ads"]="Post";
 
 $lang["Trusted_Seller"]="Trusted Seller";
 $lang["Categories"]="Categories";
@@ -74,6 +75,8 @@ $lang["TerminateAccount"]="Terminate Account";
 $lang["CloseAccount"]="Close Account";
 $lang["OutgoingMsgTitle"]="Outbox";
 $lang["AccountTabName"]="Account";
+$lang["SellerTabName"]="Seller";
+$lang["BuyerTabName"]="Buyer";
 $lang["directsend_history"]="Contact Info Requested";
 // Category.php
 $lang["lblAllCategories"]="All Categories";  //index.php
@@ -235,9 +238,8 @@ $lang["YouHaveRemainInsertItemComments"]="(You have remain %s times to post item
 $lang["YouHaveRemainContactSellerTimes"]="(You have remain %s times to contact different seller.)";
 $lang["ZeroDescLength"]="Message or description cannot empty";
 $lang["PostErrorNoImageFileSelected"]="At least one image file need to upload";
-
 $lang["updateSendEmailConfig"]="Send Email Configuration";
-
+$lang["RemainChar"]="characters remaining";
 
 // GETADMIN
 $lang["APPROVETRADECOMMENT"]="When your comment is approved, you will receive email";
@@ -278,25 +280,25 @@ $lang["InvalidPriceFormat"]="The %s field can only be number without decimal";
 $lang["EmptyPrice"]="The price field cannot be empty";
 $lang["MinDescLength"]="The Description length cannot be shorter than ".DESCMINLENGTHINNEWPOST;
 
-$lang["lblItemSaved"]="Item saved";
-$lang["lblItemSave"]="Save the item";
-$lang["lblShareItem"]="Share the item";
+$lang["lblItemSaved"]="Post saved";
+$lang["lblItemSave"]="Save this post";
+$lang["lblShareItem"]="Share the post";
 $lang["lblDeleteAbuse"]="Delete abuse";
 $lang["lblReportAbuseAlready"]="Report abuse";
 $lang["lblReportAbuse"]="Abuse reported already";
 $lang["lblContactSeller"]="Contact Seller";
-$lang["lblPendingForSellerApproval"] ="Pending for Seller's Approval";
-$lang["lblViewSellerInfo"] = "View Seller Contact Information";
+$lang["lblPendingForSellerApproval"] ="Waiting for Seller's Approval";
+$lang["lblViewSellerInfo"] = "Seller Contact Information";
 $lang["lblItemApproveRequest"]="Approve Request";
 $lang["lblItemNoApproveRequest"]="No Approve Request";
 $lang["lblItemFeedback"]="Feedback";
-$lang["lblItemLeaveComment"]="LEAVE A COMMENT";
+$lang["lblItemLeaveComment"]="Leave a comment";
 
 $lang["lblPleaseLogin"]="Please login";
 $lang["lblClose"]="Close";
 $lang["lblLoginToContinue"]="Please login to continue the process";
 $lang["lblLogin"]="Login";
-$lang["lblItemApproveRejectRequestContact"]="Approve or reject to request contact";
+$lang["lblItemApproveRejectRequestContact"]="Approve or reject enquires";
 
 
 

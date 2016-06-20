@@ -433,7 +433,7 @@ $(document).ready(function() {
             addition = newLines.length;
         }
         var text_remaining = text_max - x.length - addition;
-        $('#charNum').html(text_remaining + ' characters remaining');
+        $('#charNum').html(text_remaining + " <?php echo $RemainChar; ?>");
     });
 	
 	function nl2br (str, is_xhtml) {   

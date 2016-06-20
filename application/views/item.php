@@ -508,8 +508,7 @@ input[type=checkbox]
                                     </ul>   <!--Comment list End-->
                                     <?php if($isloginedIn) {?>
              
-                                    <h5 class="list-title">
-                                <strong><?php echo $this->lang->line("lblItemLeaveComment"); ?></strong></h5>
+                                    <!--<h5 class="list-title"><strong><?php echo $this->lang->line("lblItemLeaveComment"); ?></strong></h5>-->
                                     
 									   <form class="blogs-comment-form" id="blogs-commentform" method="post" action="<?php echo base_url().MY_PATH; ?>itemComments/insertItemComment?prevURL=<?php echo current_url();?>">         
 <!--                                         <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div> -->
@@ -1325,7 +1324,7 @@ input[type=checkbox]
         <h4 class="modal-title"><i class=" icon-mail-2"></i> Reply Comment </h4>
       </div>
       <div class="modal-body">
-      <h3 class="blogs-comment-reply-title list-title">LEAVE A COMMENT</h3>
+      <h3 class="blogs-comment-reply-title list-title"><?php echo $this->lang->line("lblItemLeaveComment"); ?></h3>
 
                     <form class="blogs-comment-form" id="blogs-commentformPopup" method="post" action="<?php echo base_url().MY_PATH; ?>itemComments/insertItemComment/Y?prevURL=<?php echo current_url();?>">         
 <!--                                         <div class="row form-group"><div class="col-md-6"><input class="form-control" type="text" placeholder="Enter your name" aria-required="true" value="" name="author"></div><div class="col-md-6 text-left"><span>Name*</span></div></div> -->

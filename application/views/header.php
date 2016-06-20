@@ -208,7 +208,7 @@ echo json_encode($usr);;
             <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
             <i  id="menubarTitle" class="icon-search-2"></i>
             <span id="menubarTitle" >
-            Search
+            <?php if (!isset($HeaderSearch)) $HeaderSearch = 'Search'; echo $HeaderSearch;?>
             </span>
             </a></li> 
             
@@ -233,13 +233,13 @@ echo json_encode($usr);;
 			<li id="smpostaddnav" class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>">
             <i  id="menubarTitle" class="icon-picture"></i>
             <span id="menubarTitle" >
-            <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Sell Now'; echo $Post_New_Ads;?>
+            <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post'; echo $Post_New_Ads;?>
             </span>
             </a></li> 
 			
 			<li id="postaddbtn" class="postadd"><a class="btn btn-block   btn-border btn-post btn-tw" href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>">
             <i class="icon-picture"></i>
-            <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Sell Now'; echo $Post_New_Ads;?>
+            <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post'; echo $Post_New_Ads;?>
             </a>
             
             </li>
@@ -275,8 +275,8 @@ echo json_encode($usr);;
 			
 			<li <?php echo $menuMyAds?>><a href="<?php echo base_url(); echo MY_PATH; echo "home/getAccountPage/15";?>">
 			<span id="menubarTitle">
-				<i id="menubarTitle" class="icon-th-thumb"></i>
-				Profile
+				<i id="menubarTitle" class="icon-user-woman"></i>
+				<?php if (!isset($Profile)) $Profile = 'Profile'; echo $Profile;?>
 			</span></a></li>
 			
             <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>home/logout">
@@ -287,7 +287,7 @@ echo json_encode($usr);;
             <li class="smborder-left"><a href="<?php echo base_url(); echo MY_PATH;?>getCategory/getAll/1">
             <span id="menubarTitle" >
             <i  id="menubarTitle" class="icon-search-2"></i>
-            Search
+            <?php if (!isset($HeaderSearch)) $HeaderSearch = 'Search'; echo $HeaderSearch;?>
             </span></a></li> 
             <!--<li>
             <a id="lang" href=<?php $pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
@@ -312,14 +312,14 @@ echo json_encode($usr);;
             
             <span id="menubarTitle" >
             <i  id="menubarTitle" class="icon-picture"></i>
-            <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Sell Now'; echo $Post_New_Ads;?>
+            <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post'; echo $Post_New_Ads;?>
             </span>
             </a></li> 
 			
             <li id="postaddbtn" class="postadd">
             <a class="btn btn-border" href="<?php echo base_url(); echo MY_PATH;?>newPost/selectCategory?prevURL=<?php echo urlencode((current_url()));?>">
             <i class="icon-picture"></i>
-            <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Sell Now'; echo $Post_New_Ads;?>
+            <?php if (!isset($Post_New_Ads)) $Post_New_Ads = 'Post'; echo $Post_New_Ads;?>
             </a></li>
           </ul>
           <?php }?>       

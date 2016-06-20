@@ -95,6 +95,7 @@ class newPost extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 	  
@@ -265,6 +266,7 @@ class newPost extends CI_Controller {
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 			$data["AllCategory"]=$this->getAllCategory();
@@ -394,6 +396,7 @@ class newPost extends CI_Controller {
             $data["lblLocation"]=$this->lang->line("lblLocation");
             $data["lblAllLocations"]=$this->lang->line("lblAllLocations");
             $data["PleaseNotCloseBrowse"]=$this->lang->line("PleaseNotCloseBrowse");
+			$data["RemainChar"]=$this->lang->line("RemainChar");
             $data["YouHaveRemainPost"]="";
             if(NUMOFTIMESPOST-$NumOfPostTimes<=MINCOUNTSHOWREMAINTIMES && NUMOFTIMESPOST<UNLIMITEDTIMES)
             	$data["YouHaveRemainPost"]=sprintf($this->lang->line("YouHaveRemainPost"), NUMOFTIMESPOST-$NumOfPostTimes);
@@ -434,6 +437,7 @@ class newPost extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 	
@@ -948,9 +952,10 @@ public function getChildCategory($parentID)
     	$data["Call_Now"] = $this->lang->line("Call_Now");
     	$data["Tel"] = $this->lang->line("Tel");
     	
-    	$data["Login"]=$this->lang->line("Login");;
+    	$data["Login"]=$this->lang->line("Login");
     	$data["Signup"]=$this->lang->line("Signup");
     	$data["Profile"]=$this->lang->line("Profile");
+    	$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
     	$data["Logout"]=$this->lang->line("Logout");
     	$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
     	
@@ -1470,6 +1475,7 @@ public function getChildCategory($parentID)
     	$data["Login"]=$this->lang->line("Login");;
     	$data["Signup"]=$this->lang->line("Signup");
     	$data["Profile"]=$this->lang->line("Profile");
+    	$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
     	$data["Logout"]=$this->lang->line("Logout");
     	$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
     	 
