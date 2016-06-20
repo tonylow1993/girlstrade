@@ -14,7 +14,7 @@ window.onload = function(){
                 <!-- Original Logo will be placed here  --> 
                 <img width="50px" height="50px" src="<?php echo base_url();?>images/site/girlstrade_logo.png">
                 <span id="login_signupTitle">
-                Login
+                <?php echo $lblLogin; ?>
                 </span>
             </div>
             <div class="panel-body">
@@ -40,7 +40,7 @@ window.onload = function(){
                 </div>
                 <div class="form-group">
 <!--                   <a  href="account-home.html" class="btn btn-primary  btn-block">Submit</a> -->
-                  <input type="submit"  id="login" class="btn btn-primary btn-block btn-pink" value="Submit"/>
+                  <input type="submit"  id="login" class="btn btn-primary btn-block btn-pink" value="<?php echo $lblSubmit;?> "/>
                 </div>
               </form>
    
@@ -51,7 +51,7 @@ window.onload = function(){
             </div>
           </div>
           <div class="login-box-btm text-center">
-            <p> Don't have an account? <br>
+            <p><?php echo $lblWithoutAccount;?> <br>
               <a href="<?php echo base_url(); echo MY_PATH;?>home/signupPage"><strong><?php echo $SignUp;?></strong> </a> </p>
           </div>
         </div>

@@ -381,6 +381,9 @@ class Home extends CI_Controller {
            
           $data["Username"]=$this->lang->line("Username");
           $data["Password"]=$this->lang->line("Password");
+          $data["lblLogin"]=$this->lang->line("lblLogin");
+          $data["lblWithoutAccount"]=$this->lang->line("lblWithoutAccount");
+          $data["lblSubmit"]=$this->lang->line("lblSubmit");
           $data["SignUp"]=$this->lang->line("SignUp");
           $data["LostYourPassword"]=$this->lang->line("LostYourPassword");
           //----------setup the header menu----------
@@ -415,6 +418,20 @@ class Home extends CI_Controller {
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");  
 		 $data["lang_label"]=$this->nativesession->get("language");
+		 
+		 	$data["lblRegistration"]=$this->lang->line("lblRegistration");
+            $data["lblAtLeastFiveChar"]=$this->lang->line("lblAtLeastFiveChar");
+            $data["lblAtLeastEightChar"]=$this->lang->line("lblAtLeastEightChar");
+            $data["lblPhoneNumberRestriction"]=$this->lang->line("lblPhoneNumberRestriction");
+            $data["lblAgreeTerms"]=$this->lang->line("lblAgreeTerms");
+            $data["lblCondition"]=$this->lang->line("lblCondition");
+            $data["lblSignupSubmit"]=$this->lang->line("lblSignupSubmit");
+            $data["lblSignupEmail"]=$this->lang->line("lblSignupEmail");
+            
+            $data["lblSignupDesc1"]=$this->lang->line("lblSignupDesc1");
+            $data["lblSignupDesc1T"]=$this->lang->line("lblSignupDesc1T");
+            $data["lblSignupDesc2"]=$this->lang->line("lblSignupDesc2");
+            $data["lblSignupDesc2T"]=$this->lang->line("lblSignupDesc2T");
           if($this->nativesession->get('language') && $this->nativesession->get('language') == "chinese")
             {
                 $data["captchaJS"] = "<script src='https://www.google.com/recaptcha/api.js?hl=zh-TW'></script>";
@@ -432,6 +449,7 @@ class Home extends CI_Controller {
             $data["VerifyCaptcha"]=$this->lang->line("VerifyCaptcha");
             $data["Username"]=$this->lang->line("Username");
             $data["Password"]=$this->lang->line("Password");
+            
             //----------setup the header menu----------
             $user1=$this->nativesession->get("user");
 			$data["menuMyAds"]="";

@@ -15,7 +15,7 @@
                 <!-- Original Logo will be placed here  --> 
                 <img width="50px" height="50px" src="<?php echo base_url();?>images/site/girlstrade_logo.png">
                 <span id="login_signupTitle">
-                Registration
+                <?php echo $lblRegistration;?>
                 </span>
 			</h2>
 			</div>
@@ -30,7 +30,7 @@
                     <div id="usernameDiv" class="form-group required">
                       <label class="col-md-4 control-label" > <?php echo $Username;?> <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input id="username" maxlength="<?php echo MAXLENGTHUSERNAME;?>" name="username" value="<?php echo set_value('username'); ?>" placeholder="At least 5 characters" class="form-control input-md" required="true" type="text"/>
+                        <input id="username" maxlength="<?php echo MAXLENGTHUSERNAME;?>" name="username" value="<?php echo set_value('username'); ?>" placeholder="<?php echo $lblAtLeastFiveChar;?>" class="form-control input-md" required="true" type="text"/>
                         <div id="usernameAjaxLoad" class="center"></div>
                         <div id="usernameError" hidden="true"></div>
                         
@@ -42,7 +42,7 @@
                       <label for="inputPassword3" class="col-md-4 control-label"> <?php echo $Password;?> <font color="red">*</font></label>
                       
                       <div class="col-md-6">
-                        <input name="password" type="password" class="form-control" id="inputPassword3" required="true" placeholder="At least 8 characters">
+                        <input name="password" type="password" class="form-control" id="inputPassword3" required="true" placeholder="<?php echo $lblAtLeastEightChar;?>">
                         <!--<em class="help-block">At least 6 characters</em>-->
 						<div id="pwd1V"></div>
                       	<div id="password3AjaxLoad" class="center"></div>
@@ -60,9 +60,9 @@
                     </div>-->
 					 
 					 <div id="emailDiv" class="form-group required">
-                      <label for="inputEmail3" class="col-md-4 control-label"> <?php echo $Email;?> <font color="red">*</font></label>
+                      <label for="inputEmail3" class="col-md-4 control-label"> <?php echo $Email;?>: <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input name="email" maxlength="<?php echo MAXLENGTHEMAIL;?>" type="email" value="<?php echo set_value('email'); ?>" class="form-control" id="email" required="true" placeholder="Email">
+                        <input name="email" maxlength="<?php echo MAXLENGTHEMAIL;?>" type="email" value="<?php echo set_value('email'); ?>" class="form-control" id="email" required="true" placeholder="<?php echo $lblSignupEmail;?>">
                         <div id="emailAjaxLoad" class="center"></div>
                         <div id="emailError" hidden="true"></div>
                       </div>
@@ -71,9 +71,9 @@
                     <!-- Text input-->
                     <div id="telDov"  class="form-group required">
                       <label class="col-md-4 control-label" > 
-                      <?php echo $PhoneNumber;?> <font color="red">*</font></label>
+                      <?php echo $PhoneNumber;?>: <font color="red">*</font></label>
                       <div class="col-md-6">
-                        <input id="telno" name="telno" placeholder="HK Phone Number"
+                        <input id="telno" name="telno" placeholder="<?php echo $lblPhoneNumberRestriction;?>"
          type="tel"   class="form-control input-md"   value="<?php echo set_value('telno'); ?>"
          type="text" required="true"  maxlength="8" pattern="(?!99999999)\d{8}">
 <!--                         <div class="checkbox"> -->
@@ -87,10 +87,10 @@
                     </div>
                    
                     <div id="retypeDiv" class="form-group required">
-                      <label for="inputPassword4" class="col-md-4 control-label"> <?php echo $VerifyCaptcha;?></label>
+                      <label for="inputPassword4" class="col-md-4 control-label"> <?php echo $VerifyCaptcha;?>:</label>
                       <div class="col-md-6">
                          <div class="g-recaptcha" data-sitekey="6Lec9AYTAAAAAJC-W5gWsKM9QqxAoDweD_qPeB88"
-           data-type="image"></div>
+           data-type="image" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
 		<noscript>
 		  <div style="width: 302px; height: 352px;">
 			<div style="width: 302px; height: 352px; position: relative;">
@@ -123,11 +123,11 @@
                         <div class="termbox mb10">
                           <label class="checkbox-inline" for="checkboxes-1">
                             <input name="checkboxes-1" id="checkboxes-1" value="1" type="checkbox">
-                            I have read and agree to the <a href="<?php echo base_url().MY_PATH.'footer/getTerms';?>">Terms & Conditions</a> </label>
+                            <?php echo $lblAgreeTerms;?> <a href="<?php echo base_url().MY_PATH.'footer/getTerms';?>"><?php echo $lblCondition;?></a> </label>
                         </div>
                         <div style="clear:both"></div>
                         <!-- <input type="submit" id="register" class="btn btn-primary btn-pink" value="Register" disabled="true"/></div> -->
-              		    <button id="register" class="btn btn-primary btn-pink" type="submit" onclick="setup(); return false;" disabled="true">Submit</button>
+              		    <button id="register" class="btn btn-primary btn-pink" type="submit" onclick="setup(); return false;" disabled="true"><?php echo $lblSignupSubmit;?></button>
                          <input type="submit" style="display:none" name="submitButton"> 
                     </div>
                   </fieldset>
@@ -140,12 +140,12 @@
         <div class="col-md-4 reg-sidebar">
           <div class="reg-sidebar-inner text-center">
             <div class="promo-text-box"> <i class=" icon-pencil-circled fa fa-4x icon-color-4"></i>
-              <h3><strong>Manage Items</strong></h3>
-              <p> Easily post, edit or delete items. Promote ads and view order status. Provide a way for buyer and seller connect.</p>
+              <h3><strong><?php echo $lblSignupDesc1;?></strong></h3>
+              <p><?php echo $lblSignupDesc1T;?></p>
             </div>
             <div class="promo-text-box"> <i class=" icon-lock-circled fa fa-4x icon-color-1"></i>
-              <h3><strong>Personal Information</strong></h3>
-              <p> Personal information will be protected using technical and administrative security. GirlsTrade will never disclose your personal information with any third parties without your express permission.</p>
+              <h3><strong><?php echo $lblSignupDesc2;?></strong></h3>
+              <p> <?php echo $lblSignupDesc2T;?></p>
             </div>
       </div>
       <!-- /.row --> 

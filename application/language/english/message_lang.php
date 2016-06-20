@@ -299,7 +299,19 @@ $lang["lblClose"]="Close";
 $lang["lblLoginToContinue"]="Please login to continue the process";
 $lang["lblLogin"]="Login";
 $lang["lblItemApproveRejectRequestContact"]="Approve or reject enquires";
+$lang["lblWithoutAccount"]="Don't have an account?";
+$lang["lblSubmit"]="Submit";
 
-
-
-
+//------signup------
+$lang["lblRegistration"]="Registration";
+$lang["lblAtLeastFiveChar"]="At least 5 characters";
+$lang["lblAtLeastEightChar"]="At least 8 characters";
+$lang["lblPhoneNumberRestriction"]="HK Phone Number";
+$lang["lblAgreeTerms"]="I have read and agree to the ";
+$lang["lblCondition"]="Terms & Conditions";
+$lang["lblSignupSubmit"]="Submit";
+$lang["lblSignupEmail"]="Personal Email";
+$lang["lblSignupDesc1"]="Manage Items";
+$lang["lblSignupDesc1T"]="Easily post, edit or delete items. Promote ads and view order status. Provide a way for buyer and seller connect.";
+$lang["lblSignupDesc2"]="Personal Information";
+$lang["lblSignupDesc2T"]="Personal information will be protected using technical and administrative security. GirlsTrade will never disclose your personal information with any third parties without your express permission.";
