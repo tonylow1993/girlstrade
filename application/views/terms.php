@@ -10,7 +10,7 @@
     margin: 30px;
     //padding: 30px;
     border-bottom: 1px solid #E2348C;
-	">TERMS & CONDITIONS</h1>
+	"><?php echo $Terms_and_Conditions;?></h1>
   <?php include("termshtml.php");?>
   <!-- /.header -->
   </div>

@@ -41,45 +41,46 @@ contact us immediately at Girlstrade Customer
 Support.)</SPAN></SPAN></FONT></FONT></FONT><BR><BR><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal">Using&nbsp;Girlstrade
 Services.</SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222">&nbsp;</FONT><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">You
 will post in the appropriate category or area and will not do any of
-the following things:</SPAN></SPAN></FONT></FONT></FONT></P>
-<UL>
+the following:</SPAN></SPAN></FONT></FONT></FONT></P>
+<ul class="list list-circle">
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">be
-	false or misleading;</FONT></FONT></FONT></P>
+	false or misleading;</FONT></FONT></FONT></P></LI>
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">infringe
-	any third-party right;</FONT></FONT></FONT></P>
+	any third-party right;</FONT></FONT></FONT></P></LI>
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">distribute
-	or contain spam, chain letters, or pyramid schemes;</FONT></FONT></FONT></P>
+	or contain spam, chain letters, or pyramid schemes;</FONT></FONT></FONT></P></LI>
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">distribute
 	viruses or any other technologies that may harm Girlstrade or the
-	interests or property of GirlsTrade users;</FONT></FONT></FONT></P>
+	interests or property of GirlsTrade users;</FONT></FONT></FONT></P></LI>
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">impose
 	an unreasonable load on our infrastructure or interfere with the
-	proper working of the Girlstrade ;</FONT></FONT></FONT></P>
+	proper working of the Girlstrade ;</FONT></FONT></FONT></P></LI>
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">copy,
-	modify, or distribute any other person's content;</FONT></FONT></FONT></P>
+	modify, or distribute any other person's content;</FONT></FONT></FONT></P></LI>
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">use
 	any robot, spider, scraper or other automated means to access
 	Girlstrade and collect content for any purpose without our express
-	written permission;</FONT></FONT></FONT></P>
+	written permission;</FONT></FONT></FONT></P></LI>
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">harvest
 	or otherwise collect information about others, including email
-	addresses, without their consent;</FONT></FONT></FONT></P>
+	addresses, without their consent;</FONT></FONT></FONT></P></LI>
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">bypass
-	measures used to prevent or restrict access to Girlstrade</FONT></FONT></FONT></P>
+	measures used to prevent or restrict access to Girlstrade</FONT></FONT></FONT></P></LI>
 	<LI><P STYLE="font-style: normal; font-weight: normal"><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">Using
-	Girlstrade User's personal information without their consensus.</FONT></FONT></FONT></P>
-</UL>
-<P STYLE="margin-bottom: 0in"><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><BR></SPAN></SPAN></FONT></FONT></FONT><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Abusing&nbsp;Girlstrade
-Services.</SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">&nbsp;Please
+	Girlstrade User's personal information without their consensus.</FONT></FONT></FONT></P></LI>
+</ul>
+<P STYLE="margin-bottom: 0in"><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><BR></SPAN></SPAN></FONT></FONT></FONT><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">
+<b>Abusing&nbsp;Girlstrade Services.</b>
+<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"></SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">&nbsp;Please
 use the flagging system to tell us about any problems or offensive
 content so that together we can keep the Services site working
 properly. We may limit or terminate our Services, remove hosted
@@ -92,8 +93,9 @@ for monitoring Girlstrade or for unauthorized or unlawful content on
 Girlstrade or use of Girlstrade by users.</SPAN></SPAN></FONT></FONT></FONT></P>
 <P STYLE="margin-bottom: 0in"><FONT COLOR="#222222">&nbsp;</FONT></P>
 <P STYLE="margin-bottom: 0in"><FONT COLOR="#222222">&nbsp;</FONT></P>
-<P STYLE="margin-bottom: 0in"><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Fees
-and Services</SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">.
+<P STYLE="margin-bottom: 0in"><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">
+<b>Fees and Services.</b>
+<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"></SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
 Using Girlstrade Services is generally free. We may charge fees for
 certain Services. If the service you use charges a fee, you will be
 able to review that charge before accepting it. Our fees are quoted in Hong
@@ -105,7 +107,9 @@ we announce the promotional event or new service. Our fees are
 non-refundable, and you are responsible for paying them when they're
 due. If you don't, we may limit your ability to use the Services.</SPAN></SPAN></FONT></FONT></FONT></P>
 <P STYLE="margin-bottom: 0in"><FONT COLOR="#222222">&nbsp;</FONT></P>
-<P STYLE="margin-bottom: 0in"><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Content.</SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">&nbsp;Girlstrade
+<P STYLE="margin-bottom: 0in"><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">
+<b>Content.</b>
+<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"></SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">&nbsp;Girlstrade
 Services contains information from us, you, and other users. You
 agree not to copy, modify, or distribute Girlstrade Services, our
 copyrights or trademarks. When you give us content, you are granting
@@ -115,16 +119,18 @@ database rights to that content. If you believe that your rights have
 been violated, please notify our Girlstrade customer support
 immediately.</SPAN></SPAN></FONT></FONT></FONT></P>
 <P STYLE="margin-bottom: 0in"><FONT COLOR="#222222">&nbsp;</FONT></P>
-<P><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Reporting
-Intellectual Property Infringements.</SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">&nbsp;Do
+<P><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">
+<b>Reporting Intellectual Property Infringements.</b>
+<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"></SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">&nbsp;Do
 not post content that infringes the rights of third parties. This
 includes, but is not limited to, content that infringes on
 intellectual property rights such as copyright and trademark (e.g.
 offering counterfeit items for sale). We reserve the right to remove
 content where we have grounds for suspecting the violation of these
 terms, our policies or of any party's rights.&nbsp;</SPAN></SPAN></FONT></FONT></FONT></P>
-<P STYLE="margin-bottom: 0in"><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Disclaimers
-and Limitations of Liability.</SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">&nbsp;The
+<P STYLE="margin-bottom: 0in"><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">
+<b>Disclaimers and Limitations of Liability.</b>
+<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"></SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">&nbsp;The
 Girlstrade Services are provided &ldquo;as is&rdquo; and &ldquo;as
 available&rdquo;. You agree not to hold us responsible for things
 other users post or do. As most of the materials on the Girlstrade
