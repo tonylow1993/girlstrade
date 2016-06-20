@@ -1398,10 +1398,12 @@ public function getChildCategory($parentID)
         	return;
         }
         
-        foreach($imgInfoList as $id=> $imgInfo)
-        {
-        	$imgInfo['postID'] = $postID;
-        	$data['returnValue'] = $this->picture->insert($imgInfo);
+        if(isset($imgInfoList) && $imgInfoList<>null && count($imgInfoList)>0){
+	        foreach($imgInfoList as $id=> $imgInfo)
+	        {
+	        	$imgInfo['postID'] = $postID;
+	        	$data['returnValue'] = $this->picture->insert($imgInfo);
+	        }
         }
 //         if($tags != null && $tags !== '')
 //         {
