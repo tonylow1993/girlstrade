@@ -280,15 +280,15 @@ $lang["InvalidPriceFormat"]="The %s field can only be number without decimal";
 $lang["EmptyPrice"]="The price field cannot be empty";
 $lang["MinDescLength"]="The Description length cannot be shorter than ".DESCMINLENGTHINNEWPOST;
 
-$lang["lblItemSaved"]="Item saved";
-$lang["lblItemSave"]="Save the item";
-$lang["lblShareItem"]="Share the item";
+$lang["lblItemSaved"]="Post saved";
+$lang["lblItemSave"]="Save this post";
+$lang["lblShareItem"]="Share the post";
 $lang["lblDeleteAbuse"]="Delete abuse";
 $lang["lblReportAbuseAlready"]="Report abuse";
 $lang["lblReportAbuse"]="Abuse reported already";
 $lang["lblContactSeller"]="Contact Seller";
-$lang["lblPendingForSellerApproval"] ="Pending for Seller's Approval";
-$lang["lblViewSellerInfo"] = "View Seller Contact Information";
+$lang["lblPendingForSellerApproval"] ="Waiting for Seller's Approval";
+$lang["lblViewSellerInfo"] = "Seller Contact Information";
 $lang["lblItemApproveRequest"]="Approve Request";
 $lang["lblItemNoApproveRequest"]="No Approve Request";
 $lang["lblItemFeedback"]="Feedback";
@@ -298,7 +298,7 @@ $lang["lblPleaseLogin"]="Please login";
 $lang["lblClose"]="Close";
 $lang["lblLoginToContinue"]="Please login to continue the process";
 $lang["lblLogin"]="Login";
-$lang["lblItemApproveRejectRequestContact"]="Approve or reject to request contact";
+$lang["lblItemApproveRejectRequestContact"]="Approve or reject enquires";
 
 
 
