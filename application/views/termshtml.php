@@ -16,20 +16,22 @@
 </HEAD>
 <BODY LANG="en-US" DIR="LTR">
 <P STYLE="margin-bottom: 0.2in"><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Welcome
-to&nbsp;</SPAN></SPAN></FONT></FONT></FONT><A HREF="http://www.kijiji.ca/" TARGET="_blank"><FONT COLOR="#1155cc"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">www.girlstrade.com</SPAN></SPAN></FONT></FONT></FONT></A><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">(&quot;Girlstrade&quot;).&nbsp;</SPAN></SPAN></FONT></FONT></FONT><BR><BR><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">These
-Terms of Use, the Privacy Policy, the Mobile Devices Terms and all
-policies posted on our site set out the terms on which we offer you
-access to and use of our site and services. All policies, the Mobile
-Devices Terms, and the Privacy Policy are incorporated into these
-Terms of Use. You agree to comply with all the above when accessing
-or using our Services.&nbsp;</SPAN></SPAN></FONT></FONT></FONT><BR><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">By
+to </SPAN></SPAN></FONT></FONT></FONT><A HREF="http://www.girlstrade.com" TARGET="_blank">
+<FONT COLOR="#1155cc"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">
+<SPAN STYLE="font-weight: normal">www.girlstrade.com</SPAN>
+</FONT></FONT></FONT></A><FONT COLOR="#222222"><FONT FACE="arial, sans-serif">
+<FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+(&quot;Girlstrade&quot;).&nbsp;</SPAN></SPAN></FONT></FONT></FONT><BR><BR><FONT COLOR="#222222">
+<FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal">
+<SPAN STYLE="font-weight: normal">Please read the following terms and conditions: &nbsp;</SPAN></SPAN></FONT></FONT></FONT><BR><FONT COLOR="#222222">
+<FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">by
 accessing Girlstrade you are agreeing to the following terms, which
 are designed to make sure that Girlstrade works for everyone.&nbsp;</SPAN></SPAN></FONT></FONT></FONT><BR><BR><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><B>Your
 Account.&nbsp;</B></SPAN></FONT></FONT></FONT><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">In
 order to access and use some or a portion of the Services, you may be
 required to register with us and set up an account with your email
 address, phone number and a password.&nbsp; The email address you
-provided will be your email address, and you are solely responsible
+provide must be a valid email address owned by you, and you are solely responsible
 for maintaining the confidentiality of your password. You are solely
 responsible for all activities that occur under your Account.
 Therefore, you should protect your password and make your password
@@ -53,7 +55,7 @@ the following things:</SPAN></SPAN></FONT></FONT></FONT></P>
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">distribute
 	viruses or any other technologies that may harm Girlstrade or the
-	interests or property of Kijiji users;</FONT></FONT></FONT></P>
+	interests or property of GirlsTrade users;</FONT></FONT></FONT></P>
 	<LI><P STYLE="margin-bottom: 0in; font-style: normal; font-weight: normal">
 	<FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt">impose
 	an unreasonable load on our infrastructure or interfere with the
@@ -94,7 +96,7 @@ Girlstrade or use of Girlstrade by users.</SPAN></SPAN></FONT></FONT></FONT></P>
 and Services</SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">.
 Using Girlstrade Services is generally free. We may charge fees for
 certain Services. If the service you use charges a fee, you will be
-able to review and accept that charge. Our fees are quoted in Hong
+able to review that charge before accepting it. Our fees are quoted in Hong
 Kong Dollars, and we may change them from time to time. We will
 notify you of changes to our fee policy by posting such changes on
 the site. We may choose to temporarily change our fees for
@@ -160,14 +162,15 @@ our and their respective officers, directors, agents and employees
 third party, together with any amounts payable to the third party
 whether in settlement or as may otherwise be awarded, and reasonable
 legal costs incurred by any of the Indemnified Parties, arising from
-or relating to your use of the Kijiji Services, any alleged violation
+or relating to your use of the GirlsTrade Services, any alleged violation
 by you of the applicable terms, and any alleged violation by you of
 any applicable law or regulation. We reserve the right, at our own
 expense, to assume the exclusive defense and control of any matter
 subject to indemnification by you, but doing so will not excuse your
 indemnity obligations.<BR>&nbsp;</FONT></FONT></FONT></P>
-<P STYLE="margin-bottom: 0in"><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Personal
-Information.</SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">&nbsp;By
+<P STYLE="margin-bottom: 0in"><STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><b>Personal
+Information.</b><SPAN STYLE="font-style: normal">
+<SPAN STYLE="font-weight: normal"></SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#222222"><FONT FACE="arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">&nbsp;By
 using Girlstrade Services, you agree to the collection, transfer,
 storage and use of your personal information by&nbsp; Girlstrade
 under the privacy policy page.</SPAN></SPAN></FONT></FONT></FONT></P>

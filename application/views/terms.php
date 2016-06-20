@@ -8,7 +8,7 @@
     text-align: center;
     FONT-SIZE: 35px;
     margin: 30px;
-    padding: 30px;
+    //padding: 30px;
     border-bottom: 1px solid #E2348C;
 	">TERMS & CONDITIONS</h1>
   <?php include("termshtml.php");?>
