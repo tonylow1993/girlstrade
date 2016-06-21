@@ -55,7 +55,7 @@
 				<div class="tab-pane" id="tab2">
 				  <div class="col-sm-6 page-content">
 						<div class="inner-box profile-panel setting-panel panel-bevel">
-							<a href="http://www.girlstrade.com/home/getAccountPage/6" class="row white-icon">
+							<a href="http://www.girlstrade.com/home/getAccountPage/3" class="row white-icon">
 								<i class="fa fa-user fa-5"></i><br>
 								<p class="panel-title">MY ADS.</p>
 							</a>
