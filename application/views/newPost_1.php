@@ -624,9 +624,8 @@ function setup()
                 	}
                 }
                 ?>
-                
-            var serviceCatList='<?php echo $serviceCatList;?>';
-			var isServiceCat=0;
+             var serviceCatList='<?php echo $serviceCatList;?>';
+             var isServiceCat=0;
 			var fields=serviceCatList.split(',');
             for(var i=0; i< fields.length; i++){
 				if(fields[i]==checkServiceCategory){
@@ -644,12 +643,12 @@ function setup()
         { 
             //myform.submit();
             $('#pleaseWaitDialog').modal('show');
-
-            setForm(function(data)
+			setForm(function(data)
             {
+	            
                 if(data == true)
                 {
-					var formData = new FormData(myform);
+                    var formData = new FormData(myform);
 					for (var i=0; i<fileList.length; i++){
 						formData.append('filelist[]', fileList[i]); 
 					}
@@ -683,6 +682,7 @@ function setup()
 						contentType: false,
 						type: 'POST',
 						success:function(data){
+							alert("123");
 							var msg = jQuery.parseJSON(data);
 							if(msg.status == 'success'){
 								$("#modal-text").html("Your post has been successfully uploaded.");

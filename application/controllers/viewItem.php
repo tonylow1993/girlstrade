@@ -198,6 +198,9 @@
                 	$isReportAbuseAlready=$this->abusemessages_model->getAbuseMessagesByPostIDUserID($var[0]->postID, $loginUser["userID"]);
                 	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
                 }
+                $data["isBuyerFeedBackAlready"]=false;
+                $data["isSellerFeedBackAlready"]=false;
+                
                 $data["isReportAbuseAlready"]=$isReportAbuseAlready;
                 $data["isloginedIn"]=$isLoggedIn;
                 $data["isBuyerApproveThisPost"]=$isBuyerApproveThisPost;

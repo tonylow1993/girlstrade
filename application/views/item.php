@@ -355,7 +355,7 @@ input[type=checkbox]
 					<?php
 					//if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
 					//{
-					if($isloginedIn && $isSameUser==false && ( $isBuyerApproveThisPost==true))
+					if($isloginedIn && $isSameUser==false && ( $isBuyerApproveThisPost==true) && $isBuyerFeedBackAlready==false)
 						echo "<a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-success\"> <i class=\" icon-pencil\"></i> ".$this->lang->line("lblItemFeedback")."</a>";
 					//}
 					?>
@@ -372,7 +372,7 @@ input[type=checkbox]
 					$soldUsersstr=$soldUsersstr."  </select>  ";
 					$soldUsersstr=base64_encode($soldUsersstr);
 					
-					if($isSameUser==true && $soldUsers!=null && count($soldUsers)>0)
+					if($isSameUser==true && $soldUsers!=null && count($soldUsers)>0 && $isSellerFeedBackAlready==false)
 						echo "<a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success\"> <i class=\" icon-pencil\"></i> ".$this->lang->line("lblItemFeedback")."</a>";
 					if(($isloginedIn) &&($isSameUser==true))
 					{
@@ -621,7 +621,7 @@ input[type=checkbox]
 					<?php
 					//if(($isloginedIn) && ($isSameUser==false) && ( $isBuyerApproveThisPost==true))
 					//{
-						if($isloginedIn && $isSameUser==false && ( $isBuyerApproveThisPost==true))
+						if($isloginedIn && $isSameUser==false && ( $isBuyerApproveThisPost==true) && $isBuyerFeedBackAlready==false)
 							echo "<br/><a  href=\"#buyerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-userid=\"$userID\" class=\"btn btn-success btn-block\"> <i class=\" icon-pencil\"></i> ".$this->lang->line("lblItemFeedback")."</a>";
 					//}
 					?>
@@ -638,7 +638,7 @@ input[type=checkbox]
 					$soldUsersstr=$soldUsersstr."  </select>  ";
 					$soldUsersstr=base64_encode($soldUsersstr);
 					
-					if($isSameUser==true && $soldUsers!=null && count($soldUsers)>0)
+					if($isSameUser==true && $soldUsers!=null && count($soldUsers)>0 && $isSellerFeedBackAlready==false)
 						echo "<div class=\"user-ads-action\"><a  href=\"#sellerFeedBackPopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-soldusers=\"$soldUsersstr\" class=\"btn btn-success btn-block\"> <i class=\" icon-pencil\"></i> ".$this->lang->line("lblItemFeedback")." </a></div>";
 					if(($isloginedIn) &&($isSameUser==true))
 					{
