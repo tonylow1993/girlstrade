@@ -108,8 +108,8 @@
 		        $pendingrequest1=base_url().MY_PATH."home/getAccountPage/6";
               	
               	 
-              		echo "<div class=\"collapse-title\"><a data-toggle=\"collapse\"  href=\"#ProfileMenuAds\" style=\"display:block;\"><span id=\"menuTitle\"><i class=\"icon-docs\"></i>".$this->lang->line('BuyerTabName')."</span></a><a id=\"menuTitle\" class=\"pull-right\" data-toggle=\"collapse\"  href=\"#ProfileMenuAds\"><span id=\"menuTitle\"><i class=\"fa fa-angle-down collapseIcon\"></i></span></a></div>";
-                 	 echo "<div id=\"ProfileMenuAds\" class=\"panel-collapse collapse in\">";
+              		echo "<div class=\"collapse-title\"><a data-toggle=\"collapse\"  href=\"#BuyerMenuAds\" style=\"display:block;\"><span id=\"menuTitle\"><i class=\"icon-docs\"></i>".$this->lang->line('BuyerTabName')."</span></a><a id=\"menuTitle\" class=\"pull-right\" data-toggle=\"collapse\"  href=\"#BuyerMenuAds\"><span id=\"menuTitle\"><i class=\"fa fa-angle-down collapseIcon\"></i></span></a></div>";
+                 	 echo "<div id=\"BuyerMenuAds\" class=\"panel-collapse collapse in\">";
                  	 echo  "<ul class=\"acc-list\">";			 
          	     if($activeNav==6)
               		echo "<li><a  class=\"active\" href=$pendingrequest1><i class=\"icon-clock-2\"></i> Seller List <span class=\"badge\">$buyerCount</span></a></li>";
