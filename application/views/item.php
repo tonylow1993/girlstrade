@@ -1080,7 +1080,7 @@ input[type=checkbox]
         </form>
 		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
       	<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-		<button id="submit-btn" type="submit" class="btn btn-primary">Delete</button>
+		<button id="submit-btn" type="button" onclick="deleteMyAds(); return false;" class="btn btn-primary">Delete</button>
 	  </div>
     </div>
   </div>
@@ -1660,6 +1660,12 @@ function clipBoard()
 holdtext.innerText = copytext.innerText;
 Copied = holdtext.createTextRange();
 Copied.execCommand("Copy");
+}
+
+function deleteMyAds(){
+	var myform = document.getElementById("itemDelete");
+  	document.getElementById("itemDelete").submit();
+   	return true;
 }
 
 function setup()
