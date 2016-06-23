@@ -259,9 +259,10 @@
 	           		$data["YouHaveRemainContactSellerTimes"]=sprintf($this->lang->line("YouHaveRemainContactSellerTimes"), MAXTIMEDAILY_DRECTSENDFROMBUYER-$DailyMaxTimes);
 	           		
             }
-            
+            $today = date("Y-m-d");
+            	
             	if  ( (strcmp($var[0]->status,"U")!=0 &&  strcmp($var[0]->status,"R")!=0
-            			&&  strcmp($var[0]->status,"D")!=0 &&
+            			&&  strcmp($var[0]->status,"D")!=0 && $var[0]->expriyDate>=$today &&
             			($var[0]->blockDate==null || $var[0]->blockDate< date('Y-m-d')))
             			|| strcmp($loginUser["username"],"admin")==0)
             	{
