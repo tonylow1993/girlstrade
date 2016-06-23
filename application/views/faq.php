@@ -13,7 +13,7 @@
       <div class="dtable-cell hw100">
         <div class="container text-center">
         
-       <h1 class="intro-title animated fadeInDown"> Frequently Asked Questions  </h1>
+       <h1 class="intro-title animated fadeInDown"> <?php echo $titleFAQ;?>  </h1>
           
           
           
@@ -32,7 +32,7 @@
     <div class="container">
       <div class="section-content">
         <div class="row ">
-        <h1 class="text-center title-1"> classified ads <strong>FAQ</strong> </h1>
+        <h1 class="text-center title-1"> GirlsTrade <strong>FAQ</strong> </h1>
       	<hr class="center-block small text-hr">
         </div>
       <div class="faq-content">
@@ -42,13 +42,14 @@
     <div id="headingOne" role="tab" class="panel-heading">
       <h4 class="panel-title">
         <a aria-controls="collapseOne" aria-expanded="true" href="#collapseOne" data-parent="#accordion" data-toggle="collapse">
-          How do I place an ad? 
+          How to post in GirlsTrade?
         </a>
       </h4>
     </div>
     <div aria-labelledby="headingOne" role="tabpanel" class="panel-collapse collapse in" id="collapseOne">
       <div class="panel-body">
-       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur sit amet ante nec vulputate. Nulla aliquam, justo auctor consequat tincidunt, arcu erat mattis lorem, lacinia lacinia dui enim at eros. Pellentesque ut gravida augue. Duis ac dictum tellus
+       <span class="label label-default" style="background-color: #60B2FB;">1.</span> 
+       Go to Login at the top of the menu and log into your GirlsTrade account. 
 <br><br>
 Pellentesque in mauris placerat, porttitor lorem id, ornare nisl. Pellentesque rhoncus convallis felis, in egestas libero. Donec et nibh dapibus, sodales nisi quis, fringilla augue. Donec dui quam, egestas in varius ut, tincidunt quis ipsum. Nulla nec odio eu nisi imperdiet dictum.
 <br><br>

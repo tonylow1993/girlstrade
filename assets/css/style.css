@@ -2979,7 +2979,7 @@ td.ads-details-td {
 .title-1 {
   font-family: Roboto;
   font-weight: 300;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 }
 
 .has-lead-para p, .has-lead-para  {

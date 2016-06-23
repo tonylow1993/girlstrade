@@ -75,6 +75,7 @@ class footer  extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data["lang_label"]=$this->nativesession->get("language");
@@ -115,6 +116,7 @@ class footer  extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data["lang_label"]=$this->nativesession->get("language");
@@ -148,8 +150,10 @@ class footer  extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
+		$data["titleFAQ"]=$this->lang->line("titleFAQ");
 		$data["lang_label"]=$this->nativesession->get("language");
 		//----------setup the header menu----------
 			$data["menuMyAds"]="";
@@ -158,6 +162,7 @@ class footer  extends CI_Controller {
 			$data["menuPendingRequest"]="";
 			$data["menuPendingRequestNumber"]="0";
 		//----------------------------
+			
 		$this->load->view("faq", $data);
 	
 	}
@@ -179,6 +184,7 @@ class footer  extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		$data["lang_label"]=$this->nativesession->get("language");
@@ -210,6 +216,7 @@ class footer  extends CI_Controller {
 		$data["Login"]=$this->lang->line("Login");;
 		$data["Signup"]=$this->lang->line("Signup");
 		$data["Profile"]=$this->lang->line("Profile");
+		$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
 		$data["Terms_and_Conditions"]=$this->lang->line("Terms_and_Conditions");
 		$data["Logout"]=$this->lang->line("Logout");
 		$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
