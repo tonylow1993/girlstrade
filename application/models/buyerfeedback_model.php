@@ -16,6 +16,13 @@ class buyerfeedback_model extends CI_Model {
 	{
 		parent::__construct();
 	}
+	
+	function getBuyerFeedbackByUserID($userID, $postID)
+	{
+		$wherearr=array('buyerID'=> $userID, 'postID' => $postID);
+		$query = $this->db->from('buyerfeedback')->where($wherearr)->limit(1)->get();
+		return $query->first_row('array');
+	}
 	function insert($data)
 	{
 		try {

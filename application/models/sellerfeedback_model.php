@@ -42,4 +42,11 @@ class sellerfeedback_model extends CI_Model {
 			
 	}
 	
+	function getSellerFeedbackByUserID($userID, $postID)
+	{
+		$wherearr=array('sellerID'=> $userID, 'postID' => $postID);
+		$query = $this->db->from('sellerfeedback')->where($wherearr)->limit(1)->get();
+		return $query->first_row('array');
+	}
+	
 }

@@ -26,6 +26,8 @@
 				$this->load->model('userstat_model');
 				$this->load->model('picture_model');
 				$this->load->model('abusemessages_model');
+				$this->load->model('sellerfeedback_model');
+				$this->load->model('buyerfeedback_model');
                 if($this->nativesession->get("language")!=null)
                 {
                 	$data["lang_label"] = $this->nativesession->get("language");
@@ -188,6 +190,9 @@
                 $isBuyerApproveThisPost=false;
                 $isLoggedIn=false;
                 $isReportAbuseAlready=false;
+                $data["isBuyerFeedBackAlready"]=false;
+                $data["isSellerFeedBackAlready"]=false;
+                
               	if(!empty($loginUser) and isset($loginUser) and $loginUser<>null and $loginUser["userID"]<>0)
                 {
                 	if($loginUser["userID"]==$user[0]->userID)
@@ -197,9 +202,14 @@
                 	$isLoggedIn=true;
                 	$isReportAbuseAlready=$this->abusemessages_model->getAbuseMessagesByPostIDUserID($var[0]->postID, $loginUser["userID"]);
                 	$isPendingRequest=$this->requestpost_model->getfUserIDAndPostID($var[0]->postID, $loginUser["userID"], "U");
+                	$buyerFeedback=$this->buyerfeedback_model->getBuyerFeedbackByUserID($loginUser["userID"], $var[0]->postID);
+                	$sellerFeedback=$this->sellerfeedback_model->getSellerFeedbackByUserID($loginUser["userID"], $var[0]->postID);
+                	if(isset($buyerFeedback) && $buyerFeedback!=null && count($buyerFeedback)>0)
+                		$data["isBuyerFeedBackAlready"]=true;
+                	if(isset($sellerFeedback) && $sellerFeedback!=null && count($sellerFeedback)>0)
+                		$data["isSellerFeedBackAlready"]=true;
+                	
                 }
-                $data["isBuyerFeedBackAlready"]=false;
-                $data["isSellerFeedBackAlready"]=false;
                 
                 $data["isReportAbuseAlready"]=$isReportAbuseAlready;
                 $data["isloginedIn"]=$isLoggedIn;
