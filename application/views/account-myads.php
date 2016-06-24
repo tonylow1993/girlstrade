@@ -234,6 +234,31 @@
     <!--/.container--> 
   </div>
   <!-- /.main-container -->
+  <!-- /.modal --> 
+ <!-- <div class="modal fade" id="shareAds" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Click copy button and paste in other apps to share </h4>
+      </div>
+      <div class="modal-body">
+      <h2 id="copytext">
+			<?php // echo $shareLink;?>
+			</h2>
+		<textarea style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" >Find "<?php echo $itemName;?>" in GirlsTrade - <?php echo $shareLink;?></textarea>
+		<textarea hidden="true" style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" class="js-copytextarea" id="holdtext"><?php echo $shareLink;?></textarea>
+		 </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+        <button type="button" class="js-textareacopybtn btn btn-success pull-right">Copy</button>
+      </div>
+    </div>
+  </div>
+</div>-->
+  
+  
   <div class="modal fade" id="shareAds" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">

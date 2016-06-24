@@ -74,7 +74,7 @@ if(! function_exists('strlen_unicode')){
 
 if(! function_exists('getRatingArray')){
 	function getRatingArray() {
-		return array(3=> "Good", 2=>"Average", 1=>"Bad");
+		return array(2=>"Average", 3=> "Good",  1=>"Bad");
          		 	
 	}
 

@@ -791,16 +791,347 @@
                 </div>
                <div class="tab-pane  <?php if(strcmp($activeTab, "newAds")==0) echo "active"; ?>" id="newAds">
                 	<?php
-             $basePath=base_url().MY_PATH;
+//              $basePath=base_url().MY_PATH;
+//              $encodeCurrentURL=urlencode(current_url());
+//               if($itemList<>null && sizeof($itemList)>0)
+//               {
+//               	$rowCount=0;
+//               foreach($itemList as $id=>$item)
+// 				{
+// 					if(strcmp($item["newUsed"], "N")<>0)
+// 						continue;
+					
+// 					$rowCount=$rowCount+1;
+// 				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
+//               		$locationName=$item["locationName"];
+// 					$categoryName=$item["categoryName"];
+// 					$postCurrency=$item['postCurrency'];
+// 					$postItemPrice=$item['postItemPrice'];
+// 					$postDescription=trim($item['postDescription']);
+					
+// 					try{
+// 					$postDescription=trimLongText($postDescription);
+// 					} catch(Exception $ex){
+						
+// 					}
+// 					$postTitle=$item['postTitle'];
+// 					$postCreateDate=$item['postCreateDate'];
+// 					$picCount=$item["picCount"];
+// 					$thumbnail=base_url().$item['thumbnailPath'].'/'.$item['thumbnailName'];
+// 					$checkImgFile=$item['thumbnailPath'].'/'.$item['thumbnailName'];
+// 					$postTypeAds=$item["postTypeAds"];	
+// 					echo  "<div class=\"item-list\"> ";
+					
+// 					if($postTypeAds=='topAds')
+// 					{
+// 					echo "<div class=\"cornerRibbons topAds\">";
+//  					echo  " <a href=\"#\"> Top Ads</a>";
+// 					echo "</div>";
+// 					}
+// 					else if($postTypeAds=='featuredAds')
+// 					{
+// 					echo "<div class=\"cornerRibbons featuredAds\"> ";
+// 					echo "<a href=\"#\"> Featured Ads</a>";
+// 					echo "</div>";
+// 					}
+// 					else if($postTypeAds=='urgentAds')
+// 					{
+// 					echo "<div class=\"cornerRibbons urgentAds\">";
+// 					echo "<a href=\"#\"> Urgent</a>";
+// 					echo "</div>";
+// 					}			
+					
+// 				echo  "<div class=\"col-sm-3 no-padding photobox\">";
+// 				if (!is_file_exists($checkImgFile)) {
+// 					$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+// 				}
+// 						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
+		              		
+						
+//               		$ctrlName="AjaxLoad".$rowCount;
+//               		$errorctrlName="ErrAjaxLoad".$rowCount;
+//               		$ctrlValue="post".$rowCount;
+//               		$postID2=$id;
+//               		$clickLink="clickLink".$rowCount;
+//               		$title=$this->lang->line("lblTitle");
+// 				echo "</div>";
+// 			    echo "<div class=\"col-sm-6 add-desc-box\">";
+//                   echo "<div class=\"ads-details\">";
+//                    echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+//                    echo "<span class=\"info-row\"> <span class=\"user\"><img class=\"ratingIcon-xs\" src=$imgRatingPath> $username </span> - <span class=\"date\"><i class=\"icon-clock\"> </i>". date('Y-m-d h:i A', strtotime($postCreateDate))."</span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span></span> </div>";
+//                 echo "</div>";
+//                 echo "<div class=\"col-sm-3 text-right  price-box\">";
+//                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
+//                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+//                 //echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
+//                 if(!$isloginedIn and $isSameUser==false){
+//                 	$imgRatingPath=base_url()."images/".$userRating;
+                
+//                 	//echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                
+//                 }
+//                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
+//                 {
+//                 	if($isPostAlready == false and $isSameUser ==false ){
+                		
+//                 		$imgRatingPath=base_url()."images/".$userRating;
+//                 		//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+//                 		//echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+//                 		//echo " data-toggle=\"modal\" >";
+//                 		//echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
+//                 	}
+//                 }
+//                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
+//                 {
+//                 	//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
+//                 	//echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
+//                 }
+                                  
+                
+//                 echo "</div></div>";
+//                }
+                    
+//                if($rowCount==0)
+//                	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+               	
+               
+//               }else{
+//               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+//               }
+					$basePath=base_url().MY_PATH;
+					$encodeCurrentURL=urlencode(current_url());
+					if($itemList<>null && sizeof($itemList)>0)
+					{
+						$rowCount=0;
+						foreach($itemList as $id=>$item)
+						{
+							$rowCount=$rowCount+1;
+							$viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
+							$locationName=$item["locationName"];
+							$categoryName=$item["categoryName"];
+							$postCurrency=$item['postCurrency'];
+							$postItemPrice=$item['postItemPrice'];
+							$postDescription=trim($item['postDescription']);
+							$isloginedIn=$item['isloginedIn'];
+							$isPendingRequest=$item['isPendingRequest'];
+							$isPostAlready=$item['isPostAlready'];
+							$isSameUser=$item['isSameUser'];
+							$username=$item['username'];
+							$userRating=$item['userRating'];
+							try{
+								$postDescription=trimLongText($postDescription);
+							} catch(Exception $ex){
+					
+							}
+							$postTitle=$item['postTitle'];
+							$postCreateDate=$item['postCreateDate'];
+							$picCount=$item["picCount"];
+							$thumbnail=base_url().$item['thumbnailPath'].'/'.$item['thumbnailName'];
+							$checkImgFile=$item['thumbnailPath'].'/'.$item['thumbnailName'];
+							$postTypeAds=$item["postTypeAds"];
+							echo  "<div class=\"item-list\"> ";
+								
+							if($postTypeAds=='topAds')
+							{
+								echo "<div class=\"cornerRibbons topAds\">";
+								echo  " <a href=\"#\"> Top Ads</a>";
+								echo "</div>";
+							}
+							else if($postTypeAds=='featuredAds')
+							{
+								echo "<div class=\"cornerRibbons featuredAds\"> ";
+								echo "<a href=\"#\"> Featured Ads</a>";
+								echo "</div>";
+							}
+							else if($postTypeAds=='urgentAds')
+							{
+								echo "<div class=\"cornerRibbons urgentAds\">";
+								echo "<a href=\"#\"> Urgent</a>";
+								echo "</div>";
+							}
+								
+							echo  "<div class=\"col-sm-3 no-padding photobox\">";
+							if (!is_file_exists($checkImgFile)) {
+								$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+							}
+							echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";
+					
+					
+							$ctrlName="AjaxLoad".$rowCount;
+							$errorctrlName="ErrAjaxLoad".$rowCount;
+							$ctrlValue="post".$rowCount;
+							$postID2=$id;
+							$clickLink="clickLink".$rowCount;
+							$title=$this->lang->line("lblTitle");
+							$showSellerName="";
+							if(strcmp(SHOWSELLERNAMEINSEARCHBUTTON,"Y")==0)
+								$showSellerName=$username;
+								else {
+									$showSellerName="seller";
+								}
+								$imgRatingPath=base_url()."images/".$userRating;
+								echo "</div>";
+								echo "<div class=\"col-sm-6 add-desc-box\">";
+								echo "<div class=\"ads-details\">";
+								echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+								echo "<span class=\"info-row\"> <span class=\"user\"><img class=\"ratingIcon-xs\" src=$imgRatingPath> $username </span> - <span class=\"date\"><i class=\"icon-clock\"> </i>". date('Y-m-d h:i A', strtotime($postCreateDate))."</span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span></span> </div>";
+								echo "</div>";
+								echo "<div class=\"col-sm-3 text-right  price-box\">";
+								echo "<h4 class=\"item-price\">$</h4> <h1 class=\"item-price\"> $postItemPrice</h1>";
+								echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+								//if(!$item["getDisableSavedAds"])
+								//	 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
+								//else
+								//   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
+								//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
+								if(!$isloginedIn and $isSameUser==false){
+									$imgRatingPath=base_url()."images/".$userRating;
+					
+									//echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+					
+								}
+								if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
+								{
+									if($isPostAlready == false and $isSameUser ==false ){
+					
+										$imgRatingPath=base_url()."images/".$userRating;
+										//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+										//echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+										//echo " data-toggle=\"modal\" >";
+										//echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
+									}
+								}
+								if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
+								{
+									//echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+								}
+					
+					
+								echo "</div></div>";
+						}
+						 
+					}else{
+						echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+					}
+
+              ?>  
+                
+                
+                
+                </div>
+                <div class="tab-pane <?php if(strcmp($activeTab, "usedAds")==0) echo "active"; ?>" id="usedAds">
+                	<?php
+//              $basePath=base_url().MY_PATH;
+//              $encodeCurrentURL=urlencode(current_url());
+//               if($itemList<>null && sizeof($itemList)>0)
+//               {
+//               	$rowCount=0;
+//               foreach($itemList as $id=>$item)
+// 				{
+// 					if(strcmp($item["newUsed"], "U")<>0)
+// 						continue;
+// 					$rowCount=$rowCount+1;
+// 				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
+//               		$locationName=$item["locationName"];
+// 					$categoryName=$item["categoryName"];
+// 					$postCurrency=$item['postCurrency'];
+// 					$postItemPrice=$item['postItemPrice'];
+// 					$postDescription=trim($item['postDescription']);
+					
+// 					try{
+// 					$postDescription=trimLongText($postDescription);
+// 					} catch(Exception $ex){
+						
+// 					}
+// 					$postTitle=$item['postTitle'];
+// 					$postCreateDate=$item['postCreateDate'];
+// 					$picCount=$item["picCount"];
+// 					$thumbnail=base_url().$item['thumbnailPath'].'/'.$item['thumbnailName'];
+// 					$checkImgFile=$item['thumbnailPath'].'/'.$item['thumbnailName'];
+// 					$postTypeAds=$item["postTypeAds"];	
+// 					echo  "<div class=\"item-list\"> ";
+					
+// 					if($postTypeAds=='topAds')
+// 					{
+// 					echo "<div class=\"cornerRibbons topAds\">";
+//  					echo  " <a href=\"#\"> Top Ads</a>";
+// 					echo "</div>";
+// 					}
+// 					else if($postTypeAds=='featuredAds')
+// 					{
+// 					echo "<div class=\"cornerRibbons featuredAds\"> ";
+// 					echo "<a href=\"#\"> Featured Ads</a>";
+// 					echo "</div>";
+// 					}
+// 					else if($postTypeAds=='urgentAds')
+// 					{
+// 					echo "<div class=\"cornerRibbons urgentAds\">";
+// 					echo "<a href=\"#\"> Urgent</a>";
+// 					echo "</div>";
+// 					}			
+					
+// 				echo  "<div class=\"col-sm-3 no-padding photobox\">";
+// 				if (!is_file_exists($checkImgFile)) {
+// 					$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+// 				}
+// 						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
+		              		
+						
+//               		$ctrlName="AjaxLoad".$rowCount;
+//               		$errorctrlName="ErrAjaxLoad".$rowCount;
+//               		$ctrlValue="post".$rowCount;
+//               		$postID2=$id;
+//               		$clickLink="clickLink".$rowCount;
+//               		$title=$this->lang->line("lblTitle");
+// 				echo "</div>";
+// 			    echo "<div class=\"col-sm-6 add-desc-box\">";
+//                   echo "<div class=\"ads-details\">";
+//                    echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
+//                    echo "<span class=\"info-row\"> <span class=\"user\"><img class=\"ratingIcon-xs\" src=$imgRatingPath> $username </span> - <span class=\"date\"><i class=\"icon-clock\"> </i>". date('Y-m-d h:i A', strtotime($postCreateDate))."</span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span></span> </div>";
+//                 echo "</div>";
+//                 echo "<div class=\"col-sm-3 text-right  price-box\">";
+//                 echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
+//                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+//                 if(!$isloginedIn and $isSameUser==false){
+//                 	$imgRatingPath=base_url()."images/".$userRating;
+                
+//                 	//echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+                
+//                 }
+//                 if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
+//                 {
+//                 	if($isPostAlready == false and $isSameUser ==false ){
+                		
+//                 		$imgRatingPath=base_url()."images/".$userRating;
+//                 		//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
+//                 		//echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+//                 		//echo " data-toggle=\"modal\" >";
+//                 		//echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
+//                 	}
+//                 }
+//                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
+//                 {
+//                 	//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
+//                 	//echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
+//                 }
+                                  
+//                 //echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
+//                 echo "</div>";
+// 				echo "</div>";
+//                }
+//                if($rowCount==0)
+//                	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+               	 
+//               }else{
+//               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
+//               }
+  $basePath=base_url().MY_PATH;
              $encodeCurrentURL=urlencode(current_url());
               if($itemList<>null && sizeof($itemList)>0)
               {
               	$rowCount=0;
               foreach($itemList as $id=>$item)
 				{
-					if(strcmp($item["newUsed"], "N")<>0)
-						continue;
-					
 					$rowCount=$rowCount+1;
 				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
               		$locationName=$item["locationName"];
@@ -808,7 +1139,12 @@
 					$postCurrency=$item['postCurrency'];
 					$postItemPrice=$item['postItemPrice'];
 					$postDescription=trim($item['postDescription']);
-					
+					$isloginedIn=$item['isloginedIn'];
+					$isPendingRequest=$item['isPendingRequest'];
+					$isPostAlready=$item['isPostAlready'];
+					$isSameUser=$item['isSameUser'];
+					$username=$item['username'];
+					$userRating=$item['userRating'];
 					try{
 					$postDescription=trimLongText($postDescription);
 					} catch(Exception $ex){
@@ -854,15 +1190,26 @@
               		$postID2=$id;
               		$clickLink="clickLink".$rowCount;
               		$title=$this->lang->line("lblTitle");
-				echo "</div>";
+				$showSellerName="";
+				if(strcmp(SHOWSELLERNAMEINSEARCHBUTTON,"Y")==0)
+                	$showSellerName=$username;
+                else {
+                	$showSellerName="seller";
+                }
+				$imgRatingPath=base_url()."images/".$userRating;
+                echo "</div>";
 			    echo "<div class=\"col-sm-6 add-desc-box\">";
                   echo "<div class=\"ads-details\">";
                    echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
                    echo "<span class=\"info-row\"> <span class=\"user\"><img class=\"ratingIcon-xs\" src=$imgRatingPath> $username </span> - <span class=\"date\"><i class=\"icon-clock\"> </i>". date('Y-m-d h:i A', strtotime($postCreateDate))."</span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span></span> </div>";
                 echo "</div>";
                 echo "<div class=\"col-sm-3 text-right  price-box\">";
-                echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
+                echo "<h4 class=\"item-price\">$</h4> <h1 class=\"item-price\"> $postItemPrice</h1>";
                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+                //if(!$item["getDisableSavedAds"])
+               	//	 echo "<a class=\"btn btn-primary btn-block btn-pink\" style=\"pointer-events: none; cursor: default;color:yellow;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-check-circle\"></i>  Saved</a>";
+                //else
+             	//   echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName', '$clickLink')\" id='$clickLink' name='$clickLink'><i class=\"fa fa-heart\"></i>  Save</a>";
                 //echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
                 if(!$isloginedIn and $isSameUser==false){
                 	$imgRatingPath=base_url()."images/".$userRating;
@@ -883,130 +1230,13 @@
                 }
                 if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
                 {
-                	//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	//echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
+                	//echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
                 }
                                   
                 
-                echo "</div></div>";
+               echo "</div></div>";
                }
-                    
-               if($rowCount==0)
-               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
-               	
-               
-              }else{
-              	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
-              }
-				
-              ?>  
-                
-                
-                
-                </div>
-                <div class="tab-pane <?php if(strcmp($activeTab, "usedAds")==0) echo "active"; ?>" id="usedAds">
-                	<?php
-             $basePath=base_url().MY_PATH;
-             $encodeCurrentURL=urlencode(current_url());
-              if($itemList<>null && sizeof($itemList)>0)
-              {
-              	$rowCount=0;
-              foreach($itemList as $id=>$item)
-				{
-					if(strcmp($item["newUsed"], "U")<>0)
-						continue;
-					$rowCount=$rowCount+1;
-				  $viewBasePath=$basePath."viewItem/index/".$id."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
-              		$locationName=$item["locationName"];
-					$categoryName=$item["categoryName"];
-					$postCurrency=$item['postCurrency'];
-					$postItemPrice=$item['postItemPrice'];
-					$postDescription=trim($item['postDescription']);
-					
-					try{
-					$postDescription=trimLongText($postDescription);
-					} catch(Exception $ex){
-						
-					}
-					$postTitle=$item['postTitle'];
-					$postCreateDate=$item['postCreateDate'];
-					$picCount=$item["picCount"];
-					$thumbnail=base_url().$item['thumbnailPath'].'/'.$item['thumbnailName'];
-					$checkImgFile=$item['thumbnailPath'].'/'.$item['thumbnailName'];
-					$postTypeAds=$item["postTypeAds"];	
-					echo  "<div class=\"item-list\"> ";
-					
-					if($postTypeAds=='topAds')
-					{
-					echo "<div class=\"cornerRibbons topAds\">";
- 					echo  " <a href=\"#\"> Top Ads</a>";
-					echo "</div>";
-					}
-					else if($postTypeAds=='featuredAds')
-					{
-					echo "<div class=\"cornerRibbons featuredAds\"> ";
-					echo "<a href=\"#\"> Featured Ads</a>";
-					echo "</div>";
-					}
-					else if($postTypeAds=='urgentAds')
-					{
-					echo "<div class=\"cornerRibbons urgentAds\">";
-					echo "<a href=\"#\"> Urgent</a>";
-					echo "</div>";
-					}			
-					
-				echo  "<div class=\"col-sm-3 no-padding photobox\">";
-				if (!is_file_exists($checkImgFile)) {
-					$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
-				}
-						echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
-		              		
-						
-              		$ctrlName="AjaxLoad".$rowCount;
-              		$errorctrlName="ErrAjaxLoad".$rowCount;
-              		$ctrlValue="post".$rowCount;
-              		$postID2=$id;
-              		$clickLink="clickLink".$rowCount;
-              		$title=$this->lang->line("lblTitle");
-				echo "</div>";
-			    echo "<div class=\"col-sm-6 add-desc-box\">";
-                  echo "<div class=\"ads-details\">";
-                   echo "<h5><div class=\"add-title-girlstrade\"> <a href=\"$viewBasePath\">$postTitle </a></div><a href=\"$viewBasePath\">$postDescription</a></h5>";
-                   echo "<span class=\"info-row\"> <span class=\"user\"><img class=\"ratingIcon-xs\" src=$imgRatingPath> $username </span> - <span class=\"date\"><i class=\"icon-clock\"> </i>". date('Y-m-d h:i A', strtotime($postCreateDate))."</span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span></span> </div>";
-                echo "</div>";
-                echo "<div class=\"col-sm-3 text-right  price-box\">";
-                echo "<h2 class=\"item-price\"> $postCurrency $postItemPrice</h2>";
-                echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                if(!$isloginedIn and $isSameUser==false){
-                	$imgRatingPath=base_url()."images/".$userRating;
-                
-                	//echo "<a  href=\"".base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url())."\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
-                
-                }
-                if(($isloginedIn) && $isPendingRequest==false && ($isPostAlready==false or $isSameUser==false))
-                {
-                	if($isPostAlready == false and $isSameUser ==false ){
-                		
-                		$imgRatingPath=base_url()."images/".$userRating;
-                		//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=";
-                		//echo base_url().MY_PATH."messages/directSend/".$id."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
-                		//echo " data-toggle=\"modal\" >";
-                		//echo "<i class=\"icon-right-hand\"></i>Contact Seller</a>";
-                	}
-                }
-                if(($isloginedIn) &&($isPendingRequest==true && $isSameUser==false) )
-                {
-                	//echo "<a class=\"btn btn-primary btn-block btn-pink\" href=\"\" >";
-                	//echo "<i class=\" icon-info\"></i>Pending for Approval</a>";
-                }
-                                  
-                //echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a></div>";
-                echo "</div>";
-				echo "</div>";
-               }
-               if($rowCount==0)
-               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
-               	 
+                         
               }else{
               	echo "<div align='center'><h2>".$this->lang->line("NoRecordsFound")."</h2></div>";
               }
