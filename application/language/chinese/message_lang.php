@@ -315,3 +315,6 @@ $lang["lblSignupDesc1"]="加入我們";
 $lang["lblSignupDesc1T"]="簡單和便利地管理你的帳戶。 免費登出廣告,  連接更多買家和賣家。";
 $lang["lblSignupDesc2"]="個人資料";
 $lang["lblSignupDesc2T"]="個人資料只會用於交易和通知的用途。未經您的許可, GirlsTrade絕對不會把你的個人資料洩露給第三方。";
+
+//--------faq----
+$lang["titleFAQ"]="常見問題";

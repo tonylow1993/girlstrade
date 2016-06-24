@@ -315,3 +315,6 @@ $lang["lblSignupDesc1"]="Manage Items";
 $lang["lblSignupDesc1T"]="Easily post, edit or delete items. Promote ads and view order status. Provide a way for buyer and seller connect.";
 $lang["lblSignupDesc2"]="Personal Information";
 $lang["lblSignupDesc2T"]="Personal information will be protected using technical and administrative security. GirlsTrade will never disclose your personal information with any third parties without your express permission.";
+
+//--------faq----
+$lang["titleFAQ"]="Frequently Asked Questions";
