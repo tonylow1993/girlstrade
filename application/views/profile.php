@@ -92,7 +92,8 @@ function sendIt() {
           
  			<div class="tab-box "> 
               <!-- Nav tabs -->
-              <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
+<!--               id="ajaxTabs" role="tablist" -->
+              <ul class="nav nav-tabs add-tabs" >
               <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\""; ?>><a href="<?php echo 	base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/0/0/0/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate.'/allAds?prevURL='.$previousCurrent_url;?>" id="allAds1" name="allAds1" >
                 <?php echo $lblConditionAny;?>
                 <?php 
@@ -343,234 +344,462 @@ function sendIt() {
               
                <div class="tab-pane <?php if(strcmp($activeTab, "newAds")==0) echo "active"; ?>" id="newAds">
               <?php
-             $basePath=base_url();
-             $encodeCurrentURL=urlencode(current_url());
-             $title=$this->lang->line("lblTitle");
-              if($itemList<>null)
-              {
-              	$rowCount=0;
+//              $basePath=base_url();
+//              $encodeCurrentURL=urlencode(current_url());
+//              $title=$this->lang->line("lblTitle");
+//               if($itemList<>null)
+//               {
+//               	$rowCount=0;
               
-              foreach($itemList as $id=>$item)
-				{
-					if(strcmp($item["newUsed"], "N")!=0)
-						continue;
-					$rowCount=$rowCount+1;
-				  $viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
-              		$locationName='';
-					$categoryName='';
-					$post=NULL;
-					$soldToUserName="";
-					$getDisableSavedAds=false;
-					foreach($item as $key=>$child)
-					{
-						if($key=='post')
-							$post=$child;
-						else if($key=='location')
-							$locationName=$child[0]->name;
-						else if($key=='category')
-							$categoryName=$child[0]->name;
-						else if($key=='soldToUser'){
-							if($child<> null && count($child)>0)
-								$soldToUserName=$child[0]->username;
-							else if($key=='savedAds')
-								$getDisableSavedAds=$child;
-						}
-					}
-					echo  "<div class=\"item-list\"> ";
-              		echo  "<div class=\"col-sm-2 no-padding photobox\">";
-					foreach($item as $pic=>$picObj)
-              		{	
-              			if($pic=='pic')
-              			{
-              				$picCount=count($picObj);
-              				if($picCount>0)
-              				{
-	              				for($x=0;$x<1;$x++)
-	              				{
-		              			$thumbnail=$basePath.$picObj[$x]->thumbnailPath.'/'.$picObj[$x]->thumbnailName;
-		              			echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
-		              			}
-              				}
-              			}
-              		}
-              		$enableMarkSoldBtn=false;
-              		$visibleBuyerComment=false;
-              		$soldToUserID=0;
-              			$soldToUserID=$post->soldToUserID;
-              			$enableMarkSoldBtn=$post->sellerRating==null;
-              			$visibleBuyerComment=$post->sellerRating<>null &&
-              			$post->buyerRating==null;
-              			$previewTitle=$post->itemName;
-              			$preview=trimLongText(trim($post->description));
-              			if($post->sellerRating<>null){
-              				$preview=$preview."<br/>Seller Comment:  (". getRating($post->sellerRating).")";
-              				$preview=$preview." ".$post->sellerComment;
-              			}
-              			if($post->buyerRating<>null){
-              				$preview=$preview."<br/> Buyer [$soldToUserName] Comment: (". getRating($post->buyerRating).")";
-              				$preview=$preview." ".$post->buyerComment;
-              			}
+//               foreach($itemList as $id=>$item)
+// 				{
+// 					if(strcmp($item["newUsed"], "N")!=0)
+// 						continue;
+// 					$rowCount=$rowCount+1;
+// 				  $viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
+//               		$locationName='';
+// 					$categoryName='';
+// 					$post=NULL;
+// 					$soldToUserName="";
+// 					$getDisableSavedAds=false;
+// 					foreach($item as $key=>$child)
+// 					{
+// 						if($key=='post')
+// 							$post=$child;
+// 						else if($key=='location')
+// 							$locationName=$child[0]->name;
+// 						else if($key=='category')
+// 							$categoryName=$child[0]->name;
+// 						else if($key=='soldToUser'){
+// 							if($child<> null && count($child)>0)
+// 								$soldToUserName=$child[0]->username;
+// 							else if($key=='savedAds')
+// 								$getDisableSavedAds=$child;
+// 						}
+// 					}
+// 					echo  "<div class=\"item-list\"> ";
+//               		echo  "<div class=\"col-sm-2 no-padding photobox\">";
+// 					foreach($item as $pic=>$picObj)
+//               		{	
+//               			if($pic=='pic')
+//               			{
+//               				$picCount=count($picObj);
+//               				if($picCount>0)
+//               				{
+// 	              				for($x=0;$x<1;$x++)
+// 	              				{
+// 		              			$thumbnail=$basePath.$picObj[$x]->thumbnailPath.'/'.$picObj[$x]->thumbnailName;
+// 		              			echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
+// 		              			}
+//               				}
+//               			}
+//               		}
+//               		$enableMarkSoldBtn=false;
+//               		$visibleBuyerComment=false;
+//               		$soldToUserID=0;
+//               			$soldToUserID=$post->soldToUserID;
+//               			$enableMarkSoldBtn=$post->sellerRating==null;
+//               			$visibleBuyerComment=$post->sellerRating<>null &&
+//               			$post->buyerRating==null;
+//               			$previewTitle=$post->itemName;
+//               			$preview=trimLongText(trim($post->description));
+//               			if($post->sellerRating<>null){
+//               				$preview=$preview."<br/>Seller Comment:  (". getRating($post->sellerRating).")";
+//               				$preview=$preview." ".$post->sellerComment;
+//               			}
+//               			if($post->buyerRating<>null){
+//               				$preview=$preview."<br/> Buyer [$soldToUserName] Comment: (". getRating($post->buyerRating).")";
+//               				$preview=$preview." ".$post->buyerComment;
+//               			}
               			
               		
-              		$ctrlName="AjaxLoad".$rowCount;
-              		$errorctrlName="ErrAjaxLoad".$rowCount;
-              		$ctrlValue="post".$rowCount;
-              		$postID2=$post->postID;
-              		$clickLink="clickLink".$rowCount;
-				echo "</div>";
-			    echo "<div class=\"col-sm-7 add-desc-box\">";
-                 // echo "<div class=\"add-details\">";
-                echo "<div class=\"add-details\">";   
-			    echo "<h5 class=\"add-title\"> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
-                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
-                echo "</div>";
+//               		$ctrlName="AjaxLoad".$rowCount;
+//               		$errorctrlName="ErrAjaxLoad".$rowCount;
+//               		$ctrlValue="post".$rowCount;
+//               		$postID2=$post->postID;
+//               		$clickLink="clickLink".$rowCount;
+// 				echo "</div>";
+// 			    echo "<div class=\"col-sm-7 add-desc-box\">";
+//                  // echo "<div class=\"add-details\">";
+//                 echo "<div class=\"add-details\">";   
+// 			    echo "<h5 class=\"add-title\"> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
+//                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+//                 echo "</div>";
                 
-                echo "<div class=\"col-sm-3 text-right  price-box\">";
-                echo "<h4 class=\"item-price\">$</h4><h1 class=\"item-price\">$post->itemPrice</h1>";
-                echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                /*echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
+//                 echo "<div class=\"col-sm-3 text-right  price-box\">";
+//                 echo "<h4 class=\"item-price\">$</h4><h1 class=\"item-price\">$post->itemPrice</h1>";
+//                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+//                 /*echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
                 
-				if(isset($usr) && !empty($usr) && $usr["username"]!=null){
-					 if($post->userID!=$usr["userID"]){
-					 	 if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
-					 	{
-					 		echo "<a  href=";
-					 		echo base_url().MY_PATH."messages/directSend/".$postID2."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
-                			echo " data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
-					 	}else if($item["isPendingRequest"] == true){
-					 		echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
-					 	}
-					 }
-					}else{
-						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
-					}
-                /*
-                echo "<div class=\"col-sm-3 text-right  price-box\">";
-                echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
-                  echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+// 				if(isset($usr) && !empty($usr) && $usr["username"]!=null){
+// 					 if($post->userID!=$usr["userID"]){
+// 					 	 if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
+// 					 	{
+// 					 		echo "<a  href=";
+// 					 		echo base_url().MY_PATH."messages/directSend/".$postID2."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+//                 			echo " data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+// 					 	}else if($item["isPendingRequest"] == true){
+// 					 		echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+// 					 	}
+// 					 }
+// 					}else{
+// 						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+// 					}
+//                 /*
+//                 echo "<div class=\"col-sm-3 text-right  price-box\">";
+//                 echo "<h2 class=\"item-price\"> $post->currency $post->itemPrice</h2>";
+//                   echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
               
-                  if($getDisableSavedAds)
-                  	echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
-                  else
-                  echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
-                  	echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
-               */
-                  	echo "</div></div>";
-				}
+//                   if($getDisableSavedAds)
+//                   	echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+//                   else
+//                   echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+//                   	echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
+//                */
+//                   	echo "</div></div>";
+// 				}
                
-				}
+// 				}
+				$basePath=base_url();
+				$encodeCurrentURL=urlencode(current_url());
+				$title=$this->lang->line("lblTitle");
+				if($itemList<>null)
+				{
+					$rowCount=0;
 				
+					foreach($itemList as $id=>$item)
+					{
+						$rowCount=$rowCount+1;
+						$viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
+						$locationName='';
+						$categoryName='';
+						$post=NULL;
+						$soldToUserName="";
+						$getDisableSavedAds=false;
+						foreach($item as $key=>$child)
+						{
+							if($key=='post')
+								$post=$child;
+								else if($key=='location')
+									$locationName=$child[0]->name;
+									else if($key=='category')
+										$categoryName=$child[0]->name;
+										else if($key=='soldToUser'){
+											if($child<> null && count($child)>0)
+												$soldToUserName=$child[0]->username;
+												else if($key=='savedAds')
+													$getDisableSavedAds=$child;
+										}
+						}
+						echo  "<div class=\"item-list\"> ";
+						echo  "<div class=\"col-sm-2 no-padding photobox\">";
+						foreach($item as $pic=>$picObj)
+						{
+							if($pic=='pic')
+							{
+								$picCount=count($picObj);
+								if($picCount>0)
+								{
+									for($x=0;$x<1;$x++)
+									{
+										$thumbnail=$basePath.$picObj[$x]->thumbnailPath.'/'.$picObj[$x]->thumbnailName;
+										echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";
+									}
+								}else {
+									$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+									echo "<div class=\"add-image\"> <span class=\"photo-count\">
+									<i class=\"fa fa-camera\"></i> 0 </span> <a href=\"$viewBasePath\">
+									<img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";
+								}
+							}
+						}
+						 
+				
+						$enableMarkSoldBtn=false;
+						$visibleBuyerComment=false;
+						$soldToUserID=0;
+						$soldToUserID=$post->soldToUserID;
+						$enableMarkSoldBtn=$post->sellerRating==null;
+						$visibleBuyerComment=$post->sellerRating<>null &&
+						$post->buyerRating==null;
+						$previewTitle=$post->itemName;
+						$preview=trimLongText(trim($post->description));
+						if($post->sellerRating<>null){
+							$preview=$preview."<br/>Seller Comment:  (". getRating($post->sellerRating).")";
+							$preview=$preview." ".$post->sellerComment;
+						}
+						if($post->buyerRating<>null){
+							$preview=$preview."<br/> Buyer [$soldToUserName] Comment: (". getRating($post->buyerRating).")";
+							$preview=$preview." ".$post->buyerComment;
+						}
+						 
+				
+						$ctrlName="AjaxLoad".$rowCount;
+						$errorctrlName="ErrAjaxLoad".$rowCount;
+						$ctrlValue="post".$rowCount;
+						$postID2=$post->postID;
+						$clickLink="clickLink".$rowCount;
+						echo "</div>";
+						echo "<div class=\"col-sm-7 add-desc-box\">";
+						// echo "<div class=\"add-details\">";
+						echo "<div class=\"ads-details\">";
+						echo "<h5> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
+						echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+						echo "</div>";
+						echo "<div class=\"col-sm-3 text-right  price-box\">";
+						echo "<h4 class=\"item-price\">$</h4><h1 class=\"item-price\">$post->itemPrice</h1>";
+						echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+						/*echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
+				
+						if(isset($usr) && !empty($usr) && $usr["username"]!=null){
+						if($post->userID!=$usr["userID"]){
+						if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
+						{
+						echo "<a  href=";
+						echo base_url().MY_PATH."messages/directSend/".$postID2."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+						echo " data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+						}else if($item["isPendingRequest"] == true){
+						echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+						}
+						}
+						}else{
+						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+						}
+						/* if($getDisableSavedAds)
+							echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+							else
+								echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+								echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
+								*/
+							echo "</div></div>";
+					}
+					 
+				}
               ?>  
               </div>
               
             <div class="tab-pane <?php if(strcmp($activeTab, "usedAds")==0) echo "active"; ?>" id="usedAds">
                
                 <?php
-$basePath=base_url();
-             $encodeCurrentURL=urlencode(current_url());
-             $title=$this->lang->line("lblTitle");
-              if($itemList<>null)
-              {
-              	$rowCount=0;
-              foreach($itemList as $id=>$item)
-				{
-					if(strcmp($item["newUsed"], "U")!=0)
-						continue;
-					$rowCount=$rowCount+1;
-				  $viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
-              		$locationName='';
-					$categoryName='';
-					$post=NULL;
-					$soldToUserName="";
-					$getDisableSavedAds=false;
-					foreach($item as $key=>$child)
-					{
-						if($key=='post')
-							$post=$child;
-						else if($key=='location')
-							$locationName=$child[0]->name;
-						else if($key=='category')
-							$categoryName=$child[0]->name;
-						else if($key=='soldToUser'){
-							if($child<> null && count($child)>0)
-								$soldToUserName=$child[0]->username;
-							else if($key=='savedAds')
-								$getDisableSavedAds=$child;
-						}
-					}
-					echo  "<div class=\"item-list\"> ";
-              		echo  "<div class=\"col-sm-2 no-padding photobox\">";
-					foreach($item as $pic=>$picObj)
-              		{	
-              			if($pic=='pic')
-              			{
-              				$picCount=count($picObj);
-              				if($picCount>0)
-              				{
-	              				for($x=0;$x<1;$x++)
-	              				{
-		              			$thumbnail=$basePath.$picObj[$x]->thumbnailPath.'/'.$picObj[$x]->thumbnailName;
-		              			echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
-		              			}
-              				}
-              			}
-              		}
-              		$enableMarkSoldBtn=false;
-              		$visibleBuyerComment=false;
-              		$soldToUserID=0;
-              			$soldToUserID=$post->soldToUserID;
-              			$enableMarkSoldBtn=$post->sellerRating==null;
-              			$visibleBuyerComment=$post->sellerRating<>null &&
-              			$post->buyerRating==null;
-              			$previewTitle=$post->itemName;
-              			$preview=trimLongText(trim($post->description));
-              			if($post->sellerRating<>null){
-              				$preview=$preview."<br/>Seller Comment:  (". getRating($post->sellerRating).")";
-              				$preview=$preview." ".$post->sellerComment;
-              			}
-              			if($post->buyerRating<>null){
-              				$preview=$preview."<br/> Buyer [$soldToUserName] Comment: (". getRating($post->buyerRating).")";
-              				$preview=$preview." ".$post->buyerComment;
-              			}
+// $basePath=base_url();
+//              $encodeCurrentURL=urlencode(current_url());
+//              $title=$this->lang->line("lblTitle");
+//               if($itemList<>null)
+//               {
+//               	$rowCount=0;
+//               foreach($itemList as $id=>$item)
+// 				{
+// 					if(strcmp($item["newUsed"], "U")!=0)
+// 						continue;
+// 					$rowCount=$rowCount+1;
+// 				  $viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
+//               		$locationName='';
+// 					$categoryName='';
+// 					$post=NULL;
+// 					$soldToUserName="";
+// 					$getDisableSavedAds=false;
+// 					foreach($item as $key=>$child)
+// 					{
+// 						if($key=='post')
+// 							$post=$child;
+// 						else if($key=='location')
+// 							$locationName=$child[0]->name;
+// 						else if($key=='category')
+// 							$categoryName=$child[0]->name;
+// 						else if($key=='soldToUser'){
+// 							if($child<> null && count($child)>0)
+// 								$soldToUserName=$child[0]->username;
+// 							else if($key=='savedAds')
+// 								$getDisableSavedAds=$child;
+// 						}
+// 					}
+// 					echo  "<div class=\"item-list\"> ";
+//               		echo  "<div class=\"col-sm-2 no-padding photobox\">";
+// 					foreach($item as $pic=>$picObj)
+//               		{	
+//               			if($pic=='pic')
+//               			{
+//               				$picCount=count($picObj);
+//               				if($picCount>0)
+//               				{
+// 	              				for($x=0;$x<1;$x++)
+// 	              				{
+// 		              			$thumbnail=$basePath.$picObj[$x]->thumbnailPath.'/'.$picObj[$x]->thumbnailName;
+// 		              			echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";              			
+// 		              			}
+//               				}
+//               			}
+//               		}
+//               		$enableMarkSoldBtn=false;
+//               		$visibleBuyerComment=false;
+//               		$soldToUserID=0;
+//               			$soldToUserID=$post->soldToUserID;
+//               			$enableMarkSoldBtn=$post->sellerRating==null;
+//               			$visibleBuyerComment=$post->sellerRating<>null &&
+//               			$post->buyerRating==null;
+//               			$previewTitle=$post->itemName;
+//               			$preview=trimLongText(trim($post->description));
+//               			if($post->sellerRating<>null){
+//               				$preview=$preview."<br/>Seller Comment:  (". getRating($post->sellerRating).")";
+//               				$preview=$preview." ".$post->sellerComment;
+//               			}
+//               			if($post->buyerRating<>null){
+//               				$preview=$preview."<br/> Buyer [$soldToUserName] Comment: (". getRating($post->buyerRating).")";
+//               				$preview=$preview." ".$post->buyerComment;
+//               			}
               			
               		
-              		$ctrlName="AjaxLoad".$rowCount;
-              		$errorctrlName="ErrAjaxLoad".$rowCount;
-              		$ctrlValue="post".$rowCount;
-              		$postID2=$post->postID;
-              		$clickLink="clickLink".$rowCount;
-				echo "</div>";
-			    echo "<div class=\"col-sm-7 add-desc-box\">";
-                 // echo "<div class=\"add-details\">";
-                echo "<div class=\"add-details\">";   
-			    echo "<h5 class=\"add-title\"> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
-                   echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
-                echo "</div>";
-                echo "<div class=\"col-sm-3 text-right  price-box\">";
-                echo "<h4 class=\"item-price\">$</h4><h1 class=\"item-price\">$post->itemPrice</h1>";
-                echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                /*echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
+//               		$ctrlName="AjaxLoad".$rowCount;
+//               		$errorctrlName="ErrAjaxLoad".$rowCount;
+//               		$ctrlValue="post".$rowCount;
+//               		$postID2=$post->postID;
+//               		$clickLink="clickLink".$rowCount;
+// 				echo "</div>";
+// 			    echo "<div class=\"col-sm-7 add-desc-box\">";
+//                  // echo "<div class=\"add-details\">";
+//                 echo "<div class=\"add-details\">";   
+// 			    echo "<h5 class=\"add-title\"> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
+//                    echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+//                 echo "</div>";
+//                 echo "<div class=\"col-sm-3 text-right  price-box\">";
+//                 echo "<h4 class=\"item-price\">$</h4><h1 class=\"item-price\">$post->itemPrice</h1>";
+//                 echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+//                 /*echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
                 
-				if(isset($usr) && !empty($usr) && $usr["username"]!=null){
-					 if($post->userID!=$usr["userID"]){
-					 	 if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
-					 	{
-					 		echo "<a  href=";
-					 		echo base_url().MY_PATH."messages/directSend/".$postID2."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
-                			echo " data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
-					 	}else if($item["isPendingRequest"] == true){
-					 		echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
-					 	}
-					 }
-					}else{
-						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
-					}*/
+// 				if(isset($usr) && !empty($usr) && $usr["username"]!=null){
+// 					 if($post->userID!=$usr["userID"]){
+// 					 	 if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
+// 					 	{
+// 					 		echo "<a  href=";
+// 					 		echo base_url().MY_PATH."messages/directSend/".$postID2."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+//                 			echo " data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+// 					 	}else if($item["isPendingRequest"] == true){
+// 					 		echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+// 					 	}
+// 					 }
+// 					}else{
+// 						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+// 					}*/
                 
-               echo "</div></div>";
-				}
+//                echo "</div></div>";
+// 				}
                
-				}
+// 				}
+				$basePath=base_url();
+				$encodeCurrentURL=urlencode(current_url());
+				$title=$this->lang->line("lblTitle");
+				if($itemList<>null)
+				{
+					$rowCount=0;
 				
+					foreach($itemList as $id=>$item)
+					{
+						$rowCount=$rowCount+1;
+						$viewBasePath=$basePath.MY_PATH."viewItem/index/".$id."/".$catID."/".$locID."/".$keywords."?prevURL=".$encodeCurrentURL."&prevItem_Url=".urlencode(current_url());
+						$locationName='';
+						$categoryName='';
+						$post=NULL;
+						$soldToUserName="";
+						$getDisableSavedAds=false;
+						foreach($item as $key=>$child)
+						{
+							if($key=='post')
+								$post=$child;
+								else if($key=='location')
+									$locationName=$child[0]->name;
+									else if($key=='category')
+										$categoryName=$child[0]->name;
+										else if($key=='soldToUser'){
+											if($child<> null && count($child)>0)
+												$soldToUserName=$child[0]->username;
+												else if($key=='savedAds')
+													$getDisableSavedAds=$child;
+										}
+						}
+						echo  "<div class=\"item-list\"> ";
+						echo  "<div class=\"col-sm-2 no-padding photobox\">";
+						foreach($item as $pic=>$picObj)
+						{
+							if($pic=='pic')
+							{
+								$picCount=count($picObj);
+								if($picCount>0)
+								{
+									for($x=0;$x<1;$x++)
+									{
+										$thumbnail=$basePath.$picObj[$x]->thumbnailPath.'/'.$picObj[$x]->thumbnailName;
+										echo "<div class=\"add-image\"> <span class=\"photo-count\"><i class=\"fa fa-camera\"></i> $picCount </span> <a href=\"$viewBasePath\"><img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";
+									}
+								}else {
+									$thumbnail = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
+									echo "<div class=\"add-image\"> <span class=\"photo-count\">
+									<i class=\"fa fa-camera\"></i> 0 </span> <a href=\"$viewBasePath\">
+									<img class=\"thumbnail no-margin\" src=$thumbnail alt=\"img\"></a> </div> ";
+								}
+							}
+						}
+						 
+				
+						$enableMarkSoldBtn=false;
+						$visibleBuyerComment=false;
+						$soldToUserID=0;
+						$soldToUserID=$post->soldToUserID;
+						$enableMarkSoldBtn=$post->sellerRating==null;
+						$visibleBuyerComment=$post->sellerRating<>null &&
+						$post->buyerRating==null;
+						$previewTitle=$post->itemName;
+						$preview=trimLongText(trim($post->description));
+						if($post->sellerRating<>null){
+							$preview=$preview."<br/>Seller Comment:  (". getRating($post->sellerRating).")";
+							$preview=$preview." ".$post->sellerComment;
+						}
+						if($post->buyerRating<>null){
+							$preview=$preview."<br/> Buyer [$soldToUserName] Comment: (". getRating($post->buyerRating).")";
+							$preview=$preview." ".$post->buyerComment;
+						}
+						 
+				
+						$ctrlName="AjaxLoad".$rowCount;
+						$errorctrlName="ErrAjaxLoad".$rowCount;
+						$ctrlValue="post".$rowCount;
+						$postID2=$post->postID;
+						$clickLink="clickLink".$rowCount;
+						echo "</div>";
+						echo "<div class=\"col-sm-7 add-desc-box\">";
+						// echo "<div class=\"add-details\">";
+						echo "<div class=\"ads-details\">";
+						echo "<h5> <div class=\"add-title-girlstrade\"><a href=\"$viewBasePath\">$title $previewTitle</a></div><a href=\"$viewBasePath\">$preview </a></h5>";
+						echo "<span class=\"info-row\"> <span class=\"date\"><i class=\"icon-clock\"> </i> $post->createDate </span> - <span class=\"category\">$categoryName </span>- <span class=\"item-location\"><i class=\"fa fa-map-marker\"></i> $locationName </span> </span> </div>";
+						echo "</div>";
+						echo "<div class=\"col-sm-3 text-right  price-box\">";
+						echo "<h4 class=\"item-price\">$</h4><h1 class=\"item-price\">$post->itemPrice</h1>";
+						echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
+						/*echo "<a class=\"btn btn-primary btn-block btn-pink\" href=".$basePath."viewItem/index/$id?prevURL=$encodeCurrentURL&prevItem_Url=".urlencode(current_url())."><i class=\"fa fa-info-circle\"></i>  View Details</a>";
+				
+						if(isset($usr) && !empty($usr) && $usr["username"]!=null){
+						if($post->userID!=$usr["userID"]){
+						if($item["isPendingRequest"]==false && $item["isPostAlready"]==false)
+						{
+						echo "<a  href=";
+						echo base_url().MY_PATH."messages/directSend/".$postID2."?prevURL=".urlencode(current_url()); //."&prevprevURL=".urlencode($previousCurrent_url);
+						echo " data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+						}else if($item["isPendingRequest"] == true){
+						echo "<a  href=\"\" onclick=\"return false;\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink disabled\" > <i class=\" icon-pencil\"></i> Pending for Seller's Approval</a>";
+						}
+						}
+						}else{
+						echo "<a  href=\"#loginPopup\" data-toggle=\"modal\"  class=\"btn btn-primary btn-block btn-pink\" > <i class=\" icon-pencil\"></i> Contact Seller</a>";
+						}
+						/* if($getDisableSavedAds)
+							echo "[<a style=\"pointer-events: none; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+							else
+								echo "[<a href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'>Save</a>] ";
+								echo "[<a href=\"$viewBasePath\">View Details</a>]</div>";
+								*/
+							echo "</div></div>";
+					}
+					 
+				}
               ?>  
               </div>
               

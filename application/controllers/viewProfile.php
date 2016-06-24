@@ -367,8 +367,8 @@ class viewProfile extends getCategory {
 				$data["catID"]="0";
 			}
 		$NoOfItemCount=0;
-		$data["itemList"]=$this->mapToViewProfileItemList($this->post_model->getItemList($pageNum, $data["userID"], $data["catID"], $locID, $keywords,0, 0,0,$data["sortByType"],$data["sortByPrice"], $data["sortByDate"]),$loginUser["userID"], $activeTab);
-		$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords, $activeTab);
+		$data["itemList"]=$this->mapToViewProfileItemList($this->post_model->getItemList($pageNum, $data["userID"], $data["catID"], $locID, $keywords,0,0,0,$data["sortByType"],$data["sortByPrice"], $data["sortByDate"], $activeTab), $loginUser['userID']);
+		$NoOfItemCount=$this->post_model->getNoOfItemCount($data["userID"], $catID, $locID, $keywords,0,0, $activeTab);
 		$data["sellerRating"]=$this->tradecomments_model->getRating($data["userID"]);
 		$data["userRating"]=$this->users_model->getUserRating($data["userID"]);
 		$data["activeTab"]=$activeTab;	
