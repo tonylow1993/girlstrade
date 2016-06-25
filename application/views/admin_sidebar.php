@@ -26,10 +26,10 @@
                       	echo "<li><a class=\"active\" href=$adminPostPath>". $this->lang->line('adminPost')." <span class=\"badge\"></span></a></li>";
               	  	else 
               	  		echo "<li><a href=$adminPostPath>". $this->lang->line('adminPost')." <span class=\"badge\"></span></a></li>";
-              	  	if($activeNav==11)
-              	  		echo "<li><a class=\"active\" href=$approveFeedBackPath>". $this->lang->line('adminApproveFeedBack')." <span class=\"badge\"></span></a></li>";
-           	 		else
-               			echo "<li><a href=$approveFeedBackPath>". $this->lang->line('adminApproveFeedBack')." <span class=\"badge\"></span></a></li>";
+//               	  	if($activeNav==11)
+//               	  		echo "<li><a class=\"active\" href=$approveFeedBackPath>". $this->lang->line('adminApproveFeedBack')." <span class=\"badge\"></span></a></li>";
+//            	 		else
+//                			echo "<li><a href=$approveFeedBackPath>". $this->lang->line('adminApproveFeedBack')." <span class=\"badge\"></span></a></li>";
 //               	  				if($activeNav==12)
 //               	  					echo "<li><a class=\"active\" href=$appravePrivateMsgByUserIDOnlyPath>". $this->lang->line('adminApprovePrivateMsgByUserIDOnly')." <span class=\"badge\"></span></a></li>";
 //               	  					else
@@ -49,14 +49,14 @@
                       	echo "<li><a  class=\"active\" href=$updatePostPath>".$this->lang->line('updatePost') ." <span class=\"badge\"></span></a></li>";
                 	else 
               	   	echo "<li><a href=$updatePostPath>".$this->lang->line('updatePost') ." <span class=\"badge\"></span></a></li>";
-                	if($activeNav==6)
-                		echo "<li><a  class=\"active\" href=$itemCommentPath>".$this->lang->line('approveitemComment') ." <span class=\"badge\"></span></a></li>";
-                	else
-                	echo "<li><a href=$itemCommentPath>".$this->lang->line('approveitemComment') ." <span class=\"badge\"></span></a></li>";
-                	if($activeNav==7)
-                		echo "<li><a  class=\"active\" href=$postCommentPath>".$this->lang->line('approvePostComment') ." <span class=\"badge\"></span></a></li>";
-                	else
-                		echo "<li><a href=$postCommentPath>".$this->lang->line('approvePostComment') ." <span class=\"badge\"></span></a></li>";
+//                 	if($activeNav==6)
+//                 		echo "<li><a  class=\"active\" href=$itemCommentPath>".$this->lang->line('approveitemComment') ." <span class=\"badge\"></span></a></li>";
+//                 	else
+//                 	echo "<li><a href=$itemCommentPath>".$this->lang->line('approveitemComment') ." <span class=\"badge\"></span></a></li>";
+//                 	if($activeNav==7)
+//                 		echo "<li><a  class=\"active\" href=$postCommentPath>".$this->lang->line('approvePostComment') ." <span class=\"badge\"></span></a></li>";
+//                 	else
+//                 		echo "<li><a href=$postCommentPath>".$this->lang->line('approvePostComment') ." <span class=\"badge\"></span></a></li>";
                 	if($activeNav==8)
                 		echo "<li><a  class=\"active\"  href=$abuseMessagePath>".$this->lang->line('abuseMessage') ." <span class=\"badge\"></span></a></li>";
                 	else
@@ -66,15 +66,15 @@
                 	else
                 		echo "<li><a href=$contactUsPath>".$this->lang->line('adminContactUs') ." <span class=\"badge\"></span></a></li>";
                 	 
-                	if($activeNav==5)
-                      	echo "<li><a  class=\"active\" href=$deleteUserPath>".$this->lang->line('deleteUser') ." <span class=\"badge\"></span></a></li>";
-              	  	else
-              	   	echo "<li><a href=$deleteUserPath>".$this->lang->line('deleteUser') ." <span class=\"badge\"></span></a></li>";
+//                 	if($activeNav==5)
+//                       	echo "<li><a  class=\"active\" href=$deleteUserPath>".$this->lang->line('deleteUser') ." <span class=\"badge\"></span></a></li>";
+//               	  	else
+//               	   	echo "<li><a href=$deleteUserPath>".$this->lang->line('deleteUser') ." <span class=\"badge\"></span></a></li>";
               	  
-              	  	if($activeNav==9)
-              	  		echo "<li><a  class=\"active\" href=$sendEmailPath>".$this->lang->line('sendEmail') ." <span class=\"badge\"></span></a></li>";
-              	  	else
-              	  		echo "<li><a href=$sendEmailPath>".$this->lang->line('sendEmail') ." <span class=\"badge\"></span></a></li>";
+//               	  	if($activeNav==9)
+//               	  		echo "<li><a  class=\"active\" href=$sendEmailPath>".$this->lang->line('sendEmail') ." <span class=\"badge\"></span></a></li>";
+//               	  	else
+//               	  		echo "<li><a href=$sendEmailPath>".$this->lang->line('sendEmail') ." <span class=\"badge\"></span></a></li>";
               	  	
               	  	if($activeNav==12)
               	  		echo "<li><a  class=\"active\" href=$blogAdminPath>".$this->lang->line('adminBlog') ." <span class=\"badge\"></span></a></li>";
