@@ -24,15 +24,15 @@
 			<div class="tab-content">
 				<div class="tab-pane active" id="tab1">
 					<div class="col-sm-6 page-content">
-						<div class="inner-box profile-panel setting-panel panel-bevel">
-							<a href="http://www.girlstrade.com/home/getAccountPage/4" class="row white-icon">
+						<div onclick="window.location='http://www.girlstrade.com/home/getAccountPage/4';" class="inner-box profile-panel setting-panel panel-bevel">
+							<a class="row white-icon">
 								<i class="fa fa-user fa-5"></i><br>
 								<p class="panel-title">EDIT PROFILE</p>
 							</a>
 						</div>
 						
-						<div class="inner-box profile-panel inbox-panel panel-bevel">
-							<a href="http://www.girlstrade.com/home/getAccountPage/13" class="row white-icon">
+						<div onclick="window.location='http://www.girlstrade.com/home/getAccountPage/13';" class="inner-box profile-panel inbox-panel panel-bevel">
+							<a class="row white-icon">
 								<i class="fa fa-inbox fa-5"></i><br>
 								<p class="panel-title">INBOX
 								<?php
@@ -44,8 +44,8 @@
 					</div>
 				
 					<div class="col-sm-6 page-content">
-						<div class="inner-box profile-panel myads-panel panel-bevel">
-							<a href="http://www.girlstrade.com/home/getAccountPage/12" class="row white-icon">
+						<div onclick="window.location='http://www.girlstrade.com/home/getAccountPage/12';" class="inner-box profile-panel myads-panel panel-bevel">
+							<a class="row white-icon">
 								<i class="fa fa-envelope-o fa-5"></i><br>
 								<p class="panel-title">Email Config.</p>
 							</a>
@@ -54,8 +54,8 @@
 				</div>
 				<div class="tab-pane" id="tab2">
 				  <div class="col-sm-6 page-content">
-						<div class="inner-box profile-panel setting-panel panel-bevel">
-							<a href="http://www.girlstrade.com/home/getAccountPage/3" class="row white-icon">
+						<div onclick="window.location='http://www.girlstrade.com/home/getAccountPage/3';" class="inner-box profile-panel setting-panel panel-bevel">
+							<a class="row white-icon">
 								<i class="fa fa-user fa-5"></i><br>
 								<p class="panel-title">MY ADS.</p>
 							</a>
@@ -63,8 +63,8 @@
 					</div>
 				
 					<div class="col-sm-6 page-content">
-						<div class="inner-box profile-panel buyer-panel panel-bevel">
-							<a href="http://www.girlstrade.com/home/getAccountPage/2" class="row white-icon">
+						<div onclick="window.location='http://www.girlstrade.com/home/getAccountPage/2';" class="inner-box profile-panel buyer-panel panel-bevel">
+							<a class="row white-icon">
 								<i class="fa fa-shopping-cart fa-5"></i><br>
 								<p class="panel-title">BUYER LIST</p>
 							</a>
@@ -73,8 +73,8 @@
 				</div>
 				<div class="tab-pane" id="tab3">
 					<div class="col-sm-6 page-content">
-						<div class="inner-box profile-panel setting-panel panel-bevel" style="background-color: #8c3988">
-							<a href="http://www.girlstrade.com/home/getAccountPage/6" class="row white-icon">
+						<div onclick="window.location='http://www.girlstrade.com/home/getAccountPage/6';" class="inner-box profile-panel setting-panel panel-bevel" style="background-color: #8c3988">
+							<a class="row white-icon">
 								<i class="fa fa-compress fa-5"></i><br>
 								<p class="panel-title">SELLER LIST</p>
 							</a>
@@ -82,8 +82,8 @@
 					</div>
 				
 					<div class="col-sm-6 page-content">
-						<div class="inner-box profile-panel buyer-panel panel-bevel" style="background-color: #ff5f5f">
-							<a href="http://www.girlstrade.com/home/getAccountPage/5" class="row white-icon">
+						<div onclick="window.location='http://www.girlstrade.com/home/getAccountPage/5';" class="inner-box profile-panel buyer-panel panel-bevel" style="background-color: #ff5f5f">
+							<a class="row white-icon">
 								<i class="fa fa-heart fa-5"></i><br>
 								<p class="panel-title">FAV. ITEMS</p>
 							</a>
