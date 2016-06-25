@@ -115,8 +115,13 @@
 						$clickLink="clickLink".$rowCount;
 						$shareLink=base_url().MY_PATH."viewItem/index/".$postID;
 						//echo "<p><a class=\"btn btn-primary btn-xs\" href=$editPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Edit')." </a></p>";
+						
+						$txtCopyText=base64_encode("<textarea style=\"vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20\" >Find $previewTitle in GirlsTrade - $shareLink</textarea>
+								<textarea hidden=\"true\" style=\"vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20\" class=\"js-copytextarea\" id=\"holdtext\"> $shareLink</textarea>");
+								
+						
 						if(strcmp($status, "Rejected")!=0 && strcmp($status, "Unverified")!=0 && strcmp($status, "Closed")!=0){
-							echo "<p> <a class=\"btn btn-info btn-xs btn-120\" href=\"#shareAds\"  data-toggle=\"modal\" data-sharelink='$shareLink'> <i class=\"fa fa-mail-forward\"></i> ".$this->lang->line('Share')." </a></p>";
+							echo "<p> <a class=\"btn btn-info btn-xs btn-120\" href=\"#shareAds\"  data-toggle=\"modal\" data-txtcopytext='$txtCopyText'> <i class=\"fa fa-mail-forward\"></i> ".$this->lang->line('Share')." </a></p>";
 						}
 						echo "<p>";
                         		
@@ -235,7 +240,7 @@
   </div>
   <!-- /.main-container -->
   <!-- /.modal --> 
- <!-- <div class="modal fade" id="shareAds" tabindex="-1" role="dialog">
+  <div class="modal fade" id="shareAds" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">
     <div class="modal-content">
@@ -243,10 +248,11 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title">Click copy button and paste in other apps to share </h4>
       </div>
-      <div class="modal-body">
-      <h2 id="copytext">
+      	<div id="txtCopyText" name="txtCopyText">
+<!--        <div class="modal-body"> -->
+<!--       <h2 id="copytext"> -->
 			<?php // echo $shareLink;?>
-			</h2>
+<!-- 			</h2> -->
 		<textarea style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" >Find "<?php echo $itemName;?>" in GirlsTrade - <?php echo $shareLink;?></textarea>
 		<textarea hidden="true" style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" class="js-copytextarea" id="holdtext"><?php echo $shareLink;?></textarea>
 		 </div>
@@ -256,10 +262,10 @@
       </div>
     </div>
   </div>
-</div>-->
+</div>
   
   
-  <div class="modal fade" id="shareAds" tabindex="-1" role="dialog">
+<!--  <div class="modal fade" id="shareAds" tabindex="-1" role="dialog">
 
   <div class="modal-dialog">
     <div class="modal-content">
@@ -280,7 +286,7 @@
     </div>
   </div>
 </div>
-
+-->
 
 <div class="modal fade" id="confirmRepost" tabindex="-1" role="dialog">
 
@@ -423,6 +429,10 @@ function passToModal() {
     $('#markSoldAds').on('show.bs.modal', function(event) {
         $("#postID").val($(event.relatedTarget).data('id'));
          $("#divSoldUser").html(jsbase64_decode($(event.relatedTarget).data('soldusers')));
+    });
+
+    $('#shareAds').on('show.bs.modal', function(event) {
+         $("#txtCopyText").html(jsbase64_decode($(event.relatedTarget).data('txtcopytext')));
     });
     $('#confirmRepost').on('show.bs.modal', function(event) {
         $("#postID").val($(event.relatedTarget).data('id'));
