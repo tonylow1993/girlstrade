@@ -248,7 +248,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title">Click copy button and paste in other apps to share </h4>
       </div>
-      	<div id="txtCopyText" name="txtCopyText">
+      	<div class="modal-body" id="txtCopyText" name="txtCopyText">
 <!--        <div class="modal-body"> -->
 <!--       <h2 id="copytext"> -->
 			<?php // echo $shareLink;?>
