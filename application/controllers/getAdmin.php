@@ -1085,6 +1085,9 @@ class getAdmin extends CI_Controller {
 				$blockDate=$this->input->post("blockDate");
 				$data=array("typeAds"=> $postType, "blockDate"=>$blockDate);
 				$this->post_model->update($data, $postID);
+				$postInfo=$this->post_model->getPostByPostID($postID);
+				
+				$this->admin_model->updateStatByUserID($postInfo[0]->userID);
 				$data['status'] = 'A';
 				$data['class'] = "has-success";
 				$data['message'] = '';
