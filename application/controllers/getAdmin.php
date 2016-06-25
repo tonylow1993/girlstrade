@@ -409,6 +409,9 @@ class getAdmin extends CI_Controller {
 				$postInfo=$this->post_model->getPostByPostID($postID);
 				$userarray=$this->users_model->get_user_by_id($buyerID);
 				
+				if(!isset($postInfo) || $postInfo==null)
+					continue;
+				
 				$to="";
 				$from="";
 				if($userarray<>null)
