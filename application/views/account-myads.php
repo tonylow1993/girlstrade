@@ -409,6 +409,7 @@
 </div>
 <!-- /.wrapper --> 
 <script>
+
 var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
 
 copyTextareaBtn.addEventListener('click', function(event) {
@@ -418,13 +419,30 @@ copyTextareaBtn.addEventListener('click', function(event) {
   try {
     var successful = document.execCommand('copy');
     var msg = successful ? 'successful' : 'unsuccessful';
-       //location.href=copyTextarea.innerHTML;
+      location.href=copyTextarea.innerHTML;
            //"http://localhost:8888/girlstrade/index.php/viewItem/index/1"; 
     console.log('Copying text command was ' + msg);
   } catch (err) {
     console.log('Oops, unable to copy');
   }
 });
+
+// var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+// copyTextareaBtn.addEventListener('click', function(event) {
+//   var copyTextarea = document.querySelector('.js-copytextarea');
+//   copyTextarea.select();
+
+//   try {
+//     var successful = document.execCommand('copy');
+//     var msg = successful ? 'successful' : 'unsuccessful';
+//        //location.href=copyTextarea.innerHTML;
+//            //"http://localhost:8888/girlstrade/index.php/viewItem/index/1"; 
+//     console.log('Copying text command was ' + msg);
+//   } catch (err) {
+//     console.log('Oops, unable to copy');
+//   }
+// });
 function passToModal() {
     $('#markSoldAds').on('show.bs.modal', function(event) {
         $("#postID").val($(event.relatedTarget).data('id'));
