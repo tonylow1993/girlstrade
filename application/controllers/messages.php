@@ -331,7 +331,7 @@ function addDayswithdate($date,$days){
 			
 						$comment=nl2br(htmlentities($this->input->post('messagetext2'), ENT_QUOTES, 'UTF-8'));
 			
-						if(ExceedDescLength($comment, DESCLENGTHINNEWPOST)){
+						if(ExceedDescLength($comment, DESCLENGTHINNEWPOSTBACKEND)){
 							$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 							if(empty($comment) || strlen(trim($comment))==0)
 								$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
@@ -489,7 +489,7 @@ function addDayswithdate($date,$days){
 				
 				$comment=nl2br(htmlentities($this->input->post('messagetext2'), ENT_QUOTES, 'UTF-8'));
 				
-				if(ExceedDescLength($comment, DESCLENGTHINNEWPOST)){
+				if(ExceedDescLength($comment, DESCLENGTHINNEWPOSTBACKEND)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 					if(empty($comment) || strlen(trim($comment))==0)
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
@@ -1665,7 +1665,7 @@ function addDayswithdate($date,$days){
 						}			
 				
 						
-						if(ExceedDescLength($buyerComment, DESCLENGTHINNEWPOST)){
+						if(ExceedDescLength($buyerComment, DESCLENGTHINNEWPOSTBACKEND)){
 							$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 							if(empty($buyerComment) || strlen(trim($buyerComment))==0)
 								$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
@@ -1979,7 +1979,7 @@ function addDayswithdate($date,$days){
 				
 				$message=nl2br(htmlentities($message, ENT_QUOTES, 'UTF-8'));
 				
-				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
+				if(ExceedDescLength($message, DESCLENGTHINNEWPOSTBACKEND)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 					if(empty($message) || strlen(trim($message))==0)   
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
@@ -2159,7 +2159,7 @@ function addDayswithdate($date,$days){
 		
 				$message=nl2br(htmlentities($message, ENT_QUOTES, 'UTF-8'));
 				
-				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
+				if(ExceedDescLength($message, DESCLENGTHINNEWPOSTBACKEND)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 					if(empty($message) || strlen(trim($message))==0)   
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
@@ -2324,7 +2324,7 @@ function addDayswithdate($date,$days){
 				
 				$message=nl2br(htmlentities($message, ENT_QUOTES, 'UTF-8'));
 				
-				if(ExceedDescLength($message, DESCLENGTHINNEWPOST)){
+				if(ExceedDescLength($message, DESCLENGTHINNEWPOSTBACKEND)){
 					$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 					if(empty($message) || strlen(trim($message))==0)   
 						$errorMsg=sprintf($this->lang->line("ZeroDescLength"));

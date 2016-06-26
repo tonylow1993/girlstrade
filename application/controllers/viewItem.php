@@ -673,7 +673,7 @@
         public function validateBlogsCommentLength(){
         	$blogscomment=$this->input->post("blogscomment");
         	$blogscomment=nl2br(htmlentities($blogscomment, ENT_QUOTES, 'UTF-8'));
-        	if(!ExceedDescLength($blogscomment, DESCLENGTHINNEWPOST)){
+        	if(!ExceedDescLength($blogscomment, DESCLENGTHINNEWPOSTBACKEND)){
         		$data['status'] = 'A';
         		$data['class'] = "has-success";
         		$data['message'] = '';
@@ -697,7 +697,7 @@
         public function validateReplyBlogsCommentLength(){
         	$blogscomment=$this->input->post("replyblogscomment");
         	$blogscomment=nl2br(htmlentities($blogscomment, ENT_QUOTES, 'UTF-8'));
-        	if(!ExceedDescLength($blogscomment, DESCLENGTHINNEWPOST)){
+        	if(!ExceedDescLength($blogscomment, DESCLENGTHINNEWPOSTBACKEND)){
         		$data['status'] = 'A';
         		$data['class'] = "has-success";
         		$data['message'] = '';

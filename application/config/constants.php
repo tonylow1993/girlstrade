@@ -41,6 +41,7 @@ define('ITEMS_PER_PAGE',5);
 /* Location: ./application/config/constants.php */
 
 define("DESCLENGTHINNEWPOST", 450);
+define("DESCLENGTHINNEWPOSTBACKEND", 750);
 define("DESCLENGTHINPROFILE",300);
 define("DESCLENGTHINITEMPAGE",300);
 define("DESCLENGTHININBOX",300);

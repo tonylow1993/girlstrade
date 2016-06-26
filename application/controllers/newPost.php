@@ -1070,12 +1070,12 @@ public function getChildCategory($parentID)
 		}		
 
 
-        if(ExceedDescLength($content, DESCLENGTHINNEWPOST) ||
+        if(ExceedDescLength($content, DESCLENGTHINNEWPOSTBACKEND) ||
         	ExceedDescLength($title, 70) ||
         		ShortDescLength($content, DESCMINLENGTHINNEWPOST) || 
         		empty($cat) || $cat==0 || strcmp($cat, "0")==0
         		){
-	        if(ExceedDescLength($content, DESCLENGTHINNEWPOST) ||
+	        if(ExceedDescLength($content, DESCLENGTHINNEWPOSTBACKEND) ||
         	ExceedDescLength($title, 70))
         		$errorMsg=$errorMsg." ".sprintf($this->lang->line("ExceedMaxDescOrTitleLengthInNewPost"));
 	        if(ShortDescLength($content, DESCMINLENGTHINNEWPOST))
@@ -1837,7 +1837,7 @@ public function getChildCategory($parentID)
 	public function validateDescLength(){
 		$des = $this->input->post('descTextarea',true);
 		$content=htmlentities($des, ENT_QUOTES, 'UTF-8');
-		if(!ExceedDescLength($content, DESCLENGTHINNEWPOST)){
+		if(!ExceedDescLength($content, DESCLENGTHINNEWPOSTBACKEND)){
 			$data['status'] = 'A';
 			$data['class'] = "has-success";
 			$data['message'] = '';

@@ -3301,7 +3301,7 @@ class Home extends CI_Controller {
 			
 			
 			
-			if(ExceedDescLength($userInfo['introduction'], DESCLENGTHINNEWPOST)){
+			if(ExceedDescLength($userInfo['introduction'], DESCLENGTHINNEWPOSTBACKEND)){
 				$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 				if(empty($userInfo['introduction']) || strlen(trim($userInfo['introduction']))==0)
 					$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
@@ -3871,7 +3871,7 @@ class Home extends CI_Controller {
 		
 		$content=nl2br(htmlentities($content, ENT_QUOTES, 'UTF-8'));
 			
-		if(ExceedDescLength($content, DESCLENGTHINNEWPOST)){
+		if(ExceedDescLength($content, DESCLENGTHINNEWPOSTBACKEND)){
 			$errorMsg=sprintf($this->lang->line("ExceedMaxDescLength"));
 			if(empty($content) || strlen(trim($content))==0)
 					$errorMsg=sprintf($this->lang->line("ZeroDescLength"));
