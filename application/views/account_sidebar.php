@@ -1,3 +1,4 @@
+<div class="sidebar">
 <div class="col-sm-3 page-sidebar">
          <aside>
             <div class="inner-box">
@@ -131,3 +132,4 @@
             
           </aside>
         </div>
+		</div>
