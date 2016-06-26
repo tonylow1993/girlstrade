@@ -347,6 +347,9 @@ class newPost extends CI_Controller {
 				$data["Password"]=$this->lang->line("Password");
 				$data["SignUp"]=$this->lang->line("SignUp");
 				$data["LostYourPassword"]=$this->lang->line("LostYourPassword");
+				$data["lblLogin"]=$this->lang->line("lblLogin");
+				$data["lblSubmit"]=$this->lang->line("lblSubmit");
+				$data["lblWithoutAccount"]=$this->lang->line("lblWithoutAccount");
 				
 				$this->load->view('login', $data);
 				return;
