@@ -49,11 +49,18 @@
     <div aria-labelledby="headingOne" role="tabpanel" class="panel-collapse collapse in" id="collapseOne">
       <div class="panel-body">
        <span class="label label-default" style="background-color: #60B2FB;">1.</span> 
-       Go to Login at the top of the menu and log into your GirlsTrade account. 
-<br><br>
-Pellentesque in mauris placerat, porttitor lorem id, ornare nisl. Pellentesque rhoncus convallis felis, in egestas libero. Donec et nibh dapibus, sodales nisi quis, fringilla augue. Donec dui quam, egestas in varius ut, tincidunt quis ipsum. Nulla nec odio eu nisi imperdiet dictum.
-<br><br>
-Curabitur sed leo dictum, convallis lorem eu, suscipit mi. Mauris viverra blandit varius. Proin non sem turpis. Etiam fringilla hendrerit nunc at accumsan. Duis mollis auctor lobortis. 
+       Go to Login on the top of the menu and log into your GirlsTrade account. 
+		<br><br>
+		<span class="label label-default" style="background-color: #60B2FB;">2.</span> 
+       Select “Post” on the top of the menu. Fill in what category you are selling in (Step 1), and the item/service information (Step 2). Remember to include a picture of your item as well. 
+		<br><br>
+		<span class="label label-default" style="background-color: #60B2FB;">3.</span> 
+       Within 24 hours, GirlsTrade admin will review and turn your post into live within GirlsTrade's website. 
+		<br><br>
+ 		<span class="label label-default" style="background-color: #60B2FB;">4.</span> 
+       Come back to the website and check whether anyone out there is interested in your post! 
+		<br>(Hint: A good seller never takes too long to respond to a buyer's request.)
+		<br><br>
       </div>
     </div>
   </div>
@@ -68,9 +75,9 @@ Curabitur sed leo dictum, convallis lorem eu, suscipit mi. Mauris viverra blandi
     </div>
     <div aria-labelledby="headingTwo" role="tabpanel" class="panel-collapse collapse" id="collapseTwo">
       <div class="panel-body">
-        Curabitur sed leo dictum, convallis lorem eu, suscipit mi. Mauris viverra blandit varius. Proin non sem turpis. Etiam fringilla hendrerit nunc at accumsan. Duis mollis auctor lobortis.
+        It is 100% free! We are a community that welcomes any girls to make trades in this platform, so why not make it free for everyone.
 <br><br>
-Etiam elementum nulla non erat blandit, sed porttitor urna malesuada. Cras euismod a nulla sed ornare. Vestibulum id molestie nulla. Phasellus sodales, sapien vitae auctor rhoncus 
+ 		(Note: there is a daily limit in how many times you can post to prevent over using this platform and hackers.)
       </div>
     </div>
   </div>
@@ -79,13 +86,16 @@ Etiam elementum nulla non erat blandit, sed porttitor urna malesuada. Cras euism
     <div id="headingThree" role="tab" class="panel-heading">
       <h4 class="panel-title">
         <a aria-controls="collapseThree" aria-expanded="false" href="#collapseThree" data-parent="#accordion" data-toggle="collapse" class="collapsed">
-           If I post an ad, will I also get more spam e-mails? 
+           How to attract more buyers for your post(s)?
         </a>
       </h4>
     </div>
     <div aria-labelledby="headingThree" role="tabpanel" class="panel-collapse collapse" id="collapseThree">
       <div class="panel-body">
-          Pellentesque in mauris placerat, porttitor lorem id, ornare nisl. Pellentesque rhoncus convallis felis, in egestas libero. Donec et nibh dapibus, sodales nisi quis, fringilla augue. Donec dui quam, egestas in varius ut, tincidunt quis ipsum. Nulla nec odio eu nisi imperdiet dictum.
+         Make sure when you are posting your ad, you are making clear what you are selling. With clear descriptions and images about your item / services. 
+<br>
+		Most importantly, come back often and check! Next thing you know is a new buyer will be waiting already in your list.
+<br><br>
       </div>
     </div>
   </div>
@@ -94,13 +104,13 @@ Etiam elementum nulla non erat blandit, sed porttitor urna malesuada. Cras euism
     <div id="heading_04" role="tab" class="panel-heading">
       <h4 class="panel-title">
         <a aria-controls="collapse_04" aria-expanded="false" href="#collapse_04" data-parent="#accordion" data-toggle="collapse" class="collapsed">
-          How long will my ad remain on the website?  
+          How long will my post remain on the website?  
         </a>
       </h4>
     </div>
     <div aria-labelledby="heading_04" role="tabpanel" class="panel-collapse collapse" id="collapse_04">
       <div class="panel-body">
-          Pellentesque in mauris placerat, porttitor lorem id, ornare nisl. Pellentesque rhoncus convallis felis, in egestas libero. Donec et nibh dapibus, sodales nisi quis, fringilla augue. Donec dui quam, egestas in varius ut, tincidunt quis ipsum. Nulla nec odio eu nisi imperdiet dictum.
+          Your post will be live for 3 months to 1 year, depending on the current trend and flow of our website.
       </div>
     </div>
   </div>
@@ -109,13 +119,13 @@ Etiam elementum nulla non erat blandit, sed porttitor urna malesuada. Cras euism
     <div id="heading_05" role="tab" class="panel-heading">
       <h4 class="panel-title">
         <a aria-controls="collapse_05" aria-expanded="false" href="#collapse_05" data-parent="#accordion" data-toggle="collapse" class="collapsed">
-          I sold my item. How do I delete my ad? 
+          I sold my item. How do I delete my post? 
         </a>
       </h4>
     </div>
     <div aria-labelledby="heading_05" role="tabpanel" class="panel-collapse collapse" id="collapse_05">
       <div class="panel-body">
-       Pellentesque in mauris placerat, porttitor lorem id, ornare nisl. Pellentesque rhoncus convallis felis, in egestas libero. Donec et nibh dapibus, sodales nisi quis, fringilla augue. Donec dui quam, egestas in varius ut, tincidunt quis ipsum. Nulla nec odio eu nisi imperdiet dictum.
+       Simply go to your profile (after you login to your account) and go to "My Ad" to delete the listing, or you can go directly to your post (if you can locate your post) and click delete from there as well.
       </div>
     </div>
   </div>
@@ -124,15 +134,13 @@ Etiam elementum nulla non erat blandit, sed porttitor urna malesuada. Cras euism
     <div id="heading_06" role="tab" class="panel-heading">
       <h4 class="panel-title">
         <a aria-controls="collapse_06" aria-expanded="false" href="#collapse_06" data-parent="#accordion" data-toggle="collapse" class="collapsed">
-           What is a wish list?  
+           What is my favorite item/post mean?  
         </a>
       </h4>
     </div>
     <div aria-labelledby="heading_06" role="tabpanel" class="panel-collapse collapse" id="collapse_06">
       <div class="panel-body">
-      
-
-Curabitur sed leo dictum, convallis lorem eu, suscipit mi. Mauris viverra blandit varius. Proin non sem turpis. Etiam fringilla hendrerit nunc at accumsan. Duis mollis auctor lobortis. 
+      	It is a saved list that allows you to review your "favorited" post inside your account profile. (Given that those ad are still alive.)  
       </div>
     </div>
   </div>
@@ -175,7 +183,7 @@ Curabitur sed leo dictum, convallis lorem eu, suscipit mi. Mauris viverra blandi
                 	<div class="inner">
                     <div class="icon-box-wrap"> <i class="icon-megaphone ln-shadow-box shape-7"></i></div>
                     <h3 class="title-4">Best Offers </h3>
-                    <p>Girlstrade provide a platform designated for girls in Hong Kong to not only make trades but also gather and help each other out. </p>
+                    <p>Girlstrade provides a platform designated for girls in Hong Kong to not only make trades but also gather and help each other out. </p>
                     </div>
                 </div>
              
