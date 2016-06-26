@@ -26,7 +26,7 @@ $lang["Hot_Listings"]="熱賣物品搜尋";
 $lang["Login"]="登入";
 $lang["HeaderSearch"]="搜尋";
 $lang["Signup"]="登記";
-$lang["Profile"]="資料";
+$lang["Profile"]="帳戶";
 $lang["Logout"]="登出";
 $lang["Post_New_Ads"]="刊登";
 
@@ -74,7 +74,7 @@ $lang["ApprovedRequest"]="賣出記錄";
 $lang["TerminateAccount"]="終止帳戶";
 $lang["CloseAccount"]="關閉帳戶";
 $lang["OutgoingMsgTitle"]="發件箱";
-$lang["AccountTabName"]="帳戶";
+$lang["AccountTabName"]="帳戶管理";
 $lang["SellerTabName"]="賣家";
 $lang["BuyerTabName"]="買家";
 $lang["directsend_history"]="買方的詢問";
