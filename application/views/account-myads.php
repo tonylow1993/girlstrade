@@ -84,7 +84,7 @@
                   	if (is_file_exists($checkImgFile)) {
 					
                       	$sizeimage=getimagesize($imagePath);
-                      	echo "<p style=\"font-size:8px;padding:0px; margin: 0px;\">image size: ".$sizeimage[0]."x".$sizeimage[1]."</p>";
+                      	//echo "<p style=\"font-size:8px;padding:0px; margin: 0px;\">image size: ".$sizeimage[0]."x".$sizeimage[1]."</p>";
                       	if($sizeimage[1]>300)
                       	{
                       		$ratio= 100*300/ $sizeimage[1];
@@ -102,7 +102,6 @@
 //                       	echo "</div>";
                       	
 //                       	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
-                    	echo "<p class=\"price-td\">".$this->lang->line("Price")." :$price</p>";
 						$editPath=base_url().MY_PATH."newPost/showEditPost/".$messageID."?prevURL=".urlencode(current_url());
 						$sharePath=base_url().MY_PATH."messages/shareMyAds/".$messageID."/".$userID;
 						$deletePath=base_url().MY_PATH."messages/deleteMyAds/".$messageID."/".$userID;
@@ -157,10 +156,13 @@
                           	echo "<font color=\"grey\">".$status."</font>";
                           }
                           
-                   	  echo "<br/>Interested Buyer:  $NoOfSoldUsers";
+						echo "<br/>Interested Buyer:  $NoOfSoldUsers";
                         if(strcmp($status, "Rejected")==0){
                         	echo "<br/><font color=\"red\">Reject Reason: ".$rejectReason.": ".$rejectSpecifiedReason."</font>";
                         }
+						
+						echo "<br/>".$this->lang->line("Price").": $price";
+						
                         echo "</div></h5></td>";
                       	
                   		echo "</tr>";
