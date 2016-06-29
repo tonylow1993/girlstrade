@@ -10,7 +10,7 @@
             	?>	
             	
                     <tr>
-                    <th data-type="numeric" data-sort-initial="true"> </th>
+<!--                     <th data-type="numeric" data-sort-initial="true"> </th> -->
                     <th> <?php echo $this->lang->line("From");?> </th>
                     <th data-sort-ignore="true"> <?php echo $this->lang->line("Preview");?>  </th>
                     <th> <?php echo $this->lang->line("Action");?>  </th>
@@ -37,11 +37,11 @@
                   		$contactID=$row['contactID'];
                   		
                 		echo "<tr>";
-                    	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
-                        echo "<label>";
-                        echo "  <input type=\"checkbox\">";
-                        echo "</label>";
-                      	echo "</div></td>";
+//                     	echo "<td style=\"width:5%\" class=\"add-img-selector\"><div class=\"checkbox\">";
+//                         echo "<label>";
+//                         echo "  <input type=\"checkbox\">";
+//                         echo "</label>";
+//                       	echo "</div></td>";
                     	echo "<td style=\"width:20%\">" ;
                   		if(isset($name) && strcmp($name, "")!=0)
                   			echo $name."<br/>";
@@ -74,6 +74,6 @@
              	
            
             </div>
-             <br/><div class="form-group"><label class="col-md-3 control-label"></label><div class="col-md-8"> <button class="btn-success btn btn-lg" type="submit" value="Submit">Submit</button></div></div>
+<!--              <br/><div class="form-group"><label class="col-md-3 control-label"></label><div class="col-md-8"> <button class="btn-success btn btn-lg" type="submit" value="Submit">Submit</button></div></div> -->
              </form>   
    
