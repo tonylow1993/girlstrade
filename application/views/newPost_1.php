@@ -682,7 +682,6 @@ function setup()
 						contentType: false,
 						type: 'POST',
 						success:function(data){
-							alert("123");
 							var msg = jQuery.parseJSON(data);
 							if(msg.status == 'success'){
 								$("#modal-text").html("Your post has been successfully uploaded.");
@@ -704,8 +703,6 @@ function setup()
 									$('#progress-bar').css("display", "none");
 								}, 2000);
 						    }
-							
-							
 						}
 					});
                 }
