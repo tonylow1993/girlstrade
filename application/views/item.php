@@ -550,7 +550,7 @@ input[type=checkbox]
               			<a href="<?php echo base_url().MY_PATH;?>viewProfile/index/<?php echo $postID.'/1?prevURL='.urlencode($previousCurrent_url).'&prevProfile_Url='.urlencode(current_url());?>" 
               			class="btn   btn-default btn-block viewButton">
               			<i class="icon-user-3"></i>
-              			View <?php echo $username;?> Info</a> </div>
+              			View User Info</a> </div>
               		</h3>
                     <!-- <p> Joined: <strong><?php //echo $userCreateDate;?></strong></p> -->
                   </div>

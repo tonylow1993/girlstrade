@@ -57,8 +57,12 @@
              		<?php 	
              			}
              		}?>
-             		
-             <br/><button  type="submit" value="Submit" >Submit</button>
+			 
+			 <div class="form-group">
+                        <div class="col-sm-9">
+						  <button class="btn btn-primary" type="submit" value="Submit" >Submit</button>
+					  </div>
+					 </div>
              </form>   
         </div>
         </div>
