@@ -915,6 +915,25 @@ class Home extends CI_Controller {
 			 $data["username"]=$username;
 			$isValid = $this->userPassword->isValidPassword($data);
 			if($isValid){
+				if($user["blockDate"]!=null && $user["blockDate"]> date('Y-m-d'))
+				{
+					if( empty($user) ||
+							(!empty($user) &&  isset($user) && $user<>null &&  $user["userID"]<>0
+									&& strcmp($user["username"],"admin")!=0))
+					{
+						$errorMsg=$this->lang->line("NotAllowCreatePostBlackList");
+						$data["error"]=$errorMsg;
+						$data["prevURL"]=$prevURL;
+						$data['redirectToWhatPage']="Home Page";
+						$data['redirectToPHP']=base_url();
+						$data["successTile"]=$this->lang->line("successTile");
+						$data["failedTitle"]=$this->lang->line("failedTitle");
+						$data["goToHomePage"]=$this->lang->line("goToHomePage");
+						echo $errorMsg;
+						//$this->load->view('failedPage', $data);
+						return;
+					}
+				}
 				 $user = $this->user->getUserByUsername($username);
                   $this->nativesession->set("user",$user);
 			}else{

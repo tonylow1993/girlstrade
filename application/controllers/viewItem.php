@@ -114,6 +114,28 @@
             	
                 //echo $var['postID'];
                 $user = $this->users_model->get_user_by_id($var[0]->userID);
+                
+                if($user[0]->blockDate!=null && $user[0]->blockDate> date('Y-m-d'))
+                {
+                	if( empty($user) ||
+                			(!empty($user) &&  isset($user) && $user<>null &&  $user[0]->userID<>0
+                					&& strcmp($user[0]->username,"admin")!=0))
+                	{
+                		$errorMsg=$this->lang->line("NotAllowCreatePostBlackList");
+                		$data["error"]=$errorMsg;
+                		$data["prevURL"]=$prevURL;
+                		$data['redirectToWhatPage']="Home Page";
+                		$data['redirectToPHP']=base_url();
+                		$data["successTile"]=$this->lang->line("successTile");
+                		$data["failedTitle"]=$this->lang->line("failedTitle");
+                		$data["goToHomePage"]=$this->lang->line("goToHomePage");
+                		//echo $errorMsg;
+                		$this->load->view('failedPage', $data);
+                		return;
+                	}
+                }
+                
+                
                 $pic = $this->post->get_picture_by_postID($var[0]->postID);
                 $category = $this->post->get_category_by_categoryID($var[0]->catID);
                 $parentCategory=$this->post->get_category_by_categoryID($category[0]->parentID);

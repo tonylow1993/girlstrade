@@ -54,7 +54,8 @@ class searchresult_model extends CI_Model {
 		$strLocQuery=" and (locID in (select locationID from location where parentID=".$locID." ) or locID=".$locID."  or ".$locID."=0) ";
 	else
 		$strLocQuery=" and (locID=".$locID." or ".$locID."=0) ";
-
+	$blockUser=" and userID not in (select userID from user where blockDate is not null  and date_format(blockDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d')) ";
+		
 		$strnewUsed="";
 		if(strcmp($allAds, 'newAds')==0)
 			$strnewUsed=" and newUsed='N' ";
@@ -71,7 +72,7 @@ class searchresult_model extends CI_Model {
 			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore.$tagMore." ) ";
 		else
 			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$tagMore." ) ";
-		$strQuery=$strQuery.$priceStr;
+		$strQuery=$strQuery.$priceStr.$blockUser;
 		 
 	}else{
 		$strQuery="select count(distinct postID) as NoOfCount from post where status='A' and (userID=$userID or $userID=0) ";
@@ -83,7 +84,7 @@ class searchresult_model extends CI_Model {
 			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore.$tagMore." ) ";
 		else
 			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$tagMore.") ";
-		$strQuery=$strQuery.$priceStr;
+		$strQuery=$strQuery.$priceStr.$blockUser;
 	}
 	//echo $strQuery;
 	$NoOfItemCount=0;
@@ -166,6 +167,8 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	else if(strcmp($allAds, 'usedAds')==0)
 		$strnewUsed=" and newUsed='U' ";
 		
+	$blockUser=" and userID not in (select userID from user where blockDate is not null  and date_format(blockDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d')) ";
+		
 	$strQuery="";
 	if(strcmp($catID, "0")!=0 && $this->isParentCatID($catID)){
 		$strQuery="select * from post where status='A' and (userID=$userID or $userID=0) ";
@@ -178,7 +181,7 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore.$tagMore." ) ";
 	    		else 
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$tagMore." ) ";
-	    $strQuery=$strQuery.$priceStr.$sortStr." limit ".$olimit.",".$ulimit;
+	    $strQuery=$strQuery.$priceStr.$blockUser.$sortStr." limit ".$olimit.",".$ulimit;
 		 
 	}else{
 		$strQuery="select * from post where status='A' and (userID=$userID or $userID=0) ";
@@ -190,7 +193,7 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$filterMore.$tagMore." ) ";
 	    		else 
 	    			$strQuery=$strQuery." and (description like '%".($keywords)."%'  or itemName like '%".($keywords)."%'  ".$tagMore." ) ";
-	    $strQuery=$strQuery.$priceStr.$sortStr." limit ".$olimit.",".$ulimit;
+	    $strQuery=$strQuery.$priceStr.$blockUser.$sortStr." limit ".$olimit.",".$ulimit;
 	}
 	try {
 		//echo $strQuery;
