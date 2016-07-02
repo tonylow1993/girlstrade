@@ -318,3 +318,31 @@ $lang["lblSignupDesc2T"]="個人資料只會用於交易和通知的用途。未
 
 //--------faq----
 $lang["titleFAQ"]="常見問題";
+
+//----index----
+$lang["indexFirstTitle"]="Search Something For Yourself";
+$lang["indexSecondTitle"]="A Platform for Girls to Trade";
+$lang["indexHowDoesItWorks"]="How Girlstrade Works?";
+$lang["indexWorksStepOne"]="Login";
+$lang["indexWorksTitleOne"]="1. Sign up/ Login";
+$lang["indexWorksDescOne"]="Obtain a girlstrade account and login";
+$lang["indexWorksStepSec"]="Post";
+$lang["indexWorksTitleSec"]="2. Post your item";
+$lang["indexWorksDescSec"]="Create a new post to tell the world what you are selling!";
+$lang["indexWorksStepThird"]="Stay Put";
+$lang["indexWorksTitleThird"]="3. Buyer will contact you";
+$lang["indexWorksDescThird"]="Wait for buyers to contact you in GirlsTrade";
+$lang["indexWorksStepFourth"]="Deal";
+$lang["indexWorksTitleFourth"]="4. Meetup";
+$lang["indexWorksDescFourth"]="Buyer and Seller will meetup and deal in person";
+$lang["indexDiscoverTitle"]="Discover";
+$lang["indexDiscoverTitle2"]="From Listing";
+$lang["indexViewMore"]="View More";
+$lang["indexViewLess"]="View Less";
+$lang["indexHotItemTitle"]="Hot";
+$lang["indexHotItemTitle2"]="Items";
+$lang["indexHighlightTitle"]="Highlight ";
+$lang["indexBlogTitle"]="Blog";
+
+
+

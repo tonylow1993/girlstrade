@@ -29,8 +29,8 @@ window.onload = function(){
     <div class="dtable hw100">
       <div class="dtable-cell hw100">
         <div class="container text-center">
-       <h1 class="intro-title animated fadeInDown"> Search Something For Yourself  </h1>
-		<p class="sub animateme fittext3 animated fadeIn"> A Platform for Girls Only </p>
+       <h1 class="intro-title animated fadeInDown"> <?php echo $indexFirstTitle;?>  </h1>
+		<p class="sub animateme fittext3 animated fadeIn"> <?php echo $indexSecondTitle;?> </p>
            <form action="<?php echo base_url().MY_PATH;?>getCategory/getAll/1" method="POST">
           
           <div class="row search-row animated fadeInUp">
@@ -355,7 +355,10 @@ window.onload = function(){
     	<div class="col-sm-9 page-content col-thin-right">
           <div class="content-box category-content panel-bevel" id="detailCategoryList" name="detailCategoryList" style="display:none;">
              <div class="col-lg-12  box-title no-border" >
-				<div class="inner"><h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">Discover</span> from Listing<a href="javascript:showSummaryCatDiv();"  id="detailCatBtn" name="detailCatBtn" class="sell-your-item"> View less <i class="  icon-th-list"></i> </a></h2></div>
+				<div class="inner"><h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">
+				<?php echo $indexDiscoverTitle;?></span> 
+				<?php echo $indexDiscoverTitle2;?><a href="javascript:showSummaryCatDiv();"  id="detailCatBtn" name="detailCatBtn" class="sell-your-item"> 
+				<?php echo $indexViewLess;?><i class="  icon-th-list"></i> </a></h2></div>
              <?php 
     	     $count=0;
     	     $total=0;
@@ -424,7 +427,8 @@ window.onload = function(){
 			<div class="col-lg-12 content-box " id="summaryCategoryList" name="summaryCategoryList" style="display:block;">
                 <div class="row row-featured row-featured-category">
                     <div class="col-lg-12  box-title no-border">
-                       <div class="inner"><h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">Discover</span> from Listing<a href="javascript:showDetailCatDiv();"  id="summaryCatBtn" name="summaryCatBtn" class="sell-your-item"> View more <i class="  icon-th-list"></i> </a></h2>
+                       <div class="inner"><h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">Discover</span> from Listing<a href="javascript:showDetailCatDiv();"  id="summaryCatBtn" name="summaryCatBtn" class="sell-your-item"> 
+                       <?php echo $indexViewMore;?><i class="  icon-th-list"></i> </a></h2>
                        </div>
                     </div>
 					<?php 
@@ -543,7 +547,8 @@ window.onload = function(){
             <div class="inner-box relative panel-bevel">
                 <h2 class="title-2" style="border-bottom: 1px solid #E00000;">
 					<i class="fa fa-fire" style="color: #E00000;"></i>
-					<span style="font-family: MyCustomFont; font-weight: 700; color: #E00000;">Hot</span> Items
+					<span style="font-family: MyCustomFont; font-weight: 700; color: #E00000;"><?php echo $indexHotItemTitle;?></span> 
+					<?php echo $indexHotItemTitle2;?>
 					<a id="nextItem" class="link pull-right carousel-nav" style="color: #E00000;"> <i class="icon-right-open-big"></i></a>
 					<a id="prevItem" class="link pull-right carousel-nav" style="color: #E00000;"> <i class="icon-left-open-big"></i> </a>
 				</h2>
@@ -611,7 +616,7 @@ window.onload = function(){
 		<div class="inner-box relative panel-bevel">
 			<h2 class="title-2" style="border-bottom: 1px solid #9A01CC;">
 				<i class="fa fa-bookmark" style="color: #9A01CC;"></i>
-				<span style="font-family: MyCustomFont;font-weight: 700;color: #9A01CC;">Highlight</span> Blog
+				<span style="font-family: MyCustomFont;font-weight: 700;color: #9A01CC;"><?php echo $indexHighlightTitle;?></span> <?php echo $indexBlogTitle;?>
 				<!--<a id="nextItem2" class="link pull-right carousel-nav" style="color: #9A01CC;"> <i class="icon-right-open-big"></i></a>
 				<a id="prevItem2" class="link pull-right carousel-nav" style="color: #9A01CC;"> <i class="icon-left-open-big"></i> </a>-->
 			</h2>
@@ -823,7 +828,7 @@ window.onload = function(){
 
 	<div class="page-info userRatingTitleIndexFooterLine" style="background: url(<?php echo base_url();?>images/footerIndex.jpg); 
 	background-size:cover">
-	<div id="userRatingTitleIndexFooter">How Girlstrade Works?</div>
+	<div id="userRatingTitleIndexFooter"><?php echo $indexHowDoesItWorks;?></div>
     
 			<div style="border: 0px; background: rgba(0, 0, 0, 0);" class="col-md-3 col-xs-3 col-sm-3 f-category">
 				<div class="graph">
@@ -832,14 +837,14 @@ window.onload = function(){
 						<div class="large_num styler_color">
 						<i class="icon-login"></i></div>
 						<div class="progress_bars_with_image_title styler_color">
-						Login
+						<?php echo $indexWorksStepOne;?>
 						</div>
 					</div>
 				</div>
 				<div class="desc styler_bg_color">
 					<i class="styler_border_color"></i>
-					<div class="name">1. Sign up/ Login</div>
-					<div class="text">Obtain a girlstrade account and login.</div>
+					<div class="name"><?php echo $indexWorksTitleOne;?></div>
+					<div class="text"><?php echo $indexWorksDescOne;?></div>
 				</div>
 			</div>
 			
@@ -850,7 +855,7 @@ window.onload = function(){
 						<div class="large_num styler_color">
 						<i class="icon-pencil-circled"></i></div>
 						<div class="progress_bars_with_image_title styler_color">
-						Post
+						<?php echo $indexWorksStepSec;?>
 						</div>
 						<!--<div class="progress_bars horizontal style1 styler_infograph" data-width="220" 
 						data-height="15" data-color="#0eae9b" data-title="inner" data-value="50%"></div>-->
@@ -858,8 +863,8 @@ window.onload = function(){
 				</div>
 				<div class="desc styler_bg_color">
 					<i class="styler_border_color"></i>
-					<div class="name">2. Post your item</div>
-					<div class="text">Create a new post to tell the world what you are selling!</div> 
+					<div class="name"><?php echo $indexWorksTitleSec;?></div>
+					<div class="text"><?php echo $indexWorksDescSec;?></div> 
 				</div>
 			</div>
 			
@@ -867,13 +872,13 @@ window.onload = function(){
 				<div class="graph">
 					<div class="graph_inner">
 						<div class="progress_bars_with_image styler_infograph visible" data-number="7" data-value="5" data-icon="fa fa-female" data-height="40" data-color="#F171DA" style="font-size: 40px; line-height: 40px; letter-spacing: 0em;"><div class="item fa fa-female active" style="color: rgb(241, 113, 218);"></div><div class="item fa fa-female active" style="color: rgb(241, 113, 218);"></div><div class="item fa fa-female active" style="color: rgb(241, 113, 218);"></div><div class="item fa fa-female active" style="color: rgb(241, 113, 218);"></div><div class="item fa fa-female active" style="color: rgb(241, 113, 218);"></div><div class="item fa fa-female"></div><div class="item fa fa-female"></div></div>
-						<div class="progress_bars_with_image_title styler_color">Stay Put</div>
+						<div class="progress_bars_with_image_title styler_color"><?php echo $indexWorksStepThird;?></div>
 					</div>
 				</div>
 				<div class="desc styler_bg_color">
 					<i class="styler_border_color"></i>
-					<div class="name">3. Buyer will contact you</div>
-					<div class="text">Wait for buyers to contact you in Girlstrade</div>
+					<div class="name"><?php echo $indexWorksTitleThird;?></div>
+					<div class="text"><?php echo $indexWorksDescThird;?></div>
 				</div>
 			</div>
 			<div style="border: 0px; background: rgba(0, 0, 0, 0);" class="col-md-3 col-xs-3 col-sm-3 f-category">
@@ -882,14 +887,14 @@ window.onload = function(){
 					<div class="large_num styler_color">
 					<i class="fa fa-exchange"></i></div>
 					<div class="progress_bars_with_image_title styler_color">
-					Deal
+					<?php echo $indexWorksStepFourth;?>
 					</div>
 					</div>
 				</div>
 				<div class="desc styler_bg_color">
 					<i class="styler_border_color"></i>
-					<div class="name">4. Meetup</div>
-					<div class="text">Buyer and Seller will meetup and deal in person.</div>
+					<div class="name"><?php echo $indexWorksTitleFourth;?></div>
+					<div class="text"><?php echo $indexWorksDescFourth;?></div>
 				</div>
 			</div>
 			<div class="container text-center section-promo" style=""> 

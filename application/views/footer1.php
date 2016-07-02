@@ -29,7 +29,7 @@
             </li>
       </ul>
       <ul class=" pull-right navbar-link footer-nav">
-        <li> &copy; 2015 Girlstrade </li>
+        <li> &copy; 2015 GirlsTrade </li>
       </ul>
     </div>
     

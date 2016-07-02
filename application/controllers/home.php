@@ -173,6 +173,35 @@ class Home extends CI_Controller {
 			$data["Location"]=$this->lang->line("Location");
 			$data["Facebook_Fans"]=$this->lang->line("Facebook_Fans");
 			
+			//---------Title and how it works heading-----
+			$data["indexFirstTitle"]=$this->lang->line("indexFirstTitle");
+			$data["indexSecondTitle"]=$this->lang->line("indexSecondTitle");
+			$data["indexHowDoesItWorks"]=$this->lang->line("indexHowDoesItWorks");
+			$data["indexWorksStepOne"]=$this->lang->line("indexWorksStepOne");
+			$data["indexWorksTitleOne"]=$this->lang->line("indexWorksTitleOne");
+			$data["indexWorksDescOne"]=$this->lang->line("indexWorksDescOne");
+			$data["indexWorksStepSec"]=$this->lang->line("indexWorksStepSec");
+			$data["indexWorksTitleSec"]=$this->lang->line("indexWorksTitleSec");
+			$data["indexWorksDescSec"]=$this->lang->line("indexWorksDescSec");
+			$data["indexWorksStepThird"]=$this->lang->line("indexWorksStepThird");
+			$data["indexWorksTitleThird"]=$this->lang->line("indexWorksTitleThird");
+			$data["indexWorksDescThird"]=$this->lang->line("indexWorksDescThird");
+			$data["indexWorksStepFourth"]=$this->lang->line("indexWorksStepFourth");
+			$data["indexWorksTitleFourth"]=$this->lang->line("indexWorksTitleFourth");
+			$data["indexWorksDescFourth"]=$this->lang->line("indexWorksDescFourth");
+			$data["indexDiscoverTitle"]=$this->lang->line("indexDiscoverTitle");
+			$data["indexDiscoverTitle2"]=$this->lang->line("indexDiscoverTitle2");
+			$data["indexViewMore"]=$this->lang->line("indexViewMore");
+			$data["indexViewLess"]=$this->lang->line("indexViewLess");
+			$data["indexHotItemTitle"]=$this->lang->line("indexHotItemTitle");
+			$data["indexHotItemTitle2"]=$this->lang->line("indexHotItemTitle2");
+			$data["indexHighlightTitle"]=$this->lang->line("indexHighlightTitle");
+			$data["indexBlogTitle"]=$this->lang->line("indexBlogTitle");
+			
+			
+			//--------------------------------------------------
+			
+			
 			setcookie('gt_cookie_id', $this->nativesession->userdata('session_id') ,time() + (86400 * 7));
 			//-----------------Set user information -----------------
 			$user1=$this->nativesession->get("user");
