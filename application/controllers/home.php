@@ -197,7 +197,25 @@ class Home extends CI_Controller {
 			$data["indexHotItemTitle2"]=$this->lang->line("indexHotItemTitle2");
 			$data["indexHighlightTitle"]=$this->lang->line("indexHighlightTitle");
 			$data["indexBlogTitle"]=$this->lang->line("indexBlogTitle");
+			$data["indexSideOneTitle"]=$this->lang->line("indexSideOneTitle");
+			$data["indexSideOneTitle2"]=$this->lang->line("indexSideOneTitle2");
 			
+			$data["indexSider1_1"]=$this->lang->line("indexSider1_1");
+			$data["indexSider1_2"]=$this->lang->line("indexSider1_2");
+			$data["indexSider1_3"]=$this->lang->line("indexSider1_3");
+			$data["indexSider1_4"]=$this->lang->line("indexSider1_4");
+			$data["indexSider1_btn"]=$this->lang->line("indexSider1_btn");
+			$data["indexSider2_1"]=$this->lang->line("indexSider2_1");
+			$data["indexSider2_2"]=$this->lang->line("indexSider2_2");
+			$data["indexSider2_btn"]=$this->lang->line("indexSider2_btn");
+			$data["indexSider3_1"]=$this->lang->line("indexSider3_1");
+			$data["indexSider3_2"]=$this->lang->line("indexSider3_2");
+			$data["indexSider3_3"]=$this->lang->line("indexSider3_3");
+			$data["indexSider4_1"]=$this->lang->line("indexSider4_1");
+			$data["indexSider4_btn"]=$this->lang->line("indexSider4_btn");
+			$data["indexSider5_1"]=$this->lang->line("indexSider5_1");
+			$data["indexSider5_2"]=$this->lang->line("indexSider5_2");
+			$data["indexSider5_btn"]=$this->lang->line("indexSider5_btn");
 			
 			//--------------------------------------------------
 			

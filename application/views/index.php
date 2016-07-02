@@ -98,10 +98,10 @@ window.onload = function(){
                         data-easing="Back.easeInOut"
                         data-endeasing="Power1.easeIn"                        
                         data-endspeed="300">
-                        A Place For<br>
-						<strong>Girls</strong><br>
-						To<br>
-                        <strong>Trade</strong><br>
+                        <?php echo $indexSider1_1;?><br>
+						<strong><?php echo $indexSider1_2;?></strong><br>
+						<?php echo $indexSider1_3;?><br>
+                        <strong><?php echo $indexSider1_4;?></strong><br>
                     </div>
 
                     <!-- LAYER -->
@@ -116,7 +116,7 @@ window.onload = function(){
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
                         style="z-index: 6">
-                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Search Now</a>
+                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light"><?php echo $indexSider1_btn;?></a>
                     </div>
                 </li>
                 <!-- END SLIDE -->
@@ -135,7 +135,7 @@ window.onload = function(){
                         data-easing="Back.easeInOut"
                         data-endeasing="Power1.easeIn"                        
                         data-endspeed="300">
-                        <strong>Post</strong>
+                        <strong><?php echo $indexSider2_1;?></strong>
                     </div>
 
                     <!-- LAYER -->
@@ -150,7 +150,7 @@ window.onload = function(){
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
                         style="z-index: 6">
-                        Within Three Clicks Away
+                        <?php echo $indexSider2_2;?>
                     </div>
 
                     <!-- LAYER -->
@@ -165,7 +165,9 @@ window.onload = function(){
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
                         style="z-index: 6">
-                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Post Now</a>
+                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">
+						<?php echo $indexSider2_btn;?>
+						</a>
                     </div>
                 </li>
                 <!-- END SLIDE -->
@@ -184,7 +186,7 @@ window.onload = function(){
                         data-easing="Back.easeInOut"
                         data-endeasing="Power1.easeIn"                        
                         data-endspeed="300">
-                        <strong>Hong Kong</strong> 
+                        <strong><?php echo $indexSider3_1;?></strong> 
                     </div>
 
                     <!-- LAYER -->
@@ -199,8 +201,8 @@ window.onload = function(){
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
                         style="z-index: 6">
-                        Only Trade Within<br>
-                        The Hong Kong Network
+                        <?php echo $indexSider3_2;?><br>
+                        <?php echo $indexSider3_3;?>
                     </div>
 
                     <!-- LAYER -->
@@ -246,7 +248,7 @@ window.onload = function(){
                         data-easing="Back.easeInOut"
                         data-endeasing="Power1.easeIn"                        
                         data-endspeed="300">
-                        <strong>Feedback</strong> 
+                        <strong><?php echo $indexSider4_1;?></strong> 
                     </div>
 					
                     <!-- LAYER -->
@@ -291,7 +293,8 @@ window.onload = function(){
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
                         style="z-index: 6">
-                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Give A Review</a>
+                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">
+						<?php echo $indexSider4_btn;?></a>
                     </div>
                 </li>
                 <!-- END SLIDE -->                
@@ -310,7 +313,7 @@ window.onload = function(){
                         data-easing="Back.easeInOut"
                         data-endeasing="Power1.easeIn"                        
                         data-endspeed="300">
-                        <strong>Advertisement</strong>
+                        <strong><?php echo $indexSider5_1;?></strong>
                     </div>
 
                     <!-- LAYER -->
@@ -325,7 +328,7 @@ window.onload = function(){
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
                         style="z-index: 6">
-                        Let Us Help You Advertise Your Business
+                        <?php echo $indexSider5_2;?>
                     </div>
 
                     <!-- LAYER -->
@@ -340,7 +343,9 @@ window.onload = function(){
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
                         style="z-index: 6">
-                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Contact Us</a>
+                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">
+						<?php echo $indexSider5_btn;?>
+						</a>
                     </div>
                 </li>
                 <!-- END SLIDE -->
@@ -427,7 +432,8 @@ window.onload = function(){
 			<div class="col-lg-12 content-box " id="summaryCategoryList" name="summaryCategoryList" style="display:block;">
                 <div class="row row-featured row-featured-category">
                     <div class="col-lg-12  box-title no-border">
-                       <div class="inner"><h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">Discover</span> from Listing<a href="javascript:showDetailCatDiv();"  id="summaryCatBtn" name="summaryCatBtn" class="sell-your-item"> 
+                       <div class="inner"><h2><span style="font-family: MyCustomFont; font-weight: 500; color: #E2348C;">
+                       <?php echo $indexDiscoverTitle;?></span> <?php echo $indexDiscoverTitle2;?><a href="javascript:showDetailCatDiv();"  id="summaryCatBtn" name="summaryCatBtn" class="sell-your-item"> 
                        <?php echo $indexViewMore;?><i class="  icon-th-list"></i> </a></h2>
                        </div>
                     </div>
@@ -787,7 +793,8 @@ window.onload = function(){
               <div class="inner-box-content"> <a href="<?php echo base_url().MY_PATH;?>howgirlstradeworks"><img class="img-responsive" src="<?php echo base_url();?>images/site/app.jpg" alt="tv"></a> </div>
             </div>
             <div class="inner-box panel-bevel">
-              <h2 class="title-2 no-bottom"><span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">Popular</span> Categories </h2>
+              <h2 class="title-2 no-bottom"><span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">
+              <?php echo $indexSideOneTitle;?></span>  <?php echo $indexSideOneTitle2;?> </h2>
               <div class="inner-box-content">
                 <ul class="cat-list arrow">
                   <?php 

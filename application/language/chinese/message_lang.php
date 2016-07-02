@@ -320,29 +320,51 @@ $lang["lblSignupDesc2T"]="個人資料只會用於交易和通知的用途。未
 $lang["titleFAQ"]="常見問題";
 
 //----index----
-$lang["indexFirstTitle"]="Search Something For Yourself";
-$lang["indexSecondTitle"]="A Platform for Girls to Trade";
-$lang["indexHowDoesItWorks"]="How Girlstrade Works?";
-$lang["indexWorksStepOne"]="Login";
-$lang["indexWorksTitleOne"]="1. Sign up/ Login";
-$lang["indexWorksDescOne"]="Obtain a girlstrade account and login";
-$lang["indexWorksStepSec"]="Post";
-$lang["indexWorksTitleSec"]="2. Post your item";
-$lang["indexWorksDescSec"]="Create a new post to tell the world what you are selling!";
-$lang["indexWorksStepThird"]="Stay Put";
-$lang["indexWorksTitleThird"]="3. Buyer will contact you";
-$lang["indexWorksDescThird"]="Wait for buyers to contact you in GirlsTrade";
-$lang["indexWorksStepFourth"]="Deal";
-$lang["indexWorksTitleFourth"]="4. Meetup";
-$lang["indexWorksDescFourth"]="Buyer and Seller will meetup and deal in person";
-$lang["indexDiscoverTitle"]="Discover";
-$lang["indexDiscoverTitle2"]="From Listing";
-$lang["indexViewMore"]="View More";
-$lang["indexViewLess"]="View Less";
-$lang["indexHotItemTitle"]="Hot";
-$lang["indexHotItemTitle2"]="Items";
-$lang["indexHighlightTitle"]="Highlight ";
-$lang["indexBlogTitle"]="Blog";
+$lang["indexFirstTitle"]="尋找適合你的買賣";
+$lang["indexSecondTitle"]="一個為女性而設的交易平台";
+$lang["indexHowDoesItWorks"]="賣家交易流程";
+$lang["indexWorksStepOne"]="用戶登入";
+$lang["indexWorksTitleOne"]="1. 註冊/登入";
+$lang["indexWorksDescOne"]="登入你的 GirlsTrade 帳戶";
+$lang["indexWorksStepSec"]="刊登";
+$lang["indexWorksTitleSec"]="2. 上傳相片與相關資料到GirlsTrade";
+$lang["indexWorksDescSec"]="管理員將在一天內驗證你上傳的相關資料";
+$lang["indexWorksStepThird"]="等待";
+$lang["indexWorksTitleThird"]="3. 買方與你聯繫";
+$lang["indexWorksDescThird"]="允許買方在GirlsTrade上查看你的刊登品";
+$lang["indexWorksStepFourth"]="交易";
+$lang["indexWorksTitleFourth"]="4. 雙方互相聯絡";
+$lang["indexWorksDescFourth"]="買賣雙方自行安排一個交收地方進行交易";
+$lang["indexDiscoverTitle"]="類別";
+$lang["indexDiscoverTitle2"]="清單";
+$lang["indexViewMore"]="查看更多";
+$lang["indexViewLess"]="返回目錄";
+$lang["indexHotItemTitle"]="熱賣";
+$lang["indexHotItemTitle2"]="推介";
+$lang["indexHighlightTitle"]="最新";
+$lang["indexBlogTitle"]="日誌";
+$lang["indexSideOneTitle"]="熱門";
+$lang["indexSideOneTitle2"]="類別";
 
+$lang["indexSider1_1"]="女性";
+$lang["indexSider1_2"]="免費";
+$lang["indexSider1_3"]="買賣";
+$lang["indexSider1_4"]="交易平台";
+$lang["indexSider1_btn"]="搵下先";
+
+$lang["indexSider2_1"]="刊登";
+$lang["indexSider2_2"]="方便又快速";
+$lang["indexSider2_btn"]="試一試";
+
+$lang["indexSider3_1"]="香港";
+$lang["indexSider3_2"]="交易只用於香港內";
+$lang["indexSider3_3"]="團結創造一個GirlsTrade社區";
+
+$lang["indexSider4_1"]="意見";
+$lang["indexSider4_btn"]="告訴我們";
+
+$lang["indexSider5_1"]="廣告";
+$lang["indexSider5_2"]="讓我們幫你宣傳你的生意和買賣";
+$lang["indexSider5_btn"]="聯絡我們";
 
 

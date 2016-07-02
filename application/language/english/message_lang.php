@@ -341,8 +341,29 @@ $lang["indexViewMore"]="View More";
 $lang["indexViewLess"]="View Less";
 $lang["indexHotItemTitle"]="Hot";
 $lang["indexHotItemTitle2"]="Items";
-$lang["indexHighlightTitle"]="Highlight ";
+$lang["indexHighlightTitle"]="Highlight";
 $lang["indexBlogTitle"]="Blog";
+$lang["indexSideOneTitle"]="Popular";
+$lang["indexSideOneTitle2"]="Categories";
 
+$lang["indexSider1_1"]="A Place For";
+$lang["indexSider1_2"]="Girls";
+$lang["indexSider1_3"]="To";
+$lang["indexSider1_4"]="Trade";
+$lang["indexSider1_btn"]="Search Now";
 
+$lang["indexSider2_1"]="Post";
+$lang["indexSider2_2"]="Within Three Clicks Away";
+$lang["indexSider2_btn"]="Post Now";
+
+$lang["indexSider3_1"]="Hong Kong";
+$lang["indexSider3_2"]="Only Trade Within";
+$lang["indexSider3_3"]="The Hong Kong Network";
+
+$lang["indexSider4_1"]="Feedback";
+$lang["indexSider4_btn"]="Give a review";
+
+$lang["indexSider5_1"]="Advertisement";
+$lang["indexSider5_2"]="Let Us Help You Advertise Your Business";
+$lang["indexSider5_btn"]="Contact Us";
 
