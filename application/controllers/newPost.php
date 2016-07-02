@@ -1472,7 +1472,7 @@ public function getChildCategory($parentID)
         //}
         //else
        // {
-      $data["error"]=$errorMsg;
+		$data["error"]=$errorMsg;
 		$data["prevURL"]=$prevURL;
 		$data['redirectToWhatPage']="Previous Page";
 		$data['redirectToPHP']=$prevURL;

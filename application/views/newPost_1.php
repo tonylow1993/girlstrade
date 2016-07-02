@@ -682,8 +682,8 @@ function setup()
 						contentType: false,
 						type: 'POST',
 						success:function(data){
-							var msg = jQuery.parseJSON(data);
-							if(msg.status == 'success'){
+							//var msg = jQuery.parseJSON(data);
+							//if(msg.status == 'success'){
 								$("#modal-text").html("Your post has been successfully uploaded.");
 								setTimeout(function(){
 									//if($remainCount<=5)
@@ -693,16 +693,16 @@ function setup()
 									$('#fwd-btn').css("display", "block");
 									$('#fwd-btn').css("margin", "auto");
 									$('#progress-bar').css("display", "none");
-								}, 2000);
-						    }else if(msg.status == 'error'){
-							    $("#modal-text").html(msg.errmsg);
-								setTimeout(function(){
-									$("#modal-text").html("Please retry!");
-									$('#fwd-btn').css("display", "block");
-									$('#fwd-btn').css("margin", "auto");
-									$('#progress-bar').css("display", "none");
-								}, 2000);
-						    }
+								}, 3000);
+						    // }else if(msg.status == 'error'){
+							    // $("#modal-text").html(msg.errmsg);
+								// setTimeout(function(){
+									// $("#modal-text").html("Please retry!");
+									// $('#fwd-btn').css("display", "block");
+									// $('#fwd-btn').css("margin", "auto");
+									// $('#progress-bar').css("display", "none");
+								// }, 2000);
+						    // }
 						}
 					});
                 }
