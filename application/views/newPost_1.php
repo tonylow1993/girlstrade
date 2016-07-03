@@ -18,9 +18,17 @@
 				<div class="navbar-inner">
 					<div class="container">
 						<ul>
-							<li><a href="#tab1" data-toggle="tab">Step 1<span class="inside-a">: Choose Category</span></a></li>
+							<li><a href="#tab1" data-toggle="tab">
+							<?php echo $newpostStep1; ?>
+							<span class="inside-a">
+							<?php echo $newpostStep1_1; ?>
+							</span></a></li>
 							<!--<li><a href="#tab2" data-toggle="tab">Step 2<span class="inside-a">: Trade Location</span></a></li>-->
-							<li><a href="#tab3" data-toggle="tab">Step 2<span class="inside-a">: Post Ads</span></li>
+							<li><a href="#tab3" data-toggle="tab">
+							<?php echo $newpostStep2; ?>
+							<span class="inside-a">
+							<?php echo $newpostStep2_2; ?>
+							</span></li>
 						</ul>
 					</div>
 				</div>
@@ -33,7 +41,10 @@
 				  <div class="col-lg-12 content-box " id="summaryCategoryList" name="summaryCategoryList" style="display:block;">
 					<div class="row row-featured row-featured-category">
 						<div class="col-lg-12  box-title no-border">
-						   <div class="inner"><h2 style="color:#5CB2DD; font-size:22px"> Which category does your item belong to?</h2>
+						   <div class="inner">
+						   <h2 style="color:#5CB2DD; font-size:22px"> 
+						   <?php echo $newpostStep1_title;?>
+						   </h2>
 						   </div>
 						</div>
 						<?php 
@@ -364,35 +375,35 @@
 					<div class="col-md-3 reg-sidebar">
 					  <div class="reg-sidebar-inner text-center">
 						<div class="promo-text-box"> <i class="icon-lightbulb ln-shadow-radius shape-2"></i>
-						  <h3><strong>Create a Post</strong></h3>
-						  <p> Hints for posting on GirlsTrade. </p>
+						  <h3><strong><?php echo $newpostSide1;?></strong></h3>
+						  <p> <?php echo $newpostSide1_1;?> </p>
 						</div>
 						
 						<div class="panel sidebar-panel">
-						  <div class="panel-heading newPostHints"><small><strong>What are the Hints?</strong></small></div>
+						  <div class="panel-heading newPostHints"><small><strong><?php echo $newpostSide1_2;?></strong></small></div>
 						  <div class="panel-content">
 							<div class="panel-body text-left">
 							  <ul class="list-check">
-								<li> No images required under Service</li>
-								<li> Make sure you post in the correct category</li>
-								<li> Post value higher than $20 (HKD)</li>
-								<li> No adult-oriented content allowed</li>
+								<li> <?php echo $newpostSide1_PT1;?> </li>
+								<li> <?php echo $newpostSide1_PT2;?> </li>
+								<li> <?php echo $newpostSide1_PT3;?> </li>
+								<li> <?php echo $newpostSide1_PT4;?> </li>
 
 							  </ul>
 							</div>
 						  </div>
 						</div>
 						<div class="promo-text-box"> <i class=" icon-clock-2 ln-shadow-radius shape-4"></i>
-						  <h3><strong>Approval Time</strong></h3>
-						  <p> Post will be published within next 24 hours! </p>
+						  <h3><strong><?php echo $newpostSide2;?></strong></h3>
+						  <p> <?php echo $newpostSide2_1;?> </p>
 						</div>
 						<div class="panel sidebar-panel">
-						  <div class="panel-heading newPostHints"><small><strong>How to pass the approval process?</strong></small></div>
+						  <div class="panel-heading newPostHints"><small><strong><?php echo $newpostSide2_2;?></strong></small></div>
 						  <div class="panel-content">
 							<div class="panel-body text-left">
 							  <ul class="list-check">
-								<li> Ensure image(s) is/are taken directly by you  </li>
-								<li> Make sure it is a descriptive and appropriate in your title and description</li>
+								<li> <?php echo $newpostSide2_PT1;?> </li>
+								<li> <?php echo $newpostSide2_PT2;?> </li>
 
 							  </ul>
 							</div>

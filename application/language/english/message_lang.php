@@ -367,3 +367,29 @@ $lang["indexSider5_1"]="Advertisement";
 $lang["indexSider5_2"]="Let Us Help You Advertise Your Business";
 $lang["indexSider5_btn"]="Contact Us";
 
+//---------New Post--------
+$lang["newpostStep1"]="Step 1";
+$lang["newpostStep1_1"]=": Choose a Category";
+$lang["newpostStep2"]="Step 2";
+$lang["newpostStep2_2"]=": Post Ad";
+$lang["newpostStep1_title"]=": Which category does your item belongs to?";
+
+$lang["newpostSide1"]="Create a Post";
+$lang["newpostSide1_1"]="Hints for posting on GirlsTrade.";
+$lang["newpostSide2"]="Approval Time";
+$lang["newpostSide2_1"]="Post will be published within next 24 hours!";
+$lang["newpostSide1_2"]="What are the Hints?";
+$lang["newpostSide2_2"]="How to pass the approval process?";
+
+$lang["newpostSide1_PT1"]="No images required under Service";
+$lang["newpostSide1_PT2"]="Make sure you post in the correct category";
+$lang["newpostSide1_PT3"]="Post value higher than $20 (HKD)";
+$lang["newpostSide1_PT4"]="No adult-oriented content allowed";
+
+$lang["newpostSide2_PT1"]="Ensure image(s) is/are taken directly by you";
+$lang["newpostSide2_PT2"]="Make sure it is a descriptive and appropriate in your title and description";
+
+
+
+
+

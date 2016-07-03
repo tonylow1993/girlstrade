@@ -100,7 +100,7 @@ $lang["SignUp"]="立即註冊!";
 $lang["LostYourPassword"]="忘記密碼?";
 
 //New_Post.php
-$lang["NewPost"]="賣野";
+$lang["NewPost"]="相關資料";
 $lang["TopicTitle"]="標題";
 $lang["Category"]="類別";
 $lang["ItemQuality"]="品質";
@@ -366,5 +366,30 @@ $lang["indexSider4_btn"]="告訴我們";
 $lang["indexSider5_1"]="廣告";
 $lang["indexSider5_2"]="讓我們幫你宣傳你的生意和買賣";
 $lang["indexSider5_btn"]="聯絡我們";
+
+//---------New Post--------
+$lang["newpostStep1"]="第一步";
+$lang["newpostStep1_1"]=": 選擇刊登的類別";
+$lang["newpostStep2"]="第二步";
+$lang["newpostStep2_2"]=": 填寫相關資料";
+$lang["newpostStep1_title"]="有關類別:";
+
+$lang["newpostSide1"]="刊登前";
+$lang["newpostSide1_1"]="GirlsTrade小提示";
+$lang["newpostSide2"]="審核過程";
+$lang["newpostSide2_1"]="管理員將在一天內驗證你上傳的相關資料";
+$lang["newpostSide1_2"]="請注意以下";
+$lang["newpostSide2_2"]="如何通過管理員的驗證";
+
+$lang["newpostSide1_PT1"]="服務型類別是無需要上載圖片";
+$lang["newpostSide1_PT2"]="選擇正確的刊登類別";
+$lang["newpostSide1_PT3"]="刊登價值 $20 (HKD)以上";
+$lang["newpostSide1_PT4"]="不允許刊登任何同成人,藥物有關內容";
+
+$lang["newpostSide2_PT1"]="請只上載你自己拍的圖片";
+$lang["newpostSide2_PT2"]="確保你有一個清楚貼切的標題和描述";
+
+
+
 
 

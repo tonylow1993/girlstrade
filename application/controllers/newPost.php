@@ -258,6 +258,7 @@ class newPost extends CI_Controller {
 			}
 			$data['remainCount'] = 4;
 			
+
             $this->load->view('newPost', $data);
 		}
 	}
@@ -431,6 +432,28 @@ class newPost extends CI_Controller {
 			
 			}
 			$data['remainCount'] = 4;
+
+			//-----------language---------
+			$data["newpostStep1"]=$this->lang->line("newpostStep1");
+			$data["newpostStep1_1"]=$this->lang->line("newpostStep1_1");
+			$data["newpostStep2"]=$this->lang->line("newpostStep2");
+			$data["newpostStep2_2"]=$this->lang->line("newpostStep2_2");
+			$data["newpostStep1_title"]=$this->lang->line("newpostStep1_title");
+			$data["newpostSide1"]=$this->lang->line("newpostSide1");
+			$data["newpostSide1_1"]=$this->lang->line("newpostSide1_1");
+			$data["newpostSide2"]=$this->lang->line("newpostSide2");
+			$data["newpostSide2_1"]=$this->lang->line("newpostSide2_1");
+			$data["newpostSide1_2"]=$this->lang->line("newpostSide1_2");
+			$data["newpostSide2_2"]=$this->lang->line("newpostSide2_2");
+			
+			$data["newpostSide1_PT1"]=$this->lang->line("newpostSide1_PT1");
+			$data["newpostSide1_PT2"]=$this->lang->line("newpostSide1_PT2");
+			$data["newpostSide1_PT3"]=$this->lang->line("newpostSide1_PT3");
+			$data["newpostSide1_PT4"]=$this->lang->line("newpostSide1_PT4");
+			$data["newpostSide2_PT1"]=$this->lang->line("newpostSide2_PT1");
+			$data["newpostSide2_PT2"]=$this->lang->line("newpostSide2_PT2");
+			
+
 			
             $this->load->view('newPost_1', $data);
 		}
