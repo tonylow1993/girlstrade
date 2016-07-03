@@ -567,7 +567,7 @@
 				<i class="icon-book-open"> </i> 
 				<?php 
 					if($catID_==null or $catID_=="" or $catID_=='0') 
-						echo "Category"; 
+						echo $lblCategory; 
 					else{ 
 						$value = $result[(int)$catID_];
 						echo $value[0]->name;
@@ -578,7 +578,7 @@
 				<i class="icon-location-3"> </i> 
 				<?php 
 					if($locID_==null or $locID_=="" or $locID_=='0') 
-						echo "Location"; 
+						echo $lblLocation; 
 					else{ 
 						$value = $resLoc[(int)$locID_];
 						echo $value[0]->name;
@@ -586,7 +586,7 @@
 				?>
               </a>
               <a class="btn btn-sm btn-searchCat3" href="#selectPriceRange" data-toggle="modal"> 
-				<?php if ( $minPrice > 0 && $maxPrice > 0) echo "$".$minPrice." - $ ".$maxPrice; else echo "$ Price Range";?>
+				<?php if ( $minPrice > 0 && $maxPrice > 0) echo "$".$minPrice." - $ ".$maxPrice; else echo $lblPriceRange;?>
               </a>
               </div>
               <div class="sortByDiv">
