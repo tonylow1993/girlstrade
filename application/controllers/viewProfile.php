@@ -212,7 +212,16 @@ class viewProfile extends getCategory {
 				$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
 				$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
 				$data["lblAllCategories"]=$this->lang->line("lblAllCategories");
-					
+				
+				$data["lblSearchSortBy"]=$this->lang->line("lblSearchSortBy");
+				$data["lblPriceLowToHigh"]=$this->lang->line("lblPriceLowToHigh");
+				$data["lblPriceHighToLow"]=$this->lang->line("lblPriceHighToLow");
+				$data["Price"]=$this->lang->line("Price");
+				$data["Category"]=$this->lang->line("Category");
+				$data["Date"]=$this->lang->line("Date");
+
+				
+				
 				$data["AllCategory"]=$this->getAllCategory();
 				
 			$data["recentBuyerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestBuyerComment($data["userID"]));
@@ -399,6 +408,13 @@ class viewProfile extends getCategory {
 		$data["lblConditionAny"]=$this->lang->line("lblConditionAny");
 		$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
 		$data["lblAllCategories"]=$this->lang->line("lblAllCategories");
+		
+		$data["lblSearchSortBy"]=$this->lang->line("lblSearchSortBy");
+				$data["lblPriceLowToHigh"]=$this->lang->line("lblPriceLowToHigh");
+				$data["lblPriceHighToLow"]=$this->lang->line("lblPriceHighToLow");
+				$data["Price"]=$this->lang->line("Price");
+				$data["Category"]=$this->lang->line("Category");
+				$data["Date"]=$this->lang->line("Date");
 		
 		$data["AllCategory"]=$this->getAllCategory();
 			

@@ -265,6 +265,7 @@ class getCategory extends CI_Controller {
 	 	$data["lblSearchSortBy"]=$this->lang->line("lblSearchSortBy");
 	 	$data["lblPriceLowToHigh"]=$this->lang->line("lblPriceLowToHigh");
 	 	$data["lblPriceHighToLow"]=$this->lang->line("lblPriceHighToLow");
+		$data["lblCategory"]=$this->lang->line("Category");
 	 	$data["lblLocation"]=$this->lang->line("lblLocation");
 	 	$data["lblPriceRange"]=$this->lang->line("lblPriceRange");
 	 	$data["lblCondition"]=$this->lang->line("lblCondition");

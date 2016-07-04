@@ -141,6 +141,7 @@ $lang["Preview"]="預先審查";
 $lang["Ads_Detail"]="詳情";
 $lang["Option"]="選擇";
 $lang["Price"]="價錢";
+$lang["Date"]="時間";
 $lang["Edit"]="更改";
 $lang["Delete"]="刪除";
 $lang["Share"]="分享";

@@ -141,6 +141,7 @@ $lang["Preview"]="Preview";
 $lang["Ads_Detail"]="Ads Detail";
 $lang["Option"]="Option";
 $lang["Price"]="Price";
+$lang["Date"]="Date";
 $lang["Edit"]="Edit";
 $lang["Delete"]="Delete";
 $lang["Share"]="Share";
