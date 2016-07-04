@@ -339,7 +339,7 @@
                           <label class="col-md-3 control-label text-center"></label>
                           <div class="col-md-8"> 
                            
-                       	       <button id="submit-upload-form" onclick="setup();return false;" type="submit" class="btn btn-primary btn-tw" ><i class="glyphicon glyphicon-upload"></i>Submit</button>
+                       	       <button id="submit-upload-form" type="submit" class="btn btn-primary btn-tw" ><i class="glyphicon glyphicon-upload"></i>Submit</button>
                               <button id="validate" hidden="true" type="submit"></button>
                           </div>
                        </div>
@@ -541,8 +541,9 @@ $("#image").fileinput({
     uploadUrl: "<?php echo base_url(); echo MY_PATH;?>newPost/createNewPost/<?php echo $userID.'/'.$username.'?prevURL='.urlencode($prevURL); ?>"
 });
 
-function setup()
-{
+
+$('#submit-upload-form').on('click', function(e){
+	e.preventDefault();
 	var myform = document.getElementById("newPost");
 	//check whether browser fully supports all File API
 	if (window.File && window.FileReader && window.FileList && window.Blob)
@@ -660,9 +661,13 @@ function setup()
                 if(data == true)
                 {
                     var formData = new FormData(myform);
-					for (var i=0; i<fileList.length; i++){
-						formData.append('filelist[]', fileList[i]); 
+					if(isServiceCat!=1)
+					{
+					   for (var i=0; i<fileList.length; i++){
+							formData.append('filelist[]', fileList[i]); 
+						}
 					}
+					
 					$('#image').fileinput('clear');
 					$('#image').fileinput('disable');
 					$('#Adtitle').attr('disabled', 'disabled');
@@ -693,8 +698,8 @@ function setup()
 						contentType: false,
 						type: 'POST',
 						success:function(data){
-							//var msg = jQuery.parseJSON(data);
-							//if(msg.status == 'success'){
+							var msg = jQuery.parseJSON(data);
+							if(msg.status == 'success'){
 								$("#modal-text").html("Your post has been successfully uploaded.");
 								setTimeout(function(){
 									//if($remainCount<=5)
@@ -705,15 +710,15 @@ function setup()
 									$('#fwd-btn').css("margin", "auto");
 									$('#progress-bar').css("display", "none");
 								}, 3000);
-						    // }else if(msg.status == 'error'){
-							    // $("#modal-text").html(msg.errmsg);
-								// setTimeout(function(){
-									// $("#modal-text").html("Please retry!");
-									// $('#fwd-btn').css("display", "block");
-									// $('#fwd-btn').css("margin", "auto");
-									// $('#progress-bar').css("display", "none");
-								// }, 2000);
-						    // }
+						    }else if(msg.status == 'error'){
+							    $("#modal-text").html(msg.errmsg);
+								setTimeout(function(){
+									$("#modal-text").html("Please retry!");
+									$('#fwd-btn').css("display", "block");
+									$('#fwd-btn').css("margin", "auto");
+									$('#progress-bar').css("display", "none");
+								}, 2000);
+						    }
 						}
 					});
                 }
@@ -721,7 +726,8 @@ function setup()
             });
         }
     });
-}
+	return false;
+});
 
 function setForm(callback)
 {

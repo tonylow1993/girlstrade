@@ -1019,8 +1019,8 @@ public function getChildCategory($parentID)
     	}
     	//----------------------------
     	if(empty($userInfo))
- 	        {
- 	        	$errorMsg=$this->lang->line("PostPleaseLoginFirst");	
+		{
+			$errorMsg=$this->lang->line("PostPleaseLoginFirst");	
 //  	        	$data['error']= $errorMsg;
 //  	    		$data["prevURL"]=$prevURL;
 // 				$data['redirectToWhatPage']="Login Page";
@@ -1030,30 +1030,30 @@ public function getChildCategory($parentID)
 // 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
 // 				$this->load->view('failedPage', $data);
 // 				return;
-				$response_array['status'] = 'error';
-				$response_array['errmsg']=$errorMsg;
-				echo json_encode($response_array);
-				return;
- 	        }
-    	
- 	        if($userInfo[0]->blockDate!=null && $userInfo[0]->blockDate> date('Y-m-d'))
- 	        {
- 	        	if( empty($loginUser) ||
- 	        			(!empty($loginUser) &&  isset($loginUser) && $loginUser<>null &&  $loginUser["userID"]<>0
- 	        					&& strcmp($loginUser["username"],"admin")!=0))
- 	        	{
- 	        		$errorMsg=$this->lang->line("NotAllowCreatePostBlackList");
- 	        		$data["error"]=$errorMsg;
- 	        		$data["prevURL"]=$prevURL;
- 	        		$data['redirectToWhatPage']="Home Page";
- 	        		$data['redirectToPHP']=base_url();
- 	        		$data["successTile"]=$this->lang->line("successTile");
- 	        		$data["failedTitle"]=$this->lang->line("failedTitle");
- 	        		$data["goToHomePage"]=$this->lang->line("goToHomePage");
- 	        		$this->load->view('failedPage', $data);
- 	        		return;
- 	        	}
- 	        }
+			$response_array['status'] = 'error';
+			$response_array['errmsg']=$errorMsg;
+			echo json_encode($response_array);
+			return;
+		}
+	
+		// if($userInfo[0]->blockDate!=null && $userInfo[0]->blockDate> date('Y-m-d'))
+		// {
+			// if( empty($loginUser) ||
+					// (!empty($loginUser) &&  isset($loginUser) && $loginUser<>null &&  $loginUser["userID"]<>0
+							// && strcmp($loginUser["username"],"admin")!=0))
+			// {
+				// $errorMsg=$this->lang->line("NotAllowCreatePostBlackList");
+				// $data["error"]=$errorMsg;
+				// $data["prevURL"]=$prevURL;
+				// $data['redirectToWhatPage']="Home Page";
+				// $data['redirectToPHP']=base_url();
+				// $data["successTile"]=$this->lang->line("successTile");
+				// $data["failedTitle"]=$this->lang->line("failedTitle");
+				// $data["goToHomePage"]=$this->lang->line("goToHomePage");
+				// $this->load->view('failedPage', $data);
+				// return;
+			// }
+		// }
  	        
  	        
         $userName = $loginUser;
