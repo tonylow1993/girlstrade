@@ -168,7 +168,7 @@
                           <div class="col-md-8">
                               <input id="Adtitle" name="Adtitle" class="form-control input-md" value="<?php echo set_value('Adtitle'); ?>" type="text" required="true"  maxlength="70"/>
 <!--                        <span class="help-block">A great title needs at least 5 words </span> -->
-                              <em>(A Great Title Needs At Least 5 Words) </em>
+                              <em><?php echo $newpostDescBottom;?> </em>
                           </div>
                       </div>  
                       
@@ -179,7 +179,10 @@
                            <?php echo $Category;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <select name="category-group" id="category-group" class="form-control" required="true">
-                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select One Category - </option>
+                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> 
+                                  <?php echo $newpostAllCat;?> 
+                                  
+                                  </option>
                                   <?php 
 										foreach ($result as $id=>$value)
 										{
@@ -286,7 +289,7 @@
                                     <div id="uploadImgError">
                                     </div>
                               </div>
-                                  <p id="helper">Add up to 5 photos. Use real images, not catalogs.</p>   
+                                  <p id="helper"><?php echo $newpostPicBottom;?></p>   
                           
                           </div>
                       </div>
@@ -339,7 +342,9 @@
                           <label class="col-md-3 control-label text-center"></label>
                           <div class="col-md-8"> 
                            
-                       	       <button id="submit-upload-form" type="submit" class="btn btn-primary btn-tw" ><i class="glyphicon glyphicon-upload"></i>Submit</button>
+                       	       <button id="submit-upload-form" type="submit" class="btn btn-primary btn-tw" ><i class="glyphicon glyphicon-upload"></i>
+                       	       <?php echo $newpostSubmitBtn;?>
+                       	       </button>
                               <button id="validate" hidden="true" type="submit"></button>
                           </div>
                        </div>

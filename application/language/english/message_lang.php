@@ -390,7 +390,7 @@ $lang["newpostSide1_PT4"]="No adult-oriented content allowed";
 $lang["newpostSide2_PT1"]="Ensure image(s) is/are taken directly by you";
 $lang["newpostSide2_PT2"]="Make sure it is a descriptive and appropriate in your title and description";
 
-
-
-
-
+$lang["newpostDescBottom"]="(A Great Title Needs At Least 5 Words)";
+$lang["newpostPicBottom"]="Add up to 5 photos. Use real images, not catalogs.";
+$lang["newpostSubmitBtn"]="Submit";
+$lang["newpostAllCat"]="- Please Select a Category -";

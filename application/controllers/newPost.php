@@ -453,7 +453,10 @@ class newPost extends CI_Controller {
 			$data["newpostSide2_PT1"]=$this->lang->line("newpostSide2_PT1");
 			$data["newpostSide2_PT2"]=$this->lang->line("newpostSide2_PT2");
 			
-
+			$data["newpostDescBottom"]=$this->lang->line("newpostDescBottom");
+			$data["newpostPicBottom"]=$this->lang->line("newpostPicBottom");
+			$data["newpostSubmitBtn"]=$this->lang->line("newpostSubmitBtn");
+			$data["newpostAllCat"]=$this->lang->line("newpostAllCat");
 			
             $this->load->view('newPost_1', $data);
 		}

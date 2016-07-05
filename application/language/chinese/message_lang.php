@@ -390,7 +390,7 @@ $lang["newpostSide1_PT4"]="不允許刊登任何同成人,藥物有關內容";
 $lang["newpostSide2_PT1"]="請只上載你自己拍的圖片";
 $lang["newpostSide2_PT2"]="確保你有一個清楚貼切的標題和描述";
 
-
-
-
-
+$lang["newpostDescBottom"]="標題至少五個字以上";
+$lang["newpostPicBottom"]="最多可上載5張圖片";
+$lang["newpostSubmitBtn"]="提交";
+$lang["newpostAllCat"]="- 類別選擇 -";
