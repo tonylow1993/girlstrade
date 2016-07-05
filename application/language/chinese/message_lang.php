@@ -57,7 +57,7 @@ $lang["MessagesSendError"]="成功發送";
 
 $lang["PostNotExistsNow"]="物件不存在";
 // Account navigation and sidebar
-$lang["MyAds"]="我的物件";
+$lang["MyAds"]="刊登記錄";
 $lang["PersonalHome"]="個人設置";
 $lang["FavoriteAds"]="我的最愛";
 $lang["SavedSearch"]="回顧過去的搜尋記錄";
@@ -68,15 +68,15 @@ $lang["PostFreeAds"]="免費賣野";
 $lang["Inbox"]="郵件箱";
 $lang["ApproveRequest"]="接立買方的詢問";
 $lang["EditProfile"]="更改個人資料";
-$lang["SavedItems"]="感興趣的物件";
+$lang["SavedItems"]="我的最愛";
 $lang["PendingRequest"]="等待確認";
 $lang["ApprovedRequest"]="賣出記錄";
 $lang["TerminateAccount"]="終止帳戶";
 $lang["CloseAccount"]="關閉帳戶";
 $lang["OutgoingMsgTitle"]="發件箱";
 $lang["AccountTabName"]="帳戶管理";
-$lang["SellerTabName"]="賣家";
-$lang["BuyerTabName"]="買家";
+$lang["SellerTabName"]="賣家 (Sell)";
+$lang["BuyerTabName"]="買家 (Buy)";
 $lang["directsend_history"]="買方的詢問";
 // Category.php
 $lang["lblAllCategories"]="所有類別";  //index.php
@@ -133,8 +133,8 @@ $lang["Cancel"]="取消";
 $lang["Item_Detail"]="詳情";
 $lang["Status"]="狀況";
 $lang["Photo"]="圖片";
-$lang["Saved_Search"]="回顧搜尋記錄";
-$lang["Pending_Approval"]="等待審核";
+$lang["Saved_Search"]="我的最愛";
+$lang["Pending_Approval"]="聯絡過的賣家";
 $lang["Days_Pending"]="天在等待中";
 $lang["OutBox"]="發件箱";
 $lang["Preview"]="預先審查";
@@ -166,7 +166,7 @@ $lang["LastName"]="姓";
 $lang["FirstName"]="名字";
 $lang["DaysExpiry"]="到期日";
 $lang["View"]="觀看";
-$lang["ApproveReject"]="批准或拒絕";
+$lang["ApproveReject"]="我的買家"; //My Buyer Title
 $lang["Approve"]="批准";
 $lang["Reject"]="拒絕";
 
@@ -394,3 +394,20 @@ $lang["newpostDescBottom"]="標題至少五個字以上";
 $lang["newpostPicBottom"]="最多可上載5張圖片";
 $lang["newpostSubmitBtn"]="提交";
 $lang["newpostAllCat"]="- 類別選擇 -";
+
+
+//------Account Menu-------
+$lang["accountProfileLang"]="更改資料";
+$lang["accountEmailConfigLang"]="電郵設置";
+$lang["accountInboxLang"]="收件箱";
+$lang["accountMyAdsLang"]="刊登記錄";
+$lang["accountBuyerListLang"]="我的買家";
+$lang["accountSellerListLang"]="聯絡過的賣家";
+$lang["accountFavoriteLang"]="我的最愛";
+
+//------Profile Header-------
+$lang["accountHeaderVisitLang"]="瀏覽";
+$lang["accountHeaderAdsLang"]="刊登";
+$lang["accountHeaderFavLang"]="最愛";
+
+

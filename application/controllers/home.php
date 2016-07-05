@@ -1943,6 +1943,26 @@ class Home extends CI_Controller {
 		$data["AccountTabName"]=$this->lang->line("AccountTabName");
 		$data["HidePhoneNumber"]=$this->lang->line("HidePhoneNumber");
 		 
+		
+		//----menu chinese config-----------
+		$data["accountProfileLang"]=$this->lang->line("accountProfileLang");
+		$data["accountEmailConfigLang"]=$this->lang->line("accountEmailConfigLang");
+		$data["accountInboxLang"]=$this->lang->line("accountInboxLang");
+		$data["accountMyAdsLang"]=$this->lang->line("accountMyAdsLang");
+		$data["accountBuyerListLang"]=$this->lang->line("accountBuyerListLang");
+		$data["accountSellerListLang"]=$this->lang->line("accountSellerListLang");
+		$data["accountFavoriteLang"]=$this->lang->line("accountFavoriteLang");
+		
+
+		
+		//------------profile header-----------------
+		$data["accountHeaderVisitLang"]=$this->lang->line("accountHeaderVisitLang");
+		$data["accountHeaderAdsLang"]=$this->lang->line("accountHeaderAdsLang");
+		$data["accountHeaderFavLang"]=$this->lang->line("accountHeaderFavLang");
+		
+
+
+		
 		$data["lang_label_text"] = $this->lang->line("lang_label_text");
 		$data["Home"] = $this->lang->line("Home");
             $data["About_us"] = $this->lang->line("About_us");
@@ -2220,6 +2240,7 @@ class Home extends CI_Controller {
 		}else if ($activeNav==15){
 			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Summary", 0);
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
+			
 			$this->load->view('account-profile', $data);
 		}
 	}

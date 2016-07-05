@@ -68,7 +68,7 @@ $lang["PostFreeAds"]="Post Free Add";
 $lang["Inbox"]="Inbox";
 $lang["ApproveRequest"]="Approve Request(s)";
 $lang["EditProfile"]="Edit Profile";
-$lang["SavedItems"]="Favorite Item(s)";
+$lang["SavedItems"]="Saved Items";
 $lang["PendingRequest"]="Pending Request(s)";
 $lang["ApprovedRequest"]="Sold Ads History";
 $lang["TerminateAccount"]="Terminate Account";
@@ -166,7 +166,7 @@ $lang["LastName"]="Last name";
 $lang["FirstName"]="First name";
 $lang["DaysExpiry"]="Days till expiration";
 $lang["View"]="View";
-$lang["ApproveReject"]="Approve or Reject";
+$lang["ApproveReject"]="My Buyers"; //My Buyer Title
 $lang["Approve"]="Approve";
 $lang["Reject"]="Reject";
 
@@ -394,3 +394,20 @@ $lang["newpostDescBottom"]="(A Great Title Needs At Least 5 Words)";
 $lang["newpostPicBottom"]="Add up to 5 photos. Use real images, not catalogs.";
 $lang["newpostSubmitBtn"]="Submit";
 $lang["newpostAllCat"]="- Please Select a Category -";
+
+
+//------Account Menu-------
+$lang["accountProfileLang"]="Edit Profile";
+$lang["accountEmailConfigLang"]="Email Alerts";
+$lang["accountInboxLang"]="Inbox";
+$lang["accountMyAdsLang"]="My Posts";
+$lang["accountBuyerListLang"]="My Buyers";
+$lang["accountSellerListLang"]="Contacted Sellers";
+$lang["accountFavoriteLang"]="Saved Items";
+
+//------Profile Header-------
+$lang["accountHeaderVisitLang"]="Visits";
+$lang["accountHeaderAdsLang"]="Ads";
+$lang["accountHeaderFavLang"]="Favorites";
+
+

@@ -51,14 +51,14 @@
          	     		 else 
          	     		 	echo "<li><a href=$editprofile1><i class=\"icon-user\"></i> $EditProfile <span class=\"badge\"></span></a></li>";
          	     		 if($activeNav==12)
-         	     		 	echo "<li><a  class=\"active\" href=$sendEmailconfig><i class=\"icon-pencil-2\"></i>". $this->lang->line("updateSendEmailConfig")." <span class=\"badge\"></span></a></li>";
+         	     		 	echo "<li><a  class=\"active\" href=$sendEmailconfig><i class=\"fa fa-envelope-o fa-5\"></i>". $this->lang->line("updateSendEmailConfig")." <span class=\"badge\"></span></a></li>";
          	     		 else
-         	     			echo "<li><a href=$sendEmailconfig><i class=\"icon-user\"></i>". $this->lang->line("updateSendEmailConfig")." <span class=\"badge\"></span></a></li>";
+         	     			echo "<li><a href=$sendEmailconfig><i class=\"fa fa-envelope-o fa-5\"></i>". $this->lang->line("updateSendEmailConfig")." <span class=\"badge\"></span></a></li>";
          	     		 	
          	     		 if($activeNav==13)
-              					echo "<li><a  class=\"active\" href=$accountinbox><i class=\"icon-pencil-2\"></i> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
+              					echo "<li><a  class=\"active\" href=$accountinbox><i class=\"fa fa-inbox fa-5\"></i> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
          	     		 else 
-         	     		 	echo "<li><a href=$accountinbox><i class=\"icon-mail\"></i> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
+         	     		 	echo "<li><a href=$accountinbox><i class=\"fa fa-inbox fa-5\"></i> $Inbox <span class=\"badge\">$inboxMsgCount</span> </a></li>";
          	     		 	 
 //          	     		 if($activeNav==10)
 //               					echo "<li><a  class=\"active\" href=$outgoingMsg><i class=\"icon-reply\"></i> $OutgoingMsgTitle <span class=\"badge\">$outgoingMsgCount</span> </a></li>";
@@ -86,14 +86,14 @@
                  	 echo  "<ul class=\"acc-list\">";
                 	
               	 	if($activeNav==3)
-              	 		echo "<li><a  class=\"active\" href=$myads1><i class=\"icon-th-thumb\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
+              	 		echo "<li><a  class=\"active\" href=$myads1><i class=\"fa fa-image fa-5\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
          	     	else 
-         	     		echo "<li><a href=$myads1><i class=\"icon-th-thumb\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
+         	     		echo "<li><a href=$myads1><i class=\"fa fa-image fa-5\"></i> $MyAds <span class=\"badge\">$myAdsCount</span></a></li>";
          	     $sellerCount=$approveMsgCount+$directsendhistCount1;		
          	     if($activeNav==2)
-         	   		echo "<li><a  class=\"active\" href=$approverequest1><i class=\"icon-thumbs-up-1\"></i> Buyer List <span class=\"badge\">$sellerCount</span></a></li>";
+         	   		echo "<li><a  class=\"active\" href=$approverequest1><i class=\"fa fa-shopping-cart fa-5\"></i> $accountBuyerListLang <span class=\"badge\">$sellerCount</span></a></li>";
        			else 
-       				echo "<li><a href=$approverequest1><i class=\"icon-ok-1\"></i> Buyer List <span class=\"badge\">$sellerCount</span></a></li>";
+       				echo "<li><a href=$approverequest1><i class=\"fa fa-shopping-cart fa-5\"></i> $accountBuyerListLang <span class=\"badge\">$sellerCount</span></a></li>";
          	     $buyerCount=$pendingMsgCount+$directsendhistCount;
           		 	echo "</ul>";
                   	echo "</div>";
@@ -109,13 +109,13 @@
 		        $pendingrequest1=base_url().MY_PATH."home/getAccountPage/6";
               	
               	 
-              		echo "<div class=\"collapse-title\"><a data-toggle=\"collapse\"  href=\"#BuyerMenuAds\" style=\"display:block;\"><span id=\"menuTitle\"><i class=\"icon-docs\"></i>".$this->lang->line('BuyerTabName')."</span></a><a id=\"menuTitle\" class=\"pull-right\" data-toggle=\"collapse\"  href=\"#BuyerMenuAds\"><span id=\"menuTitle\"><i class=\"fa fa-angle-down collapseIcon\"></i></span></a></div>";
+              		echo "<div class=\"collapse-title\"><a data-toggle=\"collapse\"  href=\"#BuyerMenuAds\" style=\"display:block;\"><span id=\"menuTitle\"><i class=\"icon-hammer\"></i>".$this->lang->line('BuyerTabName')."</span></a><a id=\"menuTitle\" class=\"pull-right\" data-toggle=\"collapse\"  href=\"#BuyerMenuAds\"><span id=\"menuTitle\"><i class=\"fa fa-angle-down collapseIcon\"></i></span></a></div>";
                  	 echo "<div id=\"BuyerMenuAds\" class=\"panel-collapse collapse in\">";
                  	 echo  "<ul class=\"acc-list\">";			 
          	     if($activeNav==6)
-              		echo "<li><a  class=\"active\" href=$pendingrequest1><i class=\"icon-clock-2\"></i> Seller List <span class=\"badge\">$buyerCount</span></a></li>";
+              		echo "<li><a  class=\"active\" href=$pendingrequest1><i class=\"fa fa-compress fa-5\"></i> $accountSellerListLang <span class=\"badge\">$buyerCount</span></a></li>";
           		 	else 
-          		 		echo "<li><a href=$pendingrequest1><i class=\"icon-clock-2\"></i> Seller List <span class=\"badge\">$buyerCount</span></a></li>";
+          		 		echo "<li><a href=$pendingrequest1><i class=\"fa fa-compress fa-5\"></i> $accountSellerListLang <span class=\"badge\">$buyerCount</span></a></li>";
           		 if($activeNav==5)
           				echo "<li><a  class=\"active\" href=$saveditems1><i class=\"icon-heart\"></i> $SavedItems <span class=\"badge\">$savedAdsCount</span></a></li>";
        	 			else
