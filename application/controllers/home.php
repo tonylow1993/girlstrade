@@ -1959,7 +1959,9 @@ class Home extends CI_Controller {
 		$data["accountHeaderVisitLang"]=$this->lang->line("accountHeaderVisitLang");
 		$data["accountHeaderAdsLang"]=$this->lang->line("accountHeaderAdsLang");
 		$data["accountHeaderFavLang"]=$this->lang->line("accountHeaderFavLang");
-		
+		//------------profile visit header-----------------
+		$data["accountProfileHeaderHelloLang"]=$this->lang->line("accountProfileHeaderHelloLang");
+		$data["accountProfileHeaderTimeLang"]=$this->lang->line("accountProfileHeaderTimeLang");
 
 
 		

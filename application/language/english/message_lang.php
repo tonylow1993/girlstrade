@@ -410,4 +410,6 @@ $lang["accountHeaderVisitLang"]="Visits";
 $lang["accountHeaderAdsLang"]="Ads";
 $lang["accountHeaderFavLang"]="Favorites";
 
-
+//---Profile Visit Header----
+$lang["accountProfileHeaderHelloLang"]="Welcome";
+$lang["accountProfileHeaderTimeLang"]="Last login time: ";

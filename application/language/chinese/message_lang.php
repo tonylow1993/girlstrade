@@ -410,4 +410,7 @@ $lang["accountHeaderVisitLang"]="瀏覽";
 $lang["accountHeaderAdsLang"]="刊登";
 $lang["accountHeaderFavLang"]="最愛";
 
+//---Profile Visit Header----
+$lang["accountProfileHeaderHelloLang"]="你好";
+$lang["accountProfileHeaderTimeLang"]="上次登錄時間: ";
 
