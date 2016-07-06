@@ -106,7 +106,7 @@ function sendIt() {
 					<noscript><input type="submit" value="Submit"></noscript>
 			
 			</form></div>
-                  <a class="pull-right back-btn margin-5" href=<?php echo $prevViewFeedBack_Url;?>><i class="fa fa-angle-double-left"></i> Back to Results</a>
+                  <a class="pull-right back-btn margin-5" href=<?php echo $prevViewFeedBack_Url;?>><i class="fa fa-angle-double-left"></i> <?php echo $profileBackToResult;?></a>
             
               </div>
             <div class="adds-wrapper inner-box no-shadow">

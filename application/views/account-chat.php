@@ -13,7 +13,7 @@
         <div class="col-sm-9 page-content">
 			<?php include("profile_header.php");?>
 			<a class="pull-right back-btn margin-5" href=<?php  echo $prevURL;?>> 
-			<i class="fa fa-angle-double-left"></i> Back to Results</a>
+			<i class="fa fa-angle-double-left"></i> <?php echo $profileBackToResult;?></a>
      
 			<div class="col-md-12 bg-white panel-bevel">
 				<div class="chat-message">

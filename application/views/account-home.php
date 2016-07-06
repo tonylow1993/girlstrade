@@ -163,7 +163,7 @@ input[type=checkbox]
                 </div>
                 <div class="panel-collapse collapse" id="collapseB2">
                   <div class="panel-body">
-          	 	<h2>Change Password </h2>
+          	 	<h2><?php echo $changePassword;?> </h2>
           	    <form id="myForm" onSubmit="return setup1()" action="<?php echo base_url().MY_PATH.'home/updatePassword'?>" method="POST">
      			  <fieldset>
                   

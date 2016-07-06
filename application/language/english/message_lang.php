@@ -413,3 +413,23 @@ $lang["accountHeaderFavLang"]="Favorites";
 //---Profile Visit Header----
 $lang["accountProfileHeaderHelloLang"]="Welcome";
 $lang["accountProfileHeaderTimeLang"]="Last login time: ";
+
+//-----change password-------
+$lang["changePassword"]="Change Password";
+
+//-------Profile---------
+$lang["profileBackToResult"]="Back to Result";
+$lang["profileInfo"]="Intro";
+$lang["profileRegisterationDate"]="Registered Date:";
+$lang["profileTotalPost"]="Total Posts:";
+$lang["profileViewAllComments"]="View all comments ";
+$lang["profileNormalUser"]="(User)";
+$lang["profileLatestAccountActivity"]="Latest Account Activity:";
+$lang["profileSendPrivateMessage"]="Send Private Message";
+
+//-----view all Feedback------
+$lang["viewCommentAll"]="All feedbacks";
+$lang["viewCommentBuyer"]="Feedbacks from Buyer";
+$lang["viewCommentSeller"]="Feedbacks from Seller";
+
+

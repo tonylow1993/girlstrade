@@ -381,7 +381,7 @@ class Home extends CI_Controller {
 			 
 		}
 		//var_dump($data);
-	
+		$data["profileBackToResult"]=$this->lang->line("profileBackToResult");
 		$this->load->view('item', $data);
 	}
 	
@@ -1553,9 +1553,10 @@ class Home extends CI_Controller {
 					$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 				}
 				$data["activeTab"]=$activeTab;
-				$data["lblSellerInfo"]="Feedbacks from buyer";
-				$data["lblBuyerInfo"]="Feedbacks from seller";
-				$data["lblConditionAll"]="All feedbacks";
+				$data["lblSellerInfo"]=$this->lang->line("viewCommentSeller");
+				$data["lblBuyerInfo"]=$this->lang->line("viewCommentBuyer");
+				$data["lblConditionAll"]=$this->lang->line("viewCommentAll");
+				$data["profileBackToResult"]=$this->lang->line("profileBackToResult");
 				$data["sortTypeID"]="0";
 				$data["sortByDate"]="0";
 				$data["sortByType"]="0";
@@ -1627,7 +1628,7 @@ class Home extends CI_Controller {
 				$data["Call_Now"] = $this->lang->line("Call_Now");
 				$data["Tel"] = $this->lang->line("Tel");
 				
-				$data["Login"]=$this->lang->line("Login");;
+				$data["Login"]=$this->lang->line("Login");
 				$data["Signup"]=$this->lang->line("Signup");
 				$data["Profile"]=$this->lang->line("Profile");
 				$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
@@ -1733,10 +1734,11 @@ class Home extends CI_Controller {
 				$myList=$this->post_model->getMyAds($userID, $pageNum);
 				$data["result"]=$this->mapPostToView($myList);
 				$data["activeTab"]="allAds";
-				$data["lblSellerInfo"]="Seller";
-				$data["lblBuyerInfo"]="Buyer";
-				$data["lblConditionAll"]="All";
+				$data["lblSellerInfo"]=$this->lang->line("SellerName");
+				$data["lblBuyerInfo"]=$this->lang->line("BuyerName");
+				$data["lblConditionAll"]=$this->lang->line("lblConditionAll");
 				
+				$data["profileBackToResult"]=$this->lang->line("profileBackToResult");
 				
 				$this->load->view("profile_allComments", $data);
 	}
@@ -1962,7 +1964,7 @@ class Home extends CI_Controller {
 		//------------profile visit header-----------------
 		$data["accountProfileHeaderHelloLang"]=$this->lang->line("accountProfileHeaderHelloLang");
 		$data["accountProfileHeaderTimeLang"]=$this->lang->line("accountProfileHeaderTimeLang");
-
+		$data["changePassword"]=$this->lang->line("changePassword");
 
 		
 		$data["lang_label_text"] = $this->lang->line("lang_label_text");
@@ -2238,6 +2240,8 @@ class Home extends CI_Controller {
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Detail", $fromUserID);
 			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Detail", $fromUserID);
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
+			$data["profileBackToResult"]=$this->lang->line("profileBackToResult");
+			
 			$this->load->view('account-chat', $data);
 		}else if ($activeNav==15){
 			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Summary", 0);

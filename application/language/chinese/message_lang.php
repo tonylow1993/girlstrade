@@ -227,7 +227,7 @@ $lang["ExceedMAXTIMEDAILY_DRECTSENDFROMBUYER"]="你已超過了每日聯繫賣�
 $lang["invalidpriceformat"]="價目格式不正確!";
 $lang["invalidpricerange"]="價錢範圍不正確!";
 $lang["lblRemainQty"]="數量";
-$lang["MyIntroduction"]="介紹";
+$lang["MyIntroduction"]="自我介紹";
 $lang["ExceedMaxDescLength"]="超過了字數的上限";
 $lang["adminApprovePrivateMsgByUserIDOnly"]="信息已被認可";
 $lang["adminApproveFeedBack"]="評語已被認可";
@@ -413,4 +413,25 @@ $lang["accountHeaderFavLang"]="最愛";
 //---Profile Visit Header----
 $lang["accountProfileHeaderHelloLang"]="你好";
 $lang["accountProfileHeaderTimeLang"]="上次登錄時間: ";
+
+//-----change password-------
+$lang["changePassword"]="更改密碼";
+
+//-------Profile---------
+$lang["profileBackToResult"]="返回結果";
+$lang["profileInfo"]="簡介";
+$lang["profileRegisterationDate"]="註冊日期:";
+$lang["profileTotalPost"]="刊登數量:";
+$lang["profileViewAllComments"]="查看評論 ";
+$lang["profileNormalUser"]="(用戶)";
+$lang["profileLatestAccountActivity"]="上次登錄時間:";
+$lang["profileSendPrivateMessage"]="發送信息";
+
+//-----view all Feedback------
+$lang["viewCommentAll"]="所有評價";
+$lang["viewCommentBuyer"]="買家發的評價";
+$lang["viewCommentSeller"]="賣家發的評價";
+
+
+
 

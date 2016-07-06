@@ -25,7 +25,7 @@ function sendIt() {
                 <ul class=" list-unstyled">
 	            <img src="<?php echo $userPhotoPath;?>" class="img-thumbnail center-obj" alt="profilePic" width="auto" height="auto">
 	            
-	               <li><span class="count"><p>&nbsp;(Normal User)</p></span> </li>
+	               <li><span class="count"><p>&nbsp;<?php echo $profileNormalUser;?></p></span> </li>
                 </ul>
                               
                 <!--<table class="userProfileTable">
@@ -41,16 +41,16 @@ function sendIt() {
               <!--/.categories-list-->
               
               <div class="locations-list  list-filter">
-                <h5 class="list-title"><strong>Info</strong></h5>
+                <h5 class="list-title"><strong><?php echo $profileInfo;?></strong></h5>
                 <table class="browse-list list-unstyled userProfileTable">
 				
-                 <tr><td><p>Registered Date: </p></td>
+                 <tr><td><p><?php echo $profileRegisterationDate;?> </p></td>
                  <td><p class="userInfoData"><?php echo $createDate; //->format('Y-m-d');?>  </p></td></tr>
                  <?php if(strcmp(SHOWLASTACTIVITY,"Y")==0){?>
-                 <tr><td><p>Last Account Activity:</p></td>   
+                 <tr><td><p><?php echo $profileLatestAccountActivity;?></p></td>   
                  <td><p class="userInfoData"><?php echo  $lastLoginTime; //->format('Y-m-d H:i:s');?></p></td></tr>
                  <?php }?>
-                 <tr><td><p>Total Posts:</p></td>  
+                 <tr><td><p><?php echo $profileTotalPost;?></p></td>  
                  <td><p class="userInfoData"><?php $count=0; if($itemList!=null) $count=count($itemList); 
                  echo $count; ?></p></td></tr>
                 </table>
@@ -71,7 +71,8 @@ function sendIt() {
               echo "<br/>";
               ?>
               
-              <a href="<?php echo base_url().MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url())."&prevViewFeedBack_Url=",urlencode(current_url()); ?>"> View all comments </a>
+              <a href="<?php echo base_url().MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url())."&prevViewFeedBack_Url=",urlencode(current_url()); ?>"> 
+              <?php echo $profileViewAllComments;?></a>
               <br />
               <?php $usr = $this->nativesession->get('user');
 					if(empty($usr) || $isSameUser){ 
@@ -80,7 +81,7 @@ function sendIt() {
 <!--               <i class=" icon-mail-2"></i> Send Private Message</a> -->
                <?php }else{?>
                <a href="#contactAdvertiser1" data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton">
-               <i class=" icon-mail-2"></i> Send Private Message</a>
+               <i class=" icon-mail-2"></i> <?php echo $profileSendPrivateMessage;?></a>
               
                <?php }?>  
                </div>
@@ -214,7 +215,9 @@ function sendIt() {
 				<noscript><input type="submit" value="Submit"></noscript>
 			</form></div>
             <!--/.tab-box-->
-               <a class="pull-right margin-5 back-btn" href=<?php echo $prevProfile_Url;?>> <i class="fa fa-angle-double-left"></i> Back to Results</a>
+               <a class="pull-right margin-5 back-btn" href=<?php echo $prevProfile_Url;?>> <i class="fa fa-angle-double-left"></i> 
+               <?php echo $profileBackToResult;?>
+               </a>
  
            </div>
                

@@ -87,7 +87,7 @@ input[type=checkbox]
       </ol>
       
 	  <a class="pull-right back-btn margin-5" href=<?php $tempUrl=$prevUrl; if(strcmp($prevItem_Url, base_url())==0) echo $prevUrl; else echo $prevItem_Url;?>> 
-	  <i class="fa fa-angle-double-left"></i> Back to Results</a>
+	  <i class="fa fa-angle-double-left"></i> <?php echo $profileBackToResult;?>s</a>
      
     </div>
     <div class="container">
