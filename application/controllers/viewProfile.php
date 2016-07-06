@@ -119,7 +119,10 @@ class viewProfile extends getCategory {
 				}
 			}
 			
-			
+			$data["isSameUser"]=false;
+			if(!empty($loginUser) &&  isset($loginUser) && $loginUser<>null &&  $loginUser["userID"]==$data["userID"]){
+				$data["isSameUser"]=true;
+			}
 			
 			
 			$date=new DateTime($userInfo[0]->lastLoginTime);
@@ -315,8 +318,10 @@ class viewProfile extends getCategory {
 				return;
 			}
 		}
-			
-			
+		$data["isSameUser"]=false;
+		if(!empty($loginUser) &&  isset($loginUser) && $loginUser<>null &&  $loginUser["userID"]==$data["userID"]){
+			$data["isSameUser"]=true;			
+		}
 			
 			
 		$date=new DateTime($userInfo[0]->lastLoginTime);

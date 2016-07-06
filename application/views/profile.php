@@ -74,7 +74,7 @@ function sendIt() {
               <a href="<?php echo base_url().MY_PATH."home/viewAllFeedback/$userID/1?prevURL=".urlencode(current_url())."&prevViewFeedBack_Url=",urlencode(current_url()); ?>"> View all comments </a>
               <br />
               <?php $usr = $this->nativesession->get('user');
-					if(empty($usr)){ 
+					if(empty($usr) || $isSameUser){ 
            			?>
 <!--               <a href="#contactAdvertiser1" disabled="disabled" data-toggle="modal" class="btn   btn-default btn-block inboxMsgButton"> -->
 <!--               <i class=" icon-mail-2"></i> Send Private Message</a> -->
