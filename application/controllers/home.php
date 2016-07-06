@@ -1652,9 +1652,10 @@ class Home extends CI_Controller {
 				$type="";
 				$typeID=$row->type;
 				if(strcmp($row->type,"buyer")==0)
-					$type="Comment from seller";
+					$type=$this->lang->line("SellerName");
 				else 
-					$type="Comment from buyer";
+					$type=$this->lang->line("BuyerName");
+				
 				$userName="";
 				$createDate=$row->createDate;
 				$rating=$row->rating;

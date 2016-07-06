@@ -421,11 +421,6 @@ class viewProfile extends getCategory {
 				$data["Category"]=$this->lang->line("Category");
 				$data["Date"]=$this->lang->line("Date");
 		
-		$data["AllCategory"]=$this->getAllCategory();
-			
-		$data["recentBuyerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestBuyerComment($data["userID"]));
-		$data["recentSellerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestSellerComment($data["userID"]));
-		
 		//Added July 2016			
 		$data["profileBackToResult"]=$this->lang->line("profileBackToResult");
 		$data["profileInfo"]=$this->lang->line("profileInfo");
@@ -435,6 +430,13 @@ class viewProfile extends getCategory {
 		$data["profileNormalUser"]=$this->lang->line("profileNormalUser");	
 		$data["profileLatestAccountActivity"]=$this->lang->line("profileLatestAccountActivity");
 		$data["profileSendPrivateMessage"]=$this->lang->line("profileSendPrivateMessage");
+		
+		
+				
+		$data["AllCategory"]=$this->getAllCategory();
+			
+		$data["recentBuyerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestBuyerComment($data["userID"]));
+		$data["recentSellerComment"]=trimLongTextInViewAllComments($this->tradecomments_model->getLatestSellerComment($data["userID"]));
 		
 		
 		

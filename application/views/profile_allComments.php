@@ -87,7 +87,7 @@ function sendIt() {
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr style="height:50px;">
-                    <th style="border: none;"> <?php echo $this->lang->line("Photo");?> </th>
+                    <th style="border: none;"> <?php echo $this->lang->line("From");?> </th>
                     <th data-sort-ignore="true" style="border: none;"> <?php echo $this->lang->line("Ads_Detail");?> </th>
                   </tr>
                 </thead>
@@ -176,7 +176,7 @@ function sendIt() {
                       	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td\">";
                     	echo "<div class=\"ads-details\">";
                          echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc."<br/>".$preview;
-                          echo "<br/>Posted On: ". $createDate."<br/>Status: ".$status;
+                          echo "<br/>".$this->lang->line("lblDatePosted"). ": ". $createDate."<br/>Status: ".$status;
                    	  echo "<br/>Interest persons count:  $NoOfSoldUsers";
                         if(strcmp($status, "Rejected")==0){
                         	echo "<br/>Reject Reason: ".$rejectReason." with ".$rejectSpecifiedReason;
