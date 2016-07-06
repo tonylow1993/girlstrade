@@ -92,6 +92,7 @@
             $data["Call_Now"] = $this->lang->line("Call_Now");
             $data["Tel"] = $this->lang->line("Tel");
           
+            $data["profileBackToResult"]=$this->lang->line("profileBackToResult");
 			$data["Login"]=$this->lang->line("Login");;
 			$data["Signup"]=$this->lang->line("Signup");
 			$data["Profile"]=$this->lang->line("Profile");
