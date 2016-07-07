@@ -32,6 +32,8 @@ class messages extends CI_Controller {
             $this->load->model('buyerfeedback_model');
             $this->load->model('buyermessage_model');
             $this->load->model('userInfoSendEmail_model');
+            $this->load->model('sendEmailLog_model');
+            
             date_default_timezone_set("Asia/Hong_Kong");
             if($this->nativesession->get("language")!=null)
             {
@@ -1718,7 +1720,20 @@ function addDayswithdate($date,$days){
 			$allow=$this->userInfoSendEmail_model->getAlowSendEmailByType($userEmail["userID"], $type);
 			if(!$allow)
 				return;			
-			
+			$user1=$this->nativesession->get("user");
+			$userID=0;
+			if(!isset($user1) or empty($user1) or $user1==null)
+				$userID=0;
+			else
+				$userID=$user1["userID"];
+				$data=array();
+				$data["userID"]=$userID;
+				$data["toEmailAddress"]=$userEmail['email'];
+				$data["title"]=$title;
+				$data["type"]=$type;
+				//$data["createDate"]=date('Y/m/d H:i:s');
+				$this->sendEmailLog_model->insert($data);
+						
 			$config['protocol'] = SMTP_PROTOCOL;
 			$config['smtp_host'] = SMTP_HOST;
 			$config['smtp_port'] = SMTP_PORT;

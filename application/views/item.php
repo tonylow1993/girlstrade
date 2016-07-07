@@ -786,47 +786,38 @@ input[type=checkbox]
                   	}
             	}
             ?>
-             <div class="pagination-bar text-center">
+          <!--    <div class="pagination-bar text-center">
             <ul class="pagination">
             <?php 
-            	$pageNumPrev=$pageNum-1;
-            	$pageNum2=$pageNum+1;
-            	$pageNum3=$pageNum+2;
-            	$pageNum4=$pageNum+3;
-            	$pageNum5=$pageNum+4;
-            	$pageNumNext=$pageNum+5;
-            	echo "<input type=\"hidden\" id=\"ctrlpostID\" name=\"ctrlpostID\" value=\"$postID\"/>";
-            	echo "<input type=\"hidden\" id=\"ctrlpageNumPrev\" name=\"ctrlpageNumPrev\" value=\"$pageNumPrev\"/>";
-            	echo "<input type=\"hidden\" id=\"ctrlpageNum\" name=\"ctrlpageNum\" value=\"$pageNum\"/>";
-            	echo "<input type=\"hidden\" id=\"ctrlpageNum2\" name=\"ctrlpageNum2\" value=\"$pageNum2\"/>";
-            	echo "<input type=\"hidden\" id=\"ctrlpageNum3\" name=\"ctrlpageNum3\" value=\"$pageNum3\"/>";
-            	echo "<input type=\"hidden\" id=\"ctrlpageNum4\" name=\"ctrlpageNum4\" value=\"$pageNum4\"/>";
-            	echo "<input type=\"hidden\" id=\"ctrlpageNum5\" name=\"ctrlpageNum5\" value=\"$pageNum5\"/>";
-            	echo "<input type=\"hidden\" id=\"ctrlpageNumNext\" name=\"ctrlpageNumNext\" value=\"$pageNumNext\"/>";
+//             	$pageNumPrev=$pageNum-1;
+//             	$pageNum2=$pageNum+1;
+//             	$pageNum3=$pageNum+2;
+//             	$pageNum4=$pageNum+3;
+//             	$pageNum5=$pageNum+4;
+//             	$pageNumNext=$pageNum+5;
+//             	echo "<input type=\"hidden\" id=\"ctrlpostID\" name=\"ctrlpostID\" value=\"$postID\"/>";
+//             	echo "<input type=\"hidden\" id=\"ctrlpageNumPrev\" name=\"ctrlpageNumPrev\" value=\"$pageNumPrev\"/>";
+//             	echo "<input type=\"hidden\" id=\"ctrlpageNum\" name=\"ctrlpageNum\" value=\"$pageNum\"/>";
+//             	echo "<input type=\"hidden\" id=\"ctrlpageNum2\" name=\"ctrlpageNum2\" value=\"$pageNum2\"/>";
+//             	echo "<input type=\"hidden\" id=\"ctrlpageNum3\" name=\"ctrlpageNum3\" value=\"$pageNum3\"/>";
+//             	echo "<input type=\"hidden\" id=\"ctrlpageNum4\" name=\"ctrlpageNum4\" value=\"$pageNum4\"/>";
+//             	echo "<input type=\"hidden\" id=\"ctrlpageNum5\" name=\"ctrlpageNum5\" value=\"$pageNum5\"/>";
+//             	echo "<input type=\"hidden\" id=\"ctrlpageNumNext\" name=\"ctrlpageNumNext\" value=\"$pageNumNext\"/>";
             	 
             	
-            	if($pageNum<>1)
-            		echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumPrev\">Previous</a></li>";
-            	echo "<li  class=\"active\"><a id=\"hrefPageNum\" href=\"#\" onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum</a></li>";
-            	echo "<li><a id=\"hrefPageNum2\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum2\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum2</a></li>";
-            	echo "<li><a id=\"hrefPageNum3\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum3\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum3</a></li>";
-            	echo "<li><a id=\"hrefPageNum4\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum4\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum4</a></li>";
-            	echo "<li><a id=\"hrefPageNum5\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum5\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum5</a></li>";
-            	echo "<li><a id=\"hrefPageNumNext\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNumNext\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNumNext</a></li>";
+//             	if($pageNum<>1)
+//             		echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumPrev\">Previous</a></li>";
+//             	echo "<li  class=\"active\"><a id=\"hrefPageNum\" href=\"#\" onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum</a></li>";
+//             	echo "<li><a id=\"hrefPageNum2\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum2\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum2</a></li>";
+//             	echo "<li><a id=\"hrefPageNum3\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum3\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum3</a></li>";
+//             	echo "<li><a id=\"hrefPageNum4\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum4\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum4</a></li>";
+//             	echo "<li><a id=\"hrefPageNum5\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNum5\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNum5</a></li>";
+//             	echo "<li><a id=\"hrefPageNumNext\" href=\"#\"  onclick=\"getApproveList(\"ctrlpostID\", \"ctrlpageNumNext\", \"tableBodyList\", \"tableBodyError\"); return false;\">$pageNumNext</a></li>";
             	 
             	
-            	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNum3\", \"tableBodyList\", \"tableBodyError\")\" >$pageNum3</a></li>";
-              	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNum4\", \"tableBodyList\", \"tableBodyError\")\" >$pageNum4</a></li>";
-              	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNum5\", \"tableBodyList\", \"tableBodyError\")\" >$pageNum5</a></li>";
-              	//echo "<li><a href=\"javascript:getApproveList(\"ctrlpostID\", \"ctrlpageNumNext\", \"tableBodyList\", \"tableBodyError\")\" >$pageNumNext</a></li>";
-              	//echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum3\">$pageNum3</a></li>";
-              	//echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum4\">$pageNum4</a></li>";
-              	//echo "<li><a href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNum5\">$pageNum5</a></li>";
-              
-               //echo "<li><a class=\"pagination-btn\" href=\"#sellerApprovePopup\" data-toggle=\"modal\"  data-id=\"$postID\" data-pagenum=\"$pageNumNext\">Next</a></li>";
             ?>
                 </ul>
-          </div> 
+          </div> -->
             	 </tbody>
               </table>
       	

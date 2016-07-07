@@ -73,6 +73,7 @@ class Home extends CI_Controller {
 				$this->load->model('blog_model');
 				$this->load->model('admin_model');
 				$this->load->model('userinfosendemail_model');
+				$this->load->model('sendEmailLog_model');
 	}
 	public function index($errorMsg='', $successMsg='')
 	{
@@ -1772,6 +1773,21 @@ class Home extends CI_Controller {
 		if(!$allow)
 			return;
 		
+			$user1=$this->nativesession->get("user");
+			$userID=0;
+			if(!isset($user1) or empty($user1) or $user1==null)
+				$userID=0;
+			else 
+				$userID=$user1["userID"];
+			$data=array();
+			$data["userID"]=$userID;
+			$data["toEmailAddress"]=$userEmail['email'];
+			$data["title"]=$title;
+			$data["type"]=$type;
+			//$data["createDate"]=date('Y/m/d H:i:s');
+			$this->sendEmailLog_model->insert($data);
+			
+			
 		$config['protocol'] = SMTP_PROTOCOL;
 				$config['smtp_host'] = SMTP_HOST;
 				$config['smtp_port'] = SMTP_PORT;
@@ -1787,11 +1803,6 @@ class Home extends CI_Controller {
 				$this->email->set_mailtype('html');
 				$this->email->from(SMTP_USER, 'www.girlstrade.com');
 				$this->email->to($userEmail['email']);
-//		$this->email->cc('ryanfung@gmail.com');
-		
-		//$user = $this->user->getUserByUserID($userEmail['userID']);
-		
-		
 		
 		$this->email->subject($title);
 		$message=$msg;
