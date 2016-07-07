@@ -62,6 +62,19 @@ class gtNotFound extends CI_Controller {
 			$data["Logout"]=$this->lang->line("Logout");
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 		  
+			$data["NotFoundHeading"]=$this->lang->line("NotFoundHeading");
+			$data["NotFoundFirst1"]=$this->lang->line("NotFoundFirst1");
+			$data["NotFoundFirst2"]=$this->lang->line("NotFoundFirst2");
+			$data["NotFoundFirst3"]=$this->lang->line("NotFoundFirst3");
+			$data["NotFoundSecond1"]=$this->lang->line("NotFoundSecond1");
+			$data["NotFoundSecond2"]=$this->lang->line("NotFoundSecond2");
+			$data["NotFoundSecond3"]=$this->lang->line("NotFoundSecond3");
+			$data["NotFoundThird1"]=$this->lang->line("NotFoundThird1");
+			$data["NotFoundThird2"]=$this->lang->line("NotFoundThird2");
+			$data["NotFoundThird3"]=$this->lang->line("NotFoundThird3");
+			
+
+			
  	        $userInfo=$this->nativesession->get("user");
  	        if($userID==0 & !empty($userInfo))
  	        	$data["userID"]=$userInfo["userID"];

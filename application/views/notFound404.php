@@ -12,7 +12,7 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div class="error-v3">
 					<h2><i class="icon-cancel-circled"></i></h2>
-					<p>Sorry, the page you were looking for could not be found!</p>
+					<p><?php echo $NotFoundHeading;?></p>
 				</div>
 			</div>
 		</div>
@@ -24,9 +24,11 @@
 				<div class="service-block-in service-or">
 					<div class="service-bg"></div>
 					<i class="icon-lamp"></i>
-					<h4>Not what you were looking for?</h4>
-					<p>If the page is not what you are looking for, why not start finding out other new things?</p>
-					<a class="btn-u btn-brd btn-u-light" href="<?php echo base_url().MY_PATH.'getCategory/getAll/1';?>"> Search Now!</a>
+					<h4><?php echo $NotFoundFirst1;?></h4>
+					<p><?php echo $NotFoundFirst2;?></p>
+					<a class="btn-u btn-brd btn-u-light" href="<?php echo base_url().MY_PATH.'getCategory/getAll/1';?>"> 
+						<?php echo $NotFoundFirst3;?>
+					</a>
 				</div>
 			</div>
 
@@ -34,9 +36,13 @@
 				<div class="service-block-in service-or">
 					<div class="service-bg"></div>
 					<i class="icon-home"></i>
-					<h4>Possible cause of the problem</h4>
-					<p>The page you requested could not be found. Why not start from the beginning.</p>
-					<a class="btn-u btn-brd btn-u-light" href="<?php echo base_url().MY_PATH;?>"> Go back to Home Page</a>
+					<h4><?php echo $NotFoundSecond1;?></h4>
+					<p>
+					<?php echo $NotFoundSecond2;?>
+					</p>
+					<a class="btn-u btn-brd btn-u-light" href="<?php echo base_url().MY_PATH;?>"> 
+					<?php echo $NotFoundSecond3;?>
+					</a>
 				</div>
 			</div>
 
@@ -44,9 +50,13 @@
 				<div class="service-block-in service-or">
 					<div class="service-bg"></div>
 					<i class="icon-help-circled-1"></i>
-					<h4>Get In Touch</h4>
-					<p>If you have a problem with GirlsTrade, please contact us right away.</p>
-					<a class="btn-u btn-brd btn-u-light" href="<?php echo base_url().MY_PATH.'footer/getContactUS';?>"> Contact Us</a>
+					<h4><?php echo $NotFoundThird1;?></h4>
+					<p>
+					<?php echo $NotFoundThird2;?>
+					</p>
+					<a class="btn-u btn-brd btn-u-light" href="<?php echo base_url().MY_PATH.'footer/getContactUS';?>"> 
+					<?php echo $NotFoundThird3;?>
+					</a>
 				</div>
 			</div>
 		</div>

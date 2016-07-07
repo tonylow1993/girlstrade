@@ -433,3 +433,24 @@ $lang["viewCommentBuyer"]="Feedbacks from Buyer";
 $lang["viewCommentSeller"]="Feedbacks from Seller";
 
 
+
+//------404 not found-----
+$lang["NotFoundHeading"]="Sorry, the page you were looking for could not be found!";
+$lang["NotFoundFirst1"]="Not what you were looking for?";
+$lang["NotFoundFirst2"]="If the page is not what you are looking for, why not start finding out other new things?";
+$lang["NotFoundFirst3"]="Search Now!";
+
+$lang["NotFoundSecond1"]="Possible cause of the problem.";
+$lang["NotFoundSecond2"]="The page you requested could not be found. Why not start from the beginning.";
+$lang["NotFoundSecond3"]="Go back to Home Page";
+
+$lang["NotFoundThird1"]="Get In Touch";
+$lang["NotFoundThird2"]="If you have a problem with GirlsTrade, please contact us right away.";
+$lang["NotFoundThird3"]="Contact Us";
+
+
+
+
+
+
+

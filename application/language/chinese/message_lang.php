@@ -434,4 +434,33 @@ $lang["viewCommentSeller"]="賣家發的評價";
 
 
 
+//------404 not found-----
+$lang["NotFoundHeading"]="對不起，無法找到您要的頁面。";
+$lang["NotFoundFirst1"]="搵唔到你要既野？";
+$lang["NotFoundFirst2"]="再重新搵過囉!技術問題，請稍後再試。";
+$lang["NotFoundFirst3"]="立即搜尋!";
+
+$lang["NotFoundSecond1"]="無法找到您要的頁面。";
+$lang["NotFoundSecond2"]="去主頁開始過啦!";
+$lang["NotFoundSecond3"]="返回主頁";
+
+$lang["NotFoundThird1"]="保持聯絡";
+$lang["NotFoundThird2"]="如果你有問題或問題，請立即告訴我們。";
+$lang["NotFoundThird3"]="聯絡我們";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
