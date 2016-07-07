@@ -914,8 +914,8 @@ function sendIt() {
         </form>
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-success pull-right" onclick="setup(); return false;">Send message!</button>
+      	<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $this->lang->line("profileSendPostMessageCancelBtn");?></button>
+        <button type="submit" class="btn btn-success pull-right" onclick="setup(); return false;"><?php echo $this->lang->line("profileSendPostMessageSendBtn");?></button>
       	<button id="validate" hidden="true" type="submit"></button>
       </div>
     </div>

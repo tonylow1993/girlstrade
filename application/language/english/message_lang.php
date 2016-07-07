@@ -430,6 +430,8 @@ $lang["profileSendPrivateMessage"]="Send Private Message";
 $lang["profileContactAdvertiser"]="Contact User";
 $lang["profileSendPostMessage"]="Message";
 $lang["profileSendPostMessageInside"]="Type here...";
+$lang["profileSendPostMessageSendBtn"]="Send";
+$lang["profileSendPostMessageCancelBtn"]="Cancel";
 
 $lang["profileLoginPlease"]="Please login";
 $lang["profilePleaseLoginToProceed"]="Please login to continue the process";

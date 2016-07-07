@@ -430,6 +430,8 @@ $lang["profileSendPrivateMessage"]="發送信息";
 $lang["profileContactAdvertiser"]="發送信息";
 $lang["profileSendPostMessage"]="信息內容";
 $lang["profileSendPostMessageInside"]="在此輸入...";
+$lang["profileSendPostMessageSendBtn"]="發送";
+$lang["profileSendPostMessageCancelBtn"]="取消";
 
 $lang["profileLoginPlease"]="登入";
 $lang["profilePleaseLoginToProceed"]="請先登入";
