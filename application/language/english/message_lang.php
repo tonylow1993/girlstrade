@@ -427,6 +427,13 @@ $lang["profileNormalUser"]="(User)";
 $lang["profileLatestAccountActivity"]="Latest Account Activity:";
 $lang["profileSendPrivateMessage"]="Send Private Message";
 
+$lang["profileContactAdvertiser"]="Contact User";
+$lang["profileSendPostMessage"]="Message";
+$lang["profileSendPostMessageInside"]="Type here...";
+
+$lang["profileLoginPlease"]="Please login";
+$lang["profilePleaseLoginToProceed"]="Please login to continue the process";
+
 //-----view all Feedback------
 $lang["viewCommentAll"]="All feedbacks";
 $lang["viewCommentBuyer"]="Feedbacks from Buyer";

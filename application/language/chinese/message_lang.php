@@ -427,6 +427,13 @@ $lang["profileNormalUser"]="(用戶)";
 $lang["profileLatestAccountActivity"]="上次登錄時間:";
 $lang["profileSendPrivateMessage"]="發送信息";
 
+$lang["profileContactAdvertiser"]="發送信息";
+$lang["profileSendPostMessage"]="信息內容";
+$lang["profileSendPostMessageInside"]="在此輸入...";
+
+$lang["profileLoginPlease"]="登入";
+$lang["profilePleaseLoginToProceed"]="請先登入";
+
 //-----view all Feedback------
 $lang["viewCommentAll"]="所有評價";
 $lang["viewCommentBuyer"]="買家發的評價";
@@ -447,15 +454,6 @@ $lang["NotFoundSecond3"]="返回主頁";
 $lang["NotFoundThird1"]="保持聯絡";
 $lang["NotFoundThird2"]="如果你有問題或問題，請立即告訴我們。";
 $lang["NotFoundThird3"]="聯絡我們";
-
-
-
-
-
-
-
-
-
 
 
 

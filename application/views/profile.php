@@ -867,10 +867,10 @@ function sendIt() {
     <div class="modal-content">
     	<div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        <h4 class="modal-title">Please login</h4>
+	        <h4 class="modal-title"><?php echo $this->lang->line("profileLoginPlease");?></h4>
       	</div>
       	<div class="modal-body">
-      	   <h2 class="center-text">Please login to continue the process</h2>
+      	   <h2 class="center-text"><?php echo $this->lang->line("profilePleaseLoginToProceed");?></h2>
       	   <br>
       	   <a class="btn btn-primary btn-40 center-obj" href="<?php echo base_url().MY_PATH."home/loginPage?prevURL=".urlencode(current_url());?>" ><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;Login</a></p>
                     	
@@ -885,7 +885,7 @@ function sendIt() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title"><i class=" icon-mail-2"></i> Contact advertiser </h4>
+        <h4 class="modal-title"><i class=" icon-mail-2"></i> <?php echo $this->lang->line("profileContactAdvertiser");?> </h4>
       </div>
       <div class="modal-body">
         <form role="form" id="item" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/insertBuyerMessage?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($prevURL);?>">
@@ -905,8 +905,8 @@ function sendIt() {
            		<input type="hidden" id="userID" name="userID" value="<?php echo $userID;?>">   	
            	</div>
           <div class="form-group">
-            <label for="message-text" class="control-label">Message <font color="red">*</font><span class="text-count">(<?php echo DESCLENGTHINPROFILE;?>) </span>:</label>
-            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control" required="true" id="message-text" name="message-text" rows="5" columns="30" maxlength="<?php echo DESCLENGTHINPROFILE;?>"   placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+            <label for="message-text" class="control-label"><?php echo $this->lang->line("profileSendPostMessage");?> <font color="red">*</font><span class="text-count">(<?php echo DESCLENGTHINPROFILE;?>) </span>:</label>
+            <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control" required="true" id="message-text" name="message-text" rows="5" columns="30" maxlength="<?php echo DESCLENGTHINPROFILE;?>"   placeholder="<?php echo $this->lang->line("profileSendPostMessageInside");?>" data-placement="top" data-trigger="manual"></textarea>
           </div>
           <div class="form-group">
             <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
