@@ -7,7 +7,7 @@
 		   -->
 		             <h3 class="no-padding text-center-480 useradmin"><a href="<?php echo base_url().MY_PATH;?>viewProfile/viewByUserID/<?php echo $userID.'/1?prevURL='.urlencode(current_url());?>"><img class="userImg" src="<?php echo $userPhotoPath;?>" alt="user"></a>
 		             
-		             <a href="<?php echo base_url().MY_PATH;?>viewProfile/viewByUserID/<?php echo $userID.'/1?prevURL='.urlencode(current_url());?>"> <?php echo $userName; ?></a></h3>
+		             <a href="<?php echo base_url().MY_PATH;?>viewProfile/viewByUserID/<?php echo $userID.'/1?prevURL='.urlencode(current_url()).'&prevProfile_Url='.urlencode(current_url());?>"> <?php echo $userName; ?></a></h3>
             
             </div>
             <div class="col-md-7 col-xs-8 col-xxs-12">
