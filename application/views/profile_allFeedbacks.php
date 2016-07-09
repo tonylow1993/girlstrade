@@ -20,7 +20,7 @@ function sendIt() {
   <div class="main-container">
     <div class="container">   
       <div class="row">
-        <div class="col-sm-9 page-content col-thin-left">
+        <div class="col-sm-12 page-content col-thin-left">
           <div class="category-list">
            <div class="tab-box "> 
               <!-- Nav tabs -->
@@ -83,24 +83,24 @@ function sendIt() {
                ?>"  method="POST" id="sortfrm" class="tab-filter" role="form"> 
                <div  style="width:150px; display:inline-block">
                		<select class="form-control     "   name="selectSortType"   id="selectSortType" data-width="auto">
-					  <option value="0" <?php if(strcmp($sortTypeID,"0")==0 or $sortTypeID==0) echo " selected='selected' ";?> >Sort type by...</option>
-					  <option value="1" <?php if(strcmp($sortTypeID,"1")==0)  echo " selected='selected' ";?>>Date</option>
-					  <option value="2" <?php if(strcmp($sortTypeID,"2")==0)  echo " selected='selected' ";?>>Type</option>
+					  <option value="0" <?php if(strcmp($sortTypeID,"0")==0 or $sortTypeID==0) echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
+					  <option value="1" <?php if(strcmp($sortTypeID,"1")==0)  echo " selected='selected' ";?>><?php echo $Date;?></option>
+					  <option value="2" <?php if(strcmp($sortTypeID,"2")==0)  echo " selected='selected' ";?>><?php echo $Category;?></option>
 					</select>
                 </div> 
             	<div id="sortByDateDiv" style="width:150px;display:none;">
 					<select class="form-control     "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
-					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> >Sort by...</option>
-					  <option value="3" <?php  if(strcmp($sortByDate,"3")==0)   echo " selected='selected' ";?>>Date: Most Recent</option>
-					  <option value="4" <?php  if(strcmp($sortByDate,"4")==0)   echo " selected='selected' ";?>>Date: Oldest</option>
+					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
+					  <option value="3" <?php  if(strcmp($sortByDate,"3")==0)   echo " selected='selected' ";?>><?php echo $mostRecent;?></option>
+					  <option value="4" <?php  if(strcmp($sortByDate,"4")==0)   echo " selected='selected' ";?>><?php echo $oldest;?></option>
 					</select>
 				</div> 
 				<div id="sortByTypeDiv" style="width:150px;display:none;">
 					<select class="form-control     "   name="sortByType"   id="sortByType" data-width="auto" onchange="beginSort();">
-					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> >Sort type by...</option>
-					  <option value="1" <?php  if(strcmp($sortByType,"1")==0)   echo " selected='selected' ";?>>Good</option>
-					  <option value="2" <?php  if(strcmp($sortByType,"2")==0)   echo " selected='selected' ";?>>Bad</option>
-					  <option value="3" <?php  if(strcmp($sortByType,"3")==0)   echo " selected='selected' ";?>>Average</option>
+					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
+					  <option value="1" <?php  if(strcmp($sortByType,"1")==0)   echo " selected='selected' ";?>><?php echo $good;?></option>
+					  <option value="2" <?php  if(strcmp($sortByType,"2")==0)   echo " selected='selected' ";?>><?php echo $average;?></option>
+					  <option value="3" <?php  if(strcmp($sortByType,"3")==0)   echo " selected='selected' ";?>><?php echo $bad;?></option>
 					</select>
 				</div> 
 					<noscript><input type="submit" value="Submit"></noscript>
@@ -376,6 +376,7 @@ $( document ).ready(function() {
  		   document.getElementById('sortByTypeDiv').style.display = 'none';
  		  }
 });
+
 $('#selectSortType').change(function() {
 	  if($(this).val()=="2"){
 	   document.getElementById('sortByDateDiv').style.display = 'none';

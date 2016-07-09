@@ -438,6 +438,10 @@ $lang["profilePleaseLoginToProceed"]="Please login to continue the process";
 $lang["mostRecent"]="Most Recent";
 $lang["oldest"]="Oldest";
 
+$lang["good"]="Good";
+$lang["average"]="Average";
+$lang["bad"]="Bad";
+
 //-----view all Feedback------
 $lang["viewCommentAll"]="All feedbacks";
 $lang["viewCommentBuyer"]="Feedbacks from Buyer";

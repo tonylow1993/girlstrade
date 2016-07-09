@@ -22,7 +22,7 @@ function sendIt() {
     <div class="container">   
       <div class="row">
         
-        <div class="col-sm-9 page-content col-thin-left">
+        <div class="col-sm-12 page-content col-thin-left">
           <div class="category-list">
            <div class="tab-box "> 
                  <div class="pull-right backtolist margin-right-10"><a href=<?php echo $previousCurrent_url;?>> <i class="fa fa-angle-double-left"></i> 

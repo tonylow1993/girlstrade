@@ -438,6 +438,11 @@ $lang["profilePleaseLoginToProceed"]="請先登入";
 $lang["mostRecent"]="由最新開始";
 $lang["oldest"]="由最舊開始";
 
+$lang["good"]="良好";
+$lang["average"]="中等";
+$lang["bad"]="差";
+
+
 //-----view all Feedback------
 $lang["viewCommentAll"]="所有評價";
 $lang["viewCommentBuyer"]="買家發的評價";

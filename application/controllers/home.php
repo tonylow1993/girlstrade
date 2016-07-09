@@ -1639,6 +1639,15 @@ class Home extends CI_Controller {
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["activeTab"]=$activeTab;	
 				
+				$data["lblSearchSortBy"]=$this->lang->line("lblSearchSortBy");
+				$data["mostRecent"]=$this->lang->line("mostRecent");
+				$data["oldest"]=$this->lang->line("oldest");
+				$data["Category"]=$this->lang->line("Category");
+				$data["Date"]=$this->lang->line("Date");
+				$data["good"]=$this->lang->line("good");
+				$data["average"]=$this->lang->line("average");
+				$data["bad"]=$this->lang->line("bad");
+				
 				$this->load->view("profile_allFeedbacks", $data);
 	}
 	
