@@ -39,8 +39,19 @@
 			 	echo "<option value='U'>Unverified</option>";
 			 	echo "</select>";
 				echo "<br/><select class='form-control'id='".$rejectReason."' name='".$rejectReason."' style='font-size:1.3em' >";
-                echo "<option selected='selected' value='Reject Reason 1'>Reject Reason 1</option>";
-                echo "<option value='Reject Reason 2'>Reject Reason 2111111111111111111111111</option>";
+                if(strcmp($this->nativesession->get("language"), "english")==0){
+	                foreach(getRejectReasonEngArray() as $rejectReasontxt){
+	                	echo "<option value='$rejectReasontxt'>$rejectReasontxt</option>";
+	                	
+	                }
+                }else{
+                	foreach(getRejectReasonChiArray() as $rejectReasontxt){
+                		echo "<option value='$rejectReasontxt'>$rejectReasontxt</option>";
+                	
+                	}
+                }
+// 				echo "<option selected='selected' value='Reject Reason 1'>Reject Reason 1</option>";
+//                 echo "<option value='Reject Reason 2'>Reject Reason 2111111111111111111111111</option>";
                 echo "</select>";
                 echo "<br/><textarea class='form-control'  type='text' id='".$rejectSpecifiedReason."' name='".$rejectSpecifiedReason."' maxlength='100' style='font-size:1.3em;padding: 0px,0px;'></textarea>";
                 echo "</div></div></div>";

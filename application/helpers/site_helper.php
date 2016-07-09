@@ -79,6 +79,20 @@ if(! function_exists('getRatingArray')){
 	}
 
 }
+if(! function_exists('getRejectReasonEngArray')){
+	function getRejectReasonEngArray() {
+		return array("Average", "Good", "Bad");
+		 
+	}
+
+}
+if(! function_exists('getRejectReasonChiArray')){
+	function getRejectReasonChiArray() {
+		return array("Average","Good", "Bad");
+		 
+	}
+
+}
 if(! function_exists('is_file_exists')){
 
 function is_file_exists($filePath)

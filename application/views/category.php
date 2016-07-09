@@ -570,7 +570,10 @@
 						echo $lblCategory; 
 					else{ 
 						$value = $result[(int)$catID_];
-						echo $value[0]->name;
+						if(strcmp($this->nativesession->get("language"), "english")==0)
+							echo $value[0]->name;
+						else 
+							echo $value[0]->nameCH;
 					}
 				?>
               </a>
@@ -581,7 +584,10 @@
 						echo $lblLocation; 
 					else{ 
 						$value = $resLoc[(int)$locID_];
-						echo $value[0]->name;
+						if(strcmp($this->nativesession->get("language"), "english")==0)
+							echo $value[0]->name;
+						else 
+							echo $value[0]->nameCN;
 					}
 				?>
               </a>
