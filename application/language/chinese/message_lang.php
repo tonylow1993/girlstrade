@@ -457,16 +457,16 @@ $lang["NotFoundThird1"]="保持聯絡";
 $lang["NotFoundThird2"]="如果你有問題或問題，請立即告訴我們。";
 $lang["NotFoundThird3"]="聯絡我們";
 
-$lang["lblallLocations"]="All Locations";
-$lang["lblSelectRegion"]="Select your region";
-$lang["lblDistrictsOf"]="Districts of";
-$lang["lblHongKong"]="Hong Kong";
-$lang["lblallLocations"]="All Locations";
-$lang["btnFilter"]="Filter";
+$lang["lblallLocations"]="所有地區";
+$lang["lblSelectRegion"]="選擇您的交易地區";
+$lang["lblDistrictsOf"]="選擇地區";
+$lang["lblHongKong"]="";
+$lang["lblallLocations"]="所有地區";
+$lang["btnFilter"]="篩選";
 
-$lang["lblSelectCategory"]="Filter with selected category";
-$lang["lblSelectPriceRange"]="Select your price range";
-$lang["lblRange"]="Range";
+$lang["lblSelectCategory"]="使用類別作為篩選";
+$lang["lblSelectPriceRange"]="選擇您的價格範圍";
+$lang["lblRange"]="範圍";
 
 
 
