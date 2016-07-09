@@ -435,6 +435,8 @@ $lang["profileSendPostMessageCancelBtn"]="Cancel";
 
 $lang["profileLoginPlease"]="Please login";
 $lang["profilePleaseLoginToProceed"]="Please login to continue the process";
+$lang["mostRecent"]="Most Recent";
+$lang["oldest"]="Oldest";
 
 //-----view all Feedback------
 $lang["viewCommentAll"]="All feedbacks";

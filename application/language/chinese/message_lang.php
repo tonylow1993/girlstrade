@@ -82,8 +82,8 @@ $lang["directsend_history"]="買方的詢問";
 $lang["lblAllCategories"]="所有類別";  //index.php
 $lang["lblAllLocations"]="所有地點";
 $lang["lblSearchSortBy"]="進階篩選";
-$lang["lblPriceLowToHigh"]="價錢: 由 便宜 至 昂貴";
-$lang["lblPriceHighToLow"]="價錢: 由 昂貴 至 便宜";
+$lang["lblPriceLowToHigh"]="由低價開始";
+$lang["lblPriceHighToLow"]="由高價開始";
 $lang["lblLocation"]="地點";  // newPost.php
 $lang["lblPriceRange"]="價錢範圍";
 $lang["lblCondition"]="品質";
@@ -435,6 +435,8 @@ $lang["profileSendPostMessageCancelBtn"]="取消";
 
 $lang["profileLoginPlease"]="登入";
 $lang["profilePleaseLoginToProceed"]="請先登入";
+$lang["mostRecent"]="由最新開始";
+$lang["oldest"]="由最舊開始";
 
 //-----view all Feedback------
 $lang["viewCommentAll"]="所有評價";

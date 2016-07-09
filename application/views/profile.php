@@ -170,8 +170,8 @@ function sendIt() {
 				<div id="sortByDateDiv" style="display:none;width:150px">
 					<select class="form-control "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
-					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>>Most Recent</option>
-					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>>Oldest</option>
+					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>><?php echo $mostRecent;?></option>
+					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>><?php echo $oldest;?></option>
 					</select>
 				</div> 
 				<div id="filterByCategoryDiv" style="display:none;width:150px;">
