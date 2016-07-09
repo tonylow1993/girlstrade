@@ -475,8 +475,9 @@ $lang["lblSelectCategory"]="使用類別作為篩選";
 $lang["lblSelectPriceRange"]="選擇您的價格範圍";
 $lang["lblRange"]="範圍";
 
-
-
-
-
+$lang["lblCatSearch"]="搜尋";
+$lang["lblCatKeyword"]="我想買...";
+$lang["Searching"]="搜索中";
+$lang["allAds"]="交易地點: ";
+$lang["in"]=" ";
 

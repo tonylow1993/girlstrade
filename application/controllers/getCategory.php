@@ -258,8 +258,8 @@ class getCategory extends CI_Controller {
 		$NoOfItemCount=$this->searchresult_model->getNoOfItemCount(0, $catID, $locID, $keywords, $minPrice, $maxPrice, $allAds);
 	 	$data["NoOfItemCount"]=$NoOfItemCount;
 					
-	 			
-					
+	 	$data["lblCatKeyword"]=$this->lang->line("lblCatKeyword");			
+		$data["lblCatSearch"]=$this->lang->line("lblCatSearch");			
 		$data["lblAllCategories"]=$this->lang->line("lblAllCategories");
 	 	$data["lblAllLocations"]=$this->lang->line("lblAllLocations");
 	 	$data["lblSearchSortBy"]=$this->lang->line("lblSearchSortBy");

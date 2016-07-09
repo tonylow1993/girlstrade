@@ -30,7 +30,7 @@
     <div class="container ">
       <form  id="myForm"  onSubmit="return setup()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">
             <div class="col-lg-3 col-sm-3 search-col relative search-input"> <i class="icon-docs icon-append"></i>
-                <input type="text" name="ads"  id="ads" class="form-control has-icon" placeholder="Keywords" value="<?php if($keywords<>'0') echo trim($keywords);?>">
+                <input type="text" name="ads"  id="ads" class="form-control has-icon" placeholder="<?php echo $this->lang->line("lblCatKeyword");?>" value="<?php if($keywords<>'0') echo trim($keywords);?>">
               	<input type="hidden" name="paneActiveTab" id="paneActiveTab" value="<?php echo $activeTab;?>" >
               </div>
             
@@ -110,7 +110,7 @@
            </div>
        
            <div class="col-sm-3 search-btn">
-            	<button class="btn btn-primary btn-block btn-pink"> <i class="fa fa-search"></i> Search</button>  	
+            	<button class="btn btn-primary btn-block btn-pink"> <i class="fa fa-search"></i> <?php echo $this->lang->line("lblCatSearch");?> </button>  	
            	</div>
             
             <!--/.tab-box-->
@@ -632,8 +632,8 @@
            	  <div class="pull-left col-xs-6">
                 <div class="breadcrumb-list"> 
                 <b class="current"> 
-                <span>All ads</span> </b>
-                 in <?php 
+                <span><?php echo $this->lang->line("allAds");?></span> </b>
+                 <?php echo $this->lang->line("in"); ?> <?php 
 					$str="";
 					if($locID_==null or $locID_=="" or $locID_=='0')
 					{
@@ -1698,7 +1698,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 id ="modal-text">Processing...<?php echo $this->lang->line("PleaseNotCloseBrowseWhileSearching");?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
+                                    <h1 id ="modal-text"><?php echo $this->lang->line("Searching");?><?php echo $this->lang->line("PleaseNotCloseBrowseWhileSearching");?> <img alt="loading..." src="<?php echo base_url();?>assets/img/loading.gif"></h1>
                                 </div>
                                 <div class="modal-body">
                                     <div id="progress-bar" class="progress">

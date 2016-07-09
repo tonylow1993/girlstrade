@@ -475,7 +475,10 @@ $lang["lblSelectCategory"]="Filter with selected category";
 $lang["lblSelectPriceRange"]="Select your price range";
 $lang["lblRange"]="Range";
 
-
-
+$lang["lblCatSearch"]="Search";
+$lang["lblCatKeyword"]="I want to buy...";
+$lang["Searching"]="Searching...";
+$lang["allAds"]="All ads";
+$lang["in"]="in";
 
 
