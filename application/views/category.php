@@ -1740,7 +1740,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 		$str="";
 		if($locID_==null or $locID_=="" or $locID_=='0')
 			$str=" selected='selected' ";
-		echo "<option ".$str." value=\"\">$lblallLocations</option>";
+		echo "<option ".$str." value=\"0\">$lblallLocations</option>";
 		foreach ($resLoc as $id=>$value)
 		{
 			if(!isset($lang_label))
@@ -2044,7 +2044,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 		$str="";
 		if($catID_==null or $catID_=="" or $catID_==0)
 			$str=" selected='selected' ";
-		echo "<option ".$str." value=\"\">$allCategories</option>";
+		echo "<option ".$str." value=\"0\">$allCategories</option>";
 		
 		
 		foreach ($result as $id=>$value)
