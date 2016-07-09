@@ -457,7 +457,16 @@ $lang["NotFoundThird1"]="保持聯絡";
 $lang["NotFoundThird2"]="如果你有問題或問題，請立即告訴我們。";
 $lang["NotFoundThird3"]="聯絡我們";
 
+$lang["lblallLocations"]="All Locations";
+$lang["lblSelectRegion"]="Select your region";
+$lang["lblDistrictsOf"]="Districts of";
+$lang["lblHongKong"]="Hong Kong";
+$lang["lblallLocations"]="All Locations";
+$lang["btnFilter"]="Filter";
 
+$lang["lblSelectCategory"]="Filter with selected category";
+$lang["lblSelectPriceRange"]="Select your price range";
+$lang["lblRange"]="Range";
 
 
 

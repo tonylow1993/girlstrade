@@ -1556,8 +1556,12 @@ function locSetup1(){
 	   var activeTab=document.getElementById("paneActiveTab").value;
 	   
 	   var minPrice=document.getElementById("minPrice").value;
+	   if(minPrice.trim()=='')
+		   minPrice=0;
 	   var maxPrice=document.getElementById("maxPrice").value;
-	document.getElementById("locForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
+	   if(maxPrice.trim()=='')
+		   maxPrice=0;
+	   document.getElementById("locForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 	document.getElementById("locForm1").submit();
 }
 function catSetup1(){
@@ -1573,8 +1577,12 @@ function catSetup1(){
 	   var activeTab=document.getElementById("paneActiveTab").value;
 	   
 	   var minPrice=document.getElementById("minPrice").value;
+	   if(minPrice.trim()=='')
+		   minPrice=0;
 	   var maxPrice=document.getElementById("maxPrice").value;
-	document.getElementById("catForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
+	   if(maxPrice.trim()=='')
+		   maxPrice=0;
+	   document.getElementById("catForm1").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 	document.getElementById("catForm1").submit();
 }
 function searchloc($id){
@@ -1590,8 +1598,12 @@ function searchloc($id){
 	   var activeTab=document.getElementById("paneActiveTab").value;
 	   
 	   var minPrice=document.getElementById("minPrice").value;
+	   if(minPrice.trim()=='')
+		   minPrice=0;
 	   var maxPrice=document.getElementById("maxPrice").value;
-	document.getElementById("myFormsearchloc").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
+	   if(maxPrice.trim()=='')
+		   maxPrice=0;
+	   document.getElementById("myFormsearchloc").action="<?php echo base_url().MY_PATH; ?>getCategory/getAll/1/".concat(catID).concat("/").concat(locID).concat("/").concat(keywords).concat("/").concat('0').concat("/").concat(minPrice).concat("/").concat(maxPrice).concat("/").concat(activeTab).concat("/").concat(sortByType).concat("/").concat(sortByPrice).concat("/").concat(sortByDate);
 	document.getElementById("myFormsearchloc").submit();
 }
 function savedAds(ctrlValue, ctrlName, clickLink) {
@@ -1698,7 +1710,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="countryPopup"><i class=" icon-map"></i> Select your region </h4>
+        <h4 class="modal-title" id="countryPopup"><i class=" icon-map"></i> <?php echo $this->lang->line("lblSelectRegion")?> </h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -1707,8 +1719,8 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
             <p>
             <div class="searchCat2">
             <i class="icon-location-circled"></i>
-            Districts of <strong>
-            Hong Kong</strong>
+            <?php echo $this->lang->line("lblDistrictsOf")?> <strong>
+            <?php echo $this->lang->line("lblHongKong")?></strong>
             </div>
             </p>
 <form role="form"  id="locForm1" class="form-inline modalBody margin-top-20"  onSubmit="return locSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">  
@@ -1718,10 +1730,11 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
         <select  class="form-control      " id="region-state" name="region-state">
 		
 		<?php 
+		$lblallLocations=$this->lang->line("lblallLocations");
 		$str="";
 		if($locID_==null or $locID_=="" or $locID_=='0')
 			$str=" selected='selected' ";
-		echo "<option ".$str." value=\"\">All Locations</option>";
+		echo "<option ".$str." value=\"\">$lblallLocations</option>";
 		foreach ($resLoc as $id=>$value)
 		{
 			if(!isset($lang_label))
@@ -1751,7 +1764,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
             <div>
                     <div class="form-group no-padding">
                       <button id="locRangeBtn1" class="btn btn-default btn-pink btn-80  " 
-                      type="submit">Filter<i class="icon-search-2"></i></button>
+                      type="submit"><?php echo $this->lang->line("btnFilter"); ?> <i class="icon-search-2"></i></button>
                     </div>
                   </div>
                 </form>	
@@ -1914,7 +1927,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="pricePopup"><i class=" icon-money"></i> 
-        Select your price range </h4>
+        <?php echo $this->lang->line("lblSelectPriceRange"); ?> </h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -1923,7 +1936,8 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
                 <h5 class="list-title">
                 <div class="modalBody">
 				<div class="searchCat3">
-                <i class="fa fa-usd"></i>Price <strong>Range</strong>
+                <i class="fa fa-usd"></i><?php echo $this->lang->line("Price");?> 
+                <strong><?php echo $this->lang->line("lblRange"); ?></strong>
 				</div>
                 </div>
                 </h5>
@@ -1979,7 +1993,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
                   <div>
                     <div class="form-group no-padding">
                       <button id="priceRangeBtn1" class="btn btn-default btn-pink margin-top-20" 
-                      type="submit">Filter<i class="icon-search-2"></i></button>
+                      type="submit"><?php echo $this->lang->line("btnFilter"); ?><i class="icon-search-2"></i></button>
                     </div>
                   </div>
                 </form>
@@ -2001,7 +2015,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
     <div class="modal-content">
       <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="countryPopup"><i class=" icon-book-open"></i> Filter with selected category </h4>
+        <h4 class="modal-title" id="countryPopup"><i class=" icon-book-open"></i> <?php echo $this->lang->line("lblSelectCategory"); ?> </h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -2009,7 +2023,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
         	
             <p>
             <div class="searchCat">
-            <strong><i class="icon-th"></i>Category</strong>
+            <strong><i class="icon-th"></i><?php echo $this->lang->line("Category"); ?></strong>
             </div>
             </p>
 		<form role="form"  id="catForm1" class="form-inline modalBody margin-top-20"  onSubmit="return catSetup1()"  action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" method="POST">  
@@ -2020,11 +2034,11 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
         <select  class="form-control" id="parent-category" name="parent-category">
 		
 		<?php 
-		
+		$allCategories=$this->lang->line("lblAllCategories");
 		$str="";
 		if($catID_==null or $catID_=="" or $catID_==0)
 			$str=" selected='selected' ";
-		echo "<option ".$str." value=\"\">All Categories</option>";
+		echo "<option ".$str." value=\"\">$allCategories</option>";
 		
 		
 		foreach ($result as $id=>$value)
@@ -2055,7 +2069,7 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
 				
                     <div class="form-group no-padding">
                       <button id="catRangeBtn1" class="btn btn-default btn-pink btn-80  " 
-                      type="submit">Filter<i class="icon-search-2"></i></button>
+                      type="submit"><?php echo $this->lang->line("btnFilter"); ?><i class="icon-search-2"></i></button>
                     </div>
                 
                   

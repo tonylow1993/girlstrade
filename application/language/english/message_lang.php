@@ -458,6 +458,16 @@ $lang["NotFoundThird2"]="If you have a problem with GirlsTrade, please contact u
 $lang["NotFoundThird3"]="Contact Us";
 
 
+$lang["lblallLocations"]="All Locations";
+$lang["lblSelectRegion"]="Select your region";
+$lang["lblDistrictsOf"]="Districts of";
+$lang["lblHongKong"]="Hong Kong";
+$lang["lblallLocations"]="All Locations";
+$lang["btnFilter"]="Filter";
+
+$lang["lblSelectCategory"]="Filter with selected category";
+$lang["lblSelectPriceRange"]="Select your price range";
+$lang["lblRange"]="Range";
 
 
 
