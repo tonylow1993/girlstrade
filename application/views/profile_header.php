@@ -36,18 +36,6 @@
                   </div>
                   <div class="clearfix"></div>
                 </div>
-                
-                <!-- revenue data -->
-                <div class="hdata">
-                  <div class="mcol-left"> 
-                    <!-- Icon with blue background --> 
-                    <i class="fa fa-heart ln-shadow shape-5"></i> </div>
-                  <div class="mcol-right"> 
-                    <!-- Number of visitors -->
-                     <p><a class="not-active"><?php echo $favoriteAdsCount;?></a> <em><?php echo $accountHeaderFavLang;?> </em></p>
-                 </div>
-                  <div class="clearfix"></div>
-                </div>
               </div>
             </div>
           </div>

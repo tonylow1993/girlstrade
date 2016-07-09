@@ -9,7 +9,8 @@
 						<h3><?php echo $userName; ?> </h3>
 						
 						<input id="avatar" name="avatar" type="file" class="file-loading" accept="image/*">
-						<h5>It is noted that your previous photo will be deleted and your new photos will be approved within 24 hours. During thie time, your new photo will not be active until approved.</h5>
+						
+						<abbr title="It is noted that your previous photo will be deleted and your new photos will be approved within 24 hours. During thie time, your new photo will not be active until approved.">Notes</abbr>
 						<div id="uploadImgError"></div>
 					</div>
 					<!-- include other inputs if needed and include a form submit (save) button -->
