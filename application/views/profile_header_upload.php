@@ -162,18 +162,6 @@
                   </div>
                   <div class="clearfix"></div>
                 </div>
-                
-                <!-- revenue data -->
-                <div class="hdata">
-                  <div class="mcol-left"> 
-                    <!-- Icon with blue background --> 
-                    <i class="fa fa-user ln-shadow shape-5"></i> </div>
-                  <div class="mcol-right"> 
-                    <!-- Number of visitors -->
-                    <p><a href="#"><?php echo $favoriteAdsCount;?></a> <em>Favorites </em></p>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
               </div>
             </div>
           </div>
