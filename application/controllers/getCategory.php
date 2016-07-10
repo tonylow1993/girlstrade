@@ -268,6 +268,10 @@ class getCategory extends CI_Controller {
 		$data["lblCategory"]=$this->lang->line("Category");
 	 	$data["lblLocation"]=$this->lang->line("lblLocation");
 	 	$data["lblPriceRange"]=$this->lang->line("lblPriceRange");
+		$data["Price"]=$this->lang->line("Price");
+	 	$data["Date"]=$this->lang->line("Date");
+	 	$data["mostRecent"]=$this->lang->line("mostRecent");
+		$data["oldest"]=$this->lang->line("oldest");
 	 	$data["lblCondition"]=$this->lang->line("lblCondition");
 	 	$data["lblConditionNew"]=$this->lang->line("lblConditionNew");
 	 	$data["lblConditionUsed"]=$this->lang->line("lblConditionUsed");
