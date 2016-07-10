@@ -481,3 +481,22 @@ $lang["Searching"]="搜索中";
 $lang["allAds"]="交易地點: ";
 $lang["in"]=" ";
 
+
+$lang["Redirecting"]="將會在";
+$lang["toReturn"]="秒之內帶你到返回";
+$lang["operationFailed"]="處理過程失敗!";
+$lang["goBackTryAgain"]="請返回重試.";
+
+
+
+
+
+
+
+
+
+
+
+
+
+

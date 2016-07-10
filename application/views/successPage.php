@@ -66,7 +66,9 @@
 					<br/>
                  	<h2 class="no-margin no-padding">&#10004; <?php echo $successTile;?> <?php echo $error;?></h2>
 					<br/>
-					<h2>Redirecting In <span id="countdown">5</span> to <?php echo $redirectToWhatPage;?></h2>
+					<h2><?php echo $this->lang->line("Redirecting");?> <span id="countdown">5</span> 
+					<?php echo $this->lang->line("toReturn");?>
+					 <?php echo $redirectToWhatPage;?></h2>
 					<br/>
 					<br/>
 				   <h2> <a href="<?php echo base_url();?>" > <?php echo $goToHomePage; ?> </a> </h2>

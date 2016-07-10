@@ -10,8 +10,8 @@
 			<img src="<?php echo base_url(); ?>assets/failedOperations/images/banner.png" alt="" />
 		</div>
 		<div class="text">
-			<h1>Operation Failed!</h1>
-			<p>Please go back and try again.</p>
+			<h1><?php echo $this->lang->line("operationFailed");?></h1>
+			<p><?php echo $this->lang->line("goBackTryAgain");?></p>
 		</div>
 	</div>
 </div>

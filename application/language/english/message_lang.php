@@ -482,3 +482,18 @@ $lang["allAds"]="All ads";
 $lang["in"]="in";
 
 
+$lang["Redirecting"]="Redirecting in";
+$lang["toReturn"]="to";
+$lang["operationFailed"]="Operation Failed!";
+$lang["goBackTryAgain"]="Please go back and try again.";
+
+
+
+
+
+
+
+
+
+
+
