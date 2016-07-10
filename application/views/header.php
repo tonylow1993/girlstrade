@@ -118,16 +118,17 @@
 
 $bob = session_id();
 
-echo "Session ID on load is ".$bob;
-echo "<br>";
+//echo "Session ID on load is ".$bob;
+//echo "<br>";
 
 if($bob==""){
 	session_start();
 	$bob = session_id();
-	echo ' session ID currently is '.$bob;}
+	//echo ' session ID currently is '.$bob;
+}
 	
 	if ( !is_writable(session_save_path()) ) {
-		echo 'Session save path "'.session_save_path().'" is not writable!';
+		//echo 'Session save path "'.session_save_path().'" is not writable!';
 	}
 
 
@@ -167,7 +168,7 @@ if ((!isset($_GET['jsEnabled']) || $_GET['jsEnabled'] == 'true') && !isset($_SER
 
 $usr = $this->nativesession->get('user');
 if(empty($usr)){$usr='Not Yet Login';}
-echo json_encode($usr);;
+//echo json_encode($usr);;
 
 ?>
   <div class="header">
