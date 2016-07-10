@@ -51,7 +51,7 @@
          	     		 else 
          	     		 	echo "<li><a href=$editprofile1><i class=\"icon-user\"></i> $EditProfile <span class=\"badge\"></span></a></li>";
          	     		 if($activeNav==12)
-         	     		 	echo "<li><a  class=\"active\" href=$sendEmailconfig><i class=\"fa fa-envelope-o fa-5\"></i>". $this->lang->line("updateSendEmailConfig")." <span class=\"badge\"></span></a></li>";
+         	     		 	echo "<li><a  class=\"active\" href=$sendEmailconfig><i class=\"fa fa-envelope-o fa-5\"></i> ". $this->lang->line("updateSendEmailConfig")." <span class=\"badge\"></span></a></li>";
          	     		 else
          	     			echo "<li><a href=$sendEmailconfig><i class=\"fa fa-envelope-o fa-5\"></i>". $this->lang->line("updateSendEmailConfig")." <span class=\"badge\"></span></a></li>";
          	     		 	
