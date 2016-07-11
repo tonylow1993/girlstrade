@@ -128,7 +128,7 @@
                     	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
                     	echo "<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
                     	if(strcmp($status, "Open")==0 or strcmp($status, "Expired")==0)
-                    	echo "<div class=\"user-ads-action\"><a class=\"btn btn-danger btn-xs btn-120\"  href=\"#deleteAdsPopup\" data-toggle=\"modal\" id='$clickLink' data-id=\"$messageID\" data-userID=\"$userID\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></div></p>";
+                    	echo "<div class=\"user-ads-action\"><a class=\"btn btn-danger btn-xs btn-120\"  onclick=\"setupDeleteAds(this); return false;\" id='$clickLink' data-id=\"$messageID\" data-userID=\"$userID\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></div></p>";
                     	
                         //echo "<a class=\"btn btn-danger btn-xs\"  href=\"javascript:deleteAds('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1)'\" id='$clickLink'> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></p>";
                      	//if($enableMarkSoldBtn)
@@ -396,10 +396,10 @@
         </form>
       </div>
       <div class="modal-footer">
-		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
-      	<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();"><i class="fa fa-check"></i> Confirm</button>
+      	<!--<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <button id="submit-btn" type="button" class="btn btn-success pull-right"   onclick="setupDeleteAds(); return false;">Submit</button>
-        	<button id="validate" hidden="true" type="submit"></button>
+        	<button id="validate" hidden="true" type="submit"></button>--> 
   
      	 </div>
     </div>
@@ -459,6 +459,7 @@ function passToModal() {
         $("#pageNum").val($(event.relatedTarget).data('pagenum'));
          $("#nextExpiryDate").html($(event.relatedTarget).data('nextexpirydate'));
     });
+	
     $('#deleteAdsPopup').on('show.bs.modal', function(event) {
         $("#messageID").val($(event.relatedTarget).data('id'));
         $("#userID").val($(event.relatedTarget).data('userID'));
@@ -538,22 +539,23 @@ var encodeHtmlEntity = function(str) {
   }
   return buf.join('');
 };
-function setupDeleteAds()
+function setupDeleteAds(identifier)
 {
-	$("#modal-title-del").html("Processing...");
+	$('#deleteAdsPopup').modal('show');
+	
 	$.ajax({
 		method: "POST",
 		url: "<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds",
 		data: { 
-			messageID: $("#messageID").val(),
-			userID: $("#userID").val() 
+			messageID: $(identifier).data('id') ,
+			userID: $(identifier).data('userID') 
 		},
 		success: function(response){
 			$("#modal-title-del").html("Your post has been deleted.");
-			$('#fwd-btn').css("display", "block");
-			$('#fwd-btn').css("margin", "auto");
-			$('#cancel-btn').css("display", "none");
-			$('#submit-btn').css("display", "none");
+			// $('#fwd-btn').css("display", "block");
+			// $('#fwd-btn').css("margin", "auto");
+			// $('#cancel-btn').css("display", "none");
+			// $('#submit-btn').css("display", "none");
 			
 			console.log("success");
 		}
