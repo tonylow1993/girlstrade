@@ -1276,8 +1276,8 @@ class Home extends CI_Controller {
 	
 	public function logout(){
 		
-		$this->nativesession->delete('user');
-		  
+		//$this->nativesession->delete('user');
+		$this->nativesession->destroy();
 		redirect(base_url());
 	}
 	
