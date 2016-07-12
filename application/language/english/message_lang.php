@@ -486,7 +486,7 @@ $lang["Redirecting"]="Redirecting in";
 $lang["toReturn"]="to";
 $lang["operationFailed"]="Operation Failed!";
 $lang["goBackTryAgain"]="Please go back and try again.";
-
+$lang["homepage"]="HomePage";
 
 
 

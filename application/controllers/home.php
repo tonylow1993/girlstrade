@@ -785,7 +785,7 @@ class Home extends CI_Controller {
                 	$data["PrevURL"]=base_url();
             		$data["error"]=$errorMsg;
                 	$this->nativesession->set("lastPageVisited","login");
-                	$data['redirectToWhatPage']="Home Page";
+                	$data['redirectToWhatPage']=$this->lang->line("homepage");
                 	$data['redirectToPHP']=base_url();
                 	$data["successTile"]=$this->lang->line("successTile");
                 	$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -945,7 +945,7 @@ class Home extends CI_Controller {
 				$data["PrevURL"]=$prevURL;
 				$data["error"]=$errorMsg;
 				$this->nativesession->set("lastPageVisited","login");
-				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToWhatPage']=$this->lang->line("homepage");
 				$data['redirectToPHP']=base_url();
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -972,7 +972,7 @@ class Home extends CI_Controller {
 						$errorMsg=$this->lang->line("NotAllowCreatePostBlackList");
 						$data["error"]=$errorMsg;
 						$data["prevURL"]=$prevURL;
-						$data['redirectToWhatPage']="Home Page";
+						$data['redirectToWhatPage']=$this->lang->line("homepage");
 						$data['redirectToPHP']=base_url();
 						$data["successTile"]=$this->lang->line("successTile");
 						$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1095,7 +1095,7 @@ class Home extends CI_Controller {
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["error"]=$errorMsg;
 				$this->nativesession->set("lastPageVisited","login");
-				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToWhatPage']=$this->lang->line("homepage");
 				$data['redirectToPHP']=base_url();
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1138,7 +1138,7 @@ class Home extends CI_Controller {
 		$data["lang_label"]=$this->nativesession->get("language");
 		$data["error"]=$errorMsg;
 		$this->nativesession->set("lastPageVisited","login");
-		$data['redirectToWhatPage']="Home Page";
+		$data['redirectToWhatPage']=$this->lang->line("homepage");
 		$data['redirectToPHP']=base_url();
 		$data["successTile"]=$this->lang->line("successTile");
 		$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1169,7 +1169,7 @@ class Home extends CI_Controller {
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["error"]=$errorMsg;
 				$this->nativesession->set("lastPageVisited","login");
-				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToWhatPage']=$this->lang->line("homepage");
 				$data['redirectToPHP']=base_url();
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1184,7 +1184,7 @@ class Home extends CI_Controller {
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["error"]=$errorMsg;
 				$this->nativesession->set("lastPageVisited","login");
-				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToWhatPage']=$this->lang->line("homepage");
 				$data['redirectToPHP']=base_url();
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1230,7 +1230,7 @@ class Home extends CI_Controller {
 			$data["lang_label"]=$this->nativesession->get("language");
 			$data["error"]=$errorMsg;
 			$this->nativesession->set("lastPageVisited","login");
-			$data['redirectToWhatPage']="Home Page";
+			$data['redirectToWhatPage']=$this->lang->line("homepage");
 			$data['redirectToPHP']=base_url();
 			$data["successTile"]=$this->lang->line("successTile");
 			$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1904,7 +1904,7 @@ class Home extends CI_Controller {
 		$data["error"]=$errorMsg;
 		$this->nativesession->set("lastPageVisited","login");
 		$data["PrevURL"]=base_url();
-            	$data['redirectToWhatPage']="Home Page";
+            	$data['redirectToWhatPage']=$this->lang->line("homepage");
 		$data['redirectToPHP']=base_url();
 		$data["successTile"]=$this->lang->line("successTile");
 		$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -3558,7 +3558,7 @@ class Home extends CI_Controller {
 			
 			$errorMsg="Password Changed Successfully";
 			$data['error']= $errorMsg;
-			$data['redirectToWhatPage']="Home Page";
+			$data['redirectToWhatPage']=$this->lang->line("homepage");
 			$data['redirectToPHP']=base_url();
 			
 			$data["lang_label_text"] = $this->lang->line("lang_label_text");

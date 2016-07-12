@@ -378,7 +378,7 @@ class footer  extends CI_Controller {
 					
 			$data["error"]=$errorMsg;
 			$data["prevURL"]=base_url();;
-			$data['redirectToWhatPage']="Home Page";
+			$data['redirectToWhatPage']=$this->lang->line("homepage");
 			if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 				$data['redirectToPHP']=base_url();
 			else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)

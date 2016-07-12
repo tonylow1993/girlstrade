@@ -119,7 +119,7 @@ class newPost extends CI_Controller {
 				$errorMsg=$this->lang->line("NotAllowCreatePostBlackList");
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToWhatPage']=$this->lang->line("homepage");
 				$data['redirectToPHP']=base_url();
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
