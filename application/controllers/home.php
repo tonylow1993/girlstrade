@@ -1276,8 +1276,8 @@ class Home extends CI_Controller {
 	
 	public function logout(){
 		
-		$this->nativesession->delete('user');
-		  
+		//$this->nativesession->delete('user');
+		$this->nativesession->destroy();
 		redirect(base_url());
 	}
 	
@@ -2246,6 +2246,9 @@ class Home extends CI_Controller {
 			$this->load->view('adminSendEmailConfig.php', $data);
 		}else if ($activeNav==13){
 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageByUserID($userID, "Summary", 0);
+			$data["mostRecent"]=$this->lang->line("mostRecent");
+			$data["oldest"]=$this->lang->line("oldest");
+			$data["lblSearchSortBy"]=$this->lang->line("lblSearchSortBy");
 			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Summary", 0);
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All", "Summary");
 			$this->load->view('account-message-onlybyuserid', $data);
