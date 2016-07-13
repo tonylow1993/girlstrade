@@ -2156,17 +2156,17 @@ function addDayswithdate($date,$days){
 					$data['redirectToWhatPage']="Previous Page";
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
-						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
-							$data['redirectToPHP']=base_url();
-							else {
-								$data['redirectToPHP']=$_SESSION["previousUrl"];
-								if(strcmp($prevprevURL,"")<>0)
-									$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
-							}
-							$data["successTile"]=$this->lang->line("successTile");
-							$data["failedTitle"]=$this->lang->line("failedTitle");
-							$data["goToHomePage"]=$this->lang->line("goToHomePage");
-							$this->load->view('failedPage', $data);
+					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+						$data['redirectToPHP']=base_url();
+					else {
+						$data['redirectToPHP']=$_SESSION["previousUrl"];
+						if(strcmp($prevprevURL,"")<>0)
+							$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+					}
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
 				}
 				$message=$this->input->post("message-text");
 				$userID=$this->input->post("userID");
@@ -2181,7 +2181,7 @@ function addDayswithdate($date,$days){
 					if(ShortDescLength($message, DESCMINLENGTHINNEWPOST))
 						$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					$data["error"]=$errorMsg;
-					$data["prevURL"]=$prevURL;
+					$data["PrevURL"]=$prevURL;
 					$data['redirectToWhatPage']="Previous Page";
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
