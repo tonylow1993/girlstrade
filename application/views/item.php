@@ -1355,12 +1355,11 @@ input[type=checkbox]
       <h2 id="copytext">
 			<?php // echo $shareLink;?>
 			</h2>
-		<textarea style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" >Find "<?php echo $itemName;?>" in GirlsTrade - <?php echo $shareLink;?></textarea>
-		<textarea hidden="true" style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" class="js-copytextarea" id="holdtext"><?php echo $shareLink;?></textarea>
+		<textarea style="vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20" class="js-copytextarea" id="holdtext">Find "<?php echo $itemName;?>" in GirlsTrade - <?php echo $shareLink;?></textarea>
 		 </div>
       <div class="modal-footer">
       	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
-        <button type="button" class="js-textareacopybtn btn btn-success pull-right">Copy</button>
+        <button type="button" class="js-textareacopybtn btn btn-success pull-right" data-dismiss="modal">Copy</button>
       </div>
     </div>
   </div>
@@ -1595,8 +1594,6 @@ copyTextareaBtn.addEventListener('click', function(event) {
   try {
     var successful = document.execCommand('copy');
     var msg = successful ? 'successful' : 'unsuccessful';
-       location.href=copyTextarea.innerHTML;
-           //"http://localhost:8888/girlstrade/index.php/viewItem/index/1"; 
     console.log('Copying text command was ' + msg);
   } catch (err) {
     console.log('Oops, unable to copy');
