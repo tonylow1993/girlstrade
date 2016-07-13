@@ -1726,13 +1726,13 @@ function addDayswithdate($date,$days){
 				$userID=0;
 			else
 				$userID=$user1["userID"];
-				$data=array();
-				$data["userID"]=$userID;
-				$data["toEmailAddress"]=$userEmail['email'];
-				$data["title"]=$title;
-				$data["type"]=$type;
-				//$data["createDate"]=date('Y/m/d H:i:s');
-				$this->sendEmailLog_model->insert($data);
+			$data=array();
+			$data["userID"]=$userID;
+			$data["toEmailAddress"]=$userEmail['email'];
+			$data["title"]=$title;
+			$data["type"]=$type;
+			//$data["createDate"]=date('Y/m/d H:i:s');
+			$this->sendEmailLog_model->insert($data);
 						
 			$config['protocol'] = SMTP_PROTOCOL;
 			$config['smtp_host'] = SMTP_HOST;

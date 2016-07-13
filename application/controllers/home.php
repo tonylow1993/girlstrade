@@ -661,7 +661,6 @@ class Home extends CI_Controller {
             }else
             {
              
-            
             //------------------------------------------------------------------------------
       		$data["lang_label_text"] = $this->lang->line("lang_label_text");
 		 	$data["Home"] = $this->lang->line("Home");
@@ -1106,6 +1105,23 @@ class Home extends CI_Controller {
 			}
 		
 			$userEmail=$this->userEmail->getUserEmailByEmail($emailAddress);
+			
+
+			if($this->sendEmailLog_model->getNoOfCountByUserID($userEmail['userID'])>MAXTIMESSENDEMAIL){
+				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+				$data["lang_label"]=$this->nativesession->get("language");
+				$data["error"]=$errorMsg;
+				$this->nativesession->set("lastPageVisited","login");
+				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToPHP']=base_url();
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				
+				$this->load->view('failedPage', $data);
+				return;
+			}
+				
 			$userAfter = $this->user->getUserByUserID($userEmail['userID']);
 			$user=$this->user->getUserByUserID($userEmail['userID']);
 			$path=base_url().MY_PATH."home/resetPassword/".$userAfter["userID"]."/".md5($userAfter["createDate"]);
@@ -2265,6 +2281,8 @@ class Home extends CI_Controller {
 			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Detail", $fromUserID);
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
 			$data["profileBackToResult"]=$this->lang->line("profileBackToResult");
+			
+			$this->messages_model->updateReadInboxBuyerMessageFlagByUserID($fromUserID);
 			
 			$this->load->view('account-chat', $data);
 		}else if ($activeNav==15){
@@ -4021,7 +4039,7 @@ class Home extends CI_Controller {
 		$this->admin_model->updateStatByUserID($userID);
 		
 		if(strcmp($type,"Inbox")==0)
-			$this->getAccountPage("14", $pageNum, "0", 1, $userID);
+			$this->getAccountPage("13", $pageNum, "0", 1, $userID);
 		else 
 			$this->getAccountPage("10", $pageNum);
 	}
