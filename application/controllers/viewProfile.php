@@ -419,6 +419,8 @@ class viewProfile extends getCategory {
 		$data["lblSearchSortBy"]=$this->lang->line("lblSearchSortBy");
 		$data["lblPriceLowToHigh"]=$this->lang->line("lblPriceLowToHigh");
 		$data["lblPriceHighToLow"]=$this->lang->line("lblPriceHighToLow");
+		$data["mostRecent"]=$this->lang->line("mostRecent");
+		$data["oldest"]=$this->lang->line("oldest");
 		$data["Price"]=$this->lang->line("Price");
 		$data["Category"]=$this->lang->line("Category");
 		$data["Date"]=$this->lang->line("Date");
