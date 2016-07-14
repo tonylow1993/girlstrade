@@ -20,7 +20,8 @@ class sendEmailLog_model extends CI_Model {
 		$user1=$this->nativesession->get("user");
 		if(!isset($user1) or empty($user1) or $user1==null)
 			$userID=0; //$userEmail["userID"];
-		
+		else 
+			$userID=$user1["userID"];
 		if($userID==0)
 			$strQuery="select count(distinct ID) as NoOfCount from sendEmailLog  where toEmailAddress='$emailAddress' and userID=0  and createDate between  DATE_ADD(NOW(), INTERVAL -".MAXTIMESMINUTESSENDEMAIL ." MINUTE) and NOW()";
 		else 
