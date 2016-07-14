@@ -3382,7 +3382,15 @@ td.ads-details-td {
 	 }
 }
 
+.tab-filter2 {
+  position: absolute;
+  left: 0;
+  top: 60;
+}
 
+.sort-group {
+    margin-top: -5px;
+}
 
 .nav-pills{
 	margin-bottom: 15px;
@@ -3422,6 +3430,8 @@ td.ads-details-td {
 	border-radius: .25em;
     border: 2px solid #E2348C;
     padding: .2em .6em .3em;
+    top: 52px;
+    right: 0;
 }
 
 .back-btn:hover{

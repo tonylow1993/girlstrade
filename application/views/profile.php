@@ -147,7 +147,7 @@ function sendIt() {
 	                <?php }?></a></li>
               </ul>
          		 <div class="sortByDiv"><form role="form" method="POST" action="<?php echo base_url().MY_PATH.'viewProfile/viewByUserID/'.$userID.'/'.$pageNum.'/'.$catID.'/0/0?prevURL='.$previousCurrent_url.'&prevViewFeedBack_Url='.urlencode(current_url());?>"
-         	     id="sortfrm" class="tab-filter"> 
+         	     id="sortfrm" class="tab-filter2"> 
          	      	<input type="hidden" name="paneActiveTab" id="paneActiveTab" value="<?php echo $activeTab;?>" >
              
 			   <div class="form-group sort-group" style="width:150px;">
@@ -159,23 +159,23 @@ function sendIt() {
 					</select>
 			    </div>
 			   
-			   	<div id="sortByPriceDiv" style="display:none;width:150px">
-					<select class="form-control "   name="sortByPrice"   id="sortByPrice" data-width="auto"  onchange="beginSort();">
+			   	<div id="sortByPriceDiv" class="form-group sort-group" style="display:none;width:150px">
+					<select class="form-control sort-select"   name="sortByPrice"   id="sortByPrice" data-width="auto"  onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByPrice,"0")==0 or $sortByPrice==0) echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
 					  <option value="1" <?php if(strcmp($sortByPrice,"1")==0)  echo " selected='selected' ";?>><?php echo $lblPriceLowToHigh;?></option>
 					  <option value="2" <?php if(strcmp($sortByPrice,"2")==0)  echo " selected='selected' ";?>><?php echo $lblPriceHighToLow;?></option>
 					</select>
 				</div>
 				
-				<div id="sortByDateDiv" style="display:none;width:150px">
-					<select class="form-control "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
+				<div id="sortByDateDiv" class="form-group sort-group" style="display:none;width:150px">
+					<select class="form-control sort-select"   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
 					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
 					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>><?php echo $mostRecent;?></option>
 					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>><?php echo $oldest;?></option>
 					</select>
 				</div> 
-				<div id="filterByCategoryDiv" style="display:none;width:150px;">
-				<select class="form-control " name="search-category" id="search-category" onchange="beginSort();">
+				<div id="filterByCategoryDiv" class="form-group sort-group" style="display:none;width:150px;">
+				<select class="form-control sort-select" name="search-category" id="search-category" onchange="beginSort();">
         	<?php 
         	$str="";
         	if($catID==null or $catID=="" or $catID==0)
@@ -215,7 +215,7 @@ function sendIt() {
 				<noscript><input type="submit" value="Submit"></noscript>
 			</form></div>
             <!--/.tab-box-->
-               <a class="pull-right margin-5 back-btn" href=<?php echo $prevProfile_Url;?>> <i class="fa fa-angle-double-left"></i> 
+               <a class="pull-right margin-10 back-btn" href=<?php echo $prevProfile_Url;?>> <i class="fa fa-angle-double-left"></i> 
                <?php echo $this->lang->line("profileBackToResult");?>
                </a>
  
