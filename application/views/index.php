@@ -619,12 +619,12 @@ window.onload = function(){
             </div>
         </div>
 		
-		<div class="inner-box relative panel-bevel">
+		<!--<div class="inner-box relative panel-bevel">
 			<h2 class="title-2" style="border-bottom: 1px solid #9A01CC;">
 				<i class="fa fa-bookmark" style="color: #9A01CC;"></i>
 				<span style="font-family: MyCustomFont;font-weight: 700;color: #9A01CC;"><?php echo $indexHighlightTitle;?></span> <?php echo $indexBlogTitle;?>
 				<!--<a id="nextItem2" class="link pull-right carousel-nav" style="color: #9A01CC;"> <i class="icon-right-open-big"></i></a>
-				<a id="prevItem2" class="link pull-right carousel-nav" style="color: #9A01CC;"> <i class="icon-left-open-big"></i> </a>-->
+				<a id="prevItem2" class="link pull-right carousel-nav" style="color: #9A01CC;"> <i class="icon-left-open-big"></i> </a>
 			</h2>
 			<div class="row">
 				<?php 
@@ -649,7 +649,7 @@ window.onload = function(){
                   }
                ?>
 			</div>
-		  </div>
+		  </div>-->
 		
         <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" tabindex="-1" role="dialog"  data-keyboard="false" aria-hidden="true">
                         <div class="modal-dialog">

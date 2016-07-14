@@ -14,6 +14,17 @@
           <div class="inner-box">
           	  <?php include("profile_visit.php");?>
             <h2 class="title-2"><i class="icon-heart"></i> <?php echo $this->lang->line("Saved_Search");?> </h2>
+             <div class="sortByDiv"><form role="form" method="POST" action="<?php echo base_url().MY_PATH.'home/getAccountPage/3'; ?>"
+         	     id="sortfrm"> 
+         		<div id="sortByDateDiv" style="width:150px">
+					<select class="form-control "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
+					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
+					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>><?php echo $mostRecent;?></option>
+					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>><?php echo $oldest;?></option>
+					</select>
+				</div> 
+           </form>
+           </div>
              <div class="table-responsive">
               <!--<div class="table-action">
                 <label for="checkAll">
@@ -168,7 +179,13 @@ function checkAll(bx) {
     }
   }
 }
-
+function beginSort(){
+	var sortByDate=document.getElementById("sortByDate").value;
+	var actionpath="<?php echo base_url().MY_PATH.'home/getAccountPage/'.$activeNav.'/'.$pageNum;?>".concat("/0/").concat(sortByDate);
+		document.getElementById("sortfrm").action=actionpath;
+		document.getElementById("sortfrm").submit();
+	
+}
 </script> 
 
 <?php include "footer2.php"; ?>

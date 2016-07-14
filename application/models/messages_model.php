@@ -38,6 +38,21 @@
 	    
 	    }
 	    
+	    public function updateReadInboxBuyerMessageFlagByUserID($userID){
+	    	try {
+	    		$this->db->trans_start();
+	    		$data=array('readflag'=>'Y');
+	    		$this->db->where('userID', $userID);
+	    		$result=$this->db->update('buyermessage', $data);
+	    		
+	    		$this->db->trans_complete();
+	    	}catch(Exception $ex)
+	    	{
+	    		echo $ex->getMessage();
+	    		return;
+	    	}
+	    }
+	    
 	    public function updateReadInboxBuyerMessageFlag($messageID){
 	    
 	    	try {
@@ -494,7 +509,7 @@
 	    			$strQuery="select c.*, b.msgType, b.unreadcount from
 						(select a.user1, a.user2, max(a.ID) as maxID,
 						case when a.user1=$userID then 'Inbox' else 'Outbox' end as msgType,
-						sum(case when a.readflag = 'Y' then 1 else 0 end) as unreadcount
+						sum(case when a.readflag = 'N' and a.user1=$userID then 1 else 0 end) as unreadcount
 						 from (			
 						    select userID as user1, fromUserID as user2, ID, readflag from buyermessage where  userID=$userID Union all 
 						    select fromUserID as user1, userID as user2, ID, readflag from buyermessage where fromUserID=$userID ) a

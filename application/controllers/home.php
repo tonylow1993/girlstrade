@@ -661,7 +661,6 @@ class Home extends CI_Controller {
             }else
             {
              
-            
             //------------------------------------------------------------------------------
       		$data["lang_label_text"] = $this->lang->line("lang_label_text");
 		 	$data["Home"] = $this->lang->line("Home");
@@ -1106,6 +1105,23 @@ class Home extends CI_Controller {
 			}
 		
 			$userEmail=$this->userEmail->getUserEmailByEmail($emailAddress);
+			
+
+			if($this->sendEmailLog_model->getNoOfCountByUserID($userEmail['userID'], $userEmail["email"])>MAXTIMESSENDEMAIL){
+				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+				$data["lang_label"]=$this->nativesession->get("language");
+				$data["error"]=$errorMsg;
+				$this->nativesession->set("lastPageVisited","login");
+				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToPHP']=base_url();
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				
+				$this->load->view('failedPage', $data);
+				return;
+			}
+				
 			$userAfter = $this->user->getUserByUserID($userEmail['userID']);
 			$user=$this->user->getUserByUserID($userEmail['userID']);
 			$path=base_url().MY_PATH."home/resetPassword/".$userAfter["userID"]."/".md5($userAfter["createDate"]);
@@ -1193,7 +1209,20 @@ class Home extends CI_Controller {
 				$this->load->view('failedPage', $data);
 				return;	
 			}
-				
+			if($this->sendEmailLog_model->getNoOfCountByUserID($userEmail['userID'], $userEmail["email"])>MAXTIMESSENDEMAIL){
+				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+				$data["lang_label"]=$this->nativesession->get("language");
+				$data["error"]=$errorMsg;
+				$this->nativesession->set("lastPageVisited","login");
+				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToPHP']=base_url();
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+			
+				$this->load->view('failedPage', $data);
+				return;
+			}
 			$password=$this->generateRandomString();
 			$userPasswordContent['userID']=$userEmail['userID'];
 			$userPasswordContent['password']=$password;
@@ -1785,7 +1814,7 @@ class Home extends CI_Controller {
 			$user1=$this->nativesession->get("user");
 			$userID=0;
 			if(!isset($user1) or empty($user1) or $user1==null)
-				$userID=0;
+				$userID=0; //$userEmail["userID"];
 			else 
 				$userID=$user1["userID"];
 			$data=array();
@@ -1832,8 +1861,22 @@ class Home extends CI_Controller {
 		$newReTypePassword=$this->input->post('newReTypePassword');
 		$userInfo=$this->nativesession->get('user');
 		$userID=$userInfo['userID'];
+		$email=$this->userEmail->getUserEmailByUserID($userID);
 		$input=array('userID'=>$userID, 'password'=> $newPassword);
+		if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
+			$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+			$data["lang_label"]=$this->nativesession->get("language");
+			$data["error"]=$errorMsg;
+			$this->nativesession->set("lastPageVisited","login");
+			$data['redirectToWhatPage']="Home Page";
+			$data['redirectToPHP']=base_url();
+			$data["successTile"]=$this->lang->line("successTile");
+			$data["failedTitle"]=$this->lang->line("failedTitle");
+			$data["goToHomePage"]=$this->lang->line("goToHomePage");
 		
+			$this->load->view('failedPage', $data);
+			return;
+		}
 		$this->userPassword->changePassword($input);
 		$email=$this->userEmail->getUserEmailByUserID($userID);
 		$msg=$this->mailtemplate_model->SendEmailMsgForChangePassword($userInfo['username']);
@@ -2133,6 +2176,9 @@ class Home extends CI_Controller {
         }
         //----------------------------
         $data["sortByDate"]=$sortByDate;
+        $data["lblSearchSortBy"]=$this->lang->line("lblSearchSortBy");
+        $data["mostRecent"]=$this->lang->line("mostRecent");
+        $data["oldest"]=$this->lang->line("oldest");
         
 		if($activeNav==1)
 		{
@@ -2177,8 +2223,19 @@ class Home extends CI_Controller {
 		else if($activeNav==3)
 		{
 			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInMyAds($userID);
-			$myList=$this->post_model->getMyAds($userID, $pageNum, $sortByDate);
+			$myList=$this->post_model->getMyAds($userID, 0, $sortByDate);
 			$data["result"]=$this->mapPostToView($myList);
+			if($sortByDate==2)
+				usort($data["result"], array($this, "cmp2"));
+			else
+				usort($data["result"], array($this, "cmp1"));
+					
+			$ulimit=ITEMS_PER_PAGE;
+			$olimit=0;
+			if ($pageNum>1)
+				$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+			$data["result"]=array_slice($data["result"],$olimit , $ulimit);
+							
 			$this->load->view("account-myads", $data);
 		}
 		else if($activeNav==4)
@@ -2187,8 +2244,19 @@ class Home extends CI_Controller {
 		}else if($activeNav==5)
 		{
 			$data["NoOfItemCount"]=$this->savedAds_model->getNoOfItemCountInSavedAds($userID);
-			$myList=$this->savedAds_model->getSavedAds($userID, $pageNum, $sortByDate);
+			$myList=$this->savedAds_model->getSavedAds($userID, 0, $sortByDate);
 			$data["result"]=$this->mapReqeustPostToView($myList);
+			if($sortByDate==2)
+				usort($data["result"], array($this, "cmp2"));
+				else
+					usort($data["result"], array($this, "cmp1"));
+						
+					$ulimit=ITEMS_PER_PAGE;
+					$olimit=0;
+					if ($pageNum>1)
+						$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+						$data["result"]=array_slice($data["result"],$olimit , $ulimit);
+							
 				$this->load->view("account-saved-search", $data);
 		}
 		else if($activeNav==6)
@@ -2265,6 +2333,8 @@ class Home extends CI_Controller {
 			$myList=$this->messages_model->getBuyerMessageByUserID($userID, $pageNum, $sortByDate, "Detail", $fromUserID);
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
 			$data["profileBackToResult"]=$this->lang->line("profileBackToResult");
+			
+			$this->messages_model->updateReadInboxBuyerMessageFlagByUserID($fromUserID);
 			
 			$this->load->view('account-chat', $data);
 		}else if ($activeNav==15){
@@ -2482,9 +2552,9 @@ class Home extends CI_Controller {
 					"weChatID"=>$weChatID,
 					"showWebSite"=>$showWebSite,
 					"webSiteAddr" =>$webSiteAddr));
-			if($result==null)
-				$result=$arrayMessage;
-			else
+			//if($result==null || count($result)==0)
+			//	array_push($result,$arrayMessage);
+			//else
 				$result=$result + $arrayMessage;
 		}
 		}
@@ -2909,9 +2979,9 @@ class Home extends CI_Controller {
 					"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
 					"picCount"=>$picCount));
 			
-			if($result==null)
-				$result=$arrayMessage;
-			else
+			//if($result==null)
+			//	array_push($result,$arrayMessage);
+			//else
 				$result=$result + $arrayMessage;
 		}
 			
@@ -3550,6 +3620,25 @@ class Home extends CI_Controller {
 		$userPassword['password'] = $data['originalPassword'];
 		$isValid = $this->userPassword->isValidPassword($userPassword);
 		if($isValid){
+			
+			$email=$this->userEmail->getUserEmailByUserID($user["userID"]);
+				
+			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
+				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+				$data["lang_label"]=$this->nativesession->get("language");
+				$data["error"]=$errorMsg;
+				$this->nativesession->set("lastPageVisited","login");
+				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToPHP']=base_url();
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+			
+				$this->load->view('failedPage', $data);
+				return;
+			}
+			
+			
 			$userPassword = $this->userPassword->getUserPasswordByUserID($user['userID']);
 			$userPassword['password'] = $data['newPassword'];
 			$this->userPassword->update($userPassword);
@@ -4021,7 +4110,7 @@ class Home extends CI_Controller {
 		$this->admin_model->updateStatByUserID($userID);
 		
 		if(strcmp($type,"Inbox")==0)
-			$this->getAccountPage("14", $pageNum, "0", 1, $userID);
+			$this->getAccountPage("13", $pageNum, "0", 1, $userID);
 		else 
 			$this->getAccountPage("10", $pageNum);
 	}

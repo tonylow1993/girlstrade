@@ -196,8 +196,22 @@ function addDayswithdate($date,$days){
 							$data["goToHomePage"]=$this->lang->line("goToHomePage");
 							$this->load->view('failedPage', $data);
 				}
-				
-				
+				$email=$this->useremail_model->getUserEmailByUserID($userID);
+					
+				if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
+					$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["error"]=$errorMsg;
+					$this->nativesession->set("lastPageVisited","login");
+					$data['redirectToWhatPage']="Home Page";
+					$data['redirectToPHP']=base_url();
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+						
+					$this->load->view('failedPage', $data);
+					return;
+				}
 				$result=$this->requestpost_model->insert($messageArray);
 				if($result)
 				{
@@ -206,7 +220,6 @@ function addDayswithdate($date,$days){
 						
 					$usernameArr=$this->users_model->get_user_by_id($userID);
 					$username=$usernameArr[0]->username;
-					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."viewItem/index/".$postID;
 					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendToSeller( $username, $path, $postInfo[0]->itemName);
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendToSeller(), DIRECTSENDEMAIL);
@@ -368,14 +381,27 @@ function addDayswithdate($date,$days){
 								'recipientName'=>$this->input->post('recipientname1'),
 								'senderEmail'=>$this->input->post('recipientemail'),
 								'recipientPhoneNumber'=>$this->input->post('recipientPhoneNumber1'));
-			
-			
+						$email=$this->useremail_model->getUserEmailByUserID($fUserID);
+							
+						if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
+							$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+							$data["lang_label"]=$this->nativesession->get("language");
+							$data["error"]=$errorMsg;
+							$this->nativesession->set("lastPageVisited","login");
+							$data['redirectToWhatPage']="Home Page";
+							$data['redirectToPHP']=base_url();
+							$data["successTile"]=$this->lang->line("successTile");
+							$data["failedTitle"]=$this->lang->line("failedTitle");
+							$data["goToHomePage"]=$this->lang->line("goToHomePage");
+						
+							$this->load->view('failedPage', $data);
+							return;
+						}
 			
 						//print_r($messageArray);
 						$messageResult=false; //$this->abusemessages_model->insert($messageArray);
 						if($messageResult)
 						{
-							$email=$this->useremail_model->getUserEmailByUserID($fUserID);
 							$email["email"]=HOST_EMAIL;
 							$msg=$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg();
 							$this->sendAuthenticationEmail($email, $msg,$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg(), DELETEABUSEMESSAGESENDEMAIL );
@@ -516,6 +542,23 @@ function addDayswithdate($date,$days){
 					$this->load->view('failedPage', $data);
 					return;
 				}
+				$email=$this->useremail_model->getUserEmailByUserID($fUserID);
+				
+				if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
+					$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["error"]=$errorMsg;
+					$this->nativesession->set("lastPageVisited","login");
+					$data['redirectToWhatPage']="Home Page";
+					$data['redirectToPHP']=base_url();
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				
+					$this->load->view('failedPage', $data);
+					return;
+				}
+				
 				$messageArray=array(
 						'postID'=>intval($postID),
 						'fUserID'=>intval($fUserID),
@@ -533,7 +576,6 @@ function addDayswithdate($date,$days){
 					$messageResult=$this->abusemessages_model->insert($messageArray);
 					if($messageResult)
 					{
-						$email=$this->useremail_model->getUserEmailByUserID($fUserID);
 						$email["email"]=HOST_EMAIL;
 						$msg=$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg();
 						$this->sendAuthenticationEmail($email, $msg,$this->mailtemplate_model->SendEmailMsgForHostOfAbuseMsg() , INSERTABUSEMESSAGESENDEMAIL);
@@ -778,14 +820,28 @@ function addDayswithdate($date,$days){
 					$data["goToHomePage"]=$this->lang->line("goToHomePage");
 					$this->load->view('failedPage', $data);
 				}
+				$email=$this->useremail_model->getUserEmailByUserID($userID);
+					
+				if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
+					$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["error"]=$errorMsg;
+					$this->nativesession->set("lastPageVisited","login");
+					$data['redirectToWhatPage']="Home Page";
+					$data['redirectToPHP']=base_url();
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
 				
+					$this->load->view('failedPage', $data);
+					return;
+				}
 				
 				$messageID=$this->messages_model->insert($messageArray);
 				if($messageID)
 				{
 					$usernameArr=$this->users_model->get_user_by_id($userID);
 					$username=$usernameArr[0]->username;
-					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
 					$msg=$this->mailtemplate_model->SendEmailMsgForSeller( $username, $path );
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller(), INSERTMESSAGESENDEMAIL);
@@ -863,6 +919,7 @@ function addDayswithdate($date,$days){
 				return;
 			}
 			
+			
 			$messageID = explode("-", $this->input->post('messageID'));
 			$postID=$messageID[0];
 			$userID=$messageID[1];
@@ -870,7 +927,17 @@ function addDayswithdate($date,$days){
 			$where=array('postID'=>intval($postID),
 					'userID'=>intval($userID));
 			$messageArray=array('status' => "A");
-					
+			$email=$this->useremail_model->getUserEmailByUserID($userID);
+			
+			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
+				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+				$data['status'] = 'F';
+				$data['class'] = "has-error";
+				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> '.$errorMsg.'</div>';
+				$data['icon'] = '<em><span style="color:red"></span></em>';
+				echo json_encode($data);
+				return;
+			}
 			$messageResult=$this->requestpost_model->update($messageArray,$where);
 			if($messageResult){
 				$this->admin_model->updateStatByUserID($fUserID);
@@ -881,7 +948,6 @@ function addDayswithdate($date,$days){
 				
 				$usernameArr=$this->users_model->get_user_by_id($userID);
 					$username=$usernameArr[0]->username;
-					$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."viewItem/index/".$postID;
 					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendApproveFromSeller($username, $path, $title );
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendApproveFromSeller($title), APPROVEDIRECTSEND);
@@ -918,6 +984,21 @@ function addDayswithdate($date,$days){
 			$usernameArr=$this->users_model->get_user_by_id($userID);
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
+						
+					if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
+						$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+						$data["lang_label"]=$this->nativesession->get("language");
+						$data["error"]=$errorMsg;
+						$this->nativesession->set("lastPageVisited","login");
+						$data['redirectToWhatPage']="Home Page";
+						$data['redirectToPHP']=base_url();
+						$data["successTile"]=$this->lang->line("successTile");
+						$data["failedTitle"]=$this->lang->line("failedTitle");
+						$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					
+						$this->load->view('failedPage', $data);
+						return;
+					}
 					$path=base_url().MY_PATH."home/loginPage";
 					$msg=$this->mailtemplate_model->SendEmailMsgForSeller( $username, $path );
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForSeller(), sendEmailForApproveReject);
@@ -942,13 +1023,24 @@ function addDayswithdate($date,$days){
 				echo json_encode($data);
 				return;
 			}
+			
 			$messageID = explode("-", $this->input->post('messageID'));
 			$postID=$messageID[0];
 			$userID=$messageID[1];
 			$where=array('postID'=>intval($postID),
 					'userID'=>intval($userID));
 			$messageArray=array('status' => "R");
-			
+			$email=$this->useremail_model->getUserEmailByUserID($userID);
+				
+			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
+				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+				$data['status'] = 'F';
+				$data['class'] = "has-error";
+				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> '.$errorMsg.'</div>';
+				$data['icon'] = '<em><span style="color:red"></span></em>';
+				echo json_encode($data);
+				return;
+			}
 			$messageResult=$this->requestpost_model->update($messageArray,$where);
 			if($messageResult){
 				$postInfo=$this->post->getPostByPostID($postID);
@@ -956,7 +1048,7 @@ function addDayswithdate($date,$days){
 				
 			$usernameArr=$this->users_model->get_user_by_id($userID);
 					$username=$usernameArr[0]->username;
-					$email=$this->useremail_model->getUserEmailByUserID($userID);
+					//$email=$this->useremail_model->getUserEmailByUserID($userID);
 					$path=base_url().MY_PATH."home/loginPage";
 					$msg=$this->mailtemplate_model->SendEmailMsgForDirectSendRejectFromSeller($username, $path, $title );
 					$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForDirectSendRejectFromSeller($title), REJECTDIRECTSEND);
@@ -1147,7 +1239,22 @@ function addDayswithdate($date,$days){
 				$this->load->view('failedPage', $data);
 						return;
 			}
+			$email=$this->useremail_model->getUserEmailByUserID($userID);
+				
+			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
+				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+				$data["lang_label"]=$this->nativesession->get("language");
+				$data["error"]=$errorMsg;
+				$this->nativesession->set("lastPageVisited","login");
+				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToPHP']=base_url();
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
 			
+				$this->load->view('failedPage', $data);
+				return;
+			}
 			$parentID=$this->messages_model->getOriginalMessageID($messageID);
 			$messageArray=array(
 					'postID'=>intval($postID),
@@ -1178,7 +1285,7 @@ function addDayswithdate($date,$days){
 				{
 						$usernameArr=$this->users_model->get_user_by_id($fUserID);
 					$username=$usernameArr[0]->username;
-					$email=$this->useremail_model->getUserEmailByUserID($fUserID);
+					//$email=$this->useremail_model->getUserEmailByUserID($fUserID);
 						$path=base_url().MY_PATH."home/loginPage";
 						$msg=$this->mailtemplate_model->SendEmailReplyMsgForSelleOrBuyerr( $username, $path );
 						$this->sendAuthenticationEmail($email, $msg, $this->mailtemplate_model->SendEmailTitleForReplyMsgForSellerOrBuyer(), REPLYMESSAGESENDEMAIL);
@@ -1723,16 +1830,16 @@ function addDayswithdate($date,$days){
 			$user1=$this->nativesession->get("user");
 			$userID=0;
 			if(!isset($user1) or empty($user1) or $user1==null)
-				$userID=0;
+				$userID=0; //$userEmail["userID"];
 			else
 				$userID=$user1["userID"];
-				$data=array();
-				$data["userID"]=$userID;
-				$data["toEmailAddress"]=$userEmail['email'];
-				$data["title"]=$title;
-				$data["type"]=$type;
-				//$data["createDate"]=date('Y/m/d H:i:s');
-				$this->sendEmailLog_model->insert($data);
+			$data=array();
+			$data["userID"]=$userID;
+			$data["toEmailAddress"]=$userEmail['email'];
+			$data["title"]=$title;
+			$data["type"]=$type;
+			//$data["createDate"]=date('Y/m/d H:i:s');
+			$this->sendEmailLog_model->insert($data);
 						
 			$config['protocol'] = SMTP_PROTOCOL;
 			$config['smtp_host'] = SMTP_HOST;
@@ -2018,7 +2125,23 @@ function addDayswithdate($date,$days){
 					$this->load->view('failedPage', $data);
 					return;
 				}
+				$buyerEmail=$this->useremail_model->getUserEmailByUserID($buyerID);
+				$buyerEmail=$buyerEmail["email"];
+							
+				if($this->sendEmailLog_model->getNoOfCountByUserID($buyerEmail['userID'], $buyerEmail["email"])>MAXTIMESSENDEMAIL){
+					$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["error"]=$errorMsg;
+					$this->nativesession->set("lastPageVisited","login");
+					$data['redirectToWhatPage']="Home Page";
+					$data['redirectToPHP']=base_url();
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
 				
+					$this->load->view('failedPage', $data);
+					return;
+				}
 				
 				$postInfo=$this->post->getPostByPostID($postID);
 				//$buyerID=$postInfo[0]->userID;
@@ -2040,8 +2163,8 @@ function addDayswithdate($date,$days){
 					if($messageResult){
 						$path=base_url().MY_PATH."home/viewAllFeedback/$buyerID/1";
 						$buyerInfo=$this->users_model->get_user_by_id($buyerID);
-						$buyerEmail=$this->useremail_model->getUserEmailByUserID($buyerID);
-						$email=$buyerEmail["email"];
+						//$buyerEmail=$this->useremail_model->getUserEmailByUserID($buyerID);
+						//$email=$buyerEmail["email"];
 						$title=$postInfo[0]->itemName;
 						$buyerUsername=$buyerInfo[0]->username;
 						$sellerUsername=$username;
@@ -2156,17 +2279,17 @@ function addDayswithdate($date,$days){
 					$data['redirectToWhatPage']="Previous Page";
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
-						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
-							$data['redirectToPHP']=base_url();
-							else {
-								$data['redirectToPHP']=$_SESSION["previousUrl"];
-								if(strcmp($prevprevURL,"")<>0)
-									$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
-							}
-							$data["successTile"]=$this->lang->line("successTile");
-							$data["failedTitle"]=$this->lang->line("failedTitle");
-							$data["goToHomePage"]=$this->lang->line("goToHomePage");
-							$this->load->view('failedPage', $data);
+					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
+						$data['redirectToPHP']=base_url();
+					else {
+						$data['redirectToPHP']=$_SESSION["previousUrl"];
+						if(strcmp($prevprevURL,"")<>0)
+							$data['redirectToPHP']=$data['redirectToPHP']."?prevURL=".$prevprevURL;
+					}
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+					$this->load->view('failedPage', $data);
 				}
 				$message=$this->input->post("message-text");
 				$userID=$this->input->post("userID");
@@ -2181,7 +2304,7 @@ function addDayswithdate($date,$days){
 					if(ShortDescLength($message, DESCMINLENGTHINNEWPOST))
 						$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					$data["error"]=$errorMsg;
-					$data["prevURL"]=$prevURL;
+					$data["PrevURL"]=$prevURL;
 					$data['redirectToWhatPage']="Previous Page";
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
@@ -2363,7 +2486,22 @@ function addDayswithdate($date,$days){
 							$this->load->view('failedPage', $data);
 							return;
 				}
-		
+				$sellerEmail=$this->useremail_model->getUserEmailByUserID($userID);
+					
+				if($this->sendEmailLog_model->getNoOfCountByUserID($sellerEmail['userID'], $sellerEmail['email'])>MAXTIMESSENDEMAIL){
+					$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+					$data["lang_label"]=$this->nativesession->get("language");
+					$data["error"]=$errorMsg;
+					$this->nativesession->set("lastPageVisited","login");
+					$data['redirectToWhatPage']="Home Page";
+					$data['redirectToPHP']=base_url();
+					$data["successTile"]=$this->lang->line("successTile");
+					$data["failedTitle"]=$this->lang->line("failedTitle");
+					$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				
+					$this->load->view('failedPage', $data);
+					return;
+				}
 				$feedbackStatus="U";
 				if(strcmp(NONEEDVERIFYFEEDBACK,"Y")==0)
 					$feedbackStatus="A";
@@ -2381,7 +2519,7 @@ function addDayswithdate($date,$days){
 				if($messageResult){
 					$path=base_url().MY_PATH."home/viewAllFeedback/$userID/1";
 					$sellerInfo=$this->users_model->get_user_by_id($userID);
-					$sellerEmail=$this->useremail_model->getUserEmailByUserID($userID);
+					//$sellerEmail=$this->useremail_model->getUserEmailByUserID($userID);
 					$email=$sellerEmail["email"];
 					$title=$postInfo[0]->itemName;
 					$buyerUsername=$username;

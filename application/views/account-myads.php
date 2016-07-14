@@ -16,7 +16,20 @@
           <div class="inner-box">
           	  <?php include("profile_visit.php");?>
             <h2 class="title-2"><i class="icon-docs"></i> <?php  echo $this->lang->line("MyAds");?> </h2>
+            <div class="sortByDiv"><form role="form" method="POST" action="<?php echo base_url().MY_PATH.'home/getAccountPage/3'; ?>"
+         	     id="sortfrm"> 
+         		<div id="sortByDateDiv" style="width:150px">
+					<select class="form-control "   name="sortByDate"   id="sortByDate" data-width="auto" onchange="beginSort();">
+					  <option value="0" <?php if(strcmp($sortByDate,"0")==0 or $sortByDate==0) echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
+					  <option value="1" <?php if(strcmp($sortByDate,"1")==0)  echo " selected='selected' ";?>><?php echo $mostRecent;?></option>
+					  <option value="2" <?php if(strcmp($sortByDate,"2")==0)  echo " selected='selected' ";?>><?php echo $oldest;?></option>
+					</select>
+				</div> 
+           </form>
+           </div>
+           
             <div class="table-responsive">
+            
 <!--               <div class="table-action"> -->
 <!--                 <label for="checkAll"> -->
  <!--                  <input type="checkbox" onclick="checkAll(this)" id="checkAll"> -->
@@ -186,20 +199,20 @@
             	if($NoOfItemCount>0)
             	{
             		if($pageNum<>1)
-            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev\">Previous</a></li>";
+            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumPrev/0/$sortByDate\">Previous</a></li>";
             		if($NoOfItemCount > 0)
-            		echo "<li  class=\"active\"><a href=\"$url_path/$pageNum\">$pageNum</a></li>";
+            		echo "<li  class=\"active\"><a href=\"$url_path/$pageNum/0/$sortByDate\">$pageNum</a></li>";
             		if($NoOfItemCount > ($pageNum*$itemPerPage))
-            		echo "<li><a href=\"$url_path/$pageNum2\">$pageNum2</a></li>";
+            		echo "<li><a href=\"$url_path/$pageNum2/0/$sortByDate\">$pageNum2</a></li>";
             		if($NoOfItemCount > ($pageNum2*$itemPerPage))
-            		echo "<li><a href=\"$url_path/$pageNum3\">$pageNum3</a></li>";
+            		echo "<li><a href=\"$url_path/$pageNum3/0/$sortByDate\">$pageNum3</a></li>";
             		if($NoOfItemCount > ($pageNum3*$itemPerPage))
-            		echo "<li><a href=\"$url_path/$pageNum4\">$pageNum4</a></li>";
+            		echo "<li><a href=\"$url_path/$pageNum4/0/$sortByDate\">$pageNum4</a></li>";
             		if($NoOfItemCount > ($pageNum4*$itemPerPage))
-            		echo "<li><a href=\"$url_path/$pageNum5\">$pageNum5</a></li>";
+            		echo "<li><a href=\"$url_path/$pageNum5/0/$sortByDate\">$pageNum5</a></li>";
             		
             		if($NoOfItemCount > ($pageNum5*$itemPerPage))
-            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext\">Next</a></li>";
+            		echo "<li><a class=\"pagination-btn\" href=\"$url_path/$pageNumNext/0/$sortByDate\">Next</a></li>";
             		 
             	}
              ?>
@@ -411,6 +424,14 @@
 </div>
 <!-- /.wrapper --> 
 <script>
+
+function beginSort(){
+	var sortByDate=document.getElementById("sortByDate").value;
+	var actionpath="<?php echo base_url().MY_PATH.'home/getAccountPage/'.$activeNav.'/'.$pageNum;?>".concat("/0/").concat(sortByDate);
+		document.getElementById("sortfrm").action=actionpath;
+		document.getElementById("sortfrm").submit();
+	
+}
 
 var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
 

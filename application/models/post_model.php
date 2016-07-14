@@ -616,13 +616,17 @@
             	$whereArray = array('userID' => $userId);
             	$in_where=array("A", "U", 'R', 'D');
             	$this->db->from('post')->where($whereArray)->where_in("status", $in_where);
-            	if(strcmp($sortByDate,"1")==0)
-            		$query=$this->db->order_by('createDate', 'DESC')->limit($ulimit, $olimit)->get();
-            	else if(strcmp($sortByDate,"2")==0)
-            		$query=$this->db->order_by('createDate', 'ASC')->limit($ulimit, $olimit)->get();
-            	else 
-            		$query=$this->db->limit($ulimit, $olimit)->get();
-            		 
+            	
+            	if($pageNum==0){
+            		$query=$this->db->get();
+            	}else{
+	            	if(strcmp($sortByDate,"1")==0)
+	            		$query=$this->db->order_by('createDate', 'DESC')->limit($ulimit, $olimit)->get();
+	            	else if(strcmp($sortByDate,"2")==0)
+	            		$query=$this->db->order_by('createDate', 'ASC')->limit($ulimit, $olimit)->get();
+	            	else 
+	            		$query=$this->db->limit($ulimit, $olimit)->get();
+            	} 
             	return $query->result();
             }
 	
