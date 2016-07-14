@@ -2176,6 +2176,9 @@ class Home extends CI_Controller {
         }
         //----------------------------
         $data["sortByDate"]=$sortByDate;
+        $data["lblSearchSortBy"]=$this->lang->line("lblSearchSortBy");
+        $data["mostRecent"]=$this->lang->line("mostRecent");
+        $data["oldest"]=$this->lang->line("oldest");
         
 		if($activeNav==1)
 		{
@@ -2222,6 +2225,17 @@ class Home extends CI_Controller {
 			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInMyAds($userID);
 			$myList=$this->post_model->getMyAds($userID, $pageNum, $sortByDate);
 			$data["result"]=$this->mapPostToView($myList);
+			if($sortByDate==2)
+				usort($data["result"], array($this, "cmp2"));
+			else
+				usort($data["result"], array($this, "cmp1"));
+					
+			$ulimit=ITEMS_PER_PAGE;
+			$olimit=0;
+			if ($pageNum>1)
+				$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+			$data["result"]=array_slice($data["result"],$olimit , $ulimit);
+							
 			$this->load->view("account-myads", $data);
 		}
 		else if($activeNav==4)
@@ -2232,6 +2246,17 @@ class Home extends CI_Controller {
 			$data["NoOfItemCount"]=$this->savedAds_model->getNoOfItemCountInSavedAds($userID);
 			$myList=$this->savedAds_model->getSavedAds($userID, $pageNum, $sortByDate);
 			$data["result"]=$this->mapReqeustPostToView($myList);
+			if($sortByDate==2)
+				usort($data["result"], array($this, "cmp2"));
+				else
+					usort($data["result"], array($this, "cmp1"));
+						
+					$ulimit=ITEMS_PER_PAGE;
+					$olimit=0;
+					if ($pageNum>1)
+						$olimit=($pageNum-1)*ITEMS_PER_PAGE;
+						$data["result"]=array_slice($data["result"],$olimit , $ulimit);
+							
 				$this->load->view("account-saved-search", $data);
 		}
 		else if($activeNav==6)
