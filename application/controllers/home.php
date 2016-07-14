@@ -2223,7 +2223,7 @@ class Home extends CI_Controller {
 		else if($activeNav==3)
 		{
 			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInMyAds($userID);
-			$myList=$this->post_model->getMyAds($userID, $pageNum, $sortByDate);
+			$myList=$this->post_model->getMyAds($userID, 0, $sortByDate);
 			$data["result"]=$this->mapPostToView($myList);
 			if($sortByDate==2)
 				usort($data["result"], array($this, "cmp2"));
@@ -2244,7 +2244,7 @@ class Home extends CI_Controller {
 		}else if($activeNav==5)
 		{
 			$data["NoOfItemCount"]=$this->savedAds_model->getNoOfItemCountInSavedAds($userID);
-			$myList=$this->savedAds_model->getSavedAds($userID, $pageNum, $sortByDate);
+			$myList=$this->savedAds_model->getSavedAds($userID, 0, $sortByDate);
 			$data["result"]=$this->mapReqeustPostToView($myList);
 			if($sortByDate==2)
 				usort($data["result"], array($this, "cmp2"));
