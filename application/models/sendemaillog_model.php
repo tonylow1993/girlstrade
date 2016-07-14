@@ -16,14 +16,19 @@ class sendEmailLog_model extends CI_Model {
 	function getNoOfCountByUserID($userID, $emailAddress){
 		$minutes=MAXTIMESMINUTESSENDEMAIL;
 		$strQuery="";
+		
+		$user1=$this->nativesession->get("user");
+		if(!isset($user1) or empty($user1) or $user1==null)
+			$userID=0; //$userEmail["userID"];
+		
 		if($userID==0)
-			$strQuery="select count(distinct ID) as NoOfCount from sendEmailLog  where toEmailAddress='$emailAddress' and createDate between  DATE_ADD(NOW(), INTERVAL -".MAXTIMESMINUTESSENDEMAIL ." MINUTE) and NOW()";
+			$strQuery="select count(distinct ID) as NoOfCount from sendEmailLog  where toEmailAddress='$emailAddress' and userID=0  and createDate between  DATE_ADD(NOW(), INTERVAL -".MAXTIMESMINUTESSENDEMAIL ." MINUTE) and NOW()";
 		else 
 			$strQuery="select count(distinct ID) as NoOfCount from sendEmailLog  where userID=$userID and createDate between  DATE_ADD(NOW(), INTERVAL -".MAXTIMESMINUTESSENDEMAIL ." MINUTE) and NOW()";
 		$NoOfItemCount=0;
 		$query = $this->db->query($strQuery);
 		$var=$query->result_array();
-		$NoOfItemCount=$var[0]["NoOfCount"];
+		$NoOfItemCount=$var[0]["NoOfCount"]+1;
 		
 		return $NoOfItemCount;
 	}

@@ -1814,7 +1814,7 @@ class Home extends CI_Controller {
 			$user1=$this->nativesession->get("user");
 			$userID=0;
 			if(!isset($user1) or empty($user1) or $user1==null)
-				$userID=$userEmail["userID"];
+				$userID=0; //$userEmail["userID"];
 			else 
 				$userID=$user1["userID"];
 			$data=array();
