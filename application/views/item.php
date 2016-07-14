@@ -540,7 +540,7 @@ input[type=checkbox]
         <div class="col-sm-3  page-sidebar-right">
           <aside>
               <div class="panel sidebar-panel panel-contact-seller panel-bevel seller-info-border">
-              <div class="panel-heading seller-heading pink-bg"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;$username</div>
+              <div class="panel-heading seller-heading pink-bg"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;<?php $username ?></div>
          
               <div class="panel-content user-info">
                 <div class="panel-body text-center">
