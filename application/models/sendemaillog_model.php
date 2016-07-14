@@ -17,7 +17,7 @@ class sendEmailLog_model extends CI_Model {
 		$minutes=MAXTIMESMINUTESSENDEMAIL;
 		$strQuery="";
 		if($userID==0)
-			$strQuery="select count(distinct ID) as NoOfCount from sendEmailLog  where toEmailAddress=$emailAddress and createDate between  DATE_ADD(NOW(), INTERVAL -".MAXTIMESMINUTESSENDEMAIL ." MINUTE) and NOW()";
+			$strQuery="select count(distinct ID) as NoOfCount from sendEmailLog  where toEmailAddress='$emailAddress' and createDate between  DATE_ADD(NOW(), INTERVAL -".MAXTIMESMINUTESSENDEMAIL ." MINUTE) and NOW()";
 		else 
 			$strQuery="select count(distinct ID) as NoOfCount from sendEmailLog  where userID=$userID and createDate between  DATE_ADD(NOW(), INTERVAL -".MAXTIMESMINUTESSENDEMAIL ." MINUTE) and NOW()";
 		$NoOfItemCount=0;
