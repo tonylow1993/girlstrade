@@ -15,7 +15,7 @@ class sendEmailLog_model extends CI_Model {
 	
 	function getNoOfCountByUserID($userID){
 		$minutes=MAXTIMESMINUTESSENDEMAIL;
-		$strQuery="select count(distinct ID) as NoOfCount from sendEmailLog  where userID=$userID and createDate between  DATE_ADD(curdate(), INTERVAL -".MAXTIMESMINUTESSENDEMAIL ." MINUTE) and curdate()";
+		$strQuery="select count(distinct ID) as NoOfCount from sendEmailLog  where userID=$userID and createDate between  DATE_ADD(NOW(), INTERVAL -".MAXTIMESMINUTESSENDEMAIL ." MINUTE) and NOW()";
 		$NoOfItemCount=0;
 		$query = $this->db->query($strQuery);
 		$var=$query->result_array();

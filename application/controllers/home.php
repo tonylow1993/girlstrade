@@ -1209,7 +1209,20 @@ class Home extends CI_Controller {
 				$this->load->view('failedPage', $data);
 				return;	
 			}
-				
+			if($this->sendEmailLog_model->getNoOfCountByUserID($userEmail['userID'])>MAXTIMESSENDEMAIL){
+				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+				$data["lang_label"]=$this->nativesession->get("language");
+				$data["error"]=$errorMsg;
+				$this->nativesession->set("lastPageVisited","login");
+				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToPHP']=base_url();
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+			
+				$this->load->view('failedPage', $data);
+				return;
+			}
 			$password=$this->generateRandomString();
 			$userPasswordContent['userID']=$userEmail['userID'];
 			$userPasswordContent['password']=$password;
@@ -1848,8 +1861,22 @@ class Home extends CI_Controller {
 		$newReTypePassword=$this->input->post('newReTypePassword');
 		$userInfo=$this->nativesession->get('user');
 		$userID=$userInfo['userID'];
+		$email=$this->userEmail->getUserEmailByUserID($userID);
 		$input=array('userID'=>$userID, 'password'=> $newPassword);
+		if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+			$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+			$data["lang_label"]=$this->nativesession->get("language");
+			$data["error"]=$errorMsg;
+			$this->nativesession->set("lastPageVisited","login");
+			$data['redirectToWhatPage']="Home Page";
+			$data['redirectToPHP']=base_url();
+			$data["successTile"]=$this->lang->line("successTile");
+			$data["failedTitle"]=$this->lang->line("failedTitle");
+			$data["goToHomePage"]=$this->lang->line("goToHomePage");
 		
+			$this->load->view('failedPage', $data);
+			return;
+		}
 		$this->userPassword->changePassword($input);
 		$email=$this->userEmail->getUserEmailByUserID($userID);
 		$msg=$this->mailtemplate_model->SendEmailMsgForChangePassword($userInfo['username']);
@@ -3568,6 +3595,25 @@ class Home extends CI_Controller {
 		$userPassword['password'] = $data['originalPassword'];
 		$isValid = $this->userPassword->isValidPassword($userPassword);
 		if($isValid){
+			
+			$email=$this->userEmail->getUserEmailByUserID($user["userID"]);
+				
+			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
+				$data["lang_label"]=$this->nativesession->get("language");
+				$data["error"]=$errorMsg;
+				$this->nativesession->set("lastPageVisited","login");
+				$data['redirectToWhatPage']="Home Page";
+				$data['redirectToPHP']=base_url();
+				$data["successTile"]=$this->lang->line("successTile");
+				$data["failedTitle"]=$this->lang->line("failedTitle");
+				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+			
+				$this->load->view('failedPage', $data);
+				return;
+			}
+			
+			
 			$userPassword = $this->userPassword->getUserPasswordByUserID($user['userID']);
 			$userPassword['password'] = $data['newPassword'];
 			$this->userPassword->update($userPassword);
