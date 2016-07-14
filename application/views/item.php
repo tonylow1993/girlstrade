@@ -540,7 +540,7 @@ input[type=checkbox]
         <div class="col-sm-3  page-sidebar-right">
           <aside>
               <div class="panel sidebar-panel panel-contact-seller panel-bevel seller-info-border">
-              <div class="panel-heading seller-heading pink-bg"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;Contact Seller</div>
+              <div class="panel-heading seller-heading pink-bg"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;$username</div>
          
               <div class="panel-content user-info">
                 <div class="panel-body text-center">
@@ -550,7 +550,8 @@ input[type=checkbox]
               			<a href="<?php echo base_url().MY_PATH;?>viewProfile/index/<?php echo $postID.'/1?prevURL='.urlencode($previousCurrent_url).'&prevProfile_Url='.urlencode(current_url());?>" 
               			class="btn   btn-default btn-block viewButton">
               			<i class="icon-user-3"></i>
-              			View User Info</a> </div>
+              			<?php echo $this->lang->line("lblViewUserInfo");?>
+						</a> </div>
               		</h3>
                     <!-- <p> Joined: <strong><?php //echo $userCreateDate;?></strong></p> -->
                   </div>

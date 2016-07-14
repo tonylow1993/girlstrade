@@ -486,13 +486,13 @@ $lang["Redirecting"]="Redirecting in";
 $lang["toReturn"]="to";
 $lang["operationFailed"]="Operation Failed!";
 $lang["goBackTryAgain"]="Please go back and try again.";
-<<<<<<< HEAD
+
 $lang["homepage"]="HomePage";
-=======
+
 
 $lang["HomeExceedMaxTimesSendEmail"]="Operation Failed! Exceed Max Times %s within %s minutes";
->>>>>>> origin/master
-
+//$lang["lblSellerInfo"]="Seller Info";
+$lang["lblViewUserInfo"]="Seller Profile";
 
 
 
