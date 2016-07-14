@@ -494,13 +494,21 @@ $lang["homepage"]="主頁";
 $lang["HomeExceedMaxTimesSendEmail"]="處理過程失敗! 超過最多次數 %s 在 %s 分鐘之內";
 //$lang["lblSellerInfo"]="賣家資料";
 $lang["lblViewUserInfo"]="賣家資料";
-
-
-
-
-
-
-
+$lang["lblComments"]="留言板";
+$lang["lblSafety"]="安全提示";
+$lang["lblSafety1"]="在公共場所交收";
+$lang["lblSafety2"]="買之前請檢查清楚";
+$lang["lblSafety3"]="收到物件先俾錢";
+$lang["btnSubmitComment"]="提交留言";
+$lang["somethingWrongAd"]="廣告出現問題?";
+$lang["lblReason"]="原因";
+$lang["lblReasonSelect"]="選擇類別";
+$lang["lblReasonSelect2"]="廣告不存在";
+$lang["lblReasonSelect3"]="騙局";
+$lang["lblReasonSelect4"]="重複/複製";
+$lang["lblReasonSelect5"]="垃圾廣告";
+$lang["lblReasonSelect6"]="分類錯誤";
+$lang["lblReasonSelect7"]="其他";
 
 
 

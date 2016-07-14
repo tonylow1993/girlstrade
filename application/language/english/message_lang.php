@@ -493,11 +493,21 @@ $lang["homepage"]="HomePage";
 $lang["HomeExceedMaxTimesSendEmail"]="Operation Failed! Exceed Max Times %s within %s minutes";
 //$lang["lblSellerInfo"]="Seller Info";
 $lang["lblViewUserInfo"]="Seller Profile";
-
-
-
-
-
+$lang["lblComments"]="Comments";
+$lang["lblSafety"]="Safety Tips for Buyers";
+$lang["lblSafety1"]="Meet seller at a public place";
+$lang["lblSafety2"]="Check the item before you buy";
+$lang["lblSafety3"]="Pay only after collecting the item";
+$lang["btnSubmitComment"]="Submit";
+$lang["somethingWrongAd"]="Something wrong with this ad?";
+$lang["lblReason"]="Reason";
+$lang["lblReasonSelect"]="Select a Reason";
+$lang["lblReasonSelect2"]="Item unavailable";
+$lang["lblReasonSelect3"]="Fraud";
+$lang["lblReasonSelect4"]="Duplicate";
+$lang["lblReasonSelect5"]="Spam";
+$lang["lblReasonSelect6"]="Wrong category";
+$lang["lblReasonSelect7"]="Others";
 
 
 

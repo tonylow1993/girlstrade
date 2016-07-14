@@ -425,7 +425,7 @@ input[type=checkbox]
                             <div class="blogs-comments-area"></div>
                                 <h5 class="list-title">
                                 <strong><?php count($commentList);?> 
-                               Comments</strong></h5>
+                               <?php echo $this->lang->line("lblComments");?></strong></h5>
                                
                                
                                
@@ -520,7 +520,7 @@ input[type=checkbox]
 											  	<!--<div id="blogscommentAjaxLoad" class="center"></div>
 	                        					<div id="blogscommentError" hidden="true"></div>-->
                          				</div>
-                                        <button type="submit" class="btn-success btn btn-lg"> Submit </button>
+                                        <button type="submit" class="btn-success btn btn-lg"> <?php echo $this->lang->line("btnSubmit");?> </button>
 										<br>
 										</form>
 										<?php }?>
@@ -670,13 +670,14 @@ input[type=checkbox]
               </div>
             </div>
             <div class="panel sidebar-panel panel-bevel seller-info-border">
-              <div class="panel-heading  seller-heading pink-bg"><i class="fa fa-shield"></i>&nbsp;&nbsp;&nbsp;Safety Tips for Buyers</div>
+              <div class="panel-heading  seller-heading pink-bg"><i class="fa fa-shield"></i>&nbsp;&nbsp;&nbsp;
+              <?php echo $this->lang->line("lblSafety");?></div>
              <div class="panel-content">
                 <div class="panel-body text-left">
                   <ul class="list-check">
-                    <li> Meet seller at a public place </li>
-                    <li> Check the item before you buy</li>
-                    <li> Pay only after collecting the item</li>
+                    <li><?php echo $this->lang->line("lblSafety1");?> </li>
+                    <li><?php echo $this->lang->line("lblSafety2");?></li>
+                    <li><?php echo $this->lang->line("lblSafety3");?></li>
                   </ul>
                 </div>
               </div>
@@ -914,7 +915,9 @@ input[type=checkbox]
       </div>
       <div class="modal-footer">
       	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success pull-right"   onclick="setupBuyerFeedBack(); return false;">Submit</button>
+        <button type="button" class="btn btn-success pull-right"   onclick="setupBuyerFeedBack(); return false;">
+		<?php echo $this->lang->line("btnSubmitComment");?>
+		</button>
         	<button id="validate" hidden="true" type="submit"></button>
   
      	 </div>
@@ -1113,7 +1116,9 @@ input[type=checkbox]
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" ><i class="fa icon-info-circled-alt"></i> There's something wrong with this  ads? </h4>
+        <h4 class="modal-title" ><i class="fa icon-info-circled-alt"></i> 
+        <?php echo $this->lang->line("somethingWrongAd");?>
+         </h4>
       </div>
       <div class="modal-body">
         <form role="form" method="post" id="itemDeleteAbuse" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteAbuseMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
@@ -1194,20 +1199,20 @@ input[type=checkbox]
     
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" ><i class="fa icon-info-circled-alt"></i> There's something wrong with this  ads? </h4>
+        <h4 class="modal-title" ><i class="fa icon-info-circled-alt"></i> <?php echo $this->lang->line("somethingWrongAd");?></h4>
       </div>
       <div class="modal-body">
         <form role="form" method="post" id="itemAbuse" action="<?php echo base_url(); echo MY_PATH;?>messages/insertAbuseMessage/<?php echo $postID;?>?prevURL=<?php echo urlencode(current_url());?>&prevprevURL=<?php echo urlencode($previousCurrent_url);?>">
           <div class="form-group">
-            <label for="reportreason" class="control-label">Reason:</label>
+            <label for="reportreason" class="control-label"><?php echo $this->lang->line("lblReason");?></label>
             <select name="reportreason" id="reportreason" class="form-control">
-              <option value="">Select a reason</option>
-              <option value="soldUnavailable">Item unavailable</option>
-              <option value="fraud">Fraud</option>
-              <option value="duplicate">Duplicate</option>
-              <option value="spam">Spam</option>
-              <option value="wrongCategory">Wrong category</option>
-              <option value="other">Other</option>
+              <option value=""><?php echo $this->lang->line("lblReasonSelect");?></option>
+              <option value="soldUnavailable"><?php echo $this->lang->line("lblReasonSelect2");?></option>
+              <option value="fraud"><?php echo $this->lang->line("lblReasonSelect3");?></option>
+              <option value="duplicate"><?php echo $this->lang->line("lblReasonSelect4");?></option>
+              <option value="spam"><?php echo $this->lang->line("lblReasonSelect5");?></option>
+              <option value="wrongCategory"><?php echo $this->lang->line("lblReasonSelect6");?></option>
+              <option value="other"><?php echo $this->lang->line("lblReasonSelect7");?></option>
             </select>
           </div>
           <!--<div class="form-group">
@@ -1224,14 +1229,14 @@ input[type=checkbox]
             <input type="text"  maxlength="30" class="form-control" name="recipientPhoneNumber1" id="recipientPhoneNumber1">
           </div>-->
           <div class="form-group">
-            <label for="messagetext2" class="control-label">Message <span class="text-count">(<?php echo DESCLENGTHINITEMPAGE;?>) </span>:</label>
+            <label for="messagetext2" class="control-label"><?php echo $this->lang->line("profileSendPostMessage");?> <span class="text-count">(<?php echo DESCLENGTHINITEMPAGE;?>) </span>:</label>
             <textarea style="vertical-align: top; horizontal-align: left; resize:none;" class="form-control"  rows="5" maxlength="<?php echo DESCLENGTHINITEMPAGE;?>" id="messagetext2" name="messagetext2"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" type="submit" onclick="setupAbuse(); return false;" class="btn btn-primary">Send Report</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $this->lang->line("Cancel");?></button>
+        <button type="button" type="submit" onclick="setupAbuse(); return false;" class="btn btn-primary"><?php echo $this->lang->line("btnSubmit");?> </button>
       	<button id="validate" hidden="true" type="submit"></button>
       </div>
       <?php }?>
