@@ -198,7 +198,7 @@ function addDayswithdate($date,$days){
 				}
 				$email=$this->useremail_model->getUserEmailByUserID($userID);
 					
-				if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+				if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
 					$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["error"]=$errorMsg;
@@ -383,7 +383,7 @@ function addDayswithdate($date,$days){
 								'recipientPhoneNumber'=>$this->input->post('recipientPhoneNumber1'));
 						$email=$this->useremail_model->getUserEmailByUserID($fUserID);
 							
-						if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+						if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
 							$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 							$data["lang_label"]=$this->nativesession->get("language");
 							$data["error"]=$errorMsg;
@@ -544,7 +544,7 @@ function addDayswithdate($date,$days){
 				}
 				$email=$this->useremail_model->getUserEmailByUserID($fUserID);
 				
-				if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+				if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
 					$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["error"]=$errorMsg;
@@ -822,7 +822,7 @@ function addDayswithdate($date,$days){
 				}
 				$email=$this->useremail_model->getUserEmailByUserID($userID);
 					
-				if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+				if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
 					$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["error"]=$errorMsg;
@@ -929,7 +929,7 @@ function addDayswithdate($date,$days){
 			$messageArray=array('status' => "A");
 			$email=$this->useremail_model->getUserEmailByUserID($userID);
 			
-			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
 				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 				$data['status'] = 'F';
 				$data['class'] = "has-error";
@@ -985,7 +985,7 @@ function addDayswithdate($date,$days){
 					$username=$usernameArr[0]->username;
 					$email=$this->useremail_model->getUserEmailByUserID($userID);
 						
-					if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+					if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
 						$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 						$data["lang_label"]=$this->nativesession->get("language");
 						$data["error"]=$errorMsg;
@@ -1032,7 +1032,7 @@ function addDayswithdate($date,$days){
 			$messageArray=array('status' => "R");
 			$email=$this->useremail_model->getUserEmailByUserID($userID);
 				
-			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
 				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 				$data['status'] = 'F';
 				$data['class'] = "has-error";
@@ -1241,7 +1241,7 @@ function addDayswithdate($date,$days){
 			}
 			$email=$this->useremail_model->getUserEmailByUserID($userID);
 				
-			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
 				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["error"]=$errorMsg;
@@ -2126,9 +2126,9 @@ function addDayswithdate($date,$days){
 					return;
 				}
 				$buyerEmail=$this->useremail_model->getUserEmailByUserID($buyerID);
-				$email=$buyerEmail["email"];
+				$buyerEmail=$buyerEmail["email"];
 							
-				if($this->sendEmailLog_model->getNoOfCountByUserID($buyerEmail['userID'])>MAXTIMESSENDEMAIL){
+				if($this->sendEmailLog_model->getNoOfCountByUserID($buyerEmail['userID'], $buyerEmail["email"])>MAXTIMESSENDEMAIL){
 					$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["error"]=$errorMsg;
@@ -2488,7 +2488,7 @@ function addDayswithdate($date,$days){
 				}
 				$sellerEmail=$this->useremail_model->getUserEmailByUserID($userID);
 					
-				if($this->sendEmailLog_model->getNoOfCountByUserID($sellerEmail['userID'])>MAXTIMESSENDEMAIL){
+				if($this->sendEmailLog_model->getNoOfCountByUserID($sellerEmail['userID'], $sellerEmail['email'])>MAXTIMESSENDEMAIL){
 					$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["error"]=$errorMsg;

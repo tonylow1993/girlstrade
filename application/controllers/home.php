@@ -1107,7 +1107,7 @@ class Home extends CI_Controller {
 			$userEmail=$this->userEmail->getUserEmailByEmail($emailAddress);
 			
 
-			if($this->sendEmailLog_model->getNoOfCountByUserID($userEmail['userID'])>MAXTIMESSENDEMAIL){
+			if($this->sendEmailLog_model->getNoOfCountByUserID($userEmail['userID'], $userEmail["email"])>MAXTIMESSENDEMAIL){
 				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["error"]=$errorMsg;
@@ -1209,7 +1209,7 @@ class Home extends CI_Controller {
 				$this->load->view('failedPage', $data);
 				return;	
 			}
-			if($this->sendEmailLog_model->getNoOfCountByUserID($userEmail['userID'])>MAXTIMESSENDEMAIL){
+			if($this->sendEmailLog_model->getNoOfCountByUserID($userEmail['userID'], $userEmail["email"])>MAXTIMESSENDEMAIL){
 				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["error"]=$errorMsg;
@@ -1863,7 +1863,7 @@ class Home extends CI_Controller {
 		$userID=$userInfo['userID'];
 		$email=$this->userEmail->getUserEmailByUserID($userID);
 		$input=array('userID'=>$userID, 'password'=> $newPassword);
-		if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+		if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
 			$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 			$data["lang_label"]=$this->nativesession->get("language");
 			$data["error"]=$errorMsg;
@@ -3598,7 +3598,7 @@ class Home extends CI_Controller {
 			
 			$email=$this->userEmail->getUserEmailByUserID($user["userID"]);
 				
-			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'])>MAXTIMESSENDEMAIL){
+			if($this->sendEmailLog_model->getNoOfCountByUserID($email['userID'], $email["email"])>MAXTIMESSENDEMAIL){
 				$errorMsg=sprintf($this->lang->line("HomeExceedMaxTimesSendEmail"),MAXTIMESSENDEMAIL,MAXTIMESMINUTESSENDEMAIL);
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["error"]=$errorMsg;
