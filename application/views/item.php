@@ -520,7 +520,7 @@ input[type=checkbox]
 											  	<!--<div id="blogscommentAjaxLoad" class="center"></div>
 	                        					<div id="blogscommentError" hidden="true"></div>-->
                          				</div>
-                                        <button type="submit" class="btn-success btn btn-lg"> <?php echo $this->lang->line("btnSubmit");?> </button>
+                                        <button type="submit" class="btn-success btn btn-lg"> <?php echo $this->lang->line("btnSubmitComment");?> </button>
 										<br>
 										</form>
 										<?php }?>
