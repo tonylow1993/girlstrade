@@ -2552,9 +2552,9 @@ class Home extends CI_Controller {
 					"weChatID"=>$weChatID,
 					"showWebSite"=>$showWebSite,
 					"webSiteAddr" =>$webSiteAddr));
-			if($result==null)
-				$result=$arrayMessage;
-			else
+			//if($result==null || count($result)==0)
+			//	array_push($result,$arrayMessage);
+			//else
 				$result=$result + $arrayMessage;
 		}
 		}
@@ -2979,9 +2979,9 @@ class Home extends CI_Controller {
 					"NoOfDaysb4ExpiryContact"=>$NoOfDaysb4ExpiryContact,
 					"picCount"=>$picCount));
 			
-			if($result==null)
-				$result=$arrayMessage;
-			else
+			//if($result==null)
+			//	array_push($result,$arrayMessage);
+			//else
 				$result=$result + $arrayMessage;
 		}
 			
