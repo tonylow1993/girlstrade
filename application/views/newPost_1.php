@@ -214,8 +214,8 @@
                           <div class="col-md-8">
                               <select name="itemQualityGroup" id="itemQualityGroup" value="<?php echo set_value('itemQualityGroup'); ?>" class="form-control" required="true">
                                 <!--   <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - Please Select - </option>  -->
-                                   <option value="N"> New </option>
-                                   <option value="U"> Used </option>
+                                   <option value="N"> <?php echo $this->lang->line("lblConditionNew"); ?> </option>
+                                   <option value="U"> <?php echo $this->lang->line("lblConditionUsed");?> </option>
                               </select>
                           </div>
                       </div>
@@ -312,7 +312,7 @@
                            <?php echo $lblLocation;?> </label>
                           <div class="col-md-8">
                               <select name="locID2" id="locID2"  class="form-control" >
-                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - All Locations - </option>
+                                  <option value="" style="background-color:#E9E9E9;font-weight:bold;"> - <?php echo $this->lang->line("lblAllLocations");?> - </option>
                                   <?php 
 						            foreach ($resLoc as $id=>$value)
 						            {

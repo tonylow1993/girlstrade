@@ -173,11 +173,11 @@
                 $data["itemDesc"] = $var[0]->description;
                 $data["visitCount"]=$var[0]->viewCount;
                 $data["itemTitle"]=$var[0]->itemName;
-                $data["condition"]=strcmp($var[0]->newUsed, "N")==0 ? "NEW" :"USED"; 
+                $data["condition"]=strcmp($var[0]->newUsed, "N")==0 ? $this->lang->line("lblConditionNew") : $this->lang->line("lblConditionUsed"); 
                 if ($var[0]->locID>0)
                 	$data["LocationName"] = $data["lang_label"]<>"english" ? $location[0]->nameCN : $location[0]->name;
                 else 
-                	$data["LocationName"]="All Locations";
+                	$data["LocationName"]= $this->lang->line("lblAllLocations");
                  $data["username"] = $user[0]->username;
                 $data["userID"] = $user[0]->userID;
                 $userCreateDate = (new DateTime($user[0]->createDate))->format('Y-M-d');
