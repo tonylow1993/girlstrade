@@ -14,7 +14,6 @@
           <div class="inner-box">
           	  <?php include("profile_visit.php");?>
            <h2 class="title-2"><i class="icon-folder-close"></i> <?php  echo $this->lang->line("ArchivedAds");?> </h2>
-            <div class="table-responsive">
 <!--               <div class="table-action"> -->
 <!--                 <label for="checkAll"> -->
  <!--                  <input type="checkbox" onclick="checkAll(this)" id="checkAll"> -->
@@ -28,8 +27,8 @@
               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true" >
                 <thead>
                   <tr>
-                     <th> <?php echo $this->lang->line("Photo"); ?> </th>
-                    <th data-sort-ignore="true"> <?php echo $this->lang->line("Ads_Detail"); ?> </th>
+						<th> <?php echo $this->lang->line("Photo"); ?> </th>
+						<th data-sort-ignore="true" class="small-table-right"> <?php echo $this->lang->line("Ads_Detail"); ?> </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -57,7 +56,7 @@
                     	echo "<td style=\"width:20%\" class=\"add-image\">";
                       	echo "<a href=$viewItemPath><img class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a>";
                     	echo "</td>";
-                      	echo "<td style=\"width:55%\" class=\"ads-details-td\">";
+                      	echo "<td style=\"width:55%\" class=\"ads-details-td small-table-right\">";
                     	echo "<div class=\"ads-details\">";
                          echo "<h5><div class=\"add-title-girlstrade\">".$this->lang->line("lblTitle").$previewTitle."</div>".$previewDesc;
                           echo "<br/>Posted On: ". $createDate."<br/>".$preview."</h5>";
@@ -118,8 +117,6 @@
                 
                 </tbody>
               </table>
-              
-            </div>
             <!--/.row-box End--> 
             
           </div>
