@@ -598,7 +598,7 @@
               <div class="sortByDiv">
               <form role="form" method="POST" action="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/'.$activeTab.'/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>"
          	     id="sortfrm" class="tab-filter"> 
-			   <div class="form-group sort-group" style="width:150px;">
+			   <div class="form-group sort-group" style="width:150px;margin-top: 0px;">
 				  <select class="form-control sort-select" name="selectSortType"   id="selectSortType" data-width="auto">
 					  <option value="0" <?php if(strcmp($sortByType,"0")==0 or $sortByType==0) echo " selected='selected' ";?> ><?php echo $lblSearchSortBy;?></option>
 					  <option value="1" <?php if(strcmp($sortByType,"1")==0)  echo " selected='selected' ";?>><?php echo $Price;?></option>
