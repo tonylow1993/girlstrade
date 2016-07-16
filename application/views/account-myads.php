@@ -27,9 +27,6 @@
 				</div> 
            </form>
            </div>
-           
-            <div class="table-responsive">
-            
 <!--               <div class="table-action"> -->
 <!--                 <label for="checkAll"> -->
  <!--                  <input type="checkbox" onclick="checkAll(this)" id="checkAll"> -->
@@ -44,7 +41,7 @@
                 <thead>
                   <tr style="height:50px;">
                    <th style="border: none;"> <?php echo $this->lang->line("Photo");?> </th>
-                    <th data-sort-ignore="true" style="border: none;"> <?php echo $this->lang->line("Ads_Detail");?> </th>
+                    <th data-sort-ignore="true" style="border: none;" class="small-table-right"> <?php echo $this->lang->line("Ads_Detail");?> </th>
                  </tr>
                 </thead>
                 <tbody>
@@ -102,15 +99,15 @@
                       	{
                       		$ratio= 100*300/ $sizeimage[1];
                       		if($sizeimage[0]>90* 300/ $sizeimage[1])
-                      			echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:100%; width:".$ratio."%; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a></br>";
+                      			echo "<a href=$viewItemPath  style=\"padding:10px; margin: 0px;\" ><img style=\"height:100%; width:".$ratio."%; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a></br>";
                       		else 
-                      		echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:100%; width:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a></br>";
+                      		echo "<a href=$viewItemPath  style=\"padding:10px; margin: 0px;\" ><img style=\"height:100%; width:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a></br>";
                       	}else 
-								echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a></br>";
+								echo "<a href=$viewItemPath  style=\"padding:10px; margin: 0px;\" ><img style=\"height:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a></br>";
                   	}else
                   	{
                   		$imagePath = base_url()."images/defaultPostImg/defaultGTImg_TN.png";
-						echo "<a href=$viewItemPath  style=\"padding:0px; margin: 0px;\" ><img style=\"height:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a></br>";
+						echo "<a href=$viewItemPath  style=\"padding:10px; margin: 0px;\" ><img style=\"height:auto; padding:0px; margin:0px;\"  class=\"thumbnail no-margin\" src=$imagePath alt=\"img\"></a></br>";
                   	}	
 //                       	echo "</div>";
                       	
@@ -149,8 +146,37 @@
                         if($enableRepostBtn)
                         	echo "<p><div class=\"user-ads-action\"><a class=\"btn btn-inverse btn-xs btn-120\"  data-toggle=\"modal\"   href=\"#confirmRepost\"  data-id=\"$messageID\" data-nextexpirydate=\"$nextexpirydate\" data-pagenum=\"$pageNum\"> <i class=\"fa fa-repeat\"></i> Repost</a></div></p>";
                         	
-                        echo "</div></td>";
-                      	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td\">";
+                        echo "</div>";
+						
+						echo "<div class=\"ads-details small-table-left margin-10\">";
+                         echo "<h5><div class=\"add-title-girlstrade\"><u>".$previewTitle."</u></div>".$previewDesc."<br/>".$preview;
+                         $datePost = strtotime($createDate); 
+                         echo "<br/>Posted On: ". date("M d, Y", $datePost)."<br/>Status: ";
+                          
+                          if(strcmp($status, "Open")==0)
+                          {
+                          	echo "<font color=\"green\">".$status."</font>";
+                          }else if(strcmp($status, "Rejected")==0)
+                          {
+                          	echo "<font color=\"red\">".$status."</font>";
+                          }else if(strcmp($status, "Unverified")==0)
+                          {
+                          	echo "<font color=\"pink\">".$status."</font>";
+                          }else {
+                          	echo "<font color=\"grey\">".$status."</font>";
+                          }
+                          
+						echo "<br/>Interested Buyer:  $NoOfSoldUsers";
+                        if(strcmp($status, "Rejected")==0){
+                        	echo "<br/><font color=\"red\">Reject Reason: ".$rejectReason.": ".$rejectSpecifiedReason."</font>";
+                        }
+						
+						echo "<br/>".$this->lang->line("Price").": $price";
+						
+                        echo "</div></h5></td>";
+						
+						
+                      	echo "<td style=\"width:55%; border: none;\" class=\"ads-details-td small-table-right\">";
                     	echo "<div class=\"ads-details\">";
                          echo "<h5><div class=\"add-title-girlstrade\"><u>".$previewTitle."</u></div>".$previewDesc."<br/>".$preview;
                          $datePost = strtotime($createDate); 
@@ -242,7 +268,6 @@
                     </div>
         
               
-            </div>
             <!--/.row-box End--> 
             
           </div>
