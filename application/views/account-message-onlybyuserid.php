@@ -59,7 +59,7 @@
 						if($row["unreadCount"] >0)
                     		echo "<span class=\"badge msg-box-badge\">$unreadCount</span>";
 						
-						echo "<p class=\"box-from\">$username</p>";
+						echo "<p class=\"box-from\">$fromusername</p>";
 						 
 						//echo "<div class=\"msg-box\" id=".$trId." name=".$trId." ".$readflag." onClick=\"document.forms['msg-box-".$trId."'].submit();\">";
                     	
