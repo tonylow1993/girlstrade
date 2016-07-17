@@ -3544,6 +3544,7 @@ td.ads-details-td {
 	font-weight: 500;
 	color: #000;
 	word-wrap: break-word;
+	line-height: 30px;
 }
 
 
@@ -3553,6 +3554,7 @@ td.ads-details-td {
     position: relative;
     text-overflow: ellipsis;
 	margin-left: 10px;
+	line-height: 30px;
 }
 
 .box-msg{
@@ -3565,6 +3567,7 @@ td.ads-details-td {
 	font-size: 20px;
 	margin-top: 10px;
 	color: #000;
+	line-height: 30px;
 }
 
 .navbar-nav>li>a{
