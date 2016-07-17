@@ -11,14 +11,15 @@
         <!--/.page-sidebar-->
         
         <div class="col-sm-9 page-content">
-			<?php include("profile_header.php");?>
+			
 			<a class="pull-right back-btn margin-5" href=<?php  echo $prevURL;?>> 
 			<i class="fa fa-angle-double-left"></i> <?php echo $profileBackToResult;?></a>
      
 			<div class="col-md-12 bg-white panel-bevel">
 				<div class="chat-message">
-				<ul style="text-align: center;"><h2 style="font-weight: 500;color:#1c688e;">
+				<ul style="text-align: center;">
 				<?php 
+					echo "<h2><a href='".base_url().MY_PATH."viewProfile/viewByUserID/".$userID."/1' style=\"font-weight: 500;color:#1c688e;\">";
 						if($result<>null)
 		            	{
 		            		$rowCount=0;
@@ -30,9 +31,9 @@
 		                  	}
 		                  	
 		            	}	
-						?>
-				
-				</h2></ul>
+						echo "</a></h2>";
+				?>
+				</ul>
 					<ul class="chat">
 <!-- 						<li class="left clearfix">  -->
 <!-- 							<span class="chat-img pull-left">  -->
