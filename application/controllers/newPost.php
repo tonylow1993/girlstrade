@@ -219,7 +219,7 @@ class newPost extends CI_Controller {
 				$errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -393,7 +393,7 @@ class newPost extends CI_Controller {
 				$errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -508,7 +508,7 @@ class newPost extends CI_Controller {
 			$errorMsg=$this->lang->line("PostPleaseLoginFirst");
 			$data['error']= $errorMsg;
 			$data["prevURL"]=$prevURL;
-			$data['redirectToWhatPage']="Login Page";
+			$data['redirectToWhatPage']=$this->lang->line("msgLoginPage");
 			$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
 			$data["successTile"]=$this->lang->line("successTile");
 			$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1026,7 +1026,7 @@ public function getChildCategory($parentID)
 			$errorMsg=$this->lang->line("PostPleaseLoginFirst");	
 //  	        	$data['error']= $errorMsg;
 //  	    		$data["prevURL"]=$prevURL;
-// 				$data['redirectToWhatPage']="Login Page";
+// 				$data['redirectToWhatPage']=$this->lang->line("msgLoginPage");
 // 				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";;
 // 				$data["successTile"]=$this->lang->line("successTile");
 // 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1072,7 +1072,7 @@ public function getChildCategory($parentID)
     	    $errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOST , NUMOFDAYSFORPOST);
 // 				$data["error"]=$errorMsg;
 //         	$data["prevURL"]=$prevURL;
-//         	$data['redirectToWhatPage']="Previous Page";
+//         	$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 //         	$data['redirectToPHP']=$prevURL;
 //         	$data["successTile"]=$this->lang->line("successTile");
 //         	$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1500,7 +1500,7 @@ public function getChildCategory($parentID)
        // {
 		$data["error"]=$errorMsg;
 		$data["prevURL"]=$prevURL;
-		$data['redirectToWhatPage']="Previous Page";
+		$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 		$data['redirectToPHP']=$prevURL;
 		$data["successTile"]=$this->lang->line("successTile");
 		$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1564,7 +1564,7 @@ public function getChildCategory($parentID)
     		$errorMsg=$this->lang->line("PostPleaseLoginFirst");
     		$data['error']= $errorMsg;
     		$data["prevURL"]=$prevURL;
-    		$data['redirectToWhatPage']="Login Page";
+    		$data['redirectToWhatPage']=$this->lang->line("msgLoginPage");
     		$data['redirectToPHP']=base_url().MY_PATH."home/loginPage?prevURL=".base_url().MY_PATH."newPost";
     		$data["successTile"]=$this->lang->line("successTile");
     		$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1583,7 +1583,7 @@ public function getChildCategory($parentID)
     		$errorMsg=$this->lang->line("PostPleaseLoginFirst");
     		$data['error']= $errorMsg;
     		$data["prevURL"]=$prevURL;
-    		$data['redirectToWhatPage']="Previous Page";
+    		$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
     		$data['redirectToPHP']=$prevURL;
     		$data["successTile"]=$this->lang->line("successTile");
     		$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1815,7 +1815,7 @@ public function getChildCategory($parentID)
     	$errorMsg=$this->lang->line("PostSuccess");
     	$data["error"]=$errorMsg;
     	$data["prevURL"]=$prevURL;
-    	$data['redirectToWhatPage']="Previous Page";
+    	$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
     	if($prevURL=="")
     		$data['redirectToPHP']=base_url();
     	else

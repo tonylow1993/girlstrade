@@ -511,5 +511,7 @@ $lang["lblReasonSelect6"]="分類錯誤";
 $lang["lblReasonSelect7"]="其他";
 
 
-
+$lang["msgPreviousPage"]="Previous Page";
+$lang["msgLoginPage"]="Login Page";
+$lang["msgSignUpPage"]="SignUp Page";
 

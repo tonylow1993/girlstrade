@@ -122,7 +122,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -156,7 +156,7 @@ function addDayswithdate($date,$days){
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["PrevURL"]=$prevURL;
 				$data["error"]=$errorMsg;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 					$data['redirectToPHP']=base_url();
 				else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -181,7 +181,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -230,7 +230,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -263,7 +263,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -327,7 +327,7 @@ function addDayswithdate($date,$days){
 							$data["lang_label"]=$this->nativesession->get("language");
 							$data["PrevURL"]=$prevURL;
 							$data["error"]=$errorMsg;
-							$data['redirectToWhatPage']="Previous Page";
+							$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 							if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 								$data['redirectToPHP']=base_url();
 								else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -354,8 +354,8 @@ function addDayswithdate($date,$days){
 								$errorMsg=sprintf($this->lang->line("MinDescLength"));
 							$data["error"]=$errorMsg;
 							$data["prevURL"]=$prevURL;
-							$data['redirectToWhatPage']="Previous Page";
-							$data['redirectToWhatPage']="Previous Page";
+							$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
+							$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 							if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 								$data['redirectToPHP']=base_url();
 								else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -409,7 +409,7 @@ function addDayswithdate($date,$days){
 							$data["lang_label"]=$this->nativesession->get("language");
 							$data["PrevURL"]=$prevURL;
 							$data["error"]=$errorMsg;
-							$data['redirectToWhatPage']="Previous Page";
+							$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 							if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 								$data['redirectToPHP']=base_url();
 								else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -430,7 +430,7 @@ function addDayswithdate($date,$days){
 							$data["lang_label"]=$this->nativesession->get("language");
 							$data["PrevURL"]=$prevURL;
 							$data["error"]=$errorMsg;
-							$data['redirectToWhatPage']="Previous Page";
+							$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 							if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 								$data['redirectToPHP']=base_url();
 								else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -498,7 +498,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -525,8 +525,8 @@ function addDayswithdate($date,$days){
 						$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
-					$data['redirectToWhatPage']="Previous Page";
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 						if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 							$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -583,7 +583,7 @@ function addDayswithdate($date,$days){
 						$data["lang_label"]=$this->nativesession->get("language");
 						$data["PrevURL"]=$prevURL;
 						$data["error"]=$errorMsg;
-						$data['redirectToWhatPage']="Previous Page";
+						$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 						if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 							$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -617,7 +617,7 @@ function addDayswithdate($date,$days){
 						$data["lang_label"]=$this->nativesession->get("language");
 						$data["PrevURL"]=$prevURL;
 						$data["error"]=$errorMsg;
-						$data['redirectToWhatPage']="Previous Page";
+						$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 						if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 							$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -682,7 +682,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -714,7 +714,7 @@ function addDayswithdate($date,$days){
 				$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -758,7 +758,7 @@ function addDayswithdate($date,$days){
 				$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -782,7 +782,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -805,7 +805,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -853,7 +853,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -875,7 +875,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -1147,7 +1147,7 @@ function addDayswithdate($date,$days){
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["PrevURL"]=$prevURL;
 				$data["error"]=$errorMsg;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 					$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -1173,7 +1173,7 @@ function addDayswithdate($date,$days){
 				if($times>=MAXTIMESDAILY_REPLYFROMSELLER && MAXTIMESDAILY_REPLYFROMSELLER< UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailySellerReply");
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(strcmp($fromwhere,"inbox")==0)
 						$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/1";
 					else 
@@ -1190,7 +1190,7 @@ function addDayswithdate($date,$days){
 				if($times>=MAXTIMESDAILY_SENDFROMBUYER && MAXTIMESDAILY_SENDFROMBUYER<UNLIMITEDTIMES){
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailyBuyerReply");
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(strcmp($fromwhere,"inbox")==0)
 						$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/1";
 					else 
@@ -1227,7 +1227,7 @@ function addDayswithdate($date,$days){
 				$data["lang_label"]=$this->nativesession->get("language");
 				$data["PrevURL"]=$prevURL;
 				$data["error"]=$errorMsg;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 			if(strcmp($fromwhere,"inbox")==0)
 				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/1";
 			else 
@@ -1362,7 +1362,7 @@ function addDayswithdate($date,$days){
 // 				return;
 				$errorMsg=$this->lang->line("ExceedMaxTimesDailyDeleteAds");
 				$data["error"]=$errorMsg;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1385,7 +1385,7 @@ function addDayswithdate($date,$days){
 // 				echo json_encode($data);
 				$errorMsg="success in delete ads";
 				$data["error"]=$errorMsg;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1403,7 +1403,7 @@ function addDayswithdate($date,$days){
 			else {
 				$errorMsg="error in saving";
 				$data["error"]=$errorMsg;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1423,7 +1423,7 @@ function addDayswithdate($date,$days){
 				$exMessage=$ex->getMessage();
 				$errorMsg=$exMessage;
 				$data["error"]=$errorMsg;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1573,7 +1573,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -1597,7 +1597,7 @@ function addDayswithdate($date,$days){
 				{
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailyMarkSoldPerPost");
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/3";
 					$data["successTile"]=$this->lang->line("successTile");
 					$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1662,7 +1662,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -1683,7 +1683,7 @@ function addDayswithdate($date,$days){
 				{
 					$errorMsg=$this->lang->line("ExceedMaxTimesDailyMarkSoldPerPost");
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/1";
 					$data["successTile"]=$this->lang->line("successTile");
 					$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1756,7 +1756,7 @@ function addDayswithdate($date,$days){
 							$data["lang_label"]=$this->nativesession->get("language");
 							$data["PrevURL"]=$prevURL;
 							$data["error"]=$errorMsg;
-							$data['redirectToWhatPage']="Previous Page";
+							$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 							if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 								$data['redirectToPHP']=base_url();
 								else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -1782,8 +1782,8 @@ function addDayswithdate($date,$days){
 								$errorMsg=sprintf($this->lang->line("MinDescLength"));
 							$data["error"]=$errorMsg;
 							$data["prevURL"]=$prevURL;
-							$data['redirectToWhatPage']="Previous Page";
-							$data['redirectToWhatPage']="Previous Page";
+							$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
+							$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 							if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 								$data['redirectToPHP']=base_url();
 								else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2079,7 +2079,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2109,7 +2109,7 @@ function addDayswithdate($date,$days){
 						$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2176,7 +2176,7 @@ function addDayswithdate($date,$days){
 						$data["lang_label"]=$this->nativesession->get("language");
 						$data["PrevURL"]=$prevURL;
 						$data["error"]=$errorMsg;
-						$data['redirectToWhatPage']="Previous Page";
+						$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 						if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 							$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2195,7 +2195,7 @@ function addDayswithdate($date,$days){
 						$data["lang_label"]=$this->nativesession->get("language");
 						$data["PrevURL"]=$prevURL;
 						$data["error"]=$errorMsg;
-						$data['redirectToWhatPage']="Previous Page";
+						$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 						if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 							$data['redirectToPHP']=base_url();
 							else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2215,7 +2215,7 @@ function addDayswithdate($date,$days){
 			$data["lang_label"]=$this->nativesession->get("language");
 			$data["PrevURL"]=$prevURL;
 			$data["error"]=$errorMsg;
-			$data['redirectToWhatPage']="Previous Page";
+			$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 			if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 				$data['redirectToPHP']=base_url();
 				else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2276,7 +2276,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 					else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2305,7 +2305,7 @@ function addDayswithdate($date,$days){
 						$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					$data["error"]=$errorMsg;
 					$data["PrevURL"]=$prevURL;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2338,7 +2338,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2357,7 +2357,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2377,7 +2377,7 @@ function addDayswithdate($date,$days){
 			$data["lang_label"]=$this->nativesession->get("language");
 			$data["PrevURL"]=$prevURL;
 			$data["error"]=$errorMsg;
-			$data['redirectToWhatPage']="Previous Page";
+			$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 			if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 				$data['redirectToPHP']=base_url();
 				else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2437,7 +2437,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2470,7 +2470,7 @@ function addDayswithdate($date,$days){
 						$errorMsg=sprintf($this->lang->line("MinDescLength"));
 					$data["error"]=$errorMsg;
 					$data["prevURL"]=$prevURL;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2531,7 +2531,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2550,7 +2550,7 @@ function addDayswithdate($date,$days){
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
-					$data['redirectToWhatPage']="Previous Page";
+					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 					if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 						$data['redirectToPHP']=base_url();
 						else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)
@@ -2570,7 +2570,7 @@ function addDayswithdate($date,$days){
 			$data["lang_label"]=$this->nativesession->get("language");
 			$data["PrevURL"]=$prevURL;
 			$data["error"]=$errorMsg;
-			$data['redirectToWhatPage']="Previous Page";
+			$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 			if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 				$data['redirectToPHP']=base_url();
 				else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)

@@ -509,6 +509,8 @@ $lang["lblReasonSelect5"]="Spam";
 $lang["lblReasonSelect6"]="Wrong category";
 $lang["lblReasonSelect7"]="Others";
 
-
+$lang["msgPreviousPage"]="Previous Page";
+$lang["msgLoginPage"]="Login Page";
+$lang["msgSignUpPage"]="SignUp Page";
 
 

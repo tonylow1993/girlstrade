@@ -606,7 +606,7 @@ class Home extends CI_Controller {
                 	$data["PrevURL"]=base_url();
             	$data["error"]=$errorMsg;
                 	$this->nativesession->set("lastPageVisited","login");
-                	$data['redirectToWhatPage']="SignUp Page";
+                	$data['redirectToWhatPage']=$this->lang->line("msgSignUpPage");
                 	$data['redirectToPHP']=base_url().MY_PATH."home/signupPage";
                 	
                 	$data["successTile"]=$this->lang->line("successTile");
@@ -649,7 +649,7 @@ class Home extends CI_Controller {
             	$data["PrevURL"]=base_url();
             	$data["error"]=$errorMsg;
             	$this->nativesession->set("lastPageVisited","login");
-            	$data['redirectToWhatPage']="SignUp Page";
+            	$data['redirectToWhatPage']=$this->lang->line("msgSignUpPage");
             	$data['redirectToPHP']=base_url().MY_PATH."home/signupPage";
             	$data["successTile"]=$this->lang->line("successTile");
             	$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -914,7 +914,7 @@ class Home extends CI_Controller {
 				$data["error"]=$errorMsg;
 				$this->nativesession->set("lastPageVisited","login");
 				
-				$data['redirectToWhatPage']="Login Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgLoginPage");
 				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
 				$data["successTile"]=$this->lang->line("successTile");
                 	$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -996,7 +996,7 @@ class Home extends CI_Controller {
 				$data["PrevURL"]=$prevURL;
 				$data["error"]=$errorMsg;
 				$this->nativesession->set("lastPageVisited","login");
-				$data['redirectToWhatPage']="Login Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgLoginPage");
 				$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1012,7 +1012,7 @@ class Home extends CI_Controller {
 			$data["PrevURL"]=$prevURL;
 			$data["error"]=$errorMsg;
 			$this->nativesession->set("lastPageVisited","login");
-			$data['redirectToWhatPage']="Login Page";
+			$data['redirectToWhatPage']=$this->lang->line("msgLoginPage");
 			$data['redirectToPHP']=base_url().MY_PATH."home/loginPage";
 			$data["successTile"]=$this->lang->line("successTile");
 			$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -1036,7 +1036,7 @@ class Home extends CI_Controller {
 			$data["PrevURL"]=$prevURL;
 			$data["error"]=$errorMsg;
 			$this->nativesession->set("lastPageVisited","login");
-			$data['redirectToWhatPage']="Previous Page";
+			$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 			if(!isset($_SESSION["previousUrl"]) or strcmp($_SESSION["previousUrl"], "")==0)
 				$data['redirectToPHP']=base_url();
 			else if(strpos(((String)$_SESSION["previousUrl"]),'loginPage') !== false)

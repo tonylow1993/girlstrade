@@ -1344,7 +1344,7 @@
   <commands xmi:id="_UDFNE1h-EeWpSvzsWHzUXw" elementId="org.eclipse.wst.jsdt.ui.edit.text.java.inline" commandName="Inline" description="Inline a constant, local variable or function" category="_UC9RPVh-EeWpSvzsWHzUXw"/>
   <commands xmi:id="_UDFNFFh-EeWpSvzsWHzUXw" elementId="org.eclipse.ui.ide.copyConfigCommand" commandName="Copy Configuration Data To Clipboard" description="Copies the configuration data (system properties, installed bundles, etc) to the clipboard." category="_UC94SVh-EeWpSvzsWHzUXw"/>
   <commands xmi:id="_UDFNFVh-EeWpSvzsWHzUXw" elementId="org.eclipse.debug.ui.commands.Restart" commandName="Restart" description="Restart a process or debug target without terminating and re-launching" category="_UC9RN1h-EeWpSvzsWHzUXw"/>
-  <commands xmi:id="_UDFNFlh-EeWpSvzsWHzUXw" elementId="org.eclipse.ui.part.previousPage" commandName="Previous Page" description="Switch to the previous page" category="_UC94VFh-EeWpSvzsWHzUXw"/>
+  <commands xmi:id="_UDFNFlh-EeWpSvzsWHzUXw" elementId="org.eclipse.ui.part.previousPage" commandName=$this->lang->line("msgPreviousPage") description="Switch to the previous page" category="_UC94VFh-EeWpSvzsWHzUXw"/>
   <commands xmi:id="_UDFNF1h-EeWpSvzsWHzUXw" elementId="org.eclipse.ui.navigate.openResource" commandName="Open Resource" description="Open an editor on a particular resource" category="_UC94VFh-EeWpSvzsWHzUXw">
     <parameters xmi:id="_UDFNGFh-EeWpSvzsWHzUXw" elementId="filePath" name="File Path" typeId="org.eclipse.ui.ide.resourcePath"/>
   </commands>

@@ -93,7 +93,7 @@ class itemComments  extends CI_Controller {
 				$errorMsg=$this->lang->line("PostPleaseLoginFirst");
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -110,7 +110,7 @@ class itemComments  extends CI_Controller {
 				$errorMsg=sprintf($this->lang->line("ExceedMaxPost"),NUMOFTIMESPOSTITEMCOMMENTS , NUMOFDAYSFORPOSTITEMCOMMENTS);
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
@@ -140,7 +140,7 @@ class itemComments  extends CI_Controller {
 					$errorMsg=sprintf($this->lang->line("MinDescLength"));
 				$data["error"]=$errorMsg;
 				$data["prevURL"]=$prevURL;
-				$data['redirectToWhatPage']="Previous Page";
+				$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
 				$data['redirectToPHP']=$prevURL;
 				$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");

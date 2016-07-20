@@ -347,7 +347,7 @@ class footer  extends CI_Controller {
             	$data["PrevURL"]=base_url();
             	$data["error"]=$errorMsg;
             	$this->nativesession->set("lastPageVisited","login");
-            	$data['redirectToWhatPage']="SignUp Page";
+            	$data['redirectToWhatPage']=$this->lang->line("msgSignUpPage");
             	$data['redirectToPHP']=base_url().MY_PATH."footer/getContactUS";
             	$data["successTile"]=$this->lang->line("successTile");
             	$data["failedTitle"]=$this->lang->line("failedTitle");

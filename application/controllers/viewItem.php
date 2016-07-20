@@ -310,7 +310,7 @@
      	     		$errorMsg=$this->lang->line("PostNotExistsNow");
      	     		$data["error"]=$errorMsg;
      	     		$data["prevURL"]=base_url();
-     	     		$data['redirectToWhatPage']="Previous Page";
+     	     		$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");
      	     		$data['redirectToPHP']=$prevURL;
      	     		$data["successTile"]=$this->lang->line("successTile");
      	     		$data["failedTitle"]=$this->lang->line("failedTitle");
