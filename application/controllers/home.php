@@ -2187,10 +2187,10 @@ class Home extends CI_Controller {
 // 			$data["result"]=$this->mapInBoxToView($myList, "Inbox");
 // 			$this->load->view("account-inbox-new", $data);
 			
-			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageInboxByPostUserId($userID);
-			$myList=$this->messages_model->getBuyerMessageInBoxByPostUserId($userID, $pageNum, $sortByDate);
-			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "Inbox");
-			$this->load->view("account-inbox-onlybyuserid", $data);
+// 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInBuyerMessageInboxByPostUserId($userID);
+// 			$myList=$this->messages_model->getBuyerMessageInBoxByPostUserId($userID, $pageNum, $sortByDate);
+// 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "Inbox");
+// 			$this->load->view("account-inbox-onlybyuserid", $data);
 			
 		}
 		else if($activeNav==2)
@@ -2283,30 +2283,30 @@ class Home extends CI_Controller {
 				
 			$data["DirectSendType"]="Buyer";
 			$this->load->view("account-pending-approval-ads", $data);
-		}
-		else if($activeNav==10)
-		{
-			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInOutgoingByPostUserId($userID);
-			$myList=$this->messages_model->getOutgoingByPostUserId($userID, $pageNum, $sortByDate);
-			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "OutBox");
-				$this->load->view("account-outbox-onlybyuserid", $data);
+// 		}
+// 		else if($activeNav==10)
+// 		{
+// 			$data["NoOfItemCount"]=$this->messages_model->getNoOfItemCountInOutgoingByPostUserId($userID);
+// 			$myList=$this->messages_model->getOutgoingByPostUserId($userID, $pageNum, $sortByDate);
+// 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "OutBox");
+// 				$this->load->view("account-outbox-onlybyuserid", $data);
 			
-		}
-		else if($activeNav==7){
-			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInArchiveAds($userID);
-			$myList=$this->post_model->getArchiveAds($userID, $pageNum, $sortByDate);
-			$data["result"]=$this->mapPostToView($myList);
-			$this->load->view("account-archived-ads", $data);
-		}
-		else if($activeNav==11){
-			$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInBuyAdsHistory($userID);
-			$myList=$this->tradecomments_model->getBuyAdsHistory($userID, $pageNum, $sortByDate);
-			$data["result"]=$this->mapTradeCommentToView($myList);
-			$this->load->view("account-my-buy-history", $data);
-		}else if($activeNav==8){
-			$this->load->view("account-statements", $data);
-		}else if($activeNav==9){
-			$this->load->view("account-close", $data);
+// 		}
+// 		else if($activeNav==7){
+// 			$data["NoOfItemCount"]=$this->post_model->getNoOfItemCountInArchiveAds($userID);
+// 			$myList=$this->post_model->getArchiveAds($userID, $pageNum, $sortByDate);
+// 			$data["result"]=$this->mapPostToView($myList);
+// 			$this->load->view("account-archived-ads", $data);
+// 		}
+// 		else if($activeNav==11){
+// 			$data["NoOfItemCount"]=$this->tradecomments_model->getNoOfItemCountInBuyAdsHistory($userID);
+// 			$myList=$this->tradecomments_model->getBuyAdsHistory($userID, $pageNum, $sortByDate);
+// 			$data["result"]=$this->mapTradeCommentToView($myList);
+// 			$this->load->view("account-my-buy-history", $data);
+// 		}else if($activeNav==8){
+// 			$this->load->view("account-statements", $data);
+// 		}else if($activeNav==9){
+// 			$this->load->view("account-close", $data);
 		}else if($activeNav==12){
 			$data["userID"]=$userID;
 			$data["result"]=$this->userInfoSendEmail_model->getSendEmailConfigByUserID($userID);
