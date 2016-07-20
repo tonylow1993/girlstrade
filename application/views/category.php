@@ -419,7 +419,7 @@
                   </div>
                   <div>
                     <div class="form-group no-padding margin-top-20">
-                    <button class="btn btn-primary btn-block btn-pink"> <i class="icon-search-2"></i> Filter</button>
+                    <button class="btn btn-primary btn-block btn-pink"> <i class="icon-search-2"></i> <?php echo $this->lang->line("btnFilter"); ?></button>
                  <!--      <button id="priceRangeBtn" class="btn btn-default btn-pink btn-80 margin-top-10 " 
                       type="submit">Filter<i class="icon-search-2"></i></button> -->
                     </div>
