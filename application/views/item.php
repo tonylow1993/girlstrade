@@ -52,11 +52,12 @@ input[type=checkbox]
     content:"\f0fe";
 }
 </style>
-
+<script src="<?php echo base_url();?>assets/js/dist/clipboard.min.js"></script>
 <script>
     paceOptions = {
       elements: true
     };
+    new Clipboard('.js-textareacopybtn');
     
     // JavaScript
 //     Array.prototype.forEach.call(document.querySelector("img"), function (elem) {
@@ -1365,7 +1366,7 @@ input[type=checkbox]
 		 </div>
       <div class="modal-footer">
       	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
-        <button type="button" class="js-textareacopybtn btn btn-success pull-right" data-dismiss="modal">Copy</button>
+        <button type="button" class="js-textareacopybtn btn btn-success pull-right" data-clipboard-target=".js-copytextarea">Copy</button>
       </div>
     </div>
   </div>
@@ -1591,20 +1592,6 @@ return buf.join('');
 
 
 
-var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
-
-copyTextareaBtn.addEventListener('click', function(event) {
-  var copyTextarea = document.querySelector('.js-copytextarea');
-  copyTextarea.select();
-
-  try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Copying text command was ' + msg);
-  } catch (err) {
-    console.log('Oops, unable to copy');
-  }
-});
 
 function setupMarkSold()
 {
