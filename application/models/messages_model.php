@@ -500,19 +500,23 @@
 	    		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
 	    		$sortByDateString="";
 	    		if(strcmp($sortByDate,"1")==0){
-	    			$sortByDateString=" order by c.createDate asc";
+	    			$sortByDateString=" order by c.createDate desc";
 	    		}else if(strcmp($sortByDate,"2")==0){
 	    			$sortByDateString=" order by c.createDate asc";
 	    		}
 	    		$strQuery="";
 	    		if(strcmp($reportType, "Summary")==0){
-	    			$strQuery="select c.*, b.msgType, b.unreadcount from
+	    			$loginUser=$user1=$this->nativesession->get("user");
+	    			$loginUserID=0;
+	    			if(isset($loginUser) and !empty($loginUser) and $user1!=$loginUser)
+	    				$loginUserID=$loginUser["userID"];
+	    			
+	    			$strQuery="select c.*, case when c.userID=$userID then 'Inbox' else 'Outbox' end as msgType, b.unreadcount from
 						(select a.user1, a.user2, max(a.ID) as maxID,
-						case when a.user1=$userID then 'Inbox' else 'Outbox' end as msgType,
-						sum(case when a.readflag = 'N' and a.user1=$userID then 1 else 0 end) as unreadcount
+						sum(case when a.readflag = 'N' and a.user1!=$loginUserID and a.msgType='Inbox' then 1 else 0 end) as unreadcount
 						 from (			
-						    select userID as user1, fromUserID as user2, ID, readflag from buyermessage where  userID=$userID Union all 
-						    select fromUserID as user1, userID as user2, ID, readflag from buyermessage where fromUserID=$userID ) a
+						    select userID as user1, fromUserID as user2, 'Inbox' as msgType,  ID, readflag from buyermessage where  userID=$userID Union all 
+						    select fromUserID as user1, userID as user2, 'Outbox' as msgType , ID, readflag from buyermessage where fromUserID=$userID ) a
 						group by a.user1, a.user2 ) b inner join buyermessage c on b.maxID=c.ID
 	    					$sortByDateString limit $olimit, $ulimit";
 	    		}else{

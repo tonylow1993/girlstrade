@@ -83,13 +83,16 @@ if (is_array($array) || is_object($array))
 				$str=$str." SUM(visitCount), SUM(adsCount), SUM(favoriteAdsCount),";
 				$str=$str." SUM(outGoingMsgCount), SUM(BuyAdsCount), SUM(directsendhistCount), SUM(directsendhistCountAsSeller) ";
 				$str=$str." FROM ( ";
-				$str=$str." SELECT userID, COUNT(*) AS inboxMsgCount, 0 AS approveMsgCount,0  AS myAdsCount, ";
+				$str=$str." SELECT a.userID, COUNT(*) AS inboxMsgCount, 0 AS approveMsgCount,0  AS myAdsCount, ";
 				$str=$str." 0  AS savedAdsCount,0 AS pendingMsgCount,0 AS archivedAdsCount,0 AS visitCount,";
 				$str=$str." 0 AS adsCount,0 AS favoriteAdsCount , 0 as outGoingMsgCount,";
 				$str=$str." 0 as BuyAdsCount, 0 as directsendhistCount, 0 as directsendhistCountAsSeller ";
-				$str=$str." FROM buyermessage ";
+				$str=$str." from ( select userID , fromUserID FROM buyermessage GROUP BY userID, fromUserID ";
+				$str=$str." UNION ";
+				$str=$str." select fromUserID as userID, userID as fromUserID FROM buyermessage GROUP BY fromUserID , userID ) a ";
+				$str=$str." group by a.userID ";
+				
 				//$str=$str." WHERE STATUS='A' "; //Op' or status='OC' ";
-				$str=$str." GROUP BY userID ";
 				//$str=$str." Union all";
 				//$str=$str." select fUserID as userID, count(*), 0, 0,0,0,0,0,0,0 ,0,0 ,0,0";
 				//$str=$str." from message where status='R' ";
@@ -268,12 +271,13 @@ if (is_array($array) || is_object($array))
 				$str=$str." SUM(visitCount), SUM(adsCount), SUM(favoriteAdsCount),";
 				$str=$str." SUM(outGoingMsgCount), SUM(BuyAdsCount), SUM(directsendhistCount), SUM(directsendhistCountAsSeller) ";
 				$str=$str." FROM ( ";
-				$str=$str." SELECT userID, COUNT(*) AS inboxMsgCount, 0 AS approveMsgCount,0  AS myAdsCount, ";
+				$str=$str." SELECT a.userID, COUNT(*) AS inboxMsgCount, 0 AS approveMsgCount,0  AS myAdsCount, ";
 				$str=$str." 0  AS savedAdsCount,0 AS pendingMsgCount,0 AS archivedAdsCount,0 AS visitCount,";
 				$str=$str." 0 AS adsCount,0 AS favoriteAdsCount , 0 as outGoingMsgCount,";
 				$str=$str." 0 as BuyAdsCount, 0 as directsendhistCount, 0 as directsendhistCountAsSeller ";
-				$str=$str." FROM buyermessage ";
-				$str=$str." where userID=$userId ";
+				$str=$str." from ( select userID , fromUserID FROM buyermessage where userID=$userId GROUP BY userID, fromUserID ";
+				$str=$str." UNION ";
+				$str=$str." select fromUserID as userID, userID as fromUserID FROM buyermessage where fromUserID=$userId GROUP BY fromUserID , userID ) a ";
 				$str=$str." UNION ALL ";
 				$str=$str." SELECT b.userID, 0, COUNT(*) AS approveMsgCount, 0,0,0,0,0,0,0,0,0,0,0 ";
 				$str=$str." FROM requestpost a INNER JOIN post b ";

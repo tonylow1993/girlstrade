@@ -50,7 +50,7 @@
 						$unreadCount=$row["unreadCount"];
                 		if(strcmp($row["readflag"],"N")==0)
 							$readflag="bgcolor='".UnReadInBoxBgColor."' onclick=\"editData($id, $pageNum, '$trId')\"";
-						$urlPath=base_url().MY_PATH."home/getAccountPage/14/1/0/1/$fromUserID?prevURL=".urlencode(current_url()); 
+						$urlPath=base_url().MY_PATH."home/getAccountPage/14/1/0/1/$fromUserID/$userID?prevURL=".urlencode(current_url()); 
 						//echo "<form class=\"form-horizontal\" method=\"post\"  enctype=\"multipart/form-data\" action=\"$urlPath\"> "; 
 						//echo "<div class=\"msg-box\" id=".$trId." name=".$trId." ".$readflag." href=\"#replyPopup\" data-toggle=\"modal\" data-id=\"$fromUserID\" data-pagenum=\"$pageNum\">";
 						 

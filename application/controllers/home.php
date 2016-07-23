@@ -1971,7 +1971,7 @@ class Home extends CI_Controller {
 		else 
 			$this->load->view('failedPage', $data);
 	}
-	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='', $sortByDate="1", $fromUserIDInMessage=0)
+	public function getAccountPage($activeNav, $pageNum=1, $errorMsg='', $sortByDate="1", $fromUserIDInMessage=0, $toUserIDInMessage=0)
 	{
 		
 		
@@ -2322,6 +2322,10 @@ class Home extends CI_Controller {
 			$this->load->view('account-message-onlybyuserid', $data);
 		}else if ($activeNav==14){
 			$fromUserID=$fromUserIDInMessage; // $_POST["fromUserID"];
+			if($toUserIDInMessage!=$userID){
+				$fromUserID=$toUserIDInMessage;
+				$toUserIDInMessage=$userID;
+			}
 			$fromUser=$this->user->getUserByUserID($fromUserID);
 			if(strcmp($fromUser["photostatus"],"A")==0)
 				$data["fromUserPhotoPath"]=base_url().$user1['thumbnailPath'].'/'.$user1['thumbnailName'];
@@ -2334,7 +2338,7 @@ class Home extends CI_Controller {
 			$data["result"]=$this->mapInBoxByPostUserIdToView($myList, "All");
 			$data["profileBackToResult"]=$this->lang->line("profileBackToResult");
 			
-			$this->messages_model->updateReadInboxBuyerMessageFlagByUserID($fromUserID);
+			$this->messages_model->updateReadInboxBuyerMessageFlagByUserID($toUserIDInMessage);
 			
 			$this->load->view('account-chat', $data);
 		}else if ($activeNav==15){
