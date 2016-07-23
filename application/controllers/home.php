@@ -2943,10 +2943,11 @@ class Home extends CI_Controller {
 			$nextDate=$this->addDayswithdate($postInfo[0]->expriyDate, REPOSTEXPIRYDAYS);
 			$nextexpirydate="Next expiry date of this post is ".$nextDate;
 			$enableRepostBtn=false;
-			//$today = date("Y-m-d");
-			//if($postInfo[0]->expriyDate<$today and strcmp($row->status,"D")!=0)
-			//	$enableRepostBtn=true;
-			$status=$this->getPostStatus($row->status, $enableRepostBtn);
+			$isExpired=false;
+			$today = date("Y-m-d");
+			if($postInfo[0]->expriyDate<$today and strcmp($row->status,"D")!=0)
+				$isExpired=true;
+			$status=$this->getPostStatus($row->status, $isExpired);
 					
 			//var_dump($soldUserList);
 			$arrayMessage=array($messageID => array("postID"=>$postID,
