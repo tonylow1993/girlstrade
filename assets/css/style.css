@@ -3376,6 +3376,15 @@ td.ads-details-td {
 /* ADDED BY TONY
 /* =============================================================== */
 
+@media (min-width: 768px) {
+	 .secondary-font{
+		  margin: 4px !important;
+		  font-size: 14px;
+	 }
+}
+
+
+
 @media (max-width: 768px) {
 	 .sidebar{
 		  display: none;

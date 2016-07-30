@@ -162,8 +162,11 @@
                           }else if(strcmp($status, "Unverified")==0)
                           {
                           	echo "<font color=\"pink\">".$status."</font>";
+                          }else if(strcmp($status, "Expired")==0)
+                          {
+                          	echo "<font color=\"violet\">".$status."</font>";
                           }else {
-                          	echo "<font color=\"grey\">".$status."</font>";
+                          	echo "<font color=\"#cecece\">".$status."</font>";
                           }
                           
 						echo "<br/>Interested Buyer:  $NoOfSoldUsers";
@@ -191,8 +194,11 @@
                           }else if(strcmp($status, "Unverified")==0)
                           {
                           	echo "<font color=\"pink\">".$status."</font>";
+                          }else if(strcmp($status, "Expired")==0)
+                          {
+                          	echo "<font color=\"violet\">".$status."</font>";
                           }else {
-                          	echo "<font color=\"grey\">".$status."</font>";
+                          	echo "<font color=\"#cecece\">".$status."</font>";
                           }
                           
 						echo "<br/>Interested Buyer:  $NoOfSoldUsers";
