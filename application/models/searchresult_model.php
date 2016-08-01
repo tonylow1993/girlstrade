@@ -139,7 +139,7 @@ function getItemList($pageNum, $userID=0 , $catID=0, $locID=0 , $keywords='', $s
 	$olimit=0;
 	if ($pageNum>1)
 		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
-	$sortStr=" order by itemPrice desc ";
+	$sortStr=" order by createDate desc ";
 		if(strcmp($sortByType,"1")==0){
     		if(strcmp($sortByPrice,"1")==0){
     			$sortStr=" order by itemPrice asc ";
