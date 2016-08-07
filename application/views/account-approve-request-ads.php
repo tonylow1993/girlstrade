@@ -122,7 +122,9 @@
                   		$previewDesc=$row["previewDesc"];
                   		$createDate=$row['createDate'];
                   		$itemStatus=$row['itemStatus'];
-                  		$messageID=$id;
+						$postID=$row['postID'];
+						$fuserID=$row['fuserID'];
+                  		$messageID=$postID."-".$fuserID;
                   		$userID=$row['userID'];
                   		$NoOfDaysPending=$row['NoOfDaysPending'];
 						$NoOfDaysb4ExpiryContact=$row['NoOfDaysb4ExpiryContact'];
