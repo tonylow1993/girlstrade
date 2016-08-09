@@ -614,7 +614,7 @@
             	if ($pageNum>1)
             		$olimit=($pageNum-1)*ITEMS_PER_PAGE;
             	$whereArray = array('userID' => $userId);
-            	$in_where=array("A", "U", 'R', 'D');
+            	$in_where=array("A", "U", 'R');
             	$this->db->from('post')->where($whereArray)->where_in("status", $in_where);
             	
             	if($pageNum==0){
