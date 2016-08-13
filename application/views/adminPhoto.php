@@ -1,4 +1,4 @@
-<?php $title = "Girls' Trading Platform"; 
+<?php $title = "Approve Uploaded Images - GirlsTrade"; 
   include("header.php"); ?>
 <div id="wrapper">
   <!-- /.header -->

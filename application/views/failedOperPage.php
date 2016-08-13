@@ -1,4 +1,4 @@
-<?php $title = "GirlsTrade - Page Not Found";  include("header.php"); ?>
+<?php $title = "Page Not Found - GirlsTrade";  include("header.php"); ?>
 <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/failedOperations/css/style.css">
 <link href='http://fonts.googleapis.com/css?family=Condiment' rel='stylesheet' type='text/css'>
 <div id="wrapper">

@@ -30,9 +30,20 @@
 /* .carousel-inner .item         { background: white;      } */
   </style>
 
+
+<meta name="description" content="一個為香港女士而設的交易平台,一起團結創造一個GirlsTrade社區!" />
+<meta name="keywords" content="GirlsTrade、HK Trades、Girls Trade、Images、Pictures,Free,Hong Kong,trade,港女,二手交易,交易平台,免費,二手袋,Hong Kong,trade,女士交易集中地" />
+
+
+
+
+
+
+
+
 <!-- Fav and touch icons -->
 <link rel="shortcut icon" href="<?php echo base_url();?>images/site/girlstrade_logo_small.png">
-<title>Girlstrade - <?php echo $title; ?></title>
+<title><?php echo $title; ?></title>
 <!-- Bootstrap core CSS -->
  <link href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
 <!-- Custom styles for this template -->

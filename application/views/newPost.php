@@ -1,4 +1,4 @@
-<?php $title = "New Topic";  include("header.php"); ?>
+<?php $title = "New Post - GirlsTrade";  include("header.php"); ?>
 <!--input-->
 <link href="<?php echo base_url();?>assets/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 <!-- Google Captcha-->

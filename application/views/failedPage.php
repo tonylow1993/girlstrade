@@ -1,4 +1,4 @@
-<?php $title = "Girls' Trading Platform";  include("header.php");?>
+<?php $title = "Operation Failed - GirlsTrade";  include("header.php");?>
 
     <SCRIPT LANGUAGE="JavaScript">
 

@@ -1,4 +1,4 @@
-<?php $title = "Girls' Trading Platform";  include("header.php"); ?>
+<?php $title = "Login - GirlsTrade";  include("header.php"); ?>
  <script>
 window.onload = function(){
 	   document.getElementById("sender-email").focus();

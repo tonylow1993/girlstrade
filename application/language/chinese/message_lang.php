@@ -322,7 +322,7 @@ $lang["titleFAQ"]="常見問題";
 
 //----index----
 $lang["indexFirstTitle"]="尋找適合你的買賣";
-$lang["indexSecondTitle"]="一個為女性而設的交易平台";
+$lang["indexSecondTitle"]="一個為香港女士而設的交易平台";
 $lang["indexHowDoesItWorks"]="賣家交易流程";
 $lang["indexWorksStepOne"]="用戶登入";
 $lang["indexWorksTitleOne"]="1. 註冊/登入";
@@ -347,7 +347,7 @@ $lang["indexBlogTitle"]="日誌";
 $lang["indexSideOneTitle"]="熱門";
 $lang["indexSideOneTitle2"]="類別";
 
-$lang["indexSider1_1"]="女性";
+$lang["indexSider1_1"]="女士";
 $lang["indexSider1_2"]="免費";
 $lang["indexSider1_3"]="買賣";
 $lang["indexSider1_4"]="交易平台";

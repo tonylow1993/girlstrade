@@ -1,4 +1,4 @@
-<?php $title = "GirlsTrade - Page Not Found";  include("header.php"); ?>
+<?php $title = "Page Not Found - GirlsTrade";  include("header.php"); ?>
 <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/missingPage/css/style.css">
 <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/missingPage/plugins/font-awesome/css/font-awesome.min.css">
 <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/missingPage/css/page_error3_404.css">

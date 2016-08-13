@@ -1,4 +1,4 @@
-<?php $title = "Girls' Trading Platform"; 
+<?php $title = "My Ads - GirlsTrade"; 
   include("header.php"); ?>
   
    

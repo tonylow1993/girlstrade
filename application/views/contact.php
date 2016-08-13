@@ -1,4 +1,4 @@
-<?php $title = "Girls' Trading Platform";  include("header.php"); echo $captchaJS;?>
+<?php $title = "Contact Us - GirlsTrade";  include("header.php"); echo $captchaJS;?>
 
 <div id="wrapper">
   

@@ -1,4 +1,4 @@
-<?php $title = "Girls' Trading Platform - Thank you for reaching out to us!";  include("header.php");?>
+<?php $title = "Thank you for reaching out to us! - GirlsTrade";  include("header.php");?>
 
     <div class="main-container">
     <div class="container">

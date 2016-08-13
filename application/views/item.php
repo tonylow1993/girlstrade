@@ -1,4 +1,4 @@
-<?php $title = "Girls' Trading Platform";  include("header.php"); ?>
+<?php $title = $itemName.(" - GirlsTrade");  include("header.php"); ?>
 
 <!-- bxSlider CSS file -->
 <link href="<?php echo base_url();?>assets/plugins/bxslider/jquery.bxslider.css" rel="stylesheet" />

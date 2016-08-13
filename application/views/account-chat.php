@@ -1,4 +1,4 @@
-<?php $title = "Girls' Trading Platform"; 
+<?php $title = "Inbox Detail - GirlsTrade"; 
   include("header.php"); ?>
 <link href="<?php echo base_url();?>assets/css/chatroom.css" rel="stylesheet">
 <div id="wrapper">
