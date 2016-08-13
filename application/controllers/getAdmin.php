@@ -1464,7 +1464,7 @@ class getAdmin extends CI_Controller {
 	public function validateRejectDescLength(){
 		$blogscomment=$this->input->post("descTextarea");
 		$blogscomment=nl2br(htmlentities($blogscomment, ENT_QUOTES, 'UTF-8'));
-		if(!ExceedDescLength($blogscomment, DESCLENGTHINNEWPOSTBACKEND)){
+		if(!ExceedDescLength($blogscomment, DESCLENGTHINNEWPOST)){
 			$data['status'] = 'A';
 			$data['class'] = "has-success";
 			$data['message'] = '';
