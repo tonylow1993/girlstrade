@@ -108,10 +108,10 @@ define("MINPRICERANGE", 20);
 define("MAXPRICERANGE", 2000);
 
 define("SMTP_PROTOCOL" , "smtp");
-define("SMTP_HOST", "ssl://a2plcpnl0127.prod.iad2.secureserver.net" );
+define("SMTP_HOST", "ssl://mail.s225.sureserver.com" );
 define("SMTP_PORT", "465");
-define("SMTP_USER", "noreply@girlstrade.com");
-define("SMTP_PASSWORD","Eclipse2000" );
+define("SMTP_USER", "info@girlstrade.com");
+define("SMTP_PASSWORD","hkjc2015" );
 define("HOST_EMAIL", "ryanfung@gmail.com");
 define("INVALIDUSERNAME", "INVALIDUSERNAME");
 define("ACTIVATEUSERNAME", "ACTIVATEUSERNAME");
