@@ -514,4 +514,5 @@ $lang["lblReasonSelect7"]="其他";
 $lang["msgPreviousPage"]="上一頁";
 $lang["msgLoginPage"]="登錄頁面";
 $lang["msgSignUpPage"]="註冊頁面";
+$lang["msgAccProfilePage"]="帳戶個人資料頁面";
 

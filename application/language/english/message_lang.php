@@ -512,5 +512,7 @@ $lang["lblReasonSelect7"]="Others";
 $lang["msgPreviousPage"]="Previous Page";
 $lang["msgLoginPage"]="Login Page";
 $lang["msgSignUpPage"]="SignUp Page";
+$lang["msgAccProfilePage"]="Account Profile Page";
+
 
 
