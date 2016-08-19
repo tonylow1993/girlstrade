@@ -448,7 +448,7 @@ $lang["viewCommentAll"]="所有評價";
 $lang["viewCommentBuyer"]="買家發的評價";
 $lang["viewCommentSeller"]="賣家發的評價";
 
-
+$lang["addFeedbackSuccess"]="成功加入您的意見";
 
 //------404 not found-----
 $lang["NotFoundHeading"]="對不起，無法找到您要的頁面。";
@@ -511,7 +511,7 @@ $lang["lblReasonSelect6"]="分類錯誤";
 $lang["lblReasonSelect7"]="其他";
 
 
-$lang["msgPreviousPage"]="Previous Page";
-$lang["msgLoginPage"]="Login Page";
-$lang["msgSignUpPage"]="SignUp Page";
+$lang["msgPreviousPage"]="上一頁";
+$lang["msgLoginPage"]="登錄頁面";
+$lang["msgSignUpPage"]="註冊頁面";
 

@@ -447,7 +447,7 @@ $lang["viewCommentAll"]="All feedbacks";
 $lang["viewCommentBuyer"]="Feedbacks from Buyer";
 $lang["viewCommentSeller"]="Feedbacks from Seller";
 
-
+$lang["addFeedbackSuccess"]="Success in adding your feedback!";
 
 //------404 not found-----
 $lang["NotFoundHeading"]="Sorry, the page you were looking for could not be found!";
