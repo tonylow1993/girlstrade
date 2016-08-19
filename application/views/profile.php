@@ -1,4 +1,4 @@
-<?php $title = "Girls' Trading Platform";  include("header.php");?>
+<?php $title = $userName;  include("header.php");?>
 <script type="text/javascript">
 function sendIt() {
 
