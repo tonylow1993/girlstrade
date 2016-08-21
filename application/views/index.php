@@ -790,7 +790,11 @@ window.onload = function(){
         <div class="col-sm-3 page-sidebar col-thin-left">
           <aside>
             <div class="inner-box no-padding panel-bevel">
-              <div class="inner-box-content"> <a href="<?php echo base_url().MY_PATH;?>howgirlstradeworks"><img class="img-responsive" src="<?php echo base_url();?>images/site/app.jpg" alt="tv"></a> </div>
+              <div class="inner-box-content"> 
+              <!-- <a href="<?php echo base_url().MY_PATH;?>howgirlstradeworks"> -->
+              <img class="img-responsive" src="<?php echo base_url();?>images/site/app.jpg" alt="tv">
+              <!-- </a> -->
+              </div>
             </div>
             <div class="inner-box panel-bevel">
               <h2 class="title-2 no-bottom"><span style="font-family: MyCustomFont; font-weight: 700; color: #E2348C;">
