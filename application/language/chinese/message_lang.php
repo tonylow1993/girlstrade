@@ -309,7 +309,7 @@ $lang["lblAtLeastFiveChar"]="至少五個英文字母";
 $lang["lblAtLeastEightChar"]="至少八個字";
 $lang["lblPhoneNumberRestriction"]="香港電話號碼";
 $lang["lblAgreeTerms"]="我已經閱讀並且同意";
-$lang["lblCondition"]="品質";
+$lang["lblCondition"]="服務條款";
 $lang["lblSignupSubmit"]="註冊";
 $lang["lblSignupEmail"]="個人電郵";
 $lang["lblSignupDesc1"]="加入我們";
@@ -448,7 +448,7 @@ $lang["viewCommentAll"]="所有評價";
 $lang["viewCommentBuyer"]="買家發的評價";
 $lang["viewCommentSeller"]="賣家發的評價";
 
-
+$lang["addFeedbackSuccess"]="成功加入您的意見";
 
 //------404 not found-----
 $lang["NotFoundHeading"]="對不起，無法找到您要的頁面。";
@@ -511,7 +511,8 @@ $lang["lblReasonSelect6"]="分類錯誤";
 $lang["lblReasonSelect7"]="其他";
 
 
-$lang["msgPreviousPage"]="Previous Page";
-$lang["msgLoginPage"]="Login Page";
-$lang["msgSignUpPage"]="SignUp Page";
+$lang["msgPreviousPage"]="上一頁";
+$lang["msgLoginPage"]="登錄頁面";
+$lang["msgSignUpPage"]="註冊頁面";
+$lang["msgAccProfilePage"]="帳戶個人資料頁面";
 

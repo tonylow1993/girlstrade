@@ -2172,7 +2172,7 @@ function addDayswithdate($date,$days){
 						$this->sendAuthenticationEmail($buyerEmail, $msg, $this->mailtemplate_model->SendEmailFeedbackFromSellerTitle(), SELLERFEEDBACKSENDEMAIL);
 							
 						
-						$errorMsg="Success in adding your feedback!";
+						$errorMsg=$this->lang->line("addFeedbackSuccess");
 						$data["lang_label"]=$this->nativesession->get("language");
 						$data["PrevURL"]=$prevURL;
 						$data["error"]=$errorMsg;
@@ -2527,7 +2527,7 @@ function addDayswithdate($date,$days){
 					$msg=$this->mailtemplate_model->SendEmailFeedbackFromBuyer( $buyerUsername, $sellerUsername, $path, $title );
 					$this->sendAuthenticationEmail($sellerEmail, $msg, $this->mailtemplate_model->SendEmailFeedbackFromBuyerTitle(), BUYERFEEDBACKSENDEMAIL);
 					
-					$errorMsg="Success in adding your feedback!";
+					$errorMsg=$this->lang->line("addFeedbackSuccess");
 					$data["lang_label"]=$this->nativesession->get("language");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;

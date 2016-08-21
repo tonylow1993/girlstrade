@@ -511,7 +511,7 @@
 	       		$strQuery=$strQuery.$strnewUsed.$priceStr.$sortStr." limit ".$olimit.",".$ulimit;
 	    	}
 	    	try {
-	    	echo $strQuery;
+	    	//echo $strQuery;
 	    	$query = $this->db->query($strQuery);
 	    	$var=$query->result();
 	    	

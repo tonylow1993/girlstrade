@@ -3718,11 +3718,23 @@ class Home extends CI_Controller {
 			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 			
 			
-			$data['redirectToWhatPage']="Account Profile Page";
+			$data['redirectToWhatPage']=$this->lang->line("msgAccProfilePage");
 			$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/9";
 			$data["successTile"]=$this->lang->line("successTile");
 				$data["failedTitle"]=$this->lang->line("failedTitle");
 				$data["goToHomePage"]=$this->lang->line("goToHomePage");
+				
+				//----------setup the header menu----------
+			$data["menuMyAds"]="";
+			$data["menuInbox"]="";
+			$data["menuInboxNum"]="0";
+			$data["menuPendingRequest"]="";
+			$data["menuPendingRequestNumber"]="0";
+			if(isset($user)){
+				$menuCount=$this->getHeaderCount($user['userID']);
+				$data["menuInboxNum"]=$this->messages_model->getUnReadInboxMessage($user['userID']);
+				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
+			}
 				$this->load->view('failedPage', $data);
 			
 		}
@@ -4090,7 +4102,7 @@ class Home extends CI_Controller {
 					$errorMsg=sprintf($this->lang->line("MinDescLength"));
 			$data["error"]=$errorMsg;
 			$data["prevURL"]=$prevURL;
-			$data['redirectToWhatPage']="Account Profile Page";
+			$data['redirectToWhatPage']=$this->lang->line("msgAccProfilePage");
 			if(strcmp($type,"Inbox")==0)
 				$data['redirectToPHP']=base_url().MY_PATH."home/getAccountPage/1";
 			else 
