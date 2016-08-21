@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-<?php $title = "Profile - GirlsTrade";  include("header.php");?>
-<style>
-</style>
-=======
 <?php $title = $userName;  include("header.php");?>
->>>>>>> origin/master
+
 <script type="text/javascript">
 function sendIt() {
 
