@@ -488,8 +488,11 @@ function priceCheckValidate() {
     }else if($("#price").val().trim().length==0) {
         $("#priceAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Price cannot be empty</span></em>');
         return false;
-    }else if(parseInt($("#price").val())<<?php echo MINPRICERANGE;?> || parseInt($("#price").val())><?php echo MAXPRICERANGE;?>){
-    	$("#priceAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Invalid price range</span></em>');
+    }else if(parseInt($("#price").val())<<?php echo MINPRICERANGE;?>){
+    	$("#priceAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Min. price: $20 </span></em>');
+    	return false;
+    }else if(parseInt($("#price").val())><?php echo MAXPRICERANGE;?>){
+    	$("#priceAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Max. price: $2000</span></em>');
     	return false;
     }else
 	{
