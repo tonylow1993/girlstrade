@@ -258,7 +258,7 @@
 // 	    	$query = $this->db->from('post')->where('status', 'A')->get();
 // 	    	$var=$query->result();
 // 	    	$recCount=count($var);
-	    	$query = $this->db->from('post')->where('status', 'A')->order_by('viewCount', 'desc')->limit(6)->get();
+	    	$query = $this->db->from('post')->where('status', 'A')->where('catID <=', '16')->order_by('viewCount', 'desc')->limit(6)->get();
 	    	$var=$query->result();
 	    	$result=null;
 	    	foreach($var as $post)
