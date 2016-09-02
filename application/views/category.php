@@ -381,19 +381,19 @@
                       value=<?php if($minPrice>0) echo $minPrice;?>     
                       name="minPrice"  min="20" class="form-control price">
                       <span id="menubarTitle"> — </span>
-                      <input type="number" placeholder="5000 " id="maxPrice"  
+                      <input type="number" placeholder="2000 " id="maxPrice"  
                       value=<?php if($maxPrice>0) echo $maxPrice;?>  
-                      name="maxPrice" max="5000"   class="form-control price">
+                      name="maxPrice" max="2000"   class="form-control price">
 					  
 					  <script type="text/javascript">
 						var html5Slider = document.getElementById('price-slider');
 
 						noUiSlider.create(html5Slider, {
-							start: [ <?php if($minPrice>0) echo $minPrice; else echo 20;?>, <?php if($maxPrice>0) echo $maxPrice; else echo 5000;?> ],
+							start: [ <?php if($minPrice>0) echo $minPrice; else echo 20;?>, <?php if($maxPrice>0) echo $maxPrice; else echo 2000;?> ],
 							connect: true,
 							range: {
 								'min': 20,
-								'max': 5000
+								'max': 2000
 							}
 						});
 						
@@ -1958,20 +1958,20 @@ function savedAds(ctrlValue, ctrlName, clickLink) {
                       value="<?php  if($minPrice>0) echo $minPrice;?>"     
                       name="minPrice1"  min="20" class="form-control price">
                       <span id="menubarTitle"> — </span>
-                      <input type="number" placeholder="5000 " id="maxPrice1"  
+                      <input type="number" placeholder="2000 " id="maxPrice1"  
                       value="<?php if($maxPrice>0) echo $maxPrice;?>" 
-                      name="maxPrice1" max="5000"   class="form-control price">
+                      name="maxPrice1" max="2000"   class="form-control price">
 					  <script type="text/javascript">
 						var html5Slider1 = document.getElementById('price-slider1');
 
 
 						noUiSlider.create(html5Slider1, {
-							start: [ <?php if($minPrice>0)echo $minPrice; else echo 20;?>, <?php if($minPrice>0)echo $maxPrice; else echo 5000;?> ],
+							start: [ <?php if($minPrice>0)echo $minPrice; else echo 20;?>, <?php if($minPrice>0)echo $maxPrice; else echo 2000;?> ],
 
 							connect: true,
 							range: {
 								'min': 20,
-								'max': 5000
+								'max': 2000
 							}
 						});
 						
