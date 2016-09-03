@@ -101,24 +101,24 @@ input[type=checkbox]
                         </div>
                       </div>
 					  <div class="form-group">
-                        <label for="Wechat" class="col-sm-3 control-label">Wechat ID</label>
+                        <label for="Wechat" class="col-sm-3 control-label"><?php echo $weChatID?></label>
                         <div class="col-sm-9">
 						  <input name="weChatID" type="text" maxlength="30" pattern="\d*" class="form-control" id="weChatID" value="<?php echo set_value('weChatID', $weChatID); ?>" placeholder="<?php echo $weChatID;?>">
 						  <div class="checkbox">
 						  <label>
                             <input id="showWeChatID" name='showWeChatID' type="checkbox" <?php  if($showWeChatID==1) echo " checked "?>>
-                            <small> &nbsp;&nbsp;&nbsp;&nbsp;Display Wechat ID </small> </label>
+                            <small> &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $showWechat?> </small> </label>
                         </div>
 						</div>
                       </div>
 					  <div class="form-group">
-                        <label for="Website" class="col-sm-3 control-label">Website</label>
+                        <label for="Website" class="col-sm-3 control-label"><?php echo $website?></label>
                         <div class="col-sm-9">
 						  <input name="webSiteAddr" type="text" maxlength="<?php echo DESCLENGTHINNEWPOST;?>" class="form-control" id="webSiteAddr" value="<?php echo set_value('webSiteAddr', $webSiteAddr); ?>" placeholder="<?php echo $webSiteAddr; ?>">
 						  <div class="checkbox">
 						  <label>
                             <input id="showWebSite" name='showWebSite' type="checkbox" <?php  if($showWebSite==1) echo " checked "?>>
-                            <small> &nbsp;&nbsp;&nbsp;&nbsp;Show my website publicly</small> </label>
+                            <small> &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $showWebsite?></small> </label>
                           </div>
 						</div>
                       </div>

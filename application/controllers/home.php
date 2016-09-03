@@ -2108,6 +2108,10 @@ class Home extends CI_Controller {
 		$data['showWebSite']=$userInfo['showWebSite'];
 		$data['webSiteAddr']=$userInfo['webSiteAddr'];
 		
+		$data["weChatID"]=$this->lang->line("weChatID");
+		$data["website"]=$this->lang->line("website");
+		$data["showWechat"]=$this->lang->line("showWechat");
+		$data["showWebsite"]=$this->lang->line("showWebsite");
 		
 		//$data["documentType"]=$userInfo["documentType"];
 		}
