@@ -514,5 +514,8 @@ $lang["msgLoginPage"]="Login Page";
 $lang["msgSignUpPage"]="SignUp Page";
 $lang["msgAccProfilePage"]="Account Profile Page";
 
-
+$lang["weChatID"]="Wechat ID";
+$lang["website"]="Website";
+$lang["showWechat"]="Display wechat ID";
+$lang["showWebsite"]="Show my website publicly";
 
