@@ -420,7 +420,7 @@ $lang["changePassword"]="Change Password";
 //-------Profile---------
 $lang["profileBackToResult"]="Back to Result";
 $lang["profileInfo"]="Intro";
-$lang["profileRegisterationDate"]="Registered Date:";
+$lang["profileRegisterationDate"]="Registration Date:";
 $lang["profileTotalPost"]="Total Posts:";
 $lang["profileViewAllComments"]="View all comments ";
 $lang["profileNormalUser"]="(User)";
