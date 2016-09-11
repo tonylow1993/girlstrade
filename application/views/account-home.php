@@ -167,20 +167,20 @@ input[type=checkbox]
                   
      				          <div class="form-group">
                				<label class="col-md-3 control-label"><?php echo $this->lang->line("CurrentPassword");?></label>
-     				<div class="col-md-8"><input height="20px" type="password" name="originalPassword" id="originalPassword" required="true"/>
+     				<div class="col-md-8"><input height="20px" type="password" name="originalPassword" id="originalPassword" required="true" maxlength="15"//>
 					</div>
 					</div>
 			         <div class="form-group">
           		<br/>
 					<label class="col-md-3 control-label"><?php echo $this->lang->line("NewPassword");?> </label>
 					<div class="col-md-8">
-					<input type="password" name="newPassword" id="newPassword"  required="true"/>
+					<input type="password" name="newPassword" id="newPassword"  required="true" maxlength="15"/>
 					</div><div id="passAjaxLoad"></div>
 					</div>
 					          <div class="form-group">
           		<br/>
 					<label class="col-md-3 control-label"><?php echo $this->lang->line("ConfirmNewPassword");?>  </label>
-					<div class="col-md-8"><input type="password" name="newReTypePassword" id="newReTypePassword"  required="true"/>
+					<div class="col-md-8"><input type="password" name="newReTypePassword" id="newReTypePassword"  required="true" maxlength="15"/>
 					</div><div id="retypeAjaxLoad"></div>
 					</div>
 				<br/>

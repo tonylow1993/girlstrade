@@ -125,8 +125,8 @@
 						$shareLink=base_url().MY_PATH."viewItem/index/".$postID;
 						//echo "<p><a class=\"btn btn-primary btn-xs\" href=$editPath> <i class=\"fa fa-edit\"></i> ".$this->lang->line('Edit')." </a></p>";
 						
-						$txtCopyText=base64_encode("<textarea style=\"vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20\" >Find $previewTitle in GirlsTrade - $shareLink</textarea>
-								<textarea hidden=\"true\" style=\"vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20\" class=\"js-copytextarea\" id=\"holdtext\"> $shareLink</textarea>");
+						$txtCopyText=base64_encode("<textarea style=\"vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20\" class=\"js-copytextarea\" >Find $previewTitle in GirlsTrade - $shareLink</textarea>
+								<textarea hidden=\"true\" style=\"vertical-align: top; horizontal-align: left; resize:none;width: 100%; height: 100px;font-size:20\"> $shareLink</textarea>");
 								
 						
 						if(strcmp($status, "Rejected")!=0 && strcmp($status, "Unverified")!=0 && strcmp($status, "Closed")!=0){
@@ -138,7 +138,7 @@
                     	echo "<input name='$ctrlValue1' id='$ctrlValue1' type='hidden' value='$messageID' />";
                     	echo "<input name='$ctrlValue2' id='$ctrlValue2' type='hidden' value='$userID' />";
                     	if(strcmp($status, "Open")==0 or strcmp($status, "Expired")==0)
-                    	echo "<div class=\"user-ads-action\"><a class=\"btn btn-danger btn-xs btn-120\"  onclick=\"setupDeleteAds(this); return false;\" id='$clickLink' data-id=\"$messageID\" data-userID=\"$userID\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></div></p>";
+                    	echo "<div class=\"user-ads-action\"><a class=\"btn btn-danger btn-xs btn-120\"  href=\"#deleteAdsPopup\" data-toggle=\"modal\" return false;\" id='$clickLink' data-id=\"$postID\" data-userID=\"$userID\"> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></div></p>";
                     	
                         //echo "<a class=\"btn btn-danger btn-xs\"  href=\"javascript:deleteAds('$ctrlValue1','$ctrlValue2', '$ctrlName1', '$errorctrlName1)'\" id='$clickLink'> <i class=\" fa fa-trash\"></i> ".$this->lang->line('Delete')." </a></p>";
                      	//if($enableMarkSoldBtn)
@@ -430,25 +430,21 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h2 id="modal-title-del" class="modal-title"><?php echo $this->lang->line("popupTitleDeleteAds");?></h2>
       </div>
-      <div class="modal-body">
-        <form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds">
-           <div class="form-group">
-           		<input type="hidden" id="messageID" name="messageID" >   	
-           		<input type="hidden" id="userID" name="userID" >   
-           			
-           	</div>
-        </form>
-      </div>
       <div class="modal-footer">
-		<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();"><i class="fa fa-check"></i> Confirm</button>
-      	<!--<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button id="submit-btn" type="button" class="btn btn-success pull-right"   onclick="setupDeleteAds(); return false;">Submit</button>
-        	<button id="validate" hidden="true" type="submit"></button>--> 
-  
-     	 </div>
-    </div>
-  </div>
-</div>
+			<form role="form" id="itemDelete" method="post" action="<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds?prevURL=<?php echo urlencode($previousCurrent_url);?>">
+			   <div class="form-group">
+					<input type="hidden" id="messageID" name="messageID" >   	
+					<input type="hidden" id="userID" name="userID" >   
+				</div>		
+				
+			</form>
+			<button id="fwd-btn" class="btn btn-primary btn-tw" onclick="location.reload();" style="display: none;"><i class="fa fa-check"></i> Confirm</button>
+			<button id="cancel-btn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			<button id="submit-btn" type="button" onclick="deleteMyAds(); return false;" class="btn btn-primary">Delete</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
 
  <?php include "footer1.php"; ?>
   <!--/.footer--> 
@@ -473,8 +469,6 @@ copyTextareaBtn.addEventListener('click', function(event) {
   try {
     var successful = document.execCommand('copy');
     var msg = successful ? 'successful' : 'unsuccessful';
-      location.href=copyTextarea.innerHTML;
-           //"http://localhost:8888/girlstrade/index.php/viewItem/index/1"; 
     console.log('Copying text command was ' + msg);
   } catch (err) {
     console.log('Oops, unable to copy');
@@ -514,7 +508,7 @@ function passToModal() {
 	
     $('#deleteAdsPopup').on('show.bs.modal', function(event) {
         $("#messageID").val($(event.relatedTarget).data('id'));
-        $("#userID").val($(event.relatedTarget).data('userID'));
+        $("#userID").val($(event.relatedTarget).data('userid'));
     });
 
     $('#shareAds').on('show.bs.modal', function(event) {
@@ -591,32 +585,11 @@ var encodeHtmlEntity = function(str) {
   }
   return buf.join('');
 };
-function setupDeleteAds(identifier)
-{
-	$('#deleteAdsPopup').modal('show');
-	
-	$.ajax({
-		method: "POST",
-		url: "<?php echo base_url(); echo MY_PATH;?>messages/deleteMyAds",
-		data: { 
-			messageID: $(identifier).data('id') ,
-			userID: $(identifier).data('userID') 
-		},
-		success: function(response){
-			$("#modal-title-del").html("Your post has been deleted.");
-			// $('#fwd-btn').css("display", "block");
-			// $('#fwd-btn').css("margin", "auto");
-			// $('#cancel-btn').css("display", "none");
-			// $('#submit-btn').css("display", "none");
-			
-			console.log("success");
-		}
-	});
 
-
-     //var myform = document.getElementById("itemDelete");
-	  	//document.getElementById("itemDelete").submit();
-    return false;
+function deleteMyAds(){
+	var myform = document.getElementById("itemDelete");
+  	document.getElementById("itemDelete").submit();
+   	return true;
 }
 
 function setup()
