@@ -270,9 +270,9 @@ input[type=checkbox]
               		$clickLink="clickLink1";
               		$shareLink=base_url().MY_PATH."viewItem/index/".$postID;
                      echo " <div id='$ctrlName' name='$ctrlName' class='center'></div><div id='$errorctrlName' name='$errorctrlName' class='center'></div><input name='$ctrlValue' id='$ctrlValue' type='hidden' value='$postID2' />";
-                	if($getDisableSavedAds)
+                	if($getDisableSavedAds && $isSameUser==false)
                      echo "<li><a style=\"pointer-events: none;color:black; cursor: default;\" href=\"javascript:savedAds('$ctrlValue', '$ctrlName')\" id='$clickLink'><i class=\" fa fa-heart\"></i> ".$this->lang->line("lblItemSaved")."</a> </li>";
-                   else 
+                   else if ($isSameUser==false)
                    	echo "<li><a href=\"javascript:savedAds('$ctrlValue', '$ctrlName','$clickLink')\" id='$clickLink'><i class=\" fa fa-heart\"></i> ".$this->lang->line("lblItemSave")." </a> </li>";
                    	
                 	echo "<li><a href=\"#shareAds\" data-toggle=\"modal\" shareLink='$shareLink'> <i class=\"fa fa-share-alt\"></i> ".$this->lang->line("lblShareItem")." </a></li>";
@@ -282,7 +282,7 @@ input[type=checkbox]
                     	
                       <?php }else if($isReportAbuseAlready){?>
                       <li><a href="" style="color: black;" onclick="return false;" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> <?php echo $this->lang->line("lblReportAbuseAlready"); ?> </a> </li>
-                    	<?php }else {?>
+                    	<?php }else if($isSameUser==false){?>
                     	 <li><a href="#reportAdvertiser" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> <?php echo $this->lang->line("lblReportAbuse");?> </a> </li>
                     	<?php }?>
                     </ul>
@@ -1434,7 +1434,7 @@ function passToModal() {
     });
     $('#deleteAdsPopup').on('show.bs.modal', function(event) {
         $("#messageID").val($(event.relatedTarget).data('id'));
-        $("#userID").val($(event.relatedTarget).data('userID'));
+        $("#userID").val($(event.relatedTarget).data('userid'));
     });
     $('#sellerInfo').on('show.bs.modal', function(event) {
         $("#sellerphone").val($(event.relatedTarget).data('phone'));
