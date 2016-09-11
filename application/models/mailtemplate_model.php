@@ -12,10 +12,10 @@
   <tr>
     <td style="border-bottom:1px solid #c0c0c0;" valign="top" align="left"><table width="100%" border="0" cellspacing="0" cellpadding="0" >
         <tr>
-          <td valign="top" align="left"  style="padding-left:21px;"><a href="http://www.girlstrade.com" target="_blank"><img src="http://www.girlstrade.com/email_images/email_logo.jpg" alt="Oracle Corporation" width="123" height="30"  border="0"></a></td>
+          <td valign="top" align="left"  style="padding-left:21px;"><a href="http://www.girlstrade.com" target="_blank"><img src="http://www.girlstrade.com/email_images/email_logo.jpg" alt="GirlsTrade Corporation" width="123" height="30"  border="0"></a></td>
         </tr>
         <tr>
-          <td valign="top" align="left"><a href="http://www.girlstrade.com" target="_blank" style="color:#1f4f82; text-decoration:underline; font-family:Arial, Helvetica, sans-serif; font-size:13px; text-align:left"><img src="http://www.girlstrade.com/email_images/email_banner.jpg" alt="Oracle Applications Together with Oracle Systems" width="612" height="210" border="0" style="display:block;"></a></td>
+          <td valign="top" align="left"><a href="http://www.girlstrade.com" target="_blank" style="color:#1f4f82; text-decoration:underline; font-family:Arial, Helvetica, sans-serif; font-size:13px; text-align:left"><img src="http://www.girlstrade.com/email_images/email_banner.jpg" alt="GirlsTrade - A Place for Girls to Trade" width="612" height="210" border="0" style="display:block;"></a></td>
         </tr>';
 		
 		var $footer=' <tr>
