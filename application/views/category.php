@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<?php $title = "Search - GirlsTrade";  include("header.php"); ?>
-=======
-<?php $title = trim($keywords);  include("header.php"); ?>
->>>>>>> origin/master
+<?php $title = $keywords=="0"?"":trim($keywords);  include("header.php");?>
 <!-- CSS WHEEL SLIDER -->
 <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/noUiSlider/nouislider.css">
 <script src="<?php echo base_url();?>assets/plugins/noUiSlider/nouislider.js"></script>
