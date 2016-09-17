@@ -2234,6 +2234,10 @@ function addDayswithdate($date,$days){
 	public function insertBuyerMessage(){
 		
 		try {
+			$data["Profile"]=$this->lang->line("Profile");
+			$data["HeaderSearch"]=$this->lang->line("HeaderSearch");
+			$data["Logout"]=$this->lang->line("Logout");
+			$data["Post_New_Ads"]=$this->lang->line("Post_New_Ads");
 			if(isset($_GET["prevURL"])){
 				$prevURL=$_GET["prevURL"];
 				$_SESSION["previousUrl"]=$prevURL;
@@ -2334,8 +2338,8 @@ function addDayswithdate($date,$days){
 				if($messageResult){
 					$this->admin_model->updateStatByUserID($userID);
 					$this->admin_model->updateStatByUserID($fromUserID);
-					$errorMsg="Success in adding your message!";
 					$data["lang_label"]=$this->nativesession->get("language");
+					$errorMsg=$this->lang->line("successMsg");
 					$data["PrevURL"]=$prevURL;
 					$data["error"]=$errorMsg;
 					$data['redirectToWhatPage']=$this->lang->line("msgPreviousPage");

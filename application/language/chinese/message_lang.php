@@ -521,5 +521,5 @@ $lang["weChatID"]="微信ID";
 $lang["website"]="網站";
 $lang["showWechat"]="顯示微信ID";
 $lang["showWebsite"]="顯示網站";
-
+$lang["successMsg"]="成功發送你的信息";
 

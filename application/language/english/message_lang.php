@@ -518,4 +518,4 @@ $lang["weChatID"]="Wechat ID";
 $lang["website"]="Website";
 $lang["showWechat"]="Display wechat ID";
 $lang["showWebsite"]="Show my website publicly";
-
+$lang["successMsg"]="Success in adding your message";
