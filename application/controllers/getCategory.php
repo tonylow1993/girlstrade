@@ -76,7 +76,9 @@ class getCategory extends CI_Controller {
 	public function getAll($pageNum, $catID="0", $locID="0", $keywords='0', $sortByID="0", $minPrice="0", $maxPrice="0", $allAds='allAds', $sortByType="0", $sortByPrice="", $sortByDate="0")
 	{
 		try{
-			
+			//echo urlencode ($keywords);
+			$keywords = urldecode ($keywords);	
+				
 			$loginUser=$this->nativesession->get("user");
 			if(isset($loginUser))
 				$thread["userID"]=$loginUser['userID'];
@@ -97,7 +99,7 @@ class getCategory extends CI_Controller {
 			$thread["page_visit"]=PageSearch;
 			$this->pagevisited_model->insert($thread);
 			
-			
+		
 			
 		if( $this->input->post("ads")<> null && trim($this->input->post("ads"))<>"")
 			$keywords=($this->input->post("ads"));
@@ -135,7 +137,6 @@ class getCategory extends CI_Controller {
 			$data["sortByDate"]="0";
 			$data["sortByPrice"]="0";
 		}
-		
 		$searchhistory['keyword']=$keywords;
 		$searchhistory['catID']=$catID;
 		$searchhistory['locID']=$locID;
@@ -200,7 +201,7 @@ class getCategory extends CI_Controller {
 			$data['keywords']='0';
 		else
 		$data['keywords']=($keywords);
-		
+		//echo $data['keywords'];
 		$query=$this->category_model->getParentCategory();
 		if (!is_null($query)) {
 			foreach($query as $row)
@@ -289,6 +290,7 @@ class getCategory extends CI_Controller {
 				$data["menuPendingRequestNumber"]=$menuCount["pendingMsgCount"];
 			}
 		//----------------------------
+		
 		$this->load->view('category.php', $data);
 	}
 	
