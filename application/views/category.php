@@ -504,7 +504,7 @@
               <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
                 <li <?php if(strcmp($activeTab, "allAds")==0) echo "class=\"active\"";?>>
                 <!-- <a href="#allAds"  id="allAds2" name="allAds2"  role="tab" data-toggle="tab" onclick="return setupTab('allAds', 'allAds2');"> -->
-                <a href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/allAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>"  id="allAds2" name="allAds2" >
+                <a href="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/allAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>"  id="allAds2" name="allAds2" >
                 <?php echo $lblConditionAny;?>
                 <?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
@@ -520,7 +520,7 @@
                 </a></li>
                 <li <?php if(strcmp($activeTab, "newAds")==0) echo "class=\"active\""; ?>>
                 <!-- <a href="#newAds" id="newAds2" name="newAds2"  role="tab" data-toggle="tab" onclick="return setupTab('newAds', 'newAds2');"> -->
-                <a href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/newAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" id="newAds2" name="newAds2" >
+                <a href="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/newAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" id="newAds2" name="newAds2" >
                 <?php echo $lblConditionNew;?>
                 <?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
@@ -541,7 +541,7 @@
                 </a></li>
                 <li <?php if(strcmp($activeTab, "usedAds")==0) echo "class=\"active\""; ?>>
                 <!-- <a href="#usedAds" id="usedAds2" name="usedAds2"  role="tab" data-toggle="tab" onclick="return setupTab('usedAds', 'usedAds2');"> -->
-                <a href="<?php echo base_url().MY_PATH.'getCategory/getAll/'.$pageNum.'/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/usedAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" id="usedAds2" name="usedAds2"  >
+                <a href="<?php echo base_url().MY_PATH.'getCategory/getAll/1/'.$catID_.'/'.$locID_.'/'.$keywords.'/0/'.$minPrice.'/'.$maxPrice.'/usedAds/'.$sortByType.'/'.$sortByPrice.'/'.$sortByDate;?>" id="usedAds2" name="usedAds2"  >
                 <?php echo $lblConditionUsed;?> 
                 	<?php 
                   		if(SHOW_BRACKETS_SEARCH_PAGE==1){
