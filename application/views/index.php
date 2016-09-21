@@ -792,7 +792,9 @@ window.onload = function(){
             <div class="inner-box no-padding panel-bevel">
               <div class="inner-box-content"> 
               <!-- <a href="<?php echo base_url().MY_PATH;?>howgirlstradeworks"> -->
+              <a href="https://www.instagram.com/girlstradehk/">
               <img class="img-responsive" src="<?php echo base_url();?>images/site/app.jpg" alt="tv">
+              </a>
               <!-- </a> -->
               </div>
             </div>
@@ -823,7 +825,8 @@ window.onload = function(){
               </div>
             </div>
             
-            <div class="inner-box no-padding panel-bevel"> <img class="img-responsive" src="<?php echo base_url();?>images/site/add2.jpg" alt=""> </div>
+            <div class="inner-box no-padding panel-bevel"><a href="https://www.facebook.com/Donttellpapaplease/"> 
+            <img class="img-responsive" src="<?php echo base_url();?>images/site/add2.jpg" alt=""></a> </div>
           	<div class="inner-box has-aff relative">
               <a class="dummy-aff-img" href="category.html"><img src="<?php echo base_url();?>images/site/aff2.png" class="img-responsive" alt=" aff"> </a>
 
