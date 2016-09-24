@@ -603,7 +603,6 @@
             	$NoOfItemCount=0;
             	$query2 = $this->db->query($strQuery);
             	$var2=$query2->result_array();
-            	var_dump($var2);
             	$NoOfItemCount=$var2[0]["NoOfCount"];
             		
             	return $NoOfItemCount;
@@ -642,7 +641,6 @@
             	$NoOfItemCount=0;
             	$query2 = $this->db->query($strQuery);
             	$var2=$query2->result_array();
-            	var_dump($var2);
             	$NoOfItemCount=$var2[0]["NoOfCount"];
             
             	return $NoOfItemCount;

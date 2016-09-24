@@ -56,7 +56,6 @@ class requestpost_model extends CI_Model {
 	    	$NoOfItemCount=0;
 	    	$query2 = $this->db->query($strQuery,array($userId));
 	    	$var2=$query2->result_array();
-	    	var_dump($var2);
 	    	$NoOfItemCount=$var2[0]["NoOfCount"];
 	    	 
 	    	return $NoOfItemCount;
@@ -80,7 +79,6 @@ class requestpost_model extends CI_Model {
 	    	$NoOfItemCount=0;
 	    	$query2 = $this->db->query($strQuery,array($userId));
 	    	$var2=$query2->result_array();
-	    	var_dump($var2);
 	    	$NoOfItemCount=$var2[0]["NoOfCount"];
 	    	 
 	    	return $NoOfItemCount;
@@ -90,7 +88,6 @@ class requestpost_model extends CI_Model {
 	    	$NoOfItemCount=0;
 	    	$query2 = $this->db->query($strQuery,array($userId));
 	    	$var2=$query2->result_array();
-	    	var_dump($var2);
 	    	$NoOfItemCount=$var2[0]["NoOfCount"];
 	    
 	    	return $NoOfItemCount;
@@ -113,7 +110,6 @@ class requestpost_model extends CI_Model {
 	    	$NoOfItemCount=0;
 	    	$query2 = $this->db->query($strQuery,  array($userId));
 	    	$var2=$query2->result_array();
-	    	var_dump($var2);
 	    	$NoOfItemCount=$var2[0]["NoOfCount"];
 	    	 
 	    	return $NoOfItemCount;

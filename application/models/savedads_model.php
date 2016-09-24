@@ -40,7 +40,6 @@ class savedads_model extends CI_Model {
 		$arr=array("status"=>"U", "userID"=>$userId);
 		$query2 = $this->db->query($strQuery, $arr);
 		$var2=$query2->result_array();
-		var_dump($var2);
 		$NoOfItemCount=$var2[0]["NoOfCount"];
 		 
 		return $NoOfItemCount;
