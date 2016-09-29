@@ -167,8 +167,8 @@
                           <label class="col-md-3 control-label text-center" for="Adtitle"><i class="icon-pencil"></i> <?php echo $TopicTitle;?> <font color="red">*</font></label>
                           <div class="col-md-8">
                               <input id="Adtitle" name="Adtitle" class="form-control input-md" value="<?php echo set_value('Adtitle'); ?>" type="text" required="true"  maxlength="70"/>
-<!--                        <span class="help-block">A great title needs at least 5 words </span> -->
-                              <em><?php echo $newpostDescBottom;?> </em>
+<!--                        	<span class="help-block">A great title needs at least 5 words </span> -->
+                              <div id="titleError"></div>
                           </div>
                       </div>  
                       
@@ -506,13 +506,27 @@ function descCheckValidate() {
  	if($("#descriptionTextareaError").text() != "" || 
  		 	$("#descriptionTextareaAjaxLoad").text() == ""){
  	 	return false;
-    }else if($("#descriptionTextarea").val().trim().length==0) {
+    }else if($("#descriptionTextarea").val().trim().length < 5) {
+		$("#descriptionTextareaAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Invalid description</span></em>');
+        return false;
+    }else if($("#descriptionTextarea").val().trim().length > 500) {
+		$("#descriptionTextareaAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Exceed description length</span></em>');
         return false;
     }else
 	{	return true;
 	}
 	
 };
+
+function titleCheckValidate() {
+	if($("#Adtitle").val().trim().length < 5) {
+		$("#titleError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Title must be at least 5 characters long</span></em>');
+        return false;
+    }else
+	{	return true;
+	}
+}
+
 function isInt(value) {
 	  var x;
 	  if (isNaN(value)) {
@@ -537,6 +551,14 @@ $( "#descriptionTextarea" ).blur(function() {
 	    	$("#descriptionTextareaError").html(result.message);
 	    	}
 	});
+});
+
+$( "#Adtitle" ).blur(function() {
+	if($("#Adtitle").val().trim().length < 5) {
+		$("#titleError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Title must be at least 5 characters long</span></em>');
+    }else{
+		$("#titleError").html('<em></em>');
+	}
 });
 
 $("#image").fileinput({
@@ -622,14 +644,28 @@ $('#submit-upload-form').on('click', function(e){
 // 	        document.getElementById("validate").click();
 // 	        return false;
 // 	}
+	
+	if($("#Adtitle").val().trim().length < 5) {
+		$("#titleError").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Title must be at least 5 characters long</span></em>');
+		location.href = "#Adtitle"; 
+        return false;
+    }
+	
+	if($("#descriptionTextarea").val().trim().length < 5) {
+		$("#descriptionTextareaAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Invalid description</span></em>');
+		location.href = "#descriptionTextareaAjaxLoad"; 
+        return false;
+    }else if($("#descriptionTextarea").val().trim().length > 500) {
+		$("#descriptionTextareaAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Exceed description length</span></em>');
+		location.href = "#descriptionTextareaAjaxLoad"; 
+        return false;
+    }
+	
 	if(!priceCheckValidate()){
 		location.href = "#priceAjaxLoad";                 //Go to the target element.
 		 return false; 
 	}
-	if(!descCheckValidate()){
-		location.href = "#descriptionTextareaAjaxLoad";                 //Go to the target element.
-		 return false; 
-	}
+	
 	isEmptyUploadFile(function(r)
     {
         var up = document.getElementById('image').value;
