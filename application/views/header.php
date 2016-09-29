@@ -31,8 +31,8 @@
   </style>
 
 
-<meta name="description" content="一個為香港女士而設的交易平台,一起團結創造一個GirlsTrade社區!" />
-<meta name="keywords" content="GirlsTrade、HK Trades、Girls Trade、Images、Pictures,Free,Hong Kong,trade,港女,二手交易,交易平台,免費,二手袋,Hong Kong,trade,女士交易集中地" />
+<meta name="Description" content="一個為香港女士而設的交易平台,一起團結創造一個GirlsTrade社區!" />
+<meta name="Keywords" content="GirlsTrade、HK Trades、Girls Trade、Images、Pictures,Free,Hong Kong,trade,港女,二手交易,交易平台,免費,二手袋,Hong Kong,trade,女士交易集中地" />
 
 
 

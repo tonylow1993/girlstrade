@@ -1,5 +1,5 @@
 <?php
-$title = "GirlsTrade 香港女士交易平台"; 
+$title = "香港女士交易平台"; 
   include("header.php"); ?>
 
 <script>
