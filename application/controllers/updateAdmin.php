@@ -107,7 +107,6 @@ class updateAdmin extends CI_Controller {
      				$r=$r+1;
      			}
      		}
-     		var_dump($rejectlist);
      			
 	    	if($approvelist<>null)
 	     		$this->admin_model->updateApprovePost($approvelist);

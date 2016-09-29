@@ -172,7 +172,7 @@ input[type=checkbox]
 <!--                    </ul> -->
                 </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-4">
                   <aside class="panel panel-body panel-details panel-info">
                     <!-- <ul class="itemInfo">
                     <li>
