@@ -492,7 +492,7 @@ function priceCheckValidate() {
     	$("#priceAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Minimum price: $20 </span></em>');
     	return false;
     }else if(parseInt($("#price").val())><?php echo MAXPRICERANGE;?>){
-    	$("#priceAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Maximum price: $2000</span></em>');
+    	$("#priceAjaxLoad").html('<em><span style="color:red"> <i class="icon-cancel-1 fa"></i>Maximum price: $20000</span></em>');
     	return false;
     }else
 	{
