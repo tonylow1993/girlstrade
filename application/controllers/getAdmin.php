@@ -648,8 +648,6 @@ class getAdmin extends CI_Controller {
 	
 					//array_push($rejectlist, strval($postID));
 				}
-				var_dump($approvelist);
-				var_dump($rejectlist);
 				if(!is_null($approvelist))
 					$this->tradecomments_model->updateApprovePost($approvelist);
 				if(!is_null($rejectlist<>null))
@@ -796,8 +794,6 @@ class getAdmin extends CI_Controller {
 	
 					//array_push($rejectlist, strval($postID));
 				}
-				var_dump($approvelist);
-				var_dump($rejectlist);
 				if(!is_null($approvelist))
 					$this->itemcomments_model->updateApprovePost($approvelist);
 				if(!is_null($rejectlist<>null))
@@ -871,8 +867,6 @@ class getAdmin extends CI_Controller {
 	
 					//array_push($rejectlist, strval($postID));
 				}
-				var_dump($approvelist);
-				var_dump($rejectlist);
 				if(!is_null($approvelist))
 					$this->abusemessages_model->updateApprovePost($approvelist);
 				if(!is_null($rejectlist<>null))
@@ -946,8 +940,6 @@ class getAdmin extends CI_Controller {
 						
 						//array_push($rejectlist, strval($postID));
 				}
-				 var_dump($approvelist);
-				 var_dump($rejectlist);
 				if(!is_null($approvelist))
 					$this->admin_model->updateApprovePost($approvelist);
 				if(!is_null($rejectlist<>null))
@@ -1312,8 +1304,6 @@ class getAdmin extends CI_Controller {
 		
 					//array_push($rejectlist, strval($postID));
 				}
-				var_dump($approvelist);
-				var_dump($rejectlist);
 				if(!is_null($approvelist))
 					$this->contact_model->updateUnverifiedContact($approvelist);
 // 				if(!is_null($rejectlist<>null))
