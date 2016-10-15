@@ -503,6 +503,7 @@ function priceCheckValidate() {
 };
 
 function descCheckValidate() {
+	console.log($("#descriptionTextarea").val().trim().length);
  	if($("#descriptionTextareaError").text() != "" || 
  		 	$("#descriptionTextareaAjaxLoad").text() == ""){
  	 	return false;

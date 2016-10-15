@@ -1913,8 +1913,8 @@ public function getChildCategory($parentID)
 			else if(ShortDescLength($content, DESCMINLENGTHINNEWPOST))
 	        	$data['message'] ='<div class="alert alert-danger"><strong>Warning!</strong> '.$this->lang->line("MinDescLength").'</div>';
 	       	else 
-				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Exceed description length!</div>';
-			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Exceed description length</span></em>';
+				$data['message'] = '<div class="alert alert-danger"><strong>Warning!</strong> Invalid description length!</div>';
+			$data['icon'] = '<em><span style="color:red"> <i class="icon-cancel-1 fa"></i> Invalid description length</span></em>';
 		}
 		echo json_encode($data);
 	}
