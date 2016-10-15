@@ -1092,14 +1092,14 @@ input[type=checkbox]
       <div class="modal-body">
       	<table>
       <?php if(!$hidetelno){?>
-        <tr><td>Phone: </td><td style="width:300px;"><input  id="sellerphone" name="sellerphone"></td></tr>
+        <tr><td>Phone: </td><td style="width:300px;"><label  id="sellerphone" name="sellerphone"></td></tr>
         <?php }?>
-       <tr><td>Email: </td><td> <input id="selleremail" name="selleremail"></td></tr>
+       <tr><td>Email: </td><td> <label id="selleremail" name="selleremail"></td></tr>
         <?php if($showWeChatID){?>
-        <tr><td>We Chat ID: </td><td><input id="weChatID" name="weChatID" value="<?php echo $weChatID;?>"></td></tr>
+        <tr><td>We Chat ID: </td><td><label id="weChatID" name="weChatID" value="<?php echo $weChatID;?>"></td></tr>
         <?php }?>
         <?php if($showWebSite){?>
-        <tr><td>Web Site: </td><td><input id="webSiteAddr" name="webSiteAddr" value="<?php echo $webSiteAddr;?>"></td></tr>
+        <tr><td>Web Site: </td><td><label id="webSiteAddr" name="webSiteAddr" value="<?php echo $webSiteAddr;?>"></td></tr>
         <?php }?>
         </table>
       </div>
