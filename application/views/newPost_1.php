@@ -761,7 +761,7 @@ $('#submit-upload-form').on('click', function(e){
 									$('#fwd-btn').css("display", "block");
 									$('#fwd-btn').css("margin", "auto");
 									$('#progress-bar').css("display", "none");
-								}, 20000);
+								}, 2000);
 						    }
 						}
 					});

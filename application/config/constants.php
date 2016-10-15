@@ -105,7 +105,7 @@ define("UNLIMITEDTIMES", 9999);
 define("MAXDAYSACTIVATEUSEREXPIRYDAYS", 30);
 define("MINCOUNTSHOWREMAINTIMES", 5);
 define("MINPRICERANGE", 20);
-define("MAXPRICERANGE", 2000);
+define("MAXPRICERANGE", 20000);
 
 define("SMTP_PROTOCOL" , "smtp");
 define("SMTP_HOST", "ssl://mail.s225.sureserver.com" );
